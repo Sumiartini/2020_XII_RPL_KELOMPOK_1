@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Rocker - Bootstrap4 Admin Dashboard Template</title>
+    <title>Formulir Siswa</title>
     <!--favicon-->
     <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
     <!-- simplebar CSS-->
@@ -111,7 +111,7 @@
                             @csrf
                             <h4 class="form-header text-uppercase">
                                 <i class="  "></i>
-                                Data Pribadi
+                                Data Calon Siswa
                             </h4>
 
                             <div class="form-group row">
@@ -120,55 +120,9 @@
                                     <label>Nama Lengkap<span style="color:red"> *</span></label>
                                     <input type="text" class="form-control" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap">
                                 </div>
-                                <div class="col-sm-4">
-                                    <label>NIK / No. KITAS (untuk WNA)<span style="color:red"> *</span></label>
-                                    <input type="text" class="form-control" id="input-10" name="usr_nik" placeholder="Masukan Nomor NIK/KITAS">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Telepon<span style="color:red"> *</span></label>
-                                    <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon">
-                                </div>
 
 
-                            </div>
-
-
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label>NISN<span style="color:red"> *</span></label>
-                                    <input type="text" class="form-control" id="input-10" name="std_nisn" placeholder="Masukan Nomor NISN">
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <label>Kewarganegaraan<span style="color:red"> *</span></label>
-                                    <select name="usr_citizenship" class="form-control" id="basic-select">
-                                        <option disabled="" selected="">Pilih</option>
-                                        <option>WNI</option>
-                                        <option>WNA</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>Nama Negara<span style="color:red"> *</span></label>
-                                    <input name="usr_country_name" type="text" class="form-control" id="input-10" placeholder="Masukan Nama Negara">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label>No Registrasi Akta Lahir</label>
-                                    <input type="text" class="form-control" id="input-10" name="personal[birth_certificate_registration_no]" placeholder="MAsukan No Registrasi Akta Lahir">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label>Tempat Lahir<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_place_of_birth" class="form-control" id="input-10" name="firstname" placeholder="Masukan Tempat Lahir">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label>Tanggal Lahir<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control" placeholder="Tanggal/Bulan/Tahun">
-                                </div>
-                                <div class="col-sm-4">
+                               <div class="col-sm-4">
                                     <label>Jenis Kelamin<span style="color:red"> *</span></label>
 
                                     <select name="usr_gender" class="form-control" id="basic-select">
@@ -178,30 +132,56 @@
                                     </select>
 
                                 </div>
+                                
+                                <div class="col-sm-4">
+                                    <label>NISN<span style="color:red"> *</span></label>
+                                    <input type="text" class="form-control" id="input-10" name="std_nisn" placeholder="Masukan Nomor NISN">
+                                </div>
+
                             </div>
 
 
                             <div class="form-group row">
 
-                                <div class="col-sm-2">
-                                    <label>Mendapatkan KIP</label> <br>
-
-                                    <div class="radio icheck-info icheck-inline">
-                                        <input type="radio" id="receive_kip1" value="Ya" name="personal[receive_kip]">
-                                        <label for="receive_kip1">Ya</label>
-                                    </div>
-                                    <div class="radio icheck-info icheck-inline">
-                                        <input type="radio" checked="" id="receive_kip2" value="Tidak" name="personal[receive_kip]">
-                                        <label for="receive_kip2">Tidak</label>
-                                    </div>
+                                <div class="col-sm-4">
+                                    <label>Telepon<span style="color:red"> *</span></label>
+                                    <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon">
                                 </div>
 
-                                <div class="col-sm-3">
-                                    <label>NO KIP</label>
-                                    <input type="text" name="stu_no_kip" class="form-control" id="input-10" placeholder="Masukan Nomor KIP">
+                                <div class="col-sm-4">
+                                    <label>Tempat Lahir<span style="color:red"> *</span></label>
+                                    <input type="text" name="usr_place_of_birth" class="form-control" id="input-10" name="firstname" placeholder="Masukan Tempat Lahir">
                                 </div>
 
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
+                                    <label>Tanggal Lahir<span style="color:red"> *</span></label>
+                                    <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control" placeholder="Tanggal/Bulan/Tahun">
+                                </div>
+
+                            </div>
+
+                                
+                            <div class="form-group row">
+ 
+                                <div class="col-sm-4">
+                                    <label>No Registrasi Akta Lahir</label>
+                                    <input type="text" class="form-control" id="input-10" name="personal[birth_certificate_registration_no]" placeholder="MAsukan No Registrasi Akta Lahir">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label> Tinggal Bersama<span style="color:red"> *</span></label>
+                                    <select class="form-control" name="personal[living_together]" id="basic-select">
+                                        <option disabled="" selected="">Pilih</option>
+                                        <option value="Orang Tua">Orang Tua</option>
+                                        <option value="Wali">Wali</option>
+                                        <option value="Kos">Kos</option>
+                                        <option value="Asrama">Asrama</option>
+                                        <option value="Panti Asuhan">Panti Asuhan</option>
+                                        <option value="Pesantren">Pesantren</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
                                     <label>Agama<span style="color:red"> *</span></label>
                                     <select class="form-control" name="usr_religion" id="basic-select">
                                         <option disabled="" selected="">Pilih</option>
@@ -213,21 +193,31 @@
                                         <option value="Khonghucu">Khonghucu</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-3">
-                                    <label>Tempat Tinggal<span style="color:red"> *</span></label>
-                                    <select class="form-control" name="personal[living_together]" id="basic-select">
-                                        <option disabled="" selected="">Pilih</option>
-                                        <option value="Orang Tua">Orang Tua</option>
-                                        <option value="Wali">Wali</option>
-                                        <option value="Kos">Kos</option>
-                                        <option value="Asrama">Asrama</option>
-                                        <option value="Panti Asuhan">Panti Asuhan</option>
-                                        <option value="Pesantren">Pesantren</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2">
+
+                            </div>
+
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-4">
                                     <label>Anak Ke<span style="color:red"> *</span></label>
                                     <input type="text" name="personal[child]" class="form-control" id="input-10" placeholder="Anak Ke">
+                                </div>
+
+
+                                <div class="col-sm-4">
+                                    <label>Asal Sekolah<span style="color:red"> *</span></label>
+                                    <input type="text" name="" class="form-control" id="input-10" placeholder="Anak Ke">
+                                </div>
+
+                                
+                                <div class="col-sm-4">
+                                    <label> Jurusan<span style="color:red"> *</span></label>
+                                    <select class="form-control" name="" id="basic-select">
+                                        <option disabled="" selected="">Pilih</option>
+                                        <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                                        <option value="Multimedia">Multimedia</option>
+                                    </select>
                                 </div>
                             </div>
 

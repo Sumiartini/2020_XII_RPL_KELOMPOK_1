@@ -80,7 +80,7 @@
             <div class="form-group">
               <div class="position-relative has-icon-left">
                 <label for="exampleInputPassword" class="sr-only">Kata Sandi</label>
-                <input type="password" id="exampleInputPassword" class="form-control form-control-rounded @error('password') is-invalid @enderror" placeholder="Kata Sandi" name="Kata Sandi">
+                <input type="password" id="exampleInputPassword" class="form-control form-control-rounded @error('password') is-invalid @enderror" placeholder="Kata Sandi" name="password">
                 @error('password')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
