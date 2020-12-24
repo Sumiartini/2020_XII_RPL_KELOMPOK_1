@@ -6,7 +6,7 @@
 
 @push('styles')
 <!--favicon-->
-<link rel="icon" href="{{ URL::to('assets/images/favicon.ico')}}" type="image/x-icon">
+<link rel="icon" href="{{ URL::to('assets/images/logo.png')}}" type="image/x-icon">
 <!-- simplebar CSS-->
 <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
 <!-- Bootstrap core CSS-->
@@ -133,74 +133,76 @@
                         </tr>
 
                         <tr>
-                            <th>Kewarganegaraan</th>
-                            <td>:</td>
-                            <td>INDONESIA</td>
 
                             <th>Agama</th>
                             <td>:</td>
                             <td>islam</td>
-                        </tr>
 
-                        <tr>
                             <th>Jenis Kelamin</th>
                             <td>:</td>
                             <td>Laki Laki</td>
 
-                            <th>Tempat Lahir</th>
-                            <td>:</td>
-                            <td>Bandung</td>
                         </tr>
 
                         <tr>
+                            
+                            <th>Tempat Lahir</th>
+                            <td>:</td>
+                            <td>Bandung</td>
+
                             <th>Tanggal lahir</th>
                             <td>:</td>
                             <td>05 Mei</td>
 
-                            <th>Alamat</th>
-                            <td>:</td>
-                            <td>Kp. Cicangkudu</td>
                         </tr>
 
                         <tr>
+                            
+                            <th>Alamat</th>
+                            <td>:</td>
+                            <td>Kp. Cicangkudu</td>
+
+
                             <th>RT</th>
                             <td>:</td>
                             <td>01</td>
 
-                            <th>RW</th>
-                            <td>:</td>
-                            <td>012</td>
                         </tr>
 
                         <tr>
+                            <th>RW</th>
+                            <td>:</td>
+                            <td>012</td>
+
                             <th>Provinsi</th>
                             <td>:</td>
                             <td>Jawa barat</td>
+                            
+                        </tr>
+
+                        <tr>
                             
                             <th>Kabupaten/Kota</th>
                             <td>:</td>
                             <td>Bandung</td>
 
-                        </tr>
-                        
-                        <tr>
                             <th>Kecamatan</th>
                             <td>:</td>
                             <td>Katapang</td>
 
+
+                        </tr>
+                        
+                        <tr>
+                            
                             <th>Kode Pos</th>
                             <td>:</td>
                             <td>40971</td>
-                        </tr>
 
-                        <tr>
                             <th>Kelurahan/Desa</th>
                             <td>:</td>
                             <td>Sangkanhurip</td>
 
-                            <th>Tinggal Bersama</th>
-                            <td>:</td>
-                            <td>Orang Tua</td>
                         </tr>
 
                         <tr>
@@ -208,20 +210,11 @@
                             <td>:</td>
                             <td>2</td>
 
-                            <th></th>
-                            <td></td>
-                            <td></td>
+                            <th>Tinggal Bersama</th>
+                            <td>:</td>
+                            <td>Orang Tua</td>
                         </tr>
 
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

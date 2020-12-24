@@ -11,7 +11,7 @@
   <meta name="author" content="" />
   <title>SMK Mahaputra - Daftar Siswa</title>
   <!--favicon-->
-  <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
+  <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
   <!-- Bootstrap core CSS-->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
   <!-- animate CSS-->
@@ -80,7 +80,7 @@
             <div class="form-group">
               <div class="position-relative has-icon-left">
                 <label for="exampleInputPassword" class="sr-only">Kata Sandi</label>
-                <input type="password" id="exampleInputPassword" class="form-control form-control-rounded @error('password') is-invalid @enderror" placeholder="Kata Sandi" name="Kata Sandi">
+                <input type="password" id="exampleInputPassword" class="form-control form-control-rounded @error('password') is-invalid @enderror" placeholder="Kata Sandi" name="password">
                 @error('password')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>

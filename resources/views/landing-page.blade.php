@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+      <link rel="icon" href="assets/images/logo.png" type="image/x-icon">
       <!-- Bootstrap core CSS-->
       <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
 
