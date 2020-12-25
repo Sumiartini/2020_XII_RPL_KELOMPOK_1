@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <title>Formulir Siswa</title>
     <!--favicon-->
-    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
     <!-- simplebar CSS-->
     <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
     <!-- Bootstrap core CSS-->

@@ -48,4 +48,16 @@ class LoginController extends Controller
     {
         return 'usr_email';
     }
+
+    public function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username()=> 'required|string',
+            'password' => 'required|string',
+        ],
+
+        ['usr_email.required' => 'Alamat Email Tidak Boleh Kosong',
+         'password.required'  => 'Kata Sandi Tidak Boleh Kosong'
+        ]);
+    }
 }

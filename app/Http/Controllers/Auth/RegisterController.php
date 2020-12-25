@@ -77,6 +77,16 @@ class RegisterController extends Controller
             //untuk pattern regex email bila butuh 'regex:/(.*)@gmail|yahoo\.com/i'
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'usr_phone_number' => ['required', 'min:10','regex:/^([0-9\s\-\+\(\)]*)$/'],
+        ],
+        [
+            'usr_name.required'         => 'Nama Lengkap Tidak Boleh Kosong',
+            'usr_email.required'        => 'Alamat Email Tidak Boleh Kosong',
+            'usr_email.unique'          => 'Maaf, Alamat Email Sudah Digunakan',
+            'usr_phone_number.required' => 'Nomor Telepon Tidak Boleh Kosong',
+            'usr_phone_number.min'      => 'Nomor Telepon Minimal Lebih Dari 10 Karakter',
+            'password.required'         => 'Kata Sandi Tidak Boleh Kosong',
+            'password.min'              => 'Kata Sandi Minimal 8 Karakter',
+            'password.confirmed'        => 'Kata Sandi Wajib Sama Ketika Di Ulangi',
         ]);
     }
 
