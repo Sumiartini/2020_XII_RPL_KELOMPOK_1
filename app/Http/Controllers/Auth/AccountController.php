@@ -25,7 +25,7 @@ class AccountController extends Controller
         if ($user) {
             $user->usr_email_verified_at = now();
             $user->save();
-            return redirect('/dashboard')->with(['success' => 'Selamat akun anda berhasil diverifikasi']);;
+            return redirect('/dashboard')->with(['success' => 'Selamat akun anda berhasil di verifikasi']);;
         }
     }
 
@@ -56,6 +56,9 @@ class AccountController extends Controller
     {
         $request->validate([
             'usr_email' => 'required|email'
+        ],
+        [
+            'usr_email.required' => 'Alamat Email Tidak Boleh Kosong'
         ]);
 
         $users = User::whereUsrEmail($request->usr_email)->first();

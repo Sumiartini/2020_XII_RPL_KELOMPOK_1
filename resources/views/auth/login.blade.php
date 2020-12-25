@@ -9,7 +9,7 @@
   <meta name="author" content="" />
   <title>SMK Mahaputra - Masuk</title>
   <!--favicon-->
-  <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon">
+  <link rel="icon" href="{{asset('assets/images/logo.png')}}" type="image/x-icon">
   <!-- Bootstrap core CSS-->
   <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
   <!-- animate CSS-->

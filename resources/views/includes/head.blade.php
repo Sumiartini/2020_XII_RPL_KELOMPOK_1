@@ -6,7 +6,7 @@
   <meta name="author" content=""/>
   <title>Rocker - Bootstrap4  Admin Dashboard Template</title>
   <!--favicon-->
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/images/logo.png" type="image/x-icon">
   <!-- simplebar CSS-->
   <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
   <!-- Bootstrap core CSS-->
