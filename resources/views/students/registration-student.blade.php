@@ -435,7 +435,7 @@
 
                             <div class="col-sm-2">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                <select name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data[year_of_birth') is-invalid @enderror" id="basic-select" value="{{ old('mother_data[year_of_birth]') }}">
+                                <select name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data[year_of_birth]') is-invalid @enderror" id="basic-select" value="{{ old('mother_data[year_of_birth]') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="2000"> 2000 </option>
                                     <option value="2001"> 2001 </option>
@@ -503,7 +503,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data[phone_number') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data[phone_number]') }}">
+                                <input type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data[phone_number]') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data[phone_number]') }}">
                                 @error('mother_data[phone_number]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -735,7 +735,7 @@
                                 <label> Email </label>
                                 <input type="text" name="contact[email]" class="form-control form-control-rounded @error('contact[email]') is-invalid @enderror" id="input-10" placeholder="Masukan Alamat Email" value="{{ old('contact[email]') }}">
                                 <p style="font-size: 12px;"  > Email anggota keluarga yang aktif </p>
-                                @error('contact[email])
+                                @error('contact[email]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -845,7 +845,7 @@
                                 <div>
                                 <label> Nama Prestasi </label>
                                 <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded @error('achievement[achievement_name]') is-invalid @enderror col-sm-12" id="input-10" placeholder="Nama Prestasi" value="{{ old('achievement[achievement_name]') }}">
-                                @error('achievement_name')
+                                @error('achievement[achievement_name]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
