@@ -22,6 +22,8 @@ class CreateStudentsTable extends Migration
             $table->foreignId('stu_school_year_id');
             $table->foreign('stu_school_year_id')->references('scy_id')->on('school_years');
 
+            $table->string('stu_school_origin')->nullable();
+            $table->string('stu_major')->nullable();
             $table->string('stu_nis')->nullable();
             $table->string('stu_nisn');
             $table->string('stu_kip_number')->nullable();
