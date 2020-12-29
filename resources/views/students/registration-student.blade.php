@@ -118,13 +118,13 @@
 
                             <div class="col-sm-4">
                                 <label> Nama Lengkap <span style="color:red"> *</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{ old('usr_name') }}">
-                                <p style="font-size: 12px;"> Sesuaikan dengan nama di ijazah SD/SMP </p>
+                                <input type="text" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{ old('usr_name') }}">
                                 @error('usr_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
+                                <p style="font-size: 12px;"> Sesuaikan dengan nama di ijazah SD/SMP </p>
                             </div>
 
 
@@ -146,8 +146,8 @@
 
                             <div class="col-sm-4">
                                 <label> NISN <span style="color:red"> *</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('std_nisn') is-invalid @enderror" id="input-10" name="std_nisn" placeholder="Masukan Nomor NISN" value="{{ old('std_nisn') }}">
-                                @error('std_nisn')
+                                <input type="text" class="form-control form-control-rounded @error('stu_nisn') is-invalid @enderror" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{ old('stu_nisn') }}">
+                                @error('stu_nisn')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -161,7 +161,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Telepon<span style="color:red"> *</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" id="input-10" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
+                                <input type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
                                 @error('usr_phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -171,7 +171,7 @@
 
                             <div class="col-sm-4">
                                 <label> No. WhatsApp <span style="color:red"> *</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" id="input-10" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_whatsapp_number') }}">>
+                                <input type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_whatsapp_number') }}">
                                 @error('usr_whatsapp_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -181,7 +181,7 @@
 
                             <div class="col-sm-4">
                                 <label> Tempat Lahir <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_place_of_birth" class="form-control form-control-rounded @error('usr_place_of_birth') is-invalid @enderror" id="input-10" placeholder="Masukan Tempat Lahir" value="{{ old('usr_place_of_birth') }}">
+                                <input type="text" name="usr_place_of_birth" class="form-control form-control-rounded @error('usr_place_of_birth') is-invalid @enderror" placeholder="Masukan Tempat Lahir" value="{{ old('usr_place_of_birth') }}">
                                 @error('usr_place_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -194,7 +194,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Tanggal Lahir <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control form-control-rounded @error('usr_date_of_birth') is-invalid @enderror" placeholder="Tanggal/Bulan/Tahun" value="{{ old('usr_date_of_birth') }}">
+                                <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control form-control-rounded @error('usr_date_of_birth') is-invalid @enderror" placeholder="Tanggal-Bulan-Tahun" value="{{ old('usr_date_of_birth') }}">
                                 @error('usr_date_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -204,7 +204,7 @@
 
                             <div class="col-sm-4">
                                 <label> No Registrasi Akta Lahir </label>
-                                <input type="text" class="form-control form-control-rounded @error('personal[birth_certificate_registration_no]') is-invalid @enderror" id="input-10" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal[birth_certificate_registration_no]') }}">
+                                <input type="text" class="form-control form-control-rounded @error('personal[birth_certificate_registration_no]') is-invalid @enderror" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal[birth_certificate_registration_no]') }}">
                                 @error('personal[birth_certificate_registration_no]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -260,7 +260,7 @@
 
                             <div class="col-sm-2">
                                 <label> Anak Ke <span style="color:red"> *</span></label>
-                                <input type="text" name="personal[child]" class="form-control form-control-rounded @error('personal[child]') is-invalid @enderror" id="input-10" placeholder="Anak Ke" value="{{ old('personal[child]') }}">
+                                <input type="text" name="personal[child]" class="form-control form-control-rounded @error('personal[child]') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal[child]') }}">
                                 @error('personal[child]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -297,7 +297,7 @@
 
                             <div class="col-sm-6">
                                 <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
-                                <input type="text" name="father_data[name]" class="form-control form-control-rounded @error('father_data[name]') is-invalid @enderror" id="input-10" placeholder="Masukan Nama Lengkap" value="{{ old('father_data[name]') }}">
+                                <input type="text" name="father_data[name]" class="form-control form-control-rounded @error('father_data[name]') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data[name]') }}">
                                 @error('father_data[name]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -307,7 +307,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas (NIK) <span style="color:red"> *</span></label>
-                                <input type="text" name="father_data[nik]" class="form-control form-control-rounded @error('father_data[nik]') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor NIK" value="{{ old('father_data[nik]') }}">
+                                <input type="text" name="father_data[nik]" class="form-control form-control-rounded @error('father_data[nik]') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('father_data[nik]') }}">
                                 @error('father_data[nik]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -384,7 +384,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data[phone_number]') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor Telepon" value="{{ old('father_data[phone_number]') }}">
+                                <input type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data[phone_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('father_data[phone_number]') }}">
                                 @error('father_data[phone_number]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -415,7 +415,7 @@
 
                             <div class="col-sm-6">
                                 <label> Nama Ibu Kandung <span style="color:red"> *</span></label>
-                                <input type="text" name="mother_data[name]" class="form-control form-control-rounded @error('mother_data[name]') is-invalid @enderror" id="input-10" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data[name]') }}">
+                                <input type="text" name="mother_data[name]" class="form-control form-control-rounded @error('mother_data[name]') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data[name]') }}">
                                 @error('mother_data[name]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -425,7 +425,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas (NIK) <span style="color:red"> *</span></label>
-                                <input type="text" name="mother_data[nik]" class="form-control form-control-rounded @error('mother_data[nik]') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor NIK" value="{{ old('mother_data[nik]') }}">
+                                <input type="text" name="mother_data[nik]" class="form-control form-control-rounded @error('mother_data[nik]') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('mother_data[nik]') }}">
                                 @error('mother_data[nik]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -503,7 +503,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data[phone_number]') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data[phone_number]') }}">
+                                <input type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data[phone_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data[phone_number]') }}">
                                 @error('mother_data[phone_number]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -534,7 +534,7 @@
 
                             <div class="col-sm-6">
                                 <label> Nama Lengkap </label>
-                                <input type="text" name="guardian_data[name]" class="form-control form-control-rounded @error('guardian_data[name]') is-invalid @enderror" id="input-10" name="firstname" placeholder="Masukan Nama Lengkap" value="{{ old('guardian_data[name]') }}">
+                                <input type="text" name="guardian_data[name]" class="form-control form-control-rounded @error('guardian_data[name]') is-invalid @enderror" name="firstname" placeholder="Masukan Nama Lengkap" value="{{ old('guardian_data[name]') }}">
                                 @error('guardian_data[name]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -544,7 +544,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas (NIK) </label>
-                                <input type="text" name="guardian_data[nik]" class="form-control form-control-rounded @error('guardian_data[nik]') is-invalid @enderror" id="input-10" name="firstname" placeholder="Masukan Nomor NIK" value="{{ old('guardian_data[nik]') }}">
+                                <input type="text" name="guardian_data[nik]" class="form-control form-control-rounded @error('guardian_data[nik]') is-invalid @enderror" name="firstname" placeholder="Masukan Nomor NIK" value="{{ old('guardian_data[nik]') }}">
                                 @error('guardian_data[nik]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -619,7 +619,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data[phone_number]') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor Telepon" value="{{ old('guardian_data[phone_number]') }}">
+                                <input type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data[phone_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('guardian_data[phone_number]') }}">
                                 @error('guardian_data[phone_number]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -681,7 +681,7 @@
 
                             <div class="col-sm-6">
                                 <label> Alamat <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_address" class="form-control form-control-rounded @error('usr_address') is-invalid @enderror" id="input-10" placeholder="Masukan Alamat" value="{{ old('usr_address') }}">
+                                <input type="text" name="usr_address" class="form-control form-control-rounded @error('usr_address') is-invalid @enderror" placeholder="Masukan Alamat" value="{{ old('usr_address') }}">
                                 @error('usr_address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -691,7 +691,7 @@
 
                             <div class="col-sm-2">
                                 <label> Kode Pos <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" id="input-10" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
+                                <input type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
                                 @error('usr_postal_code')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -701,7 +701,7 @@
 
                             <div class="col-sm-2">
                                 <label> RT <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor RT" value="{{ old('usr_rt') }}">
+                                <input type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" placeholder="Masukan Nomor RT" value="{{ old('usr_rt') }}">
                                 @error('usr_rt')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -710,7 +710,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <label> RW <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor RW" value="{{ old('usr_rw') }}">
+                                <input type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" placeholder="Masukan Nomor RW" value="{{ old('usr_rw') }}">
                                 @error('usr_rw')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -723,7 +723,7 @@
 
                             <div class="col-sm-6">
                                 <label> Telepon Rumah </label>
-                                <input type="text" name="contact[landline_number]" class="form-control form-control-rounded @error('contact[landline_number]') is-invalid @enderror" id="input-10" placeholder="Masukan Nomor Telepon Rumah" value="{{ old('contact[landline_number]') }}">
+                                <input type="text" name="contact[landline_number]" class="form-control form-control-rounded @error('contact[landline_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon Rumah" value="{{ old('contact[landline_number]') }}">
                                 @error('contact[landline_number]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -733,7 +733,7 @@
 
                             <div class="col-sm-6">
                                 <label> Email </label>
-                                <input type="text" name="contact[email]" class="form-control form-control-rounded @error('contact[email]') is-invalid @enderror" id="input-10" placeholder="Masukan Alamat Email" value="{{ old('contact[email]') }}">
+                                <input type="text" name="contact[email]" class="form-control form-control-rounded @error('contact[email]') is-invalid @enderror" placeholder="Masukan Alamat Email" value="{{ old('contact[email]') }}">
                                 <p style="font-size: 12px;"  > Email anggota keluarga yang aktif </p>
                                 @error('contact[email]')
                                 <span class="invalid-feedback" role="alert">
@@ -762,7 +762,7 @@
 
                             <div class="col-sm-4">
                                 <label> Waktu Tempuh <span style="color:red"> *</span></label>
-                                <input type="text" name="periodic_data[travel_time_to_school]" class="form-control form-control-rounded @error('periodic_data[travel_time_to_school]') is-invalid @enderror" id="input-10" placeholder="Masukan Dalam Satuan Jam/Menit" value="{{ old('periodic_data[travel_time_to_school]') }}">
+                                <input type="text" name="periodic_data[travel_time_to_school]" class="form-control form-control-rounded @error('periodic_data[travel_time_to_school]') is-invalid @enderror" placeholder="Masukan Dalam Satuan Jam/Menit" value="{{ old('periodic_data[travel_time_to_school]') }}">
                                 @error('periodic_data[travel_time_to_school]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -771,7 +771,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <label> Jumlah Saudara Kandung <span style="color:red"> *</span></label>
-                                <input type="text" name="periodic_data[number_of_sibling]" class="form-control form-control-rounded @error('periodic_data[number_of_sibling]') is-invalid @enderror" id="input-10" placeholder="Masukan Jumlah Saudara Kandung" value="{{ old('periodic_data[number_of_sibling]') }}"> 
+                                <input type="text" name="periodic_data[number_of_sibling]" class="form-control form-control-rounded @error('periodic_data[number_of_sibling]') is-invalid @enderror" placeholder="Masukan Jumlah Saudara Kandung" value="{{ old('periodic_data[number_of_sibling]') }}"> 
                                 @error('periodic_data[number_of_sibling]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -806,7 +806,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <label> Dan lain-lain </label>
-                                    <input type="text" name="achievement[type]" class="form-control form-control-rounded @error('usr_email') is-invalid @enderror" id="input-10" placeholder="Masukkan jenis prestasi" value="{{ old('mother_data[name]') }}">
+                                    <input type="text" name="achievement[type]" class="form-control form-control-rounded @error('achievement[type]') is-invalid @enderror" placeholder="Masukkan jenis prestasi" value="{{ old('achievement[type]') }}">
                                 </div>
                             </div>
 
@@ -844,32 +844,17 @@
                             <div class="col-sm-4">
                                 <div>
                                 <label> Nama Prestasi </label>
-                                <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded @error('achievement[achievement_name]') is-invalid @enderror col-sm-12" id="input-10" placeholder="Nama Prestasi" value="{{ old('achievement[achievement_name]') }}">
-                                @error('achievement[achievement_name]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <input type="text" name="achievement[achievement_name]" class="form-control" placeholder="Nama Prestasi">
                                 </div>
 
                                 <div>
                                 <label> Tahun </label>
-                                <input type="text" name="achievement[year]" class="form-control form-control-rounded @error('achievement[year]') is-invalid @enderror col-sm-3" id="input-10" placeholder="Tahun" value="{{ old('achievement[year]') }}">
-                                @error('achievement[year]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <input type="text" name="achievement[year]" class="form-control" placeholder="Tahun">
                                 </div>
                                 
                                 <div>
                                 <label> Penyelenggara </label>
-                                <input type="text" name="achievement[organizer]" class="form-control form-control-rounded @error('achievement[organizer]') is-invalid @enderror col-sm-12" id="input-10" placeholder="Nama Penyelenggara Kegiatan" value="{{ old('achievement[organizer]') }}">
-                                @error('achievement[organizer]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <input type="text" name="achievement[organizer]" class="form-control" placeholder="Nama Penyelenggara Kegiatan">
                                 </div>
                             </div>
                         </div>
@@ -1029,7 +1014,8 @@ $("#preview_gambar").change(function(){
     });
     $('#autoclose-datepicker').datepicker({
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        format: "yyyy-mm-dd"
     });
 
     $('#inline-datepicker').datepicker({
