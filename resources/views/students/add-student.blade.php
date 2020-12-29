@@ -422,7 +422,7 @@
 
                     <h4 class="form-header text-uppercase">
                         <i class=""></i>
-                         informasi Kontak
+                         Data Persuratan
                     </h4>
 
                     <div class="form-group row">
@@ -473,16 +473,15 @@
                         </div>
 
                         <div class="col-sm-4">
-                            <label>Kode Pos<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
+                            <label>Desa/Kelurahan<span style="color:red"> *</span></label>
+                            <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Desa/Kelurahan">
                         </div>
-                        
+
                     </div>
                     
                     <div class="form-group row">
-                        
-                        <div class="col-sm-4">
-                            <label>kelurahan/Desa<span style="color:red"> *</span></label>
+                         <div class="col-sm-4">
+                            <label>Kode Pos<span style="color:red"> *</span></label>
                             <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
                         </div>
                         <div class="col-sm-4">

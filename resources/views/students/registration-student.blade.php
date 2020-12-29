@@ -244,11 +244,6 @@
                                 @enderror
                             </div>
 
-                                <div class="col-sm-2">
-                                    <label>Anak Ke<!-- <span style="color:red"> *</span> --></label>
-                                    <input type="text" name="personal[child]" class="form-control" id="input-10" placeholder="Anak Ke">
-                                </div>
-
                             <div class="col-sm-4">
                                 <label> Jurusan <span style="color:red"> *</span></label>
                                 <select class="form-control form-control-rounded @error('stu_major') is-invalid @enderror" name="stu_major" id="basic-select" value="{{ old('stu_major') }}">
@@ -265,7 +260,7 @@
 
 
                             <div class="col-sm-2">
-                                <label> Anak Ke <span style="color:red"> *</span></label>
+                                <label> Anak Ke</label>
                                 <input type="text" name="personal[child]" class="form-control form-control-rounded @error('personal[child]') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal[child]') }}">
                                 @error('personal[child]')
                                 <span class="invalid-feedback" role="alert">
@@ -301,7 +296,7 @@
 
                         <div class="form-group row">
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
                                 <input type="text" name="father_data[name]" class="form-control form-control-rounded @error('father_data[name]') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data[name]') }}">
                                 @error('father_data[name]')
@@ -310,12 +305,6 @@
                                 </span>
                                 @enderror
                             </div>
-
-
-                                <div class="col-sm-4">
-                                    <label>Nama Ayah Kandung<span style="color:red"> *</span></label>
-                                    <input type="text" name="father_data[name]" class="form-control" id="input-10" placeholder="Masukan Nama Lengkap">
-                                </div>
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas (NIK) <span style="color:red"> *</span></label>
@@ -327,7 +316,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
                                 <select class="form-control form-control-rounded @error('father_data[year_of_birth]') is-invalid @enderror" name="father_data[year_of_birth]" id="basic-select" value="{{ old('father_data[year_of_birth]') }}">
                                     <option disabled="" selected=""> Pilih </option>
@@ -341,15 +330,6 @@
                                 @enderror
                             </div>
                         </div>
-
-                                <div class="col-sm-4">
-                                    <label>Tahun Lahir<span style="color:red"> *</span></label>
-                                    <select class="form-control" name="father_data[year_of_birth]" id="basic-select">
-                                        <option disabled="" selected="">Pilih</option>
-                                        <option>2001</option>
-                                        <option>2000</option>
-                                    </select>
-                                </div>
 
                         <div class="form-group row">
                             <div class="col-sm-4">
@@ -384,7 +364,7 @@
 
                             </div>
                             <div class="col-sm-4">
-                                <label>Pendapatan Perbulan<span style="color:red"> *</span></label>
+                                <label>Pendapatan Perbulan</label>
                                 <select name="father_data[monthly_income]" class="form-control form-control-rounded @error('father_data[monthly_income]') is-invalid @enderror" id="basic-select" value="{{ old('father_data[monthly_income]') }}">
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
@@ -405,17 +385,7 @@
                         <div class="form-group row">
 
 
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Pendapatan Perbulan<!-- <span style="color:red"> *</span> --></label>
-                                    <select name="father_data[monthly_income]" class="form-control" id="basic-select">
-                                        <option disabled="" selected="">Pilih</option>
-                                        <option>
-                                            < Rp. 500.000</option> <option> > Rp. 500.000
-                                        </option>
-                                    </select>
-                                </div>
-                                </div>
+                                
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
                                 <input type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data[phone_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('father_data[phone_number]') }}">
@@ -448,7 +418,7 @@
 
                         <div class="form-group row">
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label> Nama Ibu Kandung <span style="color:red"> *</span></label>
                                 <input type="text" name="mother_data[name]" class="form-control form-control-rounded @error('mother_data[name]') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data[name]') }}">
                                 @error('mother_data[name]')
@@ -468,12 +438,7 @@
                                 @enderror
                             </div>
 
-                                <div class="col-sm-4">
-                                    <label>Nama Ibu Kandung<span style="color:red"> *</span></label>
-                                    <input type="text" name="mother_data[name]" class="form-control" id="input-10" placeholder="Masukan Nama Lengkap">
-                                </div>
-
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
                                 <select name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data[year_of_birth]') is-invalid @enderror" id="basic-select" value="{{ old('mother_data[year_of_birth]') }}">
                                     <option disabled="" selected=""> Pilih </option>
@@ -521,19 +486,9 @@
                                 </span>
                                 @enderror
 
-
-                                <div class="col-sm-4">
-                                    <label>Tahun Lahir<span style="color:red"> *</span></label>
-                                    <select name="mother_data[year_of_birth]" class="form-control" id="basic-select">
-                                        <option disabled="" selected="">Pilih</option>
-                                        <option>2001</option>
-                                        <option>2000</option>
-                                    </select>
-                                </div>
-
                             </div>
                             <div class="col-sm-4">
-                                <label>Pendapatan Perbulan<span style="color:red"> *</span></label>
+                                <label>Pendapatan Perbulan</label>
                                 <select name="mother_data[monthly_income]" class="form-control form-control-rounded @error('mother_data[monthly_income]') is-invalid @enderror" id="basic-select" value="{{ old('mother_data[monthly_income]') }}">
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
@@ -570,16 +525,6 @@
                                     <label for="disability_mother1"> Ya </label>
                                 </div>
 
-                                <div class="col-sm-4">
-                                    <label>Pendapatan Perbulan<!-- <span style="color:red"> *</span> --></label>
-                                    <select name="mother_data[monthly_income]" class="form-control" id="basic-select">
-                                        <option disabled="" selected="">Pilih</option>
-                                        <option>
-                                            < Rp. 500.000</option> <option> > Rp. 500.000
-                                        </option>
-                                    </select>
-                                </div>
-
                                 <div class="radio icheck-info icheck-inline">
                                     <input type="radio" checked="" id="disability_mother2" value="Tidak" name="mother_data[disability]">
                                     <label for="disability_mother2"> Tidak </label>
@@ -595,7 +540,7 @@
 
                         <div class="form-group row">
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label> Nama Lengkap </label>
                                 <input type="text" name="guardian_data[name]" class="form-control form-control-rounded @error('guardian_data[name]') is-invalid @enderror" name="firstname" placeholder="Masukan Nama Lengkap" value="{{ old('guardian_data[name]') }}">
                                 @error('guardian_data[name]')
@@ -615,7 +560,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <label> Tahun Lahir </label>
                                 <select name="guardian_data[year_of_birth]" class="form-control form-control-rounded @error('guardian_data[year_of_birth]') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data[year_of_birth]') }}">
                                     <option disabled="" selected="">Pilih</option>
@@ -690,12 +635,6 @@
                                 @enderror
                             </div>
 
-
-                                <div class="col-sm-4">
-                                    <label>Nama Lengkap</label>
-                                    <input type="text" name="guardian_data[name]" class="form-control" id="input-10" name="firstname" placeholder="Masukan Nama Lengkap">
-                                </div>
-
                             <div class="col-sm-4">
                                 <label> Disabilitas </label> <br>
 
@@ -703,16 +642,6 @@
                                     <input type="radio" id="disability_guardian1" value="Ya" name="guardian_data[disability]">
                                     <label for="disability_guardian1"> Ya </label>
                                 </div>
-
-
-                                <div class="col-sm-4">
-                                    <label>Tahun Lahir</label>
-                                    <select name="guardian_data[year_of_birth]" class="form-control" id="basic-select">
-                                        <option disabled="" selected="">Pilih</option>
-                                        <option>2001</option>
-                                        <option>2000</option>
-                                    </select>
-
                                 <div class="radio icheck-info icheck-inline">
                                     <input type="radio" checked="" value="Tidak" id="disability_guardian2" name="guardian_data[disability]">
                                     <label for="disability_guardian2"> Tidak </label>
@@ -723,7 +652,7 @@
 
                         <h4 class="form-header text-uppercase">
                             <i class=""></i>
-                            informasi Kontak
+                           Data Persuratan
                         </h4>
 
                         <div class="form-group row">
@@ -738,8 +667,8 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                                <label> Kota <span style="color:red"> *</span></label>
-                                <input type="text" name="cit_name" class="form-control form-control-rounded @error('cit_name') is-invalid @enderror" id="" placeholder="Masukan Kota" value="{{ old('cit_name') }}">
+                                <label> Kota/Kabupaten <span style="color:red"> *</span></label>
+                                <input type="text" name="cit_name" class="form-control form-control-rounded @error('cit_name') is-invalid @enderror" id="" placeholder="Masukan Kota/kabupaten" value="{{ old('cit_name') }}">
                                 @error('cit_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -747,8 +676,8 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                                <label> Kabupaten <span style="color:red"> *</span></label>
-                                <input type="text" name="dst_name" class="form-control form-control-rounded @error('dst_name') is-invalid @enderror" id="" placeholder="Masukan Kabupaten" value="{{ old('dst_name') }}">
+                                <label>Kecamatan<span style="color:red"> *</span></label>
+                                <input type="text" name="dst_name" class="form-control form-control-rounded @error('dst_name') is-invalid @enderror" id="" placeholder="Masukan Kecamatan" value="{{ old('dst_name') }}">
                                 @error('dst_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -759,7 +688,7 @@
 
                         <div class="form-group row">
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label> Alamat <span style="color:red"> *</span></label>
                                 <input type="text" name="usr_address" class="form-control form-control-rounded @error('usr_address') is-invalid @enderror" placeholder="Masukan Alamat" value="{{ old('usr_address') }}">
                                 @error('usr_address')
@@ -768,23 +697,6 @@
                                 </span>
                                 @enderror
                             </div>
-
-                            <div class="col-sm-2">
-                                <label> Kode Pos <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
-                                @error('usr_postal_code')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-
-
-                                <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label>Nomor Telepon</label>
-                                    <input type="text" name="father_data[nik]" class="form-control" id="input-10" placeholder="Masukan Nomor Telepon">
-                                </div>
 
                             <div class="col-sm-2">
                                 <label> RT <span style="color:red"> *</span></label>
@@ -804,12 +716,29 @@
                                 </span>
                                 @enderror
                             </div>
+                            <div class="col-sm-4">
+                                 <label>Desa/Kelurahan<span style="color:red"> *</span></label>
+                                <input type="text" name="usr_postal_code" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Desa/Kelurahan">
+                            </div>
+ 
                         </div>
 
 
-                        <div class="form-group row">
+                         <div class="form-group row">
+                        
 
-                            <div class="col-sm-6">
+                                
+                            <div class="col-sm-4">
+                                <label> Kode Pos <span style="color:red"> *</span></label>
+                                <input type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
+                                @error('usr_postal_code')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-sm-4">
                                 <label> Telepon Rumah </label>
                                 <input type="text" name="contact[landline_number]" class="form-control form-control-rounded @error('contact[landline_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon Rumah" value="{{ old('contact[landline_number]') }}">
                                 @error('contact[landline_number]')
@@ -819,13 +748,8 @@
                                 @enderror
                             </div>
 
-                            <h4 class="form-header text-uppercase">
-                                <i class=""></i>
-                                Data Persuratan
-                            </h4>
-
-                            <div class="col-sm-6">
-                                <label> Email </label>
+                            <div class="col-sm-4">
+                                <label> Email <span style="color:red"> *</span> </label>
                                 <input type="text" name="contact[email]" class="form-control form-control-rounded @error('contact[email]') is-invalid @enderror" placeholder="Masukan Alamat Email" value="{{ old('contact[email]') }}">
                                 <p style="font-size: 12px;"  > Email anggota keluarga yang aktif </p>
                                 @error('contact[email]')
@@ -835,94 +759,9 @@
                                 @enderror
                             </div>
 
-                        </div>
-
-                                <div class="col-sm-4">
-                                    <label>Provinsi<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_prv_id" class="form-control" id="" placeholder="Masukan Provinsi">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Kota/Kabupaten<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_cit_id" class="form-control" id="" placeholder="Masukan Kota">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Kecamatan<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_district_id" class="form-control" id="" placeholder="Masukan Kecamatan">
-                                </div>
-
-                        <div class="form-group row">
-
-                            <div class="col-sm-4">
-                                <label> Berapa KM <span style="color:red"> *</span></label>
-                                <select name="periodic_data[many_km]" class="form-control form-control-rounded @error('periodic_data[many_km]') is-invalid @enderror" id="basic-select" value="{{ old('periodic_data[many_km]') }}">
-                                    <option disabled="" selected=""> Pilih </option>
-                                    <option value="0,5"> 0,5 KM </option>
-                                    <option value="1"> 1 KM </option>
-                                </select>
-                                @error('periodic_data[many_km]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-
-                            <div class="col-sm-4">
-                                <label> Waktu Tempuh <span style="color:red"> *</span></label>
-                                <input type="text" name="periodic_data[travel_time_to_school]" class="form-control form-control-rounded @error('periodic_data[travel_time_to_school]') is-invalid @enderror" placeholder="Masukan Dalam Satuan Jam/Menit" value="{{ old('periodic_data[travel_time_to_school]') }}">
-                                @error('periodic_data[travel_time_to_school]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="col-sm-4">
-                                <label> Jumlah Saudara Kandung <span style="color:red"> *</span></label>
-                                <input type="text" name="periodic_data[number_of_sibling]" class="form-control form-control-rounded @error('periodic_data[number_of_sibling]') is-invalid @enderror" placeholder="Masukan Jumlah Saudara Kandung" value="{{ old('periodic_data[number_of_sibling]') }}"> 
-                                @error('periodic_data[number_of_sibling]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
 
                         </div>
-
-                                <div class="col-sm-4">
-                                    <label>Alamat<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_address" class="form-control" id="input-10" placeholder="Masukan Alamat">
-                                </div>
-
-                                <div class="col-sm-3">
-                                    <label>RT<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_rt" class="form-control" id="input-10" placeholder="Masukan Nomor RT">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>RW<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_rw" class="form-control" id="input-10" placeholder="Masukan Nomor RW">
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>Kode Pos<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-
-                                <div class="col-sm-4">
-                                 <label>kelurahan/Desa<span style="color:red"> *</span></label>
-                                <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
-                                 </div>
-
-                                <div class="col-sm-4">
-                                    <label>Telepon Rumah</label>
-                                    <input type="text" name="contact[landline_number]" class="form-control" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label>Email<span style="color:red"> *</span></label>
-                                    <input type="text" name="contact[email]" class="form-control" id="input-10" placeholder="Masukan Alamat Email">
-                                    <p style="font-size: 12px;"  >Email anggota keluarga yang aktif </p>
-
+                    
                         <h4 class="form-header text-uppercase">
                             <i class=""></i>
                             Prestasi
@@ -948,7 +787,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <label> Dan lain-lain </label>
-                                    <input type="text" name="achievement[type]" class="form-control form-control-rounded @error('achievement[type]') is-invalid @enderror" placeholder="Masukkan jenis prestasi" value="{{ old('achievement[type]') }}">
+                                    <input type="text" name="achievement[type]" class="form-control form-control-rounded @error('achievement[type]') is-invalid @enderror" placeholder="Masukan jenis prestasi" value="{{ old('achievement[type]') }}">
                                 </div>
                             </div>
 
@@ -986,17 +825,17 @@
                             <div class="col-sm-4">
                                 <div>
                                 <label> Nama Prestasi </label>
-                                <input type="text" name="achievement[achievement_name]" class="form-control" placeholder="Nama Prestasi">
+                                <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded" placeholder="Masukan Nama Prestasi">
                                 </div>
 
                                 <div>
                                 <label> Tahun </label>
-                                <input type="text" name="achievement[year]" class="form-control" placeholder="Tahun">
+                                <input type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun">
                                 </div>
                                 
                                 <div>
                                 <label> Penyelenggara </label>
-                                <input type="text" name="achievement[organizer]" class="form-control" placeholder="Nama Penyelenggara Kegiatan">
+                                <input type="text" name="achievement[organizer]" class="form-control form-control-rounded" placeholder="Masukan Nama Penyelenggara Kegiatan">
 
                                </div>
                             </div>
