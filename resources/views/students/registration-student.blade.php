@@ -207,7 +207,7 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <label>Anak Ke<span style="color:red"> *</span></label>
+                                    <label>Anak Ke<!-- <span style="color:red"> *</span> --></label>
                                     <input type="text" name="personal[child]" class="form-control" id="input-10" placeholder="Anak Ke">
                                 </div>
 
@@ -233,7 +233,7 @@
 
                             <div class="form-group row">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label>Nama Ayah Kandung<span style="color:red"> *</span></label>
                                     <input type="text" name="father_data[name]" class="form-control" id="input-10" placeholder="Masukan Nama Lengkap">
                                 </div>
@@ -243,7 +243,7 @@
                                     <input type="text" name="father_data[nik]" class="form-control" id="input-10" placeholder="Masukan Nomor NIK">
                                 </div>
 
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <label>Tahun Lahir<span style="color:red"> *</span></label>
                                     <select class="form-control" name="father_data[year_of_birth]" id="basic-select">
                                         <option disabled="" selected="">Pilih</option>
@@ -276,7 +276,7 @@
 
                                 </div>
                                 <div class="col-sm-4">
-                                    <label>Pendapatan Perbulan<span style="color:red"> *</span></label>
+                                    <label>Pendapatan Perbulan<!-- <span style="color:red"> *</span> --></label>
                                     <select name="father_data[monthly_income]" class="form-control" id="basic-select">
                                         <option disabled="" selected="">Pilih</option>
                                         <option>
@@ -314,7 +314,7 @@
 
                             <div class="form-group row">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label>Nama Ibu Kandung<span style="color:red"> *</span></label>
                                     <input type="text" name="mother_data[name]" class="form-control" id="input-10" placeholder="Masukan Nama Lengkap">
                                 </div>
@@ -324,7 +324,7 @@
                                     <input type="text" name="mother_data[nik]" class="form-control" id="input-10" placeholder="Masukan Nomor NIK">
                                 </div>
 
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <label>Tahun Lahir<span style="color:red"> *</span></label>
                                     <select name="mother_data[year_of_birth]" class="form-control" id="basic-select">
                                         <option disabled="" selected="">Pilih</option>
@@ -357,7 +357,7 @@
 
                                 </div>
                                 <div class="col-sm-4">
-                                    <label>Pendapatan Perbulan<span style="color:red"> *</span></label>
+                                    <label>Pendapatan Perbulan<!-- <span style="color:red"> *</span> --></label>
                                     <select name="mother_data[monthly_income]" class="form-control" id="basic-select">
                                         <option disabled="" selected="">Pilih</option>
                                         <option>
@@ -394,7 +394,7 @@
 
                             <div class="form-group row">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label>Nama Lengkap</label>
                                     <input type="text" name="guardian_data[name]" class="form-control" id="input-10" name="firstname" placeholder="Masukan Nama Lengkap">
                                 </div>
@@ -404,7 +404,7 @@
                                     <input type="text" name="guardian_data[nik]" class="form-control" id="input-10" name="firstname" placeholder="Masukan Nomor NIK">
                                 </div>
 
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <label>Tahun Lahir</label>
                                     <select name="guardian_data[year_of_birth]" class="form-control" id="basic-select">
                                         <option disabled="" selected="">Pilih</option>
@@ -449,7 +449,7 @@
 
                                 <div class="form-group row">
                                 <div class="col-sm-4">
-                                    <label>Nomor Telepon<span style="color:red"> *</span></label>
+                                    <label>Nomor Telepon</label>
                                     <input type="text" name="father_data[nik]" class="form-control" id="input-10" placeholder="Masukan Nomor Telepon">
                                 </div>
 
@@ -469,81 +469,63 @@
 
                             <h4 class="form-header text-uppercase">
                                 <i class=""></i>
-                                informasi Kontak
+                                Data Persuratan
                             </h4>
 
                             <div class="form-group row">
 
                                 <div class="col-sm-4">
                                     <label>Provinsi<span style="color:red"> *</span></label>
-                                    <input type="text" name="prv_name" class="form-control" id="" placeholder="Masukan Provinsi">
+                                    <input type="text" name="usr_prv_id" class="form-control" id="" placeholder="Masukan Provinsi">
                                 </div>
                                 <div class="col-sm-4">
-                                    <label>Kota<span style="color:red"> *</span></label>
-                                    <input type="text" name="cit_name" class="form-control" id="" placeholder="Masukan Kota">
+                                    <label>Kota/Kabupaten<span style="color:red"> *</span></label>
+                                    <input type="text" name="usr_cit_id" class="form-control" id="" placeholder="Masukan Kota">
                                 </div>
                                 <div class="col-sm-4">
-                                    <label>Kabupaten<span style="color:red"> *</span></label>
-                                    <input type="text" name="dst_name" class="form-control" id="" placeholder="Masukan Kabupaten">
+                                    <label>Kecamatan<span style="color:red"> *</span></label>
+                                    <input type="text" name="usr_district_id" class="form-control" id="" placeholder="Masukan Kecamatan">
                                 </div>
 
                             </div>
 
                             <div class="form-group row">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label>Alamat<span style="color:red"> *</span></label>
                                     <input type="text" name="usr_address" class="form-control" id="input-10" placeholder="Masukan Alamat">
                                 </div>
 
+                                <div class="col-sm-3">
+                                    <label>RT<span style="color:red"> *</span></label>
+                                    <input type="text" name="usr_rt" class="form-control" id="input-10" placeholder="Masukan Nomor RT">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>RW<span style="color:red"> *</span></label>
+                                    <input type="text" name="usr_rw" class="form-control" id="input-10" placeholder="Masukan Nomor RW">
+                                </div>
                                 <div class="col-sm-2">
                                     <label>Kode Pos<span style="color:red"> *</span></label>
                                     <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
                                 </div>
-
-                                <div class="col-sm-2">
-                                    <label>RT<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_rt" class="form-control" id="input-10" placeholder="Masukan Nomor RT">
-                                </div>
-                                <div class="col-sm-2">
-                                    <label>RW<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_rw" class="form-control" id="input-10" placeholder="Masukan Nomor RW">
-                                </div>
                             </div>
 
                             <div class="form-group row">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                 <label>kelurahan/Desa<span style="color:red"> *</span></label>
+                                <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
+                                 </div>
+
+                                <div class="col-sm-4">
                                     <label>Telepon Rumah</label>
                                     <input type="text" name="contact[landline_number]" class="form-control" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <label>Email</label>
+                                <div class="col-sm-4">
+                                    <label>Email<span style="color:red"> *</span></label>
                                     <input type="text" name="contact[email]" class="form-control" id="input-10" placeholder="Masukan Alamat Email">
                                     <p style="font-size: 12px;"  >Email anggota keluarga yang aktif </p>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group row">
-
-                                <div class="col-sm-4">
-                                    <label>Berapa KM<span style="color:red"> *</span></label>
-                                    <select name="periodic_data[many_km]" class="form-control" id="basic-select">
-                                        <option disabled="" selected="">Pilih</option>
-                                        <option value="0,5"> 0,5 KM</option>
-                                        <option value="1"> 1 KM</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label>Waktu Tempuh<span style="color:red"> *</span></label>
-                                    <input type="text" name="periodic_data[travel_time_to_school]" class="form-control" id="input-10" placeholder="Masukan Dalam Satuan Jam/Menit">
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Jumlah Saudara Kandung<span style="color:red"> *</span></label>
-                                    <input type="text" name="periodic_data[number_of_sibling]" class="form-control" id="input-10" placeholder="Masukan Jumlah Saudara Kandung">
                                 </div>
 
                             </div>

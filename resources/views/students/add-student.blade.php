@@ -455,10 +455,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label>Kode Pos<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
-                        </div>
+                        
                         
                         <div class="col-sm-4">
                             <label>Alamat<span style="color:red"> *</span></label>
@@ -475,6 +472,10 @@
                             <input type="text" name="usr_rw" class="form-control" id="input-10" placeholder="Masukan Nomor RW">
                         </div>
 
+                        <div class="col-sm-4">
+                            <label>Kode Pos<span style="color:red"> *</span></label>
+                            <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
+                        </div>
                         
                     </div>
                     
