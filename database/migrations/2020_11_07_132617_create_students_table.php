@@ -17,15 +17,17 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('stu_id');
             $table->foreignId('stu_user_id');
             $table->foreign('stu_user_id')->references('usr_id')->on('users');
-            $table->foreignId('stu_entry_type_id');
+            $table->foreignId('stu_entry_type_id')->nullable();
             $table->foreign('stu_entry_type_id')->references('ent_id')->on('entry_types');
-            $table->foreignId('stu_school_year_id');
+            $table->foreignId('stu_school_year_id')->nullable();
             $table->foreign('stu_school_year_id')->references('scy_id')->on('school_years');
 
+            $table->string('stu_school_origin')->nullable();
+            $table->string('stu_major')->nullable();
             $table->string('stu_nis')->nullable();
             $table->string('stu_nisn');
             $table->string('stu_kip_number')->nullable();
-            $table->tinyInteger('stu_registration_status');
+            $table->tinyInteger('stu_registration_status')->nullable();
 
             $table->bigInteger('stu_created_by')->unsigned()->nullable();
             $table->bigInteger('stu_updated_by')->unsigned()->nullable();

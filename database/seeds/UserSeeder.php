@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_accepted' => false,
         ]);
 
         $siswa3 = User::create([

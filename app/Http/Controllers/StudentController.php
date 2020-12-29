@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Students;
 use Illuminate\Http\Request;
 use App\User;
+use App\StudentDetails;
 class StudentController extends Controller
 {
     /**
@@ -133,6 +134,71 @@ class StudentController extends Controller
     }
     public function storeFormRegistrasion(Request $request)
     {
-        dd($request, "MASUK KE HALAMAN MENUNGGU KEPUTUSAN DAN INFO PEMBAYARAN");
+        $messages = [
+            'required' =>'data wajib diisi',
+            'unique' => 'data yang digunakan telah terdaftar'
+        ];
+
+        $request->validate([
+            'usr_name' => 'required',
+            'usr_gender' => 'required',
+            'stu_nisn' => 'required | unique:students,stu_nisn',
+            'usr_phone_number' => 'required | unique:users,usr_phone_number',
+            'usr_whatsapp_number' => 'required | unique:users,usr_whatsapp_number',
+            'usr_place_of_birth' => 'required',
+            'usr_date_of_birth' => 'required',
+            
+        ], $messages);
+
+        $user = Auth()->user();
+        $user->usr_gender           = $request->usr_gender;
+        $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
+        $user->usr_place_of_birth   = $request->usr_place_of_birth;
+        $user->usr_date_of_birth    = $request->usr_date_of_birth;
+        $user->usr_religion         = $request->usr_religion;
+        $user->usr_address          = $request->usr_address;
+        $user->usr_postal_code      = $request->usr_postal_code;
+        $user->usr_rt               = $request->usr_rt;
+        $user->usr_rw               = $request->usr_rw;
+        $userSave                   = $user->update();
+
+        if ($userSave) {
+            $students = new Students;
+            $students->stu_user_id          = $user->usr_id;
+            $students->stu_school_year_id   = 1; 
+            $students->stu_nisn             = $request->stu_nisn;
+            $students->stu_school_origin    = $request->stu_school_origin;
+            $students->stu_major            = $request->stu_major;
+            $studentSave                    = $students->save();
+
+            if ($studentSave) {
+                foreach ($request as $key => $requestData) {
+                    if (is_array($requestData)) {
+                        foreach ($requestData as $requestKey => $requestValue) {
+                            $studentDetails = new StudentDetails;
+                            $studentDetails->std_student_id = $students->stu_id;
+                            $studentDetails->std_type       = $key;
+                            $studentDetails->std_key        = $requestKey;
+                            $studentDetails->std_value      = $requestValue;
+                            $studentDetails->std_created_by = $user->usr_id;
+                            $studentDetailSave              = $studentDetails->save();
+                            if ($studentDetailSave) {
+                                dd('beres');
+                            }else{
+                                dd('gagal student detail');
+                            }
+                        }   
+                    }
+                }
+
+            } else{
+                dd('gagal student ');
+            }
+        } else {
+            dd('gagal user');
+        }
+        dd('rebes');
+
+        
     }
 }
