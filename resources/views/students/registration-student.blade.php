@@ -107,7 +107,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form id="submitForm" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate">
+                    <form id="submitForm" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate" enctype="multipart/form-data">
                         @csrf
                         <h4 class="form-header text-uppercase">
                             <i class="  "></i>
@@ -118,8 +118,8 @@
 
                             <div class="col-sm-4">
                                 <label> Nama Lengkap <span style="color:red"> *</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{ old('usr_name') }}">
-                                @error('usr_name')
+                                <input type="text" class="form-control form-control-rounded @error('stu_candidate_name') is-invalid @enderror" name="stu_candidate_name" placeholder="Masukan Nama Lengkap" value="{{ old('stu_candidate_name') }}">
+                                @error('stu_candidate_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -146,7 +146,7 @@
 
                             <div class="col-sm-4">
                                 <label> NISN <span style="color:red"> *</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('stu_nisn') is-invalid @enderror" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{ old('stu_nisn') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('stu_nisn') is-invalid @enderror" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{ old('stu_nisn') }}">
                                 @error('stu_nisn')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -161,7 +161,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Telepon<span style="color:red"> *</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
                                 @error('usr_phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -171,7 +171,7 @@
 
                             <div class="col-sm-4">
                                 <label> No. WhatsApp <span style="color:red"> *</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_whatsapp_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_whatsapp_number') }}">
                                 @error('usr_whatsapp_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -204,7 +204,7 @@
 
                             <div class="col-sm-4">
                                 <label> No Registrasi Akta Lahir </label>
-                                <input type="text" class="form-control form-control-rounded @error('personal[birth_certificate_registration_no]') is-invalid @enderror" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal[birth_certificate_registration_no]') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('personal[birth_certificate_registration_no]') is-invalid @enderror" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal[birth_certificate_registration_no]') }}">
                                 @error('personal[birth_certificate_registration_no]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -214,7 +214,7 @@
 
                             <div class="col-sm-4">
                                 <label> Tinggal Bersama <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('personal[living_together]') is-invalid @enderror" name="personal[living_together]" id="basic-select" value="{{ old('personal[living_together]') }}">
+                                <select class="form-control form-control-rounded @error('personal.living_together') is-invalid @enderror" name="personal[living_together]" id="basic-select" value="{{ old('personal.living_together') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="Orang Tua"> Orang Tua </option>
                                     <option value="Wali"> Wali </option>
@@ -223,7 +223,7 @@
                                     <option value="Panti Asuhan"> Panti Asuhan </option>
                                     <option value="Pesantren"> Pesantren </option>
                                 </select>
-                                @error('personal[living_together]')
+                                @error('personal.living_together')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -245,11 +245,14 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <label> Jurusan <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('stu_major') is-invalid @enderror" name="stu_major" id="basic-select" value="{{ old('stu_major') }}">
+                                <label> Jurusan yang diminati <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('stu_major_id') is-invalid @enderror" name="stu_major_id" id="basic-select" value="{{ old('stu_major_id') }}">
+
                                     <option disabled="" selected=""> Pilih </option>
-                                    <option value="Rekayasa Perangkat Lunak"> Rekayasa Perangkat Lunak </option>
-                                    <option value="Multimedia"> Multimedia </option>
+                                    @foreach($majors as $major)
+                                    <option value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
+                                    @endforeach
+
                                 </select>
                                 @error('stu_major')
                                 <span class="invalid-feedback" role="alert">
@@ -261,8 +264,8 @@
 
                             <div class="col-sm-2">
                                 <label> Anak Ke</label>
-                                <input type="text" name="personal[child]" class="form-control form-control-rounded @error('personal[child]') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal[child]') }}">
-                                @error('personal[child]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal.child') }}">
+                                @error('personal.child')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -289,6 +292,26 @@
 
                         </div>
 
+                        <label>Foto calon siswa<span style="color:red"> *</span></label>
+                        <div class="form-group row">
+
+                            <div class="col-sm-4">
+                                <img src="#" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
+                                <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+           
+                                <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
+                                @error('usr_profile_picture')
+                                   <p>
+                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                                   </p>
+                                @enderror
+                            </div>
+
+
+
+                        </div>
+
+
                         <h4 class="form-header text-uppercase">
                             <i class=""></i>
                             Data Ayah
@@ -298,8 +321,8 @@
 
                             <div class="col-sm-4">
                                 <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
-                                <input type="text" name="father_data[name]" class="form-control form-control-rounded @error('father_data[name]') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data[name]') }}">
-                                @error('father_data[name]')
+                                <input type="text" name="father_data[name]" class="form-control form-control-rounded @error('father_data.name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.name') }}">
+                                @error('father_data.name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -308,8 +331,8 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas (NIK) <span style="color:red"> *</span></label>
-                                <input type="text" name="father_data[nik]" class="form-control form-control-rounded @error('father_data[nik]') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('father_data[nik]') }}">
-                                @error('father_data[nik]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[nik]" class="form-control form-control-rounded @error('father_data.nik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('father_data.nik') }}">
+                                @error('father_data.nik')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -318,12 +341,12 @@
 
                             <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('father_data[year_of_birth]') is-invalid @enderror" name="father_data[year_of_birth]" id="basic-select" value="{{ old('father_data[year_of_birth]') }}">
+                                <select class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror" name="father_data[year_of_birth]" id="basic-select" value="{{ old('father_data.year_of_birth') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="2000"> 2000 </option>
                                     <option value="2001"> 2001 </option>
                                 </select>
-                                @error('father_data[year_of_birth]')
+                                @error('father_data.year_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -334,14 +357,14 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
-                                <select name="father_data[education]" class="form-control form-control-rounded @error('father_data[education]') is-invalid @enderror" id="basic-select" value="{{ old('father_data[education]') }}">
+                                <select name="father_data[education]" class="form-control form-control-rounded @error('father_data.education') is-invalid @enderror" id="basic-select" value="{{ old('father_data.education') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="SD - Sederajat"> SD - Sederajat </option>
                                     <option value="SMP - Sederajat"> SMP - Sederajat </option>
                                     <option value="SMA - Sederajat"> SMA - Sederajat </option>
                                     <option value="KULIAH - Sederajat"> KULIAH - Sederajat </option>
                                 </select>
-                                @error('father_data[education]')
+                                @error('father_data.education')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -351,12 +374,12 @@
 
                             <div class="col-sm-4">
                                 <label>Pekerjaan<span style="color:red"> *</span></label>
-                                <select name="father_data[profession]" class="form-control form-control-rounded @error('father_data[profession]') is-invalid @enderror" id="basic-select" value="{{ old('father_data[profession]') }}">
+                                <select name="father_data[profession]" class="form-control form-control-rounded @error('father_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('father_data.profession') }}">
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
                                 </select>
-                                @error('father_data[profession]')
+                                @error('father_data.profession')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -365,7 +388,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
-                                <select name="father_data[monthly_income]" class="form-control form-control-rounded @error('father_data[monthly_income]') is-invalid @enderror" id="basic-select" value="{{ old('father_data[monthly_income]') }}">
+                                <select name="father_data[monthly_income]" class="form-control form-control-rounded @error('father_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('father_data.monthly_income') }}">
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
@@ -374,11 +397,7 @@
                                     <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
                                     <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                                 </select>
-                                @error('father_data[monthly_income]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                               
                             </div>
                         </div>
 
@@ -388,8 +407,8 @@
                                 
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data[phone_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('father_data[phone_number]') }}">
-                                @error('father_data[phone_number]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('father_data.phone_number') }}">
+                                @error('father_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -420,8 +439,8 @@
 
                             <div class="col-sm-4">
                                 <label> Nama Ibu Kandung <span style="color:red"> *</span></label>
-                                <input type="text" name="mother_data[name]" class="form-control form-control-rounded @error('mother_data[name]') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data[name]') }}">
-                                @error('mother_data[name]')
+                                <input type="text" name="mother_data[name]" class="form-control form-control-rounded @error('mother_data.name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.name') }}">
+                                @error('mother_data.name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -430,8 +449,8 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas (NIK) <span style="color:red"> *</span></label>
-                                <input type="text" name="mother_data[nik]" class="form-control form-control-rounded @error('mother_data[nik]') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('mother_data[nik]') }}">
-                                @error('mother_data[nik]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[nik]" class="form-control form-control-rounded @error('mother_datanik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('mother_data.nik') }}">
+                                @error('mother_data.nik')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -440,12 +459,12 @@
 
                             <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                <select name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data[year_of_birth]') is-invalid @enderror" id="basic-select" value="{{ old('mother_data[year_of_birth]') }}">
+                                <select name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data.year_of_birth') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.year_of_birth') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="2000"> 2000 </option>
                                     <option value="2001"> 2001 </option>
                                 </select>
-                                @error('mother_data[year_of_birth]')
+                                @error('mother_data.year_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -458,14 +477,14 @@
 
                             <div class="col-sm-4">
                                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
-                                <select name="mother_data[education]" class="form-control form-control-rounded @error('mother_data[education]') is-invalid @enderror" id="basic-select" value="{{ old('mother_data[education]') }}">
+                                <select name="mother_data[education]" class="form-control form-control-rounded @error('mother_data.education') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.education') }}">
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="SD - Sederajat"> SD - Sederajat </option>
                                     <option value="SMP - Sederajat"> SMP - Sederajat </option>
                                     <option value="SMA - Sederajat"> SMA - Sederajat </option>
                                     <option value="KULIAH - Sederajat"> KULIAH - Sederajat </option>
                                 </select>
-                                @error('mother_data[education]')
+                                @error('mother_data.education')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -474,13 +493,13 @@
                             <div class="col-sm-4">
                                 <label> Pekerjaan <span style="color:red"> *</span></label>
 
-                                <select name="mother_data[profession]" class="form-control form-control-rounded @error('mother_data[profession]') is-invalid @enderror" id="basic-select" value="{{ old('mother_data[profession]') }}">
+                                <select name="mother_data[profession]" class="form-control form-control-rounded @error('mother_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.profession') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
                                     <option value="Ibu Rumah Tangga"> Ibu Rumah Tangga </option>
                                 </select>
-                                @error('mother_data[profession]')
+                                @error('mother_data.profession')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -489,7 +508,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
-                                <select name="mother_data[monthly_income]" class="form-control form-control-rounded @error('mother_data[monthly_income]') is-invalid @enderror" id="basic-select" value="{{ old('mother_data[monthly_income]') }}">
+                                <select name="mother_data[monthly_income]" class="form-control form-control-rounded @error('mother_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.monthly_income') }}">
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
@@ -498,19 +517,14 @@
                                     <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
                                     <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                                 </select>
-                                @error('mother_data[monthly_income]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data[phone_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data[phone_number]') }}">
-                                @error('mother_data[phone_number]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data.phone_number') }}">
+                                @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -552,8 +566,8 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas (NIK) </label>
-                                <input type="text" name="guardian_data[nik]" class="form-control form-control-rounded @error('guardian_data[nik]') is-invalid @enderror" name="firstname" placeholder="Masukan Nomor NIK" value="{{ old('guardian_data[nik]') }}">
-                                @error('guardian_data[nik]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[nik]" class="form-control form-control-rounded @error('guardian_data.nik') is-invalid @enderror" name="firstname" placeholder="Masukan Nomor NIK" value="{{ old('guardian_data.nik') }}">
+                                @error('guardian_data.nik')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -562,12 +576,12 @@
 
                             <div class="col-sm-4">
                                 <label> Tahun Lahir </label>
-                                <select name="guardian_data[year_of_birth]" class="form-control form-control-rounded @error('guardian_data[year_of_birth]') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data[year_of_birth]') }}">
+                                <select name="guardian_data[year_of_birth]" class="form-control form-control-rounded @error('guardian_data.year_of_birth') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.year_of_birth') }}">
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="2000"> 2000 </option>
                                     <option value="2001"> 2001 </option>
                                 </select>
-                                @error('guardian_data[year_of_birth]')
+                                @error('guardian_data.year_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -578,14 +592,14 @@
 
                             <div class="col-sm-4">
                                 <label>Pendidikan Terakhir</label>
-                                <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data[education]') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data[education]') }}"> 
+                                <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data.education') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.education') }}"> 
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="SD - Sederajat"> SD - Sederajat </option>
                                     <option value="SMP - Sederajat"> SMP - Sederajat </option>
                                     <option value="SMA - Sederajat"> SMA - Sederajat </option>
                                     <option value="KULIAH - Sederajat"> KULIAH - Sederajat </option>
                                 </select>
-                                @error('guardian_data[education]')
+                                @error('guardian_data.education')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -594,12 +608,12 @@
 
                             <div class="col-sm-4">
                                 <label> Pekerjaan </label>
-                                <select name="guardian_data[profession]" class="form-control form-control-rounded @error('guardian_data[profession]') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data[profession]') }}">
+                                <select name="guardian_data[profession]" class="form-control form-control-rounded @error('guardian_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.profession') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
                                 </select>
-                                @error('guardian_data[profession]')
+                                @error('guardian_data.profession')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -607,7 +621,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
-                                <select name="guardian_data[monthly_income]" class="form-control form-control-rounded @error('guardian_data[monthly_income]') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data[monthly_income]') }}">
+                                <select name="guardian_data[monthly_income]" class="form-control form-control-rounded @error('guardian_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.monthly_income') }}">
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
@@ -616,7 +630,7 @@
                                     <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
                                     <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                                 </select>
-                                @error('guardian_data[monthly_income]')
+                                @error('guardian_data.monthly_income')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -627,8 +641,8 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data[phone_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('guardian_data[phone_number]') }}">
-                                @error('guardian_data[phone_number]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('guardian_data.phone_number') }}">
+                                @error('guardian_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -700,7 +714,7 @@
 
                             <div class="col-sm-2">
                                 <label> RT <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" placeholder="Masukan Nomor RT" value="{{ old('usr_rt') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" placeholder="Masukan Nomor RT" value="{{ old('usr_rt') }}">
                                 @error('usr_rt')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -709,7 +723,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <label> RW <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" placeholder="Masukan Nomor RW" value="{{ old('usr_rw') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" placeholder="Masukan Nomor RW" value="{{ old('usr_rw') }}">
                                 @error('usr_rw')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -718,7 +732,12 @@
                             </div>
                             <div class="col-sm-4">
                                  <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                                <input type="text" name="usr_postal_code" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Desa/Kelurahan">
+                               <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
+                                @error('usr_rural_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
  
                         </div>
@@ -730,7 +749,7 @@
                                 
                             <div class="col-sm-4">
                                 <label> Kode Pos <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
                                 @error('usr_postal_code')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -740,8 +759,8 @@
 
                             <div class="col-sm-4">
                                 <label> Telepon Rumah </label>
-                                <input type="text" name="contact[landline_number]" class="form-control form-control-rounded @error('contact[landline_number]') is-invalid @enderror" placeholder="Masukan Nomor Telepon Rumah" value="{{ old('contact[landline_number]') }}">
-                                @error('contact[landline_number]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="contact[landline_number]" class="form-control form-control-rounded @error('contact.landline_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon Rumah" value="{{ old('contact.landline_number') }}">
+                                @error('contact.landline_number]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -750,12 +769,12 @@
 
                             <div class="col-sm-4">
                                 <label> Email <span style="color:red"> *</span> </label>
-                                <input type="text" name="contact[email]" class="form-control form-control-rounded @error('contact[email]') is-invalid @enderror" placeholder="Masukan Alamat Email" value="{{ old('contact[email]') }}">
-                                <p style="font-size: 12px;"  > Email anggota keluarga yang aktif </p>
-                                @error('contact[email]')
+                                <input type="text" name="contact[email]" class="form-control form-control-rounded @error('contact.email') is-invalid @enderror" placeholder="Masukan Alamat Email" value="{{ old('contact.email') }}">
+                                 @error('contact.email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
+                                <p style="font-size: 12px;"  > Email anggota keluarga yang aktif </p>
                                 @enderror
                             </div>
 
@@ -768,58 +787,62 @@
                         </h4>
                         <div class="form-group row">
 
-                            <div class="col-sm-3">
-                                <label> Jenis </label> <br>
+                            <div class="col-sm-4">
+                                <label> Jenis </label>
 
-                                <div class="col-md-2 col-sm-4 col-xs-6 demo-col">
-                                    <div class="icheck-primary">
-                                        <input name="achievement[type]" value="Sains" type="checkbox" id="primary1" name="primary" />
-                                        <label for="primary1"> Sains </label>
-                                    </div>
-                                    <div class="icheck-primary">
-                                        <input name="achievement[type]" value="Seni" type="checkbox" id="primary2" name="primary" />
-                                        <label for="primary2"> Seni </label>
-                                    </div>
-                                    <div class="icheck-primary">
-                                        <input name="achievement[type]" value="Olahraga" type="checkbox" id="primary3" name="primary" />
-                                        <label for="primary3"> Olahraga </label>
-                                    </div>
+                                <div class="radio icheck-info">
+                                    <input type="radio" id="achievementType1" value="Sains" name="achievement[type]">
+                                    <label for="achievementType1"> Sains </label>
                                 </div>
-                                <div class="col-sm-12">
-                                    <label> Dan lain-lain </label>
-                                    <input type="text" name="achievement[type]" class="form-control form-control-rounded @error('achievement[type]') is-invalid @enderror" placeholder="Masukan jenis prestasi" value="{{ old('achievement[type]') }}">
+                                <div class="radio icheck-info">
+                                    <input type="radio" id="achievementType2" value="Seni" name="achievement[type]">
+                                    <label for="achievementType2"> Seni </label>
+                                </div>
+                                <div class="radio icheck-info">
+                                    <input type="radio" id="achievementType3" value="Olahraga" name="achievement[type]">
+                                    <label for="achievementType3"> Olahraga </label>
+                                </div>
+                                <div class="radio icheck-info">
+                                    <input type="radio" checked="" id="achievementType4" value="" name="achievement[type]">
+                                    <label for="achievementType4"> Tidak ada </label>
                                 </div>
                             </div>
 
-                            <div class="col-sm-2">
-                                <label> Tingkat </label> <br>
+                             <div class="col-sm-4">
+                                <label> Tingkat</label>
 
-                                <div class="col-md-2 col-sm-4 col-xs-6 demo-col">
-                                    <div class="icheck-primary">
-                                        <input type="checkbox" id="tingkat1" value="Sekolah" name="achievement[achievement_level]" />
-                                        <label for="tingkat1"> Sekolah </label>
-                                    </div>
-                                    <div class="icheck-primary">
-                                        <input type="checkbox" id="tingkat2" value="Kecamatan" name="achievement[achievement_level]" />
-                                        <label for="tingkat2"> Kecamatan </label>
-                                    </div>
-                                    <div class="icheck-primary">
-                                        <input type="checkbox" id="tingkat3" value="Kabupaten" name="achievement[achievement_level]" />
-                                        <label for="tingkat3"> Kabupaten </label>
-                                    </div>
-                                    <div class="icheck-primary">
-                                        <input type="checkbox" id="tingkat4" value="Provinsi" name="achievement[achievement_level]" />
-                                        <label for="tingkat4"> Provinsi </label>
-                                    </div>
-                                    <div class="icheck-primary">
-                                        <input type="checkbox" id="tingkat5" value="Nasional" name="achievement[achievement_level]" />
-                                        <label for="tingkat5"> Nasional </label>
-                                    </div>
-                                    <div class="icheck-primary">
-                                        <input type="checkbox" id="tingkat6" value="Internasional" name="achievement[achievement_level]" />
-                                        <label for="tingkat6"> Internasional </label>
-                                    </div>
+                                <div class="radio icheck-info">
+                                    <input type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
+                                    <label for="achievementLevel1"> Sekolah </label>
                                 </div>
+                                <div class="radio icheck-info">
+                                    <input type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
+                                    <label for="achievementLevel2"> Kecamatan </label>
+                                </div>
+                                <div class="radio icheck-info">
+                                    <input type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
+                                    <label for="achievementLevel3"> Kabupaten </label>
+                                </div>
+                                <div class="radio icheck-info">
+                                    <input type="radio" checked="" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
+                                    <label for="achievementLevel4"> Provinsi </label>
+                                </div>
+
+                                 <div class="radio icheck-info">
+                                    <input type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
+                                    <label for="achievementLevel5"> Nasional </label>
+                                </div>
+
+                                 <div class="radio icheck-info">
+                                    <input type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
+                                    <label for="achievementLevel6"> Internasional </label>
+                                </div>
+
+                                 <div class="radio icheck-info">
+                                    <input type="radio" checked="" id="achievementLevel7" value="" name="achievement[achievement_level]">
+                                    <label for="achievementLevel7"> Tidak ada </label>
+                                </div>
+                                
                             </div>
 
                             <div class="col-sm-4">
@@ -830,7 +853,7 @@
 
                                 <div>
                                 <label> Tahun </label>
-                                <input type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun">
                                 </div>
                                 
                                 <div>
@@ -842,21 +865,27 @@
                         </div>
 
                         <h4 class="form-header text-uppercase">
-                            <i class="fa fa-image-o"></i>
-                            Lainnya<span style="color:red"> *</span>
+                            <i class=""></i>
+                            Lainya
                         </h4>
-
                         <div class="form-group row">
-
                             <div class="col-sm-4">
-                                <img src="#" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                                <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-
-                                <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
-
+                                <label>Rekomondasi dari</label>
+                                <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
+                                    <option disabled="" selected=""> Pilih </option>
+                                    <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
+                                    <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
+                                    <option value="Saudara"> Saudara </option>
+                                    <option value="Tetangga"> Tetangga </option>
+                                    <option value="Siswa/i Mahaputra"> Siswa/i Mahaputra </option>
+                                    
+                                </select>
+                                @error('')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
-
-
 
                         </div>
 

@@ -17,9 +17,9 @@ class CreateStudentDetailsTable extends Migration
             $table->bigIncrements('std_id');
             $table->foreignId('std_student_id');
             $table->foreign('std_student_id')->references('stu_id')->on('students');
-            $table->string('std_type');
-            $table->string('std_key');
-            $table->string('std_value');
+            $table->string('std_type')->nullable();
+            $table->string('std_key')->nullable();
+            $table->string('std_value')->nullable();
 
             $table->bigInteger('std_created_by')->unsigned()->nullable();
             $table->bigInteger('std_updated_by')->unsigned()->nullable();

@@ -15,6 +15,7 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('stu_id');
+            $table->string('stu_candidate_name')->nullable();
             $table->foreignId('stu_user_id');
             $table->foreign('stu_user_id')->references('usr_id')->on('users');
             $table->foreignId('stu_entry_type_id')->nullable();
@@ -23,7 +24,8 @@ class CreateStudentsTable extends Migration
             $table->foreign('stu_school_year_id')->references('scy_id')->on('school_years');
 
             $table->string('stu_school_origin')->nullable();
-            $table->string('stu_major')->nullable();
+            $table->bigInteger('stu_major_id')->unsigned()->nullable();
+            $table->foreign('stu_major_id')->references('mjr_id')->on('majors');
             $table->string('stu_nis')->nullable();
             $table->string('stu_nisn');
             $table->string('stu_kip_number')->nullable();

@@ -24,8 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('usr_gender')->nullable();
             $table->string('usr_place_of_birth')->nullable();
             $table->date('usr_date_of_birth')->nullable();
-            $table->string('usr_citizenship')->nullable();
-            $table->string('usr_country_name')->nullable();
             $table->foreignId('usr_district_id')->unique()->nullable();
             $table->foreign('usr_district_id')->references('dst_id')->on('districts');
             $table->string('usr_address')->nullable();

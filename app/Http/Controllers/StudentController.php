@@ -6,6 +6,8 @@ use App\Students;
 use Illuminate\Http\Request;
 use App\User;
 use App\StudentDetails;
+use App\Majors;
+
 class StudentController extends Controller
 {
     /**
@@ -130,27 +132,57 @@ class StudentController extends Controller
     }
     public function formRegistrasion()
     {
-        return view('students.registration-student');
+        $majors = Majors::where('mjr_is_active', true)->get();
+        return view('students.registration-student',['majors' => $majors]);
     }
     public function storeFormRegistrasion(Request $request)
     {
+        $requests = $request->input();
         $messages = [
-            'required' =>'data wajib diisi',
-            'unique' => 'data yang digunakan telah terdaftar'
+            'required'  =>'Kolom wajib diisi',
+            'unique'    => 'Kolom yang digunakan telah terdaftar',
+            'mimes'     => 'Foto tidak support, ukuran max 2 MB'
         ];
 
         $request->validate([
-            'usr_name' => 'required',
-            'usr_gender' => 'required',
-            'stu_nisn' => 'required | unique:students,stu_nisn',
-            'usr_phone_number' => 'required | unique:users,usr_phone_number',
-            'usr_whatsapp_number' => 'required | unique:users,usr_whatsapp_number',
-            'usr_place_of_birth' => 'required',
-            'usr_date_of_birth' => 'required',
+            'stu_candidate_name'            => 'required',
+            'usr_gender'                    => 'required',
+            'stu_nisn'                      => 'required | unique:students,stu_nisn',
+            'usr_phone_number'              => 'required | unique:users,usr_phone_number',
+            'usr_whatsapp_number'           => 'required | unique:users,usr_whatsapp_number',
+            'usr_place_of_birth'            => 'required',
+            'usr_date_of_birth'             => 'required',
+            'personal.living_together'     => 'required',
+            'stu_school_origin'             => 'required',
+            'stu_major_id'                     => 'required',
+            'usr_religion'                  => 'required',
+            'usr_profile_picture'           => 'required | mimes:jpeg,jpg,png|max:2048',
+            'father_data.name'              => 'required',
+            'father_data.nik'               => 'required',
+            'father_data.year_of_birth'     => 'required',
+            'father_data.education'         => 'required',
+            'father_data.profession'        => 'required',
+            'father_data.phone_number'      => 'required',
+            'mother_data.name'              => 'required',
+            'mother_data.nik'               => 'required',
+            'mother_data.year_of_birth'     => 'required',
+            'mother_data.education'         => 'required',
+            'mother_data.profession'        => 'required',
+            'mother_data.phone_number'      => 'required',
+            'prv_name'                      => 'required',
+            'cit_name'                      => 'required',
+            'dst_name'                      => 'required',
+            'usr_address'                   => 'required',
+            'usr_rt'                        => 'required',
+            'usr_rw'                        => 'required',
+            'usr_rural_name'                => 'required',
+            'usr_postal_code'               => 'required',
+            'contact.email'                 => 'required',
             
         ], $messages);
 
         $user = Auth()->user();
+        // dd($user->usr_gender);
         $user->usr_gender           = $request->usr_gender;
         $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
@@ -160,33 +192,37 @@ class StudentController extends Controller
         $user->usr_postal_code      = $request->usr_postal_code;
         $user->usr_rt               = $request->usr_rt;
         $user->usr_rw               = $request->usr_rw;
-        $userSave                   = $user->update();
+        $user->usr_rural_name       = $request->usr_rural_name;
+        if ($request->hasFile('usr_profile_picture')) {
+            $files = $request->file('usr_profile_picture');
+            $path = public_path('candidate_student' . '/' . $user->name);
+            $files_name = $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $user->usr_profile_picture = $files_name;
+        }
 
-        if ($userSave) {
-            $students = new Students;
-            $students->stu_user_id          = $user->usr_id;
-            $students->stu_school_year_id   = 1; 
-            $students->stu_nisn             = $request->stu_nisn;
-            $students->stu_school_origin    = $request->stu_school_origin;
-            $students->stu_major            = $request->stu_major;
-            $studentSave                    = $students->save();
+        if ($user->update()) {
+            $student = new Students;
+            $student->stu_candidate_name   = $request->stu_candidate_name;
+            $student->stu_user_id          = $user->usr_id;
+            $student->stu_school_year_id   = 1; 
+            $student->stu_nisn             = $request->stu_nisn;
+            $student->stu_school_origin    = $request->stu_school_origin;
+            $student->stu_major_id         = $request->stu_major_id;
+            $student->stu_registration_status   = "0";
+            $student->created_by = Auth()->user()->id;
 
-            if ($studentSave) {
-                foreach ($request as $key => $requestData) {
+            if ($student->save()) {
+                foreach ($requests as $key => $requestData) {
                     if (is_array($requestData)) {
                         foreach ($requestData as $requestKey => $requestValue) {
-                            $studentDetails = new StudentDetails;
-                            $studentDetails->std_student_id = $students->stu_id;
-                            $studentDetails->std_type       = $key;
-                            $studentDetails->std_key        = $requestKey;
-                            $studentDetails->std_value      = $requestValue;
-                            $studentDetails->std_created_by = $user->usr_id;
-                            $studentDetailSave              = $studentDetails->save();
-                            if ($studentDetailSave) {
-                                dd('beres');
-                            }else{
-                                dd('gagal student detail');
-                            }
+                            $studentDetail = new StudentDetails;
+                            $studentDetail->std_student_id = $student->stu_id;
+                            $studentDetail->std_type       = $key;
+                            $studentDetail->std_key        = $requestKey;
+                            $studentDetail->std_value      = $requestValue;
+                            $studentDetail->std_created_by = $user->usr_id;
+                            $studentDetailSave              = $studentDetail->save();
                         }   
                     }
                 }
@@ -197,7 +233,7 @@ class StudentController extends Controller
         } else {
             dd('gagal user');
         }
-        dd('rebes');
+        dd('Done');
 
         
     }
