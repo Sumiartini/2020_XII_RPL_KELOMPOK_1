@@ -307,8 +307,6 @@
                                 @enderror
                             </div>
 
-
-
                         </div>
 
 
@@ -330,7 +328,7 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <label> Nomor Identitas (NIK) <span style="color:red"> *</span></label>
+                                <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[nik]" class="form-control form-control-rounded @error('father_data.nik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('father_data.nik') }}">
                                 @error('father_data.nik')
                                 <span class="invalid-feedback" role="alert">
@@ -341,11 +339,8 @@
 
                             <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror" name="father_data[year_of_birth]" id="basic-select" value="{{ old('father_data.year_of_birth') }}">
-                                    <option disabled="" selected=""> Pilih </option>
-                                    <option value="2000"> 2000 </option>
-                                    <option value="2001"> 2001 </option>
-                                </select>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
+                                    
                                 @error('father_data.year_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -378,6 +373,7 @@
                                     <option disabled="" selected="">Pilih</option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
+                                    <option value="Wiraswasta"> Wiraswasta </option>
                                 </select>
                                 @error('father_data.profession')
                                 <span class="invalid-feedback" role="alert">
@@ -448,7 +444,7 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <label> Nomor Identitas (NIK) <span style="color:red"> *</span></label>
+                                <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[nik]" class="form-control form-control-rounded @error('mother_datanik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('mother_data.nik') }}">
                                 @error('mother_data.nik')
                                 <span class="invalid-feedback" role="alert">
@@ -459,11 +455,8 @@
 
                             <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                <select name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data.year_of_birth') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.year_of_birth') }}">
-                                    <option disabled="" selected=""> Pilih </option>
-                                    <option value="2000"> 2000 </option>
-                                    <option value="2001"> 2001 </option>
-                                </select>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data.year_of_birth') is-invalid @enderror" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('mother_data.year_of_birth') }}">
+                                    
                                 @error('mother_data.year_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -497,6 +490,7 @@
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
+                                    <option value="Wiraswasta"> Wiraswasta </option>
                                     <option value="Ibu Rumah Tangga"> Ibu Rumah Tangga </option>
                                 </select>
                                 @error('mother_data.profession')
@@ -565,7 +559,7 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <label> Nomor Identitas (NIK) </label>
+                                <label> Nomor Identitas Kependudukan (NIK) </label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[nik]" class="form-control form-control-rounded @error('guardian_data.nik') is-invalid @enderror" name="firstname" placeholder="Masukan Nomor NIK" value="{{ old('guardian_data.nik') }}">
                                 @error('guardian_data.nik')
                                 <span class="invalid-feedback" role="alert">
@@ -576,11 +570,8 @@
 
                             <div class="col-sm-4">
                                 <label> Tahun Lahir </label>
-                                <select name="guardian_data[year_of_birth]" class="form-control form-control-rounded @error('guardian_data.year_of_birth') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.year_of_birth') }}">
-                                    <option disabled="" selected="">Pilih</option>
-                                    <option value="2000"> 2000 </option>
-                                    <option value="2001"> 2001 </option>
-                                </select>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[year_of_birth]" class="form-control form-control-rounded @error('guardian_data.year_of_birth') is-invalid @enderror" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('guardian_data.year_of_birth') }}">
+                                
                                 @error('guardian_data.year_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -612,6 +603,8 @@
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
+                                    <option value="Wiraswasta"> Wiraswasta </option>
+                                    <option value="Ibu Rumah Tangga"> Ibu Rumah Tangga </option>
                                 </select>
                                 @error('guardian_data.profession')
                                 <span class="invalid-feedback" role="alert">
@@ -866,11 +859,11 @@
 
                         <h4 class="form-header text-uppercase">
                             <i class=""></i>
-                            Lainya
+                            Lainnya
                         </h4>
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <label>Rekomondasi dari</label>
+                                <label>Rekomendasi dari</label>
                                 <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
@@ -890,8 +883,8 @@
                         </div>
 
                         <div class="form-footer">
-                            <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> CANCEL </button>
-                            <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SAVE </button>
+                            <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
                         </div>
                     </form>
                 </div>
