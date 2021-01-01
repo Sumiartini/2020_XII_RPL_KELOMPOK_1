@@ -210,7 +210,7 @@ class StudentController extends Controller
             $student->stu_school_origin    = $request->stu_school_origin;
             $student->stu_major_id         = $request->stu_major_id;
             $student->stu_registration_status   = "0";
-            $student->created_by = Auth()->user()->id;
+            $student->stu_created_by = Auth()->user()->id;
 
             if ($student->save()) {
                 foreach ($requests as $key => $requestData) {

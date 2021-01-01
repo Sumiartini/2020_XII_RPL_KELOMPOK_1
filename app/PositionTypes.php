@@ -13,8 +13,7 @@ class PositionTypes extends Model
     protected $guarded = [];
 
     public static function getPositionTypes($request){
-        $position_types = PositionTypes::all();
-
+        $position_types = PositionTypes::select('pst_name', 'pst_honorarium','pst_is_active');
         return $position_types;
     }
 }

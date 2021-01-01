@@ -14,7 +14,9 @@ class Majors extends Model
 
     public static function getMajors($request)
     {
-	    $majors = Majors::all();
-	    return $majors;
+	    $majors = Majors::select(
+            'mjr_name',
+            'mjr_is_active');
+        return $majors;
     }
 }

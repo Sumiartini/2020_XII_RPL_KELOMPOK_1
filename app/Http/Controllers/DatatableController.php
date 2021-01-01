@@ -48,24 +48,16 @@ class DatatableController extends Controller
     public function getStudentProspective(Request $request)
     {
         $students_prospective = Students::getStudentProspective($request->query());
+        // dd($students_prospective);
         return Datatables::of($students_prospective)
-            ->editColumn("usr_is_active", function ($row) {
-                $usr_is_active = $row->usr_is_active;
-                if ($usr_is_active == "0") {
-                    return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
-                } elseif ($usr_is_active == "1") {
-                    return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
-                } else {
-                    return "Tidak punya status aktif";
-                }
-            })
             ->addColumn('action', function ($row) {
                 $detail = '<a href="' . url('student', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
 
-                $approve = '<a href="' . url('student/edit', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
-                $rejected = '<button onclick="btnDel(' . $row->stu_id . ')" name="btnDel" type="button" class="btn btn-outline-danger waves-effect waves-light m-1"><i class="fa fa-trash fa-lg"></i></button>';
+                $approve = '<a href="' . url('student/approve', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';
+                $rejected = '<a href="' . url('student/rejected', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TOLAK" class="btn btn-outline-danger waves-effect waves-light m-1"><i class="zmdi zmdi-close fa-lg"></i></a>';
                 return $detail . '&nbsp' . $approve . '&nbsp' . $rejected;
-            })->rawColumns(['action', 'usr_is_active'])
+            
+            })->rawColumns(['action'])
             ->make(true);
     }
 

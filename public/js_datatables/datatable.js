@@ -58,7 +58,7 @@ function student() {
     });
 }
 
-function studentProsvective() {
+function studentProspective() {
     $('#example').DataTable({
       processing: true,
       serverSide: true,
@@ -84,14 +84,8 @@ function studentProsvective() {
                 searchable: true
             },
             {
-                data: 'stu_nis', 
-                name:'stu_nis', 
-                orderable: false, 
-                searchable: true
-            },
-            {
-                data: 'usr_is_active', 
-                name:'usr_is_active', 
+                data: 'stu_school_origin', 
+                name:'stu_school_origin', 
                 orderable: false, 
                 searchable: true
             },
@@ -102,7 +96,19 @@ function studentProsvective() {
                 orderable: false, 
                 searchable: false
             },
-        ]
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar Calon siswa tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar calon siswa",
+            "infoFiltered": "(pencarian dari _MAX_ daftar calon siswa)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
     });
 }
 

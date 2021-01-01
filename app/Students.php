@@ -17,7 +17,7 @@ class Students extends Model
 	    $students = Students::join('users', 'students.stu_user_id','=','users.usr_id')
 	    ->where('students.stu_registration_status', 1)
 	    ->where('users.usr_is_accepted', 1)
-	    ->where('users.usr_is_active', 1)->get();
+	    ->where('users.usr_is_active', 1);
 	    // dd($students);
 	    return $students;
     }
@@ -25,10 +25,11 @@ class Students extends Model
     {
     	
 	    $students_prospective = Students::join('users', 'students.stu_user_id','=','users.usr_id')
+	    ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
 	    ->where('students.stu_registration_status', 0)
-	    ->where('users.usr_is_accepted', 1)
-	    ->where('users.usr_is_active', 1)->get();
-	    // dd($students);
+	    ->where('users.usr_is_accepted', 0)
+	    ->where('users.usr_is_active', 1);
+	    // dd($students_prospective);
 	    return $students_prospective;
     }
 }
