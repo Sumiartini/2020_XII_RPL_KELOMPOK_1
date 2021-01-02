@@ -50,8 +50,8 @@ class DatatableController extends Controller
         $students_prospective = Students::getStudentProspective($request->query());
         // dd($students_prospective);
         return Datatables::of($students_prospective)
-            ->addColumn('action', function ($row) {
-                $detail = '<a href="' . url('student', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
+            ->addColumn('action', function ($row) { 
+                $detail = '<a href="' . url('students/prospective', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
 
                 $approve = '<a href="' . url('student/approve', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';
                 $rejected = '<a href="' . url('student/rejected', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TOLAK" class="btn btn-outline-danger waves-effect waves-light m-1"><i class="zmdi zmdi-close fa-lg"></i></a>';

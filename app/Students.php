@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\StudentDetails;
 class Students extends Model
 {
     protected $primaryKey = 'stu_id';
@@ -31,5 +31,17 @@ class Students extends Model
 	    ->where('users.usr_is_active', 1);
 	    // dd($students_prospective);
 	    return $students_prospective;
+    }
+
+    public function getStudentProsvectiveDetail($studentID)
+    {
+    	$students_prospective = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+    	->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+    	->where('stu_id', $studentID)->firstOrFail();
+
+    	$student_prospective_details = StudentDetails::where('std_student_id', $students_prospective->stu_id)->get();
+    	$student_prospective_details = mappingData($student_prospective_details, $students_prospective);
+
+    	return $student_prospective_details;
     }
 }

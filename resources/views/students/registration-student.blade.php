@@ -204,8 +204,8 @@
 
                             <div class="col-sm-4">
                                 <label> No Registrasi Akta Lahir </label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('personal[birth_certificate_registration_no]') is-invalid @enderror" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal[birth_certificate_registration_no]') }}">
-                                @error('personal[birth_certificate_registration_no]')
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal.birth_certificate_registration_no') }}">
+                                @error('personal.birth_certificate_registration_no')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -385,7 +385,7 @@
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
                                 <select name="father_data[monthly_income]" class="form-control form-control-rounded @error('father_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('father_data.monthly_income') }}">
-                                    <option disabled="" selected="">Pilih</option>
+                                    <option value="" selected="">Pilih</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                                     <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -503,7 +503,7 @@
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
                                 <select name="mother_data[monthly_income]" class="form-control form-control-rounded @error('mother_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.monthly_income') }}">
-                                    <option disabled="" selected="">Pilih</option>
+                                    <option value="" selected="">Pilih</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                                     <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -584,7 +584,7 @@
                             <div class="col-sm-4">
                                 <label>Pendidikan Terakhir</label>
                                 <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data.education') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.education') }}"> 
-                                    <option disabled="" selected="">Pilih</option>
+                                    <option value="" selected="">Pilih</option>
                                     <option value="SD - Sederajat"> SD - Sederajat </option>
                                     <option value="SMP - Sederajat"> SMP - Sederajat </option>
                                     <option value="SMA - Sederajat"> SMA - Sederajat </option>
@@ -600,7 +600,7 @@
                             <div class="col-sm-4">
                                 <label> Pekerjaan </label>
                                 <select name="guardian_data[profession]" class="form-control form-control-rounded @error('guardian_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.profession') }}">
-                                    <option disabled="" selected=""> Pilih </option>
+                                    <option value="" selected=""> Pilih </option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
                                     <option value="Wiraswasta"> Wiraswasta </option>
@@ -615,8 +615,8 @@
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
                                 <select name="guardian_data[monthly_income]" class="form-control form-control-rounded @error('guardian_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.monthly_income') }}">
-                                    <option disabled="" selected="">Pilih</option>
-                                    <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
+                                    <option value="" selected="">Pilih</option>
+                                    <option value="" value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                                     <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
                                     <option value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
@@ -865,7 +865,7 @@
                             <div class="col-sm-4">
                                 <label>Rekomendasi dari</label>
                                 <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
-                                    <option disabled="" selected=""> Pilih </option>
+                                    <option value="" selected=""> Pilih </option>
                                     <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
                                     <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
                                     <option value="Saudara"> Saudara </option>

@@ -15,15 +15,6 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('students.list-student');
-    }
-
-    public function list_prospective()
-    {
-        return view('students.list-student-prospective');
-    }
 
     public function list_rejected()
     {
@@ -86,9 +77,12 @@ class StudentController extends Controller
     {
         return view('students.detail-student');
     }
-    public function show_prospective()
+    public function show_prospective($studentID)
     {
-        return view('students.detail-student-prospective');
+        $student_prospective = new Students;
+        $student_prospective = $student_prospective->getStudentProsvectiveDetail($studentID);   
+        // dd($student_prospective);
+        return view('students.detail-student-prospective',['student_prospective' => $student_prospective]);
     }
     public function show_rejected()
     {
@@ -205,6 +199,7 @@ class StudentController extends Controller
             $student = new Students;
             $student->stu_candidate_name   = $request->stu_candidate_name;
             $student->stu_user_id          = $user->usr_id;
+            $student->stu_entry_type_id    = 1;
             $student->stu_school_year_id   = 1; 
             $student->stu_nisn             = $request->stu_nisn;
             $student->stu_school_origin    = $request->stu_school_origin;

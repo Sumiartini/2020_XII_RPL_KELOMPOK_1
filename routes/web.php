@@ -92,7 +92,7 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
     Route::get('/student/{stu_id}', 'StudentController@show');
-    Route::get('/students/prospective/1', 'StudentController@show_prospective');
+    Route::get('/students/prospective/{stu_id}', 'StudentController@show_prospective');
     Route::get('/students/rejected/1', 'StudentController@show_rejected');
     Route::get('/student/edit/{std_id}', 'StudentController@edit');
     Route::post('/student/edit/{std_id}', 'StudentController@store');
