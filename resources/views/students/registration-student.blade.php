@@ -204,7 +204,7 @@
 
                             <div class="col-sm-4">
                                 <label> No Registrasi Akta Lahir </label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal.birth_certificate_registration_no') }}">
+                                <input type="text" class="form-control form-control-rounded" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal.birth_certificate_registration_no') }}">
                                 @error('personal.birth_certificate_registration_no')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -254,7 +254,7 @@
                                     @endforeach
 
                                 </select>
-                                @error('stu_major')
+                                @error('stu_major_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -633,7 +633,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <label> Nomor Telepon <span style="color:red"> *</span></label>
+                                <label> Nomor Telepon</label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('guardian_data.phone_number') }}">
                                 @error('guardian_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
