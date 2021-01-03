@@ -112,7 +112,31 @@ class AccountController extends Controller
     }
     public function storeEditPassword(Request $request)
     {
-        dd($request);
+        $messages = [
+            'required'  =>'Kolom wajib diisi',
+            'min'       => 'Kata Sandi Minimal 8 Karakter',
+            'same'      => 'Kata Sandi Wajib Sama Ketika Di Ulangi',
+        ];
+
+        $request->validate([
+            'current_password'            => ['required', 'string', 'min:8'],
+            'new_password'                => ['required', 'min:8', 'string', 'same:confirm_new_password'],
+            'confirm_new_password'        => ['required', 'min:8', 'string', 'same:new_password'],            
+        ], $messages);
+
+        $user = Auth()->user();
+        $usr_password       = $user->usr_password;
+        if (Hash::check($request->current_password, $usr_password)) {
+            $user->usr_password = Hash::make($request->new_password);
+
+            if ($user->update()) {
+                return redirect('/account/profile/1/edit-password');
+            } else{
+                dd('gagal');    
+            }
+        } else {
+            dd('password tidak sama');
+        }
     }
     public function editProfile()
     {
