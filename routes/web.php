@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
     Route::get('/student', 'DatatableController@getStudent');
 
 //Error double route !!
-    Route::get('/students/prospective', function () {
+    Route::get('/students-prospective', function () {
         return view('students.list-student-prospective');
     });
     Route::get('/student/prospective', 'DatatableController@getStudentProspective');

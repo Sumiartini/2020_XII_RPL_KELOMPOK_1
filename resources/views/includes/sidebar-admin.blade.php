@@ -5,8 +5,6 @@
     <h5 class="logo-text" style="cursor: default;">SMK Mahaputra</h5>
   </div>
 
-
-
   <ul class="sidebar-menu do-nicescrol">
     <li class="sidebar-header"></li>
 
@@ -48,7 +46,7 @@
       <ul class="sidebar-submenu">
         <li><a href="{{URL::to('/students')}}"><i class="fa fa-circle-o"></i> Daftar Siswa</a></li>
         <li><a href="{{URL::to('/student/create')}}"><i class="fa fa-circle-o"></i> Tambah Siswa</a></li>
-        <li><a href="{{URL::to('/students/prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Siswa</a></li>
+        <li><a href="{{URL::to('/students-prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Siswa</a></li>
         <li><a href="{{URL::to('/students/rejected')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Ditolak</a></li>
       </ul>
     </li>
