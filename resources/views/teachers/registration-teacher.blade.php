@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Rocker - Bootstrap4 Admin Dashboard Template</title>
+    <title>Formulir Guru</title>
     <!--favicon-->
     <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
     <!-- simplebar CSS-->
