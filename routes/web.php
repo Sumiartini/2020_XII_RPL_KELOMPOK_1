@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/account/{userId}/{userVerificationToken}/activate', 'Auth\AccountController@verifyToken');
 Route::get('/account/waiting-verification', 'Auth\AccountController@waitingVerification');
 Route::post('/account/resend-verification', 'Auth\AccountController@resendVerification');
@@ -38,7 +39,29 @@ Route::get('/register-teacher', 'Auth\RegisterController@registerTeacher');
 Route::get('/register-staff', 'Auth\RegisterController@registerStaff');
 
 Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], function () {
+
+    //Menunggu Verifikasi Terima atau Tolak
+    Route::get('/pending-verification', 'Auth\AccountController@pending_verification');
+
+    //Formulir Siswa
+    Route::get('/student-registration', 'StudentController@formRegistrasion');
+    Route::post('/student-registration', 'StudentController@storeFormRegistrasion');
+
+    //formulir staff
+    Route::get('/staff-registration', 'StaffController@formRegistrasion');
+    Route::post('/staff-registration', 'StaffController@storeFormRegistrasion');
+
+    //formulir guru
+    Route::get('/teacher-registration', 'TeacherController@formRegistrasion');
+    Route::post('/teacher-registration', 'TeacherController@storeFormRegistrasion');
+
+
+});
+
+
+Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack']], function () {
     Route::get('/dashboard', 'User\UserController@index')->name('dashboard.users');
+
 
     Route::get('/staffs', function () {
         return view('staffs.list-staff');
@@ -55,8 +78,6 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
     Route::get('/staff/edit/{stf_id}', 'StaffController@edit');
     Route::post('/staff/edit/{stf_id}', 'StaffController@update');
     Route::get('/staffs/delete/1', 'StaffController@destroy');
-    Route::get('/staff-registration', 'StaffController@formRegistrasion');
-    Route::post('/staff-registration', 'StaffController@storeFormRegistrasion');
 
 
     Route::get('/teachers', function () {
@@ -74,8 +95,6 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
     Route::get('/teacher/edit/{tcr_id}', 'TeacherController@edit');
     Route::post('/teacher/edit/{tcr_id}', 'TeacherController@store');
     Route::get('/teachers/delete/1', 'TeacherController@destroy');
-    Route::get('/teacher-registration', 'TeacherController@formRegistrasion');
-    Route::post('/teacher-registration', 'TeacherController@storeFormRegistrasion');
 
     Route::get('/students', function () {
         return view('students.list-student');
@@ -98,9 +117,6 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
     Route::post('/student/edit/{std_id}', 'StudentController@store');
     Route::post('/student/delete', 'StudentController@destroy');
 
-    Route::get('/student-registration', 'StudentController@formRegistrasion');
-    Route::post('/student-registration', 'StudentController@storeFormRegistrasion');
-
     Route::get('/page/list', 'PageController@index');
     Route::get('/page/detail', 'PageController@show');
     Route::get('/page/add', 'PageController@create');
@@ -111,9 +127,11 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
 
     Route::get('/account/profile/1/edit', 'Auth\AccountController@editProfile');
     Route::post('/account/profile/1/edit', 'Auth\AccountController@storeEditProfile');
+
+
 });
 
-Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack', 'role:admin|staff']], function () {
+Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack', 'role:admin|staff']], function () {
     Route::get('school-years', function () {
         return view('years.index');
     });

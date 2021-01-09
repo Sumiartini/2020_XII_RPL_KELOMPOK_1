@@ -146,4 +146,9 @@ class AccountController extends Controller
     {
         dd($request);
     }
+
+    public function pending_verification()
+    {
+        dd('Menunggu verifikasi');
+    }
 }
