@@ -149,6 +149,6 @@ class AccountController extends Controller
 
     public function pending_verification()
     {
-        dd('Menunggu verifikasi');
+        return view('students/waiting-registration');
     }
 }

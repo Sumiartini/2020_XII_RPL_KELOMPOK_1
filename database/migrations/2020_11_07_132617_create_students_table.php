@@ -27,7 +27,7 @@ class CreateStudentsTable extends Migration
             $table->bigInteger('stu_major_id')->unsigned()->nullable();
             $table->foreign('stu_major_id')->references('mjr_id')->on('majors');
             $table->string('stu_nis')->nullable();
-            $table->string('stu_nisn');
+            $table->string('stu_nisn')->nullable();
             $table->string('stu_kip_number')->nullable();
             $table->tinyInteger('stu_registration_status')->nullable();
 

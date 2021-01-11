@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
             
         ]);
 
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
             
         ]);
 
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => false,
+            'usr_is_regist' => false,
         ]);
 
         $siswa3 = User::create([
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
         $siswa4 = User::create([
@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
         $siswa5 = User::create([
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
         $siswa1->assignRole('student');
@@ -99,7 +99,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
         $guru2 = User::create([
@@ -110,7 +110,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
         $guru3 = User::create([
@@ -121,7 +121,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
         $guru1->assignRole('teacher');
@@ -138,7 +138,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
         $staff_TU2 = User::create([
@@ -149,7 +149,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
         $staff_TU3 = User::create([
@@ -160,7 +160,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => true,
+            'usr_is_regist' => true,
         ]);
 
 

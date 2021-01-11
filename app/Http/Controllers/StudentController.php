@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\StudentDetails;
 use App\Majors;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -175,6 +176,8 @@ class StudentController extends Controller
             
         ], $messages);
 
+        $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+                   -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
         $user = Auth()->user();
         // dd($user->usr_gender);
         $user->usr_gender           = $request->usr_gender;
@@ -187,6 +190,7 @@ class StudentController extends Controller
         $user->usr_rt               = $request->usr_rt;
         $user->usr_rw               = $request->usr_rw;
         $user->usr_rural_name       = $request->usr_rural_name;
+        $user->usr_is_regist        = '1';
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');
             $path = public_path('candidate_student' . '/' . $user->name);
@@ -196,7 +200,6 @@ class StudentController extends Controller
         }
 
         if ($user->update()) {
-            $student = new Students;
             $student->stu_candidate_name   = $request->stu_candidate_name;
             $student->stu_user_id          = $user->usr_id;
             $student->stu_entry_type_id    = 1;
@@ -207,7 +210,7 @@ class StudentController extends Controller
             $student->stu_registration_status   = "0";
             $student->stu_created_by = Auth()->user()->id;
 
-            if ($student->save()) {
+            if ($student->update()) {
                 foreach ($requests as $key => $requestData) {
                     if (is_array($requestData)) {
                         foreach ($requestData as $requestKey => $requestValue) {
@@ -228,7 +231,7 @@ class StudentController extends Controller
         } else {
             dd('gagal user');
         }
-        dd('Done');
+        return redirect ('/pending-verification');
 
         
     }

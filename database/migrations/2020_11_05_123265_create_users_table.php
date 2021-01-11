@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->string('usr_religion')->nullable();
             $table->string('usr_profile_picture')->nullable();
             $table->boolean('usr_is_active'); //kolom ini digunakan untuk users jika value 1 maka aktif jika 0 maka tidak aktif jadi sebagai pengganti soft delete
-            $table->boolean('usr_is_accepted');
+            $table->boolean('usr_is_regist');
             $table->datetime('usr_email_verified_at')->nullable();
             $table->string('usr_verification_token')->nullable();
             $table->string('usr_remember_token')->nullable();

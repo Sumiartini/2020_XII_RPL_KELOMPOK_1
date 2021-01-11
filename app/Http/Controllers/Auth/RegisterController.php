@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Students;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -105,8 +106,12 @@ class RegisterController extends Controller
             'usr_password' => Hash::make($data['password']),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_accepted' => false,
+            'usr_is_regist' => false,
             
+        ]);
+        $student = Students::create([
+            'stu_registration_status' => false,
+            'stu_user_id'             => $user->usr_id,
         ]);
 
         if ($data['role'] == 1) {

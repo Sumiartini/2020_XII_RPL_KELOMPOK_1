@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\User;
+use App\Students;
 use Illuminate\Support\Facades\Auth;
 
 class CheckRegistrationVerificate
@@ -18,20 +19,22 @@ class CheckRegistrationVerificate
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            $user = Auth::user();
-            if ($user->usr_is_accepted == 0 && $user->hasRole('student')) {
+            $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+                        -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
+            $user = Auth::user();   
+            if ($student->stu_registration_status == 0 && $user->hasRole('student')) {
                 if ($user->usr_is_regist == 1) {
                     return redirect('/pending-verification');
                 }else {
                     return redirect('student-registration');
                 }    
-            } elseif ($user->usr_is_accepted == 0 && $user->hasRole('teacher')) {
+            } elseif ($student->stu_registration_status == 0 && $user->hasRole('teacher')) {
                 if ($user->usr_is_regist == 1) {
                     return redirect('/pending-verification');
                 }else {
                     return redirect('teacher-registration');
                 }    
-            } elseif ($user->usr_is_accepted == 0 && $user->hasRole('staff')) {
+            } elseif ($student->stu_registration_status == 0 && $user->hasRole('staff')) {
                 if ($user->usr_is_regist == 1) {
                     return redirect('/pending-verification');
                 }else {

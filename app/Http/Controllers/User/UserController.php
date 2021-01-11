@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
+use App\Students;
 
 class UserController extends Controller
 {
@@ -25,15 +27,18 @@ class UserController extends Controller
      */
     public function index()
     {
+        
+        $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+        -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
         $user = Auth()->user();
 
-        if ($user->usr_is_accepted == '0' && $user->hasRole('student')) {
+        if ($student->stu_registration_status == '0' && $user->hasRole('student')) {
             return redirect('student-registration');
-        } elseif ($user->usr_is_accepted == '0' && $user->hasRole('teacher')) {
+        } elseif ($student->stu_registration_status == '0' && $user->hasRole('teacher')) {
             return redirect('teacher-registration');
-        } elseif ($user->usr_is_accepted == '0' && $user->hasRole('staff')) {
+        } elseif ($student->stu_registration_status == '0' && $user->hasRole('staff')) {
             return redirect('staff-registration');
-        } elseif ($user->usr_is_accepted == '1') {
+        } elseif ($student->stu_registration_status == '1') {
             return view('dashboard');
         } else {
             abort(404);
