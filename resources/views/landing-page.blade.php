@@ -457,12 +457,17 @@ footer{
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/images/z.jpeg" class="d-block w-100" alt="...">
+                                <img src="assets/images/" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/images/4.jpg" class="d-block w-100" alt="...">
+                                <img src="assets/images/" class="d-block w-100" style="width: 10% " alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/images/" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                 </div>
                             </div> 
@@ -603,7 +608,7 @@ footer{
                          <p>
                               <h5 class=""><b>SMK MAHAPUTRA CERDAS UTAMA</b></h5>
                                 <p class="alamat">Jl Katapang Andir KM. 4 Kp Pasantren Ds Sukamukti Kec Katapang Kab Bandung</p>
-                                <p class="alamat">022 85876147</p>
+                                <p class="alamat">022-5893178 | 0895-6304-68373</p>
                                 <a href="mailto:"><img title="email" src="https://smkmahaputra.sch.id/public/img/sosmed/email.png" alt="email" width="35" height="35"></a>
                                 <a href="https://www.facebook.com/" target="_blank"><img title="Facebook" src="https://smkmahaputra.sch.id/public/img/sosmed/facebook.png" alt="Facebook" width="35" height="35"></a>
                                 <a href="https://www.youtube.com/https://www.youtube.com/channel/UCCfYqV-2N44pFhsQpGEedCw" target="_blank"><img title="Youtube" src="https://smkmahaputra.sch.id/public/img/sosmed/youtube.png" alt="RSS" width="35" height="35"></a>
