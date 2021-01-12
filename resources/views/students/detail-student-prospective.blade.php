@@ -69,90 +69,94 @@
                             <td>:</td>
                             <td>{{ $student_prospective->usr_phone_number }}</td>
 
-                            <th>NIK</th>
+                            <th>Nomor Whatsapp</th>
                             <td>:</td>
-                            <td>321044070027770007</td>
+                            <td>{{ $student_prospective->usr_whatsapp_number }}</td>
                         </tr>
 
                         <tr>
+                            <th>No Akta lahir</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->personal['birth_certificate_registration_no'] }}</td>
+
                             <th>Jenis Kelamin</th>
                             <td>:</td>
                             <td>{{ $student_prospective->usr_gender }}</td>
 
-                            <th>Tempat Lahir</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_place_of_birth }}</td>
+                            
                         </tr>
 
                         <tr>
+
+                            <th>Tempat Lahir</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_place_of_birth }}</td>
+
                             <th>Tanggal lahir</th>
                             <td>:</td>
                             <td>{{ $student_prospective->usr_date_of_birth }}</td>
 
+                            
+                        </tr>
+
+                        <tr>
                             <th>Alamat</th>
                             <td>:</td>
                             <td>{{ $student_prospective->usr_address }}</td>
-                        </tr>
 
-                        <tr>
                             <th>RT</th>
                             <td>:</td>
                             <td>{{ $student_prospective->usr_rt }}</td>
-
-                            <th>RW</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_rw }}</td>
                         </tr>
 
                         <tr>
+                            <th>RW</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_rw }}</td>
+
                             <th>Provinsi</th>
                             <td>:</td>
                             <td>Jawa barat</td>
-                            
+                        </tr>
+
+                        <tr>
                             <th>Kabupaten/Kota</th>
                             <td>:</td>
                             <td>Bandung</td>
 
-                        </tr>
-
-                        <tr>
                             <th>Kecamatan</th>
                             <td>:</td>
                             <td>Katapang</td>
+                        </tr>
 
+                        <tr>
                             <th>Kode Pos</th>
                             <td>:</td>
                             <td>{{ $student_prospective->usr_postal_code }}</td>
-                        </tr>
 
-                        <tr>
                             <th>Kelurahan/Desa</th>
                             <td>:</td>
                             <td>{{ $student_prospective->usr_rural_name }}</td>
+                        </tr>
 
+                        <tr>
                             <th>Agama</th>
                             <td>:</td>
                             <td>{{ $student_prospective->usr_religion }}</td>
-                        </tr>
 
-                        <tr>
                             <th>NISN</th>
                             <td>:</td>
                             <td>{{ $student_prospective->stu_nisn }}</td>
-
-                            <th>Tinggal Bersama</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->personal['living_together'] }}</td>
                         </tr>
 
                         <tr>
+                            <th>Tinggal Bersama</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->personal['living_together'] }}</td>
+
                             <th>Anak Ke</th>
                             <td>:</td>
                             <td>{{ $student_prospective->personal['child'] }}</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
                         </tr>
 
                         <tr>
