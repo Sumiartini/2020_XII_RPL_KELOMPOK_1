@@ -94,14 +94,14 @@ class AccountController extends Controller
         ]);
 
         $updatePassword = DB::table('password_resets')
-            ->where(['pwr_email' => $request->pwr_email, 'pwr_token' => $request->pwr_token])
-            ->first();
+        ->where(['pwr_email' => $request->pwr_email, 'pwr_token' => $request->pwr_token])
+        ->first();
 
         if (!$updatePassword)
             dd("kesini");
 
         $user = User::where('usr_email', $request->pwr_email)
-            ->update(['usr_password' => Hash::make($request->password)]);
+        ->update(['usr_password' => Hash::make($request->password)]);
         DB::table('password_resets')->where(['pwr_email' => $request->pwr_email])->delete();
 
         return redirect('/login')->with(['success' => 'Password Anda Berhasil di Updated']);
@@ -149,6 +149,26 @@ class AccountController extends Controller
 
     public function pending_verification()
     {
-        return view('students/waiting-registration');
+        $user = Auth::user();
+
+        if ($user->hasRole('student')) {
+            if ($user->usr_is_regist == 1) {            
+                return view('students/waiting-registration');
+            }else{
+                return redirect('/student-registration');
+            }
+        }elseif ($user->hasRole('staff')) {
+            if ($user->usr_is_regist == 1) {            
+                dd('Pending Verification Staff');
+            }else{
+                return redirect('/staff-registration');
+            }   
+        }elseif ($user->hasRole('student')) {
+            if ($user->usr_is_regist == 1) {            
+                dd('pending_verification Teacher');
+            }else{
+                return redirect('/teacher-registration');
+            }
+        }
     }
 }

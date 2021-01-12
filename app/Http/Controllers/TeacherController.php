@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Teachers;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
 {
@@ -92,7 +94,14 @@ class TeacherController extends Controller
 
     public function formRegistrasion()
     {
-        return view('teachers.registration-teacher');
+        $user = Auth::user();
+
+        if ($user->usr_is_regist == 1 && $user->hasRole('teacher')) {            
+            return view('teachers.registration-teacher');
+        }else{
+            return redirect('/pending-verification');
+        }
+        
     }
     public function storeFormRegistrasion(Request $request)
     {

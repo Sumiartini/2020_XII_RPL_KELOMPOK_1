@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Staffs;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
@@ -37,11 +39,11 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-        'usr_name' => ['required', 'string', 'max:255'],
-        'usr_email' => ['required', 'string', 'max:255', 'unique:users,usr_email'],
-        'usr_password' => ['required', 'string', 'min:8', 'confirmed'],
-        'usr_phone' => ['required', 'min:10','regex:/^([0-9\s\-\+\(\)]*)$/'],
-    ]);
+            'usr_name' => ['required', 'string', 'max:255'],
+            'usr_email' => ['required', 'string', 'max:255', 'unique:users,usr_email'],
+            'usr_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'usr_phone' => ['required', 'min:10','regex:/^([0-9\s\-\+\(\)]*)$/'],
+        ]);
         dd($request);
     }
 
@@ -84,8 +86,8 @@ class StaffController extends Controller
     public function update(Request $request)
     {
         $validatedData = $request->validate([
-        'usr_name' => ['required', 'string', 'max:255'],
-    ]);
+            'usr_name' => ['required', 'string', 'max:255'],
+        ]);
         dd($request);
     }
 
@@ -101,7 +103,14 @@ class StaffController extends Controller
     }
     public function formRegistrasion()
     {
-        return view('staffs.registration-staff');
+        $user = Auth::user();
+
+        if ($user->usr_is_regist == 0 && $user->hasRole('staff')) {
+            return view('staffs.registration-staff');            
+        }else{
+            return redirect('/pending-verification');
+        }
+        
     }
     public function storeFormRegistrasion(Request $request)
     {

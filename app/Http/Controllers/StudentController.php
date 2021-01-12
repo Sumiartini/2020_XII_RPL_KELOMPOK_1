@@ -63,7 +63,7 @@ class StudentController extends Controller
             $student->no_kip = $request->no_kip;
             if ($student->save()) {
 
-              }          
+            }          
         }
 
     }
@@ -126,9 +126,16 @@ class StudentController extends Controller
         }
     }
     public function formRegistrasion()
-    {
-        $majors = Majors::where('mjr_is_active', true)->get();
-        return view('students.registration-student',['majors' => $majors]);
+    {   
+        $user = Auth::user();
+
+        if ($user->usr_is_regist == 1 && $user->hasRole('student')) {            
+            $majors = Majors::where('mjr_is_active', true)->get();
+            return view('students.registration-student',['majors' => $majors]);
+        }else{
+            return redirect('/pending-verification');
+        }
+        
     }
     public function storeFormRegistrasion(Request $request)
     {
@@ -177,7 +184,7 @@ class StudentController extends Controller
         ], $messages);
 
         $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-                   -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
+        -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
         $user = Auth()->user();
         // dd($user->usr_gender);
         $user->usr_gender           = $request->usr_gender;
