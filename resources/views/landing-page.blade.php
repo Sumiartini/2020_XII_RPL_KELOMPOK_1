@@ -457,17 +457,17 @@ footer{
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/images/" class="d-block w-100" alt="...">
+                                <img src="assets/images/ppdb_baru.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/images/" class="d-block w-100" style="width: 10% " alt="...">
+                                <img src="assets/images/MM.jpg" class="d-block w-100" style="width: 10% " alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/images/" class="d-block w-100" alt="...">
+                                <img src="assets/images/RPL.jpg" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                 </div>
                             </div> 
@@ -575,11 +575,11 @@ footer{
                     </div>
                     <div class="col-lg-6">
                         <img src="assets/images/4.jpg" class="img-fluid">
-                        <a class="jurusan" href="" style="color: #599be2;" ><b>REKAYASA PERANGKAT LUNAK</b></a>
+                        <a class="jurusan" style="color: #599be2;" ><b>REKAYASA PERANGKAT LUNAK</b></a>
                     </div>
                     <div class="col-lg-6">
                         <img src="assets/images/3.jpg"  class="img-fluid">
-                        <a class="jurusan" href="" style="color: #599be2;" ><b>MULTIMEDIA</b></a>
+                        <a class="jurusan" style="color: #599be2;" ><b>MULTIMEDIA</b></a>
                     </div>
                 </div>
                 <!-- akhir info panel -->
