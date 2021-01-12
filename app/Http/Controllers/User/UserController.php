@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Students;
+use App\Teachers;
+use App\Staffs;
 
 class UserController extends Controller
 {
@@ -30,15 +32,37 @@ class UserController extends Controller
         
         $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
         -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
+        $teacher = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
+        -> where('teachers.tcr_user_id', Auth::user()->usr_id)->first();
+        $staff = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
+        -> where('staffs.stf_user_id', Auth::user()->usr_id)->first();
         $user = Auth()->user();
 
-        if ($student->stu_registration_status == '0' && $user->hasRole('student')) {
-            return redirect('student-registration');
-        } elseif ($student->stu_registration_status == '0' && $user->hasRole('teacher')) {
-            return redirect('teacher-registration');
-        } elseif ($student->stu_registration_status == '0' && $user->hasRole('staff')) {
-            return redirect('staff-registration');
-        } elseif ($student->stu_registration_status == '1') {
+        if ($user->hasRole('student')) {
+            if ($student->stu_registration_status == '0' ) {
+                return redirect('student-registration');    
+            }
+            if ($student->stu_registration_status == '1' ) {
+                return view('dashboard');
+            }
+            
+        } elseif ($user->hasRole('teacher')) {
+            if ($teacher->tcr_registration_status == '0') {
+                return redirect('teacher-registration');
+            }
+            if ($teacher->tcr_registration_status == '1') {
+                return view('dashboard');
+            }
+            
+        } elseif ($user->hasRole('staff')) {
+            if ($staff->stf_registration_status == '0') {
+                return redirect('staff-registration');
+            }
+            if ($staff->stf_registration_status == '1') {
+                return view('dashboard');
+            }
+            
+        } elseif ($user->hasRole('admin')) {
             return view('dashboard');
         } else {
             abort(404);

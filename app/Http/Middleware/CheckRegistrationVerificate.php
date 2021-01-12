@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use App\User;
 use App\Students;
+use App\Teachers;
+use App\Staffs;
 use Illuminate\Support\Facades\Auth;
 
 class CheckRegistrationVerificate
@@ -20,25 +22,36 @@ class CheckRegistrationVerificate
     {
         if (Auth::check()) {
             $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-                        -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
+            -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
+            $teacher = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
+            -> where('teachers.tcr_user_id', Auth::user()->usr_id)->first();
+            $staff = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
+            -> where('staffs.stf_user_id', Auth::user()->usr_id)->first();
+
             $user = Auth::user();   
-            if ($student->stu_registration_status == 0 && $user->hasRole('student')) {
-                if ($user->usr_is_regist == 1) {
-                    return redirect('/pending-verification');
-                }else {
-                    return redirect('student-registration');
+            if ($user->hasRole('student')) {
+                if ($student->stu_registration_status == 0) {
+                    if ($user->usr_is_regist == 1 ) {
+                        return redirect('/pending-verification');
+                    }else{
+                        return redirect('student-registration');
+                    }
                 }    
-            } elseif ($student->stu_registration_status == 0 && $user->hasRole('teacher')) {
-                if ($user->usr_is_regist == 1) {
-                    return redirect('/pending-verification');
-                }else {
-                    return redirect('teacher-registration');
-                }    
-            } elseif ($student->stu_registration_status == 0 && $user->hasRole('staff')) {
-                if ($user->usr_is_regist == 1) {
-                    return redirect('/pending-verification');
-                }else {
-                    return redirect('staff-registration');
+            } elseif ( $user->hasRole('teacher')) {
+                if ($teacher->tcr_registration_status == 0) {
+                    if ($user->usr_is_regist == 1) {
+                        return redirect('/pending-verification');
+                    }else {
+                        return redirect('teacher-registration');
+                    }    
+                }
+            } elseif ($user->hasRole('staff')) {
+                if ($staff->stf_registration_status == 0) {
+                    if ($user->usr_is_regist == 1) {
+                        return redirect('/pending-verification');
+                    }else {
+                        return redirect('staff-registration');
+                    }
                 }    
             }
             

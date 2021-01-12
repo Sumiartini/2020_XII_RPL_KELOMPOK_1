@@ -110,7 +110,7 @@ class UserSeeder extends Seeder
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_regist' => true,
+            'usr_is_regist' => false,
         ]);
 
         $guru3 = User::create([
@@ -143,13 +143,13 @@ class UserSeeder extends Seeder
 
         $staff_TU2 = User::create([
             'usr_name' => 'Enjang Suryana',
-            'usr_email' => 'Enjang@gmail.com',
+            'usr_email' => 'enjang@gmail.com',
             'usr_phone_number' => '08213456789',
             'usr_password' => Hash::make('enjang123'),
             'usr_email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
-            'usr_is_regist' => true,
+            'usr_is_regist' => false,
         ]);
 
         $staff_TU3 = User::create([

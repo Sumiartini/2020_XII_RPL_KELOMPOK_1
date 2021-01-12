@@ -25,7 +25,7 @@ class StaffsSeeder extends Seeder
             'stf_nuptk' => 131313313131,
         	'stf_user_id' => 11,
         	'stf_entry_year' => 'Juni 2016',
-            'stf_registration_status' => 2,
+            'stf_registration_status' => 0,
         ]);
         DB::table('staffs')->insert([
         	'stf_id' => 3,
