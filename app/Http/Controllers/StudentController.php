@@ -128,7 +128,7 @@ class StudentController extends Controller
     {   
         $user = Auth::user();
 
-        if ($user->usr_is_regist == 1 && $user->hasRole('student')) {            
+        if ($user->usr_is_regist == 0 && $user->hasRole('student')) {            
             $majors = Majors::where('mjr_is_active', true)->get();
             return view('students.registration-student',['majors' => $majors]);
         }else{

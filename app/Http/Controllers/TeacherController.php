@@ -96,7 +96,7 @@ class TeacherController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->usr_is_regist == 1 && $user->hasRole('teacher')) {            
+        if ($user->usr_is_regist == 0 && $user->hasRole('teacher')) {            
             return view('teachers.registration-teacher');
         }else{
             return redirect('/pending-verification');
