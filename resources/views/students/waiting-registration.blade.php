@@ -42,6 +42,46 @@
             -o-transition: all 0.3s ease;
             transition: all 0.3s ease;
         }
+        .atas{
+           padding: 20px 5px;
+        }
+        .haha {
+            margin-right:40px;
+            margin-left:40px;
+          }
+        .hihi {
+          margin-right:40px;
+          margin-left:40px;
+        }
+        h4, h5{
+          font-size: 18px;
+        }
+        /*desktop version*/
+        @media (min-width: 992px){
+
+        .haha {
+            margin-left: 50px;
+            margin-right: -110px;
+          }
+        .hihi {
+          margin-left:120px;
+          margin-right: -180px;
+        }
+
+
+         footer {
+            color: #272727;
+            text-align: center;
+            padding: 12px 30px;
+            margin-bottom: -10px;
+            margin-top: 10px;
+            border-top: 1px solid rgb(223, 223, 255);
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        } 
+        }
     </style>
 </head>
 
@@ -64,60 +104,60 @@
                 <ul class="navbar-nav ml-auto">
 
                     <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
+                     @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ __('Register') }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('register-student') }}">Siswa</a>
-                            <a class="dropdown-item" href="{{ url('register-teacher') }}">Guru</a>
-                            <a class="dropdown-item" href="{{ url('register-staff') }}">Staff TU</a>
-                        </div>
-                    </li>
-                    @endif
-                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ __('Register') }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('register-student') }}">Siswa</a>
+                                <a class="dropdown-item" href="{{ url('register-teacher') }}">Guru</a>
+                                <a class="dropdown-item" href="{{ url('register-staff') }}">Staff TU</a>
+                            </div>
+                        </li>
+                        @endif
+                        @else
 
 
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->usr_name }}
-                        </a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->usr_name }}
+                            </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                @endguest
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
             </ul>
         </div>
     </div>
 </header>
 <center>
-<div style="margin-top:110px; " class="col-lg-10">
-    <div class="card" style="box-shadow: 10px 10px 8px skyblue;">
-        <div class="card-body" style="background-color: #599be2; padding: 30px 10px;">
-            <H4 style="color: white; text-shadow: 1px 1px 2px white;"> DATA ANDA SUDAH TERSIMPAN</H4>
+<div style="margin-top:90px; " class="col-lg-10">
+    <div class="card " style="box-shadow: 10px 10px 8px skyblue;">
+        <div class="card-body atas" style="background-color: #599be2;">
+            <h4 style="color: white; text-shadow: 1px 1px 2px white;"> DATA ANDA SUDAH TERSIMPAN</h4>
             <h5 style="color: white; text-shadow: 1px 1px 2px white;" >Data anda akan di proses, Mohon tunggu konfirmasi dari pihak sekolah.</h5>
         </div>
     </div>
 </div>
 </center>
 <div class="row">
-        <div class="col-lg-5" style="margin-left:70px;">
-          <div class="card">
+        <div class="col-lg-5">
+          <div class="card haha">
             <div class="card-body">
               <h5 class="card-title">Data Calon Siswa</h5>
               <div class="table-responsive">
@@ -270,8 +310,8 @@
     </div>
         
 
-      <div class="col-lg-5" style="margin-left:90px;">
-          <div class="card">
+      <div class="col-lg-5">
+          <div class="card hihi">
             <div class="card-body">
               <h5 class="card-title"> Data Ayah </h5>
               <div class="table-responsive">
@@ -423,7 +463,8 @@
 </div>
 
 </div>
-
+<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
 
 </body>
 
