@@ -140,7 +140,7 @@
                                 </form>
                             </div>
                         </li>
-                        @endguest
+                    @endguest
             </ul>
         </div>
     </div>
@@ -151,6 +151,7 @@
         <div class="card-body atas" style="background-color: #599be2;">
             <h4 style="color: white; text-shadow: 1px 1px 2px white;"> DATA ANDA SUDAH TERSIMPAN</h4>
             <h5 style="color: white; text-shadow: 1px 1px 2px white;" >Data anda akan di proses, Mohon tunggu konfirmasi dari pihak sekolah.</h5>
+            <h5 style="color: white; text-shadow: 1px 1px 2px white;" >Info lebih lanjut silahkan klik <a href="{{ url('download/download-file') }}"><i style="color: white;"><u>Disini</u></i></a></h5>
         </div>
     </div>
 </div>

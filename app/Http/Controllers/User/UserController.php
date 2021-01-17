@@ -70,8 +70,12 @@ class UserController extends Controller
 
         // return view('dashboard');
     }
-    public function create()
+
+   public function downloadFile()
     {
-        return view('users.create');
+        $pdf = ("download/smkmahaputra-info20201101.pdf");
+        $headers = ['Content-Type: application/pdf'];
+        $newName = 'smkmahaputra-info-'.time().'.pdf';
+        return response()->download($pdf, $newName, $headers);
     }
 }
