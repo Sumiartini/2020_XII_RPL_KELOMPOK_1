@@ -54,9 +54,10 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
     //formulir guru
     Route::get('/teacher-registration', 'TeacherController@formRegistrasion');
     Route::post('/teacher-registration', 'TeacherController@storeFormRegistrasion');
+
+
 });
 
-Route::get('/download/download-file', 'User\UserController@downloadFile')->middleware('auth','verified');
 
 Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack']], function () {
     Route::get('/dashboard', 'User\UserController@index')->name('dashboard.users');
@@ -115,6 +116,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/student/edit/{std_id}', 'StudentController@edit');
     Route::post('/student/edit/{std_id}', 'StudentController@store');
     Route::post('/student/delete', 'StudentController@destroy');
+    Route::get('/student/approve/{stu_id}', 'StudentController@approve');
+    Route::get('/student/reject/{stu_id}', 'StudentController@reject');
+    
 
     Route::get('/page/list', 'PageController@index');
     Route::get('/page/detail', 'PageController@show');
