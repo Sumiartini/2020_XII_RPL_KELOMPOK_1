@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
 
 });
 
-
+Route::get('/download/download-file', 'User\UserController@downloadFile')->middleware('auth','verified');
 Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack']], function () {
     Route::get('/dashboard', 'User\UserController@index')->name('dashboard.users');
 
