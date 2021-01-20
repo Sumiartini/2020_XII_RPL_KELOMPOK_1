@@ -32,7 +32,7 @@ class CheckRegistrationVerificate
             if ($user->hasRole('student')) {
                 if ($student->stu_registration_status == 0) {
                     if ($user->usr_is_regist == 1 ) {
-                        return redirect('/pending-verification');
+                        return redirect('/pending-verification/'.$student->stu_id);
                     }else{
                         return redirect('student-registration');
                     }

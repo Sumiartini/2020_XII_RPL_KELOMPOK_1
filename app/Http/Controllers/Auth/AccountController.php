@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Students;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SendMail;
@@ -147,13 +148,16 @@ class AccountController extends Controller
         dd($request);
     }
 
-    public function pending_verification()
+    public function pending_verification($studentID)
     {
+        // dd($studentID);
         $user = Auth::user();
-
+        $student_prospective = new Students;
+        $student_prospective = $student_prospective->getStudentProsvectiveDetail($studentID);
+           
         if ($user->hasRole('student')) {
             if ($user->usr_is_regist == 1) {            
-                return view('students/waiting-registration');
+                return view('students/waiting-registration', ['student_prospective' => $student_prospective]);
             }else{
                 return redirect('/student-registration');
             }

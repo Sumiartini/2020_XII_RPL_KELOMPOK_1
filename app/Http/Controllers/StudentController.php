@@ -237,7 +237,7 @@ class StudentController extends Controller
         } else {
             dd('gagal user');
         }
-        return redirect ('/pending-verification');
+        return redirect ('/pending-verification/',$student->stu_id);
 
         
     }
