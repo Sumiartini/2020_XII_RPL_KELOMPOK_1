@@ -33,9 +33,8 @@
         footer {
             color: #272727;
             text-align: center;
-            padding: 12px 30px;
-            margin-bottom: -10px;
             margin-top: 10px;
+            margin-bottom: 10px;
             border-top: 1px solid rgb(223, 223, 255);
             -webkit-transition: all 0.3s ease;
             -moz-transition: all 0.3s ease;
@@ -68,19 +67,6 @@
           margin-right: -180px;
         }
 
-
-         footer {
-            color: #272727;
-            text-align: center;
-            padding: 12px 30px;
-            margin-bottom: -10px;
-            margin-top: 10px;
-            border-top: 1px solid rgb(223, 223, 255);
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-        } 
         }
     </style>
 </head>
@@ -156,6 +142,7 @@
     </div>
 </div>
 </center>
+
 <div class="row">
         <div class="col-lg-5">
           <div class="card haha">
@@ -226,7 +213,7 @@
                   <tr class="table-active">
                     <th>Jurusan yang diminati</th>
                     <td>:</td>
-                    <td>Multimedia</td>
+                    <td>{{ $student_prospective->mjr_name }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Anak Ke</th>
@@ -520,12 +507,18 @@
           </table>
       </div>
     </div>
-
-
 </div>
 </div>
 
 </div>
+
+<footer>
+    <div class="container">
+        <div class="text-center" style="margin-top: 10px;">
+            Copyright © 2021 PPDB Mahaputra
+        </div>
+    </div>
+</footer>
 <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
 

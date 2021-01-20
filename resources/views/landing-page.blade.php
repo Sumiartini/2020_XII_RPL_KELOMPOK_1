@@ -114,6 +114,7 @@ html , body{
     background-color: white;
     padding: 30px;
     margin-left: 20px;
+    margin-right: 20px;
 
 }
 
@@ -564,28 +565,21 @@ footer{
 
 
     <div class="container info-jurusan">
-
-        
-         <!-- info panel -->
-
-
-                <div class="row workingspace">
-                    <div class="container">
-                    <h3 class="text-center font-weight-bold" style="color: #599be2; text-shadow: 0.50px 0.50px 0.50px blue; font-family: viga;">PROGRAM KEAHLIAN <br>SMK MAHAPUTRA CERDAS UTAMA</h3>
-                    </div>
-                    <div class="col-lg-6">
-                        <img src="assets/images/4.jpg" class="img-fluid">
-                        <a class="jurusan" style="color: #599be2;" ><b>REKAYASA PERANGKAT LUNAK</b></a>
-                    </div>
-                    <div class="col-lg-6">
-                        <img src="assets/images/3.jpg"  class="img-fluid">
-                        <a class="jurusan" style="color: #599be2;" ><b>MULTIMEDIA</b></a>
-                    </div>
-                </div>
-                <!-- akhir info panel -->
-        
-        
-
+ <!-- info panel -->
+        <div class="row workingspace">
+            <div class="container">
+            <h3 class="text-center font-weight-bold" style="color: #599be2; text-shadow: 0.50px 0.50px 0.50px blue; font-family: viga;">PROGRAM KEAHLIAN <br>SMK MAHAPUTRA CERDAS UTAMA</h3>
+            </div>
+            <div class="col-lg-6">
+                <img src="assets/images/RPL.jpg" class="img-fluid">
+                <a class="jurusan" style="color: #599be2;" ><b>REKAYASA PERANGKAT LUNAK</b></a>
+            </div>
+            <div class="col-lg-6">
+                <img src="assets/images/MM.jpg"  class="img-fluid">
+                <a class="jurusan" style="color: #599be2;" ><b>MULTIMEDIA</b></a>
+            </div>
+        </div>
+        <!-- akhir info panel -->
     </div>
     
 

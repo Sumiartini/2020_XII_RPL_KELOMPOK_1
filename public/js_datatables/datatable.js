@@ -18,8 +18,8 @@ function student() {
                 }
             },
             {
-                data: 'usr_name', 
-                name:'usr_name', 
+                data: 'stu_candidate_name', 
+                name:'stu_candidate_name', 
                 orderable: true, 
                 searchable: true
             },

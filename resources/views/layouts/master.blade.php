@@ -9,6 +9,7 @@
   <meta name="description" content=""/>
   <meta name="author" content=""/>
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
   <title>SMK Mahaputra @stack('title')</title>
 
   @stack('styles')
@@ -43,7 +44,7 @@
     <footer class="footer">
       <div class="container">
         <div class="text-center">
-          Copyright © 2018 Rocker Admin
+          Copyright © 2021 PPDB Mahaputra
         </div>
       </div>
     </footer>
