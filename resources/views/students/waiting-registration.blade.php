@@ -428,6 +428,61 @@
               </div>
             </div>
 
+
+             <div class="card-body">
+              <h5 class="card-title"> Data Wali </h5>
+              <div class="table-responsive">
+                <table class="table table-active">
+                  
+                  <tbody>
+                  <tr class="table-active">
+                    <th>Nama</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->guardian_data['name'] }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">NIK</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->guardian_data['nik'] }}</td>
+                  </tr>
+
+                  <tr class="table-active">
+                    <th>Tahun lahir</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->guardian_data['year_of_birth'] }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Pendidikan terakhir</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->guardian_data['education'] }}</td>
+                  </tr>
+
+                  <tr class="table-active">
+                    <th>Pekerjaan</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->guardian_data['profession'] }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Pendapatan perbulan</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->guardian_data['monthly_income'] }}</td>
+                  </tr>
+
+                  <tr class="table-active">
+                    <th>Nomor telepon</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->guardian_data['phone_number'] }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Disabilitas</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->guardian_data['disability'] }}</td>
+                  </tr>              
+                </tbody>
+                </table>
+              </div>
+            </div>
+
             <div class="card-body">
               <h5 class="card-title"> Prestasi </h5>
               <div class="table-responsive">
