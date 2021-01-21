@@ -107,7 +107,13 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('/student/prospective', 'DatatableController@getStudentProspective');
 
-    Route::get('/students/rejected', 'StudentController@list_rejected');
+    Route::get('/students-rejected', function () {
+        return view('students.list-student-rejected');
+    });
+    Route::get('/student/rejected', 'DatatableController@getStudentRejected');
+
+
+    // Route::get('/students/rejected', 'StudentController@list_rejected');
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
     Route::get('/student/{stu_id}', 'StudentController@show');

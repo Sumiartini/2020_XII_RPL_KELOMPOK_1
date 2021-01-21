@@ -33,7 +33,6 @@ class Students extends Model
 	    // dd($students_prospective);
 	    return $students_prospective;
     }
-
     public function getStudentProsvectiveDetail($studentID)
     {
         // dd("kesini model");
@@ -45,5 +44,16 @@ class Students extends Model
     	$student_prospective_details = mappingData($student_prospective_details, $students_prospective);
 
     	return $student_prospective_details;
+    }
+    public static function getStudentRejected($request)
+    {
+        
+        $students_rejected = Students::join('users', 'students.stu_user_id','=','users.usr_id')
+        ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
+        ->where('students.stu_registration_status', 2)
+        ->where('users.usr_is_regist', 1)
+        ->where('users.usr_is_active', 0);
+        // dd($students_rejected);
+        return $students_rejected;
     }
 }

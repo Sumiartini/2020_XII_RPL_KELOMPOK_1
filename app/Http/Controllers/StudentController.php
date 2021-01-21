@@ -84,9 +84,12 @@ class StudentController extends Controller
         // dd($student_prospective);
         return view('students.detail-student-prospective',['student_prospective' => $student_prospective]);
     }
-    public function show_rejected()
+    public function show_rejected($studentID)
     {
-        return view('students.detail-student-rejected');
+        $student_rejected = new Students;
+        $student_rejected = $student_rejected->getStudentRejectedDetail($studentID);   
+        // dd($student_rejected);
+        return view('students.detail-student-rejected',['student_rejected' => $student_rejected]);
     }
     /**
      * Show the form for editing the specified resource.

@@ -112,6 +112,60 @@ function studentProspective() {
     });
 }
 
+function studentRejected() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'student/rejected',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'stu_candidate_name', 
+                name:'stu_candidate_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stu_school_origin', 
+                name:'stu_school_origin', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar Calon siswa ditolak tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar calon siswa ditolak",
+            "infoFiltered": "(pencarian dari _MAX_ daftar calon siswa)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
 function staff() {
     $('#example').DataTable({
       processing: true,
@@ -454,4 +508,3 @@ function major() {
         }
     });
 }
-
