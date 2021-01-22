@@ -122,8 +122,6 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/student/edit/{std_id}', 'StudentController@edit');
     Route::post('/student/edit/{std_id}', 'StudentController@store');
     Route::post('/student/delete', 'StudentController@destroy');
-    Route::get('/student/approve/{stu_id}', 'StudentController@approve');
-    Route::get('/student/reject/{stu_id}', 'StudentController@reject');
     
 
     Route::get('/page/list', 'PageController@index');
@@ -176,4 +174,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/position-type/create', 'PositionTypeController@store');
     Route::get('/position-type/edit/1', 'PositionTypeController@edit');
     Route::post('/position-type/edit/1', 'PositionTypeController@update');
+
+    //terima tolak siswa
+    Route::get('/student/approve/{stu_id}', 'StudentController@approve');
+    Route::get('/student/reject/{stu_id}', 'StudentController@reject');
 });

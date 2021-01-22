@@ -246,14 +246,23 @@ class StudentController extends Controller
     public function approve($stu_id)
     {
         $student = Students::findOrFail($stu_id);
-        $student->update(['stu_registration_status' => '1']);
+        $student->stu_registration_status = '1';
+        $student->update();
         return back();
     }
 
     public function reject($stu_id)
     {
         $student = Students::findOrFail($stu_id);
-        $student->update(['stu_registration_status' => '2']);
+        $user = User::where('usr_id', $student->stu_user_id)->first();
+        
+        $user->usr_is_active = '0';
+        $user->update();
+
+        $student->stu_registration_status = '2';
+        $student->update();
+
         return back();
+
     }
 }
