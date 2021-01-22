@@ -62,11 +62,11 @@
                         </div>
                          <div class="col-sm-4">
                         <label>Email<span style="color:red"> *</span></label>
-                            <input type="email" class="form-control" id="input-10" name="usr_email" placeholder="Masukan Nomor Telepon">                        
+                            <input type="email" class="form-control" id="input-10" name="usr_email" placeholder="Masukan Email">                        
                         </div>
                         <div class="col-sm-4">
                             <label>Nomor Telepon<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor NIK">
+                            <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon">
                         </div>
                     </div>
                     <div class="form-group row">

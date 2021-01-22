@@ -66,7 +66,7 @@ class DatatableController extends Controller
         return Datatables::of($students_rejected)
             ->addColumn('action', function ($row) { 
                 $detail = '<a href="' . url('students', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
-                $restore = '<a href="' . url('student/restore', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="KEMBALI" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-time-restore-setting"></i></a>';            
+                $restore = '<a href="' . url('student/restore', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="KEMBALI" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-time-restore-setting fa-lg"></i></a>';            
                 return $detail . '&nbsp' . $restore;
             
             })->rawColumns(['action'])
