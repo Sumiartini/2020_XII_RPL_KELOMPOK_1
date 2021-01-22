@@ -50,115 +50,86 @@
     <div class="card">
         <div class="card-body">
 
-            <h4 class="text-primary">Data Pribadi</h4>
+            
+            <h4 class="text-primary">Data Calon Siswa</h4>
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>
                         <tr>
-                            <th>Nama</th>
+                            <th>Nama Lengkap</th>
                             <td>:</td>
                             <td>{{ $student_prospective->stu_candidate_name }}</td>
-
-                            <th>Email</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_email }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Nomor Telepon</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_phone_number }}</td>
-
-                            <th>Nomor Whatsapp</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_whatsapp_number }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>No Akta lahir</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->personal['birth_certificate_registration_no'] }}</td>
 
                             <th>Jenis Kelamin</th>
                             <td>:</td>
                             <td>{{ $student_prospective->usr_gender }}</td>
-
-                            
                         </tr>
 
                         <tr>
-
-                            <th>Tempat Lahir</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_place_of_birth }}</td>
-
-                            <th>Tanggal lahir</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_date_of_birth }}</td>
-
-                            
-                        </tr>
-
-                        <tr>
-                            <th>Alamat</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_address }}</td>
-
-                            <th>RT</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_rt }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>RW</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_rw }}</td>
-
-                            <th>Provinsi</th>
-                            <td>:</td>
-                            <td>Jawa barat</td>
-                        </tr>
-
-                        <tr>
-                            <th>Kabupaten/Kota</th>
-                            <td>:</td>
-                            <td>Bandung</td>
-
-                            <th>Kecamatan</th>
-                            <td>:</td>
-                            <td>Katapang</td>
-                        </tr>
-
-                        <tr>
-                            <th>Kode Pos</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_postal_code }}</td>
-
-                            <th>Kelurahan/Desa</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_rural_name }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Agama</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->usr_religion }}</td>
-
                             <th>NISN</th>
                             <td>:</td>
                             <td>{{ $student_prospective->stu_nisn }}</td>
+
+                            <th>No Telepon</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_phone_number}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>No WhattsApp</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_whatsapp_number }}</td>
+                        
+                            <th>Tempat lahir</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_place_of_birth }}</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Tanggal Lahir</th>
+                            <td>:</td>
+                            <td>{{ date('d M Y', strtotime($student_prospective->usr_date_of_birth )) }}</td>
+                        
+                            <th>No Registrasi Akta Lahir</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->personal['birth_certificate_registration_no'] }}</td>
                         </tr>
 
                         <tr>
                             <th>Tinggal Bersama</th>
                             <td>:</td>
                             <td>{{ $student_prospective->personal['living_together'] }}</td>
-
-                            <th>Anak Ke</th>
+            
+                            <th>Jurusan yang diminati</th>
                             <td>:</td>
-                            <td>{{ $student_prospective->personal['child'] }}</td>
+                            <td>{{ $student_prospective->stu_school_origin }}</td>
+                        
                         </tr>
 
+                        <tr>
+                            <th>Anak ke</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->personal['child'] }}</td>
+
+                            <th>Agama</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_religion }}</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <th>Rekomendasi dari</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->other['recomended_from'] }}</td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+    
                         <tr>
                             <th></th>
                             <td></td>
@@ -168,30 +139,107 @@
                             <td></td>
                             <td></td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
 
+
+        <h4 class="text-primary">Data Persuratan</h4>
+            <div class="table-responsive">
+                <table class="table table-stripped">
+                    <tbody>
+
+                        <tr>
+                            <th >Provinsi</th>
+                            <td>:</td>
+                            <td>Jawa Barat</td>
+
+                            <th>Kota/Kabupaten</th>
+                            <td>:</td>
+                            <td>Bandung</td>
+                        </tr>
+
+
+                        <tr>
+                            <th>Alamat</th>
+                            <td></td>
+                            <td>{{ $student_prospective->usr_gender }}</td>
+
+                            <th>RT</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_rt }}</td>
+                        </tr>
+                        
+
+                        <tr>
+                            <th>RW</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_rw }}</td>
+
+                            <th >Desa/Kelurahan</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_rural_name }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Kode pos</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->usr_postal_code }}</td>
+
+                            <th >Telepon rumah</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->contact['landline_number'] }}</td>
+                                
+                        </tr>
+
+                        <tr>
+                            
+                            <th>Email rumah</th>
+                            <td>:</td>
+                            <td>{{ $student_prospective->contact['email'] }}</td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        
+                        <tr>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            
             <h4 class="text-primary">Data Ayah</h4>
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>
                         <tr>
-                            <th>Nama</th>
+                            <th>Nama Ayah Kandung</th>
                             <td>:</td>
                             <td>{{ $student_prospective->father_data['name'] }}</td>
 
-                            <th>NIK</th>
+                            <th scope="row">NIK</th>
                             <td>:</td>
                             <td>{{ $student_prospective->father_data['nik'] }}</td>
                         </tr>
 
+                                
                         <tr>
-                            <th>Tahun Lahir</th>
+                            <th>Tahun lahir</th>
                             <td>:</td>
                             <td>{{ $student_prospective->father_data['year_of_birth'] }}</td>
-
-                            <th>Pendidikan Terakhir</th>
+                    
+                            <th>Pendidikan terakhir</th>
                             <td>:</td>
                             <td>{{ $student_prospective->father_data['education'] }}</td>
                         </tr>
@@ -200,21 +248,21 @@
                             <th>Pekerjaan</th>
                             <td>:</td>
                             <td>{{ $student_prospective->father_data['profession'] }}</td>
-
-                            <th>Penghasilan Perbulan</th>
+                         
+                            <th>Pendapatan perbulan</th>
                             <td>:</td>
                             <td>{{ $student_prospective->father_data['monthly_income'] }}</td>
                         </tr>
 
-                        <tr>
+                         <tr>
                             <th>Nomor telepon</th>
                             <td>:</td>
                             <td>{{ $student_prospective->father_data['phone_number'] }}</td>
-
-                            <th>Berkebutuhan Khusus</th>
+                          
+                            <th>Disabilitas</th>
                             <td>:</td>
                             <td>{{ $student_prospective->father_data['disability'] }}</td>
-                        </tr>
+                          </tr>                  
 
                         <tr>
                             <th></th>
@@ -225,6 +273,7 @@
                             <td></td>
                             <td></td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -234,21 +283,22 @@
                 <table class="table table-stripped">
                     <tbody>
                         <tr>
-                            <th>Nama</th>
+                            <th>Nama Ibu Kandung</th>
                             <td>:</td>
                             <td>{{ $student_prospective->mother_data['name'] }}</td>
 
-                            <th>NIK</th>
+                            <th scope="row">NIK</th>
                             <td>:</td>
                             <td>{{ $student_prospective->mother_data['nik'] }}</td>
                         </tr>
 
+                                
                         <tr>
-                            <th>Tahun Lahir</th>
+                            <th>Tahun lahir</th>
                             <td>:</td>
                             <td>{{ $student_prospective->mother_data['year_of_birth'] }}</td>
-
-                            <th>Pendidikan Terakhir</th>
+                    
+                            <th>Pendidikan terakhir</th>
                             <td>:</td>
                             <td>{{ $student_prospective->mother_data['education'] }}</td>
                         </tr>
@@ -257,21 +307,21 @@
                             <th>Pekerjaan</th>
                             <td>:</td>
                             <td>{{ $student_prospective->mother_data['profession'] }}</td>
-
-                            <th>Penghasilan Perbulan</th>
+                         
+                            <th>Pendapatan perbulan</th>
                             <td>:</td>
                             <td>{{ $student_prospective->mother_data['monthly_income'] }}</td>
                         </tr>
 
-                        <tr>
+                         <tr>
                             <th>Nomor telepon</th>
                             <td>:</td>
                             <td>{{ $student_prospective->mother_data['phone_number'] }}</td>
-
-                            <th>Berkebutuhan Khusus</th>
+                          
+                            <th>Disabilitas</th>
                             <td>:</td>
                             <td>{{ $student_prospective->mother_data['disability'] }}</td>
-                        </tr>
+                          </tr>                  
 
                         <tr>
                             <th></th>
@@ -282,6 +332,7 @@
                             <td></td>
                             <td></td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -295,17 +346,18 @@
                             <td>:</td>
                             <td>{{ $student_prospective->guardian_data['name'] }}</td>
 
-                            <th>NIK</th>
+                            <th scope="row">NIK</th>
                             <td>:</td>
                             <td>{{ $student_prospective->guardian_data['nik'] }}</td>
                         </tr>
 
+                                
                         <tr>
-                            <th>Tahun Lahir</th>
+                            <th>Tahun lahir</th>
                             <td>:</td>
                             <td>{{ $student_prospective->guardian_data['year_of_birth'] }}</td>
-
-                            <th>Pendidikan Terakhir</th>
+                    
+                            <th>Pendidikan terakhir</th>
                             <td>:</td>
                             <td>{{ $student_prospective->guardian_data['education'] }}</td>
                         </tr>
@@ -314,21 +366,21 @@
                             <th>Pekerjaan</th>
                             <td>:</td>
                             <td>{{ $student_prospective->guardian_data['profession'] }}</td>
-
-                            <th>Penghasilan Perbulan</th>
+                         
+                            <th>Pendapatan perbulan</th>
                             <td>:</td>
                             <td>{{ $student_prospective->guardian_data['monthly_income'] }}</td>
                         </tr>
 
-                        <tr>
-                            <th>Nomor Telepon</th>
+                         <tr>
+                            <th>Nomor telepon</th>
                             <td>:</td>
                             <td>{{ $student_prospective->guardian_data['phone_number'] }}</td>
-
-                            <th>Berkebutuhan Khusus</th>
+                          
+                            <th>Disabilitas</th>
                             <td>:</td>
                             <td>{{ $student_prospective->guardian_data['disability'] }}</td>
-                        </tr>
+                          </tr>                  
 
                         <tr>
                             <th></th>
@@ -339,33 +391,7 @@
                             <td></td>
                             <td></td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <h4 class="text-primary">Kontak Rumah</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Telepon Rumah</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->contact['landline_number'] }}</td>
-
-                            <th>Email Rumah</th>
-                            <td>:</td>
-                            <td>{{ $student_prospective->contact['email'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -375,20 +401,20 @@
                 <table class="table table-stripped">
                     <tbody>
                         <tr>
-                            <th>Tipe Prestasi</th>
+                            <th>Jenis / Tipe prestasi</th>
                             <td>:</td>
                             <td>{{ $student_prospective->achievement['type'] }}</td>
-
-                            <th>Nama Prestasi</th>
+                          
+                            <th>Tingkat</th>
                             <td>:</td>
-                            <td>{{ $student_prospective->achievement['achievement_name'] }}</td>
+                            <td>{{ $student_prospective->achievement['achievement_level'] }}</td>
                         </tr>
 
                         <tr>
-                            <th>Prestasi Tingkat</th>
+                            <th>Nama prestasi</th>
                             <td>:</td>
-                            <td>{{ $student_prospective->achievement['achievement_level'] }}</td>
-
+                            <td>{{ $student_prospective->achievement['achievement_name'] }}</td>
+                          
                             <th>Tahun</th>
                             <td>:</td>
                             <td>{{ $student_prospective->achievement['year'] }}</td>
@@ -402,8 +428,9 @@
                             <th></th>
                             <td></td>
                             <td></td>
-                        </tr>
 
+                        </tr>
+                 
                         <tr>
                             <th></th>
                             <td></td>
@@ -417,7 +444,8 @@
                 </table>
             </div>
 
-            <h4 class="text-primary">Lainnya</h4>
+
+        <h4 class="text-primary">Lainnya</h4>
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>
@@ -430,7 +458,16 @@
                             <td></td>
                             <td></td>
                         </tr>
+                        
+                        <tr>
+                            <th></th>
+                            <td></td>
+                            <td></td>
 
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
