@@ -36,7 +36,7 @@
 <div class="col-lg-12">
     <div class="profile-card-3 ">
         <div class="text-center">
-            <img src="{{ url('assets/images/avatars/avatar-17.png')}}" alt="user avatar" class="card-img-top" style="width: 200px;
+            <img src="{{ asset('candidate_student/'.$student_rejected->usr_profile_picture) }}" alt="user avatar" class="card-img-top" style="width: 200px;
             height: 200px;
             background: #dac52c;
             border-radius: 100%;">
@@ -49,111 +49,85 @@
     <div class="card">
         <div class="card-body">
 
-            <h4 class="text-primary">Data Pribadi</h4>
+            <h4 class="text-primary">Data Calon Siswa</h4>
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>
                         <tr>
-                            <th>Nama</th>
+                            <th>Nama Lengkap</th>
                             <td>:</td>
-                            <td>Rara Lestari</td>
+                            <td>{{ $student_rejected->stu_candidate_name }}</td>
 
-                            <th>Email</th>
-                            <td>:</td>
-                            <td>rara@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <th>Nomor Telepon</th>
-                            <td>:</td>
-                            <td>082118342147</td>
-
-                            <th>NIK</th>
-                            <td>:</td>
-                            <td>321044070027770007</td>
-                        </tr>
-
-                        <tr>
                             <th>Jenis Kelamin</th>
                             <td>:</td>
-                            <td>perempuan</td>
-
-                            <th>Tempat Lahir</th>
-                            <td>:</td>
-                            <td>Bandung</td>
-                        </tr>
-
-                        <tr>
-                            <th>Tanggal lahir</th>
-                            <td>:</td>
-                            <td>18 Mei</td>
-
-                            <th>Alamat</th>
-                            <td>:</td>
-                            <td>Kp. Junti Hilir</td>
-                        </tr>
-
-                        <tr>
-                            <th>RT</th>
-                            <td>:</td>
-                            <td>01</td>
-
-                            <th>RW</th>
-                            <td>:</td>
-                            <td>12</td>
-                        </tr>
-
-                        <tr>
-                            <th>Provinsi</th>
-                            <td>:</td>
-                            <td>Jawa barat</td>
-                            
-                            <th>Kabupaten/Kota</th>
-                            <td>:</td>
-                            <td>Bandung</td>
-
-                        </tr>
-                        
-                        <tr>
-                            <th>Kecamatan</th>
-                            <td>:</td>
-                            <td>Katapang</td>
-
-                            <th>Kode Pos</th>
-                            <td>:</td>
-                            <td>40971</td>
-                        </tr>
-
-                        <tr>
-                            <th>Kelurahan/Desa</th>
-                            <td>:</td>
-                            <td>Sangkanhurip</td>
-
-                            <th>Agama</th>
-                            <td>:</td>
-                            <td>Islam</td>
+                            <td>{{ $student_rejected->usr_gender }}</td>
                         </tr>
 
                         <tr>
                             <th>NISN</th>
                             <td>:</td>
-                            <td>11203321</td>
+                            <td>{{ $student_rejected->stu_nisn }}</td>
 
+                            <th>No Telepon</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->usr_phone_number}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>No WhattsApp</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->usr_whatsapp_number }}</td>
+                        
+                            <th>Tempat lahir</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->usr_place_of_birth }}</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Tanggal Lahir</th>
+                            <td>:</td>
+                            <td>{{ date('d M Y', strtotime($student_rejected->usr_date_of_birth )) }}</td>
+                        
+                            <th>No Registrasi Akta Lahir</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->personal['birth_certificate_registration_no'] }}</td>
+                        </tr>
+
+                        <tr>
                             <th>Tinggal Bersama</th>
                             <td>:</td>
-                            <td>Orang Tua</td>
-                        </tr>
-
-                        <tr>
-                            <th>Anak Ke</th>
+                            <td>{{ $student_rejected->personal['living_together'] }}</td>
+            
+                            <th>Jurusan yang diminati</th>
                             <td>:</td>
-                            <td>2</td>
+                            <td>{{ $student_rejected->stu_school_origin }}</td>
+                        
+                        </tr>
+
+                        <tr>
+                            <th>Anak ke</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->personal['child'] }}</td>
+
+                            <th>Agama</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->usr_religion }}</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <th>Rekomendasi dari</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->other['recomended_from'] }}</td>
 
                             <th></th>
                             <td></td>
                             <td></td>
-                        </tr>
 
+                        </tr>
+    
                         <tr>
                             <th></th>
                             <td></td>
@@ -163,55 +137,132 @@
                             <td></td>
                             <td></td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
 
+
+        <h4 class="text-primary">Data Persuratan</h4>
+            <div class="table-responsive">
+                <table class="table table-stripped">
+                    <tbody>
+
+                        <tr>
+                            <th >Provinsi</th>
+                            <td>:</td>
+                            <td>Jawa Barat</td>
+
+                            <th>Kota/Kabupaten</th>
+                            <td>:</td>
+                            <td>Bandung</td>
+                        </tr>
+
+
+                        <tr>
+                            <th>Alamat</th>
+                            <td></td>
+                            <td>{{ $student_rejected->usr_gender }}</td>
+
+                            <th>RT</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->usr_rt }}</td>
+                        </tr>
+                        
+
+                        <tr>
+                            <th>RW</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->usr_rw }}</td>
+
+                            <th >Desa/Kelurahan</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->usr_rural_name }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Kode pos</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->usr_postal_code }}</td>
+
+                            <th >Telepon rumah</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->contact['landline_number'] }}</td>
+                                
+                        </tr>
+
+                        <tr>
+                            
+                            <th>Email rumah</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->contact['email'] }}</td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        
+                        <tr>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            
             <h4 class="text-primary">Data Ayah</h4>
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>
                         <tr>
-                            <th>Nama</th>
+                            <th>Nama Ayah Kandung</th>
                             <td>:</td>
-                            <td>Sutisna</td>
+                            <td>{{ $student_rejected->father_data['name'] }}</td>
 
-                            <th>NIK</th>
+                            <th scope="row">NIK</th>
                             <td>:</td>
-                            <td>32104407002777</td>
+                            <td>{{ $student_rejected->father_data['nik'] }}</td>
                         </tr>
 
+                                
                         <tr>
-                            <th>Tahun Lahir</th>
+                            <th>Tahun lahir</th>
                             <td>:</td>
-                            <td>1977</td>
-
-                            <th>Pendidikan Terakhir</th>
+                            <td>{{ $student_rejected->father_data['year_of_birth'] }}</td>
+                    
+                            <th>Pendidikan terakhir</th>
                             <td>:</td>
-                            <td>SD Sederajat</td>
+                            <td>{{ $student_rejected->father_data['education'] }}</td>
                         </tr>
 
                         <tr>
                             <th>Pekerjaan</th>
                             <td>:</td>
-                            <td>Buruh</td>
-
-                            <th>Penghasilan Perbulan</th>
+                            <td>{{ $student_rejected->father_data['profession'] }}</td>
+                         
+                            <th>Pendapatan perbulan</th>
                             <td>:</td>
-                            <td>1.000.000</td>
+                            <td>{{ $student_rejected->father_data['monthly_income'] }}</td>
                         </tr>
+
+                         <tr>
+                            <th>Nomor telepon</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->father_data['phone_number'] }}</td>
+                          
+                            <th>Disabilitas</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->father_data['disability'] }}</td>
+                          </tr>                  
 
                         <tr>
-                            <th>Berkebutuhan Khusus</th>
-                            <td>:</td>
-                            <td>Tidak</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
                             <th></th>
                             <td></td>
                             <td></td>
@@ -220,6 +271,7 @@
                             <td></td>
                             <td></td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -229,46 +281,47 @@
                 <table class="table table-stripped">
                     <tbody>
                         <tr>
-                            <th>Nama</th>
+                            <th>Nama Ibu Kandung</th>
                             <td>:</td>
-                            <td>Wiwin</td>
+                            <td>{{ $student_rejected->mother_data['name'] }}</td>
 
-                            <th>NIK</th>
+                            <th scope="row">NIK</th>
                             <td>:</td>
-                            <td>321044070027770007</td>
+                            <td>{{ $student_rejected->mother_data['nik'] }}</td>
                         </tr>
 
+                                
                         <tr>
-                            <th>Tahun Lahir</th>
+                            <th>Tahun lahir</th>
                             <td>:</td>
-                            <td>1980</td>
-
-                            <th>Pendidikan Terakhir</th>
+                            <td>{{ $student_rejected->mother_data['year_of_birth'] }}</td>
+                    
+                            <th>Pendidikan terakhir</th>
                             <td>:</td>
-                            <td>SD Sederajat</td>
+                            <td>{{ $student_rejected->mother_data['education'] }}</td>
                         </tr>
 
                         <tr>
                             <th>Pekerjaan</th>
                             <td>:</td>
-                            <td>IRT</td>
-
-                            <th>Penghasilan Perbulan</th>
+                            <td>{{ $student_rejected->mother_data['profession'] }}</td>
+                         
+                            <th>Pendapatan perbulan</th>
                             <td>:</td>
-                            <td>-</td>
+                            <td>{{ $student_rejected->mother_data['monthly_income'] }}</td>
                         </tr>
+
+                         <tr>
+                            <th>Nomor telepon</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->mother_data['phone_number'] }}</td>
+                          
+                            <th>Disabilitas</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->mother_data['disability'] }}</td>
+                          </tr>                  
 
                         <tr>
-                            <th>Berkebutuhan Khusus</th>
-                            <td>:</td>
-                            <td>Tidak</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
                             <th></th>
                             <td></td>
                             <td></td>
@@ -277,6 +330,7 @@
                             <td></td>
                             <td></td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -288,79 +342,43 @@
                         <tr>
                             <th>Nama</th>
                             <td>:</td>
-                            <td>-</td>
+                            <td>{{ $student_rejected->guardian_data['name'] }}</td>
 
-                            <th>NIK</th>
+                            <th scope="row">NIK</th>
                             <td>:</td>
-                            <td>-</td>
+                            <td>{{ $student_rejected->guardian_data['nik'] }}</td>
                         </tr>
 
+                                
                         <tr>
-                            <th>Tahun Lahir</th>
+                            <th>Tahun lahir</th>
                             <td>:</td>
-                            <td>-</td>
-
-                            <th>Pendidikan Terakhir</th>
+                            <td>{{ $student_rejected->guardian_data['year_of_birth'] }}</td>
+                    
+                            <th>Pendidikan terakhir</th>
                             <td>:</td>
-                            <td>-</td>
+                            <td>{{ $student_rejected->guardian_data['education'] }}</td>
                         </tr>
 
                         <tr>
                             <th>Pekerjaan</th>
                             <td>:</td>
-                            <td>-</td>
-
-                            <th>Penghasilan Perbulan</th>
+                            <td>{{ $student_rejected->guardian_data['profession'] }}</td>
+                         
+                            <th>Pendapatan perbulan</th>
                             <td>:</td>
-                            <td>-</td>
+                            <td>{{ $student_rejected->guardian_data['monthly_income'] }}</td>
                         </tr>
 
-                        <tr>
-                            <th>Berkebutuhan Khusus</th>
+                         <tr>
+                            <th>Nomor telepon</th>
                             <td>:</td>
-                            <td>-</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h4 class="text-primary">Kontak Rumah</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Telepon Rumah</th>
+                            <td>{{ $student_rejected->guardian_data['phone_number'] }}</td>
+                          
+                            <th>Disabilitas</th>
                             <td>:</td>
-                            <td>022121213312</td>
-
-                            <th>Email Rumah</th>
-                            <td>:</td>
-                            <td>damili@gmail.com</td>
-                        </tr>
-
-                        <tr>
-                            <th>Nomor Telepon HP</th>
-                            <td>:</td>
-                            <td>0812345678</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                            <td>{{ $student_rejected->guardian_data['disability'] }}</td>
+                          </tr>                  
 
                         <tr>
                             <th></th>
@@ -371,53 +389,7 @@
                             <td></td>
                             <td></td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
 
-            <h4 class="text-primary">Data Periodik</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Tinggi Badan</th>
-                            <td>:</td>
-                            <td>140 cm</td>
-
-                            <th>Berat Badan</th>
-                            <td>:</td>
-                            <td>40 kg</td>
-                        </tr>
-
-                        <tr>
-                            <th>Jarak Ke Sekolah</th>
-                            <td>:</td>
-                            <td>0,5 KM</td>
-
-                            <th>Waktu tempuh</th>
-                            <td>:</td>
-                            <td>30 Menit</td>
-                        </tr>
-
-                        <tr>
-                            <th>Jumlah Saudara Kandung</th>
-                            <td>:</td>
-                            <td>2</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -427,35 +399,36 @@
                 <table class="table table-stripped">
                     <tbody>
                         <tr>
-                            <th>Tipe Prestasi</th>
+                            <th>Jenis / Tipe prestasi</th>
                             <td>:</td>
-                            <td>-</td>
-
-                            <th>Nama Prestasi</th>
+                            <td>{{ $student_rejected->achievement['type'] }}</td>
+                          
+                            <th>Tingkat</th>
                             <td>:</td>
-                            <td>-</td>
+                            <td>{{ $student_rejected->achievement['achievement_level'] }}</td>
                         </tr>
 
                         <tr>
-                            <th>Prestasi Tingkat</th>
+                            <th>Nama prestasi</th>
                             <td>:</td>
-                            <td>-</td>
-
+                            <td>{{ $student_rejected->achievement['achievement_name'] }}</td>
+                          
                             <th>Tahun</th>
                             <td>:</td>
-                            <td>-</td>
+                            <td>{{ $student_rejected->achievement['year'] }}</td>
                         </tr>
 
                         <tr>
                             <th>Penyelenggara</th>
                             <td>:</td>
-                            <td>-</td>
+                            <td>{{ $student_rejected->achievement['organizer'] }}</td>
 
                             <th></th>
                             <td></td>
                             <td></td>
-                        </tr>
 
+                        </tr>
+                 
                         <tr>
                             <th></th>
                             <td></td>
@@ -468,6 +441,35 @@
                     </tbody>
                 </table>
             </div>
+
+
+        <h4 class="text-primary">Lainnya</h4>
+            <div class="table-responsive">
+                <table class="table table-stripped">
+                    <tbody>
+                        <tr>
+                            <th>Rekomendasi Dari</th>
+                            <td>:</td>
+                            <td>{{ $student_rejected->other['recomended_from'] }}</td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        
+                        <tr>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
 
         </div>
     </div>

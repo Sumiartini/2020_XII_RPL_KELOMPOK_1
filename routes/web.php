@@ -116,9 +116,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     // Route::get('/students/rejected', 'StudentController@list_rejected');
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
-    Route::get('/student/{stu_id}', 'StudentController@show');
-    Route::get('/students/prospective/{stu_id}', 'StudentController@show_prospective');
-    Route::get('/students/rejected/1', 'StudentController@show_rejected');
+    Route::get('/students/{stu_id}', 'StudentController@show');
+    Route::get('/students/{stu_id}', 'StudentController@show_prospective');
+    Route::get('/students/{stu_id}', 'StudentController@show_rejected');
     Route::get('/student/edit/{std_id}', 'StudentController@edit');
     Route::post('/student/edit/{std_id}', 'StudentController@store');
     Route::post('/student/delete', 'StudentController@destroy');

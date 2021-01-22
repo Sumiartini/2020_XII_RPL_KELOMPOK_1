@@ -56,4 +56,15 @@ class Students extends Model
         // dd($students_rejected);
         return $students_rejected;
     }
+    public function getStudentRejectedDetail($studentID)
+    {
+        $students_rejected = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+        ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+        ->where('stu_id', $studentID)->firstOrFail();
+ 
+        $student_rejected_details = StudentDetails::where('std_student_id', $students_rejected->stu_id)->get();
+        $student_rejected_details = mappingData($student_rejected_details, $students_rejected);
+
+        return $student_rejected_details;
+    }
 }

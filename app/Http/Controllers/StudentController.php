@@ -81,7 +81,7 @@ class StudentController extends Controller
     {
         $student_prospective = new Students;
         $student_prospective = $student_prospective->getStudentProsvectiveDetail($studentID);   
-        // dd($student_prospective);
+        //dd($student_prospective);
         return view('students.detail-student-prospective',['student_prospective' => $student_prospective]);
     }
     public function show_rejected($studentID)
