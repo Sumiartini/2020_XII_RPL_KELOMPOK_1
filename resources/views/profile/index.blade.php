@@ -38,11 +38,10 @@
   <div class="col-lg-12">
     <div class="profile-card-3 ">
         <div class="text-center">
-           <img src="{{ url('assets/images/avatars/avatar-2.png')}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
+           <img src="{{ url('candidate_student/'.$user->usr_profile_picture)}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
                         <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-                 
-                        <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()">Pilih Gambar</button>
-
+           
+                                <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
         </div>
         <hr>
     </div>
@@ -51,7 +50,7 @@
   <div class="col-lg-12">
       <div class="card">
                  <div class="card-body">
-                   <form autocomplete="off" action="{{ url('account/profile/1/edit')}}" method="POST" id="submitForm" novalidate="novalidate">
+                   <form autocomplete="off" action="{{ url('account/profile/'.Auth::user()->usr_id.'/edit')}}" method="POST" id="submitForm" novalidate="novalidate">
                     @csrf
                 <h4 class="form-header text-uppercase">
                   <i class="fa fa-address-book-o"></i>
@@ -60,26 +59,26 @@
                 <div class="form-group row">
                   <label for="input-10" class="col-sm-2 col-form-label">Nama</label>
                   <div class="col-sm-4">
-                    <input type="text" name="usr_name" value="Ahmad Suherman" class="form-control" id="input-10">
+                    <input type="text" name="usr_name" value="{{$user->usr_name}}" class="form-control" id="input-10">
                   </div>
                   <label for="input-11" class="col-sm-2 col-form-label">Email</label>
                   <div class="col-sm-4">
-                    <input type="text" name="usr_email" value="suhermana274@gmail.com" class="form-control" id="input-11">
+                    <input type="text" readonly="" name="usr_email" value="{{$user->usr_email}}" class="form-control" id="input-11">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="input-12" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                   <div class="col-sm-4">
                     <select name="usr_gender" class="form-control" id="basic-select">
-                                <option disabled="" selected="">Laki Laki</option>
-                                <option>Laki Laki</option>
-                                <option>Perempuan</option>
+                                <option disabled="" selected="">{{$user->usr_gender}}</option>
+                                <option value="Laki-laki">Laki Laki</option>
+                                <option value="Perempuan">Perempuan</option>
                             </select>
                   </div>
-                  <label for="input-13" class="col-sm-2 col-form-label">Nickname</label>
+                  <label for="input-13" class="col-sm-2 col-form-label">Agama</label>
                   <div class="col-sm-4">
                    <select class="form-control" name="usr_religion" id="basic-select">
-                                <option disabled="" selected="">Islam</option>
+                                <option disabled="" selected="">{{$user->usr_religion}}</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Protestan">Protestan</option>
                                 <option value="Katolik">Katolik</option>
@@ -93,33 +92,33 @@
                 <div class="form-group row">
                   <label for="input-10" class="col-sm-2 col-form-label">Tempat Lahir</label>
                   <div class="col-sm-4">
-                    <input type="text" value="Bandung" name="usr_place_of_birth" class="form-control" id="input-10">
+                    <input type="text" value="{{$user->usr_place_of_birth}}" name="usr_place_of_birth" class="form-control" id="input-10">
                   </div>
                   <label for="input-11" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                   <div class="col-sm-4">
-                    <input type="text" value="05-05-2003" name="usr_date_of_birth" class="form-control" id="input-11">
+                    <input type="text" value="{{$user->usr_date_of_birth}}" name="usr_date_of_birth" class="form-control" id="input-11">
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label for="input-10" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                  <label for="input-10" class="col-sm-2 col-form-label">Alamat</label>
                   <div class="col-sm-4">
-                     <input type="text" value="Kp. Cicangkudu" name="usr_address" class="form-control" id="input-10" placeholder="Masukan Alamat">
+                     <input type="text" value="{{$user->usr_address}}" name="usr_address" class="form-control" id="input-10" placeholder="Masukan Alamat">
                   </div>
                   <label for="input-11" class="col-sm-2 col-form-label">Desa</label>
                   <div class="col-sm-4">
-                    <input type="text" value="Sangkanhuri" name="usr_rural_name" class="form-control" id="input-11">
+                    <input type="text" value="{{$user->usr_rural_name}}" name="usr_rural_name" class="form-control" id="input-11">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="input-10" class="col-sm-2 col-form-label">RT</label>
                   <div class="col-sm-4">
-                     <input type="text" value="01" name="usr_rt" class="form-control" id="input-10" placeholder="Masukan Alamat">
+                     <input type="text" value="{{$user->usr_rt}}" name="usr_rt" class="form-control" id="input-10" placeholder="Masukan Alamat">
                   </div>
                   <label for="input-11" class="col-sm-2 col-form-label">RW</label>
                   <div class="col-sm-4">
-                    <input type="text" value="12" name="usr_rw" class="form-control" id="input-11" name="lastname">
+                    <input type="text" value="{{$user->usr_rw}}" name="usr_rw" class="form-control" id="input-11" name="lastname">
                   </div>
                 </div>
 

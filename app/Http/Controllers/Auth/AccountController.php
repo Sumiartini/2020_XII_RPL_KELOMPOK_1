@@ -139,13 +139,37 @@ class AccountController extends Controller
             dd('password tidak sama');
         }
     }
-    public function editProfile()
+    public function editProfile($usr_id)
     {
-        return view('profile.index');
+        $user = User::find($usr_id);
+        return view('profile.index',['user' => $user]);
     }
     public function storeEditProfile(Request $request)
     {
-        dd($request);
+        $user = Auth()->user();
+
+        $user->usr_name             = $request->usr_name;
+        $user->usr_email            = $request->usr_email;
+        $user->usr_gender           = $request->usr_gender; 
+        $user->usr_place_of_birth   = $request->usr_place_of_birth;
+        $user->usr_date_of_birth    = $request->usr_date_of_birth;
+        $user->usr_address          = $request->usr_address;
+        $user->usr_rural_name       = $request->usr_rural_name;
+        $user->usr_rt               = $request->usr_rt;
+        $user->usr_rw               = $request->usr_rw;
+
+        if ($request->hasFile('usr_profile_picture')) {
+            $files = $request->file('usr_profile_picture');
+            $path = public_path('candidate_student' . '/' . $user->name);
+            $files_name = $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $user->usr_profile_picture = $files_name;
+        }
+        
+        $user->update();
+
+        return back();
+
     }
 
     public function pending_verification($studentID)

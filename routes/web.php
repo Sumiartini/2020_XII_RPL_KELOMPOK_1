@@ -132,8 +132,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/account/profile/1/edit-password', 'Auth\AccountController@editPassword');
     Route::post('/account/profile/1/edit-password', 'Auth\AccountController@storeEditPassword');
 
-    Route::get('/account/profile/1/edit', 'Auth\AccountController@editProfile');
-    Route::post('/account/profile/1/edit', 'Auth\AccountController@storeEditProfile');
+    Route::get('/account/profile/{usr_id}/edit', 'Auth\AccountController@editProfile');
+    Route::post('/account/profile/{usr_id}/edit', 'Auth\AccountController@storeEditProfile');
 
 
 });
