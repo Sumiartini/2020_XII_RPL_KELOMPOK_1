@@ -14,6 +14,8 @@
   <!-- animate CSS-->
   <link href="{{ asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css"/>
   <!-- Icons CSS-->
+  <!--Bootstrap Datepicker-->
+  <link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css"/>
   <!-- Sidebar CSS-->
   <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet"/>
@@ -38,10 +40,13 @@
   <div class="col-lg-12">
     <div class="profile-card-3 ">
         <div class="text-center">
-           <img src="{{ url('candidate_student/'.$user->usr_profile_picture)}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                        <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-           
-                                <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
+          <form autocomplete="off" action="{{ url('account/profile/'.Auth::user()->usr_id.'/edit')}}" method="POST" id="submitForm" novalidate="novalidate" enctype="multipart/form-data">
+          @csrf
+           <img src="{{ url('users_profile/'.$user->usr_profile_picture)}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+
+            <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+
+            <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
         </div>
         <hr>
     </div>
@@ -49,13 +54,11 @@
 
   <div class="col-lg-12">
       <div class="card">
-                 <div class="card-body">
-                   <form autocomplete="off" action="{{ url('account/profile/'.Auth::user()->usr_id.'/edit')}}" method="POST" id="submitForm" novalidate="novalidate">
-                    @csrf
+              <div class="card-body">
                 <h4 class="form-header text-uppercase">
                   <i class="fa fa-address-book-o"></i>
                    User Profile
-                </h4>
+                </h4><hr>
                 <div class="form-group row">
                   <label for="input-10" class="col-sm-2 col-form-label">Nama</label>
                   <div class="col-sm-4">
@@ -63,14 +66,14 @@
                   </div>
                   <label for="input-11" class="col-sm-2 col-form-label">Email</label>
                   <div class="col-sm-4">
-                    <input type="text" readonly="" name="usr_email" value="{{$user->usr_email}}" class="form-control" id="input-11">
+                    <input type="text" disabled="" name="usr_email" value="{{$user->usr_email}}" class="form-control" id="input-11">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="input-12" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                   <div class="col-sm-4">
                     <select name="usr_gender" class="form-control" id="basic-select">
-                                <option disabled="" selected="">{{$user->usr_gender}}</option>
+                                <option value="{{$user->usr_gender}}" selected="">{{$user->usr_gender}}</option>
                                 <option value="Laki-laki">Laki Laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
@@ -78,7 +81,7 @@
                   <label for="input-13" class="col-sm-2 col-form-label">Agama</label>
                   <div class="col-sm-4">
                    <select class="form-control" name="usr_religion" id="basic-select">
-                                <option disabled="" selected="">{{$user->usr_religion}}</option>
+                                <option value="{{$user->usr_religion}}" selected="">{{$user->usr_religion}}</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Protestan">Protestan</option>
                                 <option value="Katolik">Katolik</option>
@@ -96,7 +99,7 @@
                   </div>
                   <label for="input-11" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                   <div class="col-sm-4">
-                    <input type="text" value="{{$user->usr_date_of_birth}}" name="usr_date_of_birth" class="form-control" id="input-11">
+                    <input id="autoclose-datepicker" type="text" value="{{$user->usr_date_of_birth}}" name="usr_date_of_birth" class="form-control" id="input-11">
                   </div>
                 </div>
 
@@ -126,7 +129,7 @@
 
                 <div class="form-footer">
                     <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Batal</button>
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Simpan</button>
+                    <button type="submit" id="btnSubmit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Simpan</button>
                 </div>
               </form>
                  </div>
@@ -176,6 +179,22 @@
 $("#preview_gambar").change(function(){
    bacaGambar(this);
 });
+</script>
+<script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script>
+    $('#default-datepicker').datepicker({
+        todayHighlight: true
+    });
+    $('#autoclose-datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "yyyy-mm-dd"
+    });
 
-    </script>
+    $('#inline-datepicker').datepicker({
+        todayHighlight: true
+    });
+
+    $('#dateragne-picker .input-daterange').datepicker({});
+</script>
 @endpush    

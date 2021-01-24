@@ -36,7 +36,7 @@
 <div class="col-lg-12">
     <div class="profile-card-3 ">
         <div class="text-center">
-            <img src="{{ asset('candidate_student/'.$student->usr_profile_picture) }}" alt="user avatar" class="card-img-top" style="width: 200px;
+            <img src="{{ asset('users_profile/'.$student->usr_profile_picture) }}" alt="user avatar" class="card-img-top" style="width: 200px;
             height: 200px;
             background: #dac52c;
             border-radius: 100%;">
@@ -49,7 +49,7 @@
     <div class="card">
         <div class="card-body">
 
-            <h4 class="text-primary">Data Calon Siswa</h4>
+            <h4 class="text-primary">Data Siswa</h4>
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>
@@ -74,60 +74,56 @@
                         </tr>
 
                         <tr>
+                            <th>NIS</th>
+                            <td>:</td>
+                            <td>{{ $student->stu_nis }}</td>
+                        
                             <th>No WhattsApp</th>
                             <td>:</td>
                             <td>{{ $student->usr_whatsapp_number }}</td>
-                        
+                        </tr>
+
+                        <tr>
                             <th>Tempat lahir</th>
                             <td>:</td>
                             <td>{{ $student->usr_place_of_birth }}</td>
 
-                        </tr>
-
-                        <tr>
                             <th>Tanggal Lahir</th>
                             <td>:</td>
                             <td>{{ date('d M Y', strtotime($student->usr_date_of_birth )) }}</td>
-                        
+                        </tr>
+
+                        <tr>
                             <th>No Registrasi Akta Lahir</th>
                             <td>:</td>
                             <td>{{ $student->personal['birth_certificate_registration_no'] }}</td>
-                        </tr>
 
-                        <tr>
                             <th>Tinggal Bersama</th>
                             <td>:</td>
                             <td>{{ $student->personal['living_together'] }}</td>
-            
-                            <th>Jurusan yang diminati</th>
-                            <td>:</td>
-                            <td>{{ $student->stu_school_origin }}</td>
-                        
                         </tr>
 
                         <tr>
+                            <th>Jurusan yang diminati</th>
+                            <td>:</td>
+                            <td>{{ $student->stu_school_origin }}</td>
+
                             <th>Anak ke</th>
                             <td>:</td>
                             <td>{{ $student->personal['child'] }}</td>
-
+                        </tr>
+                        
+    
+                        <tr>
                             <th>Agama</th>
                             <td>:</td>
                             <td>{{ $student->usr_religion }}</td>
 
-                        </tr>
-                        
-                        <tr>
-                            
-                            <th>Rekomendasi dari</th>
-                            <td>:</td>
-                            <td>{{ $student->other['recomended_from'] }}</td>
-
                             <th></th>
                             <td></td>
                             <td></td>
-
                         </tr>
-    
+
                         <tr>
                             <th></th>
                             <td></td>
@@ -161,7 +157,7 @@
 
                         <tr>
                             <th>Alamat</th>
-                            <td></td>
+                            <td>:</td>
                             <td>{{ $student->usr_gender }}</td>
 
                             <th>RT</th>

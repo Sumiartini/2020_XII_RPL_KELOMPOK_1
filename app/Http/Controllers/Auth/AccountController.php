@@ -146,10 +146,10 @@ class AccountController extends Controller
     }
     public function storeEditProfile(Request $request)
     {
+        // dd($request);
         $user = Auth()->user();
 
         $user->usr_name             = $request->usr_name;
-        $user->usr_email            = $request->usr_email;
         $user->usr_gender           = $request->usr_gender; 
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
         $user->usr_date_of_birth    = $request->usr_date_of_birth;
@@ -160,8 +160,8 @@ class AccountController extends Controller
 
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');
-            $path = public_path('candidate_student' . '/' . $user->name);
-            $files_name = $files->getClientOriginalName();
+            $path = public_path('users_profile' . '/' . $user->name);
+            $files_name = date('Ymd') . $files->getClientOriginalName();
             $files->move($path, $files_name);
             $user->usr_profile_picture = $files_name;
         }

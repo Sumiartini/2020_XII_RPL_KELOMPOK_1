@@ -101,7 +101,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('/student', 'DatatableController@getStudent');
 
-//Error double route !!
+    //Error double route "students/prospective" !!
     Route::get('/students-prospective', function () {
         return view('students.list-student-prospective');
     });
@@ -112,12 +112,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('/student/rejected', 'DatatableController@getStudentRejected');
 
-
-    // Route::get('/students/rejected', 'StudentController@list_rejected');
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
-    Route::get('/students/{stu_id}', 'StudentController@show');
-    Route::get('/students/{stu_id}', 'StudentController@show_student');
+    Route::get('/student/{stu_id}', 'StudentController@show_student');
     Route::get('/student/edit/{std_id}', 'StudentController@edit');
     Route::post('/student/edit/{std_id}', 'StudentController@update');
     Route::post('/student/delete', 'StudentController@destroy');
@@ -175,8 +172,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/position-type/edit/1', 'PositionTypeController@update');
 
     //terima tolak siswa
-    Route::get('/student/approve/{stu_id}', 'StudentController@approve');
-    Route::get('/student/reject/{stu_id}', 'StudentController@reject');
+    Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');
+    Route::get('/student/rejected/{stu_id}', 'StudentController@rejected');
 });
 
     //Landing page

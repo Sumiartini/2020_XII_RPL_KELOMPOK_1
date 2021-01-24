@@ -67,16 +67,6 @@ class StudentController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Students  $students
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        return view('students.detail-student');
-    }
     public function show_student($studentID)
     {
         $student = new students;
@@ -219,8 +209,8 @@ class StudentController extends Controller
         $user->usr_is_regist        = '1';
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');
-            $path = public_path('candidate_student' . '/' . $user->name);
-            $files_name = $files->getClientOriginalName();
+            $path = public_path('users_profile' . '/' . $user->name);
+            $files_name = date('Ymd') . $files->getClientOriginalName();
             $files->move($path, $files_name);
             $user->usr_profile_picture = $files_name;
         }
@@ -260,7 +250,7 @@ class StudentController extends Controller
         return redirect ('/pending-verification/'.$student->stu_id);   
     }
 
-    public function approve($stu_id)
+    public function receipted($stu_id)
     {
         $student = Students::findOrFail($stu_id);
         $student->stu_registration_status = '1';
@@ -268,7 +258,7 @@ class StudentController extends Controller
         return back();
     }
 
-    public function reject($stu_id)
+    public function rejected($stu_id)
     {
         $student = Students::findOrFail($stu_id);
         $user = User::where('usr_id', $student->stu_user_id)->first();
