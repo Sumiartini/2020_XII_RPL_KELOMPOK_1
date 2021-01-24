@@ -22,6 +22,8 @@
 @endpush
 
 @section('content')
+
+@if($student->stu_registration_status == 1)
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
         <h4 class="page-title">Detail Siswa</h4>
@@ -32,6 +34,31 @@
         </ol>
     </div>
 </div>
+
+@elseif($student->stu_registration_status == 0)
+<div class="row pt-2 pb-2">
+  <div class="col-sm-9">
+    <h4 class="page-title">Daftar Calon Siswa</h4>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('/students-prospective')}}">Daftar Calon Siswa</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detail Calon Siswa</li>
+    </ol>
+  </div>
+</div>
+
+@else
+<div class="row pt-2 pb-2">
+  <div class="col-sm-9">
+    <h4 class="page-title">Daftar Siswa Ditolak</h4>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('/students-rejected')}}">Daftar Siswa Ditolak</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detail Siswa Ditolak</li>
+    </ol>
+  </div>
+</div>
+@endif
 
 <div class="col-lg-12">
     <div class="profile-card-3 ">
@@ -76,8 +103,12 @@
                         <tr>
                             <th>NIS</th>
                             <td>:</td>
+                            @if($student->stu_nis == null)
+                            <td> - </td>
+                            @else
                             <td>{{ $student->stu_nis }}</td>
-                        
+                            @endif
+                            
                             <th>No WhattsApp</th>
                             <td>:</td>
                             <td>{{ $student->usr_whatsapp_number }}</td>
