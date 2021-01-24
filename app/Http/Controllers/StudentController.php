@@ -97,9 +97,12 @@ class StudentController extends Controller
      * @param  \App\Students  $students
      * @return \Illuminate\Http\Response
      */
-    public function edit(Students $students)
+    public function edit($studentID)
     {
-        return view('students.edit-student');
+        $student = new Students;
+        $student_edit = $student->getStudentEdit($studentID);   
+        
+        return view('students.edit-student',['student_edit' => $student_edit]);
     }
 
     /**
@@ -111,8 +114,18 @@ class StudentController extends Controller
      */
     public function update(Request $request, Students $students)
     {
-        //
-    }
+
+        $student_edit = Auth()->user();
+
+        $student_edit->usr_name             = $request->usr_name;
+        $student_edit->update();
+
+        return back();
+
+    }        
+
+
+   
 
     /**
      * Remove the specified resource from storage.

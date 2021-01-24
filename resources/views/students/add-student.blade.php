@@ -38,7 +38,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
             <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tambah SIswa</li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah Siswa</li>
         </ol>
     </div>
 </div>
@@ -181,13 +181,13 @@
 
                             <div class="col-sm-2">
                                 <label> Anak Ke</label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal.child') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal.child') }}">
                         
                             </div>
 
                             <div class="col-sm-2">
                                 <label> Agama <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
+                                <select class="form-control @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
                                     <option disabled="" selected=""> Pilih </option>
                                     <option value="Islam"> Islam </option>
                                     <option value="Protestan"> Protestan </option>
@@ -371,7 +371,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data.phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[phone_number]" class="form-control @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data.phone_number') }}">
                                 @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -614,7 +614,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label>Rekomendasi dari</label>
-                                <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
+                                <select name="other[recomended_from]" class="form-control @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
                                     <option value="" selected=""> Pilih </option>
                                     <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
                                     <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>

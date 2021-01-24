@@ -34,11 +34,11 @@
 
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Tambah Siswa</h4>
+        <h4 class="page-title">Edit Siswa</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
             <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tambah SIswa</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Siswa</li>
         </ol>
     </div>
 </div>
@@ -47,7 +47,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="signupForm" autocomplete="off" method="POST" action="{{ url('student/create') }}" novalidate="novalidate">
+                <form id="signupForm" autocomplete="off" method="POST" action="" novalidate="novalidate">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -58,29 +58,18 @@
 
                         <div class="col-sm-4">
                             <label>Nama<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{ old('usr_name') }}">
+                            <input type="text" class="form-control" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{$student_edit->usr_name}}">
                         </div>
                          <div class="col-sm-4">
                         <label>Email<span style="color:red"> *</span></label>
-                            <input type="email" class="form-control" id="input-10" name="usr_email" placeholder="Masukan Email" value="{{ old('usr_email') }}">                        
+                            <input type="email" readonly="" class="form-control" id="input-10" name="usr_email" placeholder="Masukan Email" value="{{$student_edit->usr_email}}">                        
                         </div>
                         <div class="col-sm-4">
                             <label>Nomor Telepon<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
+                            <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon" value="{{$student_edit->usr_phone_number}}">
                         </div>
                     </div>
-                    <div class="form-group row">
-
-                        <div class="col-sm-6">
-                            <label>Kata Sandi<span style="color:red"> *</span></label>
-                            <input type="password" class="form-control" id="input-10" name="usr_password" placeholder="Masukan Kata Sandi" >
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Ulangi Kata Sandi<span style="color:red"> *</span></label>
-                            <input type="password" class="form-control" id="input-10" name="usr_retype_password" placeholder="Masukan Kata Sandi">
-                        </div>
-                    </div>
-
+                
 
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -91,15 +80,15 @@
 
                         <div class="col-sm-4">
                             <label>Nama Lengkap<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="stu_candidate_name" placeholder="Masukan Nama Lengkap" value="{{ old('stu_candidate_name') }}">
+                            <input type="text" class="form-control" id="input-10" name="stu_candidate_name" placeholder="Masukan Nama Lengkap" value="{{$student_edit->stu_candidate_name}}">
 
                         </div>
 
                          <div class="col-sm-4">
                             <label> Jenis Kelamin <span style="color:red"> *</span></label>
 
-                                <select name="usr_gender" class="form-control" id="basic-select" value="{{ old('usr_gender') }}">
-                                    <option disabled="" selected=""> Pilih </option>
+                                <select name="usr_gender" class="form-control" id="basic-select">
+                                    <option disabled="" selected=""> {{$student_edit->usr_gender}} </option>
                                     <option value="Laki-laki"> Laki Laki </option>
                                     <option value="Perempuan"> Perempuan </option>
                                 </select>                        
@@ -107,7 +96,7 @@
 
                         <div class="col-sm-4">
                             <label> NISN <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{ old('stu_nisn') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{$student_edit->stu_nisn}}">
                          </div>
 
                     </div>
@@ -116,17 +105,17 @@
 
                         <div class="col-sm-4">
                             <label> Nomor Telepon<span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{$student_edit->usr_phone_number}}">
                         </div>
                         <div class="col-sm-4">
                             <label> No. WhatsApp <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_whatsapp_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{$student_edit->usr_whatsapp_number}}">
                         </div>
 
 
                         <div class="col-sm-4">
                              <label> Tempat Lahir <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_place_of_birth" class="form-control"  placeholder="Masukan Tempat Lahir" value="{{ old('usr_place_of_birth') }}">
+                                <input type="text" name="usr_place_of_birth" class="form-control"  placeholder="Masukan Tempat Lahir" value="{{$student_edit->usr_place_of_birth}}">
                          </div>
 
                     </div>
@@ -136,18 +125,19 @@
 
                         <div class="col-sm-4">
                             <label> Tanggal Lahir <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control" placeholder="Tanggal-Bulan-Tahun" value="{{ old('usr_date_of_birth') }}">
+                                <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control" placeholder="Tanggal-Bulan-Tahun" value="{{$student_edit->usr_date_of_birth}}">
                         </div>
 
                         <div class="col-sm-4">
                             <label> No Registrasi Akta Lahir </label>
-                                <input type="text" class="form-control" name="personal[birth_certificate_registration_no]" placeholder="Masukan No Registrasi Akta Lahir" value="{{ old('personal.birth_certificate_registration_no') }}">
+                                <input type="text" class="form-control" name="personal[birth_certificate_registration_no]" 
+                                placeholder="Masukan No Registrasi Akta Lahir">
                         </div>
 
                         <div class="col-sm-4">
                             <label> Tinggal Bersama <span style="color:red"> *</span></label>
-                                <select class="form-control" name="personal[living_together]" id="basic-select" value="{{ old('personal.living_together') }}">
-                                    <option disabled="" selected=""> Pilih </option>
+                                <select class="form-control" name="personal[living_together]" id="basic-select" value="">
+                                    <option disabled="" selected=""> </option>
                                     <option value="Orang Tua"> Orang Tua </option>
                                     <option value="Wali"> Wali </option>
                                     <option value="Kos"> Kos </option>
@@ -163,15 +153,15 @@
                    <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Asal Sekolah <span style="color:red"> *</span></label>
-                                <input type="text" name="stu_school_origin" class="form-control" id="basic-select" placeholder="Masukan Asal Sekolah" value="{{ old('stu_school_origin') }}">
+                                <input type="text" name="stu_school_origin" class="form-control" id="basic-select" placeholder="Masukan Asal Sekolah" value="{{$student_edit->stu_school_origin}}">
                                 
                             </div>
 
                             <div class="col-sm-4">
                                 <label> Jurusan yang diminati <span style="color:red"> *</span></label>
-                                <select class="form-control" name="stu_major_id" id="basic-select" value="{{ old('stu_major_id') }}">
+                                <select class="form-control" name="stu_major_id" id="basic-select" value="">
 
-                                    <option disabled="" selected=""> Pilih </option>
+                                    <option disabled="" selected=""> {{$student_edit->stu_major_id}} </option>
                                     <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                                     <option value="Multimedia">Multimedia</option>
                                     
@@ -181,14 +171,14 @@
 
                             <div class="col-sm-2">
                                 <label> Anak Ke</label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal.child') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="">
                         
                             </div>
 
                             <div class="col-sm-2">
                                 <label> Agama <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
-                                    <option disabled="" selected=""> Pilih </option>
+                                <select class="form-control @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="">
+                                    <option disabled="" selected=""> {{$student_edit->usr_religion}} </option>
                                     <option value="Islam"> Islam </option>
                                     <option value="Protestan"> Protestan </option>
                                     <option value="Katolik"> Katolik </option>
@@ -225,19 +215,19 @@
 
                             <div class="col-sm-4">
                                 <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
-                                <input type="text" name="father_data[name]" class="form-control" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.name') }}">
+                                <input type="text" name="father_data[name]" class="form-control" placeholder="Masukan Nama Lengkap" value="{{$student_edit->father_data['name']}}">
                                 
                             </div>
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[nik]" class="form-control" placeholder="Masukan Nomor NIK" value="{{ old('father_data.nik') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[nik]" class="form-control" placeholder="Masukan Nomor NIK" value="{{$student_edit->father_data['nik']}}">
                                 
                             </div>
 
                             <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{$student_edit->father_data['year_of_birth']}}">
                                     
                             </div>
                         </div>
@@ -245,8 +235,8 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
-                                <select name="father_data[education]" class="form-control" id="basic-select" value="{{ old('father_data.education') }}">
-                                    <option disabled="" selected=""> Pilih </option>
+                                <select name="father_data[education]" class="form-control" id="basic-select" value="">
+                                    <option disabled="" selected=""> {{$student_edit->father_data['education']}} </option>
                                     <option value="SD - Sederajat"> SD - Sederajat </option>
                                     <option value="SMP - Sederajat"> SMP - Sederajat </option>
                                     <option value="SMA - Sederajat"> SMA - Sederajat </option>
@@ -257,8 +247,8 @@
 
                             <div class="col-sm-4">
                                 <label>Pekerjaan<span style="color:red"> *</span></label>
-                                <select name="father_data[profession]" class="form-control" id="basic-select" value="{{ old('father_data.profession') }}">
-                                    <option disabled="" selected="">Pilih</option>
+                                <select name="father_data[profession]" class="form-control" id="basic-select" value="">
+                                    <option disabled="" selected="">{{$student_edit->father_data['profession']}}</option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
                                     <option value="Wiraswasta"> Wiraswasta </option>
@@ -268,8 +258,8 @@
 
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
-                                <select name="father_data[monthly_income]" class="form-control" id="basic-select" value="{{ old('father_data.monthly_income') }}">
-                                    <option value="" selected="">Pilih</option>
+                                <select name="father_data[monthly_income]" class="form-control" id="basic-select" value="">
+                                    <option value="" selected="">{{$student_edit->father_data['monthly_income']}}</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                                     <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -285,7 +275,7 @@
                                 
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[phone_number]" class="form-control" placeholder="Masukan Nomor Telepon" value="{{ old('father_data.phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[phone_number]" class="form-control" placeholder="Masukan Nomor Telepon" value="{{$student_edit->father_data['phone_number']}}">
                             </div>
 
 
@@ -315,17 +305,17 @@
 
                             <div class="col-sm-4">
                                 <label> Nama Ibu Kandung <span style="color:red"> *</span></label>
-                                <input type="text" name="mother_data[name]" class="form-control" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.name') }}">
+                                <input type="text" name="mother_data[name]" class="form-control" placeholder="Masukan Nama Lengkap" value="{{$student_edit->mother_data['name']}}">
                             </div>
 
                             <div class="col-sm-4">
                                 <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[nik]" class="form-control" placeholder="Masukan Nomor NIK" value="{{ old('mother_data.nik') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[nik]" class="form-control" placeholder="Masukan Nomor NIK" value="{{$student_edit->mother_data['nik']}}">
                             </div>
 
                             <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('mother_data.year_of_birth') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{$student_edit->mother_data['year_of_birth']}}">
                             </div>
                         </div>
 
@@ -334,8 +324,8 @@
 
                             <div class="col-sm-4">
                                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
-                                <select name="mother_data[education]" class="form-control" id="basic-select" value="{{ old('mother_data.education') }}">
-                                    <option disabled="" selected="">Pilih</option>
+                                <select name="mother_data[education]" class="form-control" id="basic-select" value="">
+                                    <option disabled="" selected="">{{$student_edit->mother_data['education']}}</option>
                                     <option value="SD - Sederajat"> SD - Sederajat </option>
                                     <option value="SMP - Sederajat"> SMP - Sederajat </option>
                                     <option value="SMA - Sederajat"> SMA - Sederajat </option>
@@ -345,8 +335,8 @@
                             <div class="col-sm-4">
                                 <label> Pekerjaan <span style="color:red"> *</span></label>
 
-                                <select name="mother_data[profession]" class="form-control" id="basic-select" value="{{ old('mother_data.profession') }}">
-                                    <option disabled="" selected=""> Pilih </option>
+                                <select name="mother_data[profession]" class="form-control" id="basic-select" value="">
+                                    <option disabled="" selected=""> {{$student_edit->mother_data['profession']}} </option>
                                     <option value="Buruh"> Buruh </option>
                                     <option value="Wirausaha"> Wirausaha </option>
                                     <option value="Wiraswasta"> Wiraswasta </option>
@@ -356,8 +346,8 @@
                             </div>
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
-                                <select name="mother_data[monthly_income]" class="form-control" id="basic-select" value="{{ old('mother_data.monthly_income') }}">
-                                    <option value="" selected="">Pilih</option>
+                                <select name="mother_data[monthly_income]" class="form-control" id="basic-select" value="">
+                                    <option value="" selected="">{{$student_edit->mother_data['monthly_income']}}</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                                     <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -371,7 +361,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data.phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[phone_number]" class="form-control @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{$student_edit->mother_data['phone_number']}}">
                                 @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -405,18 +395,18 @@
 
                         <div class="col-sm-4">
                             <label>Nama Wali Murid</label>
-                            <input type="text" name="guardian_data[name]" class="form-control" id="input-10" name="firstname" placeholder="Masukan Nama Lengkap">
+                            <input type="text" name="guardian_data[name]" class="form-control" id="input-10" name="firstname" placeholder="Masukan Nama Lengkap" value="{{$student_edit->guardian_data['name']}}">
                         </div>
 
                         <div class="col-sm-4">
                             <label>Nomor Identitas Kependudukan (NIK)</label>
-                            <input type="text" name="guardian_data[nik]" class="form-control" id="input-10" name="firstname" placeholder="Masukan Nomor NIK">
+                            <input type="text" name="guardian_data[nik]" class="form-control" id="input-10" name="firstname" placeholder="Masukan Nomor NIK" value="{{$student_edit->guardian_data['nik']}}">
                         </div>
 
                         <div class="col-sm-4">
                             <label>Tahun Lahir</label>
                             <select name="guardian_data[year_of_birth]" class="form-control" id="basic-select">
-                                <option disabled="" selected="">Pilih</option>
+                                <option disabled="" selected="">{{$student_edit->guardian_data['year_of_birth']}}</option>
                                 <option>2001</option>
                                 <option>2000</option>
                             </select>
@@ -427,7 +417,7 @@
                         <div class="col-sm-3">
                             <label>Pendidikan Terakhir</label>
                             <select name="guardian_data[education]" class="form-control" id="basic-select">
-                                <option disabled="" selected="">Pilih</option>
+                                <option disabled="" selected="">{{$student_edit->guardian_data['education']}}</option>
                                 <option>SD - Sederajat</option>
                                 <option>SMP - Sederajat</option>
                                 <option>SMA - Sederajat</option>
@@ -439,7 +429,7 @@
                             <label>Pekerjaan</label>
 
                             <select name="guardian_data[profession]" class="form-control" id="basic-select">
-                                <option disabled="" selected="">Pilih</option>
+                                <option disabled="" selected="">{{$student_edit->guardian_data['profession']}}</option>
                                 <option>Buruh</option>
                                 <option>Wirausaha</option>
                             </select>
@@ -448,7 +438,7 @@
                         <div class="col-sm-3">
                             <label>Pendapatan Perbulan</label>
                             <select name="guardian_data[monthly_income]" class="form-control" id="basic-select">
-                                <option disabled="" selected="">Pilih</option>
+                                <option disabled="" selected="">{{$student_edit->guardian_data['monthly_income']}}</option>
                                 <option>
                                     < Rp. 500.000</option> <option> > Rp. 500.000
                                 </option>
@@ -479,15 +469,15 @@
 
                         <div class="col-sm-4">
                             <label> Provinsi <span style="color:red"> *</span></label>
-                                <input type="text" name="prv_name" class="form-control" id="" placeholder="Masukan Provinsi" value="{{ old('prv_name') }}">
+                                <input type="text" name="prv_name" class="form-control" id="" placeholder="Masukan Provinsi" value="{{$student_edit->prv_name}}">
                         </div>
                         <div class="col-sm-4">
                             <label> Kota/Kabupaten <span style="color:red"> *</span></label>
-                                <input type="text" name="cit_name" class="form-control" id="" placeholder="Masukan Kota/kabupaten" value="{{ old('cit_name') }}">
+                                <input type="text" name="cit_name" class="form-control" id="" placeholder="Masukan Kota/kabupaten" value="{{$student_edit->cit_name}}">
                         </div>
                         <div class="col-sm-4">
                             <label>Kecamatan<span style="color:red"> *</span></label>
-                                <input type="text" name="dst_name" class="form-control" id="" placeholder="Masukan Kecamatan" value="{{ old('dst_name') }}">                                
+                                <input type="text" name="dst_name" class="form-control" id="" placeholder="Masukan Kecamatan" value="{{$student_edit->dst_name}}">                                
                         </div>
 
                     </div>
@@ -497,22 +487,22 @@
                         
                         <div class="col-sm-4">
                             <label>Alamat<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_address" class="form-control" id="input-10" placeholder="Masukan Alamat">
+                            <input type="text" name="usr_address" value="{{$student_edit->usr_address}}" class="form-control" id="input-10" placeholder="Masukan Alamat">
                         </div>
 
                         <div class="col-sm-2">
                             <label>RT<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_rt" class="form-control" id="input-10" placeholder="Masukan Nomor RT">
+                            <input type="text" name="usr_rt" value="{{$student_edit->usr_rt}}" class="form-control" id="input-10" placeholder="Masukan Nomor RT">
                         </div>
 
                         <div class="col-sm-2">
                             <label>RW<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_rw" class="form-control" id="input-10" placeholder="Masukan Nomor RW">
+                            <input type="text" name="usr_rw" value="{{$student_edit->usr_rw}}" class="form-control" id="input-10" placeholder="Masukan Nomor RW">
                         </div>
 
                         <div class="col-sm-4">
                             <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Desa/Kelurahan">
+                            <input type="text" name="usr_postal_code" value="{{$student_edit->usr_postal_code}}" class="form-control" id="input-10" placeholder="Masukan Desa/Kelurahan">
                         </div>
 
                     </div>
@@ -520,16 +510,16 @@
                     <div class="form-group row">
                          <div class="col-sm-4">
                             <label>Kode Pos<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_postal_code" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
+                            <input type="text" name="usr_postal_code" value="{{$student_edit->usr_postal_code}}" class="form-control" id="input-10" placeholder="Masukan Kode Pos">
                         </div>
                         <div class="col-sm-4">
                             <label>Telepon Rumah</label>
-                            <input type="text" name="contact[landline_number]" class="form-control" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
+                            <input type="text" name="contact[landline_number]" value="{{$student_edit->contact['landline_number']}}" class="form-control" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
                         </div>
 
                         <div class="col-sm-4">
                             <label>Email Rumah</label>
-                            <input type="text" name="contact[email]" class="form-control" id="input-10" placeholder="Masukan Alamat Email Rumah">
+                            <input type="text" name="contact[email]" value="{{$student_edit->contact['email']}}" class="form-control" id="input-10" placeholder="Masukan Alamat Email Rumah">
                         </div>
 
                     </div>
@@ -596,13 +586,13 @@
 
                         <div class="col-sm-4">
                             <label>Nama Prestasi</label>
-                            <input type="text" name="achievement[achievement_name]" class="form-control col-sm-12" id="input-10" placeholder="Nama Prestasi">
+                            <input type="text" name="achievement[achievement_name]" value="{{$student_edit->achievement['achievement_name']}}" class="form-control col-sm-12" id="input-10" placeholder="Nama Prestasi">
 
                             <label>Tahun</label>
-                            <input type="text" name="achievement[year]" class="form-control col-sm-3" id="input-10" placeholder="Tahun">
+                            <input type="text" name="achievement[achievement_name]" value="{{$student_edit->achievement['achievement_name']}}" class="form-control col-sm-3" id="input-10" placeholder="Tahun">
 
                             <label>Penyelenggara</label>
-                            <input type="text" name="achievement[organizer]" class="form-control col-sm-12" id="input-10" placeholder="Nama Penyelenggara Kegiatan">
+                            <input type="text" name="achievement[organizer]" value="{{$student_edit->achievement['organizer']}}" class="form-control col-sm-12" id="input-10" placeholder="Nama Penyelenggara Kegiatan">
                         </div>
                     </div>
 
@@ -614,8 +604,8 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label>Rekomendasi dari</label>
-                                <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
-                                    <option value="" selected=""> Pilih </option>
+                                <select name="other[recomended_from]" class="form-control @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="">
+                                    <option value="" selected=""> {{$student_edit->other['recomended_from']}} </option>
                                     <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
                                     <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
                                     <option value="Saudara"> Saudara </option>

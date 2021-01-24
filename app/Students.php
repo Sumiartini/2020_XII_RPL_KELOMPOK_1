@@ -67,4 +67,17 @@ class Students extends Model
 
         return $student_rejected_details;
     }
+    public function getStudentEdit($studentID)
+    {
+        // dd($studentID);
+        $students_edit = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+        ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+        ->where('stu_id', $studentID)->firstOrFail();
+ 
+        $get_student_edit = StudentDetails::where('std_student_id', $students_edit->stu_id)->get();
+        $get_student_edit = mappingData($get_student_edit, $students_edit);
+
+        return $get_student_edit;
+    }
+
 }
