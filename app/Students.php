@@ -22,6 +22,19 @@ class Students extends Model
 	    // dd($students);
 	    return $students;
     }
+
+    public function getStudentDetail($studentID)
+    {
+        $students = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+        ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+        ->where('stu_id', $studentID)->firstOrFail();
+ 
+        $student_details = StudentDetails::where('std_student_id', $students->stu_id)->get();
+        $student_details = mappingData($student_details, $students);
+
+        return $student_details;
+    }
+
     public static function getStudentProspective($request)
     {
     	

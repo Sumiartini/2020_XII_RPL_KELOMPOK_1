@@ -27,7 +27,7 @@
         <h4 class="page-title">Detail Siswa Ditolak</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/students/rejected')}}">Daftar Siswa Ditolak</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/students')}}">Daftar Siswa Ditolak</a></li>
             <li class="breadcrumb-item active" aria-current="page">Detail Siswa Ditolak</li>
         </ol>
     </div>

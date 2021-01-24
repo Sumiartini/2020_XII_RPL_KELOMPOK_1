@@ -77,6 +77,12 @@ class StudentController extends Controller
     {
         return view('students.detail-student');
     }
+    public function show_student($studentID)
+    {
+        $student = new students;
+        $student = $student->getStudentDetail($studentID);
+        return view('students.detail-student',['student' => $student]);
+    }
     public function show_prospective($studentID)
     {
         $student_prospective = new Students;
@@ -124,8 +130,6 @@ class StudentController extends Controller
 
     }        
 
-
-   
 
     /**
      * Remove the specified resource from storage.
