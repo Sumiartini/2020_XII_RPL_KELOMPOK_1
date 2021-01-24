@@ -179,3 +179,10 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/student/approve/{stu_id}', 'StudentController@approve');
     Route::get('/student/reject/{stu_id}', 'StudentController@reject');
 });
+
+    //Landing page
+    Route::get('/landing-page', 'DatatableController@getLandingPage');
+    Route::get('/landing-page/create', 'LandingPageController@create');
+    Route::post('/landing-page/create', 'LandingPageController@store');
+    Route::get('/landing-page/edit/1', 'LandingPageController@edit');
+    Route::post('/landing-page/edit/1', 'LandingPageController@update');

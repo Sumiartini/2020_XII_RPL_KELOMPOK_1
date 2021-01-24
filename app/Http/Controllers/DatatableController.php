@@ -215,4 +215,9 @@ class DatatableController extends Controller
             })->rawColumns(['action', 'mjr_is_active'])
             ->make(true);
     }
+
+     public function getLandingPage(Request $request)
+    {
+        return view('landing-page.list-landing-page');
+    }
 }

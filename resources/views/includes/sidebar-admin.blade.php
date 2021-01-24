@@ -74,6 +74,12 @@
         <i></i> <span>Jabatan</span>
       </a>
     </li>
+
+     <li>
+      <a href="{{ url('landing-page')}}" class="waves-effect active">
+        <i></i> <span>Halaman Arahan</span>
+      </a>
+    </li>
   </ul>
 
 </div>
