@@ -250,7 +250,7 @@ class StudentController extends Controller
             }
         }
 
-        return back();
+        return redirect('student/'.$studentID);
 
     }       
     /**
