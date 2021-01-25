@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Hash;
 use Illuminate\Support\Carbon;
 use App\EntryTypes;
+use App\Provinces;
+use App\Cities;
+use App\Districts;
 
 class StudentController extends Controller
 {
@@ -234,12 +237,23 @@ class StudentController extends Controller
 
         if ($user->usr_is_regist == 0 && $user->hasRole('student')) {            
             $majors = Majors::where('mjr_is_active', true)->get();
-            return view('students.registration-student',['majors' => $majors]);
+            $province = Provinces::select('prv_id', 'prv_name')->get();
+            return view('students.registration-student',['majors' => $majors, 'province' => $province]);
         }else{
             return redirect('/pending-verification');
         }
-        
     }
+
+    public function JsonCities($id){
+        $cities = Cities::where('cit_province_id' , $id)->get();
+        return response()->json(compact('cities', $cities));
+    }
+
+    public function JsonDistricts($id){
+        $districts = Districts::where('dst_city_id' , $id)->get();
+        return response()->json(compact('districts', $districts));
+    }
+
     public function storeFormRegistrasion(Request $request)
     {
         $requests = $request->input();
