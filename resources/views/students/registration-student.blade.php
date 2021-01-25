@@ -298,12 +298,12 @@
                             <div class="col-sm-4">
                                 <img src="#" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
                                 <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-           
+
                                 <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
                                 @error('usr_profile_picture')
-                                   <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                   </p>
+                                <p>
+                                    <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                                </p>
                                 @enderror
                             </div>
 
@@ -338,7 +338,7 @@
                             <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
-                                    
+
                                 @error('father_data.year_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -391,14 +391,14 @@
                                     <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
                                     <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                                 </select>
-                               
+
                             </div>
                         </div>
 
                         <div class="form-group row">
 
 
-                                
+
                             <div class="col-sm-4">
                                 <label> Nomor Telepon <span style="color:red"> *</span></label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('father_data.phone_number') }}">
@@ -454,7 +454,7 @@
                             <div class="col-sm-4">
                                 <label> Tahun Lahir <span style="color:red"> *</span></label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data.year_of_birth') is-invalid @enderror" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('mother_data.year_of_birth') }}">
-                                    
+
                                 @error('mother_data.year_of_birth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -543,7 +543,7 @@
                             <i class=""></i>
                             Data Wali (Boleh diisi boleh tidak)
                         </h4>
-                           
+
 
                         <div class="form-group row">
 
@@ -658,32 +658,45 @@
 
                         <h4 class="form-header text-uppercase">
                             <i class=""></i>
-                           Data Persuratan
+                            Data Persuratan
                         </h4>
 
                         <div class="form-group row">
-
                             <div class="col-sm-4">
                                 <label> Provinsi <span style="color:red"> *</span></label>
-                                <input type="text" name="prv_name" class="form-control form-control-rounded @error('prv_name') is-invalid @enderror" id="" placeholder="Masukan Provinsi" value="{{ old('prv_name') }}">
+
+                                <select name="prv_name" class="form-control form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
+                                    <option disabled checked="true" selected="true"> Pilih Provinsi </option>
+                                    @foreach($province as $data)
+                                    <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
+                                    @endforeach
+                                </select>
                                 @error('prv_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
+
                             <div class="col-sm-4">
-                                <label> Kota/Kabupaten <span style="color:red"> *</span></label>
-                                <input type="text" name="cit_name" class="form-control form-control-rounded @error('cit_name') is-invalid @enderror" id="" placeholder="Masukan Kota/kabupaten" value="{{ old('cit_name') }}">
+                                <label> Kabupaten/Kota <span style="color:red"> *</span></label>
+
+                                <select name="cit_name" class="form-control form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
+                                    <option disabled checked="true" selected="true"> Pilih Kabupaten/Kota </option>
+                                </select>
                                 @error('cit_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
+
                             <div class="col-sm-4">
-                                <label>Kecamatan<span style="color:red"> *</span></label>
-                                <input type="text" name="dst_name" class="form-control form-control-rounded @error('dst_name') is-invalid @enderror" id="" placeholder="Masukan Kecamatan" value="{{ old('dst_name') }}">
+                                <label> Kecamatan <span style="color:red"> *</span></label>
+
+                                <select name="dst_name" class="form-control form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
+                                    <option disabled checked="true" selected="true"> Pilih Kecamatan </option>
+                                </select>
                                 @error('dst_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -723,173 +736,173 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                                 <label>Desa/Kelurahan<span style="color:red"> *</span></label>
+                               <label>Desa/Kelurahan<span style="color:red"> *</span></label>
                                <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
-                                @error('usr_rural_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
- 
+                               @error('usr_rural_name')
+                               <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row">
+
+
+
+                        <div class="col-sm-4">
+                            <label> Kode Pos <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
+                            @error('usr_postal_code')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label> Telepon Rumah </label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="contact[landline_number]" class="form-control form-control-rounded @error('contact.landline_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon Rumah" value="{{ old('contact.landline_number') }}">
+                            @error('contact.landline_number]')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label> Email <span style="color:red"> *</span> </label>
+                            <input type="text" name="contact[email]" class="form-control form-control-rounded @error('contact.email') is-invalid @enderror" placeholder="Masukan Alamat Email" value="{{ old('contact.email') }}">
+                            @error('contact.email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            <p style="font-size: 12px;"  > Email anggota keluarga yang aktif </p>
+                            @enderror
                         </div>
 
 
-                         <div class="form-group row">
-                        
-
-                                
-                            <div class="col-sm-4">
-                                <label> Kode Pos <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
-                                @error('usr_postal_code')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-
-                            <div class="col-sm-4">
-                                <label> Telepon Rumah </label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="contact[landline_number]" class="form-control form-control-rounded @error('contact.landline_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon Rumah" value="{{ old('contact.landline_number') }}">
-                                @error('contact.landline_number]')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-
-                            <div class="col-sm-4">
-                                <label> Email <span style="color:red"> *</span> </label>
-                                <input type="text" name="contact[email]" class="form-control form-control-rounded @error('contact.email') is-invalid @enderror" placeholder="Masukan Alamat Email" value="{{ old('contact.email') }}">
-                                 @error('contact.email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                <p style="font-size: 12px;"  > Email anggota keluarga yang aktif </p>
-                                @enderror
-                            </div>
-
-
-                        </div>
+                    </div>
                     
-                        <h4 class="form-header text-uppercase">
-                            <i class=""></i>
-                            Prestasi (Boleh diisi boleh tidak)
-                        </h4>
-                        <div class="form-group row">
+                    <h4 class="form-header text-uppercase">
+                        <i class=""></i>
+                        Prestasi (Boleh diisi boleh tidak)
+                    </h4>
+                    <div class="form-group row">
 
-                            <div class="col-sm-4">
-                                <label> Jenis </label>
+                        <div class="col-sm-4">
+                            <label> Jenis </label>
 
-                                <div class="radio icheck-info">
-                                    <input type="radio" id="achievementType1" value="Sains" name="achievement[type]">
-                                    <label for="achievementType1"> Sains </label>
-                                </div>
-                                <div class="radio icheck-info">
-                                    <input type="radio" id="achievementType2" value="Seni" name="achievement[type]">
-                                    <label for="achievementType2"> Seni </label>
-                                </div>
-                                <div class="radio icheck-info">
-                                    <input type="radio" id="achievementType3" value="Olahraga" name="achievement[type]">
-                                    <label for="achievementType3"> Olahraga </label>
-                                </div>
-                                <div class="radio icheck-info">
-                                    <input type="radio" checked="" id="achievementType4" value="" name="achievement[type]">
-                                    <label for="achievementType4"> Tidak ada </label>
-                                </div>
+                            <div class="radio icheck-info">
+                                <input type="radio" id="achievementType1" value="Sains" name="achievement[type]">
+                                <label for="achievementType1"> Sains </label>
+                            </div>
+                            <div class="radio icheck-info">
+                                <input type="radio" id="achievementType2" value="Seni" name="achievement[type]">
+                                <label for="achievementType2"> Seni </label>
+                            </div>
+                            <div class="radio icheck-info">
+                                <input type="radio" id="achievementType3" value="Olahraga" name="achievement[type]">
+                                <label for="achievementType3"> Olahraga </label>
+                            </div>
+                            <div class="radio icheck-info">
+                                <input type="radio" checked="" id="achievementType4" value="" name="achievement[type]">
+                                <label for="achievementType4"> Tidak ada </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label> Tingkat</label>
+
+                            <div class="radio icheck-info">
+                                <input type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
+                                <label for="achievementLevel1"> Sekolah </label>
+                            </div>
+                            <div class="radio icheck-info">
+                                <input type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
+                                <label for="achievementLevel2"> Kecamatan </label>
+                            </div>
+                            <div class="radio icheck-info">
+                                <input type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
+                                <label for="achievementLevel3"> Kabupaten </label>
+                            </div>
+                            <div class="radio icheck-info">
+                                <input type="radio" checked="" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
+                                <label for="achievementLevel4"> Provinsi </label>
                             </div>
 
-                             <div class="col-sm-4">
-                                <label> Tingkat</label>
-
-                                <div class="radio icheck-info">
-                                    <input type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
-                                    <label for="achievementLevel1"> Sekolah </label>
-                                </div>
-                                <div class="radio icheck-info">
-                                    <input type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
-                                    <label for="achievementLevel2"> Kecamatan </label>
-                                </div>
-                                <div class="radio icheck-info">
-                                    <input type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
-                                    <label for="achievementLevel3"> Kabupaten </label>
-                                </div>
-                                <div class="radio icheck-info">
-                                    <input type="radio" checked="" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
-                                    <label for="achievementLevel4"> Provinsi </label>
-                                </div>
-
-                                 <div class="radio icheck-info">
-                                    <input type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
-                                    <label for="achievementLevel5"> Nasional </label>
-                                </div>
-
-                                 <div class="radio icheck-info">
-                                    <input type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
-                                    <label for="achievementLevel6"> Internasional </label>
-                                </div>
-
-                                 <div class="radio icheck-info">
-                                    <input type="radio" checked="" id="achievementLevel7" value="" name="achievement[achievement_level]">
-                                    <label for="achievementLevel7"> Tidak ada </label>
-                                </div>
-                                
+                            <div class="radio icheck-info">
+                                <input type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
+                                <label for="achievementLevel5"> Nasional </label>
                             </div>
 
-                            <div class="col-sm-4">
-                                <div>
+                            <div class="radio icheck-info">
+                                <input type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
+                                <label for="achievementLevel6"> Internasional </label>
+                            </div>
+
+                            <div class="radio icheck-info">
+                                <input type="radio" checked="" id="achievementLevel7" value="" name="achievement[achievement_level]">
+                                <label for="achievementLevel7"> Tidak ada </label>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div>
                                 <label> Nama Prestasi </label>
                                 <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded" placeholder="Masukan Nama Prestasi" value="{{ old('achievement.achievement_name') }}">
-                                </div>
+                            </div>
 
-                                <div>
+                            <div>
                                 <label> Tahun </label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun" value="{{ old('achievement.year') }}">
-                                </div>
-                                
-                                <div>
+                            </div>
+
+                            <div>
                                 <label> Penyelenggara </label>
                                 <input type="text" name="achievement[organizer]" class="form-control form-control-rounded" placeholder="Masukan Nama Penyelenggara Kegiatan" value="{{ old('achievement.organizer') }}">
 
-                               </div>
                             </div>
                         </div>
+                    </div>
 
-                        <h4 class="form-header text-uppercase">
-                            <i class=""></i>
-                            Lainnya
-                        </h4>
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <label>Rekomendasi dari</label>
-                                <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
-                                    <option value="" selected=""> Pilih </option>
-                                    <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
-                                    <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
-                                    <option value="Saudara"> Saudara </option>
-                                    <option value="Tetangga"> Tetangga </option>
-                                    <option value="Siswa/i Mahaputra"> Siswa/i Mahaputra </option>
-                                    
-                                </select>
-                                @error('')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
+                    <h4 class="form-header text-uppercase">
+                        <i class=""></i>
+                        Lainnya
+                    </h4>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label>Rekomendasi dari</label>
+                            <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
+                                <option value="" selected=""> Pilih </option>
+                                <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
+                                <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
+                                <option value="Saudara"> Saudara </option>
+                                <option value="Tetangga"> Tetangga </option>
+                                <option value="Siswa/i Mahaputra"> Siswa/i Mahaputra </option>
 
+                            </select>
+                            @error('')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
-                        <div class="form-footer">
-                            <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
-                            <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <footer>
@@ -923,18 +936,18 @@
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 <script>
     function bacaGambar(input) {
-     if (input.files && input.files[0]) {
-      var reader = new FileReader();
+       if (input.files && input.files[0]) {
+          var reader = new FileReader();
 
-      reader.onload = function (e) {
-          $('#tampil_picture').attr('src', e.target.result);
+          reader.onload = function (e) {
+              $('#tampil_picture').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
       }
-
-      reader.readAsDataURL(input.files[0]);
   }
-}
-$("#preview_gambar").change(function(){
- bacaGambar(this);
+  $("#preview_gambar").change(function(){
+   bacaGambar(this);
 });
 </script>
 
@@ -965,6 +978,40 @@ $("#preview_gambar").change(function(){
     });
 
     $('#dateragne-picker .input-daterange').datepicker({});
+</script>
+
+<script>
+    $('#provinces').on('change', function (e) {
+        console.log(e);
+        var prov_id = e.target.value;
+        $.get('{{URL::to('api/json-cities')}}/'+ prov_id  , function (variable) {
+            console.log('variable');
+            $('#cities').empty();
+            $('#cities').append('<option value="">Pilih Kabupaten/Kota</option>');
+
+            $.each(variable.cities, function (val, citiesObj) {
+                $('#cities').append('<option value="'+citiesObj.cit_id+'">'+citiesObj.cit_name+'</option>');
+            });
+
+        });
+    });
+
+    $('#cities').on('change', function (e) {
+        console.log(e);
+        var cit_id = e.target.value;
+        $.get('{{URL::to('api/json-districts')}}/'+ cit_id  , function (variable) {
+            console.log('variable');
+            $('#districts').empty();
+            $('#districts').append('<option value="">Pilih Kecamatan</option>');
+
+            $.each(variable.districts, function (val, districtsObj) {
+                $('#districts').append('<option value="'+districtsObj.dst_id+'">'+districtsObj.dst_name+'</option>');
+            });
+
+        });
+    });
+
+
 </script>
 
 
