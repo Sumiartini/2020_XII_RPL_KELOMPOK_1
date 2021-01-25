@@ -202,19 +202,54 @@ class StudentController extends Controller
      * @param  \App\Students  $students
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Students $students)
+    public function update(Request $request, $studentID)
     {
+        // dd($request);
+        $requests = $request->input();
 
-        $student_edit = Auth()->user();
+        $student                        = Students::where('stu_id',$studentID)->first();
+        $student->stu_candidate_name    = $request->stu_candidate_name;
+        $student->stu_nisn              = $request->stu_nisn;
+        $student->stu_school_origin     = $request->stu_school_origin;
+        // $student->stu_major_id          = $request->stu_major_id;
+        $student->stu_updated_by        = Auth()->user()->usr_id;
+        $student->update();
 
-        $student_edit->usr_name             = $request->usr_name;
-        $student_edit->update();
+        $user                       = User::where('usr_id', $student->stu_user_id)->first();
+        $user->usr_name             = $request->usr_name;
+        // $user->usr_phone            = $request->usr_phone; //no.telp saat registrasi
+        $user->usr_phone_number     = $request->usr_phone_number;
+        $user->usr_gender           = $request->usr_gender;
+        $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
+        $user->usr_place_of_birth   = $request->usr_place_of_birth;
+        // $user->usr_date_of_birth    = $request->usr_date_of_birth;
+        // $user->usr_religion         = $request->usr_religion;
+        $user->usr_address          = $request->usr_address;
+        $user->usr_postal_code      = $request->usr_postal_code;
+        $user->usr_rt               = $request->usr_rt;
+        $user->usr_rw               = $request->usr_rw;
+        $user->usr_rural_name       = $request->usr_rural_name;
+        $user->usr_updated_by       = Auth()->user()->usr_id;
+
+        if($user->update()){
+            foreach ($requests as $type => $requestData) {
+                if (is_array($requestData)) {
+                    foreach ($requestData as $requestKey => $requestValue) {
+                        $studentDetail = StudentDetails::where('std_student_id', $student->stu_id)
+                        ->where('std_type', $type)
+                        ->where('std_key', $requestKey)->first();
+
+                        $studentDetail->std_value       = $requestValue;
+                        $studentDetail->std_updated_by  = Auth()->user()->usr_id;
+                        $studentDetailSave              = $studentDetail->update();
+                    }
+                }
+            }
+        }
 
         return back();
 
-    }        
-
-
+    }       
     /**
      * Remove the specified resource from storage.
      *
