@@ -47,7 +47,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="signupForm" autocomplete="off" method="POST" action="{{ url('student/create') }}" novalidate="novalidate" enctype="multipart/form-data">
+                <form id="submitForm" autocomplete="off" method="POST" action="{{ url('student/create') }}" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -883,7 +883,7 @@
 
                         </div>
                     <div class="form-footer">
-                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+                        <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
                     </div>
                 </form>
@@ -913,8 +913,18 @@
 
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-<script>
 
+<script>
+    $(document).ready(function() {
+        $("#submitForm").submit(function(e) {
+            $(this).find("button[type='submit']").prop('disabled', true);
+            $("#btnSubmit").attr("disabled", true);
+            return true;
+        });      
+    });
+</script>
+
+<script>
 function bacaGambar(input) {
    if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -929,8 +939,6 @@ function bacaGambar(input) {
 $("#preview_gambar").change(function(){
    bacaGambar(this);
 });
-
-
 </script>
 <!--Bootstrap Datepicker Js-->
 

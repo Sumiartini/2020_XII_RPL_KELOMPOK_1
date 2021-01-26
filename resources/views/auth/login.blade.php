@@ -77,7 +77,7 @@
             <div class="form-row mr-0 ml-0">
               <div class="form-group col-6">
                 <div class="icheck-primary">
-                  <input type="checkbox" id="user-checkbox" checked="" />
+                  <input type="checkbox" id="user-checkbox" name="remember" />
                   <label for="user-checkbox">Ingatkan Saya</label>
                 </div>
               </div>

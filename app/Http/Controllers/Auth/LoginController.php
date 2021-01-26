@@ -60,4 +60,17 @@ class LoginController extends Controller
          'password.required'  => 'Kata Sandi Tidak Boleh Kosong'
         ]);
     }
+
+    public function attemptLogin(Request $request)
+    {
+        $request->request->add(['usr_is_active' => '1']);
+        return $this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+        );
+    }
+
+    public function credentials(Request $request)
+    {
+        return $request->only($this->username(), 'password', 'usr_is_active');
+    }
 }
