@@ -37,13 +37,16 @@ class UserController extends Controller
         $staff = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
         -> where('staffs.stf_user_id', Auth::user()->usr_id)->first();
         $user = Auth()->user();
+        $students = Students::count();
+        $teachers = Teachers::count();
+        $staffs = Staffs::count();
 
         if ($user->hasRole('student')) {
             if ($student->stu_registration_status == '0' ) {
                 return redirect('student-registration');    
             }
             if ($student->stu_registration_status == '1' ) {
-                return view('dashboard');
+                return view('dashboard', compact('students','teachers','staffs'));
             }
             
         } elseif ($user->hasRole('teacher')) {
@@ -51,7 +54,7 @@ class UserController extends Controller
                 return redirect('teacher-registration');
             }
             if ($teacher->tcr_registration_status == '1') {
-                return view('dashboard');
+                return view('dashboard', compact('students','teachers','staffs'));
             }
             
         } elseif ($user->hasRole('staff')) {
@@ -59,11 +62,11 @@ class UserController extends Controller
                 return redirect('staff-registration');
             }
             if ($staff->stf_registration_status == '1') {
-                return view('dashboard');
+                return view('dashboard', compact('students','teachers','staffs'));
             }
             
         } elseif ($user->hasRole('admin')) {
-            return view('dashboard');
+            return view('dashboard', compact('students','teachers','staffs'));
         } else {
             abort(404);
         }

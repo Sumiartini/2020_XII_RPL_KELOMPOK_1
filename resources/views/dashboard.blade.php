@@ -44,7 +44,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">150 Siswa</h4>
+            <h4 class="text-white">{{ $students }}</h4>
             <span class="text-white">TOTAL SISWA</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -59,7 +59,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">50 Guru</h4>
+            <h4 class="text-white">{{ $teachers }}</h4>
             <span class="text-white">TOTAL GURU</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -74,7 +74,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">15 Staf</h4>
+            <h4 class="text-white">{{ $staffs }}</h4>
             <span class="text-white">TOTAL STAF</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -95,7 +95,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">150 Siswa</h4>
+            <h4 class="text-white">{{ $students }}</h4>
             <span class="text-white">TOTAL SISWA</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -110,7 +110,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">50 Guru</h4>
+            <h4 class="text-white">{{ $teachers }}</h4>
             <span class="text-white">TOTAL GURU</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -125,7 +125,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">15 Staf</h4>
+            <h4 class="text-white">{{ $staffs }}</h4>
             <span class="text-white">TOTAL STAF</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -146,7 +146,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">150 Siswa</h4>
+            <h4 class="text-white">{{ $students }} Siswa </h4>
             <span class="text-white">TOTAL SISWA</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -161,7 +161,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">50 Guru</h4>
+            <h4 class="text-white">{{ $teachers }} Guru </h4>
             <span class="text-white">TOTAL GURU</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -176,7 +176,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">15 Staf</h4>
+            <h4 class="text-white">{{ $staffs }} Staf </h4>
             <span class="text-white">TOTAL STAF</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
