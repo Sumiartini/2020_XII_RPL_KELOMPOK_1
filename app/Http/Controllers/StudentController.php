@@ -136,7 +136,7 @@ class StudentController extends Controller
             $student->stu_school_year_id   = 5; 
             $student->stu_nisn             = $request->stu_nisn;
             $student->stu_school_origin    = $request->stu_school_origin;
-            $student->stu_major_id         = $request->stu_major_id;
+            $student->mjr_name             = $request->mjr_name;
             $student->stu_registration_status   = 1;
             $student->stu_created_by = Auth()->user()->id;
 
@@ -225,8 +225,8 @@ class StudentController extends Controller
         $user->usr_gender           = $request->usr_gender;
         $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
-        // $user->usr_date_of_birth    = $request->usr_date_of_birth;
-        // $user->usr_religion         = $request->usr_religion;
+        $user->usr_date_of_birth    = $request->usr_date_of_birth;
+        $user->usr_religion         = $request->usr_religion;
         $user->usr_address          = $request->usr_address;
         $user->usr_postal_code      = $request->usr_postal_code;
         $user->usr_rt               = $request->usr_rt;

@@ -58,7 +58,7 @@
 
                         <div class="col-sm-4">
                             <label>Nama<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{$student_edit->usr_name}}">
+                            <input type="text" class="form-control form-control-rounded" id="input-10" name="usr_name" placeholder="Masukan Nama" value="{{$student_edit->usr_name}}">
                         </div>
                          <div class="col-sm-4">
                         <label>Email<span style="color:red"> *</span></label>
@@ -88,7 +88,7 @@
                             <label> Jenis Kelamin <span style="color:red"> *</span></label>
 
                                 <select name="usr_gender" class="form-control form-control-rounded" id="basic-select">
-                                    <option disabled="" selected=""> {{$student_edit->usr_gender}} </option>
+                                    <option value="{{$student_edit->usr_gender}}" disabled="" selected=""> {{$student_edit->usr_gender}} </option>
                                     <option value="Laki-laki"> Laki Laki </option>
                                     <option value="Perempuan"> Perempuan </option>
                                 </select>                        
@@ -125,7 +125,7 @@
 
                         <div class="col-sm-4">
                             <label> Tanggal Lahir <span style="color:red"> *</span></label>
-                                <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control form-control-rounded" placeholder="Tanggal-Bulan-Tahun" value="{{$student_edit->usr_date_of_birth}}">
+                                <input id="autoclose-datepicker" type="text" value="{{$student_edit->usr_date_of_birth}}" name="usr_date_of_birth" class="form-control form-control-rounded" id="input-11">
                         </div>
 
                         <div class="col-sm-4">
@@ -137,7 +137,7 @@
                         <div class="col-sm-4">
                             <label> Tinggal Bersama <span style="color:red"> *</span></label>
                                 <select class="form-control form-control-rounded" name="personal[living_together]" id="basic-select" value="">
-                                    <option disabled="" selected="">{{$student_edit->personal['living_together']}}</option>
+                                    <option value="{{$student_edit->personal['living_together']}}" disabled="" selected="">{{$student_edit->personal['living_together']}}</option>
                                     <option value="Orang Tua"> Orang Tua </option>
                                     <option value="Wali"> Wali </option>
                                     <option value="Kos"> Kos </option>
@@ -159,9 +159,9 @@
 
                             <div class="col-sm-4">
                                 <label> Jurusan yang diminati <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded" name="stu_major_id" id="basic-select" value="">
+                                <select class="form-control form-control-rounded" name="mjr_name" id="basic-select" value="">
 
-                                    <option disabled="" selected=""> {{$student_edit->stu_major_id}} </option>
+                                    <option value="{{$student_edit->mjr_name}}"  selected="">{{$student_edit->mjr_name}} </option>
                                     <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                                     <option value="Multimedia">Multimedia</option>
                                     
@@ -177,8 +177,8 @@
 
                             <div class="col-sm-2">
                                 <label> Agama <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="">
-                                    <option disabled="" selected=""> {{$student_edit->usr_religion}} </option>
+                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select">
+                                    <option value="{{$student_edit->usr_religion}}" disabled="" selected=""> {{$student_edit->usr_religion}} </option>
                                     <option value="Islam"> Islam </option>
                                     <option value="Protestan"> Protestan </option>
                                     <option value="Katolik"> Katolik </option>
@@ -204,8 +204,6 @@
                         </div>
 
 
-
-                    
                 <h4 class="form-header text-uppercase">
                     <i class=""></i>
                         Data Ayah
@@ -259,7 +257,7 @@
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
                                 <select name="father_data[monthly_income]" class="form-control form-control-rounded form-control-rounded" id="basic-select" value="">
-                                    <option value="" selected="">{{$student_edit->father_data['monthly_income']}}</option>
+                                    <option value="{{$student_edit->father_data['monthly_income']}}" selected="">{{$student_edit->father_data['monthly_income']}}</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                                     <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -347,7 +345,7 @@
                             <div class="col-sm-4">
                                 <label>Pendapatan Perbulan</label>
                                 <select name="mother_data[monthly_income]" class="form-control form-control-rounded" id="basic-select" value="">
-                                    <option value="" selected="">{{$student_edit->mother_data['monthly_income']}}</option>
+                                    <option value="{{$student_edit->mother_data['monthly_income']}}" selected="">{{$student_edit->mother_data['monthly_income']}}</option>
                                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                                     <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -502,7 +500,7 @@
 
                         <div class="col-sm-4">
                             <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_postal_code" value="{{$student_edit->usr_postal_code}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Desa/Kelurahan">
+                            <input type="text" name="usr_rural_name" value="{{$student_edit->usr_rural_name}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Desa/Kelurahan">
                         </div>
 
                     </div>
@@ -605,7 +603,7 @@
                         <div class="col-sm-4">
                             <label>Rekomendasi dari</label>
                                 <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="">
-                                    <option value="" selected=""> {{$student_edit->other['recomended_from']}} </option>
+                                    <option value="{{$student_edit->other['recomended_from']}}" selected=""> {{$student_edit->other['recomended_from']}} </option>
                                     <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
                                     <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
                                     <option value="Saudara"> Saudara </option>

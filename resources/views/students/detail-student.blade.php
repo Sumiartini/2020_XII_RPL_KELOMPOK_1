@@ -137,7 +137,7 @@
                         <tr>
                             <th>Jurusan yang diminati</th>
                             <td>:</td>
-                            <td>{{ $student->stu_school_origin }}</td>
+                            <td>{{ $student->mjr_name}}</td>
 
                             <th>Anak ke</th>
                             <td>:</td>
@@ -169,80 +169,6 @@
                 </table>
             </div>
 
-
-        <h4 class="text-primary">Data Persuratan</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-
-                        <tr>
-                            <th >Provinsi</th>
-                            <td>:</td>
-                            <td>Jawa Barat</td>
-
-                            <th>Kota/Kabupaten</th>
-                            <td>:</td>
-                            <td>Bandung</td>
-                        </tr>
-
-
-                        <tr>
-                            <th>Alamat</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_gender }}</td>
-
-                            <th>RT</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_rt }}</td>
-                        </tr>
-                        
-
-                        <tr>
-                            <th>RW</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_rw }}</td>
-
-                            <th >Desa/Kelurahan</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_rural_name }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Kode pos</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_postal_code }}</td>
-
-                            <th >Telepon rumah</th>
-                            <td>:</td>
-                            <td>{{ $student->contact['landline_number'] }}</td>
-                                
-                        </tr>
-
-                        <tr>
-                            
-                            <th>Email rumah</th>
-                            <td>:</td>
-                            <td>{{ $student->contact['email'] }}</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                        
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
             
             <h4 class="text-primary">Data Ayah</h4>
             <div class="table-responsive">
@@ -407,6 +333,82 @@
                             <td>{{ $student->guardian_data['disability'] }}</td>
                           </tr>                  
 
+                        <tr>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        <h4 class="text-primary">Data Persuratan</h4>
+            <div class="table-responsive">
+                <table class="table table-stripped">
+                    <tbody>
+
+                        <tr>
+                            <th >Provinsi</th>
+                            <td>:</td>
+                            <td>Jawa Barat</td>
+
+                            <th>Kota/Kabupaten</th>
+                            <td>:</td>
+                            <td>Bandung</td>
+                        </tr>
+
+
+                        <tr>
+                            <th>Alamat</th>
+                            <td>:</td>
+                            <td>{{ $student->usr_address }}</td>
+
+                            <th>RT</th>
+                            <td>:</td>
+                            <td>{{ $student->usr_rt }}</td>
+                        </tr>
+                        
+
+                        <tr>
+                            <th>RW</th>
+                            <td>:</td>
+                            <td>{{ $student->usr_rw }}</td>
+
+                            <th >Desa/Kelurahan</th>
+                            <td>:</td>
+                            <td>{{ $student->usr_rural_name }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Kode pos</th>
+                            <td>:</td>
+                            <td>{{ $student->usr_postal_code }}</td>
+
+                            <th >Telepon rumah</th>
+                            <td>:</td>
+                            <td>{{ $student->contact['landline_number'] }}</td>
+                                
+                        </tr>
+
+                        <tr>
+                            
+                            <th>Email rumah</th>
+                            <td>:</td>
+                            <td>{{ $student->contact['email'] }}</td>
+
+                            <th></th>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        
                         <tr>
                             <th></th>
                             <td></td>
