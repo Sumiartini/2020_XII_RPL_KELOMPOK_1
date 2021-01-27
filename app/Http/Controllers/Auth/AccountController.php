@@ -199,4 +199,19 @@ class AccountController extends Controller
             }
         }
     }
+
+    public function edit_status($usr_id)
+    {
+        $user = User::findOrFail($usr_id);
+        
+        if ($user->usr_is_active == '1') {
+            $user->usr_is_active = '0';
+            $user->update();
+            return back()->with('success', 'Akun berhasil di non aktifkan');
+        }else{
+            $user->usr_is_active = '1';
+            $user->update();
+            return back()->with('success', 'Akun berhasil di aktifkan');
+        }   
+    }
 }

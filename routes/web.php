@@ -175,6 +175,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     //terima tolak siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');
     Route::get('/student/rejected/{stu_id}', 'StudentController@rejected');
+
+    Route::get('/edit-status/{usr_id}', 'Auth\AccountController@edit_status');
 });
 
     //Landing page
