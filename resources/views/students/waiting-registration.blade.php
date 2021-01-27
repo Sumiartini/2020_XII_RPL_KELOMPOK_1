@@ -261,7 +261,7 @@
                   <tr>
                     <th scope="row">Alamat</th>
                     <td>:</td>
-                    <td>{{ $student_prospective->usr_gender }}</td>
+                    <td>{{ $student_prospective->usr_address }}</td>
                   </tr>
 
                   <tr class="table-active">

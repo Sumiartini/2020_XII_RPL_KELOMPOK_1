@@ -47,7 +47,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="signupForm" autocomplete="off" method="POST" action="{{ url('student/edit/'.$student_edit->stu_id) }}" novalidate="novalidate">
+                <form id="signupForm" autocomplete="off" method="POST" action="{{ url('student/edit/'.$student_edit->stu_id) }}" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -88,7 +88,7 @@
                             <label> Jenis Kelamin <span style="color:red"> *</span></label>
 
                             <select name="usr_gender" class="form-control form-control-rounded" id="basic-select">
-                                <option value="{{$student_edit->usr_gender}}" disabled="" selected=""> {{$student_edit->usr_gender}} </option>
+                                <option value="{{$student_edit->usr_gender}}" selected=""> {{$student_edit->usr_gender}} </option>
                                 <option value="Laki-laki"> Laki Laki </option>
                                 <option value="Perempuan"> Perempuan </option>
                             </select>                        
@@ -178,7 +178,7 @@
                     <div class="col-sm-2">
                         <label> Agama <span style="color:red"> *</span></label>
                         <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select">
-                            <option value="{{$student_edit->usr_religion}}" disabled="" selected=""> {{$student_edit->usr_religion}} </option>
+                            <option value="{{$student_edit->usr_religion}}" selected=""> {{$student_edit->usr_religion}} </option>
                             <option value="Islam"> Islam </option>
                             <option value="Protestan"> Protestan </option>
                             <option value="Katolik"> Katolik </option>
@@ -194,7 +194,7 @@
                 <div class="form-group row">
 
                     <div class="col-sm-4">
-                        <img src="{{ asset('student/edit/'.$student_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
+                        <img src="{{ asset('users_profile/'.$student_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
                         <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
 
                         <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
@@ -404,7 +404,12 @@
                     <div class="col-sm-4">
                         <label>Tahun Lahir</label>
                         <select name="guardian_data[year_of_birth]" class="form-control form-control-rounded" id="basic-select">
-                            <option disabled="" selected="">{{$student_edit->guardian_data['year_of_birth']}}</option>
+                            
+                            @if($student_edit->guardian_data['year_of_birth'] == NULL)
+                            <option selected=""  disabled="">Pilih Tahun Lahir</option>
+                            @else
+                            <option selected="">{{$student_edit->guardian_data['year_of_birth']}}</option>
+                            @endif
                             <option>2001</option>
                             <option>2000</option>
                         </select>
@@ -415,7 +420,11 @@
                     <div class="col-sm-3">
                         <label>Pendidikan Terakhir</label>
                         <select name="guardian_data[education]" class="form-control form-control-rounded" id="basic-select">
-                            <option disabled="" selected="">{{$student_edit->guardian_data['education']}}</option>
+                            @if($student_edit->guardian_data['education'] == NULL)
+                            <option selected="" disabled="">Pilih Tahun Lahir</option>
+                            @else
+                            <option selected="">{{$student_edit->guardian_data['education']}}</option>
+                            @endif
                             <option>SD - Sederajat</option>
                             <option>SMP - Sederajat</option>
                             <option>SMA - Sederajat</option>
@@ -427,7 +436,11 @@
                         <label>Pekerjaan</label>
 
                         <select name="guardian_data[profession]" class="form-control form-control-rounded" id="basic-select">
-                            <option disabled="" selected="">{{$student_edit->guardian_data['profession']}}</option>
+                             @if($student_edit->guardian_data['profession'] == NULL)
+                            <option selected="" disabled="">Pilih Pekerjaan</option>
+                            @else
+                            <option selected="">{{$student_edit->guardian_data['profession']}}</option>
+                            @endif
                             <option>Buruh</option>
                             <option>Wirausaha</option>
                         </select>
@@ -436,10 +449,17 @@
                     <div class="col-sm-3">
                         <label>Pendapatan Perbulan</label>
                         <select name="guardian_data[monthly_income]" class="form-control form-control-rounded" id="basic-select">
-                            <option disabled="" selected="">{{$student_edit->guardian_data['monthly_income']}}</option>
-                            <option>
-                                < Rp. 500.000</option> <option> > Rp. 500.000
-                                </option>
+                             @if($student_edit->guardian_data['monthly_income'] == NULL)
+                            <option selected="" disabled="">Pilih Pendapatan</option>
+                            @else
+                            <option selected="">{{$student_edit->guardian_data['monthly_income']}}</option>
+                            @endif
+                            <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
+                            <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
+                            <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
+                            <option value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
+                            <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
+                            <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                             </select>
                         </div>
 
@@ -551,75 +571,87 @@
 
                 <h4 class="form-header text-uppercase">
                     <i class=""></i>
-                    Prestasi
+                    Prestasi Siswa (Boleh diisi boleh tidak)
                 </h4>
                 <div class="form-group row">
 
-                    <div class="col-sm-3">
-                        <label>Jenis</label> <br>
+                    <div class="col-sm-4">
+                        <label> Jenis </label>
 
-                        <div class="col-md-2 col-sm-4 col-xs-6 demo-col">
-                            <div class="icheck-primary">
-                                <input name="achievement[type]" value="Sains" type="radio" id="primary1" name="primary" />
-                                <label for="primary1">Sains</label>
-                            </div>
-                            <div class="icheck-primary">
-                                <input name="achievement[type]" value="Seni" type="radio" id="primary2" name="primary" />
-                                <label for="primary2">Seni</label>
-                            </div>
-                            <div class="icheck-primary">
-                                <input name="achievement[type]" value="Olahraga" type="radio" id="primary3" name="primary" />
-                                <label for="primary3">Olahraga</label>
-                            </div>
+                        <div class="radio icheck-info">
+                            <input type="radio" id="achievementType1" value="Sains" name="achievement[type]">
+                            <label for="achievementType1"> Sains </label>
                         </div>
-                        <div class="col-sm-12">
-                            <label>Dan lain-lain</label>
-                            <input type="text" name="achievement[type]" class="form-control form-control-rounded" id="input-10" placeholder="Masukkan jenis prestasi">
+                        <div class="radio icheck-info">
+                            <input type="radio" id="achievementType2" value="Seni" name="achievement[type]">
+                            <label for="achievementType2"> Seni </label>
                         </div>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <label>Tingkat</label> <br>
-
-                        <div class="col-md-2 col-sm-4 col-xs-6 demo-col">
-                            <div class="icheck-primary">
-                                <input type="radio" id="tingkat1" value="Sekolah" name="achievement[achievement_level]" />
-                                <label for="tingkat1">Sekolah</label>
-                            </div>
-                            <div class="icheck-primary">
-                                <input type="radio" id="tingkat2" value="Kecamatan" name="achievement[achievement_level]" />
-                                <label for="tingkat2">Kecamatan</label>
-                            </div>
-                            <div class="icheck-primary">
-                                <input type="radio" id="tingkat3" value="Kabupaten" name="achievement[achievement_level]" />
-                                <label for="tingkat3">Kabupaten</label>
-                            </div>
-                            <div class="icheck-primary">
-                                <input type="radio" id="tingkat4" value="Provinsi" name="achievement[achievement_level]" />
-                                <label for="tingkat4">Provinsi</label>
-                            </div>
-                            <div class="icheck-primary">
-                                <input type="radio" id="tingkat5" value="Nasional" name="achievement[achievement_level]" />
-                                <label for="tingkat5">Nasional</label>
-                            </div>
-                            <div class="icheck-primary">
-                                <input type="radio" id="tingkat6" value="Internasional" name="achievement[achievement_level]" />
-                                <label for="tingkat6">Internasional</label>
-                            </div>
+                        <div class="radio icheck-info">
+                            <input type="radio" id="achievementType3" value="Olahraga" name="achievement[type]">
+                            <label for="achievementType3"> Olahraga </label>
+                        </div>
+                        <div class="radio icheck-info">
+                            <input type="radio" checked="" id="achievementType4" value="" name="achievement[type]">
+                            <label for="achievementType4"> Tidak ada </label>
                         </div>
                     </div>
 
                     <div class="col-sm-4">
-                        <label>Nama Prestasi</label>
-                        <input type="text" name="achievement[achievement_name]" value="{{$student_edit->achievement['achievement_name']}}" class="form-control form-control-rounded col-sm-12" id="input-10" placeholder="Nama Prestasi">
+                        <label> Tingkat</label>
 
-                        <label>Tahun</label>
-                        <input type="text" name="achievement[achievement_name]" value="{{$student_edit->achievement['achievement_name']}}" class="form-control form-control-rounded col-sm-12" id="input-10" placeholder="Tahun">
+                        <div class="radio icheck-info">
+                            <input type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
+                            <label for="achievementLevel1"> Sekolah </label>
+                        </div>
+                        <div class="radio icheck-info">
+                            <input type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
+                            <label for="achievementLevel2"> Kecamatan </label>
+                        </div>
+                        <div class="radio icheck-info">
+                            <input type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
+                            <label for="achievementLevel3"> Kabupaten </label>
+                        </div>
+                        <div class="radio icheck-info">
+                            <input type="radio" checked="" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
+                            <label for="achievementLevel4"> Provinsi </label>
+                        </div>
 
-                        <label>Penyelenggara</label>
-                        <input type="text" name="achievement[organizer]" value="{{$student_edit->achievement['organizer']}}" class="form-control form-control-rounded col-sm-12" id="input-10" placeholder="Nama Penyelenggara Kegiatan">
+                        <div class="radio icheck-info">
+                            <input type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
+                            <label for="achievementLevel5"> Nasional </label>
+                        </div>
+
+                        <div class="radio icheck-info">
+                            <input type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
+                            <label for="achievementLevel6"> Internasional </label>
+                        </div>
+
+                        <div class="radio icheck-info">
+                            <input type="radio" checked="" id="achievementLevel7" value="" name="achievement[achievement_level]">
+                            <label for="achievementLevel7"> Tidak ada </label>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div>
+                            <label> Nama Prestasi </label>
+                            <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded" placeholder="Masukan Nama Prestasi" value="{{ $student_edit->achievement['achievement_name'] }}">
+                        </div>
+
+                        <div>
+                            <label> Tahun </label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun" value="{{ $student_edit->achievement['year'] }}">
+                        </div>
+
+                        <div>
+                            <label> Penyelenggara </label>
+                            <input type="text" name="achievement[organizer]" class="form-control form-control-rounded" placeholder="Masukan Nama Penyelenggara Kegiatan" value="{{ $student_edit->achievement['organizer'] }}">
+
+                        </div>
                     </div>
                 </div>
+
 
                 <h4 class="form-header text-uppercase">
                     <i class=""></i>

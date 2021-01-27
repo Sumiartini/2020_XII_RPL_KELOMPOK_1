@@ -235,7 +235,13 @@ class StudentController extends Controller
         $user->usr_rw               = $request->usr_rw;
         $user->usr_rural_name       = $request->usr_rural_name;
         $user->usr_updated_by       = Auth()->user()->usr_id;
-
+        if ($request->hasFile('usr_profile_picture')) {
+            $files = $request->file('usr_profile_picture');
+            $path = public_path('users_profile' . '/' . $user->name);
+            $files_name = date('Ymd') . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $user->usr_profile_picture = $files_name;
+        }
         if($user->update()){
             foreach ($requests as $type => $requestData) {
                 if (is_array($requestData)) {
