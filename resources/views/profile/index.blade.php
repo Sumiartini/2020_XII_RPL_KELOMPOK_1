@@ -73,7 +73,7 @@
     <div class="card-body">
       <h4 class="form-header text-uppercase">
         <i class="fa fa-address-book-o"></i>
-        User Profile
+        Profil Pengguna
       </h4><hr>
       <div class="form-group row">
         <label for="input-10" class="col-sm-2 col-form-label">Nama</label>
@@ -86,7 +86,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="input-12" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+        <label for="input-12" class="col-sm-2 col-form-label" placeholder="Masukan Jenis Kelamin">Jenis Kelamin</label>
         <div class="col-sm-4">
           <select name="usr_gender" class="form-control" id="basic-select">
             <option value="{{$user->usr_gender}}" selected="">{{$user->usr_gender}}</option>
@@ -94,7 +94,7 @@
             <option value="Perempuan">Perempuan</option>
           </select>
         </div>
-        <label for="input-13" class="col-sm-2 col-form-label">Agama</label>
+        <label for="input-13" class="col-sm-2 col-form-label" placeholder="Masukan Agama">Agama</label>
         <div class="col-sm-4">
          <select class="form-control" name="usr_religion" id="basic-select">
           <option value="{{$user->usr_religion}}" selected="">{{$user->usr_religion}}</option>
@@ -111,11 +111,11 @@
     <div class="form-group row">
       <label for="input-10" class="col-sm-2 col-form-label">Tempat Lahir</label>
       <div class="col-sm-4">
-        <input type="text" value="{{$user->usr_place_of_birth}}" name="usr_place_of_birth" class="form-control" id="input-10">
+        <input type="text" value="{{$user->usr_place_of_birth}}" name="usr_place_of_birth" class="form-control" id="input-10" placeholder="Masukan Tempat Lahir">
       </div>
       <label for="input-11" class="col-sm-2 col-form-label">Tanggal Lahir</label>
       <div class="col-sm-4">
-        <input id="autoclose-datepicker" type="text" value="{{$user->usr_date_of_birth}}" name="usr_date_of_birth" class="form-control" id="input-11">
+        <input id="autoclose-datepicker" type="text" value="{{$user->usr_date_of_birth}}" name="usr_date_of_birth" class="form-control" id="input-11" placeholder="Masukan Tanggal Lahir">
       </div>
     </div>
 
@@ -126,18 +126,18 @@
      </div>
      <label for="input-11" class="col-sm-2 col-form-label">Desa</label>
      <div class="col-sm-4">
-      <input type="text" value="{{$user->usr_rural_name}}" name="usr_rural_name" class="form-control" id="input-11">
+      <input type="text" value="{{$user->usr_rural_name}}" name="usr_rural_name" class="form-control" id="input-11" placeholder="Masukan Desa">
     </div>
   </div>
 
   <div class="form-group row">
     <label for="input-10" class="col-sm-2 col-form-label">RT</label>
     <div class="col-sm-4">
-     <input type="text" value="{{$user->usr_rt}}" name="usr_rt" class="form-control" id="input-10" placeholder="Masukan Alamat">
+     <input type="text" value="{{$user->usr_rt}}" name="usr_rt" class="form-control" id="input-10" placeholder="Masukan Rt">
    </div>
    <label for="input-11" class="col-sm-2 col-form-label">RW</label>
    <div class="col-sm-4">
-    <input type="text" value="{{$user->usr_rw}}" name="usr_rw" class="form-control" id="input-11" name="lastname">
+    <input type="text" value="{{$user->usr_rw}}" name="usr_rw" class="form-control" id="input-11" name="lastname" placeholder="Masukan Rw">
   </div>
 </div>
 

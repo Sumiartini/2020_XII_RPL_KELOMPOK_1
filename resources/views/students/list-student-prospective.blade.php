@@ -51,7 +51,7 @@
   </div>
   @endif
   <div class="card">
-    <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
+    <div class="card-header"><i class="fa fa-table"></i> Data Calon Siswa </div>
     <div class="card-body">
       <div class="table-responsive">
         <table id="example" class="table table-bordered" style="width:100%;">
