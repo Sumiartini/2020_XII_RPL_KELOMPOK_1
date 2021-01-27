@@ -108,6 +108,7 @@ class StudentController extends Controller
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
         $user->usr_date_of_birth    = $request->usr_date_of_birth;
         $user->usr_religion         = $request->usr_religion;
+        $user->usr_district_id      = $request->dst_name;
         $user->usr_address          = $request->usr_address;
         $user->usr_postal_code      = $request->usr_postal_code;
         $user->usr_rt               = $request->usr_rt;
@@ -227,6 +228,7 @@ class StudentController extends Controller
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
         $user->usr_date_of_birth    = $request->usr_date_of_birth;
         $user->usr_religion         = $request->usr_religion;
+        $user->usr_district_id      = $request->dst_name;
         $user->usr_address          = $request->usr_address;
         $user->usr_postal_code      = $request->usr_postal_code;
         $user->usr_rt               = $request->usr_rt;
@@ -334,6 +336,7 @@ class StudentController extends Controller
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
         $user->usr_date_of_birth    = $request->usr_date_of_birth;
         $user->usr_religion         = $request->usr_religion;
+        $user->usr_district_id      = $request->dst_name;
         $user->usr_address          = $request->usr_address;
         $user->usr_postal_code      = $request->usr_postal_code;
         $user->usr_rt               = $request->usr_rt;
