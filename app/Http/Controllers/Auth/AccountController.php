@@ -131,12 +131,12 @@ class AccountController extends Controller
             $user->usr_password = Hash::make($request->new_password);
 
             if ($user->update()) {
-                return redirect('/account/profile/1/edit-password');
+                return redirect('/account/profile/1/edit-password')->with(['success' => 'Kata sandi anda berhasil di rubah']);;
             } else{
                 dd('gagal');    
             }
         } else {
-            dd('password tidak sama');
+            return redirect('/account/profile/1/edit-password')->with(['failed' => 'Masukkan kata sandi lama dengan benar']);;
         }
     }
     public function editProfile($usr_id)
@@ -168,7 +168,7 @@ class AccountController extends Controller
         
         $user->update();
 
-        return back();
+        return back()->with(['success' => 'Data profil anda berhasil di simpan']);;
 
     }
 

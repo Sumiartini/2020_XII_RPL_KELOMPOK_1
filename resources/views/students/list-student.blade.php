@@ -39,36 +39,47 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
-      <div class="card-body">
-        <div class="table-responsive">
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <div class="alert-icon contrast-alert">
+       <i class="icon-check"></i>
+     </div>
+     <div class="alert-message">
+      <span><strong>Berhasil!</strong> {{$message}}.</span>
+    </div>
+  </div>
+  @endif
+  <div class="card">
+    <div class="card-header"><i class="fa fa-table"></i> Data Siswa</div>
+    <div class="card-body">
+      <div class="table-responsive">
 
-          @if(Auth()->user()->hasRole('admin'))
-          <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-            <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
-          </div>
-          @else
-          @endif
-          <table id="example" class="table table-bordered" style="width: 100%">
-            <thead>
-              <tr>
-                <th>NO</th>
-                <th>NAMA</th>
-                <th>NIS</th>
-                <th>STATUS</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-
-
-          </table>
+        @if(Auth()->user()->hasRole('admin'))
+        <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
+          <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
         </div>
+        @else
+        @endif
+        <table id="example" class="table table-bordered" style="width: 100%">
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>NAMA</th>
+              <th>NIS</th>
+              <th>STATUS</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+
+
+        </table>
       </div>
     </div>
   </div>
+</div>
 </div><!-- End Row-->
 
 <!--Start Back To Top Button-->
@@ -115,47 +126,47 @@
   function btnDel(stu_id) {
     studentID = stu_id;
     swal({
-        title: "Hapus Siswa",
-        text: 'Siswa yang telah dihapus tidak dapat di kembalikan',
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          $.ajax({
-            type: 'POST',
-            url: 'student/delete',
-            data: {
-              studentID: stu_id,
-              "_token": "{{ csrf_token() }}",
-            },
-            success: function(data) {
-              if (data.status != false) {
-                swal(data.message, {
-                  button: false,
-                  icon: "success",
-                  timer: 1000
-                });
-              } else {
-                swal(data.message, {
-                  button: false,
-                  icon: "error",
-                  timer: 1000
-                });
-              }
-              table.ajax.reload();
-            },
-            error: function(error) {
-              swal('Terjadi kegagalan sistem', {
+      title: "Hapus Siswa",
+      text: 'Siswa yang telah dihapus tidak dapat di kembalikan',
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          type: 'POST',
+          url: 'student/delete',
+          data: {
+            studentID: stu_id,
+            "_token": "{{ csrf_token() }}",
+          },
+          success: function(data) {
+            if (data.status != false) {
+              swal(data.message, {
+                button: false,
+                icon: "success",
+                timer: 1000
+              });
+            } else {
+              swal(data.message, {
                 button: false,
                 icon: "error",
                 timer: 1000
               });
             }
-          });
-        }
-      });
+            table.ajax.reload();
+          },
+          error: function(error) {
+            swal('Terjadi kegagalan sistem', {
+              button: false,
+              icon: "error",
+              timer: 1000
+            });
+          }
+        });
+      }
+    });
   }
 </script>
 @endpush

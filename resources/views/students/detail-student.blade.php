@@ -43,8 +43,8 @@
       <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
       <li class="breadcrumb-item"><a href="{{ url('/students-prospective')}}">Daftar Calon Siswa</a></li>
       <li class="breadcrumb-item active" aria-current="page">Detail Calon Siswa</li>
-    </ol>
-  </div>
+  </ol>
+</div>
 </div>
 
 @else
@@ -55,8 +55,8 @@
       <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
       <li class="breadcrumb-item"><a href="{{ url('/students-rejected')}}">Daftar Siswa Ditolak</a></li>
       <li class="breadcrumb-item active" aria-current="page">Detail Siswa Ditolak</li>
-    </ol>
-  </div>
+  </ol>
+</div>
 </div>
 @endif
 
@@ -70,6 +70,20 @@
         </div>
         <hr>
     </div>
+</div>
+
+<div class="col-lg-12">
+  @if ($message = Session::get('success'))
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <div class="alert-icon contrast-alert">
+       <i class="icon-check"></i>
+   </div>
+   <div class="alert-message">
+    <span><strong>Berhasil!</strong> {{$message}}.</span>
+</div>
+</div>
+@endif
 </div>
 
 <div class="col-lg-12">
@@ -144,7 +158,7 @@
                             <td>{{ $student->personal['child'] }}</td>
                         </tr>
                         
-    
+                        
                         <tr>
                             <th>Agama</th>
                             <td>:</td>
@@ -184,12 +198,12 @@
                             <td>{{ $student->father_data['nik'] }}</td>
                         </tr>
 
-                                
+                        
                         <tr>
                             <th>Tahun lahir</th>
                             <td>:</td>
                             <td>{{ $student->father_data['year_of_birth'] }}</td>
-                    
+                            
                             <th>Pendidikan terakhir</th>
                             <td>:</td>
                             <td>{{ $student->father_data['education'] }}</td>
@@ -199,21 +213,21 @@
                             <th>Pekerjaan</th>
                             <td>:</td>
                             <td>{{ $student->father_data['profession'] }}</td>
-                         
+                            
                             <th>Pendapatan perbulan</th>
                             <td>:</td>
                             <td>{{ $student->father_data['monthly_income'] }}</td>
                         </tr>
 
-                         <tr>
+                        <tr>
                             <th>Nomor telepon</th>
                             <td>:</td>
                             <td>{{ $student->father_data['phone_number'] }}</td>
-                          
+                            
                             <th>Disabilitas</th>
                             <td>:</td>
                             <td>{{ $student->father_data['disability'] }}</td>
-                          </tr>                  
+                        </tr>                  
 
                         <tr>
                             <th></th>
@@ -243,12 +257,12 @@
                             <td>{{ $student->mother_data['nik'] }}</td>
                         </tr>
 
-                                
+                        
                         <tr>
                             <th>Tahun lahir</th>
                             <td>:</td>
                             <td>{{ $student->mother_data['year_of_birth'] }}</td>
-                    
+                            
                             <th>Pendidikan terakhir</th>
                             <td>:</td>
                             <td>{{ $student->mother_data['education'] }}</td>
@@ -258,21 +272,21 @@
                             <th>Pekerjaan</th>
                             <td>:</td>
                             <td>{{ $student->mother_data['profession'] }}</td>
-                         
+                            
                             <th>Pendapatan perbulan</th>
                             <td>:</td>
                             <td>{{ $student->mother_data['monthly_income'] }}</td>
                         </tr>
 
-                         <tr>
+                        <tr>
                             <th>Nomor telepon</th>
                             <td>:</td>
                             <td>{{ $student->mother_data['phone_number'] }}</td>
-                          
+                            
                             <th>Disabilitas</th>
                             <td>:</td>
                             <td>{{ $student->mother_data['disability'] }}</td>
-                          </tr>                  
+                        </tr>                  
 
                         <tr>
                             <th></th>
@@ -302,12 +316,12 @@
                             <td>{{ $student->guardian_data['nik'] }}</td>
                         </tr>
 
-                                
+                        
                         <tr>
                             <th>Tahun lahir</th>
                             <td>:</td>
                             <td>{{ $student->guardian_data['year_of_birth'] }}</td>
-                    
+                            
                             <th>Pendidikan terakhir</th>
                             <td>:</td>
                             <td>{{ $student->guardian_data['education'] }}</td>
@@ -317,21 +331,21 @@
                             <th>Pekerjaan</th>
                             <td>:</td>
                             <td>{{ $student->guardian_data['profession'] }}</td>
-                         
+                            
                             <th>Pendapatan perbulan</th>
                             <td>:</td>
                             <td>{{ $student->guardian_data['monthly_income'] }}</td>
                         </tr>
 
-                         <tr>
+                        <tr>
                             <th>Nomor telepon</th>
                             <td>:</td>
                             <td>{{ $student->guardian_data['phone_number'] }}</td>
-                          
+                            
                             <th>Disabilitas</th>
                             <td>:</td>
                             <td>{{ $student->guardian_data['disability'] }}</td>
-                          </tr>                  
+                        </tr>                  
 
                         <tr>
                             <th></th>
@@ -349,7 +363,7 @@
 
 
 
-        <h4 class="text-primary">Data Persuratan</h4>
+            <h4 class="text-primary">Data Persuratan</h4>
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>
@@ -394,7 +408,7 @@
                             <th >Telepon rumah</th>
                             <td>:</td>
                             <td>{{ $student->contact['landline_number'] }}</td>
-                                
+                            
                         </tr>
 
                         <tr>
@@ -431,7 +445,7 @@
                             <th>Jenis / Tipe prestasi</th>
                             <td>:</td>
                             <td>{{ $student->achievement['type'] }}</td>
-                          
+                            
                             <th>Tingkat</th>
                             <td>:</td>
                             <td>{{ $student->achievement['achievement_level'] }}</td>
@@ -441,7 +455,7 @@
                             <th>Nama prestasi</th>
                             <td>:</td>
                             <td>{{ $student->achievement['achievement_name'] }}</td>
-                          
+                            
                             <th>Tahun</th>
                             <td>:</td>
                             <td>{{ $student->achievement['year'] }}</td>
@@ -457,7 +471,7 @@
                             <td></td>
 
                         </tr>
-                 
+                        
                         <tr>
                             <th></th>
                             <td></td>
@@ -472,7 +486,7 @@
             </div>
 
 
-        <h4 class="text-primary">Lainnya</h4>
+            <h4 class="text-primary">Lainnya</h4>
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>

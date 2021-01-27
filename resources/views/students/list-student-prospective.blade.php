@@ -39,28 +39,39 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table id="example" class="table table-bordered" style="width:100%;">
-            <thead>
-              <tr>
-                <th>NO</th>
-                <th>Nama</th>
-                <th>Asal Sekolah</th>
-                <th>action</th>
-              </tr>
-            </thead>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <div class="alert-icon contrast-alert">
+       <i class="icon-check"></i>
+     </div>
+     <div class="alert-message">
+      <span><strong>Berhasil!</strong> {{$message}}.</span>
+    </div>
+  </div>
+  @endif
+  <div class="card">
+    <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="example" class="table table-bordered" style="width:100%;">
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>Nama</th>
+              <th>Asal Sekolah</th>
+              <th>action</th>
+            </tr>
+          </thead>
 
-            <tbody>
-            </tbody>
+          <tbody>
+          </tbody>
 
-          </table>
-        </div>
+        </table>
       </div>
     </div>
   </div>
+</div>
 </div><!-- End Row-->
 
 <!--Start Back To Top Button-->
@@ -97,9 +108,9 @@
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
 <script>
-    $(document).ready(function () {
-        studentProspective()
-    });
+  $(document).ready(function () {
+    studentProspective()
+  });
 </script>
 
 @endpush

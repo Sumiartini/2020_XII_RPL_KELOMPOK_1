@@ -12,8 +12,6 @@ use Hash;
 use Illuminate\Support\Carbon;
 use App\EntryTypes;
 use App\Provinces;
-use App\Cities;
-use App\Districts;
 
 class StudentController extends Controller
 {
@@ -38,7 +36,8 @@ class StudentController extends Controller
     {         
         $majors = Majors::where('mjr_is_active', true)->get();
         $entry_types = EntryTypes::get();
-        return view('students.add-student',['majors' => $majors, 'entry_types'  => $entry_types]);
+        $province = Provinces::select('prv_id', 'prv_name')->get();
+        return view('students.add-student',['majors' => $majors, 'entry_types'  => $entry_types, 'province' => $province]);
     }
 
     /**
@@ -136,7 +135,7 @@ class StudentController extends Controller
             $student->stu_school_year_id   = 5; 
             $student->stu_nisn             = $request->stu_nisn;
             $student->stu_school_origin    = $request->stu_school_origin;
-            $student->mjr_name             = $request->mjr_name;
+            $student->stu_major_id         = $request->stu_major_id;
             $student->stu_registration_status   = 1;
             $student->stu_created_by = Auth()->user()->id;
 
@@ -161,7 +160,7 @@ class StudentController extends Controller
         } else {
             dd('gagal user');
         }
-        return redirect ('/students');  
+        return redirect ('/students')->with('success', 'Data berhasil ditambahkan');  
     }
 
     public function show_student($studentID)
@@ -193,9 +192,10 @@ class StudentController extends Controller
     public function edit($studentID)
     {
         $student = new Students;
-        $student_edit = $student->getStudentEdit($studentID);   
+        $student_edit = $student->getStudentEdit($studentID);        
+        $province = Provinces::select('prv_id', 'prv_name')->get();   
         
-        return view('students.edit-student',['student_edit' => $student_edit]);
+        return view('students.edit-student',['student_edit' => $student_edit, 'province' => $province]);
     }
 
     /**
@@ -250,7 +250,7 @@ class StudentController extends Controller
             }
         }
 
-        return redirect('student/'.$studentID);
+        return redirect('student/'.$studentID)->with('success', 'Data berhasil diubah');
 
     }       
     /**
@@ -277,16 +277,6 @@ class StudentController extends Controller
         }else{
             return redirect('/pending-verification');
         }
-    }
-
-    public function JsonCities($id){
-        $cities = Cities::where('cit_province_id' , $id)->get();
-        return response()->json(compact('cities', $cities));
-    }
-
-    public function JsonDistricts($id){
-        $districts = Districts::where('dst_city_id' , $id)->get();
-        return response()->json(compact('districts', $districts));
     }
 
     public function storeFormRegistrasion(Request $request)
@@ -398,7 +388,7 @@ class StudentController extends Controller
         $student = Students::findOrFail($stu_id);
         $student->stu_registration_status = '1';
         $student->update();
-        return back();
+        return back()->with('success', 'Siswa berhasil diterima');
     }
 
     public function rejected($stu_id)
@@ -412,7 +402,22 @@ class StudentController extends Controller
         $student->stu_registration_status = '2';
         $student->update();
 
-        return back();
+        return back()->with('success', 'Siswa berhasil ditolak');
+
+    }
+
+    public function restore($stu_id)
+    {
+        $student = Students::findOrFail($stu_id);
+        $user = User::where('usr_id', $student->stu_user_id)->first();
+        
+        $user->usr_is_active = '1';
+        $user->update();
+
+        $student->stu_registration_status = '0';
+        $student->update();
+
+        return back()->with('success', 'Siswa berhasil dikembalikan menjadi calon siswa');
 
     }
 }

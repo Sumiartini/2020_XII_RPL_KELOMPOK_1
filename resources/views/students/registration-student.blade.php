@@ -736,10 +736,10 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                               <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                               <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
-                               @error('usr_rural_name')
-                               <span class="invalid-feedback" role="alert">
+                             <label>Desa/Kelurahan<span style="color:red"> *</span></label>
+                             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
+                             @error('usr_rural_name')
+                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -936,18 +936,18 @@
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 <script>
     function bacaGambar(input) {
-       if (input.files && input.files[0]) {
-          var reader = new FileReader();
+     if (input.files && input.files[0]) {
+      var reader = new FileReader();
 
-          reader.onload = function (e) {
-              $('#tampil_picture').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
+      reader.onload = function (e) {
+          $('#tampil_picture').attr('src', e.target.result);
       }
+
+      reader.readAsDataURL(input.files[0]);
   }
-  $("#preview_gambar").change(function(){
-   bacaGambar(this);
+}
+$("#preview_gambar").change(function(){
+ bacaGambar(this);
 });
 </script>
 

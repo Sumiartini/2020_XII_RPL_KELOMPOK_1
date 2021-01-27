@@ -10,7 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 <meta name="description" content=""/>
 <meta name="author" content=""/>
-<title>Rocker - Bootstrap4  Admin Dashboard Template</title>
 <!--favicon-->
 <link rel="icon" href="{{ asset('assets/images/logo.png')}}" type="image/x-icon">
 <!-- simplebar CSS-->
@@ -38,6 +37,31 @@
     </ol>
   </div>
 </div>
+
+
+@if ($message = Session::get('success'))
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <div class="alert-icon contrast-alert">
+   <i class="icon-check"></i>
+ </div>
+ <div class="alert-message">
+  <span><strong>Berhasil!</strong> {{$message}}.</span>
+</div>
+</div>
+@endif
+
+@if ($message = Session::get('failed'))
+<div class="alert alert-danger alert-dismissible" role="alert">
+ <button type="button" class="close" data-dismiss="alert">×</button>
+ <div class="alert-icon contrast-alert">
+   <i class="icon-close"></i>
+ </div>
+ <div class="alert-message">
+  <span><strong>Gagal!</strong> {{$message}}.</span>
+</div>
+</div>
+@endif
 
 <div class="row">
   <div class="col-lg-12">
