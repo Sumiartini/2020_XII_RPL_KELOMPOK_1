@@ -26,6 +26,7 @@ class Students extends Model
     {
         $students = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
         ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+        ->join('entry_types', 'students.stu_entry_type_id','=','entry_types.ent_id')
         ->where('stu_id', $studentID)->firstOrFail();
  
         $student_details = StudentDetails::where('std_student_id', $students->stu_id)->get();

@@ -37,7 +37,7 @@
         <h4 class="page-title">Edit Siswa</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('students')}}">Kelola Siswa</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit Siswa</li>
         </ol>
     </div>
@@ -47,7 +47,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="signupForm" autocomplete="off" method="POST" action="{{ url('student/edit/'.$student_edit->stu_id) }}" novalidate="novalidate" enctype="multipart/form-data">
+                <form id="submitForm" autocomplete="off" method="POST" action="{{ url('student/edit/'.$student_edit->stu_id) }}" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -73,7 +73,7 @@
 
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
-                        Data Calon Siswa
+                        Data Siswa
                     </h4>
 
                     <div class="form-group row">
@@ -159,12 +159,11 @@
 
                     <div class="col-sm-4">
                         <label> Jurusan yang diminati <span style="color:red"> *</span></label>
-                        <select class="form-control form-control-rounded" name="mjr_name" id="basic-select" value="">
+                        <select class="form-control form-control-rounded" name="stu_major_id" id="basic-select" value="">
 
-                            <option value="{{$student_edit->mjr_name}}"  selected="">{{$student_edit->mjr_name}} </option>
-                            <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                            <option value="Multimedia">Multimedia</option>
-
+                            @foreach($majors as $major)
+                                <option {{ $major->mjr_id == $student_edit->stu_major_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -417,7 +416,7 @@
                 </div>
                 <div class="form-group row">
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label>Pendidikan Terakhir</label>
                         <select name="guardian_data[education]" class="form-control form-control-rounded" id="basic-select">
                             @if($student_edit->guardian_data['education'] == NULL)
@@ -432,7 +431,7 @@
 
                         </select>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label>Pekerjaan</label>
 
                         <select name="guardian_data[profession]" class="form-control form-control-rounded" id="basic-select">
@@ -446,7 +445,7 @@
                         </select>
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label>Pendapatan Perbulan</label>
                         <select name="guardian_data[monthly_income]" class="form-control form-control-rounded" id="basic-select">
                              @if($student_edit->guardian_data['monthly_income'] == NULL)
@@ -462,9 +461,19 @@
                             <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label> Nomor Telepon <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{$student_edit->guardian_data['phone_number']}}">
+                            @error('guardian_data.phone_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
-
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Disabilitas</label> <br>
 
                             <div class="radio icheck-info icheck-inline">
@@ -575,59 +584,61 @@
                 </h4>
                 <div class="form-group row">
 
+
                     <div class="col-sm-4">
                         <label> Jenis </label>
-
                         <div class="radio icheck-info">
-                            <input type="radio" id="achievementType1" value="Sains" name="achievement[type]">
+                            <input type="radio" {{ $student_edit->achievement['type']=='Sains'?'checked':'' }} id="achievementType1" value="Sains" name="achievement[type]">
                             <label for="achievementType1"> Sains </label>
                         </div>
                         <div class="radio icheck-info">
-                            <input type="radio" id="achievementType2" value="Seni" name="achievement[type]">
+                            <input type="radio" {{ $student_edit->achievement['type']=='Seni'?'checked':'' }} id="achievementType2" value="Seni" name="achievement[type]">
                             <label for="achievementType2"> Seni </label>
                         </div>
                         <div class="radio icheck-info">
-                            <input type="radio" id="achievementType3" value="Olahraga" name="achievement[type]">
+                            <input type="radio" {{ $student_edit->achievement['type']=='Olahraga'?'checked':'' }} id="achievementType3" value="Olahraga" name="achievement[type]">
                             <label for="achievementType3"> Olahraga </label>
                         </div>
                         <div class="radio icheck-info">
-                            <input type="radio" checked="" id="achievementType4" value="" name="achievement[type]">
+                            <input type="radio" {{ $student_edit->achievement['type']==''?'checked':'' }} id="achievementType4" value="" name="achievement[type]">
                             <label for="achievementType4"> Tidak ada </label>
                         </div>
                     </div>
+
+
 
                     <div class="col-sm-4">
                         <label> Tingkat</label>
 
                         <div class="radio icheck-info">
-                            <input type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
+                            <input {{ $student_edit->achievement['achievement_level']=='Sekolah'?'checked':'' }} type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
                             <label for="achievementLevel1"> Sekolah </label>
                         </div>
                         <div class="radio icheck-info">
-                            <input type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
+                            <input {{ $student_edit->achievement['achievement_level']=='Kecamatan'?'checked':'' }} type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
                             <label for="achievementLevel2"> Kecamatan </label>
                         </div>
                         <div class="radio icheck-info">
-                            <input type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
+                            <input {{ $student_edit->achievement['achievement_level']=='Kabupaten'?'checked':'' }} type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
                             <label for="achievementLevel3"> Kabupaten </label>
                         </div>
                         <div class="radio icheck-info">
-                            <input type="radio" checked="" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
+                            <input {{ $student_edit->achievement['achievement_level']=='Provinsi'?'checked':'' }} type="radio" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
                             <label for="achievementLevel4"> Provinsi </label>
                         </div>
 
                         <div class="radio icheck-info">
-                            <input type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
+                            <input {{ $student_edit->achievement['achievement_level']=='Nasional'?'checked':'' }} type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
                             <label for="achievementLevel5"> Nasional </label>
                         </div>
 
                         <div class="radio icheck-info">
-                            <input type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
+                            <input {{ $student_edit->achievement['achievement_level']=='Internasional'?'checked':'' }} type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
                             <label for="achievementLevel6"> Internasional </label>
                         </div>
 
                         <div class="radio icheck-info">
-                            <input type="radio" checked="" id="achievementLevel7" value="" name="achievement[achievement_level]">
+                            <input {{ $student_edit->achievement['achievement_level']==''?'checked':'' }} type="radio" id="achievementLevel7" value="" name="achievement[achievement_level]">
                             <label for="achievementLevel7"> Tidak ada </label>
                         </div>
 
@@ -671,11 +682,25 @@
 
                         </select>
                     </div>
+                    <div class="col-sm-4">
+                        <label>Jalur Masuk</label>
+                        <select name="stu_entry_type_id" class="form-control form-control-rounded @error('stu_entry_type_id') is-invalid @enderror" id="basic-select" value="{{ old('stu_entry_type_id') }}">
 
+                        @foreach($entry_types as $entry_type)
+                        <option {{ $entry_type->ent_id == $student_edit->stu_entry_type_id ? 'selected' : '' }} value="{{ $entry_type->ent_id }}">{{ $entry_type->ent_name }}</option>
+                        @endforeach
+                        </select>
+
+                        @error('stu_entry_type_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
                 </div>
                 <div class="form-footer">
-                    <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
+                    <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+                    <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
                 </div>
             </form>
         </div>
@@ -705,7 +730,15 @@
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 <script>
-
+    $(document).ready(function() {
+        $("#submitForm").submit(function(e) {
+            $(this).find("button[type='submit']").prop('disabled', true);
+            $("#btnSubmit").attr("disabled", true);
+            return true;
+        });      
+    });
+</script>
+<script>
     function bacaGambar(input) {
        if (input.files && input.files[0]) {
           var reader = new FileReader();

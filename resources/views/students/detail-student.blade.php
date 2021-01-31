@@ -495,9 +495,9 @@
                             <td>:</td>
                             <td>{{ $student->other['recomended_from'] }}</td>
 
-                            <th></th>
-                            <td></td>
-                            <td></td>
+                            <th>Jalur Masuk</th>
+                            <td>:</td>
+                            <td>{{ $student->ent_name }}</td>
                         </tr>
                         
                         <tr>
