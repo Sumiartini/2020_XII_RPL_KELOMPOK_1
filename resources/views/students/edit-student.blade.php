@@ -421,7 +421,7 @@
                         <label>Pendidikan Terakhir</label>
                         <select name="guardian_data[education]" class="form-control form-control-rounded" id="basic-select">
                             @if($student_edit->guardian_data['education'] == NULL)
-                            <option selected="" disabled="">Pilih Tahun Lahir</option>
+                            <option selected="" disabled="">Pilih</option>
                             @else
                             <option selected="">{{$student_edit->guardian_data['education']}}</option>
                             @endif
@@ -437,7 +437,7 @@
 
                         <select name="guardian_data[profession]" class="form-control form-control-rounded" id="basic-select">
                              @if($student_edit->guardian_data['profession'] == NULL)
-                            <option selected="" disabled="">Pilih Pekerjaan</option>
+                            <option selected="" disabled="">Pilih</option>
                             @else
                             <option selected="">{{$student_edit->guardian_data['profession']}}</option>
                             @endif
@@ -450,7 +450,7 @@
                         <label>Pendapatan Perbulan</label>
                         <select name="guardian_data[monthly_income]" class="form-control form-control-rounded" id="basic-select">
                              @if($student_edit->guardian_data['monthly_income'] == NULL)
-                            <option selected="" disabled="">Pilih Pendapatan</option>
+                            <option selected="" disabled="">Pilih</option>
                             @else
                             <option selected="">{{$student_edit->guardian_data['monthly_income']}}</option>
                             @endif
