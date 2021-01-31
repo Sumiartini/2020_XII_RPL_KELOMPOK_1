@@ -144,7 +144,7 @@ html , body{
 }
 
 .info-profil iframe{
-     width: 320px; 
+     width: 450px; 
      height: 180px;
 }
 
@@ -172,12 +172,71 @@ html , body{
     font-size: 14px; 
 }
 
+/*info team*/
+.info-team figure h5{
+    text-align: center;
+    font-weight: 200;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 20px;
+}
+.info-team h4{
+    text-align: center;
+    font-weight: 200;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: bold;
+    color: grey;
+}
+
+.info-team figure img{
+    width: 120px;
+    margin-top: 30px;       
+}
+
+.ahmad{
+    margin-left: 30px;
+}
+
+.rendy{
+    margin-left: 50px;
+}
+
+.dede{
+    margin-left: 25px;
+}
+
+.elsa{
+    margin-left: 25px;
+}
+.sumi{
+    margin-left: 40px;
+}
+.pd{
+    margin-top: -20px; 
+
+}
+.ps{
+    margin-top: -20px; 
+
+}
+.pju{
+    margin-top: -20px;
+}
+
+.t{
+    text-align: center;
+}
+
+
+
 
 /*footer*/
 footer{
     background-color: #599be2;
     background-image: linear-gradient(to top, rgba(0,0,0,0.10), rgba(255,255,255,1));
     padding: 1cm 0cm;
+    margin-top: 40px;
 }
 
 .footer-about__img{
@@ -363,6 +422,66 @@ footer{
     font-size: 20px; 
 }
 
+/*info team*/
+.info-team figure h5{
+    text-align: center;
+    font-weight: 200;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 20px;
+}
+.info-team h4{
+    text-align: center;
+    font-weight: 200;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: bold;
+    color: grey;
+}
+
+.info-team figure img{
+    width: 90px;
+    margin-top: 30px;       
+}
+
+.ahmad{
+    margin-left: 45px;
+}
+
+.rendy{
+    margin-left: 60px;
+}
+
+.dede{
+    margin-left: 55px;
+}
+
+.elsa{
+    margin-left: 55px;
+}
+.sumi{
+    margin-left: 50px;
+}
+.pde{
+    margin-left: 35px;
+}
+.pd{
+    margin-top: -20px; 
+    margin-left: 35px;
+}
+.psa{
+    margin-left: 35px;
+}
+.ps{
+    margin-top: -20px; 
+    margin-left: 35px;
+}
+.pju{
+    margin-top: -20px;
+}
+.t{
+    text-align: left;
+}
 
 /*footer*/
 footer{
@@ -581,7 +700,71 @@ footer{
         </div>
         <!-- akhir info panel -->
     </div>
-    
+
+    <!-- info team -->
+    <section class="info-team">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h4>Projek Tim PPDB</h4>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-3 justify-content-center d-flex">
+                 <figure class="figure ">
+                  <img src="assets/images/img1.png" class="figure-img img-fluid rounded-circle ahmad " alt="">
+                  <figcaption class="figure-caption">
+                    <h5>Ahmad Suherman</h5>
+                    <p class="t"> XII RPL1</p>
+                    <p class="pju t">Rekayasa Perangkat Lunak</p>
+                  </figcaption>
+                </figure>
+            </div>
+            <div class="col-lg-3 justify-content-center d-flex">
+                 <figure class="figure">
+                  <img src="assets/images/img1.png" class="figure-img img-fluid rounded-circle rendy " alt="">
+                  <figcaption class="figure-caption">
+                    <h5>Rendy Joshua Hutagaol</h5>
+                    <p class="t"> XII RPL1</p>
+                    <p class="pju t">Rekayasa Perangkat Lunak</p>
+                  </figcaption>
+                </figure>
+            </div>        
+        </div>
+         <div class="row justify-content-center">
+            <div class="col-lg-3 justify-content-center d-flex">
+                <figure class="figure">
+                  <img src="assets/images/img1.png" class="figure-img img-fluid rounded-circle dede" alt="">
+                  <figcaption class="figure-caption">
+                    <h5>Dede Suminar</h5>
+                    <p class="pde t"> XII RPL1</p>
+                    <p class="pd t">Rekayasa Perangkat Lunak</p>
+                  </figcaption>
+                </figure>
+            </div>
+            <div class="col-lg-3 justify-content-center d-flex">
+                 <figure class="figure">
+                  <img src="assets/images/img2.png" class="figure-img img-fluid rounded-circle elsa" alt="">
+                  <figcaption class="figure-caption">
+                    <h5>Elsa Susilawati</h5>
+                    <p class="psa t"> XII RPL2</p>
+                    <p class="ps t">Rekayasa Perangkat Lunak</p>
+                  </figcaption>
+                </figure>
+            </div>
+            <div class="col-lg-3 justify-content-center d-flex">   
+                 <figure class="figure">
+                  <img src="assets/images/img1.png" class="figure-img img-fluid rounded-circle sumi" alt="">
+                  <figcaption class="figure-caption">
+                    <h5>Sumiartini Sri Rahayu</h5>
+                    <p class="t"> XII RPL2</p>
+                    <p class="pju t" >Rekayasa Perangkat Lunak</p>
+                  </figcaption>
+                </figure>
+            </div>        
+        </div>
+    </section>
+    <!--akhir info team -->
 
     <!-- footer -->
         <footer>
