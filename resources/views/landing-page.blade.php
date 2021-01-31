@@ -144,7 +144,7 @@ html , body{
 }
 
 .info-profil iframe{
-     width: 320px; 
+     width: 450px; 
      height: 180px;
 }
 
