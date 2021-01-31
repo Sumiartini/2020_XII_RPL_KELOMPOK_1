@@ -8,7 +8,10 @@ use App\User;
 use App\StudentDetails;
 use App\Majors;
 use Illuminate\Support\Facades\Auth;
-use Hash;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+use App\Mail\AddStudent;
 use Illuminate\Support\Carbon;
 use App\EntryTypes;
 use App\Provinces;
@@ -53,14 +56,11 @@ class StudentController extends Controller
             'required'  =>'Kolom wajib diisi',
             'unique'    => 'Kolom yang digunakan telah terdaftar',
             'mimes'     => 'Foto tidak support, ukuran max 2 MB',
-            'same'      => 'Kata sandi harus sama ketika di ulangi',
-            'min'       => 'Kata sandi Minimal 8 Karakter'
         ];
 
         $request->validate([
             'usr_name'                      => 'required',
             'usr_email'                     => 'required|unique:users,usr_email',
-            'usr_password'                  => 'required|same:usr_retype_password|min:8',
             'stu_candidate_name'            => 'required',
             'usr_gender'                    => 'required',
             'stu_nisn'                      => 'required | unique:students,stu_nisn',
@@ -102,7 +102,7 @@ class StudentController extends Controller
         $user->usr_name             = $request->usr_name;
         $user->usr_email            = $request->usr_email;
         $user->usr_phone_number     = $request->usr_phone_number;
-        $user->usr_password         = Hash::make($request->usr_password);
+        $user->usr_password         = Hash::make('qwerty123');
         $user->usr_gender           = $request->usr_gender;
         $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
@@ -119,6 +119,7 @@ class StudentController extends Controller
         $user->usr_email_verified_at = now();
         $user->usr_created_by       = Auth()->user()->usr_id;
         $user->assignRole('student');
+        Mail::to($user['usr_email'])->send(new AddStudent($user));
 
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');

@@ -84,28 +84,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row">
-
-                        <div class="col-sm-6">
-                            <label>Kata Sandi<span style="color:red"> *</span></label>
-                            <input type="password" class="form-control form-control-rounded @error('usr_password') is-invalid @enderror" name="usr_password" placeholder="Masukan Kata Sandi" value="{{ old('usr_password') }}">
-                            @error('usr_password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Ulangi Kata Sandi<span style="color:red"> *</span></label>
-                            <input type="password" class="form-control form-control-rounded @error('usr_retype_password') is-invalid @enderror" name="usr_retype_password" placeholder="Ulangi Kata Sandi" value="{{ old('usr_retype_password') }}">
-                            @error('usr_retype_password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
 
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -282,7 +260,7 @@
             </div>
         </div>
 
-        <label>Foto calon siswa </label>
+        <label>Foto calon siswa<span style="color:red"> *</span></label>
         <div class="form-group row">
 
             <div class="col-sm-4">
@@ -1004,8 +982,6 @@
 
         });
     });
-
-
 </script>
 
 @endpush

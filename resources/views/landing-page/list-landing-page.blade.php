@@ -40,13 +40,13 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
+      <div class="card-header"><i class="fa fa-table"></i> Data Halaman Arahan</div>
       <div class="card-body">
         <div class="table-responsive">
 
           @if(Auth()->user()->hasRole('admin'))
           <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-            <a href="{{URL::to('/landing-page/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
+            <a href="{{URL::to('/landing-page/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
           </div>
           @else
           @endif
@@ -55,16 +55,15 @@
               <tr>
                 <th>NO</th>
                 <th>NAMA</th>
-                <th>NIS</th>
-                <th>STATUS</th>
+                <th>DESKRIPSI</th>
+                <th>FOTO</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
             </tbody>
-
-
           </table>
+
         </div>
       </div>
     </div>
@@ -107,7 +106,9 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
-
-</script>
-@endpush
+  <script>
+  $(document).ready(function () {
+    landingPage()
+  });
+</script>@endpush
 @endsection

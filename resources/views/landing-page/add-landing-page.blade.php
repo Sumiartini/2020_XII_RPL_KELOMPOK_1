@@ -56,31 +56,19 @@
                     <div class="form-group row">
 
                         <div class="col-sm-4">
-                            <label>Nama Lengkap<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap">
+                            <label>Nama<span style="color:red"> *</span></label>
+                            <input type="text" class="form-control" id="input-10" name="mss_name" placeholder="Masukan Nama">
                         </div>
                          <div class="col-sm-4">
-                        <label>Email<span style="color:red"> *</span></label>
-                            <input type="email" class="form-control" id="input-10" name="usr_email" placeholder="Masukan Email">                        
+                        <label>Deskripsi<span style="color:red"> *</span></label>
+                            <input type="text" class="form-control" id="input-10" name="mss_description" placeholder="Masukan Deskripsi">                        
                         </div>
                         <div class="col-sm-4">
-                            <label>Nomor Telepon<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon">
+                            <label>File<span style="color:red"> *</span></label>
+                            <input type="text" class="form-control" id="input-10" name="mss_file" placeholder="Masukan File">
                         </div>
                     </div>
-                    <div class="form-group row">
-
-                        <div class="col-sm-6">
-                            <label>Kata Sandi<span style="color:red"> *</span></label>
-                            <input type="password" class="form-control" id="input-10" name="usr_password" placeholder="Masukan Kata Sandi">
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Ulangi Kata Sandi<span style="color:red"> *</span></label>
-                            <input type="password" class="form-control" id="input-10" name="usr_retype_password" placeholder="Masukan Kata Sandi">
-                        </div>
-                    </div>
-
-
+                    
                     <div class="form-footer">
                         <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
