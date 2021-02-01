@@ -51,5 +51,15 @@ class StudentsSeeder extends Seeder
             'stu_nisn' => '33098867125',
             'stu_registration_status' => '1',
         ]);
+
+        DB::table('students')->insert([
+            'stu_candidate_name' => 'Sumiartini Sri Rahayu',
+            'stu_user_id' => '6',
+            'stu_entry_type_id' => '1',
+            'stu_school_year_id' => '1',
+            'stu_school_origin' => 'SMPN 2 KATAPANG',
+            'stu_nisn' => '33098867125',
+            'stu_registration_status' => '1',
+        ]);
     }
 }
