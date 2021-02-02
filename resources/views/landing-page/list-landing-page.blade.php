@@ -106,9 +106,5 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
-  <script>
-  $(document).ready(function () {
-    landingPage()
-  });
-</script>@endpush
+@endpush
 @endsection
