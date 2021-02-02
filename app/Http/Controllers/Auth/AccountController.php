@@ -177,11 +177,17 @@ class AccountController extends Controller
         // dd($studentID);
         $user = Auth::user();
         $student_prospective = new Students;
-        $student_prospective = $student_prospective->getStudentProsvectiveDetail($studentID);
+        $student_prospective = $student_prospective->getStudentProsvectiveDetail($studentID);        
+        $student = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+        ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+        ->where('usr_id', $student_prospective->usr_id)
+        ->get();
            
         if ($user->hasRole('student')) {
             if ($user->usr_is_regist == 1) {            
-                return view('students/waiting-registration', ['student_prospective' => $student_prospective]);
+                return view('students/waiting-registration', ['student_prospective' => $student_prospective, 'student' => $student]);
             }else{
                 return redirect('/student-registration');
             }

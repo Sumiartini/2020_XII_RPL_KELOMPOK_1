@@ -15,7 +15,7 @@ use App\Mail\AddStudent;
 use Illuminate\Support\Carbon;
 use App\EntryTypes;
 use App\Provinces;
-
+use App\Districts;
 class StudentController extends Controller
 {
     /**
@@ -51,6 +51,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $requests = $request->input();
         $messages = [
             'required'  =>'Kolom wajib diisi',
@@ -169,7 +170,13 @@ class StudentController extends Controller
     {
         $student = new students;
         $student = $student->getStudentDetail($studentID);
-        return view('students.detail-student',['student' => $student]);
+        $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+        ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+        ->where('usr_id', $student->usr_id)
+        ->get();
+        return view('students.detail-student',['student' => $student, 'user'=>$user]);
     }
     public function show_prospective($studentID)
     {
@@ -193,11 +200,13 @@ class StudentController extends Controller
      */
     public function edit($studentID)
     {
+        $entry_types = EntryTypes::select('ent_id','ent_name')->get();
+        $majors      = Majors::where('mjr_is_active', '1')->get();
         $student = new Students;
         $student_edit = $student->getStudentEdit($studentID);        
         $province = Provinces::select('prv_id', 'prv_name')->get();   
         
-        return view('students.edit-student',['student_edit' => $student_edit, 'province' => $province]);
+        return view('students.edit-student',['student_edit' => $student_edit, 'province' => $province, 'entry_types' => $entry_types, 'majors' => $majors]);
     }
 
     /**
@@ -216,8 +225,9 @@ class StudentController extends Controller
         $student->stu_candidate_name    = $request->stu_candidate_name;
         $student->stu_nisn              = $request->stu_nisn;
         $student->stu_school_origin     = $request->stu_school_origin;
-        // $student->stu_major_id          = $request->stu_major_id;
+        $student->stu_major_id          = $request->stu_major_id;
         $student->stu_updated_by        = Auth()->user()->usr_id;
+        $student->stu_entry_type_id     = $request->stu_entry_type_id;
         $student->update();
 
         $user                       = User::where('usr_id', $student->stu_user_id)->first();

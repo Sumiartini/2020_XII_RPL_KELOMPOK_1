@@ -367,18 +367,25 @@
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <tbody>
-
+                            @foreach($user as $data)
                         <tr>
                             <th >Provinsi</th>
                             <td>:</td>
-                            <td>Jawa Barat</td>
+                            <td>{{$data->prv_name}}</td>
 
                             <th>Kota/Kabupaten</th>
                             <td>:</td>
-                            <td>Bandung</td>
+                            <td>{{$data->cit_name}}</td>
                         </tr>
-
-
+                        <tr>
+                            <th> Kecamatan</th>
+                            <td>:</td>
+                            <td>{{$data->dst_name}}</td>
+                                @endforeach
+                            <th >Desa/Kelurahan</th>
+                            <td>:</td>
+                            <td>{{ $student->usr_rural_name }}</td>
+                        </tr>
                         <tr>
                             <th>Alamat</th>
                             <td>:</td>
@@ -395,32 +402,20 @@
                             <td>:</td>
                             <td>{{ $student->usr_rw }}</td>
 
-                            <th >Desa/Kelurahan</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_rural_name }}</td>
-                        </tr>
-
-                        <tr>
                             <th>Kode pos</th>
                             <td>:</td>
                             <td>{{ $student->usr_postal_code }}</td>
+                        </tr>
 
+                        <tr>
                             <th >Telepon rumah</th>
                             <td>:</td>
                             <td>{{ $student->contact['landline_number'] }}</td>
                             
-                        </tr>
-
-                        <tr>
-                            
                             <th>Email rumah</th>
                             <td>:</td>
                             <td>{{ $student->contact['email'] }}</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
+                            
                         </tr>
                         
                         <tr>
@@ -495,9 +490,9 @@
                             <td>:</td>
                             <td>{{ $student->other['recomended_from'] }}</td>
 
-                            <th></th>
-                            <td></td>
-                            <td></td>
+                            <th>Jalur Masuk</th>
+                            <td>:</td>
+                            <td>{{ $student->ent_name }}</td>
                         </tr>
                         
                         <tr>

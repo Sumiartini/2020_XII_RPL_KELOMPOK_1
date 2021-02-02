@@ -106,10 +106,10 @@
                         <div class="col-sm-4">
                             <label> Jenis Kelamin <span style="color:red"> *</span></label>
 
-                            <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select" value="{{ old('usr_gender') }}">
-                                <option disabled="" selected=""> Pilih </option>
-                                <option value="Laki-laki"> Laki Laki </option>
-                                <option value="Perempuan"> Perempuan </option>
+                            <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
+                                <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
+                                <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
+                                <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
                             </select>
                             @error('usr_gender')
                             <span class="invalid-feedback" role="alert">
@@ -183,13 +183,13 @@
                 <div class="col-sm-4">
                     <label> Tinggal Bersama <span style="color:red"> *</span></label>
                     <select class="form-control form-control-rounded @error('personal.living_together') is-invalid @enderror" name="personal[living_together]" id="basic-select" value="{{ old('personal.living_together') }}">
-                        <option disabled="" selected=""> Pilih </option>
-                        <option value="Orang Tua"> Orang Tua </option>
-                        <option value="Wali"> Wali </option>
-                        <option value="Kos"> Kos </option>
-                        <option value="Asrama"> Asrama </option>
-                        <option value="Panti Asuhan"> Panti Asuhan </option>
-                        <option value="Pesantren"> Pesantren </option>
+                        <option disabled=""  {{ old('personal.living_together') == "" ? 'selected' : '' }}> Pilih </option>
+                        <option {{ old('personal.living_together') == "Orang Tua" ? 'selected' : '' }}  value="Orang Tua"> Orang Tua </option>
+                        <option {{ old('personal.living_together') == "Wali" ? 'selected' : '' }}  value="Wali"> Wali </option>
+                        <option {{ old('personal.living_together') == "Kos" ? 'selected' : '' }}  value="Kos"> Kos </option>
+                        <option {{ old('personal.living_together') == "Asrama" ? 'selected' : '' }}  value="Asrama"> Asrama </option>
+                        <option {{ old('personal.living_together') == "Panti Asuhan" ? 'selected' : '' }}  value="Panti Asuhan"> Panti Asuhan </option>
+                        <option {{ old('personal.living_together') == "Pesantren" ? 'selected' : '' }}  value="Pesantren"> Pesantren </option>
                     </select>
                     @error('personal.living_together')
                     <span class="invalid-feedback" role="alert">
@@ -217,9 +217,9 @@
                 <label> Jurusan yang diminati <span style="color:red"> *</span></label>
                 <select class="form-control form-control-rounded @error('stu_major_id') is-invalid @enderror" name="stu_major_id" id="basic-select" value="{{ old('stu_major_id') }}">
 
-                    <option disabled="" selected=""> Pilih </option>
+                    <option disabled="" {{ old('stu_major_id') == "" ? 'selected' : '' }} > Pilih </option>
                     @foreach($majors as $major)
-                    <option value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
+                    <option {{ old('stu_major_id') == $major->mjr_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
                     @endforeach
 
                 </select>
@@ -244,13 +244,13 @@
             <div class="col-sm-4">
                 <label> Agama <span style="color:red"> *</span></label>
                 <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
-                    <option disabled="" selected=""> Pilih </option>
-                    <option value="Islam"> Islam </option>
-                    <option value="Protestan"> Protestan </option>
-                    <option value="Katolik"> Katolik </option>
-                    <option value="Hindu"> Hindu </option>
-                    <option value="Budha"> Budha </option>
-                    <option value="Khonghucu"> Khonghucu </option>
+                    <option disabled="" {{ old('usr_religion') == "" ? 'selected' : '' }} > Pilih </option>
+                    <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }}  value="Islam"> Islam </option>
+                    <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }}  value="Protestan"> Protestan </option>
+                    <option {{ old('usr_religion') == "Katolik" ? 'selected' : '' }}  value="Katolik"> Katolik </option>
+                    <option {{ old('usr_religion') == "Hindu" ? 'selected' : '' }}  value="Hindu"> Hindu </option>
+                    <option {{ old('usr_religion') == "Budha" ? 'selected' : '' }}  value="Budha"> Budha </option>
+                    <option {{ old('usr_religion') == "Khonghucu" ? 'selected' : '' }}  value="Khonghucu"> Khonghucu </option>
                 </select>
                 @error('usr_religion')
                 <span class="invalid-feedback" role="alert">
@@ -320,11 +320,11 @@
             <div class="col-sm-4">
                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
                 <select name="father_data[education]" class="form-control form-control-rounded @error('father_data.education') is-invalid @enderror" id="basic-select" value="{{ old('father_data.education') }}">
-                    <option disabled="" selected=""> Pilih </option>
-                    <option value="SD - Sederajat"> SD - Sederajat </option>
-                    <option value="SMP - Sederajat"> SMP - Sederajat </option>
-                    <option value="SMA - Sederajat"> SMA - Sederajat </option>
-                    <option value="KULIAH - Sederajat"> KULIAH - Sederajat </option>
+                    <option disabled="" {{ old('father_data.education') == "" ? 'selected' : '' }}> Pilih </option>
+                    <option value="SD - Sederajat" {{ old('father_data.education') == "SD - Sederajat" ? 'selected' : '' }}> SD - Sederajat </option>
+                    <option value="SMP - Sederajat" {{ old('father_data.education') == "SMP - Sederajat" ? 'selected' : '' }}> SMP - Sederajat </option>
+                    <option value="SMA - Sederajat" {{ old('father_data.education') == "SMA - Sederajat" ? 'selected' : '' }}> SMA - Sederajat </option>
+                    <option value="KULIAH - Sederajat" {{ old('father_data.education') == "KULIAH - Sederajat" ? 'selected' : '' }}> KULIAH - Sederajat </option>
                 </select>
                 @error('father_data.education')
                 <span class="invalid-feedback" role="alert">
@@ -337,10 +337,10 @@
             <div class="col-sm-4">
                 <label>Pekerjaan<span style="color:red"> *</span></label>
                 <select name="father_data[profession]" class="form-control form-control-rounded @error('father_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('father_data.profession') }}">
-                    <option disabled="" selected="">Pilih</option>
-                    <option value="Buruh"> Buruh </option>
-                    <option value="Wirausaha"> Wirausaha </option>
-                    <option value="Wiraswasta"> Wiraswasta </option>
+                    <option disabled="" {{ old('father_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
+                    <option value="Buruh" {{ old('father_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
+                    <option value="Wirausaha" {{ old('father_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
+                    <option value="Wiraswasta" {{ old('father_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
                 </select>
                 @error('father_data.profession')
                 <span class="invalid-feedback" role="alert">
@@ -352,13 +352,13 @@
             <div class="col-sm-4">
                 <label>Pendapatan Perbulan</label>
                 <select name="father_data[monthly_income]" class="form-control form-control-rounded @error('father_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('father_data.monthly_income') }}">
-                    <option value="" selected="">Pilih</option>
-                    <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
-                    <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
-                    <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
-                    <option value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
-                    <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
-                    <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
+                    <option {{ old('father_data.monthly_income') == "" ? 'selected' : '' }} value="">Pilih</option>
+                    <option {{ old('father_data.monthly_income') == "kurang dari Rp. 500.000" ? 'selected' : '' }} value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
+                    <option {{ old('father_data.monthly_income') == "Rp. 500.000 - Rp.1.000.000" ? 'selected' : '' }} value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
+                    <option {{ old('father_data.monthly_income') == "Rp. 1.000.000 - Rp. 2.000.000" ? 'selected' : '' }} value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
+                    <option {{ old('father_data.monthly_income') == "Rp. 2.000.000 - Rp. 3.000.000" ? 'selected' : '' }} value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
+                    <option {{ old('father_data.monthly_income') == "Rp. 3.000.000 - Rp. 4.000.000" ? 'selected' : '' }} value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
+                    <option {{ old('father_data.monthly_income') == "lebih dari Rp. 4.000.000" ? 'selected' : '' }} value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                 </select>
 
             </div>
@@ -433,32 +433,31 @@
         </div>
 
 
-        <div class="form-group row">
-
+       <div class="form-group row">
             <div class="col-sm-4">
                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
                 <select name="mother_data[education]" class="form-control form-control-rounded @error('mother_data.education') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.education') }}">
-                    <option disabled="" selected="">Pilih</option>
-                    <option value="SD - Sederajat"> SD - Sederajat </option>
-                    <option value="SMP - Sederajat"> SMP - Sederajat </option>
-                    <option value="SMA - Sederajat"> SMA - Sederajat </option>
-                    <option value="KULIAH - Sederajat"> KULIAH - Sederajat </option>
+                    <option disabled="" {{ old('mother_data.education') == "" ? 'selected' : '' }}> Pilih </option>
+                    <option value="SD - Sederajat" {{ old('mother_data.education') == "SD - Sederajat" ? 'selected' : '' }}> SD - Sederajat </option>
+                    <option value="SMP - Sederajat" {{ old('mother_data.education') == "SMP - Sederajat" ? 'selected' : '' }}> SMP - Sederajat </option>
+                    <option value="SMA - Sederajat" {{ old('mother_data.education') == "SMA - Sederajat" ? 'selected' : '' }}> SMA - Sederajat </option>
+                    <option value="KULIAH - Sederajat" {{ old('mother_data.education') == "KULIAH - Sederajat" ? 'selected' : '' }}> KULIAH - Sederajat </option>
                 </select>
                 @error('mother_data.education')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-            </div>
-            <div class="col-sm-4">
-                <label> Pekerjaan <span style="color:red"> *</span></label>
 
+            </div>
+
+            <div class="col-sm-4">
+                <label>Pekerjaan<span style="color:red"> *</span></label>
                 <select name="mother_data[profession]" class="form-control form-control-rounded @error('mother_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.profession') }}">
-                    <option disabled="" selected=""> Pilih </option>
-                    <option value="Buruh"> Buruh </option>
-                    <option value="Wirausaha"> Wirausaha </option>
-                    <option value="Wiraswasta"> Wiraswasta </option>
-                    <option value="Ibu Rumah Tangga"> Ibu Rumah Tangga </option>
+                    <option disabled="" {{ old('mother_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
+                    <option value="Buruh" {{ old('mother_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
+                    <option value="Wirausaha" {{ old('mother_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
+                    <option value="Wiraswasta" {{ old('mother_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
                 </select>
                 @error('mother_data.profession')
                 <span class="invalid-feedback" role="alert">
@@ -470,14 +469,15 @@
             <div class="col-sm-4">
                 <label>Pendapatan Perbulan</label>
                 <select name="mother_data[monthly_income]" class="form-control form-control-rounded @error('mother_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.monthly_income') }}">
-                    <option value="" selected="">Pilih</option>
-                    <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
-                    <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
-                    <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
-                    <option value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
-                    <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
-                    <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
+                    <option {{ old('mother_data.monthly_income') == "" ? 'selected' : '' }} value="">Pilih</option>
+                    <option {{ old('mother_data.monthly_income') == "kurang dari Rp. 500.000" ? 'selected' : '' }} value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
+                    <option {{ old('mother_data.monthly_income') == "Rp. 500.000 - Rp.1.000.000" ? 'selected' : '' }} value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
+                    <option {{ old('mother_data.monthly_income') == "Rp. 1.000.000 - Rp. 2.000.000" ? 'selected' : '' }} value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
+                    <option {{ old('mother_data.monthly_income') == "Rp. 2.000.000 - Rp. 3.000.000" ? 'selected' : '' }} value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
+                    <option {{ old('mother_data.monthly_income') == "Rp. 3.000.000 - Rp. 4.000.000" ? 'selected' : '' }} value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
+                    <option {{ old('mother_data.monthly_income') == "lebih dari Rp. 4.000.000" ? 'selected' : '' }} value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                 </select>
+
             </div>
         </div>
 
@@ -518,7 +518,7 @@
 
             <div class="col-sm-4">
                 <label> Nama Lengkap </label>
-                <input type="text" name="guardian_data[name]" class="form-control form-control-rounded @error('guardian_data[name]') is-invalid @enderror" name="firstname" placeholder="Masukan Nama Lengkap" value="{{ old('guardian_data[name]') }}">
+                <input type="text" name="guardian_data[name]" class="form-control form-control-rounded @error('guardian_data[name]') is-invalid @enderror" name="firstname" placeholder="Masukan Nama Lengkap" value="{{ old('guardian_data.name') }}">
                 @error('guardian_data[name]')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -547,55 +547,51 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group row">
-
+         <div class="form-group row">
             <div class="col-sm-4">
-                <label>Pendidikan Terakhir</label>
-                <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data.education') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.education') }}"> 
-                    <option value="" selected="">Pilih</option>
-                    <option value="SD - Sederajat"> SD - Sederajat </option>
-                    <option value="SMP - Sederajat"> SMP - Sederajat </option>
-                    <option value="SMA - Sederajat"> SMA - Sederajat </option>
-                    <option value="KULIAH - Sederajat"> KULIAH - Sederajat </option>
+                <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
+                <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data.education') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.education') }}">
+                    <option disabled="" value="" {{ old('guardian_data.education') == "" ? 'selected' : '' }}> Pilih </option>
+                    <option value="SD - Sederajat" {{ old('guardian_data.education') == "SD - Sederajat" ? 'selected' : '' }}> SD - Sederajat </option>
+                    <option value="SMP - Sederajat" {{ old('guardian_data.education') == "SMP - Sederajat" ? 'selected' : '' }}> SMP - Sederajat </option>
+                    <option value="SMA - Sederajat" {{ old('guardian_data.education') == "SMA - Sederajat" ? 'selected' : '' }}> SMA - Sederajat </option>
+                    <option value="KULIAH - Sederajat" {{ old('guardian_data.education') == "KULIAH - Sederajat" ? 'selected' : '' }}> KULIAH - Sederajat </option>
                 </select>
                 @error('guardian_data.education')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
+
             </div>
 
             <div class="col-sm-4">
-                <label> Pekerjaan </label>
+                <label>Pekerjaan<span style="color:red"> *</span></label>
                 <select name="guardian_data[profession]" class="form-control form-control-rounded @error('guardian_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.profession') }}">
-                    <option value="" selected=""> Pilih </option>
-                    <option value="Buruh"> Buruh </option>
-                    <option value="Wirausaha"> Wirausaha </option>
-                    <option value="Wiraswasta"> Wiraswasta </option>
-                    <option value="Ibu Rumah Tangga"> Ibu Rumah Tangga </option>
+                    <option disabled="" {{ old('guardian_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
+                    <option value="Buruh" {{ old('guardian_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
+                    <option value="Wirausaha" {{ old('guardian_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
+                    <option value="Wiraswasta" {{ old('guardian_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
                 </select>
                 @error('guardian_data.profession')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
+
             </div>
             <div class="col-sm-4">
                 <label>Pendapatan Perbulan</label>
                 <select name="guardian_data[monthly_income]" class="form-control form-control-rounded @error('guardian_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.monthly_income') }}">
-                    <option value="" selected="">Pilih</option>
-                    <option value="" value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
-                    <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
-                    <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
-                    <option value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
-                    <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
-                    <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
+                    <option {{ old('guardian_data.monthly_income') == "" ? 'selected' : '' }} value="">Pilih</option>
+                    <option {{ old('guardian_data.monthly_income') == "kurang dari Rp. 500.000" ? 'selected' : '' }} value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
+                    <option {{ old('guardian_data.monthly_income') == "Rp. 500.000 - Rp.1.000.000" ? 'selected' : '' }} value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
+                    <option {{ old('guardian_data.monthly_income') == "Rp. 1.000.000 - Rp. 2.000.000" ? 'selected' : '' }} value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
+                    <option {{ old('guardian_data.monthly_income') == "Rp. 2.000.000 - Rp. 3.000.000" ? 'selected' : '' }} value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
+                    <option {{ old('guardian_data.monthly_income') == "Rp. 3.000.000 - Rp. 4.000.000" ? 'selected' : '' }} value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
+                    <option {{ old('guardian_data.monthly_income') == "lebih dari Rp. 4.000.000" ? 'selected' : '' }} value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                 </select>
-                @error('guardian_data.monthly_income')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+
             </div>
         </div>
 
@@ -635,7 +631,7 @@
                 <label> Provinsi <span style="color:red"> *</span></label>
 
                 <select name="prv_name" class="form-control form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
-                    <option disabled checked="true" selected="true"> Pilih Provinsi </option>
+                    <option disabled="true" selected="true"> Pilih Provinsi </option>
                     @foreach($province as $data)
                     <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
                     @endforeach
@@ -761,19 +757,19 @@
             <label> Jenis </label>
 
             <div class="radio icheck-info">
-                <input type="radio" id="achievementType1" value="Sains" name="achievement[type]">
+                <input {{ old('achievement.type') == "Sains" ? 'checked' : '' }} type="radio" id="achievementType1" value="Sains" name="achievement[type]">
                 <label for="achievementType1"> Sains </label>
             </div>
             <div class="radio icheck-info">
-                <input type="radio" id="achievementType2" value="Seni" name="achievement[type]">
+                <input {{ old('achievement.type') == "Seni" ? 'checked' : '' }} type="radio" id="achievementType2" value="Seni" name="achievement[type]">
                 <label for="achievementType2"> Seni </label>
             </div>
             <div class="radio icheck-info">
-                <input type="radio" id="achievementType3" value="Olahraga" name="achievement[type]">
+                <input {{ old('achievement.type') == "Olahraga" ? 'checked' : '' }} type="radio" id="achievementType3" value="Olahraga" name="achievement[type]">
                 <label for="achievementType3"> Olahraga </label>
             </div>
             <div class="radio icheck-info">
-                <input type="radio" checked="" id="achievementType4" value="" name="achievement[type]">
+                <input {{ old('achievement.type') == "" ? 'checked' : '' }} type="radio" id="achievementType4" value="" name="achievement[type]">
                 <label for="achievementType4"> Tidak ada </label>
             </div>
         </div>
@@ -782,34 +778,34 @@
             <label> Tingkat</label>
 
             <div class="radio icheck-info">
-                <input type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
+                <input {{ old('achievement.achievement_level') == "Sekolah" ? 'checked' : '' }} type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
                 <label for="achievementLevel1"> Sekolah </label>
             </div>
             <div class="radio icheck-info">
-                <input type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
+                <input {{ old('achievement.achievement_level') == "Kecamatan" ? 'checked' : '' }} type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
                 <label for="achievementLevel2"> Kecamatan </label>
             </div>
             <div class="radio icheck-info">
-                <input type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
+                <input {{ old('achievement.achievement_level') == "Kabupaten" ? 'checked' : '' }} type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
                 <label for="achievementLevel3"> Kabupaten </label>
             </div>
             <div class="radio icheck-info">
-                <input type="radio" checked="" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
+                <input {{ old('achievement.achievement_level') == "Provinsi" ? 'checked' : '' }} type="radio" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
                 <label for="achievementLevel4"> Provinsi </label>
             </div>
 
             <div class="radio icheck-info">
-                <input type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
+                <input {{ old('achievement.achievement_level') == "Nasional" ? 'checked' : '' }} type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
                 <label for="achievementLevel5"> Nasional </label>
             </div>
 
             <div class="radio icheck-info">
-                <input type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
+                <input {{ old('achievement.achievement_level') == "Internasional" ? 'checked' : '' }} type="radio" id="achievementLevel6" value="Internasional" name="achievement[achievement_level]">
                 <label for="achievementLevel6"> Internasional </label>
             </div>
 
             <div class="radio icheck-info">
-                <input type="radio" checked="" id="achievementLevel7" value="" name="achievement[achievement_level]">
+                <input {{ old('achievement.achievement_level') == "" ? 'checked' : '' }} type="radio"  id="achievementLevel7" value="" name="achievement[achievement_level]">
                 <label for="achievementLevel7"> Tidak ada </label>
             </div>
 
@@ -842,12 +838,12 @@
         <div class="col-sm-4">
             <label>Rekomendasi dari</label>
             <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
-                <option value="" selected=""> Pilih </option>
-                <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
-                <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
-                <option value="Saudara"> Saudara </option>
-                <option value="Tetangga"> Tetangga </option>
-                <option value="Siswa/i Mahaputra"> Siswa/i Mahaputra </option>
+                <option value="" {{ old('other.recomended_from') == "" ? 'selected' : '' }}> Pilih </option>
+                <option value="Iklan"{{ old('other.recomended_from') == "Iklan" ? 'selected' : '' }}> Iklan (Poster, Banner, Dll) </option>
+                <option value="Sosmed"{{ old('other.recomended_from') == "Sosmed" ? 'selected' : '' }}> Sosmed (IG, FB, YT, dll) </option>
+                <option value="Saudara"{{ old('other.recomended_from') == "Saudara" ? 'selected' : '' }}> Saudara </option>
+                <option value="Tetangga"{{ old('other.recomended_from') == "Tetangga" ? 'selected' : '' }}> Tetangga </option>
+                <option value="Siswa/i Mahaputra"{{ old('other.recomended_from') == "Siswa/i Mahaputra" ? 'selected' : '' }}> Siswa/i Mahaputra </option>
             </select>
             @error('')
             <span class="invalid-feedback" role="alert">
@@ -860,9 +856,9 @@
             <label>Jalur  <span style="color:red"> *</span></label>
             <select name="stu_entry_type_id" class="form-control form-control-rounded @error('stu_entry_type_id') is-invalid @enderror" id="basic-select" value="{{ old('stu_entry_type_id') }}">
 
-                <option disabled="" selected=""> Pilih </option>
+                <option disabled="" {{ old('stu_entry_type_id') == "" ? 'selected' : '' }}> Pilih </option>
                 @foreach($entry_types as $entry_type)
-                <option value="{{ $entry_type->ent_id }}">{{ $entry_type->ent_name }}</option>
+                <option {{ old('stu_entry_type_id') == "$entry_type->ent_id" ? 'selected' : '' }} value="{{ $entry_type->ent_id }}">{{ $entry_type->ent_name }}</option>
                 @endforeach
             </select>
 
@@ -872,7 +868,6 @@
             </span>
             @enderror
         </div>
-
     </div>
     <div class="form-footer">
         <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
