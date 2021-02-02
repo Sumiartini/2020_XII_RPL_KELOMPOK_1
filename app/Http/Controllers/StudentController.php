@@ -15,7 +15,7 @@ use App\Mail\AddStudent;
 use Illuminate\Support\Carbon;
 use App\EntryTypes;
 use App\Provinces;
-
+use App\Districts;
 class StudentController extends Controller
 {
     /**
@@ -170,7 +170,13 @@ class StudentController extends Controller
     {
         $student = new students;
         $student = $student->getStudentDetail($studentID);
-        return view('students.detail-student',['student' => $student]);
+        $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+        ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+        ->where('usr_id', $student->usr_id)
+        ->get();
+        return view('students.detail-student',['student' => $student, 'user'=>$user]);
     }
     public function show_prospective($studentID)
     {

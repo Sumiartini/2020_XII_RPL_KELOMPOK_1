@@ -11,515 +11,276 @@ class StudentDetailsSeeder extends Seeder
      */
     public function run()
     {
+      //student pertama
         DB::table('student_details')->insert([
-            'std_id'    => '1',
         	'std_student_id' => '1',
-        	'std_type'  => 'Personal',
+        	'std_type'  => 'personal',
         	'std_key'   => 'birth_certificate_registration_no',
             'std_value' => '1234567899',
-            'std_type'  => 'Personal',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',            
+            'std_type'  => 'personal',
             'std_key'   => 'living_together',
             'std_value' => 'Orang Tua',
-            'std_type'  => 'Personal',
+        ]);
+
+        DB::table('student_details')->insert([
+            'std_student_id' => '1',            
+            'std_type'  => 'personal',
             'std_key'   => 'child',
             'std_value' => '2',
-            'std_type'  => 'Personal',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'personal',
             'std_key'   => 'kip_no',
             'std_value' => '-',
-            'std_type'  => 'Personal',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'personal',
             'std_key'   => 'kip_name',
             'std_value' => '-',
-            'std_type'  => 'Personal',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'personal',
             'std_key'   => 'reason_worth_kip',
             'std_value' => '-',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'father_data',
             'std_key'   => 'name',
             'std_value' => 'Ayahku',
+        ]);
+
+        DB::table('student_details')->insert([      
+            'std_student_id' => '1',
             'std_type'  => 'father_data',
             'std_key'   => 'nik',
             'std_value' => '121212121212',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'father_data',
             'std_key'   => 'year_of_birth',
             'std_value' => '1988-04-06',
+        ]);
+
+        DB::table('student_details')->insert([           
+            'std_student_id' => '1',
             'std_type'  => 'father_data',
             'std_key'   => 'education',
             'std_value' => 'SMA - Sederajat',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'father_data',
             'std_key'   => 'profession',
             'std_value' => 'Wiraswasta',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'father_data',
             'std_key'   => 'monthly_income',
             'std_value' => 'lebih dari Rp. 4.000.000',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'father_data',
+            'std_key'   => 'phone_number',
+            'std_value' => '0829917382910',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'father_data',
             'std_key'   => 'disability',
             'std_value' => 'Tidak',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'mother_data',
             'std_key'   => 'name',
             'std_value' => 'Ibuku',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'mother_data',
             'std_key'   => 'nik',
             'std_value' => '1212122121',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'mother_data',
             'std_key'   => 'year_of_birth',
             'std_value' => '1992-05-08',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'mother_data',
             'std_key'   => 'education',
             'std_value' => 'SMA - Sederajat',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'mother_data',
             'std_key'   => 'profession',
             'std_value' => 'Ibu Rumah Tangga',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'mother_data',
             'std_key'   => 'monthly_income',
             'std_value' => '-',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'mother_data',
+            'std_key'   => 'phone_number',
+            'std_value' => '0828374819208',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'mother_data',
             'std_key'   => 'disability',
             'std_value' => 'Tidak',
+        ]);
+
+        DB::table('student_details')->insert([
+            
+            'std_student_id' => '1',
             'std_type'  => 'guardian_data',
             'std_key'   => 'name',
             'std_value' => '',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'guardian_data',
             'std_key'   => 'nik',
             'std_value' => '',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'guardian_data',
             'std_key'   => 'year_of_birth',
             'std_value' => '',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'guardian_data',
             'std_key'   => 'education',
             'std_value' => '',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'guardian_data',
             'std_key'   => 'profession',
             'std_value' => '',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',            
             'std_type'  => 'guardian_data',
             'std_key'   => 'monthly_income',
             'std_value' => '',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'guardian_data',
+            'std_key'   => 'phone_number',
+            'std_value' => '',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'guardian_data',
             'std_key'   => 'disability',
             'std_value' => '',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'contact',
+            'std_key'   => 'landline_number',
+            'std_value' => '0222138193',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'contact',
+            'std_key'   => 'email',
+            'std_value' => 'ahmad@gmail.com',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'achievement',
             'std_key'   => 'type',
             'std_value' => 'Sports',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'achievement',
             'std_key'   => 'achievement_name',
             'std_value' => 'Juara Lomba Lari',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'achievement',
             'std_key'   => 'achievement_level',
             'std_value' => 'Kabupaten',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'achievement',
             'std_key'   => 'year',
             'std_value' => '2015',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
             'std_type'  => 'achievement',
             'std_key'   => 'organizer',
             'std_value' => '-'
-
         ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'recomended_from',
+            'std_value' => 'Tetangga',
+        ]);
+
         
-        DB::table('student_details')->insert([
-            'std_id'    => '2',
-            'std_student_id' => '2',
-            'std_type'  => 'Personal',
-            'std_key'   => 'birth_certificate_registration_no',
-            'std_value' => '1234567899',
-            'std_type'  => 'Personal',
-            'std_key'   => 'living_together',
-            'std_value' => 'Orang Tua',
-            'std_type'  => 'Personal',
-            'std_key'   => 'child',
-            'std_value' => '2',
-            'std_type'  => 'Personal',
-            'std_key'   => 'kip_no',
-            'std_value' => '-',
-            'std_type'  => 'Personal',
-            'std_key'   => 'kip_name',
-            'std_value' => '-',
-            'std_type'  => 'Personal',
-            'std_key'   => 'reason_worth_kip',
-            'std_value' => '-',
-            'std_type'  => 'father_data',
-            'std_key'   => 'name',
-            'std_value' => 'Ayahku',
-            'std_type'  => 'father_data',
-            'std_key'   => 'nik',
-            'std_value' => '121212121212',
-            'std_type'  => 'father_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '1988-04-06',
-            'std_type'  => 'father_data',
-            'std_key'   => 'education',
-            'std_value' => 'SMA - Sederajat',
-            'std_type'  => 'father_data',
-            'std_key'   => 'profession',
-            'std_value' => 'Wiraswasta',
-            'std_type'  => 'father_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => 'lebih dari Rp. 4.000.000',
-            'std_type'  => 'father_data',
-            'std_key'   => 'disability',
-            'std_value' => 'Tidak',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'name',
-            'std_value' => 'Ibuku',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'nik',
-            'std_value' => '1212122121',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '1992-05-08',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'education',
-            'std_value' => 'SMA - Sederajat',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'profession',
-            'std_value' => 'Ibu Rumah Tangga',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => '-',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'disability',
-            'std_value' => 'Tidak',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'name',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'nik',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'education',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'profession',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'disability',
-            'std_value' => '',
-            'std_type'  => 'achievement',
-            'std_key'   => 'type',
-            'std_value' => 'Sports',
-            'std_type'  => 'achievement',
-            'std_key'   => 'achievement_name',
-            'std_value' => 'Juara Lomba Lari',
-            'std_type'  => 'achievement',
-            'std_key'   => 'achievement_level',
-            'std_value' => 'Kabupaten',
-            'std_type'  => 'achievement',
-            'std_key'   => 'year',
-            'std_value' => '2015',
-            'std_type'  => 'achievement',
-            'std_key'   => 'organizer',
-            'std_value' => '-'
-
-        ]);
-
-        DB::table('student_details')->insert([
-            'std_id'    => '3',
-            'std_student_id' => '3',
-            'std_type'  => 'Personal',
-            'std_key'   => 'birth_certificate_registration_no',
-            'std_value' => '1234567899',
-            'std_type'  => 'Personal',
-            'std_key'   => 'living_together',
-            'std_value' => 'Orang Tua',
-            'std_type'  => 'Personal',
-            'std_key'   => 'child',
-            'std_value' => '2',
-            'std_type'  => 'Personal',
-            'std_key'   => 'kip_no',
-            'std_value' => '-',
-            'std_type'  => 'Personal',
-            'std_key'   => 'kip_name',
-            'std_value' => '-',
-            'std_type'  => 'Personal',
-            'std_key'   => 'reason_worth_kip',
-            'std_value' => '-',
-            'std_type'  => 'father_data',
-            'std_key'   => 'name',
-            'std_value' => 'Ayahku',
-            'std_type'  => 'father_data',
-            'std_key'   => 'nik',
-            'std_value' => '121212121212',
-            'std_type'  => 'father_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '1988-04-06',
-            'std_type'  => 'father_data',
-            'std_key'   => 'education',
-            'std_value' => 'SMA - Sederajat',
-            'std_type'  => 'father_data',
-            'std_key'   => 'profession',
-            'std_value' => 'Wiraswasta',
-            'std_type'  => 'father_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => 'lebih dari Rp. 4.000.000',
-            'std_type'  => 'father_data',
-            'std_key'   => 'disability',
-            'std_value' => 'Tidak',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'name',
-            'std_value' => 'Ibuku',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'nik',
-            'std_value' => '1212122121',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '1992-05-08',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'education',
-            'std_value' => 'SMA - Sederajat',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'profession',
-            'std_value' => 'Ibu Rumah Tangga',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => '-',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'disability',
-            'std_value' => 'Tidak',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'name',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'nik',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'education',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'profession',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'disability',
-            'std_value' => '',
-            'std_type'  => 'achievement',
-            'std_key'   => 'type',
-            'std_value' => 'Sports',
-            'std_type'  => 'achievement',
-            'std_key'   => 'achievement_name',
-            'std_value' => 'Juara Lomba Lari',
-            'std_type'  => 'achievement',
-            'std_key'   => 'achievement_level',
-            'std_value' => 'Kabupaten',
-            'std_type'  => 'achievement',
-            'std_key'   => 'year',
-            'std_value' => '2015',
-            'std_type'  => 'achievement',
-            'std_key'   => 'organizer',
-            'std_value' => '-'
-
-        ]);
-
-        DB::table('student_details')->insert([
-            'std_id'    => '4',
-            'std_student_id' => '4',
-            'std_type'  => 'Personal',
-            'std_key'   => 'birth_certificate_registration_no',
-            'std_value' => '1234567899',
-            'std_type'  => 'Personal',
-            'std_key'   => 'living_together',
-            'std_value' => 'Orang Tua',
-            'std_type'  => 'Personal',
-            'std_key'   => 'child',
-            'std_value' => '2',
-            'std_type'  => 'Personal',
-            'std_key'   => 'kip_no',
-            'std_value' => '-',
-            'std_type'  => 'Personal',
-            'std_key'   => 'kip_name',
-            'std_value' => '-',
-            'std_type'  => 'Personal',
-            'std_key'   => 'reason_worth_kip',
-            'std_value' => '-',
-            'std_type'  => 'father_data',
-            'std_key'   => 'name',
-            'std_value' => 'Ayahku',
-            'std_type'  => 'father_data',
-            'std_key'   => 'nik',
-            'std_value' => '121212121212',
-            'std_type'  => 'father_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '1988-04-06',
-            'std_type'  => 'father_data',
-            'std_key'   => 'education',
-            'std_value' => 'SMA - Sederajat',
-            'std_type'  => 'father_data',
-            'std_key'   => 'profession',
-            'std_value' => 'Wiraswasta',
-            'std_type'  => 'father_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => 'lebih dari Rp. 4.000.000',
-            'std_type'  => 'father_data',
-            'std_key'   => 'disability',
-            'std_value' => 'Tidak',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'name',
-            'std_value' => 'Ibuku',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'nik',
-            'std_value' => '1212122121',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '1992-05-08',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'education',
-            'std_value' => 'SMA - Sederajat',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'profession',
-            'std_value' => 'Ibu Rumah Tangga',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => '-',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'disability',
-            'std_value' => 'Tidak',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'name',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'nik',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'education',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'profession',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'disability',
-            'std_value' => '',
-            'std_type'  => 'achievement',
-            'std_key'   => 'type',
-            'std_value' => 'Sports',
-            'std_type'  => 'achievement',
-            'std_key'   => 'achievement_name',
-            'std_value' => 'Juara Lomba Lari',
-            'std_type'  => 'achievement',
-            'std_key'   => 'achievement_level',
-            'std_value' => 'Kabupaten',
-            'std_type'  => 'achievement',
-            'std_key'   => 'year',
-            'std_value' => '2015',
-            'std_type'  => 'achievement',
-            'std_key'   => 'organizer',
-            'std_value' => '-'
-        ]);
-
-         DB::table('student_details')->insert([
-            'std_id'    => '5',
-            'std_student_id' => '5',
-            'std_type'  => 'Personal',
-            'std_key'   => 'birth_certificate_registration_no',
-            'std_value' => '1234567899',
-            'std_type'  => 'Personal',
-            'std_key'   => 'living_together',
-            'std_value' => 'Orang Tua',
-            'std_type'  => 'Personal',
-            'std_key'   => 'child',
-            'std_value' => '2',
-            'std_type'  => 'Personal',
-            'std_key'   => 'kip_no',
-            'std_value' => '-',
-            'std_type'  => 'Personal',
-            'std_key'   => 'kip_name',
-            'std_value' => '-',
-            'std_type'  => 'Personal',
-            'std_key'   => 'reason_worth_kip',
-            'std_value' => '-',
-            'std_type'  => 'father_data',
-            'std_key'   => 'name',
-            'std_value' => 'Ayahku',
-            'std_type'  => 'father_data',
-            'std_key'   => 'nik',
-            'std_value' => '121212121212',
-            'std_type'  => 'father_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '1988-04-06',
-            'std_type'  => 'father_data',
-            'std_key'   => 'education',
-            'std_value' => 'SMA - Sederajat',
-            'std_type'  => 'father_data',
-            'std_key'   => 'profession',
-            'std_value' => 'Wiraswasta',
-            'std_type'  => 'father_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => 'lebih dari Rp. 4.000.000',
-            'std_type'  => 'father_data',
-            'std_key'   => 'disability',
-            'std_value' => 'Tidak',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'name',
-            'std_value' => 'Ibuku',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'nik',
-            'std_value' => '1212122121',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '1992-05-08',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'education',
-            'std_value' => 'SMA - Sederajat',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'profession',
-            'std_value' => 'Ibu Rumah Tangga',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => '-',
-            'std_type'  => 'mother_data',
-            'std_key'   => 'disability',
-            'std_value' => 'Tidak',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'name',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'nik',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'year_of_birth',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'education',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'profession',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'monthly_income',
-            'std_value' => '',
-            'std_type'  => 'guardian_data',
-            'std_key'   => 'disability',
-            'std_value' => '',
-            'std_type'  => 'achievement',
-            'std_key'   => 'type',
-            'std_value' => 'Sports',
-            'std_type'  => 'achievement',
-            'std_key'   => 'achievement_name',
-            'std_value' => 'Juara Lomba Lari',
-            'std_type'  => 'achievement',
-            'std_key'   => 'achievement_level',
-            'std_value' => 'Kabupaten',
-            'std_type'  => 'achievement',
-            'std_key'   => 'year',
-            'std_value' => '2015',
-            'std_type'  => 'achievement',
-            'std_key'   => 'organizer',
-            'std_value' => '-'
-
-        ]);
-
+        
 
     }
 }

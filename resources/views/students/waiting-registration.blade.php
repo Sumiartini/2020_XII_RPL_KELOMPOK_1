@@ -242,22 +242,24 @@
               <div class="table-responsive">
                <table class=" table table-active">       
                 <tbody>
+                  @foreach($student as $data)
                   <tr class="table-active">
                     <th >Provinsi</th>
                     <td>:</td>
-                    <td>Jawa Barat</td>
+                    <td>{{$data->prv_name}}</td>
                   </tr>
                   <tr>
                     <th scope="row">Kota/Kabupaten</th>
                     <td>:</td>
-                    <td>Bandung</td>
+                    <td>{{$data->cit_name}}</td>
                   </tr>
 
                   <tr class="table-active">
                     <th >Kecamatan</th>
                     <td>:</td>
-                    <td>Katapang</td>
+                    <td>{{$data->dst_name}}</td>
                   </tr>
+                  @endforeach
                   <tr>
                     <th scope="row">Alamat</th>
                     <td>:</td>
