@@ -369,9 +369,10 @@
                                 <label>Pekerjaan<span style="color:red"> *</span></label>
                                 <select name="father_data[profession]" class="form-control form-control-rounded @error('father_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('father_data.profession') }}">
                                     <option disabled="" {{ old('father_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
-                                    <option value="Buruh" {{ old('father_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
-                                    <option value="Wirausaha" {{ old('father_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
-                                    <option value="Wiraswasta" {{ old('father_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
+                                    <option value="Buruh" {{ old('father_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
+                                    <option value="Wirausaha" {{ old('father_data.profession') == "Wirausaha" ? 'selected' : '' }}> Wirausaha </option>
+                                    <option value="Wiraswasta" {{ old('father_data.profession') == "Wiraswasta" ? 'selected' : '' }}> Wiraswasta </option>
+                                    <option value="Ibu Rumah Tangga" {{ old('father_data.profession') == "Ibu Rumah Tangga" ? 'selected' : '' }}> Ibu Rumah Tangga </option>
                                 </select>
                                 @error('father_data.profession')
                                 <span class="invalid-feedback" role="alert">
@@ -486,9 +487,11 @@
                                 <label>Pekerjaan<span style="color:red"> *</span></label>
                                 <select name="mother_data[profession]" class="form-control form-control-rounded @error('mother_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.profession') }}">
                                     <option disabled="" {{ old('mother_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
-                                    <option value="Buruh" {{ old('mother_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
-                                    <option value="Wirausaha" {{ old('mother_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
-                                    <option value="Wiraswasta" {{ old('mother_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
+                                    <option value="Buruh" {{ old('mother_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
+                                    <option value="Wirausaha" {{ old('mother_data.profession') == "Wirausaha" ? 'selected' : '' }}> Wirausaha </option>
+                                    <option value="Wiraswasta" {{ old('mother_data.profession') == "Wiraswasta" ? 'selected' : '' }}> Wiraswasta </option>
+                                    <option value="Ibu Rumah Tangga" {{ old('mother_data.profession') == "Ibu Rumah Tangga" ? 'selected' : '' }}> Ibu Rumah Tangga </option>
+
                                 </select>
                                 @error('mother_data.profession')
                                 <span class="invalid-feedback" role="alert">
@@ -600,9 +603,10 @@
                                 <label>Pekerjaan<span style="color:red"> *</span></label>
                                 <select name="guardian_data[profession]" class="form-control form-control-rounded @error('guardian_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.profession') }}">
                                     <option {{ old('guardian_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
-                                    <option value="Buruh" {{ old('guardian_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
-                                    <option value="Wirausaha" {{ old('guardian_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
-                                    <option value="Wiraswasta" {{ old('guardian_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
+                                    <option value="Buruh" {{ old('guardian_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
+                                    <option value="Wirausaha" {{ old('guardian_data.profession') == "Wirausaha" ? 'selected' : '' }}> Wirausaha </option>
+                                    <option value="Wiraswasta" {{ old('guardian_data.profession') == "Wiraswasta" ? 'selected' : '' }}> Wiraswasta </option>
+                                    <option value="Ibu Rumah Tangga" {{ old('guardian_data.profession') == "Ibu Rumah Tangga" ? 'selected' : '' }}> Ibu Rumah Tangga </option>
                                 </select>
                                 @error('guardian_data.profession')
                                 <span class="invalid-feedback" role="alert">

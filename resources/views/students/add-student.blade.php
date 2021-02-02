@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Nomor Telepon<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
+                            <input  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
                             @error('usr_phone_number')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -338,9 +338,10 @@
                 <label>Pekerjaan<span style="color:red"> *</span></label>
                 <select name="father_data[profession]" class="form-control form-control-rounded @error('father_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('father_data.profession') }}">
                     <option disabled="" {{ old('father_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
-                    <option value="Buruh" {{ old('father_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
-                    <option value="Wirausaha" {{ old('father_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
-                    <option value="Wiraswasta" {{ old('father_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
+                    <option value="Buruh" {{ old('father_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
+                    <option value="Wirausaha" {{ old('father_data.profession') == "Wirausaha" ? 'selected' : '' }}> Wirausaha </option>
+                    <option value="Wiraswasta" {{ old('father_data.profession') == "Wiraswasta" ? 'selected' : '' }}> Wiraswasta </option>
+                     <option value="Ibu Rumah Tangga" {{ old('father_data.profession') == "Ibu Rumah Tangga" ? 'selected' : '' }}> Ibu Rumah Tangga </option>
                 </select>
                 @error('father_data.profession')
                 <span class="invalid-feedback" role="alert">
@@ -365,9 +366,6 @@
         </div>
 
         <div class="form-group row">
-
-
-
             <div class="col-sm-4">
                 <label> Nomor Telepon <span style="color:red"> *</span></label>
                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('father_data.phone_number') }}">
@@ -377,8 +375,6 @@
                 </span>
                 @enderror
             </div>
-
-
             <div class="col-sm-4">
                 <label> Disabilitas <span style="color:red"> *</span></label> <br>
 
@@ -432,7 +428,6 @@
             </div>
         </div>
 
-
        <div class="form-group row">
             <div class="col-sm-4">
                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
@@ -455,9 +450,10 @@
                 <label>Pekerjaan<span style="color:red"> *</span></label>
                 <select name="mother_data[profession]" class="form-control form-control-rounded @error('mother_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.profession') }}">
                     <option disabled="" {{ old('mother_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
-                    <option value="Buruh" {{ old('mother_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
-                    <option value="Wirausaha" {{ old('mother_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
-                    <option value="Wiraswasta" {{ old('mother_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
+                    <option value="Buruh" {{ old('mother_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
+                    <option value="Wirausaha" {{ old('mother_data.profession') == "Wirausaha" ? 'selected' : '' }}> Wirausaha </option>
+                    <option value="Wiraswasta" {{ old('mother_data.profession') == "Wiraswasta" ? 'selected' : '' }}> Wiraswasta </option>
+                     <option value="Ibu Rumah Tangga" {{ old('mother_data.profession') == "Ibu Rumah Tangga" ? 'selected' : '' }}> Ibu Rumah Tangga </option>
                 </select>
                 @error('mother_data.profession')
                 <span class="invalid-feedback" role="alert">
@@ -551,7 +547,7 @@
             <div class="col-sm-4">
                 <label>Pendidikan Terakhir</label>
                 <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data.education') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.education') }}">
-                    <option disabled="" value="" {{ old('guardian_data.education') == "" ? 'selected' : '' }}> Pilih </option>
+                    <option value="" {{ old('guardian_data.education') == "" ? 'selected' : '' }}> Pilih </option>
                     <option value="SD - Sederajat" {{ old('guardian_data.education') == "SD - Sederajat" ? 'selected' : '' }}> SD - Sederajat </option>
                     <option value="SMP - Sederajat" {{ old('guardian_data.education') == "SMP - Sederajat" ? 'selected' : '' }}> SMP - Sederajat </option>
                     <option value="SMA - Sederajat" {{ old('guardian_data.education') == "SMA - Sederajat" ? 'selected' : '' }}> SMA - Sederajat </option>
@@ -568,10 +564,11 @@
             <div class="col-sm-4">
                 <label>Pekerjaan</label>
                 <select name="guardian_data[profession]" class="form-control form-control-rounded @error('guardian_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.profession') }}">
-                    <option disabled="" {{ old('guardian_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
-                    <option value="Buruh" {{ old('guardian_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
-                    <option value="Wirausaha" {{ old('guardian_data.profession') == "Wirausaha" ? 'selected' : '' }} value=""> Wirausaha </option>
-                    <option value="Wiraswasta" {{ old('guardian_data.profession') == "Wiraswasta" ? 'selected' : '' }} value=""> Wiraswasta </option>
+                    <option {{ old('guardian_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
+                    <option value="Buruh" {{ old('guardian_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
+                    <option value="Wirausaha" {{ old('guardian_data.profession') == "Wirausaha" ? 'selected' : '' }}> Wirausaha </option>
+                    <option value="Wiraswasta" {{ old('guardian_data.profession') == "Wiraswasta" ? 'selected' : '' }} > Wiraswasta </option>
+                    <option value="Ibu Rumah Tangga" {{ old('guardian_data.profession') == "Ibu Rumah Tangga" ? 'selected' : '' }}> Ibu Rumah Tangga </option>
                 </select>
                 @error('guardian_data.profession')
                 <span class="invalid-feedback" role="alert">
