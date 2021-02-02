@@ -549,7 +549,7 @@
         </div>
          <div class="form-group row">
             <div class="col-sm-4">
-                <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
+                <label>Pendidikan Terakhir</label>
                 <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data.education') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.education') }}">
                     <option disabled="" value="" {{ old('guardian_data.education') == "" ? 'selected' : '' }}> Pilih </option>
                     <option value="SD - Sederajat" {{ old('guardian_data.education') == "SD - Sederajat" ? 'selected' : '' }}> SD - Sederajat </option>
@@ -566,7 +566,7 @@
             </div>
 
             <div class="col-sm-4">
-                <label>Pekerjaan<span style="color:red"> *</span></label>
+                <label>Pekerjaan</label>
                 <select name="guardian_data[profession]" class="form-control form-control-rounded @error('guardian_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.profession') }}">
                     <option disabled="" {{ old('guardian_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
                     <option value="Buruh" {{ old('guardian_data.profession') == "Buruh" ? 'selected' : '' }} value=""> Buruh </option>
