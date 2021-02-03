@@ -712,7 +712,7 @@ footer{
         <div class="row justify-content-center">
             <div class="col-lg-3 justify-content-center d-flex">
                  <figure class="figure ">
-                  <img src="assets/images/img1.png" class="figure-img img-fluid rounded-circle ahmad " alt="">
+                  <img src="assets/images/team/amad.png" class="figure-img img-fluid rounded-circle ahmad " alt="">
                   <figcaption class="figure-caption">
                     <h5>Ahmad Suherman</h5>
                     <p class="t"> XII RPL1</p>
@@ -722,7 +722,7 @@ footer{
             </div>
             <div class="col-lg-3 justify-content-center d-flex">
                  <figure class="figure">
-                  <img src="assets/images/img1.png" class="figure-img img-fluid rounded-circle rendy " alt="">
+                  <img src="assets/images/team/ren.png" class="figure-img img-fluid rounded-circle rendy " alt="">
                   <figcaption class="figure-caption">
                     <h5>Rendy Joshua Hutagaol</h5>
                     <p class="t"> XII RPL1</p>
@@ -734,7 +734,7 @@ footer{
          <div class="row justify-content-center">
             <div class="col-lg-3 justify-content-center d-flex">
                 <figure class="figure">
-                  <img src="assets/images/img1.png" class="figure-img img-fluid rounded-circle dede" alt="">
+                  <img src="assets/images/team/des.png" class="figure-img img-fluid rounded-circle dede" alt="">
                   <figcaption class="figure-caption">
                     <h5>Dede Suminar</h5>
                     <p class="pde t"> XII RPL1</p>
@@ -744,7 +744,7 @@ footer{
             </div>
             <div class="col-lg-3 justify-content-center d-flex">
                  <figure class="figure">
-                  <img src="assets/images/img2.png" class="figure-img img-fluid rounded-circle elsa" alt="">
+                  <img src="assets/images/team/el.png" class="figure-img img-fluid rounded-circle elsa" alt="">
                   <figcaption class="figure-caption">
                     <h5>Elsa Susilawati</h5>
                     <p class="psa t"> XII RPL2</p>
@@ -754,7 +754,7 @@ footer{
             </div>
             <div class="col-lg-3 justify-content-center d-flex">   
                  <figure class="figure">
-                  <img src="assets/images/img1.png" class="figure-img img-fluid rounded-circle sumi" alt="">
+                  <img src="assets/images/team/sum.png" class="figure-img img-fluid rounded-circle sumi" alt="">
                   <figcaption class="figure-caption">
                     <h5>Sumiartini Sri Rahayu</h5>
                     <p class="t"> XII RPL2</p>
