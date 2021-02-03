@@ -52,6 +52,11 @@
           margin-right:40px;
           margin-left:40px;
         }
+        .profile{
+            object-fit: cover;
+            width: 200px;
+            height: 200px;
+        }
         h4, h5{
           font-size: 18px;
         }
@@ -68,6 +73,16 @@
         }
 
         }
+
+        /* Untuk Smartphone */
+        @media all and (max-width: 670px) {
+          .profile{
+              object-fit: cover;
+              width: 145px;
+              height: 140px;
+          }
+        }
+
     </style>
 </head>
 
@@ -232,15 +247,22 @@
                     <td>:</td>
                     <td>{{ $student_prospective->other['recomended_from'] }}</td>
                   </tr>
+
+                  <tr>
+                    <th scope="row">
+                      Foto Calon siswa</th>
+                    <td>:</td>
+                    <td><img src="{{ url('users_profile/'.$student_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/></td>
+
+                  </tr>
                 </tbody>
               </table>
             </div>
             </div>
-
             <div class="card-body">
               <h5 class="card-title">Data Persuratan</h5>
               <div class="table-responsive">
-               <table class=" table table-active">       
+               <table class="table table-active">       
                 <tbody>
                   @foreach($student as $data)
                   <tr class="table-active">
