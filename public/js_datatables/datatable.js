@@ -58,6 +58,67 @@ function student() {
     });
 }
 
+function studentUsers() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'student',
+      lengthChange: true,
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'stu_candidate_name', 
+                name:'stu_candidate_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stu_nis', 
+                name:'stu_nis', 
+                orderable: false, 
+                searchable: true
+            },
+            {
+                data: 'usr_is_active', 
+                name:'usr_is_active', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar Siswa tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar Siswa",
+            "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+            "lengthMenu": "Tampilkan _MENU_ Halaman",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
+
 function studentProspective() {
     $('#example').DataTable({
       processing: true,
