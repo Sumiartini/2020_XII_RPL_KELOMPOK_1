@@ -16,6 +16,7 @@ use Illuminate\Support\Carbon;
 use App\EntryTypes;
 use App\Provinces;
 use App\Districts;
+
 class StudentController extends Controller
 {
     /**
@@ -36,11 +37,11 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {         
+    {
         $majors = Majors::where('mjr_is_active', true)->get();
         $entry_types = EntryTypes::get();
         $province = Provinces::select('prv_id', 'prv_name')->get();
-        return view('students.add-student',['majors' => $majors, 'entry_types'  => $entry_types, 'province' => $province]);
+        return view('students.add-student', ['majors' => $majors, 'entry_types'  => $entry_types, 'province' => $province]);
     }
 
     /**
@@ -54,7 +55,7 @@ class StudentController extends Controller
         // dd($request);
         $requests = $request->input();
         $messages = [
-            'required'  =>'Kolom wajib diisi',
+            'required'  => 'Kolom wajib diisi',
             'unique'    => 'Kolom yang digunakan telah terdaftar',
             'mimes'     => 'Foto tidak support, ukuran max 2 MB',
         ];
@@ -96,7 +97,7 @@ class StudentController extends Controller
             'usr_rural_name'                => 'required',
             'usr_postal_code'               => 'required',
             'contact.email'                 => 'required',
-            
+
         ], $messages);
 
         $user                       = new User;
@@ -134,13 +135,13 @@ class StudentController extends Controller
             $student                       = new Students;
             $student->stu_candidate_name   = $request->stu_candidate_name;
             $student->stu_user_id          = $user->usr_id;
-            $student->stu_entry_type_id    = $request->entry_type_id;
-            $student->stu_school_year_id   = 5; 
+            $student->stu_entry_type_id    = $request->stu_entry_type_id;
+            $student->stu_school_year_id   = 5;
             $student->stu_nisn             = $request->stu_nisn;
             $student->stu_school_origin    = $request->stu_school_origin;
             $student->stu_major_id         = $request->stu_major_id;
             $student->stu_registration_status   = 1;
-            $student->stu_created_by = Auth()->user()->id;
+            $student->stu_created_by = Auth()->user()->usr_id;
 
             if ($student->save()) {
                 foreach ($requests as $key => $requestData) {
@@ -153,17 +154,16 @@ class StudentController extends Controller
                             $studentDetail->std_value      = $requestValue;
                             $studentDetail->std_created_by = Auth()->user()->usr_id;
                             $studentDetailSave              = $studentDetail->save();
-                        }   
+                        }
                     }
                 }
-
-            } else{
+            } else {
                 dd('gagal student ');
             }
         } else {
             dd('gagal user');
         }
-        return redirect ('/students')->with('success', 'Data berhasil ditambahkan');  
+        return redirect('/students')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function show_student($studentID)
@@ -171,26 +171,26 @@ class StudentController extends Controller
         $student = new students;
         $student = $student->getStudentDetail($studentID);
         $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
-        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
-        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
-        ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
-        ->where('usr_id', $student->usr_id)
-        ->get();
-        return view('students.detail-student',['student' => $student, 'user'=>$user]);
+            ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+            ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+            ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+            ->where('usr_id', $student->usr_id)
+            ->get();
+        return view('students.detail-student', ['student' => $student, 'user' => $user]);
     }
     public function show_prospective($studentID)
     {
         $student_prospective = new Students;
-        $student_prospective = $student_prospective->getStudentProsvectiveDetail($studentID);   
+        $student_prospective = $student_prospective->getStudentProsvectiveDetail($studentID);
         //dd($student_prospective);
-        return view('students.detail-student-prospective',['student_prospective' => $student_prospective]);
+        return view('students.detail-student-prospective', ['student_prospective' => $student_prospective]);
     }
     public function show_rejected($studentID)
     {
         $student_rejected = new Students;
-        $student_rejected = $student_rejected->getStudentRejectedDetail($studentID);   
+        $student_rejected = $student_rejected->getStudentRejectedDetail($studentID);
         // dd($student_rejected);
-        return view('students.detail-student-rejected',['student_rejected' => $student_rejected]);
+        return view('students.detail-student-rejected', ['student_rejected' => $student_rejected]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -200,13 +200,13 @@ class StudentController extends Controller
      */
     public function edit($studentID)
     {
-        $entry_types = EntryTypes::select('ent_id','ent_name')->get();
+        $entry_types = EntryTypes::select('ent_id', 'ent_name')->get();
         $majors      = Majors::where('mjr_is_active', '1')->get();
         $student = new Students;
-        $student_edit = $student->getStudentEdit($studentID);        
-        $province = Provinces::select('prv_id', 'prv_name')->get();   
-        
-        return view('students.edit-student',['student_edit' => $student_edit, 'province' => $province, 'entry_types' => $entry_types, 'majors' => $majors]);
+        $student_edit = $student->getStudentEdit($studentID);
+        $province = Provinces::select('prv_id', 'prv_name')->get();
+
+        return view('students.edit-student', ['student_edit' => $student_edit, 'province' => $province, 'entry_types' => $entry_types, 'majors' => $majors]);
     }
 
     /**
@@ -221,7 +221,7 @@ class StudentController extends Controller
         // dd($request);
         $requests = $request->input();
 
-        $student                        = Students::where('stu_id',$studentID)->first();
+        $student                        = Students::where('stu_id', $studentID)->first();
         $student->stu_candidate_name    = $request->stu_candidate_name;
         $student->stu_nisn              = $request->stu_nisn;
         $student->stu_school_origin     = $request->stu_school_origin;
@@ -253,13 +253,13 @@ class StudentController extends Controller
             $files->move($path, $files_name);
             $user->usr_profile_picture = $files_name;
         }
-        if($user->update()){
+        if ($user->update()) {
             foreach ($requests as $type => $requestData) {
                 if (is_array($requestData)) {
                     foreach ($requestData as $requestKey => $requestValue) {
                         $studentDetail = StudentDetails::where('std_student_id', $student->stu_id)
-                        ->where('std_type', $type)
-                        ->where('std_key', $requestKey)->first();
+                            ->where('std_type', $type)
+                            ->where('std_key', $requestKey)->first();
 
                         $studentDetail->std_value       = $requestValue;
                         $studentDetail->std_updated_by  = Auth()->user()->usr_id;
@@ -269,9 +269,8 @@ class StudentController extends Controller
             }
         }
 
-        return redirect('student/'.$studentID)->with('success', 'Data berhasil diubah');
-
-    }       
+        return redirect('student/' . $studentID)->with('success', 'Data berhasil diubah');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -280,20 +279,20 @@ class StudentController extends Controller
      */
     public function destroy(Request $request)
     {
-        if($request->ajax()) {
+        if ($request->ajax()) {
             User::findOrFail($request->studentID)->delete();
-            return $this->getResponse(true,200,'','Student berhasil dihapus');
+            return $this->getResponse(true, 200, '', 'Student berhasil dihapus');
         }
     }
     public function formRegistrasion()
-    {   
+    {
         $user = Auth::user();
 
-        if ($user->usr_is_regist == 0 && $user->hasRole('student')) {            
+        if ($user->usr_is_regist == 0 && $user->hasRole('student')) {
             $majors = Majors::where('mjr_is_active', true)->get();
             $province = Provinces::select('prv_id', 'prv_name')->get();
-            return view('students.registration-student',['majors' => $majors, 'province' => $province]);
-        }else{
+            return view('students.registration-student', ['majors' => $majors, 'province' => $province]);
+        } else {
             return redirect('/pending-verification');
         }
     }
@@ -302,7 +301,7 @@ class StudentController extends Controller
     {
         $requests = $request->input();
         $messages = [
-            'required'  =>'Kolom wajib diisi',
+            'required'  => 'Kolom wajib diisi',
             'unique'    => 'Kolom yang digunakan telah terdaftar',
             'mimes'     => 'Foto tidak support, ukuran max 2 MB'
         ];
@@ -341,11 +340,11 @@ class StudentController extends Controller
             'usr_rural_name'                => 'required',
             'usr_postal_code'               => 'required',
             'contact.email'                 => 'required',
-            
+
         ], $messages);
 
         $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-        -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
+            ->where('students.stu_user_id', Auth::user()->usr_id)->first();
         $user = Auth()->user();
         // dd($user->usr_gender);
         $user->usr_gender           = $request->usr_gender;
@@ -372,7 +371,7 @@ class StudentController extends Controller
             $student->stu_candidate_name   = $request->stu_candidate_name;
             $student->stu_user_id          = $user->usr_id;
             $student->stu_entry_type_id    = 1;
-            $student->stu_school_year_id   = 5; 
+            $student->stu_school_year_id   = 5;
             $student->stu_nisn             = $request->stu_nisn;
             $student->stu_school_origin    = $request->stu_school_origin;
             $student->stu_major_id         = $request->stu_major_id;
@@ -390,17 +389,16 @@ class StudentController extends Controller
                             $studentDetail->std_value      = $requestValue;
                             $studentDetail->std_created_by = $user->usr_id;
                             $studentDetailSave              = $studentDetail->save();
-                        }   
+                        }
                     }
                 }
-
-            } else{
+            } else {
                 dd('gagal student ');
             }
         } else {
             dd('gagal user');
         }
-        return redirect ('/pending-verification/'.$student->stu_id);   
+        return redirect('/pending-verification/' . $student->stu_id);
     }
 
     public function receipted($stu_id)
@@ -415,7 +413,7 @@ class StudentController extends Controller
     {
         $student = Students::findOrFail($stu_id);
         $user = User::where('usr_id', $student->stu_user_id)->first();
-        
+
         $user->usr_is_active = '0';
         $user->update();
 
@@ -423,14 +421,13 @@ class StudentController extends Controller
         $student->update();
 
         return back()->with('success', 'Siswa berhasil ditolak');
-
     }
 
     public function restore($stu_id)
     {
         $student = Students::findOrFail($stu_id);
         $user = User::where('usr_id', $student->stu_user_id)->first();
-        
+
         $user->usr_is_active = '1';
         $user->update();
 
@@ -438,6 +435,5 @@ class StudentController extends Controller
         $student->update();
 
         return back()->with('success', 'Siswa berhasil dikembalikan menjadi calon siswa');
-
     }
 }
