@@ -140,7 +140,7 @@ class StudentController extends Controller
             $student->stu_school_origin    = $request->stu_school_origin;
             $student->stu_major_id         = $request->stu_major_id;
             $student->stu_registration_status   = 1;
-            $student->stu_created_by = Auth()->user()->id;
+            $student->stu_created_by = Auth()->user()->usr_id;
 
             if ($student->save()) {
                 foreach ($requests as $key => $requestData) {
@@ -204,9 +204,15 @@ class StudentController extends Controller
         $majors      = Majors::where('mjr_is_active', '1')->get();
         $student = new Students;
         $student_edit = $student->getStudentEdit($studentID);        
-        $province = Provinces::select('prv_id', 'prv_name')->get();   
+        $province = Provinces::select('prv_id', 'prv_name')->get();
+        $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+        ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+        ->where('usr_id', $student_edit->usr_id)
+        ->get();   
         
-        return view('students.edit-student',['student_edit' => $student_edit, 'province' => $province, 'entry_types' => $entry_types, 'majors' => $majors]);
+        return view('students.edit-student',['student_edit' => $student_edit, 'province' => $province, 'entry_types' => $entry_types, 'majors' => $majors, 'user' => $user]);
     }
 
     /**

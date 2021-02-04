@@ -492,12 +492,12 @@
                         Data Persuratan
                     </h4>
 
+                    @foreach($user as $user)
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label> Provinsi <span style="color:red"> *</span></label>
-
                             <select name="prv_name" class="form-control form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
-                                <option disabled checked="true" selected="true"> Pilih Provinsi </option>
+                                <option checked="true" selected="true" value="{{$user->prv_id}}"> {{$user->prv_name}} </option>
                                 @foreach($province as $data)
                                 <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
                                 @endforeach
@@ -513,7 +513,7 @@
                             <label> Kabupaten/Kota <span style="color:red"> *</span></label>
 
                             <select name="cit_name" class="form-control form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
-                                <option disabled checked="true" selected="true"> Pilih Kabupaten/Kota </option>
+                                <option checked="true" selected="true" value="{{$user->cit_id}}"> {{$user->cit_name}} </option>
                             </select>
                             @error('cit_name')
                             <span class="invalid-feedback" role="alert">
@@ -526,7 +526,7 @@
                             <label> Kecamatan <span style="color:red"> *</span></label>
 
                             <select name="dst_name" class="form-control form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
-                                <option disabled checked="true" selected="true"> Pilih Kecamatan </option>
+                                <option checked="true" selected="true" value="{{$user->dst_id}}"> {{$user->dst_name}} </option>
                             </select>
                             @error('dst_name')
                             <span class="invalid-feedback" role="alert">
@@ -535,6 +535,7 @@
                             @enderror
                         </div>
                     </div>
+                    @endforeach
 
                     <div class="form-group row">
 
