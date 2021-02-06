@@ -31,7 +31,7 @@ class Students extends Model
             ->join('entry_types', 'students.stu_entry_type_id', '=', 'entry_types.ent_id')
             ->where('stu_id', $studentID)->firstOrFail();
 
-        $student_details = StudentDetails::where('std_student_id', $students->stu_id)->get();
+        $student_details = StudentDetails::where('std_student_id', $students->stu_id)->where('std_deleted_at', null)->get();
         $student_details = mappingData($student_details, $students);
 
         return $student_details;

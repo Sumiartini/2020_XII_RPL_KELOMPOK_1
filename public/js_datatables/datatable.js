@@ -109,7 +109,7 @@ function studentUsers() {
             "infoEmpty": "Tidak ada daftar Siswa",
             "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
             "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
-            "lengthMenu": "Tampilkan _MENU_ Halaman",
+            "lengthMenu": "Tampilkan _MENU_ data",
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"

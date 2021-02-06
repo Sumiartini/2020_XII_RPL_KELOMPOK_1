@@ -19,7 +19,7 @@ class CreateTeachersTable extends Migration
             $table->foreign('tcr_user_id')->references('usr_id')->on('users');
             $table->string('tcr_gtk')->nullable();
             $table->string('tcr_nuptk')->nullable();
-            $table->string('tcr_entry_year');
+            $table->string('tcr_entry_year')->nullable();
             $table->tinyInteger('tcr_registration_status');
 
             $table->bigInteger('tcr_created_by')->unsigned()->nullable();

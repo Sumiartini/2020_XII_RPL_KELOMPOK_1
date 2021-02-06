@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Students;
+use App\Teachers;
+use App\Staffs;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -108,19 +110,27 @@ class RegisterController extends Controller
             'usr_is_active' => true,
             'usr_is_regist' => false,
             
-        ]);
-        $student = Students::create([
-            'stu_registration_status' => false,
-            'stu_user_id'             => $user->usr_id,
-        ]);
+        ]);            
 
         if ($data['role'] == 1) {
+            $student = Students::create([
+                'stu_registration_status' => false,
+                'stu_user_id'             => $user->usr_id,
+            ]);
             $user->assignRole('student');
             $user->created_by = $user->usr_id;
         } elseif ($data['role'] == 2) {
+            $teacher = Teachers::create([
+                'tcr_registration_status' => false,
+                'tcr_user_id'             => $user->usr_id,
+            ]);
             $user->assignRole('teacher');
             $user->created_by = $user->usr_id;
         } elseif ($data['role'] == 3) {
+            $staff = Staffs::create([
+                'stf_registration_status' => false,
+                'stf_user_id'             => $user->usr_id,
+            ]);
             $user->assignRole('staff');
             $user->created_by = $user->usr_id;
         }

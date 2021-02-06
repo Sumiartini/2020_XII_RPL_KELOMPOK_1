@@ -137,7 +137,7 @@
                             <td>:</td>
                             <td>{{ date('d M Y', strtotime($student->usr_date_of_birth )) }}</td>
                         </tr>
-
+                        @if(isset($student->personal['birth_certificate_registration_no']))
                         <tr>
                             <th>No Registrasi Akta Lahir</th>
                             <td>:</td>
@@ -147,7 +147,7 @@
                             <td>:</td>
                             <td>{{ $student->personal['living_together'] }}</td>
                         </tr>
-
+                        @endif
                         <tr>
                             <th>Jurusan yang diminati</th>
                             <td>:</td>
