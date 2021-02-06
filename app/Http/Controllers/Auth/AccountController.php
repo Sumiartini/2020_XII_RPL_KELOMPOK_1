@@ -84,6 +84,9 @@ class AccountController extends Controller
     public function verifyForgotToken($resetVerificationToken)
     {
         $resetPassword = DB::table('password_resets')->where('pwr_token', $resetVerificationToken)->first();
+        if (!$resetPassword) {
+            return redirect('account/forgot-password')->with(['errors', 'Maaf alamat link sudah digunakan']);
+        }
         return view('auth.reset-password', compact('resetPassword'));
     }
 

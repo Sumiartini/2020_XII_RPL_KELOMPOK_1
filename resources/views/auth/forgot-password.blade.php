@@ -72,7 +72,7 @@
             @enderror
           </div>
         </div>
-        <button id="btnSubmit" type="submit" class="btn btn-primary shadow-primary btn-round btn-block waves-effect waves-light">Kirim Tautan Kirim Ulang Kata Sandi</button>
+        <button id="btnSubmit" type="submit" class="btn btn-primary shadow-primary btn-round btn-block waves-effect waves-light">Kirim Tautan Ulang Kata Sandi</button>
         <div class="text-center pt-3">
           <hr>
           <p class="text-muted">Kembali Ke <a href="{{ route('login') }}"> Log In</a></p>
