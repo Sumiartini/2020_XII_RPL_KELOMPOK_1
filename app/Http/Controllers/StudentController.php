@@ -104,7 +104,10 @@ class StudentController extends Controller
         $user->usr_name             = $request->usr_name;
         $user->usr_email            = $request->usr_email;
         $user->usr_phone_number     = $request->usr_phone_number;
-        $user->usr_password         = Hash::make('qwerty123');
+        $rand_string                = substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'), 0, 6);
+        $rand_int                   = substr(str_shuffle('0123456789'), 0, 4);
+        $rand_password              = $rand_string . $rand_int;
+        $user->usr_password         = Hash::make($rand_password);
         $user->usr_gender           = $request->usr_gender;
         $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
@@ -121,7 +124,7 @@ class StudentController extends Controller
         $user->usr_email_verified_at = now();
         $user->usr_created_by       = Auth()->user()->usr_id;
         $user->assignRole('student');
-        Mail::to($user['usr_email'])->send(new AddStudent($user));
+        Mail::to($user['usr_email'])->send(new AddStudent($user,$rand_password));
 
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');
@@ -383,7 +386,7 @@ class StudentController extends Controller
             $student->stu_school_origin    = $request->stu_school_origin;
             $student->stu_major_id         = $request->stu_major_id;
             $student->stu_registration_status   = "0";
-            $student->stu_created_by = Auth()->user()->id;
+            $student->stu_created_by = Auth()->user()->usr_id;
 
             if ($student->update()) {
                 foreach ($requests as $key => $requestData) {

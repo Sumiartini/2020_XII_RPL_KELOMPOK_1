@@ -30,8 +30,9 @@ class ForgotPassword extends Mailable
      */
     public function build(Request $request)
     {
+        $subject = 'Setel Ulang Kata Sandi';
         $users = User::whereUsrEmail($request->usr_email)->first();
         $resetPassword = DB::table('password_resets')->where('pwr_email', $request->usr_email)->first();
-        return $this->view('email-password', compact('resetPassword', 'users'));
+        return $this->view('email.email-password', compact('resetPassword', 'users'))->subject($subject);
     }
 }

@@ -16,9 +16,10 @@ class AddStudent extends Mailable
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $rand_password)
     {
         $this->user = $user;
+        $this->rand_password = $rand_password;
     }
 
     /**
@@ -34,7 +35,8 @@ class AddStudent extends Mailable
                     ->subject($subject)
                     ->with(
                         [
-                            'user' => $this->user
+                            'user' => $this->user,
+                            'rand_password'  => $this->rand_password
                         ]
                     );
             }
