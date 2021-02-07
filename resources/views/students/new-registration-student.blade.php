@@ -264,8 +264,8 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> NPSN <span style="color:red"> *</span></label>
-                                <input type="text" name="personal[npsn]" class="form-control form-control-rounded @error('personal.npsn') is-invalid @enderror" id="basic-select" placeholder="Masukan NPSN" value="{{ old('personal.npsn') }}">
-                                @error('personal.npsn')
+                                <input type="text" name="school_origin[npsn]" class="form-control form-control-rounded @error('school_origin.npsn') is-invalid @enderror" id="basic-select" placeholder="Masukan NPSN" value="{{ old('school_origin.npsn') }}">
+                                @error('school_origin.npsn')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -399,10 +399,10 @@
 
                         <div class="col-sm-4">
                             <label> Status Tempat Tinggal <span style="color:red"> *</span> </label>
-                            <select class="form-control form-control-rounded @error('') is-invalid @enderror" name="" id="basic-select" value="">
-                                <option > Pilih </option>
-                                <option value=""> Milik Pribadi </option>
-                                <option value=""> Ngontrak/Sewa </option>
+                            <select class="form-control form-control-rounded @error('') is-invalid @enderror" name="personal[status_of_residence]" id="basic-select" value="{{ old('personal.status_of_residence') }}">
+                                <option disabled=""  {{ old('personal.status_of_residence') == "" ? 'selected' : '' }}> Pilih </option>
+                                <option  {{ old('personal.status_of_residence') == "Milik Pribadi" ? 'selected' : '' }} value="Milik Sendiri"> Milik Pribadi </option>
+                                <option  {{ old('personal.status_of_residence') == "Sewa" ? 'selected' : '' }} value="Sewa"> Sewa </option>
                             </select>
                             @error('')
                             <span class="invalid-feedback" role="alert">
@@ -447,8 +447,8 @@
 
                             <div class="col-sm-4">
                                 <label> Nama Ayah <span style="color:red"> *</span></label>
-                                <input type="text" name="father_data[name]" class="form-control form-control-rounded @error('father_data.name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.name') }}">
-                                @error('father_data.name')
+                                <input type="text" name="father_data[father_name]" class="form-control form-control-rounded @error('father_data.father_name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.father_name') }}">
+                                @error('father_data.father_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -466,15 +466,15 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label> Upload Surat Tanda Kelulusan SMP dilegalisir <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[certificate_of_graduation]">
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Ijazah SMP/MTs dilegalisir <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[junior_high_school_diploma]">
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Ijazah SD/Mi dilegalisir <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[elementary_school_diploma]">
                         </div>
                     </div>
 
@@ -482,15 +482,15 @@
                     <div class="row" style="margin-top: 40px;">
                         <div class="col-sm-4">
                             <label> Upload Akte Kelahiran <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[birth certificate]">
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Kartu Keluarga <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[family_card]">
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Keterangan Domisili</label>
-                            <input type="file" name="">
+                            <input type="file" name="other[domicile_statement]">
                             <p style="font-size: 12px;">(Apabila tempat tinggal tidak sesuai dengan kartu keluarga)</p>
                         </div>
                     </div>
@@ -498,15 +498,15 @@
                     <div class="row" style="margin-top: 20px;">
                         <div class="col-sm-4">
                             <label> Upload KTP Ayah <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[id_card_father]">
                         </div>
                         <div class="col-sm-4">
                             <label> Upload KTP Ibu <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[id_card_mother]">
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Surat Kesehatan Badan </label>
-                            <input type="file" name="">
+                            <input type="file" name="other[health_certificate]">
                             <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
                         </div>
 
@@ -515,17 +515,17 @@
                     <div class="row" style="margin-top: 30px;">
                         <div class="col-sm-4">
                             <label> Upload Surat Kesehatan Mata </label>
-                            <input type="file" name="">
+                            <input type="file" name="other[eye_health_letter]">
                             <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Kartu PIP/KIP/Keterangan Kematian </label>
-                            <input type="file" name="">
+                            <input type="file" name="other[card]">
                             <p style="font-size: 12px;">(Apabila ada)</p>
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Sertifikat/Piagam Penghargaan </label>
-                            <input type="file" name="">
+                            <input type="file" name="other[certificate]">
                             <p style="font-size: 12px;">(Apabila ada)</p>
                         </div>
                     </div>
