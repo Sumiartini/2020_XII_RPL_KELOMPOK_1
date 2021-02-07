@@ -441,8 +441,8 @@
 
                             <div class="col sm-4">
                                 <label>Nama Pekerjaan <span style="color:red;">*</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('') is-invalid @enderror" id="input-10" name="" placeholder="Masukan Nama Pekerjaan">    
-                            @error('')
+                                <input type="text" class="form-control form-control-rounded @error('history_job[name]') is-invalid @enderror" id="input-10" name="history_job[name]" placeholder="Masukan Nama Pekerjaan">    
+                            @error('history_job[name]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -451,8 +451,8 @@
 
                             <div class="col sm-4">
                                 <label>Dari tahun/sampai <span style="color:red;">*</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('') is-invalid @enderror" id="input-10" name="" placeholder="Masukan Tahun">    
-                            @error('')
+                                <input type="text" class="form-control form-control-rounded @error('history_job[lenght_of_work]') is-invalid @enderror" id="input-10" name="history_job[lenght_of_work]" placeholder="Masukan Tahun">    
+                            @error('history_job[lenght_of_work]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -469,8 +469,8 @@
 
                              <div class="col sm-4">
                                  <label>Nama Keahlian <span style="color:red;">*</span></label>
-                                 <input type="text" class="form-control form-control-rounded @error('') is-invalid @enderror" id="input-10" name="" placeholder="Masukan Nama Keahlian">                                        
-                             @error('')
+                                 <input type="text" class="form-control form-control-rounded @error('expertise[name]') is-invalid @enderror" id="input-10" name="expertise[name]" placeholder="Masukan Nama Keahlian">                                        
+                             @error('expertise[name]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -479,8 +479,8 @@
 
                              <div class="col sm-4">
                                  <label>Nama Istansi/Lembaga <span style="color:red;">*</span></label>
-                                 <input type="text" class="form-control form-control-rounded @error('') is-invalid @enderror" id="input-10" name="" placeholder="Masukan Nama Istansi/Lembaga">                                        
-                             @error('')
+                                 <input type="text" class="form-control form-control-rounded @error('expertise[name_of_agency]') is-invalid @enderror" id="input-10" name="expertise[name_of_agency]" placeholder="Masukan Nama Istansi/Lembaga">                                        
+                             @error('expertise[name_of_agency]')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -496,31 +496,31 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label> Upload Kartu Tanda Penduduk (KTP) <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[identity_card]">
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Kartu Keluarga <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[family_card]">
                         </div>
                         <div class="col-sm-4">
                             <label> Upload Ijazah SMA/SMK dilegalisir <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[senior_high_school_diploma]">
                         </div>
                     </div>
 
                     <div class="row">     
                         <div class="col-sm-4">
                             <label> Upload Curriculum vitae (CV) <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[curriculum_vitae]">
                         </div>
                         
                         <div class="col-sm-4">
                             <label> Upload Surat Lamaran <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[application_letter]">
                         </div>
                          <div class="col-sm-4">
                             <label> Upload Resume <span style="color:red"> *</span></label>
-                            <input type="file" name="">
+                            <input type="file" name="other[resume]">
                         </div>
                     </div>
 
