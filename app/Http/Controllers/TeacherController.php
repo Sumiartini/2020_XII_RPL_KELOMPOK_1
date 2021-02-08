@@ -37,8 +37,8 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-    }
+        //dd($request);
+           }
 
     /**
      * Display the specified resource.
@@ -105,6 +105,31 @@ class TeacherController extends Controller
     }
     public function storeFormRegistrasion(Request $request)
     {
-        dd($request, "MASUK KE HALAMAN MENUNGGU KEPUTUSAN DAN INFO PEMBAYARAN");
+        //dd($request, "MASUK KE HALAMAN MENUNGGU KEPUTUSAN DAN INFO PEMBAYARAN");
+        $requests = $request->input();
+        $messages = [
+            'required'  => 'Kolom wajib diisi',
+            'unique'    => 'Kolom yang digunakan telah terdaftar',
+        ];
+        $request->validate([
+            'usr_name'                                     => 'required',
+            'usr_nik'                                      => 'required',
+            'usr_place_of_birth'                           => 'required',
+            'usr_date_of_birth'                            => 'required',
+            'usr_religion'                                 => 'required',
+            'prv_name'                                     => 'required',
+            'cit_name'                                     => 'required',
+            'dst_name'                                     => 'required',
+            'usr_address'                                  => 'required',
+            'usr_rt'                                       => 'required',
+            'usr_rw'                                       => 'required',
+            'usr_rural_name'                               => 'required',
+            'usr_postal_code'                              => 'required',
+            'educational_background.year_grade_school'     => 'required',
+            'educational_background.grade_school'          => 'required',
+            
+         ], $messages);
+        return redirect('test');
+
     }
 }

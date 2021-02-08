@@ -142,6 +142,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
+                                <p style="font-size: 12px;">Boleh di isi boleh tidak</p>
                                 </div>
 
                             </div>
@@ -279,7 +280,7 @@
                             </div>
                             <div class="col-sm-4">
                              <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
+                             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelurahan" value="{{ old('usr_rural_name') }}">
                              @error('usr_rural_name')
                              <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -518,7 +519,7 @@
                             <label> Upload Surat Lamaran <span style="color:red"> *</span></label>
                             <input type="file" name="other[application_letter]">
                         </div>
-                         <div class="col-sm-4">
+                         <div class="col-sm-3">
                             <label> Upload Resume <span style="color:red"> *</span></label>
                             <input type="file" name="other[resume]">
                         </div>
@@ -544,7 +545,7 @@
 
                             <div class="form-footer">
                                 <button type="reset" class="btn btn-danger"><i class="fa fa-check-square-o"></i> BATAL</button>
-                                <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> sIMPAn</button>
+                                <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
                             </div>
 
                         </form>
