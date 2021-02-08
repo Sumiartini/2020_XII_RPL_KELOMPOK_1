@@ -13,13 +13,13 @@
 
       <li class="nav-item">
         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-          <span class="user-profile"><img src="{{ asset('assets/images/avatars/avatar-17.png') }}" class="img-circle" alt="user avatar"></span>
+          <span class="user-profile"><img src="{{ asset(Auth()->user()->usr_profile_picture) }}" class="img-circle" alt="user avatar"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
           <li class="dropdown-item user-details">
             <a href="javaScript:void();">
               <div class="media">
-                <div class="avatar"><img class="align-self-start mr-3" src="{{ asset('assets/images/avatars/avatar-17.png') }}" alt="user avatar"></div>
+                <div class="avatar"><img class="align-self-start mr-3" src="{{ asset(Auth()->user()->usr_profile_picture) }}" alt="user avatar"></div>
                 <div class="media-body">
                   <h6 class="mt-2 user-title"> {{ Auth::user()->usr_name }}</h6>
                   <p class="user-subtitle"> {{ Auth::user()->usr_email }}</p>
