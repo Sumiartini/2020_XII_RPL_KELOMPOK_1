@@ -167,93 +167,122 @@
                <table class=" table table-active">
                 
                 <tbody>
-                  <tr class="table-active">
+                  <tr>
                     <th >Nama Lengkap</th>
                     <td>:</td>
                     <td>{{ $student_prospective->stu_candidate_name }}</td>
                   </tr>
+
                   <tr>
-                    <th scope="row">Jenis Kelamin</th>
+                    <th>Email</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->usr_email }}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Jenis Kelamin</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_gender }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @if(isset($student_prospective->personal['nik']))
+                  <tr>
+                    <th>NIK Siswa</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->personal['nik'] }}</td>
+                  </tr>
+                  @endif
+                  @if(isset($student_prospective->stu_nisn))
+                  <tr>
                     <th>NISN</th>
                     <td>:</td>
                     <td>{{ $student_prospective->stu_nisn }}</td>
                   </tr>
+                  @endif
                   <tr>
-                    <th scope="row">No Telepon</th>
+                    <th>No Telepon</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_phone_number }}</td>
                   </tr>
 
-
-                  <tr class="table-active">
+                  <tr>
                     <th >No WhattsApp</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_whatsapp_number }}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Tempat Lahir</th>
+                    <th>Tempat Lahir</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_place_of_birth }}</td>
                   </tr>
 
-
-                  <tr class="table-active">
+                  <tr>
                     <th>Tanggal Lahir</th>
                     <td>:</td>
                     <td>{{ date('d M Y', strtotime($student_prospective->usr_date_of_birth )) }}</td>
                   </tr>
+
+                  @if(isset($student_prospective->personal['birth_certificate_registration_no']))
                   <tr>
-                    <th scope="row">No Registrasi Akta Lahir</th>
+                    <th>No Registrasi Akta Lahir</th>
                     <td>:</td>
                     <td>{{ $student_prospective->personal['birth_certificate_registration_no'] }}</td>
                   </tr>
-
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->personal['living_together']))
+                  <tr>
                     <th>Tinggal Bersama</th>
                     <td>:</td>
                     <td>{{ $student_prospective->personal['living_together'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->personal['status_of_residence']))
                   <tr>
-                    <th scope="row">Asal Sekolah</th>
+                    <th>Status Tempat Tinggal</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->personal['status_of_residence'] }}</td>
+                  </tr>
+                  @endif
+                  <tr>
+                    <th>Asal Sekolah</th>
                     <td>:</td>
                     <td>{{ $student_prospective->stu_school_origin }}</td>
+                  </tr> 
+                  @if(isset($student_prospective->school_origin['npsn']))
+                  <tr>
+                    <th>NPSN Sekolah asal</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->school_origin['npsn'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  <tr>
                     <th>Jurusan yang diminati</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mjr_name }}</td>
                   </tr>
+                  @if(isset($student_prospective->personal['child']))
                   <tr>
-                    <th scope="row">Anak Ke</th>
+                    <th>Anak Ke</th>
                     <td>:</td>
                     <td>{{ $student_prospective->personal['child'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  <tr>
                     <th>Agama</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_religion }}</td>
                   </tr>
-
+                  @if(isset($student_prospective->other['recomended_form']))
                   <tr>
-                    <th scope="row">Rekomendasi Dari</th>
+                    <th>Rekomendasi Dari</th>
                     <td>:</td>
                     <td>{{ $student_prospective->other['recomended_from'] }}</td>
                   </tr>
-
+                  @endif
                   <tr>
                     <th scope="row">
                       Foto Calon siswa</th>
                     <td>:</td>
-                    <td><img src="{{ url('users_profile/'.$student_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/></td>
-
+                    <td><img src="{{ url($student_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/></td>
                   </tr>
                 </tbody>
               </table>
@@ -265,62 +294,64 @@
                <table class="table table-active">       
                 <tbody>
                   @foreach($student as $data)
-                  <tr class="table-active">
+                  <tr>
                     <th >Provinsi</th>
                     <td>:</td>
                     <td>{{$data->prv_name}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Kota/Kabupaten</th>
+                    <th>Kota/Kabupaten</th>
                     <td>:</td>
                     <td>{{$data->cit_name}}</td>
                   </tr>
 
-                  <tr class="table-active">
+                  <tr>
                     <th >Kecamatan</th>
                     <td>:</td>
                     <td>{{$data->dst_name}}</td>
                   </tr>
                   @endforeach
                   <tr>
-                    <th scope="row">Alamat</th>
+                    <th>Alamat</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_address }}</td>
                   </tr>
 
-                  <tr class="table-active">
+                  <tr>
                     <th >RT</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_rt }}</td>
                   </tr>
                   <tr>
-                    <th scope="row">RW</th>
+                    <th>RW</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_rw }}</td>
                   </tr>
 
-                  <tr class="table-active">
+                  <tr>
                     <th >Desa/Kelurahan</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_rural_name }}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Kode pos</th>
+                    <th>Kode pos</th>
                     <td>:</td>
                     <td>{{ $student_prospective->usr_postal_code }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @if(isset($student_prospective->contact['living_together']))
+                  <tr>
                     <th >Telepon rumah</th>
                     <td>:</td>
-                    <td>{{ $student_prospective->contact['landline_number'] }}</td>
+                    <td>{{ $student_prospective->contact['living_together'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->contact['email']))
                   <tr>
-                    <th scope="row">Email rumah</th>
+                    <th>Email rumah</th>
                     <td>:</td>
                     <td>{{ $student_prospective->contact['email'] }}</td>
                   </tr>
-
+                  @endif
                 </tbody>
             </table>
         </div>
@@ -328,209 +359,267 @@
     </div>
     </div>
         
-
+    @if(isset($student_prospective->father_data))
       <div class="col-lg-5">
           <div class="card hihi">
             <div class="card-body">
               <h5 class="card-title"> Data Ayah </h5>
               <div class="table-responsive">
                 <table class="table table-active">
-                  
                   <tbody>
-                  <tr class="table-active">
+                  @if(isset($student_prospective->father_data['name']))
+                  <tr>
                     <th>Nama Ayah kandung</th>
                     <td>:</td>
                     <td>{{ $student_prospective->father_data['name'] }}</td>
                   </tr>
+                  @endif
+
+                  @if(isset($student_prospective->father_data['father_name']))
                   <tr>
-                    <th scope="row">NIK</th>
+                    <th>Nama Ayah Sesuai Ijazah</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->father_data['father_name'] }}</td>
+                  </tr>
+                  @endif
+
+                  @if(isset($student_prospective->father_data['nik']))
+                  <tr>
+                    <th>NIK</th>
                     <td>:</td>
                     <td>{{ $student_prospective->father_data['nik'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->father_data['year_of_birth']))
+                  <tr>
                     <th>Tahun lahir</th>
                     <td>:</td>
                     <td>{{ $student_prospective->father_data['year_of_birth'] }}</td>
                   </tr>
+                  @endif
+
+                  @if(isset($student_prospective->father_data['education']))
                   <tr>
-                    <th scope="row">Pendidikan terakhir</th>
+                    <th>Pendidikan terakhir</th>
                     <td>:</td>
                     <td>{{ $student_prospective->father_data['education'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->father_data['profession']))
+                  <tr>
                     <th>Pekerjaan</th>
                     <td>:</td>
                     <td>{{ $student_prospective->father_data['profession'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->father_data['monthly_income']))
                   <tr>
-                    <th scope="row">Pendapatan perbulan</th>
+                    <th>Pendapatan perbulan</th>
                     <td>:</td>
                     <td>{{ $student_prospective->father_data['monthly_income'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->father_data['phone_number']))
+                  <tr>
                     <th>Nomor telepon</th>
                     <td>:</td>
                     <td>{{ $student_prospective->father_data['phone_number'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->father_data['disability']))
                   <tr>
-                    <th scope="row">Disabilitas</th>
+                    <th>Disabilitas</th>
                     <td>:</td>
                     <td>{{ $student_prospective->father_data['disability'] }}</td>
-                  </tr>                  
+                  </tr>   
+                  @endif               
                </tbody>
                 </table>
               </div>
             </div>
-
+            @endif
+            @if(isset($student_prospective->mother_data))
              <div class="card-body">
               <h5 class="card-title"> Data Ibu </h5>
               <div class="table-responsive">
                 <table class="table table-active">
-                  
                   <tbody>
-                  <tr class="table-active">
+                  @if(isset($student_prospective->mother_data['name']))
+                  <tr>
                     <th>Nama Ibu kandung</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mother_data['name'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->mother_data['nik']))
                   <tr>
-                    <th scope="row">NIK</th>
+                    <th>NIK</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mother_data['nik'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->mother_data['year_of_birth']))
+                  <tr>
                     <th>Tahun lahir</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mother_data['year_of_birth'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->mother_data['education']))
                   <tr>
-                    <th scope="row">Pendidikan terakhir</th>
+                    <th>Pendidikan terakhir</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mother_data['education'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->mother_data['profession']))
+                  <tr>
                     <th>Pekerjaan</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mother_data['profession'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->mother_data['monthly_income']))
                   <tr>
-                    <th scope="row">Pendapatan perbulan</th>
+                    <th>Pendapatan perbulan</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mother_data['monthly_income'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->mother_data['phone_number']))
+                  <tr>
                     <th>Nomor telepon</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mother_data['phone_number'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->mother_data['disability']))
                   <tr>
-                    <th scope="row">Disabilitas</th>
+                    <th>Disabilitas</th>
                     <td>:</td>
                     <td>{{ $student_prospective->mother_data['disability'] }}</td>
-                  </tr>              
+                  </tr> 
+                  @endif             
                 </tbody>
                 </table>
               </div>
             </div>
-
-
+            @endif
+            @if(isset($student_prospective->guardian_data))
              <div class="card-body">
               <h5 class="card-title"> Data Wali </h5>
               <div class="table-responsive">
                 <table class="table table-active">
                   
                   <tbody>
-                  <tr class="table-active">
+                  @if(isset($student_prospective->guardian_data['name']))
+                  <tr>
                     <th>Nama</th>
                     <td>:</td>
                     <td>{{ $student_prospective->guardian_data['name'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->guardian_data['nik']))
                   <tr>
-                    <th scope="row">NIK</th>
+                    <th>NIK</th>
                     <td>:</td>
                     <td>{{ $student_prospective->guardian_data['nik'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->guardian_data['year_of_birth']))
+                  <tr>
                     <th>Tahun lahir</th>
                     <td>:</td>
                     <td>{{ $student_prospective->guardian_data['year_of_birth'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->guardian_data['education']))
                   <tr>
-                    <th scope="row">Pendidikan terakhir</th>
+                    <th>Pendidikan terakhir</th>
                     <td>:</td>
                     <td>{{ $student_prospective->guardian_data['education'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->guardian_data['profession']))
 
-                  <tr class="table-active">
+                  <tr>
                     <th>Pekerjaan</th>
                     <td>:</td>
                     <td>{{ $student_prospective->guardian_data['profession'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->guardian_data['monthly_income']))
                   <tr>
-                    <th scope="row">Pendapatan perbulan</th>
+                    <th>Pendapatan perbulan</th>
                     <td>:</td>
                     <td>{{ $student_prospective->guardian_data['monthly_income'] }}</td>
                   </tr>
-
-                  <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->guardian_data['phone_number']))
+                  <tr>
                     <th>Nomor telepon</th>
                     <td>:</td>
                     <td>{{ $student_prospective->guardian_data['phone_number'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->guardian_data['disability']))
                   <tr>
-                    <th scope="row">Disabilitas</th>
+                    <th>Disabilitas</th>
                     <td>:</td>
                     <td>{{ $student_prospective->guardian_data['disability'] }}</td>
-                  </tr>              
+                  </tr> 
+                  @endif             
                 </tbody>
                 </table>
               </div>
             </div>
-
+            @endif
+            @if(isset($student_prospective->achievement))
             <div class="card-body">
               <h5 class="card-title"> Prestasi </h5>
               <div class="table-responsive">
                 <table class="table table-active">     
                   <tbody>
-                  <tr class="table-active">
+                  @if(isset($student_prospective->achievement['type']))
+                  <tr>
                     <th>Jenis / Tipe prestasi</th>
                     <td>:</td>
                     <td>{{ $student_prospective->achievement['type'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->achievement['achievement_level']))
                   <tr>
                     <th scope="row">Tingkat</th>
                     <td>:</td>
                     <td>{{ $student_prospective->achievement['achievement_level'] }}</td>
                   </tr>
-
-                    <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->achievement['achievement_name']))
+                  <tr>
                     <th>Nama prestasi</th>
                     <td>:</td>
                     <td>{{ $student_prospective->achievement['achievement_name'] }}</td>
                   </tr>
+                  @endif
+                  @if(isset($student_prospective->achievement['year']))
                   <tr>
-                    <th scope="row">Tahun</th>
+                    <th>Tahun</th>
                     <td>:</td>
                     <td>{{ $student_prospective->achievement['year'] }}</td>
                   </tr>
-
-                    <tr class="table-active">
+                  @endif
+                  @if(isset($student_prospective->achievement['organizer']))
+                  <tr>
                     <th>Penyelenggara</th>
                     <td>:</td>
                     <td>{{ $student_prospective->achievement['organizer'] }}</td>
                   </tr>
-                 
+                  @endif
               </tbody>
           </table>
       </div>
     </div>
+    @endif
 </div>
 </div>
 

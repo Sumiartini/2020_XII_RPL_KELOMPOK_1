@@ -128,8 +128,8 @@ class StudentController extends Controller
 
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');
-            $path = public_path('users_profile' . '/' . $user->name);
-            $files_name = date('Ymd') . $files->getClientOriginalName();
+            $path = public_path('images/users_profile');
+            $files_name = 'images' . '/' . 'student_files' . date('Ymd') . '_' . $files->getClientOriginalName();
             $files->move($path, $files_name);
             $user->usr_profile_picture = $files_name;
         }
@@ -258,8 +258,8 @@ class StudentController extends Controller
         $user->usr_updated_by       = Auth()->user()->usr_id;
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');
-            $path = public_path('users_profile' . '/' . $user->name);
-            $files_name = date('Ymd') . $files->getClientOriginalName();
+            $path = public_path('images/users_profile');
+            $files_name = 'images' . '/' . 'users_profile' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
             $files->move($path, $files_name);
             $user->usr_profile_picture = $files_name;
         }
@@ -309,38 +309,43 @@ class StudentController extends Controller
 
     public function storeFormRegistrasion(Request $request)
     {
+        // dd($request);
         $requests = $request->input();
         $messages = [
             'required'  => 'Kolom wajib diisi',
             'unique'    => 'Kolom yang digunakan telah terdaftar',
-            'mimes'     => 'Foto tidak support, ukuran max 2 MB'
+            'mimes'     => 'Foto tidak support',
+            'size'      => 'Ukuran file Max 2 MB',
         ];
 
         $request->validate([
             'stu_candidate_name'            => 'required',
             'usr_gender'                    => 'required',
-            'stu_nisn'                      => 'required | unique:students,stu_nisn',
-            'usr_phone_number'              => 'required | unique:users,usr_phone_number',
+            // 'stu_nisn'                      => 'required | unique:students,stu_nisn',
+            // 'usr_phone_number'              => 'required | unique:users,usr_phone_number',
             'usr_whatsapp_number'           => 'required | unique:users,usr_whatsapp_number',
             'usr_place_of_birth'            => 'required',
             'usr_date_of_birth'             => 'required',
             'personal.living_together'      => 'required',
+            'personal.status_of_residence'  => 'required',
+            'school_origin.npsn'            => 'required',
             'stu_school_origin'             => 'required',
             'stu_major_id'                  => 'required',
             'usr_religion'                  => 'required',
-            'usr_profile_picture'           => 'required | mimes:jpeg,jpg,png|max:2048',
+            'usr_profile_picture'           => 'required | mimes:jpeg,jpg,png|size:2048',
             'father_data.name'              => 'required',
-            'father_data.nik'               => 'required',
-            'father_data.year_of_birth'     => 'required',
-            'father_data.education'         => 'required',
-            'father_data.profession'        => 'required',
-            'father_data.phone_number'      => 'required',
+            'father_data.father_name'       => 'required',
+            // 'father_data.nik'               => 'required',
+            // 'father_data.year_of_birth'     => 'required',
+            // 'father_data.education'         => 'required',
+            // 'father_data.profession'        => 'required',
+            // 'father_data.phone_number'      => 'required',
             'mother_data.name'              => 'required',
-            'mother_data.nik'               => 'required',
-            'mother_data.year_of_birth'     => 'required',
-            'mother_data.education'         => 'required',
-            'mother_data.profession'        => 'required',
-            'mother_data.phone_number'      => 'required',
+            // 'mother_data.nik'               => 'required',
+            // 'mother_data.year_of_birth'     => 'required',
+            // 'mother_data.education'         => 'required',
+            // 'mother_data.profession'        => 'required',
+            // 'mother_data.phone_number'      => 'required',
             'prv_name'                      => 'required',
             'cit_name'                      => 'required',
             'dst_name'                      => 'required',
@@ -349,7 +354,26 @@ class StudentController extends Controller
             'usr_rw'                        => 'required',
             'usr_rural_name'                => 'required',
             'usr_postal_code'               => 'required',
-            'contact.email'                 => 'required',
+            'other.certificate_of_graduation'   => 'required||mimetypes:application/pdf|size:20000',
+            'other.junior_high_school_diploma'  => 'required|size:2048',
+            'other.elementary_school_diploma'   => 'required|size:2048',
+            'other.birth_certificate'           => 'required|size:2048',
+            'other.family_card'                 => 'required|size:2048',
+            'other.id_card_father'              => 'required|size:2048',
+            'other.id_card_mother'              => 'required|size:2048',
+
+            'other.certificate_of_graduation'   => 'required | mimes:jpeg,jpg,png|size:2048',
+            'other.junior_high_school_diploma'  => 'required | mimes:jpeg,jpg,png|size:2048',
+            'other.elementary_school_diploma'   => 'required | mimes:jpeg,jpg,png|size:2048',
+            'other.birth_certificate'           => 'required | mimes:jpeg,jpg,png|size:2048',
+            'other.family_card'                 => 'required | mimes:jpeg,jpg,png|size:2048',
+            'other.domicile_statement'          => 'size:2048',
+            'other.id_card_father'              => 'required | mimes:jpeg,jpg,png|size:2048',
+            'other.id_card_mother'              => 'required | mimes:jpeg,jpg,png|size:2048',
+            'other.health_certificate'          => 'size:2048',
+            'other.eye_health_letter'           => 'size:2048',
+            'other.card'                        => 'size:2048',
+            'other.certificate'                 => 'size:2048',
 
         ], $messages);
 
@@ -371,8 +395,8 @@ class StudentController extends Controller
         $user->usr_is_regist        = '1';
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');
-            $path = public_path('users_profile' . '/' . $user->name);
-            $files_name = date('Ymd') . $files->getClientOriginalName();
+            $path = public_path('images/users_profile');
+            $files_name = 'images' . '/' . 'users_profile' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
             $files->move($path, $files_name);
             $user->usr_profile_picture = $files_name;
         }
@@ -392,18 +416,39 @@ class StudentController extends Controller
                 foreach ($requests as $key => $requestData) {
                     if (is_array($requestData)) {
                         foreach ($requestData as $requestKey => $requestValue) {
+                            // dd($requests, $request, $requestData, $requestKey, $requestValue, $key);                            
                             $studentDetail = new StudentDetails;
                             $studentDetail->std_student_id = $student->stu_id;
                             $studentDetail->std_type       = $key;
                             $studentDetail->std_key        = $requestKey;
                             $studentDetail->std_value      = $requestValue;
                             $studentDetail->std_created_by = $user->usr_id;
-                            $studentDetailSave              = $studentDetail->save();
+                            $studentDetail->save();
                         }
                     }
                 }
             } else {
                 dd('gagal student ');
+            }
+            $images = $request->file('other');
+            // dd($image);
+            if ($images) {
+                foreach ($images as $key => $image) {
+                    // dd($images, $key, $image);
+                    if ($image) {
+                        $path = public_path('images/student_files');
+                        $files_name = 'images' .'/'. 'student_files' .'/'. date('Ymd') . '_' . $image->getClientOriginalName();
+                        // dd($images);
+                        $image->move($path, $files_name);
+                        $studentDetail = new StudentDetails;
+                        $studentDetail->std_student_id = $student->stu_id;
+                        $studentDetail->std_type       = 'other';
+                        $studentDetail->std_key        = $key;
+                        $studentDetail->std_value      = $files_name;
+                        $studentDetail->std_created_by = $user->usr_id;
+                        $studentDetail->save();
+                    }
+                }
             }
         } else {
             dd('gagal user');
