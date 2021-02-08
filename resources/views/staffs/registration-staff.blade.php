@@ -441,7 +441,7 @@
                             <div class="form-group row">
 
                             <div class="col sm-4">
-                                <label>Nama Pekerjaan <span style="color:red;">*</span></label>
+                                <label>Nama Pekerjaan </label>
                                 <input type="text" class="form-control form-control-rounded @error('history_job[name]') is-invalid @enderror" id="input-10" name="history_job[name]" placeholder="Masukan Nama Pekerjaan">    
                             @error('history_job[name]')
                                 <span class="invalid-feedback" role="alert">
@@ -451,7 +451,7 @@
                             </div>
 
                             <div class="col sm-4">
-                                <label>Dari tahun/sampai <span style="color:red;">*</span></label>
+                                <label>Dari tahun/sampai </label>
                                 <input type="text" class="form-control form-control-rounded @error('history_job[lenght_of_work]') is-invalid @enderror" id="input-10" name="history_job[lenght_of_work]" placeholder="Masukan Tahun">    
                             @error('history_job[lenght_of_work]')
                                 <span class="invalid-feedback" role="alert">
@@ -469,7 +469,7 @@
                              <div class="form-group row">
 
                              <div class="col sm-4">
-                                 <label>Nama Keahlian <span style="color:red;">*</span></label>
+                                 <label>Nama Keahlian </label>
                                  <input type="text" class="form-control form-control-rounded @error('expertise[name]') is-invalid @enderror" id="input-10" name="expertise[name]" placeholder="Masukan Nama Keahlian">                                        
                              @error('expertise[name]')
                                 <span class="invalid-feedback" role="alert">
@@ -479,7 +479,7 @@
                              </div>                            
 
                              <div class="col sm-4">
-                                 <label>Nama Istansi/Lembaga <span style="color:red;">*</span></label>
+                                 <label>Nama Istansi/Lembaga </label>
                                  <input type="text" class="form-control form-control-rounded @error('expertise[name_of_agency]') is-invalid @enderror" id="input-10" name="expertise[name_of_agency]" placeholder="Masukan Nama Istansi/Lembaga">                                        
                              @error('expertise[name_of_agency]')
                                 <span class="invalid-feedback" role="alert">
@@ -504,7 +504,7 @@
                             <input type="file" name="other[family_card]">
                         </div>
                         <div class="col-sm-4">
-                            <label> Upload Ijazah SMA/SMK dilegalisir <span style="color:red"> *</span></label>
+                            <label> Upload Ijazah Minimal SMA/SMK dilegalisir <span style="color:red"> *</span></label>
                             <input type="file" name="other[senior_high_school_diploma]">
                         </div>
                     </div>
@@ -513,8 +513,7 @@
                         <div class="col-sm-4">
                             <label> Upload Curriculum vitae (CV) <span style="color:red"> *</span></label>
                             <input type="file" name="other[curriculum_vitae]">
-                        </div>
-                        
+                        </div>   
                         <div class="col-sm-4">
                             <label> Upload Surat Lamaran <span style="color:red"> *</span></label>
                             <input type="file" name="other[application_letter]">
@@ -524,26 +523,7 @@
                             <input type="file" name="other[resume]">
                         </div>
                     </div>
-
-                        <label style="margin-top: 30px;">Foto calon siswa<span style="color:red"> *</span></label>
-                        <div class="form-group row">
-
-                            <div class="col-sm-4">
-                                <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                                <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-
-                                <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
-                                @error('usr_profile_picture')
-                                <p>
-                                    <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                </p>
-                                @enderror
-                            </div>
-
-                        </div>
-
-
-                            <div class="form-footer">
+                             <div class="form-footer">
                                 <button type="reset" class="btn btn-danger"><i class="fa fa-check-square-o"></i> BATAL</button>
                                 <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
                             </div>
