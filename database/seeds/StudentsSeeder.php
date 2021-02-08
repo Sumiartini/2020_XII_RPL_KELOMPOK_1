@@ -18,7 +18,8 @@ class StudentsSeeder extends Seeder
         	'stu_school_year_id' => '1',
             'stu_school_origin' => 'SMP KARYA BHAKTI',
         	'stu_nisn' => '3204111233',
-        	'stu_registration_status' => '1',
+        	'stu_registration_status' => '0',
+            'stu_major_id' = '1',
 
         ]);
 
@@ -29,7 +30,8 @@ class StudentsSeeder extends Seeder
         	'stu_school_year_id' => '1',
             'stu_school_origin' => 'SMPN 2 KATAPANG',
         	'stu_nisn' => '32122121499',
-        	'stu_registration_status' => '1',
+        	'stu_registration_status' => '0',
+            'stu_major_id' = '1',
         ]);
         
         DB::table('students')->insert([
@@ -40,6 +42,7 @@ class StudentsSeeder extends Seeder
             'stu_school_origin' => 'SMPN 2 KATAPANG',
         	'stu_nisn' => '32231332433',
         	'stu_registration_status' => '1',
+            'stu_major_id' = '1',
         ]);
         
         DB::table('students')->insert([
@@ -50,6 +53,7 @@ class StudentsSeeder extends Seeder
             'stu_school_origin' => 'SMPN 2 KATAPANG',
             'stu_nisn' => '33098867125',
             'stu_registration_status' => '1',
+            'stu_major_id' = '1',
         ]);
 
         DB::table('students')->insert([
@@ -60,6 +64,7 @@ class StudentsSeeder extends Seeder
             'stu_school_origin' => 'SMPN 2 KATAPANG',
             'stu_nisn' => '33098867125',
             'stu_registration_status' => '1',
+            'stu_major_id' = '1',
         ]);
     }
 }

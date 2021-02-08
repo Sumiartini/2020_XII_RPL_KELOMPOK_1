@@ -60,457 +60,244 @@
 </div>
 @endif
 
-<div class="col-lg-12">
-    <div class="profile-card-3 ">
-        <div class="text-center">
-            <img src="{{ asset('users_profile/'.$student->usr_profile_picture) }}" alt="user avatar" class="card-img-top" style="width: 200px;
-            height: 200px;
-            background: #dac52c;
-            border-radius: 100%;">
-        </div>
-        <hr>
-    </div>
-</div>
 
 <div class="col-lg-12">
   @if ($message = Session::get('success'))
   <div class="alert alert-success alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert">×</button>
     <div class="alert-icon contrast-alert">
-       <i class="icon-check"></i>
-   </div>
-   <div class="alert-message">
+     <i class="icon-check"></i>
+ </div>
+ <div class="alert-message">
     <span><strong>Berhasil!</strong> {{$message}}.</span>
 </div>
 </div>
 @endif
 </div>
 
-<div class="col-lg-12">
-    <div class="card">
+<div class="row">
+    <div class="col-lg-5">
+      <div class="card haha">
         <div class="card-body">
-
-            <h4 class="text-primary">Data Siswa</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Nama Lengkap</th>
-                            <td>:</td>
-                            <td>{{ $student->stu_candidate_name }}</td>
-
-                            <th>Jenis Kelamin</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_gender }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>NISN</th>
-                            <td>:</td>
-                            <td>{{ $student->stu_nisn }}</td>
-
-                            <th>No Telepon</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_phone_number}}</td>
-                        </tr>
-
-                        <tr>
-                            <th>NIS</th>
-                            <td>:</td>
-                            @if($student->stu_nis == null)
-                            <td> - </td>
-                            @else
-                            <td>{{ $student->stu_nis }}</td>
-                            @endif
-                            
-                            <th>No WhattsApp</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_whatsapp_number }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Tempat lahir</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_place_of_birth }}</td>
-
-                            <th>Tanggal Lahir</th>
-                            <td>:</td>
-                            <td>{{ date('d M Y', strtotime($student->usr_date_of_birth )) }}</td>
-                        </tr>
-                        @if(isset($student->personal['birth_certificate_registration_no']))
-                        <tr>
-                            <th>No Registrasi Akta Lahir</th>
-                            <td>:</td>
-                            <td>{{ $student->personal['birth_certificate_registration_no'] }}</td>
-
-                            <th>Tinggal Bersama</th>
-                            <td>:</td>
-                            <td>{{ $student->personal['living_together'] }}</td>
-                        </tr>
-                        @endif
-                        <tr>
-                            <th>Jurusan yang diminati</th>
-                            <td>:</td>
-                            <td>{{ $student->mjr_name}}</td>
-
-                            <th>Anak ke</th>
-                            <td>:</td>
-                            <td>{{ $student->personal['child'] }}</td>
-                        </tr>
-                        
-                        
-                        <tr>
-                            <th>Agama</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_religion }}</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </tbody>
-                </table>
+            <div class="profile-card-3 ">
+                <div class="text-center">
+                    <img src="{{ asset('users_profile/'.$student->usr_profile_picture) }}" alt="user avatar" class="card-img-top" style="width: 200px;
+                    height: 200px;
+                    background: #dac52c;
+                    border-radius: 100%;">
+                </div>
+                <hr>
             </div>
-
-            
-            <h4 class="text-primary">Data Ayah</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Nama Ayah Kandung</th>
-                            <td>:</td>
-                            <td>{{ $student->father_data['name'] }}</td>
-
-                            <th scope="row">NIK</th>
-                            <td>:</td>
-                            <td>{{ $student->father_data['nik'] }}</td>
-                        </tr>
-
-                        
-                        <tr>
-                            <th>Tahun lahir</th>
-                            <td>:</td>
-                            <td>{{ $student->father_data['year_of_birth'] }}</td>
-                            
-                            <th>Pendidikan terakhir</th>
-                            <td>:</td>
-                            <td>{{ $student->father_data['education'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Pekerjaan</th>
-                            <td>:</td>
-                            <td>{{ $student->father_data['profession'] }}</td>
-                            
-                            <th>Pendapatan perbulan</th>
-                            <td>:</td>
-                            <td>{{ $student->father_data['monthly_income'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Nomor telepon</th>
-                            <td>:</td>
-                            <td>{{ $student->father_data['phone_number'] }}</td>
-                            
-                            <th>Disabilitas</th>
-                            <td>:</td>
-                            <td>{{ $student->father_data['disability'] }}</td>
-                        </tr>                  
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
-            <h4 class="text-primary">Data Ibu</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Nama Ibu Kandung</th>
-                            <td>:</td>
-                            <td>{{ $student->mother_data['name'] }}</td>
-
-                            <th scope="row">NIK</th>
-                            <td>:</td>
-                            <td>{{ $student->mother_data['nik'] }}</td>
-                        </tr>
-
-                        
-                        <tr>
-                            <th>Tahun lahir</th>
-                            <td>:</td>
-                            <td>{{ $student->mother_data['year_of_birth'] }}</td>
-                            
-                            <th>Pendidikan terakhir</th>
-                            <td>:</td>
-                            <td>{{ $student->mother_data['education'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Pekerjaan</th>
-                            <td>:</td>
-                            <td>{{ $student->mother_data['profession'] }}</td>
-                            
-                            <th>Pendapatan perbulan</th>
-                            <td>:</td>
-                            <td>{{ $student->mother_data['monthly_income'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Nomor telepon</th>
-                            <td>:</td>
-                            <td>{{ $student->mother_data['phone_number'] }}</td>
-                            
-                            <th>Disabilitas</th>
-                            <td>:</td>
-                            <td>{{ $student->mother_data['disability'] }}</td>
-                        </tr>                  
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
-            <h4 class="text-primary">Data Wali</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Nama</th>
-                            <td>:</td>
-                            <td>{{ $student->guardian_data['name'] }}</td>
-
-                            <th scope="row">NIK</th>
-                            <td>:</td>
-                            <td>{{ $student->guardian_data['nik'] }}</td>
-                        </tr>
-
-                        
-                        <tr>
-                            <th>Tahun lahir</th>
-                            <td>:</td>
-                            <td>{{ $student->guardian_data['year_of_birth'] }}</td>
-                            
-                            <th>Pendidikan terakhir</th>
-                            <td>:</td>
-                            <td>{{ $student->guardian_data['education'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Pekerjaan</th>
-                            <td>:</td>
-                            <td>{{ $student->guardian_data['profession'] }}</td>
-                            
-                            <th>Pendapatan perbulan</th>
-                            <td>:</td>
-                            <td>{{ $student->guardian_data['monthly_income'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Nomor telepon</th>
-                            <td>:</td>
-                            <td>{{ $student->guardian_data['phone_number'] }}</td>
-                            
-                            <th>Disabilitas</th>
-                            <td>:</td>
-                            <td>{{ $student->guardian_data['disability'] }}</td>
-                        </tr>                  
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
-
-
-            <h4 class="text-primary">Data Persuratan</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                            @foreach($user as $data)
-                        <tr>
-                            <th >Provinsi</th>
-                            <td>:</td>
-                            <td>{{$data->prv_name}}</td>
-
-                            <th>Kota/Kabupaten</th>
-                            <td>:</td>
-                            <td>{{$data->cit_name}}</td>
-                        </tr>
-                        <tr>
-                            <th> Kecamatan</th>
-                            <td>:</td>
-                            <td>{{$data->dst_name}}</td>
-                                @endforeach
-                            <th >Desa/Kelurahan</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_rural_name }}</td>
-                        </tr>
-                        <tr>
-                            <th>Alamat</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_address }}</td>
-
-                            <th>RT</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_rt }}</td>
-                        </tr>
-                        
-
-                        <tr>
-                            <th>RW</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_rw }}</td>
-
-                            <th>Kode pos</th>
-                            <td>:</td>
-                            <td>{{ $student->usr_postal_code }}</td>
-                        </tr>
-
-                        <tr>
-                            <th >Telepon rumah</th>
-                            <td>:</td>
-                            <td>{{ $student->contact['landline_number'] }}</td>
-                            
-                            <th>Email rumah</th>
-                            <td>:</td>
-                            <td>{{ $student->contact['email'] }}</td>
-                            
-                        </tr>
-                        
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
-            <h4 class="text-primary">Prestasi</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Jenis / Tipe prestasi</th>
-                            <td>:</td>
-                            <td>{{ $student->achievement['type'] }}</td>
-                            
-                            <th>Tingkat</th>
-                            <td>:</td>
-                            <td>{{ $student->achievement['achievement_level'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Nama prestasi</th>
-                            <td>:</td>
-                            <td>{{ $student->achievement['achievement_name'] }}</td>
-                            
-                            <th>Tahun</th>
-                            <td>:</td>
-                            <td>{{ $student->achievement['year'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Penyelenggara</th>
-                            <td>:</td>
-                            <td>{{ $student->achievement['organizer'] }}</td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                        </tr>
-                        
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-            <h4 class="text-primary">Lainnya</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Rekomendasi Dari</th>
-                            <td>:</td>
-                            <td>{{ $student->other['recomended_from'] }}</td>
-
-                            <th>Jalur Masuk</th>
-                            <td>:</td>
-                            <td>{{ $student->ent_name }}</td>
-                        </tr>
-                        
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
         </div>
     </div>
+</div>
+
+
+<div class="col-lg-7">
+  <div class="card hihi">
+    <div class="card-body">
+      <h5 class="card-title"> Data Ayah </h5>
+      <div class="table-responsive">
+        <table class="table table-active">
+
+          <tbody>
+              <tr class="table-active">
+                <th>Nama Ayah kandung</th>
+                <td>:</td>
+                <td>{{ $student->father_data['name'] }}</td>
+            </tr>
+            <tr>
+                <th scope="row">NIK</th>
+                <td>:</td>
+                <td>{{ $student->father_data['nik'] }}</td>
+            </tr>
+
+            <tr class="table-active">
+                <th>Tahun lahir</th>
+                <td>:</td>
+                <td>{{ $student->father_data['year_of_birth'] }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Pendidikan terakhir</th>
+                <td>:</td>
+                <td>{{ $student->father_data['education'] }}</td>
+            </tr>
+
+            <tr class="table-active">
+                <th>Pekerjaan</th>
+                <td>:</td>
+                <td>{{ $student->father_data['profession'] }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Pendapatan perbulan</th>
+                <td>:</td>
+                <td>{{ $student->father_data['monthly_income'] }}</td>
+            </tr>
+
+            <tr class="table-active">
+                <th>Nomor telepon</th>
+                <td>:</td>
+                <td>{{ $student->father_data['phone_number'] }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Disabilitas</th>
+                <td>:</td>
+                <td>{{ $student->father_data['disability'] }}</td>
+            </tr>                  
+        </tbody>
+    </table>
+</div>
+</div>
+
+<div class="card-body">
+  <h5 class="card-title"> Data Ibu </h5>
+  <div class="table-responsive">
+    <table class="table table-active">
+
+      <tbody>
+          <tr class="table-active">
+            <th>Nama Ibu kandung</th>
+            <td>:</td>
+            <td>{{ $student->mother_data['name'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">NIK</th>
+            <td>:</td>
+            <td>{{ $student->mother_data['nik'] }}</td>
+        </tr>
+
+        <tr class="table-active">
+            <th>Tahun lahir</th>
+            <td>:</td>
+            <td>{{ $student->mother_data['year_of_birth'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Pendidikan terakhir</th>
+            <td>:</td>
+            <td>{{ $student->mother_data['education'] }}</td>
+        </tr>
+
+        <tr class="table-active">
+            <th>Pekerjaan</th>
+            <td>:</td>
+            <td>{{ $student->mother_data['profession'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Pendapatan perbulan</th>
+            <td>:</td>
+            <td>{{ $student->mother_data['monthly_income'] }}</td>
+        </tr>
+
+        <tr class="table-active">
+            <th>Nomor telepon</th>
+            <td>:</td>
+            <td>{{ $student->mother_data['phone_number'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Disabilitas</th>
+            <td>:</td>
+            <td>{{ $student->mother_data['disability'] }}</td>
+        </tr>              
+    </tbody>
+</table>
+</div>
+</div>
+
+
+<div class="card-body">
+  <h5 class="card-title"> Data Wali </h5>
+  <div class="table-responsive">
+    <table class="table table-active">
+
+      <tbody>
+          <tr class="table-active">
+            <th>Nama</th>
+            <td>:</td>
+            <td>{{ $student->guardian_data['name'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">NIK</th>
+            <td>:</td>
+            <td>{{ $student->guardian_data['nik'] }}</td>
+        </tr>
+
+        <tr class="table-active">
+            <th>Tahun lahir</th>
+            <td>:</td>
+            <td>{{ $student->guardian_data['year_of_birth'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Pendidikan terakhir</th>
+            <td>:</td>
+            <td>{{ $student->guardian_data['education'] }}</td>
+        </tr>
+
+        <tr class="table-active">
+            <th>Pekerjaan</th>
+            <td>:</td>
+            <td>{{ $student->guardian_data['profession'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Pendapatan perbulan</th>
+            <td>:</td>
+            <td>{{ $student->guardian_data['monthly_income'] }}</td>
+        </tr>
+
+        <tr class="table-active">
+            <th>Nomor telepon</th>
+            <td>:</td>
+            <td>{{ $student->guardian_data['phone_number'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Disabilitas</th>
+            <td>:</td>
+            <td>{{ $student->guardian_data['disability'] }}</td>
+        </tr>              
+    </tbody>
+</table>
+</div>
+</div>
+
+<div class="card-body">
+  <h5 class="card-title"> Prestasi </h5>
+  <div class="table-responsive">
+    <table class="table table-active">     
+      <tbody>
+          <tr class="table-active">
+            <th>Jenis / Tipe prestasi</th>
+            <td>:</td>
+            <td>{{ $student->achievement['type'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Tingkat</th>
+            <td>:</td>
+            <td>{{ $student->achievement['achievement_level'] }}</td>
+        </tr>
+
+        <tr class="table-active">
+            <th>Nama prestasi</th>
+            <td>:</td>
+            <td>{{ $student->achievement['achievement_name'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Tahun</th>
+            <td>:</td>
+            <td>{{ $student->achievement['year'] }}</td>
+        </tr>
+
+        <tr class="table-active">
+            <th>Penyelenggara</th>
+            <td>:</td>
+            <td>{{ $student->achievement['organizer'] }}</td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
 </div>
 
 
