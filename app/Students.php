@@ -16,7 +16,6 @@ class Students extends Model
 
     public static function getStudents($request)
     {
-
         $students = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->where('students.stu_registration_status', 1)
             ->where('users.usr_is_regist', 1);

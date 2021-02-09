@@ -210,6 +210,17 @@
                             </div>
                         </div>
                         <div class="form-group row">
+
+                             <div class="col-sm-4">
+                                <label> No Telepon siswa <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_phone_number') }}">
+                                @error('usr_phone_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
                             <div class="col-sm-4">
                                 <label> Agama <span style="color:red"> *</span></label>
                                 <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
@@ -416,8 +427,8 @@
 
 
                             <div class="col-sm-4">
-                                <label> Nomor Telepon</label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.phone_number') }}">
+                                <label> Nomor Telepon Ayah <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.phone_number') }}">
                                 @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -454,7 +465,7 @@
 
 
                             <div class="col-sm-4">
-                                <label> Nomor Telepon</label>
+                                <label> Nomor Telepon <span style="color:red"> *</span></label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.phone_number') }}">
                                 @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">

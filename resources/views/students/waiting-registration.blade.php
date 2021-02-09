@@ -282,7 +282,7 @@
                     <th scope="row">
                       Foto Calon siswa</th>
                     <td>:</td>
-                    <td><img src="{{ url('$student_prospective->usr_profile_picture')}}" class="img-thumbnail profile" alt="Profile Picture"/></td>
+                    <td><img src="{{ asset($student_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/></td>
                   </tr>
                 </tbody>
               </table>

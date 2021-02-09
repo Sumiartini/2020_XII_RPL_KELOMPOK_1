@@ -316,38 +316,40 @@ class StudentController extends Controller
         $messages = [
             'required'  => 'Kolom wajib diisi',
             'unique'    => 'Kolom yang digunakan telah terdaftar',
-            'mimes'     => 'Foto tidak support',
+            'mimes'     => 'File tidak support',
             'size'      => 'Ukuran file Max 2 MB',
+            'uploaded'  => 'Gagal di unggal, ukuran file wajib 2 MB'
         ];
 
         $request->validate([
             'stu_candidate_name'            => 'required',
             'usr_gender'                    => 'required',
             // 'stu_nisn'                      => 'required | unique:students,stu_nisn',
-            // 'usr_phone_number'              => 'required | unique:users,usr_phone_number',
+            'usr_phone_number'              => 'required',
             'usr_whatsapp_number'           => 'required | unique:users,usr_whatsapp_number',
             'usr_place_of_birth'            => 'required',
             'usr_date_of_birth'             => 'required',
+            'personal.nik'                  => 'required',
             'personal.living_together'      => 'required',
             'personal.status_of_residence'  => 'required',
             'school_origin.npsn'            => 'required',
             'stu_school_origin'             => 'required',
             'stu_major_id'                  => 'required',
             'usr_religion'                  => 'required',
-            'usr_profile_picture'           => 'required | mimes:jpeg,jpg,png|size:2048',
+            'usr_profile_picture'           => 'required | mimes:jpeg,jpg,png|max:2048',
             'father_data.name'              => 'required',
             'father_data.father_name'       => 'required',
             // 'father_data.nik'               => 'required',
             // 'father_data.year_of_birth'     => 'required',
             // 'father_data.education'         => 'required',
             // 'father_data.profession'        => 'required',
-            // 'father_data.phone_number'      => 'required',
+            'father_data.phone_number'      => 'required',
             'mother_data.name'              => 'required',
             // 'mother_data.nik'               => 'required',
             // 'mother_data.year_of_birth'     => 'required',
             // 'mother_data.education'         => 'required',
             // 'mother_data.profession'        => 'required',
-            // 'mother_data.phone_number'      => 'required',
+            'mother_data.phone_number'      => 'required',
             'prv_name'                      => 'required',
             'cit_name'                      => 'required',
             'dst_name'                      => 'required',
@@ -356,26 +358,19 @@ class StudentController extends Controller
             'usr_rw'                        => 'required',
             'usr_rural_name'                => 'required',
             'usr_postal_code'               => 'required',
-            'other.certificate_of_graduation'   => 'required||mimetypes:application/pdf|size:20000',
-            'other.junior_high_school_diploma'  => 'required|size:2048',
-            'other.elementary_school_diploma'   => 'required|size:2048',
-            'other.birth_certificate'           => 'required|size:2048',
-            'other.family_card'                 => 'required|size:2048',
-            'other.id_card_father'              => 'required|size:2048',
-            'other.id_card_mother'              => 'required|size:2048',
 
-            'other.certificate_of_graduation'   => 'required | mimes:jpeg,jpg,png|size:2048',
-            'other.junior_high_school_diploma'  => 'required | mimes:jpeg,jpg,png|size:2048',
-            'other.elementary_school_diploma'   => 'required | mimes:jpeg,jpg,png|size:2048',
-            'other.birth_certificate'           => 'required | mimes:jpeg,jpg,png|size:2048',
-            'other.family_card'                 => 'required | mimes:jpeg,jpg,png|size:2048',
-            'other.domicile_statement'          => 'size:2048',
-            'other.id_card_father'              => 'required | mimes:jpeg,jpg,png|size:2048',
-            'other.id_card_mother'              => 'required | mimes:jpeg,jpg,png|size:2048',
-            'other.health_certificate'          => 'size:2048',
-            'other.eye_health_letter'           => 'size:2048',
-            'other.card'                        => 'size:2048',
-            'other.certificate'                 => 'size:2048',
+            'other.certificate_of_graduation'   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.junior_high_school_diploma'  => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.elementary_school_diploma'   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.birth_certificate'           => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.family_card'                 => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.domicile_statement'          => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.id_card_father'              => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.id_card_mother'              => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.health_certificate'          => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.eye_health_letter'           => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.card'                        => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.certificate'                 => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
 
         ], $messages);
 
@@ -385,6 +380,7 @@ class StudentController extends Controller
         // dd($user->usr_gender);
         $user->usr_gender           = $request->usr_gender;
         $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
+        $user->usr_phone_number  = $request->usr_phone_number;
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
         $user->usr_date_of_birth    = $request->usr_date_of_birth;
         $user->usr_religion         = $request->usr_religion;
