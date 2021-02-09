@@ -15,11 +15,11 @@ class CreateStaffDetailsTable extends Migration
     {
         Schema::create('staff_details', function (Blueprint $table) {
             $table->bigIncrements('sfd_id');
-            $table->foreignId('sfd_teacher_id');
-            $table->foreign('sfd_teacher_id')->references('stf_id')->on('staffs');
-            $table->string('sfd_type');
-            $table->string('sfd_key');
-            $table->string('sfd_value');
+            $table->foreignId('sfd_staff_id');
+            $table->foreign('sfd_staff_id')->references('stf_id')->on('staffs');
+            $table->string('sfd_type')->nullable();
+            $table->string('sfd_key')->nullable();
+            $table->string('sfd_value')->nullable();
 
             $table->bigInteger('sfd_created_by')->unsigned()->nullable();
             $table->bigInteger('sfd_updated_by')->unsigned()->nullable();

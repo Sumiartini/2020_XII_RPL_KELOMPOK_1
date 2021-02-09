@@ -175,12 +175,12 @@ class AccountController extends Controller
 
     }
 
-    public function pending_verification($studentID)
+    public function pending_verification($userID)
     {
-        // dd($studentID);
+        // dd($userID);
         $user = Auth::user();
         $student_prospective = new Students;
-        $student_prospective = $student_prospective->getStudentProsvectiveDetail($studentID);        
+        $student_prospective = $student_prospective->getStudentProsvectiveDetail($userID);        
         $student = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
         ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
         ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')

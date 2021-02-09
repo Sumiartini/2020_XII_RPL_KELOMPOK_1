@@ -41,7 +41,7 @@ Route::get('/register-staff', 'Auth\RegisterController@registerStaff');
 Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], function () {
 
     //Menunggu Verifikasi Terima atau Tolak
-    Route::get('/pending-verification/{stu_id}', 'Auth\AccountController@pending_verification');
+    Route::get('/pending-verification/{usr_id}', 'Auth\AccountController@pending_verification');
 
     //Formulir Siswa
     Route::get('/student-registration', 'StudentController@formRegistrasion');
