@@ -564,7 +564,7 @@
                     @enderror
                 </div>
             </div>
-            <label style="margin-top: 30px;">Foto calon siswa<span style="color:red"> *</span></label>
+            <label style="margin-top: 30px;">Foto calon staff<span style="color:red"> *</span></label>
             <div class="form-group row">
 
                 <div class="col-sm-4">

@@ -21,8 +21,8 @@
       <ul class="sidebar-submenu">
         <li><a href="{{URL::to('/staffs')}}"><i class="fa fa-circle-o"></i> Daftar Staf</a></li>
         <li><a href="{{URL::to('/staff/create')}}"><i class="fa fa-circle-o"></i> Tambah Staf </a></li>
-        <li><a href="{{URL::to('/staffs/prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Staf </a></li>
-        <li><a href="{{URL::to('/staffs/rejected')}}"><i class="fa fa-circle-o"></i> Daftar Staf Ditolak</a></li>
+        <li><a href="{{URL::to('/staffs-prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Staf </a></li>
+        <li><a href="{{URL::to('/staffs-rejected')}}"><i class="fa fa-circle-o"></i> Daftar Staf Ditolak</a></li>
       </ul>
     </li>
 

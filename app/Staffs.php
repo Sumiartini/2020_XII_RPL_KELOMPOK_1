@@ -20,4 +20,29 @@ class Staffs extends Model
             ->where('users.usr_is_active', 1);
         return $staffs;
     }
-}
+
+    public static function getStaffsProspective($request)
+    {
+
+        $staffs_prospective = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
+            // ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
+            ->where('staffs.stf_registration_status', 0)
+            ->where('users.usr_is_regist', 1)
+            ->where('users.usr_is_active', 1);
+        // dd($staff_prospective);
+        return $staffs_prospective;
+    }
+
+    public static function getStaffsRejected($request)
+    {
+
+        $staffs_rejected = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
+            // ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
+            ->where('staffs.stf_registration_status', 2)
+            ->where('users.usr_is_regist', 1)
+            ->where('users.usr_is_active', 0);
+        // dd($staffs_rejected);
+        return $staffs_rejected;
+    }
+    
+    }
