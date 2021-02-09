@@ -68,13 +68,20 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('staff', 'DatatableController@getStaffs');
 
-    Route::get('/staffs/prospective', 'StaffController@list_prospective');
-    Route::get('/staffs/rejected', 'StaffController@list_rejected');
+    Route::get('/staffs-prospective', function () {
+        return view('staffs.list-staff-prospective');
+    });
+    Route::get('/staff/prospective', 'DatatableController@getStaffsProspective');
+
+    Route::get('/staffs-rejected', function () {
+        return view('staffs.list-staff-rejected');
+    });
+    Route::get('/staff/rejected', 'DatatableController@getStaffsRejected');
+
+   
     Route::post('/staff/create', 'StaffController@store');
     Route::get('/staff/create', 'StaffController@create');
     Route::get('/staff/{stf_id}', 'StaffController@show');
-    Route::get('/staffs/prospective/1', 'StaffController@show_prospective');
-    Route::get('/staffs/rejected/1', 'StaffController@show_rejected');
     Route::get('/staff/edit/{stf_id}', 'StaffController@edit');
     Route::post('/staff/edit/{stf_id}', 'StaffController@update');
     Route::get('/staffs/delete/1', 'StaffController@destroy');

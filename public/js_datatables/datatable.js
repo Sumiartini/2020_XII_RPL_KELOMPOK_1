@@ -227,6 +227,7 @@ function studentRejected() {
     });
 }
 
+
 function staff() {
     $('#example').DataTable({
       processing: true,
@@ -286,6 +287,175 @@ function staff() {
         }
     });
 }
+function staffUsers() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'staff',
+      lengthChange: true,
+        columns: [
+            {
+                data: 'stf_id',
+                name: 'stf_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'usr_name', 
+                name:'usr_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stf_gtk', 
+                name:'stf_gtk', 
+                orderable: false, 
+                searchable: true
+            },
+            {
+                data: 'usr_is_active', 
+                name:'usr_is_active', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar staff tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar staff",
+            "infoFiltered": "(pencarian dari _MAX_ daftar staff)",
+            "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+            "lengthMenu": "Tampilkan _MENU_ data",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
+
+function staffProspective() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'staff/prospective',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stf_id',
+                name: 'stf_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+             {
+                data: 'usr_name', 
+                name:'usr_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stf_nuptk', 
+                name:'stf_nuptk', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar Calon staff tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar calon staff",
+            "infoFiltered": "(pencarian dari _MAX_ daftar calon staff)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
+function staffRejected() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'staff/rejected',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stf_id',
+                name: 'stf_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+             {
+                data: 'usr_name', 
+                name:'usr_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stf_nuptk', 
+                name:'stf_nuptk', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar Calon staff ditolak tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar calon staff ditolak",
+            "infoFiltered": "(pencarian dari _MAX_ daftar calon staff)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
 
 function teacher() {
     $('#example').DataTable({

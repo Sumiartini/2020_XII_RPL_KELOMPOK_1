@@ -60,7 +60,6 @@ class StaffController extends Controller
     {
         return view('staffs.detail-staff');
     }
-
     public function show_prospective()
     {
         return view('staffs.detail-staff-prospective');
@@ -72,9 +71,10 @@ class StaffController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Staffs  $staffs
+     * @param  \App\Students  $students
      * @return \Illuminate\Http\Response
      */
+    
     public function edit()
     {
         return view('staffs.edit-staff');
@@ -236,4 +236,42 @@ class StaffController extends Controller
         }
         return redirect('/pending-verification/' . $staff->stf_id);
     }
+
+    public function receipted($stf_id)
+    {
+        $staff = Staffs::findOrFail($stf_id);
+        $staff->stf_registration_status = '1';
+        $staff->update();
+        return back()->with('success', 'Staff berhasil diterima');
+    }
+
+    public function rejected($stf_id)
+    {
+        $staff = Staffs::findOrFail($stf_id);
+        $user = User::where('usr_id', $staff->stf_user_id)->first();
+
+        $user->usr_is_active = '0';
+        $user->update();
+
+        $staff->stf_registration_status = '2';
+        $staff->update();
+
+        return back()->with('success', 'Staff berhasil ditolak');
+    }
+
+    public function restore($stf_id)
+    {
+        $staff = Staffs::findOrFail($stf_id);
+        $user = User::where('usr_id', $staff->stf_user_id)->first();
+
+        $user->usr_is_active = '1';
+        $user->update();
+
+        $staff->stf_registration_status = '0';
+        $staff->update();
+
+        return back()->with('success', 'Staff berhasil dikembalikan menjadi calon staff');
+    }
 }
+
+

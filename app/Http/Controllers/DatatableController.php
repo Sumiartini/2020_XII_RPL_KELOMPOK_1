@@ -107,6 +107,33 @@ class DatatableController extends Controller
         })->rawColumns(['action', 'usr_is_active'])
         ->make(true);
     }
+    public function getStaffsProspective(Request $request)
+    {
+        $staffs_prospective = Staffs::getStaffsProspective($request->query());
+        // dd($staffs_prospective);
+        return Datatables::of($staffs_prospective)
+        ->addColumn('action', function ($row) { 
+            $detail = '<a href="' . url('staff', $row->stf_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
+            $receipted = '<a href="' . url('staff/receipted', $row->stf_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';
+            $rejected = '<a href="' . url('staff/rejected', $row->stf_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TOLAK" class="btn btn-outline-danger waves-effect waves-light m-1"><i class="zmdi zmdi-close fa-lg"></i></a>';
+            return $detail . '&nbsp' . $receipted . '&nbsp' . $rejected;
+            
+        })->rawColumns(['action'])
+        ->make(true);
+    }
+    public function getStaffsRejected(Request $request)
+    {
+        $staffs_rejected = Staffs::getStaffsRejected($request->query());
+        // dd($staffs_rejected);
+        return Datatables::of($staffs_rejected)
+        ->addColumn('action', function ($row) { 
+            $detail = '<a href="' . url('staff', $row->stf_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
+            $restore = '<a href="' . url('staff/restore', $row->stf_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="KEMBALI" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-time-restore-setting fa-lg"></i></a>';            
+            return $detail . '&nbsp' . $restore;
+            
+        })->rawColumns(['action'])
+        ->make(true);
+    }
 
     public function getTeachers(Request $request)
     {
