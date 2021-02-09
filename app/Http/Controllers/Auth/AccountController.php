@@ -200,7 +200,7 @@ class AccountController extends Controller
             }else{
                 return redirect('/staff-registration');
             }   
-        }elseif ($user->hasRole('student')) {
+        }elseif ($user->hasRole('teacher')) {
             if ($user->usr_is_regist == 1) {            
                 dd('pending_verification Teacher');
             }else{

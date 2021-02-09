@@ -403,8 +403,8 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Nama Fakultas</label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.faculty') is-invalid @enderror" id="input-10" name="educational_background[faculty]" placeholder="Masukan Nama Fakultas" value="{{ old('educational_background.faculty') }}">
-                            @error('educational_background.faculty')
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_name') is-invalid @enderror" id="input-10" name="educational_background[faculty_name]" placeholder="Masukan Nama Fakultas" value="{{ old('educational_background.faculty_name') }}">
+                            @error('educational_background.faculty_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
