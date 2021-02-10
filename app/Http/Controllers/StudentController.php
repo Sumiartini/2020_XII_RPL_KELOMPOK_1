@@ -129,7 +129,7 @@ class StudentController extends Controller
         if ($request->hasFile('usr_profile_picture')) {
             $files = $request->file('usr_profile_picture');
             $path = public_path('images/users_profile');
-            $files_name = 'images' . '/' . 'student_files' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files_name = 'images' . '/' . 'users_profile' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
             $files->move($path, $files_name);
             $user->usr_profile_picture = $files_name;
         }
