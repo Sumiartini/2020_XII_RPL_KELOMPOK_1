@@ -21,12 +21,12 @@ class Teachers extends Model
         return $teachers;
     }
 
-    public function getTeachersProspective($request)
+    public static function getTeachersProspective($request)
     {
         $teachers_prospective   = Teachers::join('users', 'teachers.tcr_id', '=', 'users.usr_id')
         ->where('teachers.tcr_registration_status', 0)
         ->where('users.usr_is_regist', 1)
-        ->where('user.usr_is_active', 1);
+        ->where('users.usr_is_active', 1);
         return $teachers_prospective;
     }
 
