@@ -228,4 +228,40 @@ class TeacherController extends Controller
         return redirect('/pending-verification/' . $teacher->tcr_id);
 
     }
+
+    public function receipted($tcr_id)
+    {
+        $teacher = Teachers::findOrFail($tcr_id);
+        $teacher->tcr_registration_status = '1';
+        $teacher->update();
+        return back()->with('success', 'Guru berhasil diterima');
+    }
+
+    public function rejected($tcr_id)
+    {
+        $teacher = Teachers::findOrFail($tcr_id);
+        $user = User::where('usr_id', $teacher->tcr_user_id)->first();
+
+        $user->usr_is_active = '0';
+        $user->update();
+
+        $teacher->tcr_registration_status = '2';
+        $teacher->update();
+
+        return back()->with('success', 'Guru berhasil ditolak');
+    }
+
+    public function restore($tcr_id)
+    {
+        $teacher = Teachers::findOrFail($tcr_id);
+        $user = User::where('usr_id', $teacher->tcr_user_id)->first();
+
+        $user->usr_is_active = '1';
+        $user->update();
+
+        $teacher->tcr_registration_status = '0';
+        $teacher->update();
+
+        return back()->with('success', 'Guru berhasil dikembalikan menjadi calon GUru');
+    }
 }
