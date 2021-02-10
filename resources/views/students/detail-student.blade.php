@@ -90,39 +90,159 @@
         <div class="col-lg-4">
            <div class="profile-card-3">
             <div class="card">
-             <div class="user-fullimage">
-               <img src="{{ asset($student->usr_profile_picture)}}" alt="user avatar" class="card-img-top">
+             <div class="user-fullimage text-center">
+               <img src="{{ asset($student->usr_profile_picture)}}" alt="user avatar" class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
 <!--                 <div class="details">
                   <h5 class="mb-1 text-blue ml-3">{{ $student->stu_candidate_name }}</h5>
                   <h6 class="text-blue ml-3">{{ $student->usr_email }}</h6>
                  </div> -->
               </div>
-            <div class="card-body text-center">
-             <p>Lorem Ipsum available, but the majority have suffered</p>
-                   <div class="row">
-                    <div class="col p-2">
-                     <h5 class="mb-0 line-height-5">154</h5>
-                     <small class="mb-0 font-weight-bold">Projects</small>
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
                     </div>
-                    <div class="col p-2">
-                     <h5 class="mb-0 line-height-5">2.2k</h5>
-                     <small class="mb-0 font-weight-bold">Followers</small>
-                    </div>
-                    <div class="col p-2">
-                     <h5 class="mb-0 line-height-5">9.1k</h5>
-                     <small class="mb-0 font-weight-bold">Views</small>
-                    </div>
-                   </div>
-
-                   <div class="list-inline mt-2">
-                      <a href="javascript:void()" class="list-inline-item btn-social btn-social-circle btn-behance waves-effect waves-light"><i class="fa fa-behance"></i></a>
-                      <a href="javascript:void()" class="list-inline-item btn-social btn-social-circle btn-dribbble waves-effect waves-light"><i class="fa fa-dribbble"></i></a>
-                      <a href="javascript:void()" class="list-inline-item btn-social btn-social-circle btn-github waves-effect waves-light"><i class="fa fa-github"></i></a>
-                  </div>
-                  <hr>
-                  <a href="javascript:void():" class="btn btn-primary shadow-primary btn-sm btn-round waves-effect waves-light m-1">Hire Me</a>
-                  <a href="javascript:void():" class="btn btn-outline-primary btn-sm btn-round waves-effect waves-light m-1">Profile</a>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Surat Tanda Kelulusan SMP dilegalisir</p> 
+                    </div>     
                 </div>
+            </div>  
+            <div class="card-body">
+                <div class="row" style="margin-top: -30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Ijazah SMP/MTs dilegalisir</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Ijazah SD/Mi dilegalisir</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Akte Kelahiran</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Kartu Keluarga</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Keterangan Domisili</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>KTP Ayah</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>KTP Ibu</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Surat Kesehatan Badan</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Surat Kesehatan Mata</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: -7px;">
+                        <p>Kartu PIP/KIP/Keterangan Kematian</p> 
+                    </div>     
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row" style="margin-top: -30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Sertifikat/Piagam Penghargaan</p> 
+                    </div>     
+                </div>
+            </div>
+
+           
              </div>
             </div>
         </div>
