@@ -92,16 +92,24 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('teacher', 'DatatableController@getTeachers');
 
-    Route::get('/teachers/prospective', 'TeacherController@list_prospective');
-    Route::get('/teachers/rejected', 'TeacherController@list_rejected');
+    Route::get('/teachers-prospective', function(){
+        return view('teachers.list-teacher-prospective');
+    });
+    Route::get('teacher/prospective', 'DatatableController@getTeachersProspective');
+
+    Route::get('/teachers-rejected', function(){
+        return view('teachers.list-teacher-rejected');
+    });
+    Route::get('teacher/rejected', 'DatatableController@getTeachersRejected');
+
+
     Route::get('/teacher/create', 'TeacherController@create');
     Route::post('/teacher/create', 'TeacherController@store');
     Route::get('/teacher/{tcr_id}', 'TeacherController@show');
-    Route::get('/teachers/prospective/1', 'TeacherController@show_prospective');
-    Route::get('/teachers/rejected/1', 'TeacherController@show_rejected');
     Route::get('/teacher/edit/{tcr_id}', 'TeacherController@edit');
     Route::post('/teacher/edit/{tcr_id}', 'TeacherController@store');
     Route::get('/teachers/delete/1', 'TeacherController@destroy');
+    Route::get('/teacher/restore/{tcr_id}', 'TeacherController@restore');
 
     Route::get('/students', function () {
         return view('students.list-student');

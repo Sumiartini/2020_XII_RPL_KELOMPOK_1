@@ -165,6 +165,33 @@ class DatatableController extends Controller
         ->make(true);
     }
 
+    public function getTeachersProspective(Request $request)
+    {
+        $teachers_prospective = Teachers::getTeachersProspective($request->query());
+        return Datatables::of($teachers_prospective)
+        ->addColumn('action', function ($row) { 
+            $detail = '<a href="' . url('teacher', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
+            $receipted = '<a href="' . url('teacher/receipted', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';
+            $rejected = '<a href="' . url('teacher/rejected', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TOLAK" class="btn btn-outline-danger waves-effect waves-light m-1"><i class="zmdi zmdi-close fa-lg"></i></a>';
+            return $detail . '&nbsp' . $receipted . '&nbsp' . $rejected;
+            
+        })->rawColumns(['action'])
+        ->make(true);
+    }
+
+    public function getTeachersRejected(Request $request)
+    {
+        $teachers_rejected = Teachers::getTeachersRejected($request->query());
+        return Datatables::of($teachers_rejected)
+        ->addColumn('action', function ($row) { 
+            $detail = '<a href="' . url('teacher', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
+            $restore = '<a href="' . url('teacher/restore', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="KEMBALI" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-time-restore-setting fa-lg"></i></a>';            
+            return $detail . '&nbsp' . $restore;
+            
+        })->rawColumns(['action'])
+        ->make(true);
+    }
+
     public function getPositionType(Request $request)
     {
         $positionTypes = PositionTypes::getPositionTypes($request->query());

@@ -603,9 +603,7 @@
                                     </p>
                                     @enderror
                                 </div>
-
                             </div>
-
                             <div class="form-footer">
                                 <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                                 <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
