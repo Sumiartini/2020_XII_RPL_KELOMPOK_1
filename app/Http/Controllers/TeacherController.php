@@ -124,7 +124,8 @@ class TeacherController extends Controller
             'usr_date_of_birth'                                 => 'required',
             'usr_religion'                                      => 'required',
             'usr_gender'                                        => 'required',            
-            'usr_whatsapp_number'                               => 'required | unique:users,usr_whatsapp_number',            
+            'usr_whatsapp_number'                               => 'required | unique:users,usr_whatsapp_number',
+            'usr_profile_picture'                               => 'required',
             'prv_name'                                          => 'required',
             'cit_name'                                          => 'required',
             'dst_name'                                          => 'required',
@@ -194,7 +195,7 @@ class TeacherController extends Controller
                             $teacherDetail->tcd_type       = $key;
                             $teacherDetail->tcd_key        = $requestKey;
                             $teacherDetail->tcd_value      = $requestValue;
-                            $teacherDetail->tcd_created_by = $teacher->tcr_id;
+                            $teacherDetail->tcd_created_by = Auth()->user()->usr_id;
                             $teacherDetail->save();
                         }
                     }
@@ -217,7 +218,7 @@ class TeacherController extends Controller
                         $teacherDetail->tcd_type       = 'other';
                         $teacherDetail->tcd_key        = $key;
                         $teacherDetail->tcd_value      = $files_name;
-                        $teacherDetail->tcd_created_by = $teacher->tcr_id;
+                        $teacherDetail->tcd_created_by = Auth()->user()->usr_id;
                         $teacherDetail->save();
                     }
                 }

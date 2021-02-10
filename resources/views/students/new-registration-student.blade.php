@@ -186,12 +186,11 @@
 
                             <div class="col-sm-4">
                                 <label> Jenis Kelamin <span style="color:red"> *</span></label>
-
-                            <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
-                                <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
-                                <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
-                                <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
-                            </select>
+                                <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
+                                    <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
+                                    <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
+                                    <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
+                                </select>
                             @error('usr_gender')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

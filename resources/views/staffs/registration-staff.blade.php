@@ -127,7 +127,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <label>NIK <span style="color:red;">*</span></label>
-                                <input type="text" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" id="input-10" name="personal[nik]" placeholder="Masukan NIK" value="{{ old('personal.nik') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" id="input-10" name="personal[nik]" placeholder="Masukan NIK" value="{{ old('personal.nik') }}">
                                 @error('personal.nik')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -136,7 +136,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <label>NUPTK</label>
-                                <input type="text" class="form-control form-control-rounded @error('stf_nuptk') is-invalid @enderror" id="input-10" name="stf_nuptk" placeholder="Masukan NUPTK" value="{{ old('stf_nuptk') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('stf_nuptk') is-invalid @enderror" id="input-10" name="stf_nuptk" placeholder="Masukan NUPTK" value="{{ old('stf_nuptk') }}">
                                 @error('stf_nuptk')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -168,15 +168,15 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <label>Agama <span style="color:red;">*</span></label>
-                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select">
-                                    <option disabled="" selected="">Pilih</option>
-                                    <option value="Islam">Islam</option>
-                                    <option value="Protestan">Protestan</option>
-                                    <option value="Katolik">Katolik</option>
-                                    <option value="Hindu">Hindu</option>
-                                    <option value="Budha">Budha</option>
-                                    <option value="Khonghucu">Khonghucu</option>
+                                <label> Agama <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
+                                    <option disabled="" {{ old('usr_religion') == "" ? 'selected' : '' }} > Pilih </option>
+                                    <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }}  value="Islam"> Islam </option>
+                                    <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }}  value="Protestan"> Protestan </option>
+                                    <option {{ old('usr_religion') == "Katolik" ? 'selected' : '' }}  value="Katolik"> Katolik </option>
+                                    <option {{ old('usr_religion') == "Hindu" ? 'selected' : '' }}  value="Hindu"> Hindu </option>
+                                    <option {{ old('usr_religion') == "Budha" ? 'selected' : '' }}  value="Budha"> Budha </option>
+                                    <option {{ old('usr_religion') == "Khonghucu" ? 'selected' : '' }}  value="Khonghucu"> Khonghucu </option>
                                 </select>
                                 @error('usr_religion')
                                 <span class="invalid-feedback" role="alert">
@@ -188,17 +188,17 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-4">
-                                <label>Jenis Kelamin <span style="color:red;">*</span></label>
-                                <select class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" name="usr_gender" id="basic-select">
-                                    <option disabled="" selected="">Pilih</option>
-                                    <option>Laki Laki</option>
-                                    <option>Perempuan</option>
+                                <label> Jenis Kelamin <span style="color:red"> *</span></label>
+                                <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
+                                    <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
+                                    <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
+                                    <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
                                 </select>
-                                @error('usr_gender')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            @error('usr_gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             </div>
                             <div class="col-sm-4">
                                 <label> No. WhatsApp <span style="color:red"> *</span></label>
@@ -320,7 +320,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label>Tahun SD/Sederajat <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.year_grade_school') is-invalid @enderror" id="input-10" name="educational_background[year_grade_school]" placeholder="Masukan Tahun SD/Sederajat" value="{{ old('educational_background.year_grade_school') }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_grade_school') is-invalid @enderror" id="input-10" name="educational_background[year_grade_school]" placeholder="Masukan Tahun SD/Sederajat" value="{{ old('educational_background.year_grade_school') }}">
                             @error('educational_background.year_grade_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -339,7 +339,7 @@
 
                         <div class="col-sm-4">
                             <label>Tahun SMP/Sederajat <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.year_junior_high_school') is-invalid @enderror" id="input-10" name="educational_background[year_junior_high_school]" placeholder="Masukan Tahun SMP/Sederajat" value="{{ old('educational_background.year_junior_high_school') }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_junior_high_school') is-invalid @enderror" id="input-10" name="educational_background[year_junior_high_school]" placeholder="Masukan Tahun SMP/Sederajat" value="{{ old('educational_background.year_junior_high_school') }}">
                             @error('educational_background.year_junior_high_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -362,7 +362,7 @@
 
                         <div class="col-sm-4">
                             <label>Tahun SMA/Sederajat <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.year_senior_high_school') is-invalid @enderror" id="input-10" name="educational_background[year_senior_high_school]" placeholder="Masukan Tahun SMA/Sederajat" value="{{ old('educational_background.year_senior_high_school') }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_senior_high_school') is-invalid @enderror" id="input-10" name="educational_background[year_senior_high_school]" placeholder="Masukan Tahun SMA/Sederajat" value="{{ old('educational_background.year_senior_high_school') }}">
                             @error('educational_background.year_senior_high_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -426,7 +426,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Tahun Lulus</label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.year') is-invalid @enderror" id="input-10" name="educational_background[year]" placeholder="Masukan Tahun Lulus" value="{{ old('educational_background.year') }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year') is-invalid @enderror" id="input-10" name="educational_background[year]" placeholder="Masukan Tahun Lulus" value="{{ old('educational_background.year') }}">
                             @error('educational_background.year')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -581,8 +581,8 @@
 
             </div>
             <div class="form-footer">
-                <button type="reset" class="btn btn-danger"><i class="fa fa-check-square-o"></i> BATAL</button>
-                <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
+                <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-check-square-o"></i> BATAL</button>
+                <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
             </div>
 
         </form>

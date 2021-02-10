@@ -17,9 +17,9 @@ class CreateTeacherDetailsTable extends Migration
             $table->bigIncrements('tcd_id');
             $table->foreignId('tcd_teacher_id');
             $table->foreign('tcd_teacher_id')->references('tcr_id')->on('teachers');
-            $table->string('tcd_type');
-            $table->string('tcd_key');
-            $table->string('tcd_value');
+            $table->string('tcd_type')->nullable();
+            $table->string('tcd_key')->nullable();
+            $table->string('tcd_value')->nullable();
 
             $table->bigInteger('tcd_created_by')->unsigned()->nullable();
             $table->bigInteger('tcd_updated_by')->unsigned()->nullable();

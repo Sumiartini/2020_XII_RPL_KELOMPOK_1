@@ -318,7 +318,7 @@ class StudentController extends Controller
             'unique'    => 'Kolom yang digunakan telah terdaftar',
             'mimes'     => 'File tidak support',
             'size'      => 'Ukuran file Max 2 MB',
-            'uploaded'  => 'Gagal di unggal, ukuran file wajib 2 MB'
+            'uploaded'  => 'Gagal di unggal, ukuran file max 2 MB'
         ];
 
         $request->validate([

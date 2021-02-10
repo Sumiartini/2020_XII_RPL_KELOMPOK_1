@@ -128,6 +128,7 @@ class StaffController extends Controller
             'usr_profile_picture.mimes'     => 'Foto tidak support',
             'mimes'                         => 'file tidak support',
             'size'                          => 'Ukuran file Max 2 MB',
+            'uploaded'  => 'Gagal di unggal, ukuran file max 2 MB'
         ];
 
         $request->validate([
@@ -151,7 +152,7 @@ class StaffController extends Controller
             'educational_background.year_grade_school'        => 'required',
             'educational_background.grade_school'             => 'required',
             'educational_background.year_junior_high_school'  => 'required',
-            'ducational_background.junior_high_school'        => 'required',
+            'educational_background.junior_high_school'        => 'required',
             'educational_background.year_senior_high_school'  => 'required',
             'educational_background.senior_high_school'       => 'required',
             'other.identity_card'                             => 'required',
@@ -203,7 +204,7 @@ class StaffController extends Controller
                             $staffDetail->sfd_type       = $key;
                             $staffDetail->sfd_key        = $requestKey;
                             $staffDetail->sfd_value      = $requestValue;
-                            $staffDetail->sfd_created_by = $staff->stf_id;
+                            $staffDetail->sfd_created_by = $user->usr_id;
                             $staffDetail->save();
                         }
                     }
@@ -226,7 +227,7 @@ class StaffController extends Controller
                         $staffDetail->sfd_type       = 'other';
                         $staffDetail->sfd_key        = $key;
                         $staffDetail->sfd_value      = $files_name;
-                        $staffDetail->sfd_created_by = $staff->stf_id;
+                        $staffDetail->sfd_created_by = $user->usr_id;
                         $staffDetail->save();
                     }
                 }
