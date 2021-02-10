@@ -97,10 +97,15 @@ class DatatableController extends Controller
             $detail = '<a href="' . url('staff', $row->stf_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
             if (Auth()->user()->hasRole('admin')) {
                 $edit = '<a href="' . url('staff/edit', $row->stf_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
-                $delete = '<button onclick="btnDel(' . $row->stf_id . ')" name="btnDel" type="button" class="btn btn-outline-danger waves-effect waves-light m-1"><i class="fa fa-trash fa-lg"></i></button>';
+                $usr_is_active = $row->usr_is_active;
+                if ($usr_is_active == '0') {
+                    $status = '<a href="' . url('edit-status', $row->usr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+                }else{
+                    $status = '<a href="' . url('edit-status', $row->usr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
+                }
             }
             if (Auth()->user()->hasRole('admin')) {
-                return $detail . '&nbsp' . $edit . '&nbsp' . $delete;
+                return $detail . '&nbsp' . $edit . '&nbsp' . $status;
             } else {
                 return $detail;
             }
@@ -153,11 +158,16 @@ class DatatableController extends Controller
             $detail = '<a href="' . url('teacher', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
             if (Auth()->user()->hasRole('admin')) {
                 $edit = '<a href="' . url('teacher/edit', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
-                $delete = '<button onclick="btnDel(' . $row->tcr_id . ')" name="btnDel" type="button" class="btn btn-outline-danger waves-effect waves-light m-1"><i class="fa fa-trash fa-lg"></i></button>';
+                $usr_is_active = $row->usr_is_active;
+                if ($usr_is_active == '0') {
+                    $status = '<a href="' . url('edit-status', $row->usr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+                }else{
+                    $status = '<a href="' . url('edit-status', $row->usr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
+                }
             }
 
             if (Auth()->user()->hasRole('admin')) {
-                return $detail . '&nbsp' . $edit . '&nbsp' . $delete;
+                return $detail . '&nbsp' . $edit . '&nbsp' . $status;
             } else {
                 return $detail;
             }

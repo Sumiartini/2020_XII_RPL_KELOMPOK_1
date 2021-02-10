@@ -39,34 +39,45 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
-      <div class="card-body">
-        <div class="table-responsive">
-          @if(Auth()->user()->hasRole('admin'))
-          <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-            <a href="{{URL::to('/teacher/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH GURU" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
-          </div>
-          @else
-          @endif
-          <table id="example" class="table table-bordered" style="width: 100%;">
-            <thead>
-              <tr>
-                <th>NO</th>
-                <th>NAMA</th>
-                <th>NO GTK</th>
-                <th>STATUS</th>
-                <th>AKSI</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <div class="alert-icon contrast-alert">
+       <i class="icon-check"></i>
+     </div>
+     <div class="alert-message">
+      <span><strong>Berhasil!</strong> {{$message}}.</span>
+    </div>
+  </div>
+  @endif
+  <div class="card">
+    <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
+    <div class="card-body">
+      <div class="table-responsive">
+        @if(Auth()->user()->hasRole('admin'))
+        <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
+          <a href="{{URL::to('/teacher/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH GURU" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
         </div>
+        @else
+        @endif
+        <table id="example" class="table table-bordered" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>NAMA</th>
+              <th>NO GTK</th>
+              <th>STATUS</th>
+              <th>AKSI</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+
       </div>
     </div>
   </div>
+</div>
 </div><!-- End Row-->
 
 <!--Start Back To Top Button-->

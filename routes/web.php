@@ -132,8 +132,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/student/{stu_id}', 'StudentController@show_student');
     Route::get('/student/edit/{std_id}', 'StudentController@edit');
     Route::post('/student/edit/{std_id}', 'StudentController@update');
-    Route::post('/student/delete', 'StudentController@destroy');
-    Route::get('/student/restore/{std_id}', 'StudentController@restore');
+    Route::post('/student/delete', 'StudentController@destroy');    
     
 
     Route::get('/page/list', 'PageController@index');
@@ -187,9 +186,22 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/position-type/edit/1', 'PositionTypeController@edit');
     Route::post('/position-type/edit/1', 'PositionTypeController@update');
 
-    //terima tolak siswa
+    //terima tolak dan restore siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');
     Route::get('/student/rejected/{stu_id}', 'StudentController@rejected');
+    Route::get('/student/restore/{std_id}', 'StudentController@restore');
+    
+    //terima tolak dan restore staf
+    Route::get('/staff/receipted/{stf_id}', 'StaffController@receipted');
+    Route::get('/staff/rejected/{stf_id}', 'StaffController@rejected');
+    Route::get('/staff/restore/{stf_id}', 'StaffController@restore');
+    
+    //terima tolak dan restore guru
+    Route::get('/teacher/receipted/{tcr_id}', 'TeacherController@receipted');
+    Route::get('/teacher/rejected/{tcr_id}', 'TeacherController@rejected');
+    Route::get('/teacher/restore/{tcr_id}', 'TeacherController@restore');
+    
+
 
     Route::get('/edit-status/{usr_id}', 'Auth\AccountController@edit_status');
 });

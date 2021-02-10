@@ -263,6 +263,6 @@ class TeacherController extends Controller
         $teacher->tcr_registration_status = '0';
         $teacher->update();
 
-        return back()->with('success', 'Guru berhasil dikembalikan menjadi calon GUru');
+        return back()->with('success', 'Guru berhasil dikembalikan menjadi calon Guru');
     }
 }
