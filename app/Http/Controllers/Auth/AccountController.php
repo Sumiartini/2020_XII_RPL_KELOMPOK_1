@@ -196,13 +196,13 @@ class AccountController extends Controller
             }
         }elseif ($user->hasRole('staff')) {
             if ($user->usr_is_regist == 1) {            
-                dd('Pending Verification Staff');
+                return view('staffs/waiting-registration');
             }else{
                 return redirect('/staff-registration');
             }   
         }elseif ($user->hasRole('teacher')) {
             if ($user->usr_is_regist == 1) {            
-                dd('pending_verification Teacher');
+                return view('teachers/waiting-registration');
             }else{
                 return redirect('/teacher-registration');
             }
