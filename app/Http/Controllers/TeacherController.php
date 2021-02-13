@@ -241,11 +241,7 @@ class TeacherController extends Controller
     public function rejected($tcr_id)
     {
         $teacher = Teachers::findOrFail($tcr_id);
-        $user = User::where('usr_id', $teacher->tcr_user_id)->first();
-
-        $user->usr_is_active = '0';
-        $user->update();
-
+        
         $teacher->tcr_registration_status = '2';
         $teacher->update();
 

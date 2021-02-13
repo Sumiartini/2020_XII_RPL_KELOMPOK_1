@@ -249,11 +249,7 @@ class StaffController extends Controller
     public function rejected($stf_id)
     {
         $staff = Staffs::findOrFail($stf_id);
-        $user = User::where('usr_id', $staff->stf_user_id)->first();
-
-        $user->usr_is_active = '0';
-        $user->update();
-
+        
         $staff->stf_registration_status = '2';
         $staff->update();
 
@@ -263,11 +259,7 @@ class StaffController extends Controller
     public function restore($stf_id)
     {
         $staff = Staffs::findOrFail($stf_id);
-        $user = User::where('usr_id', $staff->stf_user_id)->first();
-
-        $user->usr_is_active = '1';
-        $user->update();
-
+        
         $staff->stf_registration_status = '0';
         $staff->update();
 
