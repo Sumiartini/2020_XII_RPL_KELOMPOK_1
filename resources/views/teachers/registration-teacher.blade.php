@@ -131,7 +131,7 @@
                                 <div class="col-sm-4">
                                     <label>NIK <span style="color:red;">*</span></label>
                                     <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_nik') is-invalid @enderror" id="input-10" name="usr_nik" placeholder="Masukan NIK" value="{{ old('usr_nik') }}">
-                                    @error('usr_nik')
+                                    @error('personal.nik')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

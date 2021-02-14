@@ -56,17 +56,31 @@ class StaffController extends Controller
      * @param  \App\Staffs  $staffs
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show_staff($staffID)
     {
-        return view('staffs.detail-staff');
+        $staff = new Staffs;
+        $staff = $staff->getStaffsDetail($staffID);
+        $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+            ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+            ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+            ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+            ->where('usr_id', $staff->usr_id)
+            ->get();
+        return view('staffs.detail-staff', ['staff' => $staff, 'user' => $user]);
     }
-    public function show_prospective()
+    public function show_prospective($teacherID)
     {
-        return view('staffs.detail-staff-prospective');
+        $staff_prospective = new Staffs;
+        $staff_prospective = $staff_prospective->getStaffsProsvectiveDetail($staffID);
+        //dd($staff_prospective);
+        return view('staffs.detailstaffr-prospective', ['staff_prospective' => $staff_prospective]);
     }
-    public function show_rejected()
+    public function show_rejected($teacherID)
     {
-        return view('staffs.detail-staff-rejected');
+        $staff_rejected = new Staffs;
+        $staff_rejected = $staff_rejected->getStaffsRejectedDetail($teacherID);
+        // dd($staff_rejected);
+        return view('staffs.detail-staff-rejected', ['staff_rejected' => $staff_rejected]);
     }
     /**
      * Show the form for editing the specified resource.

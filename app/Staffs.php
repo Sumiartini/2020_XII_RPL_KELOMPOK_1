@@ -21,6 +21,19 @@ class Staffs extends Model
         return $staffs;
     }
 
+    public function getStaffsDetail($staffID)
+    {
+        $staffs = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
+            // ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+            // ->join('entry_types', 'students.stu_entry_type_id', '=', 'entry_types.ent_id')
+            ->where('stf_id', $staffID)->firstOrFail();
+
+        $staff_details = StaffDetails::where('sfd_staff_id', $staffs->stf_id)->where('sfd_deleted_at', null)->get();
+        $staff_details = mappingDataStaff($staff_details, $staffs);
+
+        return $staff_details;
+    }
+
     public static function getStaffsProspective($request)
     {
 
@@ -42,7 +55,8 @@ class Staffs extends Model
         $staff_prospective_details = mappingDataStaff($staff_prospective_details, $staffs_prospective);
         //dd($staffs_prospective);
         return $staff_prospective_details;
-}
+    }
+
     public static function getStaffsRejected($request)
     {
 
@@ -53,6 +67,17 @@ class Staffs extends Model
             ->where('users.usr_is_active', 0);
         // dd($staffs_rejected);
         return $staffs_rejected;
+    }
+
+    public function getStaffRejectedDetail($staffID)
+    {
+        $staffs_rejected = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
+            ->where('stf_id', $staffID)->firstOrFail();
+
+        $staff_rejected_details = StaffDetails::where('sfd_staff_id', $staffs_rejected->stf_id)->get();
+        $staff_rejected_details = mappingDataStaff($staff_rejected_details, $staffs_rejected);
+        //dd($staffs_rejected);
+        return $staff_rejected_details;
     }
     
     }

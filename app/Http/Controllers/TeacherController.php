@@ -48,17 +48,31 @@ class TeacherController extends Controller
      * @param  \App\Teachers  $teachers
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show_teacher($teacherID)
     {
-        return view('teachers.detail-teacher');
+        $teacher = new Teachers;
+        $teacher = $teacher->getTeacherDetail($teacherID);
+        $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+            ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+            ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+            ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+            ->where('usr_id', $teacher->usr_id)
+            ->get();
+        return view('teachers.detail-teacher', ['teacher' => $teacher, 'user' => $user]);
     }
-    public function show_prospective()
+    public function show_prospective($teacherID)
     {
-        return view('teachers.detail-teacher-prospective');
+        $teacher_prospective = new Teachers;
+        $teacher_prospective = $teacher_prospective->getTeacherProsvectiveDetail($teacherID);
+        //dd($teacher_prospective);
+        return view('teachers.detail-teacher-prospective', ['teacher_prospective' => $teacher_prospective]);
     }
-    public function show_rejected()
+    public function show_rejected($teacherID)
     {
-        return view('teachers.detail-teacher-rejected');
+        $teacher_rejected = new Teachers;
+        $teacher_rejected = $teacher_rejected->getTeacherRejectedDetail($teacherID);
+        // dd($teacher_rejected);
+        return view('teachers.detail-teacher-rejected', ['teacher_rejected' => $teacher_rejected]);
     }
     /**
      * Show the form for editing the specified resource.
