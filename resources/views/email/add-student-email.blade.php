@@ -13,7 +13,7 @@
     <table style="border: 1px solid #cccccc;" align="center" border="0" cellpadding="0" cellspacing="0" width="600">
      <tr>
       <td align="center" bgcolor="#70bbd9" style="padding: 20px 0 30px 0;">
-        <img src="https://smkmahaputra.sch.id/public/logo/image.png" width="100%" alt="Creating Email Magic" style="display: block; height: 110px; width: 110px;" />
+        <img src="https://1.bp.blogspot.com/-XcI6X4NxTQ4/X_rgwpqnmnI/AAAAAAAAQ4k/V_OgTlNvfcg32GUbBGSfz4793uv_hTyaQCLcBGAsYHQ/w945-h600-p-k-no-nu/logo.png" width="100%" alt="Creating Email Magic" style="display: block; height: 110px; width: 110px;" />
         </td>
      </tr>
      <tr>

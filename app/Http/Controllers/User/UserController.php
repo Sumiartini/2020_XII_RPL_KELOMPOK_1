@@ -37,6 +37,11 @@ class UserController extends Controller
         $staff = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
         -> where('staffs.stf_user_id', Auth::user()->usr_id)->first();
         $user = Auth()->user();
+
+        if ($user->usr_is_active == false) {
+            Auth::logout();
+            return redirect()->back()->with(['error' => 'Maaf akun anda di Non Aktifkan']);
+        }
         $students = Students::count();
         $teachers = Teachers::count();
         $staffs = Staffs::count();

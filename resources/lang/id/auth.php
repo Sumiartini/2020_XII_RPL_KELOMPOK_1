@@ -12,6 +12,6 @@ return [
     |
     */
 
-    'failed'   => 'Alamat email dan kata sandi tidak cocok.',
+    'failed'   => 'Email dan kata sandi salah',
     'throttle' => 'Terlalu banyak usaha masuk. Silahkan coba lagi dalam :seconds detik.',
 ];

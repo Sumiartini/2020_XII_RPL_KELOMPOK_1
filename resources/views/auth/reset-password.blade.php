@@ -31,7 +31,7 @@
             <img style="height: 150px; width: 150px;" src="{{ asset('assets/images/mahaputra.jfif') }}">
           </div>
           <div class="card-title text-uppercase text-center py-3">Reset Password</div>
-          <form id="submitForm" method="POST" action="{{ route('password-reset') }}" id="submitForm">
+          <form id="form-validate" method="POST" action="{{ route('password-reset') }}">
             @csrf
             <input type="hidden" name="pwr_email" value="{{ $resetPassword->pwr_email }}">
             <input type="hidden" name="pwr_token" value="{{ $resetPassword->pwr_token }}">
@@ -81,18 +81,41 @@
   <script src="{{asset('assets/js/jquery.min.js')}}"></script>
   <script src="{{asset('assets/js/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+  <!--Form Validatin Script-->
+  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
-   <script>
-        $(document).ready(function() {
-            $("#submitForm").submit(function(e) {
-                $(this).find("button[type='submit']").prop('disabled', true);
-                $("#btnSubmit").attr("disabled", true);
-                return true;
-            });
-        });
+  <script>
+    $().ready(function() {
+
+    //   $(".submitForm").submit(function(e) {
+    //     $(this).find("button[type='submit']").prop('disabled', true);
+    //     $(".btnSubmit").attr("disabled", true);
+    //     return true;
+    // });
+
+    $("#form-validate").validate({
+        rules: {
+            password: {
+              required: true,
+              minlength: 8
+            },
+            password_confirmation: {
+              required: true,
+              equalTo: "#password"
+            },
+        },
+        messages: {
+            password: {
+              required: "Kata sandi harus di isi",
+              minlength: "Minimal kata sandi 8 digit"
+            },
+            password_confirmation: {
+              required: "Ulangi kata sandi harus di isi",
+              equalTo: "Kata sandi wajib sesuai dengan yang awal"
+            },
+        }
+    });
+});
     </script>
 </body>
-
-<!-- Mirrored from codervent.com/rocker/color-version/authentication-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Nov 2019 12:20:55 GMT -->
-
 </html>
