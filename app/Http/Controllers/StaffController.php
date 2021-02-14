@@ -147,7 +147,7 @@ class StaffController extends Controller
             'prv_name'                                        => 'required',
             'cit_name'                                        => 'required',
             'dst_name'                                        => 'required',
-            'stf_nuptk'                                       => 'unique:staffs,stf_nuptk',
+            // 'stf_nuptk'                                       => 'unique:staffs,stf_nuptk',
             'personal.nik'                                    => 'required',
             'educational_background.year_grade_school'        => 'required',
             'educational_background.grade_school'             => 'required',

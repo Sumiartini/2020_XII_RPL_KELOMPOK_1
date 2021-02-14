@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from codervent.com/rocker/color-version/authentication-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Nov 2019 12:20:55 GMT -->
-
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,7 +30,7 @@
             <img style="height: 150px; width: 150px;" src="{{ asset('assets/images/mahaputra.jfif') }}">
           </div>
           <div class="card-title text-uppercase text-center py-3">Daftar</div>
-          <form method="POST" action="{{ route('register') }}" id="submitForm" autocomplete="off">
+          <form class="submitForm" method="POST" action="{{ route('register') }}" id="form-validate" autocomplete="off">
             @csrf
             <div class="form-group">
               <div class="position-relative has-icon-left">
@@ -66,7 +63,7 @@
             <div class="form-group" id="only-number">
               <div class="position-relative has-icon-left">
                 <label for="exampleInputEmailId" class="sr-only">Nomor Telepon</label>
-                <input type="text" value="{{ old('usr_phone_number') }}" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror only-number" placeholder="Nomor Telepon" name="usr_phone_number">
+                <input  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" value="{{ old('usr_phone_number') }}" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror only-number" placeholder="Nomor Telepon" name="usr_phone_number">
                 @error('usr_phone_number')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -79,8 +76,8 @@
             </div>
             <div class="form-group">
               <div class="position-relative has-icon-left">
-                <label for="exampleInputPassword" class="sr-only">Kata Sandi</label>
-                <input type="password" id="exampleInputPassword" class="form-control form-control-rounded @error('password') is-invalid @enderror" placeholder="Kata Sandi" name="password">
+                <label for="password" class="sr-only">Kata Sandi</label>
+                <input type="password" id="password" class="form-control form-control-rounded @error('password') is-invalid @enderror" placeholder="Kata Sandi" name="password">
                 @error('password')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -128,29 +125,62 @@
   <script src="{{ asset('assets/js/popper.min.js')}}"></script>
   <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
 
-  <script>
-    $(document).ready(function() {
-      $("#submitForm").submit(function(e) {
-        $(this).find("button[type='submit']").prop('disabled', true);
-        $("#btnSubmit").attr("disabled", true);
-        return true;
-      });
-      $('#only-number').on('keydown', '#usr_phone', function(e) {
-        -1 !== $
-        .inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) || /65|67|86|88/
-        .test(e.keyCode) && (!0 === e.ctrlKey || !0 === e.metaKey) ||
-        35 <= e.keyCode && 40 >= e.keyCode || (e.shiftKey || 48 > e.keyCode || 57 < e.keyCode) &&
-        (96 > e.keyCode || 105 < e.keyCode) && e.preventDefault()
-      });
-    });
+  <!--Form Validatin Script-->
+  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
-    $(".only-number").on("keypress keyup blur",function (event) {    
-     $(this).val($(this).val().replace(/[^\d].+/, ""));
-     if ((event.which < 48 || event.which > 57)) {
-      event.preventDefault();
-    }
-  });
-</script>
+  <script>
+    $().ready(function() {
+
+    //   $(".submitForm").submit(function(e) {
+    //     $(this).find("button[type='submit']").prop('disabled', true);
+    //     $(".btnSubmit").attr("disabled", true);
+    //     return true;
+    // });
+
+    $("#form-validate").validate({
+        rules: {
+            usr_name: "required",
+            password: {
+              required: true,
+              minlength: 8
+            },
+            password_confirmation: {
+              required: true,
+              equalTo: "#password"
+            },
+            usr_email: {
+              required: true,
+              email: true
+            },
+             usr_phone_number: {
+              required: true,
+              minlength: 10
+            },
+        },
+        messages: {
+            usr_name: {
+              required: "Nama harus di isi",
+            },
+            password: {
+              required: "Kata sandi harus di isi",
+              minlength: "Minimal kata sandi 8 digit"
+            },
+            password_confirmation: {
+              required: "Ulangi kata sandi harus di isi",
+              equalTo: "Kata sandi wajib sesuai dengan yang awal"
+            },
+            usr_email: {
+              required: "Alamat email harus di isi",
+              email: "Maaf email tidak valid"
+            },
+            usr_phone_number: { 
+              required: "Nomor telepon harus di isi",
+              minlength: "Nomor telepon min 10 digit"},
+        }
+    });
+});
+
+    </script>
 </body>
 
 <!-- Mirrored from codervent.com/rocker/color-version/authentication-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Nov 2019 12:20:55 GMT -->
