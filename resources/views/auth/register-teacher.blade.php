@@ -100,7 +100,7 @@
 
             <div class="form-group">
               <div class="position-relative has-icon-left">
-                <input type="hidden" name="role" value="3">
+                <input type="hidden" name="role" value="2">
               </div>
             </div>
 

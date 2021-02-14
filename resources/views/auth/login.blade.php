@@ -130,15 +130,6 @@
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-<script>
-  $(document).ready(function() {
-    $("#submitForm").submit(function(e) {
-      $(this).find("button[type='submit']").prop('disabled', true);
-      $("#btnSubmit").attr("disabled", true);
-      return true;
-    });
-  });
-</script>
 
   <!--Form Validatin Script-->
   <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
