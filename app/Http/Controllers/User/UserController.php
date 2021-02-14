@@ -50,24 +50,33 @@ class UserController extends Controller
             if ($student->stu_registration_status == '0' ) {
                 return redirect('student-registration');    
             }
-            if ($student->stu_registration_status == '1' ) {
+            elseif ($student->stu_registration_status == '1' ) {
                 return view('dashboard', compact('students','teachers','staffs'));
+            }
+            elseif ($student->stu_registration_status == '2' ) {
+                return view('students.student-rejected');
             }
             
         } elseif ($user->hasRole('teacher')) {
             if ($teacher->tcr_registration_status == '0') {
                 return redirect('teacher-registration');
             }
-            if ($teacher->tcr_registration_status == '1') {
+            elseif ($teacher->tcr_registration_status == '1') {
                 return view('dashboard', compact('students','teachers','staffs'));
             }
-            
+            elseif ($teacher->tcr_registration_status == '2') {
+                return view('teachers.teacher-rejected');
+            }
+
         } elseif ($user->hasRole('staff')) {
             if ($staff->stf_registration_status == '0') {
                 return redirect('staff-registration');
             }
-            if ($staff->stf_registration_status == '1') {
+            elseif ($staff->stf_registration_status == '1') {
                 return view('dashboard', compact('students','teachers','staffs'));
+            }
+               if ($staff->stf_registration_status == '2') {
+                return view('staffs.staff-rejected');
             }
             
         } elseif ($user->hasRole('admin')) {
