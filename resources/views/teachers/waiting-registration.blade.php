@@ -169,7 +169,7 @@
                   <tr>
                     <th >Nama Lengkap</th>
                     <td>:</td>
-                    <td>{{ $teacher_prospective->tcr_user_id }}</td>
+                    <td>{{ $teacher_prospective->usr_name }}</td>
                   </tr>
                   @if(isset($teacher_prospective->personal['nik']))
                   <tr>

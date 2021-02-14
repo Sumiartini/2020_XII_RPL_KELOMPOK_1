@@ -169,7 +169,7 @@
                   <tr>
                     <th >Nama Lengkap</th>
                     <td>:</td>
-                    <td>{{ $staff_prospective->stf_user_id }}</td>
+                    <td>{{ $staff_prospective->usr_name }}</td>
                   </tr>
                   @if(isset($staff_prospective->personal['nik']))
                   <tr>
