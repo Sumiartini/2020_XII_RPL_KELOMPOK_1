@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Students;
+use App\Teachers;
+use App\Staffs;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SendMail;
@@ -179,30 +181,48 @@ class AccountController extends Controller
     {
         // dd($userID);
         $user = Auth::user();
-        $student_prospective = new Students;
-        $student_prospective = $student_prospective->getStudentProsvectiveDetail($userID);        
-        $student = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
-        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
-        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
-        ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
-        ->where('usr_id', $student_prospective->usr_id)
-        ->get();
            
         if ($user->hasRole('student')) {
-            if ($user->usr_is_regist == 1) {            
+            if ($user->usr_is_regist == 1) { 
+                $student_prospective = new Students;
+                $student_prospective = $student_prospective->getStudentProsvectiveDetail($userID);        
+                $student = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+                ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+                ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+                ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+                ->where('usr_id', $student_prospective->usr_id)
+                ->get();
+                   
                 return view('students/waiting-registration', ['student_prospective' => $student_prospective, 'student' => $student]);
             }else{
                 return redirect('/student-registration');
             }
         }elseif ($user->hasRole('staff')) {
-            if ($user->usr_is_regist == 1) {            
-                return view('staffs/waiting-registration');
+            if ($user->usr_is_regist == 1) {
+                    $staff_prospective = new Staffs;
+                $staff_prospective = $staff_prospective->getStaffProsvectiveDetail($userID);        
+                $staff = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+                ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+                ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+                ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+                ->where('usr_id', $staff_prospective->usr_id)
+                ->get();
+
+                return view('staffs/waiting-registration', ['staff_prospective' => $staff_prospective, 'staff' => $staff]);
             }else{
                 return redirect('/staff-registration');
             }   
         }elseif ($user->hasRole('teacher')) {
-            if ($user->usr_is_regist == 1) {            
-                return view('teachers/waiting-registration');
+            if ($user->usr_is_regist == 1) {
+                $teacher_prospective = new Teachers;
+                $teacher_prospective = $teacher_prospective->getTeacherProsvectiveDetail($userID);        
+                $teacher = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+                ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+                ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+                ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+                ->where('usr_id', $teacher_prospective->usr_id)
+                ->get();            
+                 return view('teachers/waiting-registration', ['teacher_prospective' => $teacher_prospective, 'teacher' => $teacher]);
             }else{
                 return redirect('/teacher-registration');
             }
