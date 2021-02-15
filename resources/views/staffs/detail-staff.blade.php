@@ -185,13 +185,16 @@
                 <li class="nav-item">
                     <a href="javascript:void();" data-target="#pendidikan" data-toggle="pill" class="nav-link"><i class="icon-book-open"></i> <span class="hidden-xs">Riwayat Pendidikan</span></a>
                 </li>    
+                @if(isset($staff->history_job))
                 <li class="nav-item">
                     <a href="javascript:void();" data-target="#bekerja" data-toggle="pill" class="nav-link"><i class="ti-id-badge"></i> <span class="hidden-xs">Riwayat Bekerja</span></a>
                 </li>
+                @endif
+                @if(isset($staff->expertise))
                 <li class="nav-item">
                     <a href="javascript:void();" data-target="#keahlian" data-toggle="pill" class="nav-link"><i class="ti-id-badge"></i> <span class="hidden-xs">Keahlian</span></a>
                 </li>
-                
+                @endif
             </ul> 
             <div class="tab-content p-3">
                 <div class="tab-pane active show" id="staf"> 
@@ -202,16 +205,18 @@
                         <dd class="col-sm-7">
                             <p>{{ $staff->usr_name }}</p>
                         </dd>
-                        @if(isset($student->personal['nik']))
+                        @if(isset($staff->personal['nik']))
                         <dt class="col-sm-5">NIK</dt>
                         <dd class="col-sm-7">
                             <p>{{ $staff->personal['nik'] }}</p>
                         </dd>
                         @endif
+                        @if(isset($staff->stf_nuptk))
                         <dt class="col-sm-5">NUPTK</dt>
                         <dd class="col-sm-7">
                             <p>{{ $staff->stf_nuptk }}</p>
                         </dd>
+                        @endif
                         <dt class="col-sm-5">Tempat Lahir</dt>
                         <dd class="col-sm-7">
                             <p>{{ $staff->usr_place_of_birth }}</p>
@@ -287,69 +292,96 @@
                     
                     <div class="row">
 
+                        @if(isset($staff->educational_background['grade_school']))
                         <dt class="col-sm-5">Nama SD/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['grade_school']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year_grade_school']))
                         <dt class="col-sm-5">Tahun SD/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['year_grade_school']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['junior_high_school']))
                         <dt class="col-sm-5">Nama SMP/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['junior_high_school']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year_junior_high_school']))
                         <dt class="col-sm-5">Tahun SMP/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['year_junior_high_school']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['senior_high_school']))
                         <dt class="col-sm-5">Nama SMA/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['senior_high_school']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year_senior_high_school']))
                         <dt class="col-sm-5">Tahun SMA/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['year_senior_high_school']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['college']))
                         <dt class="col-sm-5">Nama Perguruan Tinggi</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['college']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year']))
                         <dt class="col-sm-5">Tahun Perguruan Tinggi</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['year']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['faculty_name']))
                         <dt class="col-sm-5">Nama Fakultas</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['faculty_name']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['faculty_major']))
                         <dt class="col-sm-5">Nama Jurusan</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['faculty_major']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year']))
                         <dt class="col-sm-5">Tahun Lulus</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['year']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->educational_background['degree']))
                         <dt class="col-sm-5">Gelar</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->educational_background['degree']}}</p>
                         </dd>
+                        @endif                        
                     </div>
                  </div>
 
                  <div class="tab-pane" id="bekerja">             
                     
                     <div class="row">
-
+                        @if(isset($staff->history_job['name']))
                         <dt class="col-sm-5">Nama Pekerjaan</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->history_job['name']}}</p>
                         </dd>
+                        @endif
+                        @if(isset($staff->history_job['lenght_of_work']))
                         <dt class="col-sm-5">Dari tahun/sampai </dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->history_job['lenght_of_work']}}</p>
                         </dd>
+                        @endif
                     </div>
                 </div>
 
@@ -357,15 +389,18 @@
                     
                     <div class="row">
 
+                        @if(isset($staff->expertise['name']))
                         <dt class="col-sm-5">Nama Keahlian</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->expertise['name']}}</p>
                         </dd>
-
+                        @endif
+                        @if(isset($staff->expertise['name_of_agency']))
                         <dt class="col-sm-5">Nama Istansi/Lembaga</dt>
                         <dd class="col-sm-7">
                             <p>{{$staff->expertise['name_of_agency']}}</p>
                         </dd>
+                        @endif
                     </div>
                 </div>
         </div>
