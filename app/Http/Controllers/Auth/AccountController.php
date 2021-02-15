@@ -144,10 +144,16 @@ class AccountController extends Controller
             return redirect('/account/profile/1/edit-password')->with(['failed' => 'Masukkan kata sandi lama dengan benar']);;
         }
     }
+
+    public function profile($usr_id){
+        $user = User::find($usr_id);
+        return view('profile.index',['user' => $user]);
+    }
+
     public function editProfile($usr_id)
     {
         $user = User::find($usr_id);
-        return view('profile.index',['user' => $user]);
+        return view('profile.edit',['user' => $user]);
     }
     public function storeEditProfile(Request $request)
     {
