@@ -330,10 +330,10 @@
                             <p>{{$teacher->educational_background['college']}}</p>
                         </dd>
                         @endif
-                         @if(isset($teacher->educational_background['year']))
+                         @if(isset($teacher->educational_background['year_entry']))
                         <dt class="col-sm-5">Tahun Perguruan Tinggi</dt>
                         <dd class="col-sm-7">
-                            <p>{{$teacher->educational_background['year']}}</p>
+                            <p>{{$teacher->educational_background['year_entry']}}</p>
                         </dd>
                         @endif
                         @if(isset($teacher->educational_background['faculty_name']))
@@ -348,10 +348,10 @@
                             <p>{{$teacher->educational_background['faculty_major']}}</p>
                         </dd>
                         @endif
-                        @if(isset($teacher->educational_background['year']))
+                        @if(isset($teacher->educational_background['year_graduate']))
                         <dt class="col-sm-5">Tahun Lulus</dt>
                         <dd class="col-sm-7">
-                            <p>{{$teacher->educational_background['year']}}</p>
+                            <p>{{$teacher->educational_background['year_graduate']}}</p>
                         </dd>
                         @endif
                         @if(isset($teacher->educational_background['degree']))

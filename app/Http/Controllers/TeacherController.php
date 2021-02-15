@@ -126,6 +126,7 @@ class TeacherController extends Controller
     public function storeFormRegistrasion(Request $request)
     {
         //dd($request, "MASUK KE HALAMAN MENUNGGU KEPUTUSAN DAN INFO PEMBAYARAN");
+        // dd($request);
         $requests = $request->input();
         $messages = [
             'required'  => 'Kolom wajib diisi',
@@ -133,7 +134,6 @@ class TeacherController extends Controller
         ];
         $request->validate([
             'usr_name'                                          => 'required',
-            'usr_nik'                                           => 'required',
             'usr_place_of_birth'                                => 'required',
             'usr_date_of_birth'                                 => 'required',
             'usr_religion'                                      => 'required',
@@ -154,11 +154,11 @@ class TeacherController extends Controller
             'educational_background.junior_high_school'         => 'required',
             'educational_background.year_senior_high_school'    => 'required',
             'educational_background.senior_high_school'         => 'required',
-            'educational_background.year'                       => 'required',
+            'educational_background.year_entry'                 => 'required',
             'educational_background.college'                    => 'required',
             'educational_background.faculty_name'               => 'required',
             'educational_background.faculty_major'              => 'required',
-            'educational_background.year'                       => 'required',
+            'educational_background.year_graduated'             => 'required',
             'educational_background.degree'                     => 'required',
             'other.identity_card'                               => 'required',
             'other.family_card'                                 => 'required',
@@ -168,10 +168,10 @@ class TeacherController extends Controller
             'other.resume'                                      => 'required',
             
         ], $messages);
+        // dd("Kesini");
         $teacher = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
         ->where('teachers.tcr_user_id', Auth::user()->usr_id)->first();
         $user = Auth()->user();
-        // dd($user->usr_gender);
         $user->usr_name             = $request->usr_name;
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
         $user->usr_date_of_birth    = $request->usr_date_of_birth;

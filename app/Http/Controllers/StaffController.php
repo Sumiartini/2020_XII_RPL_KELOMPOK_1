@@ -135,6 +135,7 @@ class StaffController extends Controller
     }
     public function storeFormRegistrasion(Request $request)
     {
+        // dd($request);
         $requests = $request->input();
         $messages = [
             'required'                      => 'Kolom wajib diisi',

@@ -323,11 +323,11 @@
                         <td>{{ $staff_prospective->educational_background['senior_high_school'] }}</td>
                     </tr>
                     @endif
-                    @if(isset($staff_prospective->educational_background['year']))
+                    @if(isset($staff_prospective->educational_background['year_entry']))
                     <tr>
                         <th>Tahun Perguruan Tinggi</th>
                         <td>:</td>
-                        <td>{{ $staff_prospective->educational_background['year'] }}</td>
+                        <td>{{ $staff_prospective->educational_background['year_entry'] }}</td>
                     </tr>
                     @endif
                     @if(isset($staff_prospective->educational_background['faculty_name']))
@@ -344,11 +344,11 @@
                         <td>{{ $staff_prospective->educational_background['faculty_major'] }}</td>
                     </tr>
                     @endif
-                    @if(isset($staff_prospective->educational_background['year']))
+                    @if(isset($staff_prospective->educational_background['year_graduated']))
                     <tr>
                         <th>Tahun Lulus</th>
                         <td>:</td>
-                        <td>{{ $staff_prospective->educational_background['year'] }}</td>
+                        <td>{{ $staff_prospective->educational_background['year_graduated'] }}</td>
                     </tr>
                     @endif
                     @if(isset($staff_prospective->educational_background['degree']))
