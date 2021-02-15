@@ -22,18 +22,44 @@
 @endpush
 
 @section('content')
+@if($staff->stf_registration_status == 1)
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Detail Staff</h4>
+        <h4 class="page-title">Detail Guru</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('staffs')}}">Daftar Staf</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/students/')}}">Daftar Staf </a></li>
             <li class="breadcrumb-item active" aria-current="page">Detail Staf</li>
         </ol>
     </div>
 </div>
 
-<div class="col-lg-12">
+@elseif($staff->stf_registration_status == 0)
+<div class="row pt-2 pb-2">
+  <div class="col-sm-9">
+    <h4 class="page-title">Daftar Calon Guru</h4>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('/students-prospective')}}">Daftar Calon Staf</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detail Calon Staf</li>
+  </ol>
+</div>
+</div>
+
+@else
+<div class="row pt-2 pb-2">
+  <div class="col-sm-9">
+    <h4 class="page-title">Daftar Staf Ditolak</h4>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('/students-rejected')}}">Daftar Staf Ditolak</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detail Staf Ditolak</li>
+  </ol>
+</div>
+</div>
+@endif
+
+<!-- <div class="col-lg-12">
     <div class="profile-card-3 ">
         <div class="text-center">
             <img src="{{ url('assets/images/avatars/avatar-2.png')}}" alt="user avatar" class="card-img-top" style="width: 200px;
@@ -43,369 +69,340 @@
         </div>
         <hr>
     </div>
-</div>
+</div> -->
 
 <div class="col-lg-12">
-    <div class="card">
-        <div class="card-body">
+  @if ($message = Session::get('success'))
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <div class="alert-icon contrast-alert">
+       <i class="icon-check"></i>
+   </div>
+   <div class="alert-message">
+    <span><strong>Berhasil!</strong> {{$message}}.</span>
+</div>
+</div>
+@endif
+</div>
 
-            <h4 class="text-primary">DATA PRIBADI</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Nama</th>
-                            <td>:</td>
-                            <td>Hamdan Firmansyah S. Pd</td>
+<div class="row">
+        <div class="col-lg-4">
+           <div class="profile-card-3">
+            <div class="card">
+             <div class="user-fullimage text-center">
+               <img src="{{ asset($staff->usr_profile_picture)}}" alt="user avatar" class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
+<!--                 <div class="details">
+                  <h5 class="mb-1 text-blue ml-3">{{ $staff->stu_candidate_name }}</h5>
+                  <h6 class="text-blue ml-3">{{ $staff->usr_email }}</h6>
+                 </div> -->
+              </div>
+              <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Kartu Tanda Penduduk (KTP)</p> 
+                    </div>     
+                </div>
+            </div>  
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Kartu Keluarga</p> 
+                    </div>     
+                </div>
+            </div>  
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Surat Tanda Kelulusan Minimal D4/S1 dilegalisir </p> 
+                    </div>     
+                </div>
+            </div>  
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Curriculum vitae (CV)</p> 
+                    </div>     
+                </div>
+            </div>  
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Surat Lamaran</p> 
+                    </div>     
+                </div>
+            </div>  
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Resume</p> 
+                    </div>     
+                </div>
+            </div> 
 
-                            <th>NIK</th>
-                            <td>:</td>
-                            <td>3204370204900002</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>NO GTK</th>
-                            <td>:</td>
-                            <td>16.17.007</td>
-
-                            <th>NUPTK</th>
-                            <td>:</td>
-                            <td>4734768669130082</td>
-                        </tr>
-
-                        <tr>
-                            <th>Kewarganegaraan</th>
-                            <td>:</td>
-                            <td>WNI</td>
-
-                            <th>Nama Negara</th>
-                            <td>:</td>
-                            <td>Indonesia</td>
-                        </tr>
-
-                        <tr>
-                            <th>Tempat Lahir</th>
-                            <td>:</td>
-                            <td>Bandung</td>
-
-                            <th>Tanggal lahir</th>
-                            <td>:</td>
-                            <td>02/04/1990</td>
-                        </tr>
-
-                        <tr>
-                            <th>Jenis Kelamin</th>
-                            <td>:</td>
-                            <td>Laki Laki</td>
-
-                            <th>Agama</th>
-                            <td>:</td>
-                            <td>Islam</td>
-                        </tr>
-
-                        <tr>
-                            <th>Status Perkawinan</th>
-                            <td>:</td>
-                            <td>Sudah</td>    
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-
-            <h4 class="text-primary">INFORMASI KONTAK</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            
-                            <th>Provinsi</th>
-                            <td>:</td>
-                            <td>Jawa Barat</td>  
-
-                            <th>Kota/Kabupaten</th>
-                            <td>:</td>
-                            <td>Bandung</td>                         
-                        </tr>
-
-                        <tr>
-                            <th>Kecamatan</th>
-                            <td>:</td>
-                            <td>Katapang</td>
-
-                            <th>Kode Pos</th>
-                            <td>:</td>
-                            <td>40971</td>
-
-                        </tr>
-
-                        <tr>
-                            <th>RT</th>
-                            <td>:</td>
-                            <td>02</td>
-
-                            <th>RW</th>
-                            <td>:</td>
-                            <td>07</td>
-
-                        </tr>
-
-                        <tr>
-
-                            <th>Alamat</th>
-                            <td>:</td>
-                            <td>Kp. Citereup</td>
-
-                            <th>Kelurahan/Desa</th>
-                            <td>:</td>
-                            <td>Sukamukti</td>
-
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>:</td>
-                            <td>odney04@gmail.com</td>
-                            
-                            <th>Nomor Telepon</th>
-                            <td>:</td>
-                            <td>089613272481</td>
-                        </tr>
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
+        </div>
+            <div class="col-lg-8">
+           <div class="card">
+            <div class="card-body">
+            <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#staf" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">Staff</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#persuratan" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Persuratan</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#pendidikan" data-toggle="pill" class="nav-link"><i class="icon-book-open"></i> <span class="hidden-xs">Riwayat Pendidikan</span></a>
+                </li>    
+                @if(isset($staff->history_job))
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#bekerja" data-toggle="pill" class="nav-link"><i class="ti-id-badge"></i> <span class="hidden-xs">Riwayat Bekerja</span></a>
+                </li>
+                @endif
+                @if(isset($staff->expertise))
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#keahlian" data-toggle="pill" class="nav-link"><i class="ti-id-badge"></i> <span class="hidden-xs">Keahlian</span></a>
+                </li>
+                @endif
+            </ul> 
+            <div class="tab-content p-3">
+                <div class="tab-pane active show" id="staf"> 
+                    
+                    <div class="row">
 
-            <h4 class="text-primary">DATA SUAMI/ISTERI</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Nama Suami/Istri</th>
-                            <td>:</td>
-                            <td>Hani Nuraeni</td>
+                        <dt class="col-sm-5">Nama Guru</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_name }}</p>
+                        </dd>
+                        @if(isset($staff->personal['nik']))
+                        <dt class="col-sm-5">NIK</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->personal['nik'] }}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->stf_nuptk))
+                        <dt class="col-sm-5">NUPTK</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->stf_nuptk }}</p>
+                        </dd>
+                        @endif
+                        <dt class="col-sm-5">Tempat Lahir</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_place_of_birth }}</p>
+                        </dd>
+                        <dt class="col-sm-5">Tanggal Lahir</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_date_of_birth}}</p>
+                        </dd>
+                        <dt class="col-sm-5">Agama</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_religion }}</p>
+                        </dd>
+                        <dt class="col-sm-5">Jenis Kelamin</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_gender}}</p>
+                        </dd>
+                        <dt class="col-sm-5">No. WhatsApp </dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_whatsapp_number }}</p>
+                        </dd>
+                    </div>
+                </div>
 
-                            <th>NIK</th>
-                            <td>:</td>
-                            <td>-</td>
-                        </tr>
+                <div class="tab-pane" id="persuratan">
+                    
+                    <div class="row">
 
-                        <tr>
-                            <th>NIP</th>
-                            <td>:</td>
-                            <td>-</td>
+                        @foreach($user as $data)
+                        <dt class="col-sm-5">Provinsi</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $data->prv_name }}</p>
+                        </dd>
 
-                            <th>Pekerjaan</th>
-                            <td>:</td>
-                            <td>Ibu Rumah Tangga</td>
-                        </tr>
+                        <dt class="col-sm-5">Kota / Kabupaten</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $data->cit_name }}</p>
+                        </dd>
 
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
+                        <dt class="col-sm-5">Kecamatan</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $data->dst_name }}</p>
+                        </dd>
+                        @endforeach
 
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <dt class="col-sm-5">Alamat</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_address }}</p>
+                        </dd>
 
-            <h4 class="text-primary">STATUS KEPEGAWAIAN</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>No SK</th>
-                            <td>:</td>
-                            <td>181/102.10/SMK.MP/KS/VII/2018</td>
+                        <dt class="col-sm-5">RT</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_rt }}</p>
+                        </dd>
 
-                            <th>Tahun Masuk</th>
-                            <td>:</td>
-                            <td>Juni 2016</td>
-                        </tr>
+                        <dt class="col-sm-5">RW</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_rw }}</p>
+                        </dd>
 
-                        <tr>
-                            <th>Kontrak Kerja</th>
-                            <td>:</td>
-                            <td>1 Tahun</td>
+                        <dt class="col-sm-5">Desa / Kelurahan </dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_rural_name }}</p>
+                        </dd>
 
-                            <th>Status Staf</th>
-                            <td>:</td>
-                            <td>Staf Tidak Tetap</td>
+                        <dt class="col-sm-5">Kode Pos</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_postal_code }}</p>
+                        </dd>
+                    </div>
+                </div>
 
-                        </tr>
+                <div class="tab-pane" id="pendidikan">             
+                    
+                    <div class="row">
 
-                        <tr>
-                            <th>Jabatan</th>
-                            <td>:</td>
-                            <td>Kepala Staf</td>
+                        @if(isset($staff->educational_background['grade_school']))
+                        <dt class="col-sm-5">Nama SD/Sederajat</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['grade_school']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year_grade_school']))
+                        <dt class="col-sm-5">Tahun SD/Sederajat</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['year_grade_school']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['junior_high_school']))
+                        <dt class="col-sm-5">Nama SMP/Sederajat</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['junior_high_school']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year_junior_high_school']))
+                        <dt class="col-sm-5">Tahun SMP/Sederajat</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['year_junior_high_school']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['senior_high_school']))
+                        <dt class="col-sm-5">Nama SMA/Sederajat</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['senior_high_school']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year_senior_high_school']))
+                        <dt class="col-sm-5">Tahun SMA/Sederajat</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['year_senior_high_school']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['college']))
+                        <dt class="col-sm-5">Nama Perguruan Tinggi</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['college']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year_entry']))
+                        <dt class="col-sm-5">Tahun Perguruan Tinggi</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['year_entry']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['faculty_name']))
+                        <dt class="col-sm-5">Nama Fakultas</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['faculty_name']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['faculty_major']))
+                        <dt class="col-sm-5">Nama Jurusan</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['faculty_major']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['year_graduated']))
+                        <dt class="col-sm-5">Tahun Lulus</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['year_graduated']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->educational_background['degree']))
+                        <dt class="col-sm-5">Gelar</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->educational_background['degree']}}</p>
+                        </dd>
+                        @endif                        
+                    </div>
+                 </div>
 
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                 <div class="tab-pane" id="bekerja">             
+                    
+                    <div class="row">
+                        @if(isset($staff->history_job['name']))
+                        <dt class="col-sm-5">Nama Pekerjaan</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->history_job['name']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->history_job['lenght_of_work']))
+                        <dt class="col-sm-5">Dari tahun/sampai </dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->history_job['lenght_of_work']}}</p>
+                        </dd>
+                        @endif
+                    </div>
+                </div>
 
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
+                 <div class="tab-pane" id="keahlian">             
+                    
+                    <div class="row">
 
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h4 class="text-primary">RIWAYAT PENDIDIKAN</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Sekolah Dasar</th>
-                            <td>:</td>
-                            <td>SDN PArung Serab IV </td>
-
-                            <th>Tahun</th>
-                            <td>:</td>
-                            <td>2001</td>
-                        </tr>
-
-                        <tr>
-                            <th>Sekolah Menengah Pertama</th>
-                            <td>:</td>
-                            <td>SMPN 1 Soreang</td>
-
-                            <th>Tahun</th>
-                            <td>:</td>
-                            <td>2003</td>
-                        </tr>
-
-                        <tr>
-                            <th>Sekolah Menengah Akhir</th>
-                            <td>:</td>
-                            <td>SMAN 1 Katapang </td>
-
-                            <th>Tahun</th>
-                            <td>:</td>
-                            <td>2008</td>
-                        </tr>
-
-                        <tr>
-                            <th>Perguruan Tinggi</th>
-                            <td>:</td>
-                            <td>UPI Bandung</td>
-
-                            <th>Tahun</th>
-                            <td>:</td>
-                            <td>2010</td>
-                        </tr>
-
-                        <tr>
-                            <th>Fakultas</th>
-                            <td>:</td>
-                            <td>FPOK</td>
-
-                            <th>Jurusan</th>
-                            <td>:</td>
-                            <td>S1 Pendidikan Jasmani Kesehatan dan Rekreasi</td>
-                        </tr>
-
-                        <tr>
-                            <th>Gelar</th>
-                            <td>:</td>
-                            <td>S. Pd</td>
-
-                            <th>Tahun Lulus</th>
-                            <td>:</td>
-                            <td>2014</td>
-                        </tr>
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h4 class="text-primary">SERTIFIKASI</h4>
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <tbody>
-                        <tr>
-                            <th>Sudah atau Belum</th>
-                            <td>:</td>
-                            <td>Belum</td>
-
-                            <th>Tahun</th>
-                            <td>:</td>
-                            <td>-</td>
-                        </tr>
-
-                        <tr>
-                            <th>No Sertifikasi</th>
-                            <td>:</td>
-                            <td>-</td>
-
-                            <th>Bidang Studi</th>
-                            <td>:</td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th>Penyelenggara</th>
-                            <td>:</td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th></th>
-                            <td></td>
-                            <td></td>
-
-                            <th></th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
+                        @if(isset($staff->expertise['name']))
+                        <dt class="col-sm-5">Nama Keahlian</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->expertise['name']}}</p>
+                        </dd>
+                        @endif
+                        @if(isset($staff->expertise['name_of_agency']))
+                        <dt class="col-sm-5">Nama Istansi/Lembaga</dt>
+                        <dd class="col-sm-7">
+                            <p>{{$staff->expertise['name_of_agency']}}</p>
+                        </dd>
+                        @endif
+                    </div>
+                </div>
         </div>
     </div>
 </div>  

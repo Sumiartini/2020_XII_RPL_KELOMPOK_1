@@ -42,7 +42,32 @@
           </div>
         </div>
         @endif
-        <form method="POST" action="{{ route('login') }}" id="submitForm">
+
+      @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <div class="alert-icon contrast-alert">
+           <i class="icon-check"></i>
+         </div>
+         <div class="alert-message">
+          <span><strong>Gagal !</strong> {{$message}}</span>
+        </div>
+      </div>
+      @endif
+
+      @error('failed')
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <div class="alert-icon contrast-alert">
+           <i class="icon-check"></i>
+         </div>
+         <div class="alert-message">
+          <span><strong>Gagal !</strong> {{$message}}</span>
+        </div>
+      </div>
+      @enderror
+
+        <form method="POST" action="{{ route('login') }}" id="form-validate">
           @csrf
 
           <div class="form-group">
@@ -105,17 +130,40 @@
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-<script>
-  $(document).ready(function() {
-    $("#submitForm").submit(function(e) {
-      $(this).find("button[type='submit']").prop('disabled', true);
-      $("#btnSubmit").attr("disabled", true);
-      return true;
+
+  <!--Form Validatin Script-->
+  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+
+  <script>
+    $().ready(function() {
+
+    //   $(".submitForm").submit(function(e) {
+    //     $(this).find("button[type='submit']").prop('disabled', true);
+    //     $(".btnSubmit").attr("disabled", true);
+    //     return true;
+    // });
+
+    $("#form-validate").validate({
+        rules: {
+            password: {
+              required: true,
+            },
+            usr_email: {
+              required: true,
+              email: true
+            },
+        },
+        messages: {
+            password: {
+              required: "Kata sandi harus di isi"
+            },
+            usr_email: {
+              required: "Alamat email harus di isi",
+              email: "Maaf email tidak valid"
+            }
+        }
     });
-  });
-</script>
+});
+    </script>
 </body>
-
-<!-- Mirrored from codervent.com/rocker/color-version/authentication-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Nov 2019 12:20:55 GMT -->
-
 </html>

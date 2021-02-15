@@ -108,7 +108,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form id="submitForm" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate" enctype="multipart/form-data">
+                    <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate" enctype="multipart/form-data">
                         @csrf
                         <h4 style="text-align: center;">FORMULIR PESERTA DIDIK BARU TAHUN PELAJARAN 2021-2022</h4>
                          <div class="form-group row">
@@ -186,7 +186,7 @@
 
                             <div class="col-sm-4">
                                 <label> Jenis Kelamin <span style="color:red"> *</span></label>
-                                <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
+                                <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror">
                                     <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
                                     <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
                                     <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
@@ -222,7 +222,7 @@
 
                             <div class="col-sm-4">
                                 <label> Agama <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
+                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" value="{{ old('usr_religion') }}">
                                     <option disabled="" {{ old('usr_religion') == "" ? 'selected' : '' }} > Pilih </option>
                                     <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }}  value="Islam"> Islam </option>
                                     <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }}  value="Protestan"> Protestan </option>
@@ -250,7 +250,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nama Sekolah <span style="color:red"> *</span></label>
-                                <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" id="basic-select" placeholder="Masukan Asal Sekolah" value="{{ old('stu_school_origin') }}">
+                                <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" placeholder="Masukan Asal Sekolah" value="{{ old('stu_school_origin') }}">
                                 @error('stu_school_origin')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -259,13 +259,15 @@
                             </div>
                             <div class="col-sm-4">
                                 <label> NPSN <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="school_origin[npsn]" class="form-control form-control-rounded @error('school_origin.npsn') is-invalid @enderror" id="basic-select" placeholder="Masukan NPSN" value="{{ old('school_origin.npsn') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="school_origin[npsn]" class="form-control form-control-rounded @error('school_origin.npsn') is-invalid @enderror" placeholder="Masukan NPSN" value="{{ old('school_origin.npsn') }}">
                                 @error('school_origin.npsn')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
+
+
                         </div>
 
                         <h4 class="form-header text-uppercase">
@@ -362,7 +364,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label> Kode Pos <span style="color:red"> *</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_postal_code" value="" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
                             @error('usr_postal_code')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -372,7 +374,7 @@
 
                          <div class="col-sm-4">
                                 <label> Tinggal Bersama <span style="color:red"> *</span></label>
-                                <select class="form-control form-control-rounded @error('personal.living_together') is-invalid @enderror" name="personal[living_together]" id="basic-select">
+                                <select class="form-control form-control-rounded @error('personal.living_together') is-invalid @enderror" name="personal[living_together]">
                                     <option disabled=""  {{ old('personal.living_together') == "" ? 'selected' : '' }}> Pilih </option>
                                     <option {{ old('personal.living_together') == "Orang Tua" ? 'selected' : '' }}  value="Orang Tua"> Orang Tua </option>
                                     <option {{ old('personal.living_together') == "Wali" ? 'selected' : '' }}  value="Wali"> Wali </option>
@@ -391,7 +393,7 @@
 
                         <div class="col-sm-4">
                             <label> Status Tempat Tinggal <span style="color:red"> *</span> </label>
-                            <select class="form-control form-control-rounded @error('personal.status_of_residence') is-invalid @enderror" name="personal[status_of_residence]" id="basic-select">
+                            <select class="form-control form-control-rounded @error('personal.status_of_residence') is-invalid @enderror" name="personal[status_of_residence]">
                                 <option disabled=""  {{ old('personal.status_of_residence') == "" ? 'selected' : '' }}> Pilih </option>
                                 <option  {{ old('personal.status_of_residence') == "Milik Pribadi" ? 'selected' : '' }} value="Milik Sendiri"> Milik Pribadi </option>
                                 <option  {{ old('personal.status_of_residence') == "Sewa" ? 'selected' : '' }} value="Sewa"> Sewa </option>
@@ -606,14 +608,14 @@
                         </div>
                     </div>
 
-                    <label style="margin-top: 30px;">Foto calon siswa<span style="color:red"> *</span></label>
+                    <label for="input-8" style="margin-top: 30px;">Foto calon siswa<span style="color:red"> *</span></label>
                         <div class="form-group row">
 
                             <div class="col-sm-4">
                                 <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                                <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+                                <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
 
-                                <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
+                                <!-- <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
                                 @error('usr_profile_picture')
                                 <p>
                                     <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
@@ -623,12 +625,12 @@
 
                         </div>
 
-                    <input style="margin-top: 30px;" type="checkbox" id="" value="" name="">
+                    <input type="checkbox" name="terms_and_conditions">
                        <label>Demikian formulir ini saya buat dengan sebenar-benarnya sesuai dengan petunjuk pengisian dan dapat dipertanggung jawabkan di kemudian hari </label>
                 
                     <div class="form-footer">    
-                        <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
-                        <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
+                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
                     </div>
                 </form>
             </div>
@@ -665,7 +667,245 @@
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
 <!--Form Validatin Script-->
-<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+ <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+
+<script>
+    $().ready(function() {
+
+    //   $(".submitForm").submit(function(e) {
+    //     $(this).find("button[type='submit']").prop('disabled', true);
+    //     $(".btnSubmit").attr("disabled", true);
+    //     return true;
+    // });
+
+    $("#form-validate").validate({
+        rules: {
+            stu_major_id:{
+                required: true
+            },
+            stu_candidate_name:{
+                required: true
+            },
+            usr_place_of_birth:{
+                required: true,
+            },
+            usr_date_of_birth:{
+                required: true
+            },
+            "personal[nik]":{
+                required: true,
+                minlength: 10
+            },
+            usr_gender:{
+                required: true
+            },
+            usr_whatsapp_number:{
+                required: true,
+                minlength: 10
+            },
+            usr_phone_number:{
+                required:true,
+                minlength: 10
+            },
+            usr_religion:{
+                required: true
+            },
+            stu_school_origin:{
+                required: true
+            },
+            "school_origin[npsn]":{
+                required: true
+            },
+            prv_name:{
+                required: true
+            },
+            cit_name:{
+                required: true
+            },
+            dst_name:{
+                required: true
+            },
+            usr_address:{
+                required: true
+            },
+            usr_rt:{
+                required: true
+            },
+            usr_rw:{
+                required: true
+            },
+            usr_rural_name:{
+                required: true
+            },
+            usr_postal_code:{
+                required:true
+            },
+            "personal[living_together]":{
+                required: true
+            },
+            "personal[status_of_residence]":{
+                required: true
+            },
+            "father_data[name]":{
+                required: true
+            },
+            "father_data[phone_number]":{
+                required: true,
+                minlength: 10
+            },
+            "father_data[father_name]":{
+                required: true
+            },
+            "mother_data[name]":{
+                required: true
+            },
+            "mother_data[phone_number]":{
+                required:true,
+                minlength: 10
+            },
+            "other[certificate_of_graduation]":{
+                required: true
+            },
+            "other[junior_high_school_diploma]":{
+                required: true,
+            },
+            "other[elementary_school_diploma]":{
+                required: true
+            },
+            "other[birth_certificate]":{
+                required: true
+            },
+            "other[family_card]":{
+                required: true
+            },
+            "other[id_card_father]":{
+                required: true
+            },
+            "other[id_card_mother]":{
+                required: true
+            },
+            usr_profile_picture:{
+                required:true
+            },
+            terms_and_conditions:{
+                required: true
+            },
+
+        },  
+        messages: {
+            stu_major_id:{
+                required: "Jurusan harus di pilih"
+            },
+            stu_candidate_name:{
+                required: "Nama lengkap harus di isi"
+            },
+            usr_place_of_birth:{
+                required: "Tempat lahir harus di isi"
+            },
+            usr_date_of_birth:{
+                required: "Data lahir harus di isi"
+            },
+            "personal[nik]":{
+                required: "Nomor NIK harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_gender:{
+                required: "Jenis kelamin harus di pilih"
+            },
+            usr_whatsapp_number:{
+                required: "No WhatsApp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_phone_number:{
+                required: "No Hp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_religion:{
+                required: "Agama harus di pilih"
+            },
+            "school_origin[npsn]":{
+                required: "NPSN asal sekolah harus di isi"
+            },
+            prv_name:{
+                required: "Provinsi harus di pilih"
+            },
+            cit_name:{
+                required: "Kabupaten atau kota harus di pilih"
+            },
+            dst_name:{
+                required: "Kecamatan harus di pilih"
+            },
+            usr_address:{
+                required: "Alamat harus di isi"
+            },
+            usr_rt:{
+                required: "RT harus di isi"
+            },
+            usr_rw:{
+                required: "RW harus di isi"
+            },
+            usr_rural_name:{
+                required: "Desa harus di isi"
+            },
+            usr_postal_code:{
+                required: "Kode pos harus di isi"
+            },
+            "personal[living_together]":{
+                required: "Tinggal bersama harus di pilih"
+            },
+            "personal[status_of_residence]":{
+                required: "Status tinggal harus di pilih"
+            },
+            "father_data[name]":{
+                required: "Nama ayah harus di isi"
+            },
+            "father_data[phone_number]":{
+                required: "Nomor telepon ayah harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "father_data[father_name]":{
+                required: "Nama ayah sesuai ijazah harus di isi"
+            },
+            "mother_data[name]":{
+                required: "Nama ibu wajib di isi"
+            },
+            "mother_data[phone_number]":{
+                required: "Nomor telepon ibu wajib di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "other[certificate_of_graduation]":{
+                required: "Surat tanda kelulusan smp harus di upload"
+            },
+            "other[junior_high_school_diploma]":{
+                required: "Ijazah SMP harus di upload",
+            },
+            "other[elementary_school_diploma]":{
+                required: "Ijazah SD harus di upload"
+            },
+            "other[birth_certificate]":{
+                required: "Akte kelahiran harus di upload"
+            },
+            "other[family_card]":{
+                required: "Kartu keluarga harus di upload"
+            },
+            "other[id_card_father]":{
+                required: "KTP ayah harus di upload"
+            },
+            "other[id_card_mother]":{
+                required: "KTP ibu harus di upload"
+            },
+            usr_profile_picture:{
+                required: "Foto calon siswa tidak boleh kosong"
+            },
+            terms_and_conditions:{
+                required: "&nbsp S&K harus di centang"
+            }
+
+        }
+    });
+});
+</script>
+
 <script>
     function bacaGambar(input) {
      if (input.files && input.files[0]) {
@@ -681,16 +921,6 @@
 $("#preview_gambar").change(function(){
  bacaGambar(this);
 });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $("#submitForm").submit(function(e) {
-            $(this).find("button[type='submit']").prop('disabled', true);
-            $("#btnSubmit").attr("disabled", true);
-            return true;
-        });      
-    });
 </script>
 
 <!--Bootstrap Datepicker Js-->

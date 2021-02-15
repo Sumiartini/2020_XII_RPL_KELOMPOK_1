@@ -12,6 +12,30 @@ function mappingData($data, $model){
     return $mapped;
 }
 
+function mappingDataStaff($data, $model){
+    
+    $type = $data->mapToGroups(function ($item, $key) {
+        $grouped = [$item->sfd_type => [$item->sfd_key => $item->sfd_value]];
+        return $grouped; 
+    });
+
+    $mapped = mappingKeyType($type, $model);
+
+    return $mapped;
+}
+
+function mappingDataTeacher($data, $model){
+    
+    $type = $data->mapToGroups(function ($item, $key) {
+        $grouped = [$item->tcd_type => [$item->tcd_key => $item->tcd_value]];
+        return $grouped; 
+    });
+
+    $mapped = mappingKeyType($type, $model);
+
+    return $mapped;
+}
+
 function mappingKeyType($type, $model){
 
     foreach ($type as $key => $value) {

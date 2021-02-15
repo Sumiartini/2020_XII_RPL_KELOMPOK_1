@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -61,16 +62,11 @@ class LoginController extends Controller
         ]);
     }
 
-    public function attemptLogin(Request $request)
+    protected function sendFailedLoginResponse(Request $request)
     {
-        $request->request->add(['usr_is_active' => '1']);
-        return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
-        );
+        throw ValidationException::withMessages([
+            'failed' => [trans('auth.failed')],
+        ]);
     }
 
-    public function credentials(Request $request)
-    {
-        return $request->only($this->username(), 'password', 'usr_is_active');
-    }
 }

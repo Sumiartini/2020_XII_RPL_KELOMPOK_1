@@ -51,7 +51,7 @@
   </div>
   @endif
   <div class="card">
-    <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
+    <div class="card-header"><i class="fa fa-table"></i> Data Guru</div>
     <div class="card-body">
       <div class="table-responsive">
         @if(Auth()->user()->hasRole('admin'))

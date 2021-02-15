@@ -81,7 +81,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
    
     Route::post('/staff/create', 'StaffController@store');
     Route::get('/staff/create', 'StaffController@create');
-    Route::get('/staff/{stf_id}', 'StaffController@show');
+    Route::get('/staff/{stf_id}', 'StaffController@show_staff');
     Route::get('/staff/edit/{stf_id}', 'StaffController@edit');
     Route::post('/staff/edit/{stf_id}', 'StaffController@update');
     Route::get('/staffs/delete/1', 'StaffController@destroy');
@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
     Route::get('/teacher/create', 'TeacherController@create');
     Route::post('/teacher/create', 'TeacherController@store');
-    Route::get('/teacher/{tcr_id}', 'TeacherController@show');
+    Route::get('/teacher/{tcr_id}', 'TeacherController@show_teacher');
     Route::get('/teacher/edit/{tcr_id}', 'TeacherController@edit');
     Route::post('/teacher/edit/{tcr_id}', 'TeacherController@store');
     Route::get('/teachers/delete/1', 'TeacherController@destroy');
@@ -145,6 +145,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
     Route::get('/account/profile/{usr_id}/edit', 'Auth\AccountController@editProfile');
     Route::post('/account/profile/{usr_id}/edit', 'Auth\AccountController@storeEditProfile');
+
+    Route::get('/account/profile/{usr_id}', 'Auth\AccountController@profile');
 
 
 });
