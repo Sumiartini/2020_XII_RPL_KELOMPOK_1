@@ -40,8 +40,7 @@ class Staffs extends Model
         $staffs_prospective = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
             // ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
             ->where('staffs.stf_registration_status', 0)
-            ->where('users.usr_is_regist', 1)
-            ->where('users.usr_is_active', 1);
+            ->where('users.usr_is_regist', 1);
         // dd($staff_prospective);
         return $staffs_prospective;
     }
@@ -63,8 +62,7 @@ class Staffs extends Model
         $staffs_rejected = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
             // ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
             ->where('staffs.stf_registration_status', 2)
-            ->where('users.usr_is_regist', 1)
-            ->where('users.usr_is_active', 0);
+            ->where('users.usr_is_regist', 1);
         // dd($staffs_rejected);
         return $staffs_rejected;
     }
