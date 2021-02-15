@@ -8,6 +8,18 @@
       <!-- Bootstrap core CSS-->
       <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
 
+      <!-- boostrap roker -->
+        <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+
+          <!-- animate CSS-->
+          <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+          <!-- Icons CSS-->
+          <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+          <!-- Sidebar CSS-->
+          <link href="assets/css/sidebar-menu.css" rel="stylesheet"/>
+          <!-- Custom Style-->
+          <link href="assets/css/app-style.css" rel="stylesheet"/>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
    
@@ -240,7 +252,7 @@ footer{
 }
 
 .footer-about__img{
-    width: 100px;
+    width: 150px;
     height: auto;
 }
 .font{
@@ -774,7 +786,7 @@ footer{
                         <!-- footer about -->
                         <div class="footer-about">
                             <div class="footer-about__img">
-                                <img class="img-fluid" data-lazysrc="https://smkmahaputra.sch.id/public/logo/image.png" src="https://smkmahaputra.sch.id/public/logo/image.png">  
+                                <img class="img-fluid" src="assets/images/logo.png" style="margin-top: 20px;">  
                             </div>
                         </div>
 
@@ -786,11 +798,11 @@ footer{
                               <h5 class=""><b>SMK MAHAPUTRA CERDAS UTAMA</b></h5>
                                 <p class="alamat">Jl Katapang Andir KM. 4 Kp Pasantren Ds Sukamukti Kec Katapang Kab Bandung</p>
                                 <p class="alamat">022-5893178 | 0895-6304-68373</p>
-                                <a href="mailto:"><img title="email" src="https://smkmahaputra.sch.id/public/img/sosmed/email.png" alt="email" width="35" height="35"></a>
-                                <a href="https://www.facebook.com/" target="_blank"><img title="Facebook" src="https://smkmahaputra.sch.id/public/img/sosmed/facebook.png" alt="Facebook" width="35" height="35"></a>
-                                <a href="https://www.youtube.com/https://www.youtube.com/channel/UCCfYqV-2N44pFhsQpGEedCw" target="_blank"><img title="Youtube" src="https://smkmahaputra.sch.id/public/img/sosmed/youtube.png" alt="RSS" width="35" height="35"></a>
-                                <a href="https://www.instagram.com/" target="_blank"><img title="Instagram" src="https://smkmahaputra.sch.id/public/img/sosmed/instagram.png" alt="RSS" width="35" height="35"></a>
-                                <a href="https://www.twitter.com/" target="_blank"><img title="Instagram" src="https://smkmahaputra.sch.id/public/img/sosmed/twitter.png" alt="RSS" width="35" height="35"></a> 
+                                <a href="https://mail.google.com/"><i class="zmdi zmdi-email fa-2x" style="color: darkblue;"></i></a>
+                                <a href="https://web.facebook.com/"><i class="fa fa-facebook-square fa-2x" style="color: darkblue;"></i></a>
+                                <a href="https://www.instagram.com/"><i class="fa fa-instagram fa-2x" style="color: darkblue;"></i></a>
+                                <a href="https://twitter.com"><i class="fa fa-twitter-square fa-2x" style="color: darkblue;"></i></a>
+                                <a href="https://www.youtube.com"><i class="fa fa-youtube-play fa-2x" style="color: darkblue;"></i></a>
                             </p>
                     </div>
 
