@@ -28,11 +28,13 @@ class Students extends Model
         $students = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
             ->join('entry_types', 'students.stu_entry_type_id', '=', 'entry_types.ent_id')
+            // ->join('student_details','students.stu_id','=','student_details.std_student_id')
             ->where('stu_id', $studentID)->firstOrFail();
-
+        // dd($students);
         $student_details = StudentDetails::where('std_student_id', $students->stu_id)->where('std_deleted_at', null)->get();
+        // dd($student_details);
         $student_details = mappingData($student_details, $students);
-
+        // dd($student_details);
         return $student_details;
     }
 
@@ -50,7 +52,7 @@ class Students extends Model
     {
         // dd("kesini model");
         $students_prospective = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            // ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+            ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
             ->where('stu_id', $studentID)->firstOrFail();
 
         $student_prospective_details = StudentDetails::where('std_student_id', $students_prospective->stu_id)->get();
