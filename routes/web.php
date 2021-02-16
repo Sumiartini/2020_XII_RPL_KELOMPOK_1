@@ -217,3 +217,5 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
 
     Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
+    Route::get('/download-file-teacher/images/teacher_files/{locationFile}','User\UserController@downloadFileTeacher');
+    Route::get('/download-file-staff/images/staff_files/{locationFile}','User\UserController@downloadFileStaff');

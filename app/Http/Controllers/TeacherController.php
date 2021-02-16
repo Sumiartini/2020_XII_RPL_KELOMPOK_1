@@ -162,7 +162,7 @@ class TeacherController extends Controller
             'educational_background.degree'                     => 'required',
             'other.identity_card'                               => 'required',
             'other.family_card'                                 => 'required',
-            'other.senior_high_school_diploma'                  => 'required',
+            'other.scholar_diploma'                             => 'required',
             'other.curriculum_vitae'                            => 'required',
             'other.application_letter'                          => 'required',
             'other.resume'                                      => 'required',
