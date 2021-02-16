@@ -100,7 +100,7 @@
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="/download/download-file">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
