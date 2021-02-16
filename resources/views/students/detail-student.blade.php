@@ -97,10 +97,11 @@
                   <h6 class="text-blue ml-3">{{ $student->usr_email }}</h6>
                  </div> -->
               </div>
+            @if(isset($student->other['certificate_of_graduation']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['certificate_of_graduation']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -108,11 +109,13 @@
                         <p>Surat Tanda Kelulusan SMP dilegalisir</p> 
                     </div>     
                 </div>
-            </div>  
+            </div>
+            @endif
+            @if(isset($student->other['junior_high_school_diploma']))
             <div class="card-body">
                 <div class="row" style="margin-top: -30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['junior_high_school_diploma']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -121,10 +124,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['elementary_school_diploma']))
             <div class="card-body">
                 <div class="row" style="margin-top: -30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['elementary_school_diploma']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -133,10 +138,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['birht_certificate']))
             <div class="card-body">
                 <div class="row" style="margin-top: -15px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['birth_certificate']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -145,10 +152,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['family_card']))
             <div class="card-body">
                 <div class="row" style="margin-top: -15px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['family_card']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -157,10 +166,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['domicile_statement']))
             <div class="card-body">
                 <div class="row" style="margin-top: -15px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'.$student->other['domicile_statement']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -169,10 +180,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['id_card_father']))
             <div class="card-body">
                 <div class="row" style="margin-top: -15px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['id_card_father']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -181,10 +194,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['id_card_mother']))
             <div class="card-body">
                 <div class="row" style="margin-top: -15px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['id_card_mother']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -193,10 +208,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['health_certificate']))
             <div class="card-body">
                 <div class="row" style="margin-top: -15px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['health_certificate']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -205,10 +222,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['eye_health_letter']))
             <div class="card-body">
                 <div class="row" style="margin-top: -15px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['eye_health_letter']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -217,10 +236,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['card']))
             <div class="card-body">
                 <div class="row" style="margin-top: -15px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['card']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -229,10 +250,12 @@
                     </div>     
                 </div>
             </div>
+            @endif
+            @if(isset($student->other['certificate']))
             <div class="card-body">
                 <div class="row" style="margin-top: -30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-student/'. $student->other['certificate']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -241,7 +264,7 @@
                     </div>     
                 </div>
             </div>
-
+            @endif
            
              </div>
             </div>
