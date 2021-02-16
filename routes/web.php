@@ -214,3 +214,6 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/landing-page/create', 'LandingPageController@store');
     Route::get('/landing-page/edit/1', 'LandingPageController@edit');
     Route::post('/landing-page/edit/1', 'LandingPageController@update');
+
+
+    Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');

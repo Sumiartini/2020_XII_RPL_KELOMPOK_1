@@ -1,14 +1,15 @@
 <?php
 
 function mappingData($data, $model){
-    
+    // dd($data, $model);
     $type = $data->mapToGroups(function ($item, $key) {
+        // dd($item, $key);
         $grouped = [$item->std_type => [$item->std_key => $item->std_value]];
         return $grouped; 
     });
 
     $mapped = mappingKeyType($type, $model);
-
+    // dd($type, $mapped);
     return $mapped;
 }
 
@@ -45,5 +46,6 @@ function mappingKeyType($type, $model){
 
         $model -> $key = $keyMapped;
     }
+    // dd($keyMapped, $type, $key, $value);
     return $model;
 }

@@ -95,4 +95,14 @@ class UserController extends Controller
         $newName = 'smkmahaputra-info-'.time().'.pdf';
         return response()->download($pdf, $newName, $headers);
     }
+
+    public function downloadFileStudent($locationFile)
+    {
+        // dd($locationFile);
+        $fileDownload = ("images/student_files/".$locationFile);
+        $headers = ['Content-Type: application/pdf, image/jpeg, image/jpg'];
+        $newName = 'file-siswa' . '_' . date('Ymd'). $locationFile;
+        // dd($fileDownload, $headers, $newName);
+        return response()->download($fileDownload, $newName, $headers);
+    }
 }
