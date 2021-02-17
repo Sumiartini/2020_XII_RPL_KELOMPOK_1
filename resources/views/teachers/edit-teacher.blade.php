@@ -39,7 +39,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form autocomplete="off" method="POST" action="{{ url('teacher/edit/'.$teacher_edit->tcr_id) }}" novalidate="novalidate" enctype="multipart/form-data">
+                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('teacher/edit/'.$teacher_edit->tcr_id) }}" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -76,7 +76,7 @@
 
                         <div class="col-sm-4">
                             <label>Nama Lengkap <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{  $teacher_edit->usr_name }}">
+                            <input type="text" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{  $teacher_edit->usr_name }}">
                             @error('usr_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>NIK <span style="color:red;">*</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" id="input-10" name="personal[nik]" placeholder="Masukan NIK" value="{{  $teacher_edit->personal['nik'] }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" name="personal[nik]" placeholder="Masukan NIK" value="{{  $teacher_edit->personal['nik'] }}">
                             @error('personal.nik')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -94,7 +94,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>NUPTK</label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('tcr_nuptk') is-invalid @enderror" id="input-10" name="tcr_nuptk" placeholder="Masukan NUPTK" value="{{  $teacher_edit->tcr_nuptk }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('tcr_nuptk') is-invalid @enderror" name="tcr_nuptk" placeholder="Masukan NUPTK" value="{{  $teacher_edit->tcr_nuptk }}">
                             @error('tcr_nuptk')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -107,7 +107,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label>Tempat Lahir <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('usr_place_of_birth') is-invalid @enderror" id="input-10" name="usr_place_of_birth" placeholder="Masukan Tempat Lahir" value="{{  $teacher_edit->usr_place_of_birth }}">
+                            <input type="text" class="form-control form-control-rounded @error('usr_place_of_birth') is-invalid @enderror" name="usr_place_of_birth" placeholder="Masukan Tempat Lahir" value="{{  $teacher_edit->usr_place_of_birth }}">
                             @error('usr_place_of_birth')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -294,7 +294,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label>Tahun SD/Sederajat <span style="color:red;">*</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_grade_school') is-invalid @enderror" id="input-10" name="educational_background[year_grade_school]" placeholder="Masukan Tahun SD/Sederajat" value="{{ $teacher_edit->educational_background['year_grade_school'] }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_grade_school') is-invalid @enderror" name="educational_background[year_grade_school]" placeholder="Masukan Tahun SD/Sederajat" value="{{ $teacher_edit->educational_background['year_grade_school'] }}">
                             @error('educational_background.year_grade_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -303,7 +303,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Nama SD/Sederajat <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.grade_school') is-invalid @enderror" id="input-10" name="educational_background[grade_school]" placeholder="Masukan Nama SD/Sederajat" value="{{ $teacher_edit->educational_background['grade_school'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.grade_school') is-invalid @enderror" name="educational_background[grade_school]" placeholder="Masukan Nama SD/Sederajat" value="{{ $teacher_edit->educational_background['grade_school'] }}">
                             @error('educational_background.grade_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -313,7 +313,7 @@
 
                         <div class="col-sm-4">
                             <label>Tahun SMP/Sederajat <span style="color:red;">*</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_junior_high_school') is-invalid @enderror" id="input-10" name="educational_background[year_junior_high_school]" placeholder="Masukan Tahun SMP/Sederajat" value="{{ $teacher_edit->educational_background['year_junior_high_school'] }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_junior_high_school') is-invalid @enderror" name="educational_background[year_junior_high_school]" placeholder="Masukan Tahun SMP/Sederajat" value="{{ $teacher_edit->educational_background['year_junior_high_school'] }}">
                             @error('educational_background.year_junior_high_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -326,7 +326,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label>Nama SMP/Sederajat <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.junior_high_school') is-invalid @enderror" id="input-10" name="educational_background[junior_high_school]" placeholder="Masukan Nama SMP/Sederajat" value="{{ $teacher_edit->educational_background['junior_high_school'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.junior_high_school') is-invalid @enderror" name="educational_background[junior_high_school]" placeholder="Masukan Nama SMP/Sederajat" value="{{ $teacher_edit->educational_background['junior_high_school'] }}">
                             @error('educational_background.junior_high_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -336,7 +336,7 @@
 
                         <div class="col-sm-4">
                             <label>Tahun SMA/Sederajat <span style="color:red;">*</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_senior_high_school') is-invalid @enderror" id="input-10" name="educational_background[year_senior_high_school]" placeholder="Masukan Tahun SMA/Sederajat" value="{{ $teacher_edit->educational_background['year_senior_high_school'] }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_senior_high_school') is-invalid @enderror" name="educational_background[year_senior_high_school]" placeholder="Masukan Tahun SMA/Sederajat" value="{{ $teacher_edit->educational_background['year_senior_high_school'] }}">
                             @error('educational_background.year_senior_high_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -345,7 +345,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Nama SMA/Sederajat <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.senior_high_school') is-invalid @enderror" id="input-10" name="educational_background[senior_high_school]" placeholder="Masukan Nama SMA/Sederajat" value="{{ $teacher_edit->educational_background['senior_high_school'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.senior_high_school') is-invalid @enderror" name="educational_background[senior_high_school]" placeholder="Masukan Nama SMA/Sederajat" value="{{ $teacher_edit->educational_background['senior_high_school'] }}">
                             @error('educational_background.senior_high_school')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -359,7 +359,7 @@
 
                         <div class="col-sm-4">
                             <label>Tahun Perguruan Tinggi<span style="color:red;">*</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year') is-invalid @enderror" id="input-10" name="educational_background[year]" placeholder="Masukan Tahun Perguruan Tinggi" value="{{ $teacher_edit->educational_background['year'] }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year') is-invalid @enderror" name="educational_background[year]" placeholder="Masukan Tahun Perguruan Tinggi" value="{{ $teacher_edit->educational_background['year'] }}">
                             @error('educational_background.year')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -368,7 +368,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Nama Perguruan Tinggi<span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.college') is-invalid @enderror" id="input-10" name="educational_background[college]" placeholder="Masukan Nama Perguruan Tinggi" value="{{ $teacher_edit->educational_background['college'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.college') is-invalid @enderror" name="educational_background[college]" placeholder="Masukan Nama Perguruan Tinggi" value="{{ $teacher_edit->educational_background['college'] }}">
                             @error('educational_background.college')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -377,7 +377,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Nama Fakultas<span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_name') is-invalid @enderror" id="input-10" name="educational_background[faculty_name]" placeholder="Masukan Nama Fakultas" value="{{ $teacher_edit->educational_background['faculty_name'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_name') is-invalid @enderror" name="educational_background[faculty_name]" placeholder="Masukan Nama Fakultas" value="{{ $teacher_edit->educational_background['faculty_name'] }}">
                             @error('educational_background.faculty_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -391,7 +391,7 @@
 
                         <div class="col-sm-4">
                             <label>Nama Jurusan<span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_major') is-invalid @enderror" id="input-10" name="educational_background[faculty_major]" placeholder="Masukan Nama Jurusan" value="{{ $teacher_edit->educational_background['faculty_major'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_major') is-invalid @enderror" name="educational_background[faculty_major]" placeholder="Masukan Nama Jurusan" value="{{ $teacher_edit->educational_background['faculty_major'] }}">
                             @error('educational_background.faculty_major')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -400,7 +400,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Tahun Lulus<span style="color:red;">*</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year') is-invalid @enderror" id="input-10" name="educational_background[year]" placeholder="Masukan Tahun Lulus" value="{{ $teacher_edit->educational_background['year'] }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year') is-invalid @enderror" name="educational_background[year]" placeholder="Masukan Tahun Lulus" value="{{ $teacher_edit->educational_background['year'] }}">
                             @error('educational_background.year')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -409,7 +409,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Gelar<span style="color:red;">*</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('educational_background.degree') is-invalid @enderror" id="input-10" name="educational_background[degree]" placeholder="Masukan Gelar" value="{{ $teacher_edit->educational_background['degree'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.degree') is-invalid @enderror" name="educational_background[degree]" placeholder="Masukan Gelar" value="{{ $teacher_edit->educational_background['degree'] }}">
                             @error('educational_background.degree')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -426,7 +426,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label>Nama Sekolah</label>
-                            <input type="text" class="form-control form-control-rounded @error('teaching_history.school_name') is-invalid @enderror" id="input-10" name="teaching_history[school_name]" placeholder="Masukan Nama Sekolah" value="{{ $teacher_edit->teaching_history['school_name'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('teaching_history.school_name') is-invalid @enderror" name="teaching_history[school_name]" placeholder="Masukan Nama Sekolah" value="{{ $teacher_edit->teaching_history['school_name'] }}">
                             @error('teaching_history.school_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -436,7 +436,7 @@
 
                         <div class="col-sm-4">
                             <label>Mata Pelajaran</label>
-                            <input type="text" class="form-control form-control-rounded @error('teaching_history.subject') is-invalid @enderror" id="input-10" name="teaching_history[subject]" placeholder="Masukan Mata Pelajaran" value="{{ $teacher_edit->teaching_history['subject'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('teaching_history.subject') is-invalid @enderror" name="teaching_history[subject]" placeholder="Masukan Mata Pelajaran" value="{{ $teacher_edit->teaching_history['subject'] }}">
                             @error('teaching_history.subject')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -446,7 +446,7 @@
 
                         <div class="col-sm-4">
                             <label>Kelas/Tingkat</label>
-                            <input type="text" class="form-control form-control-rounded @error('teaching_history.grade_or_level') is-invalid @enderror" id="input-10" name="teaching_history[grade_or_level]" placeholder="Masukan Kelas/Tingkat" value="{{ $teacher_edit->teaching_history['grade_or_level'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('teaching_history.grade_or_level') is-invalid @enderror" name="teaching_history[grade_or_level]" placeholder="Masukan Kelas/Tingkat" value="{{ $teacher_edit->teaching_history['grade_or_level'] }}">
                             @error('teaching_history.grade_or_level')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -459,7 +459,7 @@
 
                         <div class="col-sm-4">
                             <label>Jumlah Jam</label>
-                            <input type="text" class="form-control form-control-rounded @error('teaching_history.number_of_hours') is-invalid @enderror" id="input-10" name="teaching_history[number_of_hours]" placeholder="Masukan Jumlah Jam" value="{{ $teacher_edit->teaching_history['number_of_hours'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('teaching_history.number_of_hours') is-invalid @enderror" name="teaching_history[number_of_hours]" placeholder="Masukan Jumlah Jam" value="{{ $teacher_edit->teaching_history['number_of_hours'] }}">
                             @error('teaching_history.number_of_hours')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -468,7 +468,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>Dari Tahun/Sampai</label>
-                            <input type="text" class="form-control form-control-rounded @error('teaching_history.from_year_to_year') is-invalid @enderror" id="input-10" name="teaching_history[from_year_to_year]" placeholder="Masukan Dari Tahun/Sampai" value="{{ $teacher_edit->teaching_history['from_year_to_year'] }}">
+                            <input type="text" class="form-control form-control-rounded @error('teaching_history.from_year_to_year') is-invalid @enderror" name="teaching_history[from_year_to_year]" placeholder="Masukan Dari Tahun/Sampai" value="{{ $teacher_edit->teaching_history['from_year_to_year'] }}">
                             @error('teaching_history.from_year_to_year')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -525,81 +525,256 @@
 <script>
     $().ready(function() {
 
-        $("#personal-info").validate();
+    //   $(".submitForm").submit(function(e) {
+    //     $(this).find("button[type='submit']").prop('disabled', true);
+    //     $(".btnSubmit").attr("disabled", true);
+    //     return true;
+    // });
 
-        // validate signup form on keyup and submit
-        $("#signupForm").validate({
-            rules: {
-                firstname: "required",
-                lastname: "required",
-                username: {
-                    required: true,
-                    minlength: 2
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                confirm_password: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                contactnumber: {
-                    required: true,
-                    minlength: 10
-                },
-                topic: {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
+    $("#form-validate").validate({
+        rules: {
+            usr_email:{
+                required: true
             },
-            messages: {
-                firstname: "Please enter your firstname",
-                lastname: "Please enter your lastname",
-                username: {
-                    required: "Please enter a username",
-                    minlength: "Your username must consist of at least 2 characters"
-                },
-                password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long"
-                },
-                confirm_password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long",
-                    equalTo: "Please enter the same password as above"
-                },
-                email: "Please enter a valid email address",
-                contactnumber: "Please enter your 10 digit number",
-                agree: "Please accept our policy",
-                topic: "Please select at least 2 topics"
+            usr_phone_number:{
+                required: true
+            },
+            usr_name:{
+                required: true
+            },
+            "personal[nik]":{
+                required: true,
+                minlength: 10
+            },
+            stf_nuptk:{
+                required: true
+            },
+            usr_place_of_birth:{
+                required: true,
+            },
+            usr_date_of_birth:{
+                required: true
+            },
+            usr_gender:{
+                required: true
+            },
+            usr_whatsapp_number:{
+                required: true,
+                minlength: 10
+            },
+            usr_religion:{
+                required: true
+            },
+            prv_name:{
+                required: true
+            },
+            cit_name:{
+                required: true
+            },
+            dst_name:{
+                required: true
+            },
+            usr_address:{
+                required: true
+            },
+            usr_rt:{
+                required: true
+            },
+            usr_rw:{
+                required: true
+            },
+            usr_rural_name:{
+                required: true
+            },
+            usr_postal_code:{
+                required:true
+            },
+            "educational_background[year_grade_school]":{
+                required: true
+            },
+            "educational_background[grade_school]":{
+                required: true
+            },
+            "educational_background[year_junior_high_school]":{
+                required: true
+            },
+            "educational_background[junior_high_school]":{
+                required: true
+            },
+            "educational_background[year_senior_high_school]":{
+                required: true
+            },
+            "educational_background[senior_high_school]":{
+                required: true
+            },
+            "educational_background[year_entry]":{
+                required: true
+            },
+            "educational_background[college]":{
+                required: true
+            },
+            "educational_background[faculty_name]":{
+                required: true
+            },
+            "educational_background[faculty_major]":{
+                required: true
+            },
+            "educational_background[year_graduated]":{
+                required: true
+            },
+            "educational_background[degree]":{
+                required: true
+            },
+            "other[identity_card]":{
+                required: true
+            },
+            "other[family_card]":{
+                required: true,
+            },
+            "other[senior_high_school_diploma]":{
+                required: true
+            },
+            "other[curriculum_vitae]":{
+                required: true
+            },
+            "other[application_letter]":{
+                required: true
+            },
+            "other[resume]":{
+                required: true
+            },
+            usr_profile_picture:{
+                required:true
+            },
+            terms_and_conditions:{
+                required: true
+            },
+
+        },  
+        messages: {
+            usr_email:{
+                required: "Email harus di isi"
+            },
+            usr_phone_number:{
+                required: "Nomor Telepon harus di isi"
+            },
+            usr_name:{
+                required: "Nama lengkap harus di isi"
+            },
+            stf_nuptk:{
+                required: "NO NUPTK harus di isi"
+            },
+            usr_place_of_birth:{
+                required: "Tempat lahir harus di isi"
+            },
+            usr_date_of_birth:{
+                required: "Data lahir harus di isi"
+            },
+            "personal[nik]":{
+                required: "Nomor NIK harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_gender:{
+                required: "Jenis kelamin harus di pilih"
+            },
+            usr_whatsapp_number:{
+                required: "No WhatsApp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_religion:{
+                required: "Agama harus di pilih"
+            },
+            "school_origin[npsn]":{
+                required: "NPSN asal sekolah harus di isi"
+            },
+            prv_name:{
+                required: "Provinsi harus di pilih"
+            },
+            cit_name:{
+                required: "Kabupaten atau kota harus di pilih"
+            },
+            dst_name:{
+                required: "Kecamatan harus di pilih"
+            },
+            usr_address:{
+                required: "Alamat harus di isi"
+            },
+            usr_rt:{
+                required: "RT harus di isi"
+            },
+            usr_rw:{
+                required: "RW harus di isi"
+            },
+            usr_rural_name:{
+                required: "Desa harus di isi"
+            },
+            usr_postal_code:{
+                required: "Kode pos harus di isi"
+            },
+            "educational_background[year_grade_school]":{
+                required: "Tahun lulus SD sederajat harus di isi"
+            },
+            "educational_background[grade_school]":{
+                required: "Nama SD sederajat harus di isi"
+            },
+            "educational_background[year_junior_high_school]":{
+                required: "Tahun lulus SMP sederajat harus di isi"
+            },
+            "educational_background[junior_high_school]":{
+                required: "Nama SMP sederajat harus di isi"
+            },
+            "educational_background[year_senior_high_school]":{
+                required: "Tahun lulus SMA sederajat harus di isi"
+            },
+            "educational_background[year_entry]":{
+                required: "Tahun perguruan tinggi harus di isi"
+            },
+            "educational_background[college]":{
+                required: "Nama perguruan tinggi harus di isi"
+            },
+            "educational_background[faculty_name]":{
+                required: "Nama fakultas harus di isi"
+            },
+            "educational_background[faculty_major]":{
+                required: "Nama jurusan harus di isi"
+            },
+            "educational_background[year_graduated]":{
+                required: "Tahun lulus harus di isi"
+            },
+            "educational_background[degree]":{
+                required: "Gelar harus di isi"
+            },
+            "educational_background[senior_high_school]":{
+                required: "Nama SMA sederajat harus di isi"
+            },
+            "other[identity_card]":{
+                required: "KTP harus di upload"
+            },
+            "other[family_card]":{
+                required: "Kartu keluarga harus di upload",
+            },
+            "other[senior_high_school_diploma]":{
+                required: "ijazah legalisir SMA atau SMK harus di upload"
+            },
+            "other[curriculum_vitae]":{
+                required: "CV harus di upload"
+            },
+            "other[application_letter]":{
+                required: "Surat lamaran harus di upload"
+            },
+            "other[resume]":{
+                required: "Resume harus di upload"
+            },
+            usr_profile_picture:{
+                required: "Foto calon guru tidak boleh kosong"
+            },
+            terms_and_conditions:{
+                required: "&nbsp S&K harus di centang"
             }
-        });
 
+        }
     });
-
-    function bacaGambar(input) {
-     if (input.files && input.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-          $('#tampil_picture').attr('src', e.target.result);
-      }
-
-      reader.readAsDataURL(input.files[0]);
-  }
-}
-$("#preview_gambar").change(function(){
- bacaGambar(this);
 });
-
-
 </script>
 
 <script>
