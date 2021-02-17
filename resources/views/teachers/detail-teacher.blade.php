@@ -211,6 +211,11 @@
                         <dd class="col-sm-7">
                             <p>{{ $teacher->usr_name }}</p>
                         </dd>
+
+                        <dt class="col-sm-5">Nomor Telepon</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $teacher->usr_phone_number }}</p>
+                        </dd>
                         @if(isset($teacher->personal['nik']))
                         <dt class="col-sm-5">NIK</dt>
                         <dd class="col-sm-7">
@@ -304,7 +309,7 @@
                             <p>{{$teacher->educational_background['grade_school']}}</p>
                         </dd>
                         @endif                        
-                        @if(isset($teacher->educational_background[' year_grade_school']))
+                        @if(isset($teacher->educational_background['year_grade_school']))
                         <dt class="col-sm-5">Tahun SD/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$teacher->educational_background['year_grade_school']}}</p>
@@ -316,7 +321,7 @@
                             <p>{{$teacher->educational_background['junior_high_school']}}</p>
                         </dd>
                         @endif
-                        @if(isset($teacher->educational_background[' year_junior_high_school']))
+                        @if(isset($teacher->educational_background['year_junior_high_school']))
                         <dt class="col-sm-5">Tahun SMP/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$teacher->educational_background['year_junior_high_school']}}</p>
@@ -328,7 +333,7 @@
                             <p>{{$teacher->educational_background['senior_high_school']}}</p>
                         </dd>
                         @endif
-                        @if(isset($teacher->educational_background[' year_senior_high_school']))
+                        @if(isset($teacher->educational_background['year_senior_high_school']))
                         <dt class="col-sm-5">Tahun SMA/Sederajat</dt>
                         <dd class="col-sm-7">
                             <p>{{$teacher->educational_background['year_senior_high_school']}}</p>
@@ -358,10 +363,10 @@
                             <p>{{$teacher->educational_background['faculty_major']}}</p>
                         </dd>
                         @endif
-                        @if(isset($teacher->educational_background['year_graduate']))
+                        @if(isset($teacher->educational_background['year_graduated']))
                         <dt class="col-sm-5">Tahun Lulus</dt>
                         <dd class="col-sm-7">
-                            <p>{{$teacher->educational_background['year_graduate']}}</p>
+                            <p>{{$teacher->educational_background['year_graduated']}}</p>
                         </dd>
                         @endif
                         @if(isset($teacher->educational_background['degree']))

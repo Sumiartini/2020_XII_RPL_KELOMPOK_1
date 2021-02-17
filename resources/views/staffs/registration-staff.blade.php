@@ -643,9 +643,6 @@
                 required: true,
                 minlength: 10
             },
-            stf_nuptk:{
-                required: true
-            },
             usr_place_of_birth:{
                 required: true,
             },
@@ -733,9 +730,6 @@
         messages: {
             usr_name:{
                 required: "Nama lengkap harus di isi"
-            },
-            stf_nuptk:{
-                required: "NO NUPTK harus di isi"
             },
             usr_place_of_birth:{
                 required: "Tempat lahir harus di isi"
