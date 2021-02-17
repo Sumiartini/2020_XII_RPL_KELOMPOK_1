@@ -46,6 +46,6 @@ class CreateStaffsTable extends Migration
      */
     public function down()
     {
-        //
+         Schema::dropIfExists('staffs');
     }
 }

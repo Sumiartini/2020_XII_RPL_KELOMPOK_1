@@ -16,6 +16,7 @@ use Illuminate\Support\Carbon;
 use App\EntryTypes;
 use App\Provinces;
 use App\Districts;
+use App\StudentRegistration;
 
 class StudentController extends Controller
 {
@@ -139,14 +140,21 @@ class StudentController extends Controller
             $student->stu_candidate_name   = $request->stu_candidate_name;
             $student->stu_user_id          = $user->usr_id;
             $student->stu_entry_type_id    = $request->stu_entry_type_id;
-            $student->stu_school_year_id   = 5;
+            // $student->stu_school_year_id   = 5;
             $student->stu_nisn             = $request->stu_nisn;
             $student->stu_school_origin    = $request->stu_school_origin;
             $student->stu_major_id         = $request->stu_major_id;
-            $student->stu_registration_status   = 1;
+            // $student->stu_registration_status   = 1;
             $student->stu_created_by = Auth()->user()->usr_id;
 
             if ($student->save()) {
+                $student_registration  = new StudentRegistration;
+                $student_registration->str_student_id = $student->stu_id;
+                $student_registration->str_school_year_id = 5;
+                $student_registration->str_status = 1;
+                $student_registration->str_created_by = Auth()->user()->usr_id;
+                $student_registration->save();
+
                 foreach ($requests as $key => $requestData) {
                     if (is_array($requestData)) {
                         foreach ($requestData as $requestKey => $requestValue) {
@@ -403,12 +411,15 @@ class StudentController extends Controller
             $student->stu_candidate_name   = $request->stu_candidate_name;
             $student->stu_user_id          = $user->usr_id;
             $student->stu_entry_type_id    = 1;
-            $student->stu_school_year_id   = 5;
             $student->stu_nisn             = $request->stu_nisn;
             $student->stu_school_origin    = $request->stu_school_origin;
             $student->stu_major_id         = $request->stu_major_id;
-            $student->stu_registration_status   = "0";
             $student->stu_created_by = Auth()->user()->usr_id;
+
+            $student_registration           = StudentRegistration::where('str_student_id', $student->stu_id)->first();
+            $student_registration->str_school_year_id = 5;
+            $student_registration->str_created_by = Auth()->user()->usr_id;
+            $student_registration->update();
 
             if ($student->update()) {
                 foreach ($requests as $key => $requestData) {
@@ -456,32 +467,43 @@ class StudentController extends Controller
 
     public function receipted($stu_id)
     {
-        $student = Students::findOrFail($stu_id);
-        $student->stu_registration_status = '1';
-        $student->update();
-        return back()->with('success', 'Siswa berhasil diterima');
+        $student_registration = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('stu_id',$stu_id)->first();
+
+        return view('students.reason-student-prospective',compact('student_registration'));
+    }
+
+    public function Storereceipted(Request $request, $str_id)
+    {
+        $student_registration = StudentRegistration::where('str_id',$str_id)->first();
+        $student_registration->str_reason = $request->str_reason;
+        $student_registration->str_status = '1';
+        $student_registration->update();
+        return redirect('students-prospective')->with('success', 'Siswa berhasil diterima');
     }
 
     public function rejected($stu_id)
     {
-        $student = Students::findOrFail($stu_id);
-        
-        $student->stu_registration_status = '2';
-        $student->update();
 
-        return back()->with('success', 'Siswa berhasil ditolak');
+        $student_registration = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('stu_id',$stu_id)->first();
+
+        return view('students.reason-student-rejected',compact('student_registration'));
+    }
+
+    public function storeRejected(Request $request, $str_id)
+    {
+        $student_registration = StudentRegistration::where('str_id',$str_id)->first();
+        $student_registration->str_reason = $request->str_reason;
+        $student_registration->str_status = '2';
+        $student_registration->update();
+        return redirect('students-prospective')->with('success', 'Siswa berhasil ditolak');
     }
 
     public function restore($stu_id)
     {
-        $student = Students::findOrFail($stu_id);
-        $user = User::where('usr_id', $student->stu_user_id)->first();
+         $student_registration = StudentRegistration::where('str_student_id',$stu_id)->first();
 
-        $user->usr_is_active = '1';
-        $user->update();
-
-        $student->stu_registration_status = '0';
-        $student->update();
+        $student_registration->str_status = '0';
+        $student_registration->update();
 
         return back()->with('success', 'Siswa berhasil dikembalikan menjadi calon siswa');
     }

@@ -45,6 +45,6 @@ class CreateTeacherDetailsTable extends Migration
      */
     public function down()
     {
-        //
+         Schema::dropIfExists('teacher_details');
     }
 }

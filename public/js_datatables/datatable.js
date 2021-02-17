@@ -505,6 +505,7 @@ function teacher() {
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
+            // "processing": '<i class="fa fa-refresh fa-spin fa-3x"></i><span class="sr-only"></span> ',
             "zeroRecords": "Daftar Guru tidak tersedia",
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar guru",

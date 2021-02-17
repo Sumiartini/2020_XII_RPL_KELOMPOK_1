@@ -62,7 +62,6 @@ Route::get('/download/download-file', 'User\UserController@downloadFile')->middl
 Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack']], function () {
     Route::get('/dashboard', 'User\UserController@index')->name('dashboard.users');
 
-
     Route::get('/staffs', function () {
         return view('staffs.list-staff');
     });
@@ -190,7 +189,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
     //terima tolak dan restore siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');
+    Route::post('/student/receipted/{str_id}', 'StudentController@storeReceipted');
     Route::get('/student/rejected/{stu_id}', 'StudentController@rejected');
+    Route::post('/student/rejected/{str_id}', 'StudentController@storeRejected');
     Route::get('/student/restore/{std_id}', 'StudentController@restore');
     
     //terima tolak dan restore staf

@@ -42,6 +42,6 @@ class CreateSchoolYearsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('years');
+        Schema::dropIfExists('school_years');
     }
 }

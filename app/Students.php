@@ -17,7 +17,8 @@ class Students extends Model
     public static function getStudents($request)
     {
         $students = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            ->where('students.stu_registration_status', 1)
+            ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+            ->where('student_registrations.str_status', 1)
             ->where('users.usr_is_regist', 1);
         // dd($students);
         return $students;
@@ -28,7 +29,7 @@ class Students extends Model
         $students = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
             ->join('entry_types', 'students.stu_entry_type_id', '=', 'entry_types.ent_id')
-            // ->join('student_details','students.stu_id','=','student_details.std_student_id')
+            ->join('student_registrations','student_registrations.str_student_id','=','students.stu_id')
             ->where('stu_id', $studentID)->firstOrFail();
         // dd($students);
         $student_details = StudentDetails::where('std_student_id', $students->stu_id)->where('std_deleted_at', null)->get();
@@ -42,8 +43,8 @@ class Students extends Model
     {
 
         $students_prospective = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            // ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
-            ->where('students.stu_registration_status', 0)
+            ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+            ->where('student_registrations.str_status', 0)
             ->where('users.usr_is_regist', 1);            
         // dd($students_prospective);
         return $students_prospective;
@@ -64,8 +65,8 @@ class Students extends Model
     {
 
         $students_rejected = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            // ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
-            ->where('students.stu_registration_status', 2)
+            ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+            ->where('student_registrations.str_status', 2)
             ->where('users.usr_is_regist', 1);
         // dd($students_rejected);
         return $students_rejected;
@@ -74,6 +75,7 @@ class Students extends Model
     {
         $students_rejected = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             // ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+            ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
             ->where('stu_id', $studentID)->firstOrFail();
 
         $student_rejected_details = StudentDetails::where('std_student_id', $students_rejected->stu_id)->get();

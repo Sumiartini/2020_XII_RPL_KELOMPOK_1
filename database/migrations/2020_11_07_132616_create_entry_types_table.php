@@ -41,6 +41,6 @@ class CreateEntryTypesTable extends Migration
      */
     public function down()
     {
-        //
+         Schema::dropIfExists('entry_types');
     }
 }

@@ -9,6 +9,7 @@ use App\User;
 use App\Students;
 use App\Teachers;
 use App\Staffs;
+use App\StudentRegistration;
 
 class UserController extends Controller
 {
@@ -30,8 +31,10 @@ class UserController extends Controller
     public function index()
     {
         
-        $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+        $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id') 
+        -> join('student_registrations','student_registrations.str_student_id','=','students.stu_id')
         -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
+        // dd($student);
         $teacher = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
         -> where('teachers.tcr_user_id', Auth::user()->usr_id)->first();
         $staff = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
@@ -47,13 +50,13 @@ class UserController extends Controller
         $staffs = Staffs::count();
 
         if ($user->hasRole('student')) {
-            if ($student->stu_registration_status == '0' ) {
+            if ($student->str_status == '0' ) {
                 return redirect('student-registration');    
             }
-            elseif ($student->stu_registration_status == '1' ) {
+            elseif ($student->str_status == '1' ) {
                 return view('dashboard', compact('students','teachers','staffs'));
             }
-            elseif ($student->stu_registration_status == '2' ) {
+            elseif ($student->str_status == '2' ) {
                 return view('students.student-rejected');
             }
             

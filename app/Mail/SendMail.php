@@ -28,7 +28,9 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->view('email')
+        $subject = 'Email Verifikasi';
+        return $this->view('email.email-verification')
+            ->subject($subject)
             ->with(
                 [
                     'user' => $this->user

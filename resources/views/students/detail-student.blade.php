@@ -384,6 +384,26 @@
                             <p>{{ $student->personal['birth_certificate_registration_no'] }}</p>
                         </dd>
                         @endif
+
+                        @if(isset($student->str_reason))
+                        @if($student->str_status == 0)
+
+                        @elseif($student->str_status == 1)
+                        <dt class="col-sm-5">Alasan diterima</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $student->str_reason }}</p>
+                        </dd>
+                        @elseif($student->str_status == 2)
+                        <dt class="col-sm-5">Alasan ditolak</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $student->str_reason }}</p>
+                        </dd>
+                        @elseif($student->str_status == 3)
+
+                        @elseif($student->str_status == 4)
+
+                        @endif
+                        @endif
                     </div>
                 </div>
                 <div class="tab-pane" id="persuratan">

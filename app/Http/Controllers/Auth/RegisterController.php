@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use Illuminate\Support\Str;
+use App\StudentRegistration;
 
 class RegisterController extends Controller
 {
@@ -104,8 +105,11 @@ class RegisterController extends Controller
 
         if ($data['role'] == 1) {
             $student = Students::create([
-                'stu_registration_status' => false,
                 'stu_user_id'             => $user->usr_id,
+            ]);
+            $student_registration = StudentRegistration::create([
+                'str_student_id'    => $student->stu_id,
+                'str_status'        => false,
             ]);
             $user->assignRole('student');
             $user->created_by = $user->usr_id;
