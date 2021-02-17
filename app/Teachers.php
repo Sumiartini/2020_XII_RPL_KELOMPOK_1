@@ -25,8 +25,8 @@ class Teachers extends Model
     public function getTeacherDetail($teacherID)
     {
         $teachers = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
-            // ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
-            // ->join('entry_types', 'students.stu_entry_type_id', '=', 'entry_types.ent_id')
+            // ->join('majors', 'teachers.tcr_major_id', '=', 'majors.mjr_id')
+            // ->join('entry_types', 'teachers.tcr_entry_type_id', '=', 'entry_types.ent_id')
             ->where('tcr_id', $teacherID)->firstOrFail();
 
         $teacher_details = TeacherDetails::where('tcd_teacher_id', $teachers->tcr_id)->where('tcd_deleted_at', null)->get();
@@ -72,6 +72,18 @@ class Teachers extends Model
         $teacher_rejected_details = mappingDataTeacher($teacher_rejected_details, $teachers_rejected);
         //dd($teachers_rejected);
         return $teacher_rejected_details;
+    }
+
+    public function getTeacherEdit($teacherID)
+    {
+        // dd($teacherID);
+        $teachers_edit = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')            
+            ->where('tcr_id', $teacherID)->firstOrFail();
+
+        $get_teacher_edit = teacherDetails::where('tcd_teacher_id', $teachers_edit->tcr_id)->get();
+        $get_teacher_edit = mappingDataTeacher($get_teacher_edit, $teachers_edit);
+
+        return $get_teacher_edit;
     }
 
 }

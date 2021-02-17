@@ -6,14 +6,6 @@
 
 @push('styles')
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Tambah Siswa</title>
-<!--favicon-->
-<link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
 <!-- simplebar CSS-->
 <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
 <!-- Bootstrap core CSS-->
@@ -186,10 +178,9 @@
                             <option value="Khonghucu"> Khonghucu </option>
                         </select>   
                     </div>
-
                 </div>
 
-                <label>Foto calon siswa<span style="color:red"> *</span></label>    
+                <label>Foto siswa<span style="color:red"> *</span></label>    
                 <div class="form-group row">
 
                     <div class="col-sm-4">

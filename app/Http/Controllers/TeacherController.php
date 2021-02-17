@@ -215,9 +215,18 @@ class TeacherController extends Controller
      * @param  \App\Teachers  $teachers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teachers $teachers)
+    public function edit($teacherID)
     {
-        return view('teachers.edit-teacher');
+        $teacher = new teachers;
+
+        $teacher_edit = $teacher->getTeacherEdit($teacherID);        
+        $province = Provinces::select('prv_id', 'prv_name')->get();
+        $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')        
+        ->where('usr_id', $teacher_edit->usr_id)
+        ->get();   
+        return view('teachers.edit-teacher', ['teacher_edit' => $teacher_edit, 'province' => $province, 'user' => $user]);
     }
 
     /**
@@ -227,9 +236,56 @@ class TeacherController extends Controller
      * @param  \App\Teachers  $teachers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teachers $teachers)
+    public function update(Request $request, $teacherID)
     {
-        //
+        //dd('sini');
+        $requests = $request->input();
+        $teacher = Teachers::where('tcr_id', $teacherID)->first();
+        $teacher->tcr_nuptk     = $request->tcr_nuptk;        
+
+        if ($teacher->update()) {
+            $user = User::where('usr_id', $teacher->tcr_user_id)->first();
+            $user->usr_name             = $request->usr_name;
+            $user->usr_place_of_birth   = $request->usr_place_of_birth;
+            $user->usr_date_of_birth    = $request->usr_date_of_birth;
+            $user->usr_religion         = $request->usr_religion;
+            $user->usr_gender           = $request->usr_gender;        
+            $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
+            $user->usr_district_id      = $request->dst_name;
+            $user->usr_address          = $request->usr_address;
+            $user->usr_rt               = $request->usr_rt;
+            $user->usr_rw               = $request->usr_rw;
+            $user->usr_rural_name       = $request->usr_rural_name;
+            $user->usr_postal_code      = $request->usr_postal_code;
+
+            if ($request->hasFile('usr_profile_picture')) {
+                $files = $request->file('usr_profile_picture');
+                $path = public_path('images/users_profile');
+                $files_name = 'images' . '/' . 'users_profile' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+                $files->move($path, $files_name);
+                $user->usr_profile_picture = $files_name;
+            }
+        }
+        
+        if ($user->update()) {
+            foreach ($requests as $key => $requetcdata) {
+                if (is_array($requetcdata)) {
+                    foreach ($requetcdata as $requestKey => $requestValue) {
+                            // dd($requests, $request, $requetcdata, $requestKey, $requestValue, $key);                            
+                        $teacherDetail = new TeacherDetails;
+                        $teacherDetail->tcd_teacher_id = $teacher->tcr_id;
+                        $teacherDetail->tcd_type       = $key;
+                        $teacherDetail->tcd_key        = $requestKey;
+                        $teacherDetail->tcd_value      = $requestValue;
+                        $teacherDetail->tcd_created_by = Auth()->user()->usr_id;
+                        $teacherDetail->save();
+                    }
+                }
+            }
+            
+        }
+        return redirect('teacher/' . $teacherID)->with('success', 'Data berhasil diubah');
+
     }
 
     /**

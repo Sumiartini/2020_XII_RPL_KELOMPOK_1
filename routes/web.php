@@ -106,7 +106,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/teacher/create', 'TeacherController@store');
     Route::get('/teacher/{tcr_id}', 'TeacherController@show_teacher');
     Route::get('/teacher/edit/{tcr_id}', 'TeacherController@edit');
-    Route::post('/teacher/edit/{tcr_id}', 'TeacherController@store');
+    Route::post('/teacher/edit/{tcr_id}', 'TeacherController@update');
     Route::get('/teachers/delete/1', 'TeacherController@destroy');
     Route::get('/teacher/restore/{tcr_id}', 'TeacherController@restore');
 

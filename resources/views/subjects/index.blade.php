@@ -4,11 +4,7 @@
 - Daftar Mata Pelajaran
 @endpush
 
-@push('styles')
-<!--favicon-->
-<!--favicon-->
-<link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
-<!-- simplebar CSS-->
+@push('styles')<!-- simplebar CSS-->
 <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
 <!-- Bootstrap core CSS-->
 <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
