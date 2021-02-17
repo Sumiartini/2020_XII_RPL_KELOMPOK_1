@@ -165,6 +165,7 @@ class AccountController extends Controller
         $user->usr_place_of_birth   = $request->usr_place_of_birth;
         $user->usr_date_of_birth    = $request->usr_date_of_birth;
         $user->usr_address          = $request->usr_address;
+        $user->usr_religion         = $request->usr_religion;
         $user->usr_rural_name       = $request->usr_rural_name;
         $user->usr_rt               = $request->usr_rt;
         $user->usr_rw               = $request->usr_rw;
@@ -179,7 +180,7 @@ class AccountController extends Controller
         
         $user->update();
 
-        return back()->with(['success' => 'Data profil anda berhasil di simpan']);;
+        return redirect('/account/profile/'.$user->usr_id)->with(['success' => 'Data profil anda berhasil di simpan']);;
 
     }
 

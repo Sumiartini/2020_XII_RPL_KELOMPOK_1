@@ -49,7 +49,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label>Alamat Email<span style="color:red"> *</span></label>
-                            <input type="email" class="form-control form-control-rounded @error('usr_email') is-invalid @enderror" name="usr_email" placeholder="Masukan Alamat Email" value="{{ $teacher_edit->usr_email }}">
+                            <input type="email" disabled="" class="form-control form-control-rounded @error('usr_email') is-invalid @enderror" name="usr_email" placeholder="Masukan Alamat Email" value="{{ $teacher_edit->usr_email }}">
                             @error('usr_email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

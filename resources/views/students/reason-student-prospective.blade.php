@@ -76,7 +76,7 @@
         <div class="form-group row">
           <label for="input-4" class="col-sm-2 col-form-label">Alasan diterima: </label>
           <div class="col-sm-10">
-            <input type="text" name="str_reason" class="form-control form-control-rounded @error('str_reason') is-invalid @enderror" id="input-4" placeholder="Masukan Kata Sandi Lama" value="{{ old('str_reason') }}">
+            <input type="text" name="str_reason" class="form-control form-control-rounded @error('str_reason') is-invalid @enderror" id="input-4" placeholder="Masukan Alasan Siswa Di Terima" value="{{ old('str_reason') }}">
             
             @error('str_reason')
             <span class="invalid-feedback" role="alert">
