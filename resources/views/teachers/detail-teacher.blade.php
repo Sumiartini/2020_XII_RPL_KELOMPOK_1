@@ -97,10 +97,11 @@
                   <h6 class="text-blue ml-3">{{ $teacher->usr_email }}</h6>
                  </div> -->
               </div>
+            @if(isset($teacher->other['identity_card']))
               <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['identity_card']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -108,11 +109,13 @@
                         <p>Kartu Tanda Penduduk (KTP)</p> 
                     </div>     
                 </div>
-            </div>  
+            </div>
+            @endif  
+            @if(isset($teacher->other['family_card']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['family_card']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -121,10 +124,12 @@
                     </div>     
                 </div>
             </div>  
+            @endif
+            @if(isset($teacher->other['scholar_diploma']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['scholar_diploma']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -133,10 +138,12 @@
                     </div>     
                 </div>
             </div>  
+            @endif
+            @if(isset($teacher->other['curriculum_vitae']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['curriculum_vitae']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -144,11 +151,13 @@
                         <p>Curriculum vitae (CV)</p> 
                     </div>     
                 </div>
-            </div>  
+            </div> 
+            @endif 
+            @if(isset($teacher->other['application_letter']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['application_letter']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -157,10 +166,12 @@
                     </div>     
                 </div>
             </div>  
+            @endif
+            @if(isset($teacher->other['resume']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['resume']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -168,7 +179,8 @@
                         <p>Resume</p> 
                     </div>     
                 </div>
-            </div> 
+            </div>
+            @endif  
 
             </div>
             </div>

@@ -96,10 +96,11 @@
                   <h6 class="text-blue ml-3">{{ $staff->usr_email }}</h6>
                  </div> -->
               </div>
+            @if(isset($staff->other['identity_card']))
               <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-staff/'. $staff->other['identity_card']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -107,11 +108,13 @@
                         <p>Kartu Tanda Penduduk (KTP)</p> 
                     </div>     
                 </div>
-            </div>  
+            </div>
+            @endif  
+            @if(isset($staff->other['family_card']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-staff/'. $staff->other['family_card']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -120,22 +123,26 @@
                     </div>     
                 </div>
             </div>  
+            @endif
+            @if(isset($staff->other['senior_high_school_diploma']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-staff/'. $staff->other['senior_high_school_diploma']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
                     <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Surat Tanda Kelulusan Minimal D4/S1 dilegalisir </p> 
+                        <p>Surat Tanda Kelulusan Minimal SMA/SMK dilegalisir </p> 
                     </div>     
                 </div>
             </div>  
+            @endif
+            @if(isset($staff->other['curriculum_vitae']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-staff/'. $staff->other['curriculum_vitae']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -143,11 +150,13 @@
                         <p>Curriculum vitae (CV)</p> 
                     </div>     
                 </div>
-            </div>  
+            </div> 
+            @endif 
+            @if(isset($staff->other['application_letter']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-staff/'. $staff->other['application_letter']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -156,10 +165,12 @@
                     </div>     
                 </div>
             </div>  
+            @endif
+            @if(isset($staff->other['resume']))
             <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
-                        <a href="">
+                        <a href="{{ url('download-file-staff/'. $staff->other['resume']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
@@ -167,7 +178,8 @@
                         <p>Resume</p> 
                     </div>     
                 </div>
-            </div> 
+            </div>
+            @endif 
 
             </div>
             </div>

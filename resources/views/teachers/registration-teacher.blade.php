@@ -550,8 +550,8 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <label> Upload Ijazah Minimal D4/S1 dilegalisir <span style="color:red"> *</span></label>
-                                    <input type="file" name="other[senior_high_school_diploma]">
-                                    @error('other.senior_high_school_diploma')
+                                    <input type="file" name="other[scholar_diploma]">
+                                    @error('other.scholar_diploma')
                                     <p>
                                         <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
                                     </p>

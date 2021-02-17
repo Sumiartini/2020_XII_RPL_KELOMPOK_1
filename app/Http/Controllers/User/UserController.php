@@ -105,4 +105,24 @@ class UserController extends Controller
         // dd($fileDownload, $headers, $newName);
         return response()->download($fileDownload, $newName, $headers);
     }
+
+    public function downloadFileTeacher($locationFile)
+    {
+        // dd($locationFile);
+        $fileDownload = ("images/teacher_files/".$locationFile);
+        $headers = ['Content-Type: application/pdf, image/jpeg, image/jpg'];
+        $newName = 'file-guru' . '_' . date('Ymd'). $locationFile;
+        // dd($fileDownload, $headers, $newName);
+        return response()->download($fileDownload, $newName, $headers);
+    }
+
+    public function downloadFileStaff($locationFile)
+    {
+        // dd($locationFile);
+        $fileDownload = ("images/staff_files/".$locationFile);
+        $headers = ['Content-Type: application/pdf, image/jpeg, image/jpg'];
+        $newName = 'file-staf' . '_' . date('Ymd'). $locationFile;
+        // dd($fileDownload, $headers, $newName);
+        return response()->download($fileDownload, $newName, $headers);
+    }
 }
