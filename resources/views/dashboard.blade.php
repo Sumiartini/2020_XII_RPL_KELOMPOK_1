@@ -5,8 +5,6 @@
 @endpush
 
 @push('styles')
-<!--favicon-->
-<link rel="icon" href="assets/images/logo.png" type="image/x-icon" />
 <!-- Vector CSS -->
 <link href="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet" />
 <!-- simplebar CSS-->

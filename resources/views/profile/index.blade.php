@@ -5,8 +5,6 @@
 	@endpush
 
 	@push('styles')
-	<!--favicon-->
-	<link rel="icon" href="{{ asset('assets/images/favicon.ico')}}" type="image/x-icon">
 	<!-- simplebar CSS-->
 	<link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet"/>
 	<!-- Bootstrap core CSS-->
@@ -102,7 +100,7 @@
 									<td>:</td>
 									<td>{{$user->usr_rw}}</td>
 								</tr>
-							
+								
 								<tr>
 									<th></th>
 									<td></td>

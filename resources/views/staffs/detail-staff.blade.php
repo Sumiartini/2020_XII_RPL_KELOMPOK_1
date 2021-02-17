@@ -5,8 +5,6 @@
 @endpush
 
 @push('styles')
-<!--favicon-->
-<link rel="icon" href="{{ URL::to('assets/images/logo.png')}}" type="image/x-icon">
 <!-- simplebar CSS-->
 <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
 <!-- Bootstrap core CSS-->
