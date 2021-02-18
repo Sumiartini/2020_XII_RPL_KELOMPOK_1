@@ -25,6 +25,8 @@
     <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
     <!-- Custom Style-->
     <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+    <!-- select2 -->
+    <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
     <style>
         footer {
             color: #272727;
@@ -131,16 +133,16 @@
                             <div class="col-sm-4">
                                 <label> Jenis Kelamin <span style="color:red"> *</span></label>
 
-                            <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
-                                <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
-                                <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
-                                <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
-                            </select>
-                            @error('usr_gender')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+                                <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
+                                    <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
+                                    <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
+                                    <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
+                                </select>
+                                @error('usr_gender')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
 
                             </div>
 
@@ -465,7 +467,7 @@
                         </div>
 
 
-                       <div class="form-group row">
+                        <div class="form-group row">
                             <div class="col-sm-4">
                                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
                                 <select name="mother_data[education]" class="form-control form-control-rounded @error('mother_data.education') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.education') }}">
@@ -581,7 +583,7 @@
                                 @enderror
                             </div>
                         </div>
-                       <div class="form-group row">
+                        <div class="form-group row">
                             <div class="col-sm-4">
                                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
                                 <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data.education') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.education') }}">
@@ -665,7 +667,7 @@
                             <div class="col-sm-4">
                                 <label> Provinsi <span style="color:red"> *</span></label>
 
-                                <select name="prv_name" class="form-control form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
+                                <select name="prv_name" class="form-control single-select form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
                                     <option disabled="true" selected="true"> Pilih Provinsi </option>
                                     @foreach($province as $data)
                                     <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
@@ -681,7 +683,7 @@
                             <div class="col-sm-4">
                                 <label> Kabupaten/Kota <span style="color:red"> *</span></label>
 
-                                <select name="cit_name" class="form-control form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
+                                <select name="cit_name" class="form-control single-select form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
                                     <option disabled checked="true" selected="true"> Pilih Kabupaten/Kota </option>
                                 </select>
                                 @error('cit_name')
@@ -694,7 +696,7 @@
                             <div class="col-sm-4">
                                 <label> Kecamatan <span style="color:red"> *</span></label>
 
-                                <select name="dst_name" class="form-control form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
+                                <select name="dst_name" class="form-control single-select form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
                                     <option disabled checked="true" selected="true"> Pilih Kecamatan </option>
                                 </select>
                                 @error('dst_name')
@@ -736,10 +738,10 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                             <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
-                             @error('usr_rural_name')
-                             <span class="invalid-feedback" role="alert">
+                               <label>Desa/Kelurahan<span style="color:red"> *</span></label>
+                               <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
+                               @error('usr_rural_name')
+                               <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -925,22 +927,31 @@
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
+<!-- script select2 -->
+<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.single-select').select2();                 
+    });
+
+</script>
+
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 <script>
     function bacaGambar(input) {
-     if (input.files && input.files[0]) {
-      var reader = new FileReader();
+       if (input.files && input.files[0]) {
+          var reader = new FileReader();
 
-      reader.onload = function (e) {
-          $('#tampil_picture').attr('src', e.target.result);
+          reader.onload = function (e) {
+              $('#tampil_picture').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
       }
-
-      reader.readAsDataURL(input.files[0]);
   }
-}
-$("#preview_gambar").change(function(){
- bacaGambar(this);
+  $("#preview_gambar").change(function(){
+   bacaGambar(this);
 });
 </script>
 

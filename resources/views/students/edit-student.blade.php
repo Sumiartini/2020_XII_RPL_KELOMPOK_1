@@ -20,6 +20,8 @@
 <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
 <!-- Custom Style-->
 <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+<!-- select2 -->
+<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -154,7 +156,7 @@
                         <select class="form-control form-control-rounded" name="stu_major_id" id="basic-select" value="">
 
                             @foreach($majors as $major)
-                                <option {{ $major->mjr_id == $student_edit->stu_major_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
+                            <option {{ $major->mjr_id == $student_edit->stu_major_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -394,7 +396,7 @@
                     <div class="col-sm-4">
                         <label>Tahun Lahir</label>
                         <select name="guardian_data[year_of_birth]" class="form-control form-control-rounded" id="basic-select">
-                            
+
                             @if($student_edit->guardian_data['year_of_birth'] == NULL)
                             <option selected=""  disabled="">Pilih Tahun Lahir</option>
                             @else
@@ -426,277 +428,277 @@
                         <label>Pekerjaan</label>
 
                         <select name="guardian_data[profession]" class="form-control form-control-rounded" id="basic-select">
-                             @if($student_edit->guardian_data['profession'] == NULL)
-                            <option selected="" disabled="">Pilih</option>
-                            @else
-                            <option selected="">{{$student_edit->guardian_data['profession']}}</option>
-                            @endif
-                            <option>Buruh</option>
-                            <option>Wirausaha</option>
-                        </select>
+                         @if($student_edit->guardian_data['profession'] == NULL)
+                         <option selected="" disabled="">Pilih</option>
+                         @else
+                         <option selected="">{{$student_edit->guardian_data['profession']}}</option>
+                         @endif
+                         <option>Buruh</option>
+                         <option>Wirausaha</option>
+                     </select>
 
-                    </div>
-                    <div class="col-sm-4">
-                        <label>Pendapatan Perbulan</label>
-                        <select name="guardian_data[monthly_income]" class="form-control form-control-rounded" id="basic-select">
-                             @if($student_edit->guardian_data['monthly_income'] == NULL)
-                            <option selected="" disabled="">Pilih</option>
-                            @else
-                            <option selected="">{{$student_edit->guardian_data['monthly_income']}}</option>
-                            @endif
-                            <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
-                            <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
-                            <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
-                            <option value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
-                            <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
-                            <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label> Nomor Telepon <span style="color:red"> *</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{$student_edit->guardian_data['phone_number']}}">
-                            @error('guardian_data.phone_number')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                 </div>
+                 <div class="col-sm-4">
+                    <label>Pendapatan Perbulan</label>
+                    <select name="guardian_data[monthly_income]" class="form-control form-control-rounded" id="basic-select">
+                     @if($student_edit->guardian_data['monthly_income'] == NULL)
+                     <option selected="" disabled="">Pilih</option>
+                     @else
+                     <option selected="">{{$student_edit->guardian_data['monthly_income']}}</option>
+                     @endif
+                     <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
+                     <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
+                     <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
+                     <option value="Rp. 2.000.000 - Rp. 3.000.000"> Rp. 2.000.000 - Rp. 3.000.000 </option>
+                     <option value="Rp. 3.000.000 - Rp. 4.000.000"> Rp. 3.000.000 - Rp. 4.000.000 </option>
+                     <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
+                 </select>
+             </div>
+         </div>
+         <div class="form-group row">
+            <div class="col-sm-4">
+                <label> Nomor Telepon <span style="color:red"> *</span></label>
+                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{$student_edit->guardian_data['phone_number']}}">
+                @error('guardian_data.phone_number')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
 
-                        <div class="col-sm-4">
-                            <label>Disabilitas</label> <br>
+            <div class="col-sm-4">
+                <label>Disabilitas</label> <br>
 
-                            <div class="radio icheck-info icheck-inline">
-                                <input type="radio" id="disability_guardian1" value="Ya" name="guardian_data[disability]">
-                                <label for="disability_guardian1">Ya</label>
-                            </div>
-                            <div class="radio icheck-info icheck-inline">
-                                <input type="radio" checked="" value="Tidak" id="disability_guardian2" name="guardian_data[disability]">
-                                <label for="disability_guardian2">Tidak</label>
-                            </div>
-                        </div>
-                    </div>
+                <div class="radio icheck-info icheck-inline">
+                    <input type="radio" id="disability_guardian1" value="Ya" name="guardian_data[disability]">
+                    <label for="disability_guardian1">Ya</label>
+                </div>
+                <div class="radio icheck-info icheck-inline">
+                    <input type="radio" checked="" value="Tidak" id="disability_guardian2" name="guardian_data[disability]">
+                    <label for="disability_guardian2">Tidak</label>
+                </div>
+            </div>
+        </div>
 
-                    <h4 class="form-header text-uppercase">
-                        <i class=""></i>
-                        Data Persuratan
-                    </h4>
+        <h4 class="form-header text-uppercase">
+            <i class=""></i>
+            Data Persuratan
+        </h4>
 
-                    @foreach($user as $user)
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label> Provinsi <span style="color:red"> *</span></label>
-                            <select name="prv_name" class="form-control form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
-                                <option checked="true" selected="true" value="{{$user->prv_id}}"> {{$user->prv_name}} </option>
-                                @foreach($province as $data)
-                                <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
-                                @endforeach
-                            </select>
-                            @error('prv_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label> Kabupaten/Kota <span style="color:red"> *</span></label>
-
-                            <select name="cit_name" class="form-control form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
-                                <option checked="true" selected="true" value="{{$user->cit_id}}"> {{$user->cit_name}} </option>
-                            </select>
-                            @error('cit_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label> Kecamatan <span style="color:red"> *</span></label>
-
-                            <select name="dst_name" class="form-control form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
-                                <option checked="true" selected="true" value="{{$user->dst_id}}"> {{$user->dst_name}} </option>
-                            </select>
-                            @error('dst_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
+        @foreach($user as $user)
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <label> Provinsi <span style="color:red"> *</span></label>
+                <select name="prv_name" class="form-control single-select form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
+                    <option checked="true" selected="true" value="{{$user->prv_id}}"> {{$user->prv_name}} </option>
+                    @foreach($province as $data)
+                    <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
                     @endforeach
+                </select>
+                @error('prv_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
 
-                    <div class="form-group row">
+            <div class="col-sm-4">
+                <label> Kabupaten/Kota <span style="color:red"> *</span></label>
 
+                <select name="cit_name" class="form-control single-select form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
+                    <option checked="true" selected="true" value="{{$user->cit_id}}"> {{$user->cit_name}} </option>
+                </select>
+                @error('cit_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
 
-                        <div class="col-sm-4">
-                            <label>Alamat<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_address" value="{{$student_edit->usr_address}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Alamat">
-                        </div>
+            <div class="col-sm-4">
+                <label> Kecamatan <span style="color:red"> *</span></label>
 
-                        <div class="col-sm-2">
-                            <label>RT<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_rt" value="{{$student_edit->usr_rt}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor RT">
-                        </div>
+                <select name="dst_name" class="form-control single-select form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
+                    <option checked="true" selected="true" value="{{$user->dst_id}}"> {{$user->dst_name}} </option>
+                </select>
+                @error('dst_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        @endforeach
 
-                        <div class="col-sm-2">
-                            <label>RW<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_rw" value="{{$student_edit->usr_rw}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor RW">
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                            <input type="text" name="usr_rural_name" value="{{$student_edit->usr_rural_name}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Desa/Kelurahan">
-                        </div>
-
-                    </div>
-                    
-                    <div class="form-group row">
-                     <div class="col-sm-4">
-                        <label>Kode Pos<span style="color:red"> *</span></label>
-                        <input type="text" name="usr_postal_code" value="{{$student_edit->usr_postal_code}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Kode Pos">
-                    </div>
-                    <div class="col-sm-4">
-                        <label>Telepon Rumah</label>
-                        <input type="text" name="contact[landline_number]" value="{{$student_edit->contact['landline_number']}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
-                    </div>
-
-                    <div class="col-sm-4">
-                        <label>Email Rumah</label>
-                        <input type="text" name="contact[email]" value="{{$student_edit->contact['email']}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Alamat Email Rumah">
-                    </div>
-
-                </div>
-
-                <h4 class="form-header text-uppercase">
-                    <i class=""></i>
-                    Prestasi Siswa (Boleh diisi boleh tidak)
-                </h4>
-                <div class="form-group row">
+        <div class="form-group row">
 
 
-                    <div class="col-sm-4">
-                        <label> Jenis </label>
-                        <div class="radio icheck-info">
-                            <input type="radio" {{ $student_edit->achievement['type']=='Sains'?'checked':'' }} id="achievementType1" value="Sains" name="achievement[type]">
-                            <label for="achievementType1"> Sains </label>
-                        </div>
-                        <div class="radio icheck-info">
-                            <input type="radio" {{ $student_edit->achievement['type']=='Seni'?'checked':'' }} id="achievementType2" value="Seni" name="achievement[type]">
-                            <label for="achievementType2"> Seni </label>
-                        </div>
-                        <div class="radio icheck-info">
-                            <input type="radio" {{ $student_edit->achievement['type']=='Olahraga'?'checked':'' }} id="achievementType3" value="Olahraga" name="achievement[type]">
-                            <label for="achievementType3"> Olahraga </label>
-                        </div>
-                        <div class="radio icheck-info">
-                            <input type="radio" {{ $student_edit->achievement['type']==''?'checked':'' }} id="achievementType4" value="" name="achievement[type]">
-                            <label for="achievementType4"> Tidak ada </label>
-                        </div>
-                    </div>
+            <div class="col-sm-4">
+                <label>Alamat<span style="color:red"> *</span></label>
+                <input type="text" name="usr_address" value="{{$student_edit->usr_address}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Alamat">
+            </div>
+
+            <div class="col-sm-2">
+                <label>RT<span style="color:red"> *</span></label>
+                <input type="text" name="usr_rt" value="{{$student_edit->usr_rt}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor RT">
+            </div>
+
+            <div class="col-sm-2">
+                <label>RW<span style="color:red"> *</span></label>
+                <input type="text" name="usr_rw" value="{{$student_edit->usr_rw}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor RW">
+            </div>
+
+            <div class="col-sm-4">
+                <label>Desa/Kelurahan<span style="color:red"> *</span></label>
+                <input type="text" name="usr_rural_name" value="{{$student_edit->usr_rural_name}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Desa/Kelurahan">
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+         <div class="col-sm-4">
+            <label>Kode Pos<span style="color:red"> *</span></label>
+            <input type="text" name="usr_postal_code" value="{{$student_edit->usr_postal_code}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Kode Pos">
+        </div>
+        <div class="col-sm-4">
+            <label>Telepon Rumah</label>
+            <input type="text" name="contact[landline_number]" value="{{$student_edit->contact['landline_number']}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
+        </div>
+
+        <div class="col-sm-4">
+            <label>Email Rumah</label>
+            <input type="text" name="contact[email]" value="{{$student_edit->contact['email']}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Alamat Email Rumah">
+        </div>
+
+    </div>
+
+    <h4 class="form-header text-uppercase">
+        <i class=""></i>
+        Prestasi Siswa (Boleh diisi boleh tidak)
+    </h4>
+    <div class="form-group row">
+
+
+        <div class="col-sm-4">
+            <label> Jenis </label>
+            <div class="radio icheck-info">
+                <input type="radio" {{ $student_edit->achievement['type']=='Sains'?'checked':'' }} id="achievementType1" value="Sains" name="achievement[type]">
+                <label for="achievementType1"> Sains </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" {{ $student_edit->achievement['type']=='Seni'?'checked':'' }} id="achievementType2" value="Seni" name="achievement[type]">
+                <label for="achievementType2"> Seni </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" {{ $student_edit->achievement['type']=='Olahraga'?'checked':'' }} id="achievementType3" value="Olahraga" name="achievement[type]">
+                <label for="achievementType3"> Olahraga </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" {{ $student_edit->achievement['type']==''?'checked':'' }} id="achievementType4" value="" name="achievement[type]">
+                <label for="achievementType4"> Tidak ada </label>
+            </div>
+        </div>
 
 
 
-                    <div class="col-sm-4">
-                        <label> Tingkat</label>
+        <div class="col-sm-4">
+            <label> Tingkat</label>
 
-                        <div class="radio icheck-info">
-                            <input {{ $student_edit->achievement['achievement_level']=='Sekolah'?'checked':'' }} type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
-                            <label for="achievementLevel1"> Sekolah </label>
-                        </div>
-                        <div class="radio icheck-info">
-                            <input {{ $student_edit->achievement['achievement_level']=='Kecamatan'?'checked':'' }} type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
-                            <label for="achievementLevel2"> Kecamatan </label>
-                        </div>
-                        <div class="radio icheck-info">
-                            <input {{ $student_edit->achievement['achievement_level']=='Kabupaten'?'checked':'' }} type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
-                            <label for="achievementLevel3"> Kabupaten </label>
-                        </div>
-                        <div class="radio icheck-info">
-                            <input {{ $student_edit->achievement['achievement_level']=='Provinsi'?'checked':'' }} type="radio" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
-                            <label for="achievementLevel4"> Provinsi </label>
-                        </div>
+            <div class="radio icheck-info">
+                <input {{ $student_edit->achievement['achievement_level']=='Sekolah'?'checked':'' }} type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
+                <label for="achievementLevel1"> Sekolah </label>
+            </div>
+            <div class="radio icheck-info">
+                <input {{ $student_edit->achievement['achievement_level']=='Kecamatan'?'checked':'' }} type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
+                <label for="achievementLevel2"> Kecamatan </label>
+            </div>
+            <div class="radio icheck-info">
+                <input {{ $student_edit->achievement['achievement_level']=='Kabupaten'?'checked':'' }} type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
+                <label for="achievementLevel3"> Kabupaten </label>
+            </div>
+            <div class="radio icheck-info">
+                <input {{ $student_edit->achievement['achievement_level']=='Provinsi'?'checked':'' }} type="radio" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
+                <label for="achievementLevel4"> Provinsi </label>
+            </div>
 
-                        <div class="radio icheck-info">
-                            <input {{ $student_edit->achievement['achievement_level']=='Nasional'?'checked':'' }} type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
-                            <label for="achievementLevel5"> Nasional </label>
-                        </div>
+            <div class="radio icheck-info">
+                <input {{ $student_edit->achievement['achievement_level']=='Nasional'?'checked':'' }} type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
+                <label for="achievementLevel5"> Nasional </label>
+            </div>
 
-                        <div class="radio icheck-info">
-                            <input {{ $student_edit->achievement['achievement_level']=='Internasional'?'checked':'' }} type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
-                            <label for="achievementLevel6"> Internasional </label>
-                        </div>
+            <div class="radio icheck-info">
+                <input {{ $student_edit->achievement['achievement_level']=='Internasional'?'checked':'' }} type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
+                <label for="achievementLevel6"> Internasional </label>
+            </div>
 
-                        <div class="radio icheck-info">
-                            <input {{ $student_edit->achievement['achievement_level']==''?'checked':'' }} type="radio" id="achievementLevel7" value="" name="achievement[achievement_level]">
-                            <label for="achievementLevel7"> Tidak ada </label>
-                        </div>
+            <div class="radio icheck-info">
+                <input {{ $student_edit->achievement['achievement_level']==''?'checked':'' }} type="radio" id="achievementLevel7" value="" name="achievement[achievement_level]">
+                <label for="achievementLevel7"> Tidak ada </label>
+            </div>
 
-                    </div>
+        </div>
 
-                    <div class="col-sm-4">
-                        <div>
-                            <label> Nama Prestasi </label>
-                            <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded" placeholder="Masukan Nama Prestasi" value="{{ $student_edit->achievement['achievement_name'] }}">
-                        </div>
+        <div class="col-sm-4">
+            <div>
+                <label> Nama Prestasi </label>
+                <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded" placeholder="Masukan Nama Prestasi" value="{{ $student_edit->achievement['achievement_name'] }}">
+            </div>
 
-                        <div>
-                            <label> Tahun </label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun" value="{{ $student_edit->achievement['year'] }}">
-                        </div>
+            <div>
+                <label> Tahun </label>
+                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun" value="{{ $student_edit->achievement['year'] }}">
+            </div>
 
-                        <div>
-                            <label> Penyelenggara </label>
-                            <input type="text" name="achievement[organizer]" class="form-control form-control-rounded" placeholder="Masukan Nama Penyelenggara Kegiatan" value="{{ $student_edit->achievement['organizer'] }}">
+            <div>
+                <label> Penyelenggara </label>
+                <input type="text" name="achievement[organizer]" class="form-control form-control-rounded" placeholder="Masukan Nama Penyelenggara Kegiatan" value="{{ $student_edit->achievement['organizer'] }}">
 
-                        </div>
-                    </div>
-                </div>
-
-
-                <h4 class="form-header text-uppercase">
-                    <i class=""></i>
-                    Lainnya
-                </h4>
-
-                <div class="form-group row">
-                    <div class="col-sm-4">
-                        <label>Rekomendasi dari</label>
-                        <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="">
-                            <option value="{{$student_edit->other['recomended_from']}}" selected=""> {{$student_edit->other['recomended_from']}} </option>
-                            <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
-                            <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
-                            <option value="Saudara"> Saudara </option>
-                            <option value="Tetangga"> Tetangga </option>
-                            <option value="Siswa/i Mahaputra"> Siswa/i Mahaputra </option>
-
-                        </select>
-                    </div>
-                    <div class="col-sm-4">
-                        <label>Jalur Masuk</label>
-                        <select name="stu_entry_type_id" class="form-control form-control-rounded @error('stu_entry_type_id') is-invalid @enderror" id="basic-select" value="{{ old('stu_entry_type_id') }}">
-
-                        @foreach($entry_types as $entry_type)
-                        <option {{ $entry_type->ent_id == $student_edit->stu_entry_type_id ? 'selected' : '' }} value="{{ $entry_type->ent_id }}">{{ $entry_type->ent_name }}</option>
-                        @endforeach
-                        </select>
-
-                        @error('stu_entry_type_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-footer">
-                    <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
-                    <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+
+
+    <h4 class="form-header text-uppercase">
+        <i class=""></i>
+        Lainnya
+    </h4>
+
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <label>Rekomendasi dari</label>
+            <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="">
+                <option value="{{$student_edit->other['recomended_from']}}" selected=""> {{$student_edit->other['recomended_from']}} </option>
+                <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
+                <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
+                <option value="Saudara"> Saudara </option>
+                <option value="Tetangga"> Tetangga </option>
+                <option value="Siswa/i Mahaputra"> Siswa/i Mahaputra </option>
+
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <label>Jalur Masuk</label>
+            <select name="stu_entry_type_id" class="form-control form-control-rounded @error('stu_entry_type_id') is-invalid @enderror" id="basic-select" value="{{ old('stu_entry_type_id') }}">
+
+                @foreach($entry_types as $entry_type)
+                <option {{ $entry_type->ent_id == $student_edit->stu_entry_type_id ? 'selected' : '' }} value="{{ $entry_type->ent_id }}">{{ $entry_type->ent_name }}</option>
+                @endforeach
+            </select>
+
+            @error('stu_entry_type_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+    <div class="form-footer">
+        <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+        <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
+    </div>
+</form>
+</div>
+</div>
 </div>
 </div>
 
@@ -718,6 +720,15 @@
 <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
+
+<!-- script select2 -->
+<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.single-select').select2();                 
+    });
+
+</script>
 
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>

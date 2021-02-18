@@ -20,6 +20,8 @@
 <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
 <!-- Custom Style-->
 <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+<!-- select2 -->
+<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -190,7 +192,7 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label> Provinsi <span style="color:red"> *</span></label>
-                            <select name="prv_name" class="form-control form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
+                            <select name="prv_name" class="form-control single-select form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
                                 <option checked="true" selected="true" value="{{$user->prv_id}}"> {{$user->prv_name}} </option>
                                 @foreach($province as $data)
                                 <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
@@ -206,7 +208,7 @@
                         <div class="col-sm-4">
                             <label> Kabupaten/Kota <span style="color:red"> *</span></label>
 
-                            <select name="cit_name" class="form-control form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
+                            <select name="cit_name" class="form-control single-select form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
                                 <option checked="true" selected="true" value="{{$user->cit_id}}"> {{$user->cit_name}} </option>
                             </select>
                             @error('cit_name')
@@ -219,7 +221,7 @@
                         <div class="col-sm-4">
                             <label> Kecamatan <span style="color:red"> *</span></label>
 
-                            <select name="dst_name" class="form-control form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
+                            <select name="dst_name" class="form-control single-select form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
                                 <option checked="true" selected="true" value="{{$user->dst_id}}"> {{$user->dst_name}} </option>
                             </select>
                             @error('dst_name')
@@ -519,6 +521,15 @@
 <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
+
+<!-- script select2 -->
+<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.single-select').select2();                 
+    });
+
+</script>
 
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
