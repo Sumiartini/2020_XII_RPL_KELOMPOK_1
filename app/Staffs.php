@@ -56,6 +56,17 @@ class Staffs extends Model
         return $staff_prospective_details;
     }
 
+    public function getStaffPendingVeification($staffID)
+    {
+        $staffs_prospective = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
+            ->where('stf_user_id', $staffID)->firstOrFail();
+
+        $staff_prospective_details = StaffDetails::where('sfd_staff_id', $staffs_prospective->stf_id)->get();
+        $staff_prospective_details = mappingDataStaff($staff_prospective_details, $staffs_prospective);
+        //dd($staffs_prospective);
+        return $staff_prospective_details;
+    }
+
     public static function getStaffsRejected($request)
     {
 

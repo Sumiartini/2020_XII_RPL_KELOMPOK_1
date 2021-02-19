@@ -184,15 +184,16 @@ class AccountController extends Controller
 
     }
 
-    public function pending_verification($userID)
+    public function pending_verification()
     {
         // dd($userID);
         $user = Auth::user();
+        $userID = Auth::user()->usr_id;        
            
         if ($user->hasRole('student')) {
             if ($user->usr_is_regist == 1) { 
                 $student_prospective = new Students;
-                $student_prospective = $student_prospective->getStudentProsvectiveDetail($userID);        
+                $student_prospective = $student_prospective->getStudentPendingVeification($userID);        
                 $student = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
                 ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
                 ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
@@ -207,7 +208,7 @@ class AccountController extends Controller
         }elseif ($user->hasRole('staff')) {
             if ($user->usr_is_regist == 1) {
                     $staff_prospective = new Staffs;
-                $staff_prospective = $staff_prospective->getStaffProsvectiveDetail($userID);        
+                $staff_prospective = $staff_prospective->getStaffPendingVeification($userID);        
                 $staff = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
                 ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
                 ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
@@ -222,7 +223,7 @@ class AccountController extends Controller
         }elseif ($user->hasRole('teacher')) {
             if ($user->usr_is_regist == 1) {
                 $teacher_prospective = new Teachers;
-                $teacher_prospective = $teacher_prospective->getTeacherProsvectiveDetail($userID);        
+                $teacher_prospective = $teacher_prospective->getTeacherPendingVeification($userID);        
                 $teacher = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
                 ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
                 ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')

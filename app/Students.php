@@ -61,6 +61,18 @@ class Students extends Model
 
         return $student_prospective_details;
     }
+    public function getStudentPendingVeification($studentID)
+    {
+        // dd("kesini model");
+        $students_prospective = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+            ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
+            ->where('stu_user_id', $studentID)->firstOrFail();
+
+        $student_prospective_details = StudentDetails::where('std_student_id', $students_prospective->stu_id)->get();
+        $student_prospective_details = mappingData($student_prospective_details, $students_prospective);
+
+        return $student_prospective_details;
+    }
     public static function getStudentRejected($request)
     {
 
