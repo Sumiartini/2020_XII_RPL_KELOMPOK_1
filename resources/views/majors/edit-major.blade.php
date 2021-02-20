@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Tambah Jurusan
+- Edit Jurusan
 @endpush
 
 @push('styles')
@@ -23,11 +23,11 @@
 @section('content')
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Tambah Jurusan</h4>
+        <h4 class="page-title">Edit Jurusan</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
             <li class="breadcrumb-item"><a href="{{ url('majors') }}">Jurusan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tambah Jurusan</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Jurusan</li>
         </ol>
     </div>
 </div>
@@ -36,21 +36,21 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div class="card-title">Tambah Jurusan</div>
+                <div class="card-title">Edit Jurusan</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('major/create')}}" id="submitForm">
+                <form method="POST" autocomplete="off" action="{{ url('major/edit/'.$major_edit->mjr_id)}}" id="submitForm">
                     @csrf
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Jurusan</label>
                         <div class="col-sm-9">
-                            <input type="text" name="mjr_name" class="form-control" id="input-4" placeholder="Masukan Nama Jurusan">
+                            <input type="text" name="mjr_name" value="{{$major_edit->mjr_name}}" class="form-control form-control-rounded" id="input-4" placeholder="Masukan Nama Jurusan">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="input-1" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <button type="submit" class="btn btn-primary shadow-primary px-5">Tambah</button>
+                            <button type="submit" class="btn btn-primary shadow-primary px-5">Update</button>
                         </div>
                     </div>
                 </form>

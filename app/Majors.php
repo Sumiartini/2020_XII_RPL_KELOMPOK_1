@@ -15,8 +15,15 @@ class Majors extends Model
     public static function getMajors($request)
     {
 	    $majors = Majors::select(
+            'mjr_id',
             'mjr_name',
             'mjr_is_active');
         return $majors;
+    }
+    public function getMajorEdit($majorID)
+    {
+        // dd($majorID);
+        $major_edit = Majors::where('mjr_id', $majorID)->firstOrFail();
+        return $major_edit;
     }
 }

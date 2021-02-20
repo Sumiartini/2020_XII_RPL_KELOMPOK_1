@@ -25,7 +25,7 @@ class MajorController extends Controller
                 ->make(true);
             }
             // dd($request);
-        return view('majors.index');
+        return view('majors.list-major');
     }
 
     /**
@@ -35,7 +35,7 @@ class MajorController extends Controller
      */
     public function create()
     {
-        return view('majors.create');
+        return view('majors.add-major');
     }
 
     /**
@@ -46,7 +46,23 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //dd($request);
+        $requests = $request->input();
+        $messages = [
+            'required'  => 'Kolom wajib diisi',
+            'unique'    => 'Kolom yang digunakan telah terdaftar',
+        ];
+        $request->validate([
+        'mjr_name'      => 'required | unique:majors,mjr_name',
+        ], $messages);
+
+        $major               = new Majors;
+        $major->mjr_name     = $request->mjr_name;
+        $major->mjr_is_active = '1'; 
+        $major->save();
+
+        return redirect('/majors')->with('success', 'Data berhasil ditambahkan');
+
     }
 
     /**
@@ -66,9 +82,12 @@ class MajorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($majorID)
     {
-        return view('majors.edit');
+        $major = new Majors;
+        $major_edit = $major->getMajorEdit($majorID); 
+        $major->get();       
+        return view('majors.edit-major', ['major_edit' => $major_edit]);
     }
 
     /**
@@ -78,9 +97,15 @@ class MajorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $majorID)
     {
-        dd($request);
+        // dd($request);
+        $requests = $request->input();
+        $major = Majors::where('mjr_id', $majorID)->first();
+        $major->mjr_name     = $request->mjr_name; 
+        $major->save();       
+
+       return redirect('/majors')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -92,5 +117,19 @@ class MajorController extends Controller
     public function destroy()
     {
         dd("Jurusan Berhasil DI delete");
+    }
+
+    public function edit_status($majorID)
+    {
+        $major = Majors::where('mjr_id', $majorID)->first();
+       if ($major->mjr_is_active == '1') {
+            $major->mjr_is_active = '0';
+            $major->update();
+            return back()->with('success', 'Jurusan berhasil di non aktifkan');
+        }else{
+            $major->mjr_is_active = '1';
+            $major->update();
+            return back()->with('success', 'Jurusan berhasil di aktifkan');
+        }    
     }
 }

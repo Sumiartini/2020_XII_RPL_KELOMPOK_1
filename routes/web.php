@@ -152,22 +152,22 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
 Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack', 'role:admin|staff']], function () {
     Route::get('school-years', function () {
-        return view('years.index');
+        return view('years.list-year');
     });
     Route::get('/school-year', 'DatatableController@getSchoolYear');
     Route::get('/school-year/create', 'YearController@create');
     Route::post('/school-year/create', 'YearController@store');
-    Route::get('/school-year/edit/1', 'YearController@edit');
-    Route::post('/school-year/edit/1', 'YearController@update');
+    Route::get('/school-year/edit/{scy_id}', 'YearController@edit');
+    Route::post('/school-year/edit/{scy_id}', 'YearController@update');
 
     Route::get('/majors', function () {
-        return view('majors.index');
+        return view('majors.list-major');
     });
     Route::get('/major', 'DatatableController@getMajor');
     Route::get('/major/create', 'MajorController@create');
     Route::post('/major/create', 'MajorController@store');
-    Route::get('/major/edit/1', 'MajorController@edit');
-    Route::post('/major/edit/1', 'MajorController@update');
+    Route::get('/major/edit/{mjr_id}', 'MajorController@edit');
+    Route::post('/major/edit/{mjr_id}', 'MajorController@update');
 
     Route::get('/subjects', function () {
         return view('subjects.index');
@@ -207,6 +207,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
 
     Route::get('/edit-status/{usr_id}', 'Auth\AccountController@edit_status');
+    Route::get('/edit-status/school-year/{scy_id}','YearController@edit_status');
+    Route::get('/edit-status/major/{mjr_id}','MajorController@edit_status');
 });
 
     //Landing page

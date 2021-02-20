@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Edit Tahun Ajaran
+- Tambah Jurusan
 @endpush
 
 @push('styles')
@@ -23,11 +23,11 @@
 @section('content')
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Edit Tahun Ajaran</h4>
+        <h4 class="page-title">Tambah Jurusan</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('school-years') }}">Tahun Ajaran</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Tahun Ajaran</li>
+            <li class="breadcrumb-item"><a href="{{ url('majors') }}">Jurusan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah Jurusan</li>
         </ol>
     </div>
 </div>
@@ -36,21 +36,26 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div class="card-title">Edit Tahun Ajaran</div>
+                <div class="card-title">Tambah Jurusan</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('school-year/edit/1')}}" id="submitForm">
+                <form method="POST" autocomplete="off" action="{{ url('major/create')}}" id="submitForm">
                     @csrf
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Nama Tahun Ajaran</label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Nama Jurusan<span style="color:red"> *</span></label>
                         <div class="col-sm-9">
-                            <input type="text" name="yrs_name" value="2021/2022" class="form-control" id="input-4" placeholder="Masukan Tahun Ajaran 2020/2021">
+                            <input type="text" name="mjr_name" class="form-control form-control-rounded @error('mjr_name') is-invalid @enderror" value="{{ old('mjr_name') }}" placeholder="Masukan Nama Jurusan">
+                        @error('mjr_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror 
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="input-1" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <button type="submit" class="btn btn-primary shadow-primary px-5">Update</button>
+                            <button type="submit" class="btn btn-primary shadow-primary px-5">Tambah</button>
                         </div>
                     </div>
                 </form>

@@ -13,7 +13,13 @@ class Years extends Model
     protected $guarded = [];
 
     public static function getSchoolYears($request){
-        $school_years = Years::select('scy_name','scy_is_active');
+        $school_years = Years::select('scy_id','scy_name','scy_is_active');
         return $school_years;
+    }
+    public function getSchoolYearsEdit($yearID)
+    {
+        // dd($majorID);
+        $year_edit = Years::where('scy_id', $yearID)->firstOrFail();
+        return $year_edit;
     }
 }
