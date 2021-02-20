@@ -13,7 +13,7 @@ class Subjects extends Model
     protected $guarded = [];
 
      public static function getSubjects($request){
-        $subjects = Subjects::select('sbj_name','sbj_is_active');
+        $subjects = Subjects::select('sbj_id', 'sbj_name','sbj_is_active');
         return $subjects;
     }
 }

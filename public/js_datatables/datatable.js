@@ -695,6 +695,10 @@ function position_type() {
       lengthChange: false,
       dom: 'Blfrtip',
       buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      // dom: 
+      //   "<'row'<'col-sm-5 text-left'B><'col-sm-5 text-center'l><'col-sm-2'f>>" +
+      //   "<'row'<'col-sm-12'tr>>" +
+      //   "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         columns: [
             {
                 data: 'pst_id',
@@ -735,6 +739,7 @@ function position_type() {
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
+            "lengthMenu": "Tampilkan _MENU_ data",
             "zeroRecords": "Daftar Jabatan tidak tersedia",
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar jabatan",
@@ -901,6 +906,7 @@ function major() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar jurusan",
             "infoFiltered": "(pencarian dari _MAX_ daftar jurusan)",
+            "lengthMenu": "Tampilkan _MENU_ data",
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"

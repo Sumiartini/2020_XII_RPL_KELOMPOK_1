@@ -175,8 +175,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('subject', 'DatatableController@getSubject');
     Route::get('/subject/create', 'SubjectController@create');
     Route::post('/subject/create', 'SubjectController@store');
-    Route::get('/subject/edit/1', 'SubjectController@edit');
-    Route::post('/subject/edit/1', 'SubjectController@update');
+    Route::get('/subject/edit/{subjectID}', 'SubjectController@edit');
+    Route::post('/subject/edit/{subjectID}', 'SubjectController@update');
+    Route::get('/subject/edit-status/{subjectID}','SubjectController@editStatus');
 
     Route::get('/position-types', function () {
         return view('position-types.index');
@@ -184,8 +185,10 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/position-type', 'DatatableController@getPositionType');
     Route::get('/position-type/create', 'PositionTypeController@create');
     Route::post('/position-type/create', 'PositionTypeController@store');
-    Route::get('/position-type/edit/1', 'PositionTypeController@edit');
-    Route::post('/position-type/edit/1', 'PositionTypeController@update');
+    Route::get('/position-type/edit/{positionTypeID}', 'PositionTypeController@edit');
+    Route::post('/position-type/edit/{positionTypeID}', 'PositionTypeController@update');
+
+    Route::get('position-type/edit-status/{positionTypeID}', 'PositionTypeController@editStatus');
 
     //terima tolak dan restore siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');

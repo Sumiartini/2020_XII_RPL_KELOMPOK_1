@@ -34,16 +34,44 @@
 
 <div class="row">
     <div class="col-lg-12">
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <div class="alert-icon contrast-alert">
+                <i class="icon-check"></i>
+              </div>
+              <div class="alert-message">
+                <span><strong>Gagal!</strong> {{$message}}.</span>
+              </div>
+            </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Edit Jabatan</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('position-type/edit/1')}}" id="submitForm">
+                <form method="POST" autocomplete="off" action="{{ url('position-type/edit/'.$position_type->pst_id)}}" id="form-validate">
                     @csrf
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Jabatan</label>
                         <div class="col-sm-9">
-                            <input type="text" name="pst_name" value="Staff Kepegawaian" class="form-control" id="input-4" placeholder="Masukan Nama  Jabatan">
+                            <input type="text" name="pst_name" value="{{ $position_type->pst_name }}" class="form-control form-control-rounded @error('pst_name') is-invalid @enderror">
+                            @error('pst_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="input-2" class="col-sm-3 col-form-label">Jumlah Honor</label>
+                        <div class="col-sm-9">
+                            <input id="pst_honorarium" type="text" name="pst_honorarium" value="{{ $position_type->pst_honorarium }}" class="form-control form-control-rounded @error('pst_honorarium') is-invalid @enderror">
+                            @error('pst_honorarium')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
 
@@ -79,13 +107,32 @@
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+<!-- Masking Rupiah -->
+<script src="{{ asset('assets/plugins/jquery-mask/jquery.mask.min.js')}}"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+     $( '#pst_honorarium' ).mask('000.000.000.000.000', {
+        reverse: true});
+   });
+</script>
+
 <script>
-    $(document).ready(function() {
-        $("#submitForm").submit(function(e) {
-            $(this).find("button[type='submit']").prop('disabled', true);
-            $("#btnSubmit").attr("disabled", true);
-            return true;
-        });
+    $().ready(function() {
+
+    $("#form-validate").validate({
+        rules: {
+            pst_name: {
+              required: true,
+            },
+        },
+        messages: {
+            pst_name: {
+              required: "Nama jabatan harus di isi"
+            }
+        }
     });
+});
 </script>
 @endpush

@@ -215,10 +215,20 @@ class DatatableController extends Controller
             } else {
                 return "Tidak punya status aktif";
             }
+        })->editColumn("pst_honorarium", function ($row) {
+            $pst_honorarium = moneyFormat($row->pst_honorarium);
+            return "Rp. " . $pst_honorarium;
+
         })
         ->addColumn('action', function ($row) {
             $edit = '<a href="' . url('position-type/edit', $row->pst_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
-            return $edit;
+            $pst_is_active = $row->pst_is_active;
+                if ($pst_is_active == '0') {
+                    $status = '<a href="' . url('position-type/edit-status', $row->pst_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+                }else{
+                    $status = '<a href="' . url('position-type/edit-status', $row->pst_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
+                }
+            return $edit . '&nbsp' . $status;
         })->rawColumns(['action', 'pst_is_active'])
         ->make(true);
     }
@@ -239,7 +249,13 @@ class DatatableController extends Controller
         })
         ->addColumn('action', function ($row) {
             $edit = '<a href="' . url('subject/edit', $row->sbj_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
-            return $edit;
+            $sbj_is_active = $row->sbj_is_active;
+                if ($sbj_is_active == '0') {
+                    $status = '<a href="' . url('subject/edit-status', $row->sbj_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+                }else{
+                    $status = '<a href="' . url('subject/edit-status', $row->sbj_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
+                }
+            return $edit . '&nbsp' . $status;
         })->rawColumns(['action', 'sbj_is_active'])
         ->make(true);
     }

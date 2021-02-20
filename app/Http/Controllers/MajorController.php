@@ -12,20 +12,9 @@ class MajorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $majors = Majors::all();
-            return Datatables::of($majors)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn = '<a href="" type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
-                    return $btn;
-                })->rawColumns(['action'])
-                ->make(true);
-            }
-            // dd($request);
-        return view('majors.list-major');
+        
     }
 
     /**

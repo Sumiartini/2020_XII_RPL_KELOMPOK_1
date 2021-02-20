@@ -38,12 +38,17 @@
             <div class="card-body">
                 <div class="card-title">Tambah Mata Pelajarann</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('subject/create')}}" id="submitForm">
+                <form method="POST" autocomplete="off" action="{{ url('subject/create')}}" id="form-validate">
                     @csrf
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Mata Pelajaran</label>
                         <div class="col-sm-9">
-                            <input type="text" name="sbj_name" class="form-control" id="input-4" placeholder="Masukan Nama  Mata Pelajaran">
+                            <input type="text" name="sbj_name" class="form-control form-control-rounded @error('sbj_name') is-invalid @enderror" value="{{ old('sbj_name') }}" placeholder="Masukan Nama  Mata Pelajaran">
+                            @error('sbj_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
 
@@ -78,14 +83,27 @@
 <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
 <script>
-    $(document).ready(function() {
-        $("#submitForm").submit(function(e) {
-            $(this).find("button[type='submit']").prop('disabled', true);
-            $("#btnSubmit").attr("disabled", true);
-            return true;
-        });
+    $().ready(function() {
+
+    $("#form-validate").validate({
+        rules: {
+            sbj_name: {
+              required: true,
+            },
+            pst_honorarium:{
+                required: true
+            },
+        },
+        messages: {
+            sbj_name: {
+              required: "Nama mata pelajaran harus di isi"
+            },     
+        }
     });
+});
 </script>
 @endpush

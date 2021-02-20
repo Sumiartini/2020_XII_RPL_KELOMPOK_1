@@ -35,7 +35,23 @@ class PositionTypeController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $messages = [
+            'required'  => 'Kolom wajib diisi',
+            'unique'    => 'Kolom yang digunakan telah terdaftar',
+        ];
+        
+        $request->validate([
+            'pst_name'      => 'required | unique:position_types,pst_name',
+        ], $messages);
+
+        $position_type = new PositionTypes;
+        $position_type->pst_name = $request->pst_name;
+        $position_type->pst_honorarium = str_replace(".", "", $request->pst_honorarium);
+        $position_type->pst_is_active = 1;
+        $position_type->pst_created_by = Auth()->user()->usr_id;
+        $position_type->save();
+
+        return redirect('/position-types')->with('success', 'Jabatan berhasil ditambahkan');
     }
 
     /**
@@ -55,9 +71,10 @@ class PositionTypeController extends Controller
      * @param  \App\PositionTypes  $positionTypes
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($positionTypeID)
     {
-        return view('position-types.edit');
+        $position_type = PositionTypes::where('pst_id', $positionTypeID)->first();
+        return view('position-types.edit',['position_type' => $position_type]);
     }
 
     /**
@@ -67,9 +84,26 @@ class PositionTypeController extends Controller
      * @param  \App\PositionTypes  $positionTypes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $position_typeID)
     {
-        dd($request);
+        $position_type = PositionTypes::where('pst_id', $position_typeID)->first();
+
+        if ($position_type->pst_name == $request->pst_name) {
+            $position_type->pst_name = $request->pst_name;
+            $position_type->pst_honorarium = str_replace(".", "", $request->pst_honorarium);
+            $position_type->pst_updated_by = Auth()->user()->usr_id;
+            $position_type->update();
+            return redirect('position-types');
+        }
+        $check_subject_name = PositionTypes::where('pst_name', $request->pst_name)->first();
+        if ($check_subject_name) {
+            return redirect()->back()->with('error', 'Jabatan sudah digunakan');
+        }
+        $position_type->pst_name = $request->pst_name;
+        $position_type->pst_honorarium = str_replace(".", "", $request->pst_honorarium);
+        $position_type->pst_updated_by = Auth()->user()->usr_id;
+        $position_type->update();
+        return redirect('position-types')->with('success', 'Jabatan berhasil di ubah');
     }
 
     /**
@@ -81,5 +115,21 @@ class PositionTypeController extends Controller
     public function destroy()
     {
         dd("Jabatan Berhasil Di Hapus");
+    }
+
+    public function editStatus($positionTypeID)
+    {
+        // dd($positionTypeID);
+        $position_type = PositionTypes::where('pst_id', $positionTypeID)->first();
+        if ($position_type->pst_is_active == 1) {
+            $position_type->pst_is_active = 0;
+            $position_type->pst_updated_by = Auth()->user()->usr_id;
+            $position_type->update();
+            return redirect()->back()->with('success', 'Jabatan berhasil di non aktifkan');
+        }else{
+            $position_type->pst_is_active = 1;
+            $position_type->update();
+            return redirect()->back()->with('success', 'Jabatan berhasil di aktifkan');
+        }
     }
 }

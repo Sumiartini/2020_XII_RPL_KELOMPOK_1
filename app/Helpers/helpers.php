@@ -49,3 +49,8 @@ function mappingKeyType($type, $model){
     // dd($keyMapped, $type, $key, $value);
     return $model;
 }
+
+function moneyFormat($number){
+    $result =  number_format($number,0, ',' , '.'); 
+    return $result;
+}
