@@ -54,6 +54,17 @@ class Teachers extends Model
         return $teacher_prospective_details;
     }
 
+    public function getTeacherPendingVeification($teacherID)
+    {
+        $teachers_prospective = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
+            ->where('tcr_user_id', $teacherID)->firstOrFail();
+
+        $teacher_prospective_details = TeacherDetails::where('tcd_teacher_id', $teachers_prospective->tcr_id)->get();
+        $teacher_prospective_details = mappingDataTeacher($teacher_prospective_details, $teachers_prospective);
+        //dd($teachers_prospective);
+        return $teacher_prospective_details;
+    }
+
     public static function getTeachersRejected($request)
     {
 

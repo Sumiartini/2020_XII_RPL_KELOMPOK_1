@@ -121,15 +121,12 @@ class StaffController extends Controller
     public function formRegistrasion()
     {
         $user = Auth::user();
-        $staff = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
-        -> where('staffs.stf_user_id', $user->usr_id)->first();
-
 
         if ($user->usr_is_regist == 0 && $user->hasRole('staff')) {
             $province = Provinces::select('prv_id', 'prv_name')->get();            
             return view('staffs.registration-staff', ['province' => $province]);            
         }else{
-            return redirect('/pending-verification/'.$staff->stf_id);
+            return redirect('/pending-verification');
         }
         
     }

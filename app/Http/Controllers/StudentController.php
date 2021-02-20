@@ -305,15 +305,13 @@ class StudentController extends Controller
     public function formRegistrasion()
     {
         $user = Auth::user();
-        $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            -> where('students.stu_user_id' , $user->usr_id)->first();
 
         if ($user->usr_is_regist == 0 && $user->hasRole('student')) {
             $majors = Majors::where('mjr_is_active', true)->get();
             $province = Provinces::select('prv_id', 'prv_name')->get();
             return view('students.new-registration-student', ['majors' => $majors, 'province' => $province]);
         } else {
-            return redirect('/pending-verification/'.$student->stu_id);
+            return redirect('/pending-verification');
         }
     }
 

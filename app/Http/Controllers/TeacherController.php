@@ -302,15 +302,12 @@ class TeacherController extends Controller
     public function formRegistrasion()
     {
         $user = Auth::user();
-        $teacher = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
-        -> where('teachers.tcr_user_id', Auth::user()->usr_id)->first();
-
 
         if ($user->usr_is_regist == 0 && $user->hasRole('teacher')) {            
             $province = Provinces::select('prv_id', 'prv_name')->get();
             return view('teachers.registration-teacher', ['province' => $province]);
         }else{
-            return redirect('/pending-verification'.$teacher->tcr_id);
+            return redirect('/pending-verification');
         }
         
     }

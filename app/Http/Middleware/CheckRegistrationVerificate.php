@@ -34,7 +34,7 @@ class CheckRegistrationVerificate
             if ($user->hasRole('student')) {
                 if ($student->str_status == 0) {
                     if ($user->usr_is_regist == 1 ) {
-                        return redirect('/pending-verification/'.$student->stu_id);
+                        return redirect('/pending-verification');
                     }else{
                         return redirect('student-registration');
                     }
@@ -42,7 +42,7 @@ class CheckRegistrationVerificate
             } elseif ( $user->hasRole('teacher')) {
                 if ($teacher->tcr_registration_status == 0) {
                     if ($user->usr_is_regist == 1) {
-                        return redirect('/pending-verification/'.$teacher->tcr_id);
+                        return redirect('/pending-verification');
                     }else {
                         return redirect('teacher-registration');
                     }    
@@ -50,7 +50,7 @@ class CheckRegistrationVerificate
             } elseif ($user->hasRole('staff')) {
                 if ($staff->stf_registration_status == 0) {
                     if ($user->usr_is_regist == 1) {
-                        return redirect('/pending-verification/'.$staff->stf_id);
+                        return redirect('/pending-verification');
                     }else {
                         return redirect('staff-registration');
                     }

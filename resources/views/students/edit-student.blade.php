@@ -127,7 +127,7 @@
                         <input type="text" class="form-control form-control-rounded" name="personal[birth_certificate_registration_no]" 
                         placeholder="Masukan No Registrasi Akta Lahir" value="{{$student_edit->personal['birth_certificate_registration_no']}}">
                     </div>
-
+                    
                     <div class="col-sm-4">
                         <label> Tinggal Bersama <span style="color:red"> *</span></label>
                         <select class="form-control form-control-rounded" name="personal[living_together]" id="basic-select" value="">
