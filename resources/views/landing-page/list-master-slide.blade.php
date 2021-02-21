@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Daftar Konten Halaman Arahan
+- Daftar Berkas Informasi Halaman Arahan
 @endpush
 
 @push('styles')
@@ -28,11 +28,11 @@
 @section('content')
 <div class="row pt-2 pb-2">
   <div class="col-sm-9">
-    <h4 class="page-title">Daftar Konten Halaman Arahan</h4>
+    <h4 class="page-title">Daftar Berkas Informasi Halaman Arahan</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
-      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Konten Halaman Arahan</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Daftar Konten Halaman Arahan</li>
+      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Berkas Informasi Halaman Arahan</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Daftar Berkas Informasi Halaman Arahan</li>
     </ol>
   </div>
 </div>
@@ -40,7 +40,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data Halaman Arahan</div>
+      <div class="card-header"><i class="fa fa-table"></i> Data Berkas Informasi Halaman Arahan</div>
       <div class="card-body">
         <div class="table-responsive">
 

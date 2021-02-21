@@ -23,7 +23,7 @@ class LandingPageController extends Controller
      */
     public function create()
     {
-        return view('landing-page.add-landing-page');
+        return view('landing-page.add-master-slide');
     }
 
     /**
@@ -34,7 +34,7 @@ class LandingPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -80,5 +80,11 @@ class LandingPageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function createConfig(){
+        return view('landing-page.add-master-config');
     }
 }

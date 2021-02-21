@@ -76,9 +76,15 @@
     </li>
 
      <li>
-      <a href="{{ url('landing-page')}}" class="waves-effect active">
-        <i></i> <span>Halaman Arahan</span>
+      <a href="javaScript:void();" class="waves-effect">
+         <i></i><span>Halaman Arahan</span><i class="fa fa-angle-left pull-right"></i>
       </a>
+      <ul class="sidebar-submenu">
+        <li><a href="{{URL::to('/master-slide')}}"><i class="fa fa-circle-o"></i> Daftar Berkas Informasi</a></li>
+        <li><a href="{{URL::to('/master-slide/create')}}"><i class="fa fa-circle-o"></i> Tambah Berkas Informasi</a></li>
+        <li><a href="{{URL::to('/master-config')}}"><i class="fa fa-circle-o"></i> Daftar Konfigurasi</a></li>
+        <li><a href="{{URL::to('/master-config/create')}}"><i class="fa fa-circle-o"></i> Tambah Konfigurasi</a></li>
+      </ul>
     </li>
   </ul>
 

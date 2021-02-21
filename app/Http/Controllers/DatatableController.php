@@ -314,8 +314,12 @@ class DatatableController extends Controller
         ->make(true);
     }
 
-    public function getLandingPage(Request $request)
+    public function getMasterSlide(Request $request)
     {
-        return view('landing-page.list-landing-page');
+        return view('landing-page.list-master-slide');
+    }
+
+    public function getMasterConfig(Request $request){
+        return view('landing-page.list-master-config');
     }
 }

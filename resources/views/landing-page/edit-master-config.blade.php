@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Edit Konten Halaman Arahan
+- Edit Konfigurasi Halaman Arahan
 @endpush
 
 @push('styles')
@@ -34,11 +34,11 @@
 
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Edit Konten Halaman Arahan</h4>
+        <h4 class="page-title">Edit Konfigurasi Halaman Arahan</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Konten Halaman Arahan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Konten Halaman Arahan</li>
+            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Konfigurasi Halaman Arahan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Konfigurasi Halaman Arahan</li>
         </ol>
     </div>
 </div>
@@ -51,7 +51,7 @@
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
-                        Data Akun
+                        Edit Konfigurasi Halaman Arahan
                     </h4>
 
                     <div class="form-group row">
