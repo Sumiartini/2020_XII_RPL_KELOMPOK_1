@@ -289,7 +289,7 @@
             </div>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Data Persuratan</h5>
+              <h5 class="card-title">Data Domisili</h5>
               <div class="table-responsive">
                <table class="table table-active">       
                 <tbody>

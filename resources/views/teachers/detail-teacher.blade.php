@@ -85,7 +85,7 @@
 
 
 <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-5">
            <div class="profile-card-3">
             <div class="card">
              <div class="user-fullimage text-center">
@@ -95,117 +95,7 @@
                   <h6 class="text-blue ml-3">{{ $teacher->usr_email }}</h6>
                  </div> -->
               </div>
-            @if(isset($teacher->other['identity_card']))
-              <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-teacher/'. $teacher->other['identity_card']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Kartu Tanda Penduduk (KTP)</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif  
-            @if(isset($teacher->other['family_card']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-teacher/'. $teacher->other['family_card']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Kartu Keluarga</p> 
-                    </div>     
-                </div>
-            </div>  
-            @endif
-            @if(isset($teacher->other['scholar_diploma']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-teacher/'. $teacher->other['scholar_diploma']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Surat Tanda Kelulusan Minimal D4/S1 dilegalisir </p> 
-                    </div>     
-                </div>
-            </div>  
-            @endif
-            @if(isset($teacher->other['curriculum_vitae']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-teacher/'. $teacher->other['curriculum_vitae']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Curriculum vitae (CV)</p> 
-                    </div>     
-                </div>
-            </div> 
-            @endif 
-            @if(isset($teacher->other['application_letter']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-teacher/'. $teacher->other['application_letter']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Surat Lamaran</p> 
-                    </div>     
-                </div>
-            </div>  
-            @endif
-            @if(isset($teacher->other['resume']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-teacher/'. $teacher->other['resume']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Resume</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif  
-
-            </div>
-            </div>
-        </div>
-            <div class="col-lg-8">
-           <div class="card">
-            <div class="card-body">
-            <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#guru" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">Guru</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#persuratan" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Persuratan</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#pendidikan" data-toggle="pill" class="nav-link"><i class="icon-book-open"></i> <span class="hidden-xs">Riwayat Pendidikan</span></a>
-                </li>
-                @if(isset($teacher->teaching_history))
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#mengajar" data-toggle="pill" class="nav-link"><i class="ti-id-badge"></i> <span class="hidden-xs">Riwayat Mengajar</span></a>
-                </li>
-                @endif
-            </ul> 
-            <div class="tab-content p-3">
-                <div class="tab-pane active show" id="guru"> 
-                    
-                    <div class="row">
+                <div class="row" style="margin-top: 40px; margin-left: 10px;">
 
                         <dt class="col-sm-5">Nama Guru</dt>
                         <dd class="col-sm-7">
@@ -249,9 +139,32 @@
                             <p>{{ $teacher->usr_whatsapp_number }}</p>
                         </dd>
                     </div>
-                </div>
+            </div>
+            </div>
+        </div>
+            <div class="col-lg-7">
+           <div class="card">
+            <div class="card-body">
+            <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
+                
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#domisili" data-toggle="pill" class="nav-link"><i class="zmdi zmdi-pin-drop"></i> <span class="hidden-xs">Domisili</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#pendidikan" data-toggle="pill" class="nav-link"><i class="icon-book-open"></i> <span class="hidden-xs">Riwayat Pendidikan</span></a>
+                </li>
+                @if(isset($teacher->teaching_history))
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#mengajar" data-toggle="pill" class="nav-link"><i class="ti-id-badge"></i> <span class="hidden-xs">Riwayat Mengajar</span></a>
+                </li>
+                @endif
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#dokumen" data-toggle="pill" class="nav-link"><i class="fa fa-file-text-o fa-3x"></i> <span class="hidden-xs">Dokumen</span></a>
+                </li>
+            </ul> 
+            <div class="tab-content p-3">
 
-                <div class="tab-pane" id="persuratan">
+                <div class="tab-pane" id="domisili">
                     
                     <div class="row">
 
@@ -418,9 +331,102 @@
                             <p>{{$teacher->teaching_history['status']}}</p>
                         </dd>
                         @endif
+
+
                     </div>
                  </div>
-                
+               
+                 <div class="tab-pane" id="dokumen">             
+                    
+                    <div class="row">
+                           @if(isset($teacher->other['identity_card']))
+              <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['identity_card']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Kartu Tanda Penduduk (KTP)</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif  
+            @if(isset($teacher->other['family_card']))
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['family_card']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Kartu Keluarga</p> 
+                    </div>     
+                </div>
+            </div>  
+            @endif
+            @if(isset($teacher->other['scholar_diploma']))
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['scholar_diploma']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Surat Tanda Kelulusan Minimal D4/S1 dilegalisir </p> 
+                    </div>     
+                </div>
+            </div>  
+            @endif
+            @if(isset($teacher->other['curriculum_vitae']))
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['curriculum_vitae']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Curriculum vitae (CV)</p> 
+                    </div>     
+                </div>
+            </div> 
+            @endif 
+            @if(isset($teacher->other['application_letter']))
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['application_letter']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Surat Lamaran</p> 
+                    </div>     
+                </div>
+            </div>  
+            @endif
+            @if(isset($teacher->other['resume']))
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-teacher/'. $teacher->other['resume']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Resume</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif  
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

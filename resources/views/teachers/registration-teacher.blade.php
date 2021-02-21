@@ -218,7 +218,7 @@
 
                         <h4 class="form-header text-uppercase">
                             <i class=""></i>
-                            Data Persuratan
+                            Data Domisili
                         </h4>
 
                         <div class="form-group row">

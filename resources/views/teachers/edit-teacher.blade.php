@@ -185,7 +185,7 @@
 
                     <h4 class="form-header text-uppercase">
                         <i class=""></i>
-                        Data Persuratan
+                        Data Domisili
                     </h4>
 
                     @foreach($user as $user)

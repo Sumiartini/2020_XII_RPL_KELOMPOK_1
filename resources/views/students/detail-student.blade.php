@@ -85,7 +85,7 @@
 </div>
 
 <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-5">
            <div class="profile-card-3">
             <div class="card">
              <div class="user-fullimage text-center">
@@ -95,203 +95,9 @@
                   <h6 class="text-blue ml-3">{{ $student->usr_email }}</h6>
                  </div> -->
               </div>
-            @if(isset($student->other['certificate_of_graduation']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['certificate_of_graduation']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Surat Tanda Kelulusan SMP dilegalisir</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['junior_high_school_diploma']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['junior_high_school_diploma']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Ijazah SMP/MTs dilegalisir</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['elementary_school_diploma']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['elementary_school_diploma']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
-                        <p>Ijazah SD/Mi dilegalisir</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['birht_certificate']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -15px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['birth_certificate']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
-                        <p>Akte Kelahiran</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['family_card']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -15px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['family_card']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
-                        <p>Kartu Keluarga</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['domicile_statement']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -15px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'.$student->other['domicile_statement']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
-                        <p>Keterangan Domisili</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['id_card_father']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -15px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['id_card_father']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
-                        <p>KTP Ayah</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['id_card_mother']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -15px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['id_card_mother']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
-                        <p>KTP Ibu</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['health_certificate']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -15px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['health_certificate']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
-                        <p>Surat Kesehatan Badan</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['eye_health_letter']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -15px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['eye_health_letter']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
-                        <p>Surat Kesehatan Mata</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['card']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -15px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['card']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: -7px;">
-                        <p>Kartu PIP/KIP/Keterangan Kematian</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-            @if(isset($student->other['certificate']))
-            <div class="card-body">
-                <div class="row" style="margin-top: -30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-student/'. $student->other['certificate']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
-                        <p>Sertifikat/Piagam Penghargaan</p> 
-                    </div>     
-                </div>
-            </div>
-            @endif
-           
-             </div>
-            </div>
-        </div>
-        <div class="col-lg-8">
-           <div class="card">
-            <div class="card-body">
-            <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#siswa" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">Siswa</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#persuratan" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Persuratan</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#orangTua" data-toggle="pill" class="nav-link"><i class="icon-people"></i> <span class="hidden-xs">Orang Tua</span></a>
-                </li>
-                @if(isset($student->achievement))
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#prestasi" data-toggle="pill" class="nav-link"><i class="icon-trophy"></i> <span class="hidden-xs">Prestasi</span></a>
-                </li>
-                @endif
-            </ul>
-            <div class="tab-content p-3">
-                <div class="tab-pane active show" id="siswa">
-                   
-                    <div class="row">
+                      <div class="row" style="margin-top: 40px; margin-left: 10px;">
 
-                        <dt class="col-sm-5">Nama Siswa</dt>
+                        <dt class="col-sm-5">Nama Siswa </dt>
                         <dd class="col-sm-7">
                             <p>{{ $student->stu_candidate_name }}</p>
                         </dd>
@@ -403,8 +209,32 @@
                         @endif
                         @endif
                     </div>
-                </div>
-                <div class="tab-pane" id="persuratan">
+             </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+           <div class="card">
+            <div class="card-body">
+            <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
+                
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#domisili" data-toggle="pill" class="nav-link"><i class="zmdi zmdi-pin-drop"></i> <span class="hidden-xs">Domisili</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#orangTua" data-toggle="pill" class="nav-link"><i class="icon-people"></i> <span class="hidden-xs">Orang Tua</span></a>
+                </li>
+                @if(isset($student->achievement))
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#prestasi" data-toggle="pill" class="nav-link"><i class="icon-trophy"></i> <span class="hidden-xs">Prestasi</span></a>
+                </li>
+                @endif
+                <li class="nav-item">
+                    <a href="javascript:void();" data-target="#dokumen" data-toggle="pill" class="nav-link"><i class="fa fa-file-text-o fa-3x"></i> <span class="hidden-xs">Dokumen</span></a>
+                </li>
+            </ul>
+            <div class="tab-content p-3">
+                
+                <div class="tab-pane" id="domisili">
                     <div class="row">
 
                         @foreach($user as $data)
@@ -648,6 +478,180 @@
                         </dd>
                         @endif
                     </div>    
+                </div>
+
+                <div class="tab-pane" id="dokumen">
+                    <div class="row">
+                         @if(isset($student->other['certificate_of_graduation']))
+            <div class="card-body">
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['certificate_of_graduation']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Surat Tanda Kelulusan SMP dilegalisir</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['junior_high_school_diploma']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['junior_high_school_diploma']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Ijazah SMP/MTs dilegalisir</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['elementary_school_diploma']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['elementary_school_diploma']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Ijazah SD/Mi dilegalisir</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['birht_certificate']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['birth_certificate']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Akte Kelahiran</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['family_card']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['family_card']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Kartu Keluarga</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['domicile_statement']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'.$student->other['domicile_statement']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Keterangan Domisili</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['id_card_father']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['id_card_father']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>KTP Ayah</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['id_card_mother']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['id_card_mother']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>KTP Ibu</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['health_certificate']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['health_certificate']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Surat Kesehatan Badan</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['eye_health_letter']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['eye_health_letter']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 15px;">
+                        <p>Surat Kesehatan Mata</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['card']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -15px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['card']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: -7px;">
+                        <p>Kartu PIP/KIP/Keterangan Kematian</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+            @if(isset($student->other['certificate']))
+            <div class="card-body">
+                <div class="row" style="margin-top: -30px;">
+                    <div class="col-lg-4">
+                        <a href="{{ url('download-file-student/'. $student->other['certificate']) }}">
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                        <p>Sertifikat/Piagam Penghargaan</p> 
+                    </div>     
+                </div>
+            </div>
+            @endif
+
+                    </div>
                 </div>
 
                 <div class="tab-pane" id="prestasi">
