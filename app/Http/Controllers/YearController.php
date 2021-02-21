@@ -53,9 +53,10 @@ class YearController extends Controller
         $year               = new Years;
         $year->scy_name     = $request->scy_name;
         $year->scy_is_active ='1';
+        $year->scy_created_by = Auth()->user()->usr_id; 
         $year->save();
 
-        return redirect('/school-years')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/school-years')->with('success', 'Tahun Ajaran berhasil ditambahkan');
     }
 
     /**
@@ -77,10 +78,8 @@ class YearController extends Controller
      */
     public function edit($yearID)
     {
-        $year = new Years;
-        $year_edit = $year->getSchoolYearsEdit($yearID); 
-        $year->get();       
-        return view('years.edit-year', ['year_edit' => $year_edit]);
+        $year = Years::where('scy_id', $yearID)->first();
+        return view('years.edit-year',['year' => $year]);
     }
 
     /**
@@ -92,13 +91,21 @@ class YearController extends Controller
      */
     public function update(Request $request, $yearID)
     {
-        // dd($request);
-        $requests = $request->input();
         $year = Years::where('scy_id', $yearID)->first();
-        $year->scy_name     = $request->scy_name; 
-        $year->update();       
 
-       return redirect('/school-years')->with('success', 'Data berhasil diubah');
+        if ($year->scy_name == $request->scy_name) {
+            $year->scy_name = $request->scy_name;
+            $year->update();
+            return redirect('school-years');
+        }
+        $check_year_name = Years::where('scy_name', $request->scy_name)->first();
+        if ($check_year_name) {
+            return redirect()->back()->with('error', 'Tahun Ajaran sudah digunakan');
+        }
+        $year->scy_name = $request->scy_name;
+        $year->scy_updated_by = Auth()->user()->usr_id;
+        $year->update();
+        return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');
     }
     /**
      * Remove the specified resource from storage.
@@ -116,12 +123,13 @@ class YearController extends Controller
         $year = Years::where('scy_id', $yearID)->first();
        if ($year->scy_is_active == '1') {
             $year->scy_is_active = '0';
+            $year->scy_updated_by = Auth()->user()->usr_id;
             $year->update();
-            return back()->with('success', 'Tahun Ajaran berhasil di non aktifkan');
+            return redirect()->back()->with('success', 'Tahun Ajaran berhasil di non aktifkan');
         }else{
             $year->scy_is_active = '1';
             $year->update();
-            return back()->with('success', 'Tahun Ajaran berhasil di aktifkan');
+            return redirect()->back()->with('success', 'Tahun Ajaran berhasil di aktifkan');
         }    
     }
 }

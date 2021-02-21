@@ -95,7 +95,7 @@ class SubjectController extends Controller
         }
         $check_subject_name = Subjects::where('sbj_name', $request->sbj_name)->first();
         if ($check_subject_name) {
-            return redirect()->back()->with('error', 'Nama jabatan sudah digunakan');
+            return redirect()->back()->with('error', 'Nama Mata pelajaran sudah digunakan');
         }
         $subject->sbj_name = $request->sbj_name;
         $subject->sbj_updated_by = Auth()->user()->usr_id;

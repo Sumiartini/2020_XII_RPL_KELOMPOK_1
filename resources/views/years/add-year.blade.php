@@ -38,10 +38,10 @@
             <div class="card-body">
                 <div class="card-title">Tambah Tahun Ajaran</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('school-year/create')}}" id="submitForm">
+                <form method="POST" autocomplete="off" action="{{ url('school-year/create')}}" id="form-validate">
                     @csrf
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Nama Tahun Ajaran<span style="color:red"> *</span></label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Nama Tahun Ajaran</label>
                         <div class="col-sm-9">
                             <input type="text" name="scy_name" class="form-control form-control-rounded @error('scy_name') is-invalid @enderror" id="input-4" placeholder="Masukan Tahun Ajaran 2020/2021">
                         @error('scy_name')
@@ -83,14 +83,27 @@
 <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
 <script>
-    $(document).ready(function() {
-        $("#submitForm").submit(function(e) {
-            $(this).find("button[type='submit']").prop('disabled', true);
-            $("#btnSubmit").attr("disabled", true);
-            return true;
-        });
+   $().ready(function() {
+
+    $("#form-validate").validate({
+        rules: {
+            scy_name: {
+              required: true,
+            },
+            pst_honorarium:{
+                required: true
+            },
+        },
+        messages: {
+            scy_name: {
+              required: "Nama Tahun Ajaran harus di isi"
+            },     
+        }
     });
+});
 </script>
 @endpush
