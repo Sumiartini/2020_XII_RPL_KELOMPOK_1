@@ -80,7 +80,7 @@ class AccountController extends Controller
         $tokenData = DB::table('password_resets')->where('pwr_email', $request->usr_email)->first();
 
         Mail::to($tokenData->pwr_email)->send(new forgotPassword($tokenData->pwr_token, $users));
-        return redirect()->back()->with(['success' => 'Reset Password Kode di Kirim ke Email']);
+        return redirect()->back()->with(['success' => 'Alamat link Reset Password berhasil di Kirim ke Email']);
     }
 
     public function verifyForgotToken($resetVerificationToken)
