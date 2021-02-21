@@ -19,7 +19,7 @@ class Years extends Model
     public function getSchoolYearsEdit($yearID)
     {
         // dd($majorID);
-        $year_edit = Years::where('scy_id', $yearID)->firstOrFail();
-        return $year_edit;
+        $school_years = Years::where('scy_id', $yearID)->firstOrFail();
+        return $school_years;
     }
 }

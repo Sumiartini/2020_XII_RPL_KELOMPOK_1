@@ -47,7 +47,8 @@ class MajorController extends Controller
 
         $major               = new Majors;
         $major->mjr_name     = $request->mjr_name;
-        $major->mjr_is_active = '1'; 
+        $major->mjr_is_active = '1';
+        $major->mjr_created_by = Auth()->user()->usr_id; 
         $major->save();
 
         return redirect('/majors')->with('success', 'Data berhasil ditambahkan');
@@ -73,10 +74,8 @@ class MajorController extends Controller
      */
     public function edit($majorID)
     {
-        $major = new Majors;
-        $major_edit = $major->getMajorEdit($majorID); 
-        $major->get();       
-        return view('majors.edit-major', ['major_edit' => $major_edit]);
+        $major = Majors::where('mjr_id', $majorID)->first();
+        return view('majors.edit-major',['major' => $major]);
     }
 
     /**
@@ -88,13 +87,21 @@ class MajorController extends Controller
      */
     public function update(Request $request, $majorID)
     {
-        // dd($request);
-        $requests = $request->input();
         $major = Majors::where('mjr_id', $majorID)->first();
-        $major->mjr_name     = $request->mjr_name; 
-        $major->save();       
 
-       return redirect('/majors')->with('success', 'Data berhasil diubah');
+        if ($major->mjr_name == $request->mjr_name) {
+            $major->mjr_name = $request->mjr_name;
+            $major->update();
+            return redirect('majors');
+        }
+        $check_major_name = Majors::where('mjr_name', $request->mjr_name)->first();
+        if ($check_major_name) {
+            return redirect()->back()->with('error', 'Nama jurusan sudah digunakan');
+        }
+        $major->mjr_name = $request->mjr_name;
+        $major->mjr_updated_by = Auth()->user()->usr_id;
+        $major->update();
+        return redirect('majors')->with('success', 'jurusan berhasil di ubah');
     }
 
     /**
@@ -113,12 +120,13 @@ class MajorController extends Controller
         $major = Majors::where('mjr_id', $majorID)->first();
        if ($major->mjr_is_active == '1') {
             $major->mjr_is_active = '0';
+            $major->mjr_updated_by = Auth()->user()->usr_id;
             $major->update();
-            return back()->with('success', 'Jurusan berhasil di non aktifkan');
+            return redirect()->back()->with('success', 'Jurusan berhasil di non aktifkan');
         }else{
             $major->mjr_is_active = '1';
             $major->update();
-            return back()->with('success', 'Jurusan berhasil di aktifkan');
+            return redirect()->back()->with('success', 'Jurusan berhasil di aktifkan');
         }    
     }
 }

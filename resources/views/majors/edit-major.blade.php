@@ -34,16 +34,32 @@
 
 <div class="row">
     <div class="col-lg-12">
+    @if ($message = Session::get('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <div class="alert-icon contrast-alert">
+                <i class="icon-check"></i>
+              </div>
+              <div class="alert-message">
+                <span><strong>Gagal!</strong> {{$message}}.</span>
+              </div>
+            </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Edit Jurusan</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('major/edit/'.$major_edit->mjr_id)}}" id="submitForm">
+                <form method="POST" autocomplete="off" action="{{ url('major/edit/'.$major->mjr_id)}}" id="form-validate">
                     @csrf
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Jurusan</label>
                         <div class="col-sm-9">
-                            <input type="text" name="mjr_name" value="{{$major_edit->mjr_name}}" class="form-control form-control-rounded" id="input-4" placeholder="Masukan Nama Jurusan">
+                            <input type="text" name="mjr_name" value="{{$major->mjr_name}}" class="form-control form-control-rounded" id="input-4" placeholder="Masukan Nama Jurusan">
+                            @error('mjr_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
 
@@ -79,13 +95,27 @@
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+
 <script>
-    $(document).ready(function() {
-        $("#submitForm").submit(function(e) {
-            $(this).find("button[type='submit']").prop('disabled', true);
-            $("#btnSubmit").attr("disabled", true);
-            return true;
-        });
+   $().ready(function() {
+
+    $("#form-validate").validate({
+        rules: {
+            mjr_name: {
+              required: true,
+            },
+            pst_honorarium:{
+                required: true
+            },
+        },
+        messages: {
+            mjr_name: {
+              required: "Nama Jurusan harus di isi"
+            },     
+        }
     });
+});
 </script>
 @endpush

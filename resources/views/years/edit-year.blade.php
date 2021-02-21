@@ -34,16 +34,32 @@
 
 <div class="row">
     <div class="col-lg-12">
+    @if ($message = Session::get('error'))
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <div class="alert-icon contrast-alert">
+                <i class="icon-check"></i>
+              </div>
+              <div class="alert-message">
+                <span><strong>Gagal!</strong> {{$message}}.</span>
+              </div>
+            </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Edit Tahun Ajaran</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('school-year/edit/1')}}" id="submitForm">
+                <form method="POST" autocomplete="off" action="{{ url('school-year/edit/'.$year->scy_id)}}" id="form-validate">
                     @csrf
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Tahun Ajaran</label>
                         <div class="col-sm-9">
-                            <input type="text" name="scy_name" value="{{$year_edit->scy_name}}" class="form-control form-control-rounded" id="input-4" placeholder="Masukan Tahun Ajaran 2020/2021">
+                            <input type="text" name="scy_name" value="{{$year->scy_name}}" class="form-control form-control-rounded" id="input-4" placeholder="Masukan Tahun Ajaran 2020/2021">
+                            @error('scy_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
 
@@ -78,14 +94,27 @@
 <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
 <script>
-    $(document).ready(function() {
-        $("#submitForm").submit(function(e) {
-            $(this).find("button[type='submit']").prop('disabled', true);
-            $("#btnSubmit").attr("disabled", true);
-            return true;
-        });
+   $().ready(function() {
+
+    $("#form-validate").validate({
+        rules: {
+            scy_name: {
+              required: true,
+            },
+            pst_honorarium:{
+                required: true
+            },
+        },
+        messages: {
+            scy_name: {
+              required: "Nama Tahun Ajaran harus di isi"
+            },     
+        }
     });
+});
 </script>
 @endpush

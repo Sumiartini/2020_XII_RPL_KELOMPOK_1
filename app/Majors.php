@@ -23,7 +23,7 @@ class Majors extends Model
     public function getMajorEdit($majorID)
     {
         // dd($majorID);
-        $major_edit = Majors::where('mjr_id', $majorID)->firstOrFail();
-        return $major_edit;
+        $majors = Majors::where('mjr_id', $majorID)->firstOrFail();
+        return $majors;
     }
 }

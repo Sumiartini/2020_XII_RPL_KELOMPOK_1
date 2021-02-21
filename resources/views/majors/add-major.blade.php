@@ -38,10 +38,10 @@
             <div class="card-body">
                 <div class="card-title">Tambah Jurusan</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('major/create')}}" id="submitForm">
+                <form method="POST" autocomplete="off" action="{{ url('major/create')}}" id="form-validate">
                     @csrf
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Nama Jurusan<span style="color:red"> *</span></label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Nama Jurusan</label>
                         <div class="col-sm-9">
                             <input type="text" name="mjr_name" class="form-control form-control-rounded @error('mjr_name') is-invalid @enderror" value="{{ old('mjr_name') }}" placeholder="Masukan Nama Jurusan">
                         @error('mjr_name')
@@ -83,14 +83,27 @@
 <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
 <script>
-    $(document).ready(function() {
-        $("#submitForm").submit(function(e) {
-            $(this).find("button[type='submit']").prop('disabled', true);
-            $("#btnSubmit").attr("disabled", true);
-            return true;
-        });
+   $().ready(function() {
+
+    $("#form-validate").validate({
+        rules: {
+            mjr_name: {
+              required: true,
+            },
+            pst_honorarium:{
+                required: true
+            },
+        },
+        messages: {
+            mjr_name: {
+              required: "Nama Jurusan harus di isi"
+            },     
+        }
     });
+});
 </script>
 @endpush
