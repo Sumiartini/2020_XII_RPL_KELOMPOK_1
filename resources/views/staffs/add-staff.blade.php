@@ -19,6 +19,8 @@
 <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
 <!-- Custom Style-->
 <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+<!-- select2 -->
+<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -69,7 +71,7 @@
 
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
-                         Biodata Diri
+                        Biodata Diri
                     </h4>
                     <div class="form-group row">
 
@@ -167,7 +169,7 @@
                         </div>
                     </div>
 
-                   <h4 class="form-header text-uppercase">
+                    <h4 class="form-header text-uppercase">
                         <i class=""></i>
                         Data Domisili
                     </h4>
@@ -438,115 +440,115 @@
 
                     <div class="form-group row">
 
-                       <div class="col sm-4">
-                           <label>Nama Keahlian </label>
-                           <input type="text" class="form-control form-control-rounded @error('expertise.name') is-invalid @enderror"  name="expertise[name]" placeholder="Masukan Nama Keahlian" value="{{ old('expertise.name') }}">                                        
-                           @error('expertise.name')
-                           <span class="invalid-feedback" role="alert">
+                     <div class="col sm-4">
+                         <label>Nama Keahlian </label>
+                         <input type="text" class="form-control form-control-rounded @error('expertise.name') is-invalid @enderror"  name="expertise[name]" placeholder="Masukan Nama Keahlian" value="{{ old('expertise.name') }}">                                        
+                         @error('expertise.name')
+                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>                            
 
                     <div class="col sm-4">
-                       <label>Nama Istansi/Lembaga </label>
-                       <input type="text" class="form-control form-control-rounded @error('expertise.name_of_agency') is-invalid @enderror"  name="expertise[name_of_agency]" placeholder="Masukan Nama Istansi/Lembaga" value="{{ old('expertise.name_of_agency') }}">                                        
-                       @error('expertise.name_of_agency')
-                       <span class="invalid-feedback" role="alert">
+                     <label>Nama Istansi/Lembaga </label>
+                     <input type="text" class="form-control form-control-rounded @error('expertise.name_of_agency') is-invalid @enderror"  name="expertise[name_of_agency]" placeholder="Masukan Nama Istansi/Lembaga" value="{{ old('expertise.name_of_agency') }}">                                        
+                     @error('expertise.name_of_agency')
+                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                 </div> 
             </div>
 
-                    <h4 class="form-header text-uppercase">
-                        <i class=""></i>
-                        Lainnya <small>(Maksimal File Ukuran 2 MB)</small>
-                    </h4>
+            <h4 class="form-header text-uppercase">
+                <i class=""></i>
+                Lainnya <small>(Maksimal File Ukuran 2 MB)</small>
+            </h4>
 
-                    <div class="row" style="margin-top: 30px;">
-                        <div class="col-sm-4">
-                            <label> Upload Kartu Tanda Penduduk (KTP) <span style="color:red"> *</span></label>
-                            <input type="file" name="other[identity_card]">
-                            @error('other.identity_card')
-                            <p>
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
-                        </div>
-                        <div class="col-sm-4">
-                            <label> Upload Kartu Keluarga <span style="color:red"> *</span></label>
-                            <input type="file" name="other[family_card]">
-                            @error('other.family_card')
-                            <p>
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
-                        </div>
-                        <div class="col-sm-4">
-                            <label> Upload Ijazah Minimal D4/S1 dilegalisir <span style="color:red"> *</span></label>
-                            <input type="file" name="other[scholar_diploma]">
-                            @error('other.scholar_diploma')
-                            <p>
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row" style="margin-top: 30px;">
-                        <div class="col-sm-4">
-                            <label> Upload Curriculum vitae (CV) <span style="color:red"> *</span></label>
-                            <input type="file" name="other[curriculum_vitae]">
-                            @error('other.curriculum_vitae')
-                            <p>
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
-                        </div>
-                        <div class="col-sm-4">
-                            <label> Upload Surat Lamaran <span style="color:red"> *</span></label>
-                            <input type="file" name="other[application_letter]">
-                            @error('other.application_letter')
-                            <p>
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
-                        </div>
-                        <div class="col-sm-3">
-                            <label> Upload Resume <span style="color:red"> *</span></label>
-                            <input type="file" name="other[resume]">
-                            @error('other.resume')
-                            <p>
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <label style="margin-top: 30px;">Foto calon Staf<span style="color:red"> *</span></label>
-                    <div class="form-group row">
-
-                        <div class="col-sm-4">
-                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px" />
-                            <input type="file"  name="usr_profile_picture" id="preview_gambar" class="@error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-                            <!-- <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
-                            @error('usr_profile_picture')
-                            <p>
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-footer">
-                         <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
-                        <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i>SIMPAN</button>
-                    </div>
-                </form>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-4">
+                    <label> Upload Kartu Tanda Penduduk (KTP) <span style="color:red"> *</span></label>
+                    <input type="file" name="other[identity_card]">
+                    @error('other.identity_card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Kartu Keluarga <span style="color:red"> *</span></label>
+                    <input type="file" name="other[family_card]">
+                    @error('other.family_card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Ijazah Minimal D4/S1 dilegalisir <span style="color:red"> *</span></label>
+                    <input type="file" name="other[scholar_diploma]">
+                    @error('other.scholar_diploma')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
             </div>
-        </div>
-    </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-4">
+                    <label> Upload Curriculum vitae (CV) <span style="color:red"> *</span></label>
+                    <input type="file" name="other[curriculum_vitae]">
+                    @error('other.curriculum_vitae')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Surat Lamaran <span style="color:red"> *</span></label>
+                    <input type="file" name="other[application_letter]">
+                    @error('other.application_letter')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-3">
+                    <label> Upload Resume <span style="color:red"> *</span></label>
+                    <input type="file" name="other[resume]">
+                    @error('other.resume')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+            </div>
+
+            <label style="margin-top: 30px;">Foto calon Staf<span style="color:red"> *</span></label>
+            <div class="form-group row">
+
+                <div class="col-sm-4">
+                    <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px" />
+                    <input type="file"  name="usr_profile_picture" id="preview_gambar" class="@error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+                    <!-- <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
+                    @error('usr_profile_picture')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="form-footer">
+               <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+               <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i>SIMPAN</button>
+           </div>
+       </form>
+   </div>
+</div>
+</div>
 </div>
 
 <!--Start Back To Top Button-->
