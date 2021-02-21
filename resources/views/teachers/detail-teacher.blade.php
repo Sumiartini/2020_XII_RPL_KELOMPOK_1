@@ -339,15 +339,15 @@
                  <div class="tab-pane" id="dokumen">             
                     
                     <div class="row">
-                           @if(isset($teacher->other['identity_card']))
-              <div class="card-body">
+            @if(isset($teacher->other['identity_card']))
+            <div class="card-body">
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
                         <a href="{{ url('download-file-teacher/'. $teacher->other['identity_card']) }}">
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                    <div class="col-lg-6" style="text-align: left; font-weight: bold; margin-left: -35px; margin-top: 5px;">
                         <p>Kartu Tanda Penduduk (KTP)</p> 
                     </div>     
                 </div>
@@ -358,10 +358,10 @@
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-lg-4">
                         <a href="{{ url('download-file-teacher/'. $teacher->other['family_card']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
+                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 10px;"></i>
                         </a>
                     </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                    <div class="col-lg-6" style="text-align: left; font-weight: bold; margin-left: -13px; margin-top: 5px;">
                         <p>Kartu Keluarga</p> 
                     </div>     
                 </div>
@@ -375,7 +375,7 @@
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                    <div class="col-lg-10" style="text-align: left; font-weight: bold; margin-left: -110px; margin-top: 13px;">
                         <p>Surat Tanda Kelulusan Minimal D4/S1 dilegalisir </p> 
                     </div>     
                 </div>
@@ -389,7 +389,7 @@
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -25px; margin-top: 5px;">
                         <p>Curriculum vitae (CV)</p> 
                     </div>     
                 </div>
@@ -403,7 +403,7 @@
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -12px; margin-top: 13px;">
                         <p>Surat Lamaran</p> 
                     </div>     
                 </div>
@@ -417,7 +417,7 @@
                         <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
                         </a>
                     </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -30px; margin-top: 5px;">
+                    <div class="col-lg-6" style="text-align: left; font-weight: bold; margin-left: -115px; margin-top: 13px;">
                         <p>Resume</p> 
                     </div>     
                 </div>
