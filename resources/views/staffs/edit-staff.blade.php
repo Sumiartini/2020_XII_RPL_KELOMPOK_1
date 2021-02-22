@@ -19,6 +19,8 @@
 <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
 <!-- Custom Style-->
 <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+<!-- select2 -->
+<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -35,34 +37,48 @@
 </div>
 
 
-<div class="col-lg-12">
-    <div class="profile-card-3 ">
-        <div class="text-center">
-            <img src="{{ url('assets/images/avatars/avatar-2.png')}}" alt="user avatar" class="card-img-top" style="width: 200px;
-                        height: 200px;
-                        background: #dac52c;
-                        border-radius: 100%;">
-        </div>
-        <hr>
-    </div>
-</div>
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="signupForm" novalidate="novalidate">
+                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('staff/edit/'.$staff_edit->stf_id) }}" novalidate="novalidate" enctype="multipart/form-data">
+                    @csrf
+                    <h4 class="form-header text-uppercase">
+                        <i class="  "></i>
+                        Data Akun
+                    </h4>
+
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label>Alamat Email<span style="color:red"> *</span></label>
+                            <input type="email" disabled="" class="form-control form-control-rounded @error('usr_email') is-invalid @enderror" name="usr_email" placeholder="Masukan Alamat Email" value="{{ $staff_edit->usr_email }}">
+                            @error('usr_email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror                       
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Nomor Telepon<span style="color:red"> *</span></label>
+                            <input  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{  $staff_edit->usr_phone_number }}">
+                            @error('usr_phone_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
 
                     <h4 class="form-header text-uppercase">
                         <i class="fa fa-address-book-o"></i>
-                        Data Pribadi
+                        Data Staf
                     </h4>
 
                     <div class="form-group row">
 
                         <div class="col-sm-4">
                             <label>Nama Lengkap<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror" id="input-10" name="usr_name" value="Hamdan Firmansyah S. Pd">
+                            <input type="text" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror" id="input-10" name="usr_name" value="{{ $staff_edit->usr_name}}">
                             @error('usr_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -70,358 +86,398 @@
                             @enderror
                         </div>
                         <div class="col-sm-4">
-                            <label>NIK</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="usr_nik_or_kitas" value="3204370204900002">
+                            <label>NIK <span style="color:red;">*</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" name="personal[nik]" placeholder="Masukan NIK" value="{{  $staff_edit->personal['nik'] }}">
+                            @error('personal.nik')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="col-sm-4">
                             <label>NUPTK</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="stf_nuptk" value="4734768669130082">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('tcr_nuptk') is-invalid @enderror" name="stf_nuptk" placeholder="Masukan NUPTK" value="{{  $staff_edit->stf_nuptk }}">
+                            @error('tcr_nuptk')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <p style="font-size: 12px;">Boleh di isi boleh tidak</p>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-4">
-                            <label>NO GTK</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="stf_gtk" value="16.17.007">
+                            <label>Tempat Lahir <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control form-control-rounded @error('usr_place_of_birth') is-invalid @enderror" name="usr_place_of_birth" placeholder="Masukan Tempat Lahir" value="{{  $staff_edit->usr_place_of_birth }}">
+                            @error('usr_place_of_birth')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="col-sm-4">
-                            <label>Kewarganegaraan</label>
-                            <select class="form-control form-control-rounded" id="basic-select" name="usr_citizenship">
-                                <option disabled="" selected="">WNI</option>
-                                <option value="WNI">WNI</option>
-                                <option value="WNA">WNA</option>
+                            <label>Tanggal Lahir <span style="color:red;">*</span></label>
+                            <input type="text" id="autoclose-datepicker" class="form-control form-control-rounded @error('usr_date_of_birth') is-invalid @enderror" name="usr_date_of_birth" placeholder="Tanggal/Bulan/Tahun" value="{{  $staff_edit->usr_date_of_birth }}">
+                            @error('usr_date_of_birth')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label> Agama <span style="color:red"> *</span></label>
+                            <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
+                                <option value="{{$staff_edit->usr_religion}}" selected=""> {{$staff_edit->usr_religion}} </option>                                
+                                <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }} value="Islam"> Islam </option>
+                                <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }} value="Protestan"> Protestan </option>
+                                <option {{ old('usr_religion') == "Katolik" ? 'selected' : '' }} value="Katolik"> Katolik </option>
+                                <option {{ old('usr_religion') == "Hindu" ? 'selected' : '' }} value="Hindu"> Hindu </option>
+                                <option {{ old('usr_religion') == "Budha" ? 'selected' : '' }} value="Budha"> Budha </option>
+                                <option {{ old('usr_religion') == "Khonghucu" ? 'selected' : '' }} value="Khonghucu"> Khonghucu </option>
                             </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Nama Negara</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" value="Indonesia" name="usr_country_name">
-                        </div>
-
-
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label>Tempat Lahir<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="firstname" value="Bandung" name="usr_place_of_birth">
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label>Tanggal Lahir</label>
-                            <input type="text" id="autoclose-datepicker form-control-rounded" class="form-control form-control-rounded" value="02/04/1990" name="usr_date_of_birth">
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label>Jenis Kelamin</label>
-
-                            <select class="form-control form-control-rounded" id="basic-select" name="usr_gender">
-                                <option disabled="" selected="" >Laki Laki</option>
-                                <option value="Laki Laki">Laki Laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
+                            @error('usr_religion')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <div class="col-sm-4">
-                            <label>Agama</label>
-                            <select class="form-control form-control-rounded" id="basic-select" name="usr_religion">
-                                <option disabled="" selected="">Islam</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Protestan">Protestan</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Budha">Budha</option>
-                                <option value="Khonghucu">Khonghucu</option>
+                            <label> Jenis Kelamin <span style="color:red"> *</span></label>
+                            <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
+                                <option value="{{$staff_edit->usr_gender}}" selected=""> {{$staff_edit->usr_gender}} </option>                                
+                                <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
+                                <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
                             </select>
+                            @error('usr_gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        <div class="col-sm-3">
-                            <label>Status Perkawinan</label> <br>
-
-                            <div class="radio icheck-info icheck-inline">
-                                <input type="radio" checked="" id="info1" name="stf_marital_status">
-                                <label for="info1">Sudah</label>
-                            </div>
-                            <div class="radio icheck-info icheck-inline">
-                                <input type="radio"  id="info2" name="stf_marital_status">
-                                <label for="info2">Belum</label>
-                            </div>
+                        <div class="col-sm-4">
+                            <label> No. WhatsApp <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ $staff_edit->usr_whatsapp_number }}" value="{{ $staff_edit->usr_whatsapp_number }}">
+                            @error('usr_whatsapp_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
-
-                    <h4 class="form-header text-uppercase">
-                        <i class="fa fa-address-book-o"></i>
-                        INFORMASI KONTAK
-                    </h4>
-
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label>Provinsi</label>
-                            <select class="form-control form-control-rounded" id="basic-select" name="provinces">
-                                <option disabled="" selected="">Jawa Barat</option>
-                                <option value="Jawa Barat">Jawa Barat</option>
-                                <option value="Jawa Timur">Jawa Timur</option>
-                            </select>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label>Kabupaten/Kota</label>
-                            <select class="form-control form-control-rounded" name="city" id="basic-select">
-                                <option disabled="" selected="">Bandung</option>
-                                <option value="Bandung">Bandung</option>
-                                <option value="Jakarta">Jakarta</option>
-                            </select>
-                        </div>
                     
-                    <div class="col-sm-4">
-                            <label>Kecamatan</label>
-                            <select class="form-control form-control-rounded" name="usr_district" id="basic-select">
-                                <option disabled="" selected="">Katapang</option>
-                                <option value="Katapang">Katapang</option>
-                                <option value="Arjasari">Arjasari</option>
-                            </select>
+                    <label style="margin-top: 30px;">Foto calon Guru<span style="color:red"> *</span></label>
+                    <div class="form-group row">
+
+                        <div class="col-sm-4">
+                            <img src="{{ asset($staff_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
+                            <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+
+                            <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
+
                         </div>
-                        </div>
-                       
+                    </div>
+
+                    <h4 class="form-header text-uppercase">
+                        <i class=""></i>
+                        Data Domisili
+                    </h4>
+
+                    @foreach($user as $user)
                     <div class="form-group row">
                         <div class="col-sm-4">
-                            <label>Kode Pos</label>
-                            <input type="text" name="usr_postal_code" class="form-control form-control-rounded" id="input-10" value="40921">
+                            <label> Provinsi <span style="color:red"> *</span></label>
+                            <select name="prv_name" class="form-control single-select form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
+                                <option checked="true" selected="true" value="{{$user->prv_id}}"> {{$user->prv_name}} </option>
+                                @foreach($province as $data)
+                                <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
+                                @endforeach
+                            </select>
+                            @error('prv_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="col-sm-4">
-                            <label>Alamat</label>
-                            <input type="text" name="usr_address" class="form-control form-control-rounded" id="input-10" value="Kp. Citereup">
-                        </div>   
+                            <label> Kabupaten/Kota <span style="color:red"> *</span></label>
+
+                            <select name="cit_name" class="form-control single-select form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
+                                <option checked="true" selected="true" value="{{$user->cit_id}}"> {{$user->cit_name}} </option>
+                            </select>
+                            @error('cit_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label> Kecamatan <span style="color:red"> *</span></label>
+
+                            <select name="dst_name" class="form-control single-select form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
+                                <option checked="true" selected="true" value="{{$user->dst_id}}"> {{$user->dst_name}} </option>
+                            </select>
+                            @error('dst_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    @endforeach
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-4">
+                            <label> Alamat <span style="color:red"> *</span></label>
+                            <input type="text" name="usr_address" class="form-control form-control-rounded @error('usr_address') is-invalid @enderror" placeholder="Masukan Alamat" value="{{ $staff_edit->usr_address }}">
+                            @error('usr_address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
                         <div class="col-sm-2">
-                            <label>RT</label>
-                            <input type="text" class="form-control form-control-rounded" name="usr_rt" id="input-10" value="02">
+                            <label> RT <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" placeholder="Masukan Nomor RT" value="{{ $staff_edit->usr_rt }}">
+                            @error('usr_rt')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="col-sm-2">
-                            <label>RW</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="usr_rw" value="07">
-                        </div>                   
-
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-4">
-                            <label>Kelurahan/Desa</label>
-                            <input type="text" name="usr_village" class="form-control form-control-rounded" id="input-10" value="Sukamukti">
-                        </div> 
-
-                        <div class="col-sm-4">
-                            <label>No Telepon</label>
-                            <input type="text" class="form-control form-control-rounded" name="usr_phone_number" id="input-10" value="089613272481">
+                            <label> RW <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" placeholder="Masukan Nomor RW" value="{{ $staff_edit->usr_rw }}">
+                            @error('usr_rw')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="col-sm-4">
-                            <label>Email</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="usr_email" value="odney04@gmail.com">
-                        </div>
-                    </div>
-
-                    <h4 class="form-header text-uppercase">
-                        <i class="fa fa-address-book-o"></i>
-                        DATA SUAMI/ISTERI
-                    </h4>
-
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label>Nama Suami/Isteri</label>
-                            <input type="text" name="husband_or_wife_data[name_of_husband_wife]" class="form-control form-control-rounded" id="input-10" value="Hani Nuraeni">
-                        </div>
-                        <div class="col-sm-4">
-                            <label>NIK</label>
-                            <input type="text" name="husband_or_wife_data[husband_wife_nik]" class="form-control form-control-rounded" id="input-10" value="-">
-                        </div>
-                        <div class="col-sm-4">
-                            <label>NIP</label>
-                            <input type="text" name="husband_or_wife_data[nip]" class="form-control form-control-rounded" id="input-10" value="-">
+                            <label>Desa/Kelurahan<span style="color:red"> *</span></label>
+                            <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelurahan" value="{{ $staff_edit->usr_rural_name }}">
+                            @error('usr_rural_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-4">
-                            <label>Pekerjaan</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="husband_or_wife_data[profession]" value="ibu rumah tangga">
+                            <label> Kode Pos <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_postal_code" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ $staff_edit->usr_postal_code }}">
+                            @error('usr_postal_code')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
 
 
                     <h4 class="form-header text-uppercase">
-                        <i class="fa fa-address-book-o"></i>
-                        STATUS KEPEGAWAIAN
+                        <i class=""></i>
+                        Riwayat Pendidikan
                     </h4>
 
                     <div class="form-group row">
-
                         <div class="col-sm-4">
-                            <label>NO SK</label>
-                            <input type="text" name="employment_status[no_sk]" class="form-control form-control-rounded" id="input-10" value="181/102.10/SMK.MP/KS/VII/2018">
+                            <label>Tahun SD/Sederajat <span style="color:red;">*</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_grade_school') is-invalid @enderror year_picker" name="educational_background[year_grade_school]" placeholder="Masukan Tahun SD/Sederajat" value="{{ $staff_edit->educational_background['year_grade_school'] }}">
+                            @error('educational_background.year_grade_school')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Nama SD/Sederajat <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.grade_school') is-invalid @enderror" name="educational_background[grade_school]" placeholder="Masukan Nama SD/Sederajat" value="{{ $staff_edit->educational_background['grade_school'] }}">
+                            @error('educational_background.grade_school')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="col-sm-4">
-                            <label>Tahun Masuk</label>
-                            <select class="form-control form-control-rounded" name="employment_status[date_starting_assignment]" id="basic-select">
-                                <option disabled="" selected="">2016</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                            </select>
+                            <label>Tahun SMP/Sederajat <span style="color:red;">*</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_junior_high_school') is-invalid @enderror year_picker" name="educational_background[year_junior_high_school]" placeholder="Masukan Tahun SMP/Sederajat" value="{{ $staff_edit->educational_background['year_junior_high_school'] }}">
+                            @error('educational_background.year_junior_high_school')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
-
-                        <div class="col-sm-4">
-                            <label>Kontrak Kerja</label>
-                            <select class="form-control form-control-rounded" id="basic-select" name="employment_status[employment_contract]">
-                                <option disabled="" selected="">1 Tahun</option>
-                                <option value="1 Tahun">1 Tahun</option>
-                                <option value="2 Tahun">2 Tahun</option>
-                                <option value="3 Tahun">3 Tahun</option>
-                                <option value="4 Tahun">4 Tahun</option>
-                                <option value="5 Tahun">5 Tahun</option>
-                            </select>
-                        </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-4">
-                            <label>Status Staf</label>
-                            <select class="form-control form-control-rounded" id="basic-select">
-                                <option disabled="" selected="">Staf Tidak Tetap</option>
-                                <option>Staf Tetap</option>
-                                <option>Staf Tidak Tetap</option>
-                            </select>
+                            <label>Nama SMP/Sederajat <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.junior_high_school') is-invalid @enderror" name="educational_background[junior_high_school]" placeholder="Masukan Nama SMP/Sederajat" value="{{ $staff_edit->educational_background['junior_high_school'] }}">
+                            @error('educational_background.junior_high_school')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="col-sm-4">
-                            <label>Jabatan</label>
-                            <input type="text" name="stp_position_id" class="form-control form-control-rounded" id="input-10" value="Ketua Staf">
+                            <label>Tahun SMA/Sederajat <span style="color:red;">*</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_senior_high_school') is-invalid @enderror year_picker" name="educational_background[year_senior_high_school]" placeholder="Masukan Tahun SMA/Sederajat" value="{{ $staff_edit->educational_background['year_senior_high_school'] }}">
+                            @error('educational_background.year_senior_high_school')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Nama SMA/Sederajat <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.senior_high_school') is-invalid @enderror" name="educational_background[senior_high_school]" placeholder="Masukan Nama SMA/Sederajat" value="{{ $staff_edit->educational_background['senior_high_school'] }}">
+                            @error('educational_background.senior_high_school')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-4">
+                            <label>Tahun Perguruan Tinggi<span style="color:red;">*</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_entry') is-invalid @enderror year_picker" name="educational_background[year_entry]" placeholder="Masukan Tahun Perguruan Tinggi" value="{{ $staff_edit->educational_background['year_entry'] }}">
+                            @error('educational_background.year_entry')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Nama Perguruan Tinggi<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.college') is-invalid @enderror" name="educational_background[college]" placeholder="Masukan Nama Perguruan Tinggi" value="{{ $staff_edit->educational_background['college'] }}">
+                            @error('educational_background.college')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Nama Fakultas<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_name') is-invalid @enderror" name="educational_background[faculty_name]" placeholder="Masukan Nama Fakultas" value="{{ $staff_edit->educational_background['faculty_name'] }}">
+                            @error('educational_background.faculty_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-4">
+                            <label>Nama Jurusan<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_major') is-invalid @enderror" name="educational_background[faculty_major]" placeholder="Masukan Nama Jurusan" value="{{ $staff_edit->educational_background['faculty_major'] }}">
+                            @error('educational_background.faculty_major')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Tahun Lulus<span style="color:red;">*</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_graduated') is-invalid @enderror year_picker" name="educational_background[year_graduated]" placeholder="Masukan Tahun Lulus" value="{{ $staff_edit->educational_background['year_graduated'] }}">
+                            @error('educational_background.year_graduated')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Gelar<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control form-control-rounded @error('educational_background.degree') is-invalid @enderror" name="educational_background[degree]" placeholder="Masukan Gelar" value="{{ $staff_edit->educational_background['degree'] }}">
+                            @error('educational_background.degree')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
 
                     <h4 class="form-header text-uppercase">
-                        <i class="fa fa-address-book-o"></i>
-                        RIWAYAT PENDIDIKAN
+                        <i class=""></i>
+                        Riwayat Bekerja
                     </h4>
 
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label>Tahun SD/Sederajat</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[year_grade_school]" value="2001">
+
+                        <div class="col sm-4">
+                            <label>Nama Pekerjaan </label>
+                            <input type="text" class="form-control form-control-rounded @error('history_job.name') is-invalid @enderror"  name="history_job[name]" placeholder="Masukan Nama Pekerjaan" value="{{ $staff_edit->history_job['name'] }}">    
+                            @error('history_job.name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        <div class="col-sm-4">
-                            <label>Nama SD/Sederajat</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[grade_school]" value="SDN Parung Serab IV">
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Tahun SMP/Sederajat</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[year_junior_high_school]" value="2003">
+
+                        <div class="col sm-4">
+                            <label>Dari tahun/sampai </label>
+                            <input type="text" class="form-control form-control-rounded @error('history_job.lenght_of_work') is-invalid @enderror"  name="history_job[lenght_of_work]" placeholder="Masukan Tahun" value="{{ $staff_edit->history_job['lenght_of_work'] }}">    
+                            @error('history_job.lenght_of_work')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label>Nama SMP/Sederajat</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[junior_high_school]" value="SMPN 1 Soreang">
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label>Tahun SMA/Sederajat</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[year_senior_high_school]" value="2008">
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Nama SMA/Sederajat</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[senior_high_school]" value="SMAN 1 Katapang">
-                        </div>
-
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-4">
-                            <label>Tahun Perguruan Tinggi</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[year]" value="2010">
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Nama Perguruan Tinggi</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[college]" value="UPI Bandung">
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Nama Fakultas</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[faculty]" value="FPOK">
-                        </div>
-
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-4">
-                            <label>Nama Jurusan</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[majors]" value="S1 Pendidikan Jasmani Kesehatan dan Rekreasi">
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Tahun Lulus</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[year]" value="2014">
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Gelar</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="educational_background[degree]" value="S.Pd">
-                        </div>
-
-                    </div>
-
 
                     <h4 class="form-header text-uppercase">
-                        <i class="fa fa-address-book-o"></i>
-                        SERTIFIKASI
+                        <i class=""></i>
+                        Keahlian
                     </h4>
 
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label>Status</label>
-                            <select class="form-control form-control-rounded" id="basic-select" name="certification[status]">
-                                <option disabled="" selected="">Belum</option>
-                                <option value="Sudah">Sudah</option>
-                                <option value="Belum">Belum</option>
-                            </select>
-                        </div>
 
-                        <div class="col-sm-4">
-                            <label>Tahun</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="certification[year]" value="-">
-                        </div>
+                     <div class="col sm-4">
+                         <label>Nama Keahlian </label>
+                         <input type="text" class="form-control form-control-rounded @error('expertise.name') is-invalid @enderror"  name="expertise[name]" placeholder="Masukan Nama Keahlian" value="{{ $staff_edit->expertise['name'] }}">                                        
+                         @error('expertise.name')
+                         <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>                            
 
-                        <div class="col-sm-4">
-                            <label>No Sertifikat</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="certification[certificate_no]" value="-">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-4">
-                            <label>Bidang studi</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="certification[field_of_study]" value="-">
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label>Penyelenggara</label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="certification[organizer]" value="-">
-                        </div>
-                    </div>
-
+                    <div class="col sm-4">
+                     <label>Nama Istansi/Lembaga </label>
+                     <input type="text" class="form-control form-control-rounded @error('expertise.name_of_agency') is-invalid @enderror"  name="expertise[name_of_agency]" placeholder="Masukan Nama Istansi/Lembaga" value="{{ $staff_edit->expertise['name_of_agency'] }}">                                        
+                     @error('expertise.name_of_agency')
+                     <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div> 
+            </div>
 
                     <div class="form-footer">
-                        <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> CANCEL</button>
-                        <a href="/staff/1" button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SAVE</a>
+                        <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+                        <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
                     </div>
                 </form>
             </div>
@@ -448,68 +504,296 @@
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
+<!-- script select2 -->
+<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.single-select').select2();                 
+    });
+
+</script>
+
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 <script>
     $().ready(function() {
 
-        $("#personal-info").validate();
+    //   $(".submitForm").submit(function(e) {
+    //     $(this).find("button[type='submit']").prop('disabled', true);
+    //     $(".btnSubmit").attr("disabled", true);
+    //     return true;
+    // });
 
-        // validate signup form on keyup and submit
-        $("#signupForm").validate({
-            rules: {
-                firstname: "required",
-                lastname: "required",
-                username: {
-                    required: true,
-                    minlength: 2
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                confirm_password: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                contactnumber: {
-                    required: true,
-                    minlength: 10
-                },
-                topic: {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
+    $("#form-validate").validate({
+        rules: {
+            usr_email:{
+                required: true
             },
-            messages: {
-                firstname: "Please enter your firstname",
-                lastname: "Please enter your lastname",
-                username: {
-                    required: "Please enter a username",
-                    minlength: "Your username must consist of at least 2 characters"
-                },
-                password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long"
-                },
-                confirm_password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long",
-                    equalTo: "Please enter the same password as above"
-                },
-                email: "Please enter a valid email address",
-                contactnumber: "Please enter your 10 digit number",
-                agree: "Please accept our policy",
-                topic: "Please select at least 2 topics"
-            }
-        });
+            usr_phone_number:{
+                required: true
+            },
+            usr_name:{
+                required: true
+            },
+            "personal[nik]":{
+                required: true,
+                minlength: 10
+            },
+            stf_nuptk:{
+                required: true
+            },
+            usr_place_of_birth:{
+                required: true,
+            },
+            usr_date_of_birth:{
+                required: true
+            },
+            usr_gender:{
+                required: true
+            },
+            usr_whatsapp_number:{
+                required: true,
+                minlength: 10
+            },
+            usr_religion:{
+                required: true
+            },
+            prv_name:{
+                required: true
+            },
+            cit_name:{
+                required: true
+            },
+            dst_name:{
+                required: true
+            },
+            usr_address:{
+                required: true
+            },
+            usr_rt:{
+                required: true
+            },
+            usr_rw:{
+                required: true
+            },
+            usr_rural_name:{
+                required: true
+            },
+            usr_postal_code:{
+                required:true
+            },
+            "educational_background[year_grade_school]":{
+                required: true
+            },
+            "educational_background[grade_school]":{
+                required: true
+            },
+            "educational_background[year_junior_high_school]":{
+                required: true
+            },
+            "educational_background[junior_high_school]":{
+                required: true
+            },
+            "educational_background[year_senior_high_school]":{
+                required: true
+            },
+            "educational_background[senior_high_school]":{
+                required: true
+            },
+            "educational_background[year_entry]":{
+                required: true
+            },
+            "educational_background[college]":{
+                required: true
+            },
+            "educational_background[faculty_name]":{
+                required: true
+            },
+            "educational_background[faculty_major]":{
+                required: true
+            },
+            "educational_background[year_graduated]":{
+                required: true
+            },
+            "educational_background[degree]":{
+                required: true
+            },
+            "other[identity_card]":{
+                required: true
+            },
+            "other[family_card]":{
+                required: true,
+            },
+            "other[senior_high_school_diploma]":{
+                required: true
+            },
+            "other[curriculum_vitae]":{
+                required: true
+            },
+            "other[application_letter]":{
+                required: true
+            },
+            "other[resume]":{
+                required: true
+            },
+            usr_profile_picture:{
+                required:true
+            },
+            terms_and_conditions:{
+                required: true
+            },
 
+        },  
+        messages: {
+            usr_email:{
+                required: "Email harus di isi"
+            },
+            usr_phone_number:{
+                required: "Nomor Telepon harus di isi"
+            },
+            usr_name:{
+                required: "Nama lengkap harus di isi"
+            },
+            stf_nuptk:{
+                required: "NO NUPTK harus di isi"
+            },
+            usr_place_of_birth:{
+                required: "Tempat lahir harus di isi"
+            },
+            usr_date_of_birth:{
+                required: "Data lahir harus di isi"
+            },
+            "personal[nik]":{
+                required: "Nomor NIK harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_gender:{
+                required: "Jenis kelamin harus di pilih"
+            },
+            usr_whatsapp_number:{
+                required: "No WhatsApp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_religion:{
+                required: "Agama harus di pilih"
+            },
+            "school_origin[npsn]":{
+                required: "NPSN asal sekolah harus di isi"
+            },
+            prv_name:{
+                required: "Provinsi harus di pilih"
+            },
+            cit_name:{
+                required: "Kabupaten atau kota harus di pilih"
+            },
+            dst_name:{
+                required: "Kecamatan harus di pilih"
+            },
+            usr_address:{
+                required: "Alamat harus di isi"
+            },
+            usr_rt:{
+                required: "RT harus di isi"
+            },
+            usr_rw:{
+                required: "RW harus di isi"
+            },
+            usr_rural_name:{
+                required: "Desa harus di isi"
+            },
+            usr_postal_code:{
+                required: "Kode pos harus di isi"
+            },
+            "educational_background[year_grade_school]":{
+                required: "Tahun lulus SD sederajat harus di isi"
+            },
+            "educational_background[grade_school]":{
+                required: "Nama SD sederajat harus di isi"
+            },
+            "educational_background[year_junior_high_school]":{
+                required: "Tahun lulus SMP sederajat harus di isi"
+            },
+            "educational_background[junior_high_school]":{
+                required: "Nama SMP sederajat harus di isi"
+            },
+            "educational_background[year_senior_high_school]":{
+                required: "Tahun lulus SMA sederajat harus di isi"
+            },
+            "educational_background[year_entry]":{
+                required: "Tahun perguruan tinggi harus di isi"
+            },
+            "educational_background[college]":{
+                required: "Nama perguruan tinggi harus di isi"
+            },
+            "educational_background[faculty_name]":{
+                required: "Nama fakultas harus di isi"
+            },
+            "educational_background[faculty_major]":{
+                required: "Nama jurusan harus di isi"
+            },
+            "educational_background[year_graduated]":{
+                required: "Tahun lulus harus di isi"
+            },
+            "educational_background[degree]":{
+                required: "Gelar harus di isi"
+            },
+            "educational_background[senior_high_school]":{
+                required: "Nama SMA sederajat harus di isi"
+            },
+            "other[identity_card]":{
+                required: "KTP harus di upload"
+            },
+            "other[family_card]":{
+                required: "Kartu keluarga harus di upload",
+            },
+            "other[senior_high_school_diploma]":{
+                required: "ijazah legalisir SMA atau SMK harus di upload"
+            },
+            "other[curriculum_vitae]":{
+                required: "CV harus di upload"
+            },
+            "other[application_letter]":{
+                required: "Surat lamaran harus di upload"
+            },
+            "other[resume]":{
+                required: "Resume harus di upload"
+            },
+            usr_profile_picture:{
+                required: "Foto calon guru tidak boleh kosong"
+            },
+            terms_and_conditions:{
+                required: "&nbsp S&K harus di centang"
+            }
+
+        }
+    });
+});
+</script>
+
+<script>
+    function bacaGambar(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#tampil_picture').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#preview_gambar").change(function() {
+        bacaGambar(this);
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $("#submitForm").submit(function(e) {
+            $(this).find("button[type='submit']").prop('disabled', true);
+            $("#btnSubmit").attr("disabled", true);
+            return true;
+        });
     });
 </script>
 
@@ -521,7 +805,8 @@
     });
     $('#autoclose-datepicker').datepicker({
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        format: "yyyy-mm-dd"
     });
 
     $('#inline-datepicker').datepicker({
@@ -529,6 +814,45 @@
     });
 
     $('#dateragne-picker .input-daterange').datepicker({});
+
+    $('.year_picker').datepicker({
+        autoclose: true,
+        minViewMode: 2,
+        format: 'yyyy'
+    });
 </script>
+
+<script>
+    $('#provinces').on('change', function (e) {
+        console.log(e);
+        var prov_id = e.target.value;
+        $.get('{{URL::to('api/json-cities')}}/'+ prov_id  , function (variable) {
+            console.log('variable');
+            $('#cities').empty();
+            $('#cities').append('<option value="">Pilih Kabupaten/Kota</option>');
+
+            $.each(variable.cities, function (val, citiesObj) {
+                $('#cities').append('<option value="'+citiesObj.cit_id+'">'+citiesObj.cit_name+'</option>');
+            });
+
+        });
+    });
+
+    $('#cities').on('change', function (e) {
+        console.log(e);
+        var cit_id = e.target.value;
+        $.get('{{URL::to('api/json-districts')}}/'+ cit_id  , function (variable) {
+            console.log('variable');
+            $('#districts').empty();
+            $('#districts').append('<option value="">Pilih Kecamatan</option>');
+
+            $.each(variable.districts, function (val, districtsObj) {
+                $('#districts').append('<option value="'+districtsObj.dst_id+'">'+districtsObj.dst_name+'</option>');
+            });
+
+        });
+    });
+</script>
+
 @endpush
 @endsection
