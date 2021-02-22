@@ -23,7 +23,7 @@
 @if($staff->stf_registration_status == 1)
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Detail Guru</h4>
+        <h4 class="page-title">Detail Staf</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/students/')}}">Daftar Staf </a></li>
@@ -35,7 +35,7 @@
 @elseif($staff->stf_registration_status == 0)
 <div class="row pt-2 pb-2">
   <div class="col-sm-9">
-    <h4 class="page-title">Daftar Calon Guru</h4>
+    <h4 class="page-title">Daftar Calon Staf</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
       <li class="breadcrumb-item"><a href="{{ url('/students-prospective')}}">Daftar Calon Staf</a></li>
@@ -96,7 +96,7 @@
               </div>
                 <div class="row" style="margin-top: 40px; margin-left: 10px;">
 
-                        <dt class="col-sm-5">Nama Guru</dt>
+                        <dt class="col-sm-5">Nama Staf</dt>
                         <dd class="col-sm-7">
                             <p>{{ $staff->usr_name }}</p>
                         </dd>

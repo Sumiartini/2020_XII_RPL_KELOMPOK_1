@@ -89,7 +89,7 @@
            <div class="profile-card-3">
             <div class="card">
              <div class="user-fullimage text-center">
-               <img src="{{ asset($teacher->usr_profile_picture)}}" alt="user avatar" class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
+               <img src="{{ asset($teacher->usr_profile_picture)}}" alt="user avatar"  class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
 <!--                 <div class="details">
                   <h5 class="mb-1 text-blue ml-3">{{ $teacher->stu_candidate_name }}</h5>
                   <h6 class="text-blue ml-3">{{ $teacher->usr_email }}</h6>
