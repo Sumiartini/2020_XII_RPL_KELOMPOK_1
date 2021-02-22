@@ -88,5 +88,16 @@ class Staffs extends Model
         //dd($staffs_rejected);
         return $staff_rejected_details;
     }
+    public function getStaffEdit($staffID)
+    {
+        $staffs_edit = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')            
+            ->where('stf_id', $staffID)->firstOrFail();
+
+        $get_staff_edit = staffDetails::where('sfd_staff_id', $staffs_edit->stf_id)->get();
+        $get_staff_edit = mappingDataStaff($get_staff_edit, $staffs_edit);
+
+        return $get_staff_edit;
+
+    }
     
     }

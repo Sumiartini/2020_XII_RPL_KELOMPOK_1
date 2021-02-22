@@ -217,9 +217,19 @@ class StaffController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function edit()
+    public function edit($staffID)
     {
-        return view('staffs.edit-staff');
+        $staff = new staffs;
+
+        $staff_edit = $staff->getStaffEdit($staffID);        
+        $province = Provinces::select('prv_id', 'prv_name')->get();
+        $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')        
+        ->where('usr_id', $staff_edit->usr_id)
+        ->get();   
+        return view('staffs.edit-staff', ['staff_edit' => $staff_edit, 'province' => $province, 'user' => $user]);
+
     }
     /**
      * Update the specified resource in storage.
@@ -228,12 +238,55 @@ class StaffController extends Controller
      * @param  \App\Staffs  $staffs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $staffID)
     {
-        $validatedData = $request->validate([
-            'usr_name' => ['required', 'string', 'max:255'],
-        ]);
-        dd($request);
+        //dd('sini');
+        $requests = $request->input();
+        $staff = Staffs::where('stf_id', $staffID)->first();
+        $staff->stf_nuptk     = $request->stf_nuptk;        
+
+        if ($staff->update()) {
+            $user = User::where('usr_id', $staff->stf_user_id)->first();
+            $user->usr_name             = $request->usr_name;
+            $user->usr_place_of_birth   = $request->usr_place_of_birth;
+            $user->usr_date_of_birth    = $request->usr_date_of_birth;
+            $user->usr_religion         = $request->usr_religion;
+            $user->usr_gender           = $request->usr_gender;        
+            $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
+            $user->usr_district_id      = $request->dst_name;
+            $user->usr_address          = $request->usr_address;
+            $user->usr_rt               = $request->usr_rt;
+            $user->usr_rw               = $request->usr_rw;
+            $user->usr_rural_name       = $request->usr_rural_name;
+            $user->usr_postal_code      = $request->usr_postal_code;
+
+            if ($request->hasFile('usr_profile_picture')) {
+                $files = $request->file('usr_profile_picture');
+                $path = public_path('images/users_profile');
+                $files_name = 'images' . '/' . 'users_profile' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+                $files->move($path, $files_name);
+                $user->usr_profile_picture = $files_name;
+            }
+        }
+        
+        if ($user->update()) {
+            foreach ($requests as $key => $requetcdata) {
+                if (is_array($requetcdata)) {
+                    foreach ($requetcdata as $requestKey => $requestValue) {
+                            // dd($requests, $request, $requetcdata, $requestKey, $requestValue, $key);                            
+                        $staffDetail = new StaffDetails;
+                        $staffDetail->sfd_staff_id   = $staff->stf_id;
+                        $staffDetail->sfd_type       = $key;
+                        $staffDetail->sfd_key        = $requestKey;
+                        $staffDetail->sfd_value      = $requestValue;
+                        $staffDetail->sfd_created_by = Auth()->user()->usr_id;
+                        $staffDetail->save();
+                    }
+                }
+            }
+            
+        }
+        return redirect('staff/' . $staffID)->with('success', 'Data berhasil diubah');
     }
 
     /**
