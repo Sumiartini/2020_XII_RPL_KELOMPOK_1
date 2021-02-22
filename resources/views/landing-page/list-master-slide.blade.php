@@ -46,7 +46,7 @@
 
           @if(Auth()->user()->hasRole('admin'))
           <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-            <a href="{{URL::to('/landing-page/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
+            <a href="{{URL::to('/master-slide/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
           </div>
           @else
           @endif
@@ -55,7 +55,6 @@
               <tr>
                 <th>NO</th>
                 <th>NAMA</th>
-                <th>DESKRIPSI</th>
                 <th>FOTO</th>
                 <th>Aksi</th>
               </tr>
@@ -106,5 +105,10 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
+<script>
+    $(document).ready( function () {
+        master_slide()
+    });
+</script>
 @endpush
 @endsection

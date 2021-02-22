@@ -12,4 +12,9 @@ class MasterSlides extends Model
     const UPDATED_AT = 'mss_updated_at';
     protected $guarded = [];
 
+	public static function getMasterSlides($request){
+	    $master_slides = MasterSlides::select('mss_id', 'mss_name', 'mss_file');
+	    return $master_slides;
+    }
+
 }

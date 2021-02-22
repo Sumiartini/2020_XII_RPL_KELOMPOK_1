@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MasterSlides;
+use App\MasterConfigs;
 
 class LandingPageController extends Controller
 {
@@ -34,7 +36,22 @@ class LandingPageController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
+        $requests = $request->input();
+        $massages = [
+            'required' => 'kolom wajib diisi'
+        ];
+        $request->validate([
+            'mss_name'  => 'required',
+            'mss_file'  => 'required',  
+        ], $massages);
+
+        $master_slides = new MasterSlides;
+        $master_slides->mss_name = $request->mss_name;
+        $master_slides->mss_file = $request->mss_file;
+        $master_slides->save();
+
+        return redirect('/master-slide')->with('success', 'Data berhasil ditambahkan'); 
     }
 
     /**

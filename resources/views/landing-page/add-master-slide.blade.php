@@ -46,7 +46,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student/create') }}" novalidate="novalidate">
+                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('master-slide/create') }}" novalidate="novalidate">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -117,7 +117,7 @@
             mss_name: {
               required: true,
             },
-            mss_name:{
+            mss_file:{
                 required: true
             },
             pst_honorarium:{
