@@ -12,6 +12,7 @@ use App\Subjects;
 use App\Years;
 use App\majors;
 use App\MasterSlides;
+use App\MasterConfigs;
 
 class DatatableController extends Controller
 {
@@ -320,7 +321,7 @@ class DatatableController extends Controller
         $master_slides = MasterSlides::getMasterSlides($request->query());
         return Datatables::of($master_slides)
         ->addColumn('action', function ($row) {
-            $edit = '<a href="' . url('master_slides/edit', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+            $edit = '<a href="' . url('master-slide/edit', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
             
             return $edit ;
         })->rawColumns(['action'])
@@ -328,6 +329,13 @@ class DatatableController extends Controller
     }
 
     public function getMasterConfig(Request $request){
-        return view('landing-page.list-master-config');
+        $master_configs = MasterConfigs::getMasterConfigs($request->query());
+        return Datatables::of($master_configs)
+        ->addColumn('action', function ($row) {
+            $edit = '<a href="' . url('master-config/edit', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+            
+            return $edit ;
+        })->rawColumns(['action'])
+        ->make(true);
     }
 }

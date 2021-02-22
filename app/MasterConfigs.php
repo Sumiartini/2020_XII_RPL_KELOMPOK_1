@@ -12,4 +12,10 @@ class MasterConfigs extends Model
     const UPDATED_AT = 'msc_updated_at';
     protected $guarded = [];
 
+    public static function getMasterConfigs($request){
+	    $master_configs = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id');
+        // dd($students);
+        return $students;
+    }
+
 }

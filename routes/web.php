@@ -221,14 +221,17 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/master-slide', 'DatatableController@getMasterSlide');
     Route::get('/master-slide/create', 'LandingPageController@create');
     Route::post('/master-slide/create', 'LandingPageController@store');
-    Route::get('/master-slide/edit/{{mss_id}}', 'LandingPageController@edit');
-    Route::post('/master-slide/edit/{{mss_id}}', 'LandingPageController@update');
+    Route::get('/master-slide/edit/{mss_id}', 'LandingPageController@edit');
+    Route::post('/master-slide/edit/{mss_id}', 'LandingPageController@update');
 
+    Route::get('/master-configs', function () {
+        return view('landing-page.list-master-config');
+    });
     Route::get('/master-config', 'DatatableController@getMasterConfig');
     Route::get('/master-config/create', 'LandingPageController@createConfig');
     Route::post('/master-config/create', 'LandingPageController@storeConfig');
-    Route::get('/master-config/edit/{{msc_id}}', 'LandingPageController@editConfig');
-    Route::post('/master-config/edit/{{msc_id}}', 'LandingPageController@updateConfig');
+    Route::get('/master-config/edit/{msc_id}', 'LandingPageController@editConfig');
+    Route::post('/master-config/edit/{msc_id}', 'LandingPageController@updateConfig');
 
     //download file
     Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');

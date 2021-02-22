@@ -47,7 +47,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="signupForm" autocomplete="off" method="POST" action="" novalidate="novalidate">
+                <form id="signupForm" autocomplete="off" method="POST" action="{{ url('master-slide/edit/'.$master_slide->mss_id) }}" novalidate="novalidate">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -57,16 +57,24 @@
                     <div class="form-group row">
 
                         <div class="col-sm-4">
-                            <label>Nama<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{$student_edit->usr_name}}">
+                            <label>Nama<span style="color:red"> *</span></label> 
+                            <input type="text" name="mss_name" class="form-control form-control-rounded @error('mss_name') is-invalid @enderror" value="{{$master_slide->mss_name}}" placeholder="Masukan Nama foto">
+                            @error('mss_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                         <div class="col-sm-4">
-                        <label>Email<span style="color:red"> *</span></label>
-                            <input type="email" readonly="" class="form-control" id="input-10" name="usr_email" placeholder="Masukan Email" value="{{$student_edit->usr_email}}">                        
-                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-sm-4">
-                            <label>Nomor Telepon<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon" value="{{$student_edit->usr_phone_number}}">
+                            <label>File<span style="color:red"> *</span></label>
+                            <input type="file" id="input-10" name="mss_file" class="@error('mss_file') is-invalid @enderror">
+                            @error('mss_file')
+                            <p class="invalid-feedback" role="alert">
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
                         </div>
                     </div>
                 
@@ -102,6 +110,33 @@
 
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+<script>
+   $().ready(function() {
+
+    $("#form-validate").validate({
+        rules: {
+            mss_name: {
+              required: true,
+            },
+            mss_file:{
+                required: true
+            },
+            pst_honorarium:{
+                required: true
+            },
+           
+        },
+        messages: {
+            mss_name: {
+              required: "Nama foto harus di isi"
+            },
+            mss_file: {
+              required: "file harus di isi"
+            },
+        }
+    });
+});
+</script>
 
 @endpush
 @endsection

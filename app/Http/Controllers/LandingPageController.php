@@ -58,8 +58,9 @@ class LandingPageController extends Controller
         ], $massages);
 
         $master_slides = new MasterSlides;
-        $master_slides->mss_name = $request->mss_name;
-        $master_slides->mss_file = $request->mss_file;
+        $master_slides->mss_name        = $request->mss_name;
+        $master_slides->mss_file        = $request->mss_file;
+        $master_slides->mss_created_by  = Auth()->user()->usr_id;
         $master_slides->save();
 
         return redirect('/master-slides')->with('success', 'Data berhasil ditambahkan'); 
@@ -82,9 +83,10 @@ class LandingPageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($masterSlideID)
     {
-        return view('landing-page.edit-landing-page');
+        $master_slide = MasterSlides::where('mss_id', $masterSlideID)->first();
+        return view('landing-page.edit-master-slide',['master_slide' => $master_slide]);
     }
 
     /**
@@ -94,9 +96,19 @@ class LandingPageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $masterSlideID)
     {
-        //
+        $master_slide = MasterSlides::where('mss_id', $masterSlideID)->first();
+         if ($master_slide->mss_name == $request->mss_name) {
+            $master_slide->mss_name = $request->mss_name;
+            $master_slide->update();
+            return redirect('master-slides');
+        }
+        $master_slide->mss_name         = $request->mss_name;
+        $master_slide->mss_updated_by   = Auth()->user()->usr_id;
+        $master_slide->update();
+        return redirect('master-slides')->with('success', 'Berkas berhasil di ubah');
+
     }
 
     /**
@@ -113,23 +125,30 @@ class LandingPageController extends Controller
 
 
     public function createConfig(Request $request){
+        return view('landing-page.add-master-config');
+    }
+    
+    public function storeConfig(Request $request){
         $requests = $request->input();
         $massages = [
             'required' => 'kolom wajib diisi'
         ];
         $request->validate([
-            'mss_name'  => 'required',  
+            'msc_name'  => 'required',  
         ], $massages);
 
         $master_configs = new MasterConfigs;
-        $master_configs->msc_name = $request->msc_name;
-        $master_configs->msc_description = $request->msc_description;
-        $master_configs->msc_vision = $request->msc_vision;
-        $master_configs->msc_mision = $request->msc_mision;
-        $master_configs->msc_logo = $request->msc_logo;
+        $master_configs->msc_name                = $request->msc_name;
+        $master_configs->msc_description         = $request->msc_description;
+        // $master_configs->msc_master_video_id     = $request->msv_file;
+        $master_configs->msc_vision              = $request->msc_vision;
+        $master_configs->msc_mision              = $request->msc_mision;
+        $master_configs->msc_logo                = $request->msc_logo;
         $master_configs->msc_school_phone_number = $request->msc_school_phone_number;
         $master_configs->save();
 
-        return redirect('/master-slide')->with('success', 'Data berhasil ditambahkan');
+
+
+        return redirect('/master-configs')->with('success', 'Data berhasil ditambahkan');
     }
 }

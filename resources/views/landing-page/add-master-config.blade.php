@@ -57,8 +57,8 @@
 
                         <div class="col-sm-5">
                             <label>Nama<span style="color:red"> *</span></label> 
-                            <input type="text" name="mss_name" class="form-control form-control-rounded @error('mss_name') is-invalid @enderror" value="{{ old('mss_name') }}" placeholder="Masukan Nama konfigurasi">
-                            @error('mss_name')
+                            <input type="text" name="msc_name" class="form-control form-control-rounded @error('msc_name') is-invalid @enderror" value="{{ old('msc_name') }}" placeholder="Masukan Nama konfigurasi">
+                            @error('msc_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -69,7 +69,7 @@
                     <div class="form-group row">
                          <div class="col-sm-8">
                             <label>Deskripsi</label>
-                            <textarea name="msc_description" rows="5" cols="10" placeholder="Masukan Deskripsi Sekolah" class="form-control"></textarea>
+                            <textarea name="msc_description" value="{{ old('msc_description') }}" rows="5" cols="10" placeholder="Masukan Deskripsi Sekolah" class="form-control"></textarea>
                             @error('msc_description')
                             <p class="invalid-feedback" role="alert">
                                 <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
@@ -77,11 +77,12 @@
                             @enderror
                         </div>
                     </div>
-                
+
+
                     <div class="form-group row">
                         <div class="col-sm-8">
                             <label>Visi</label>
-                            <textarea name="msc_vision" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control"></textarea>
+                            <textarea name="msc_vision" value="{{ old('msc_vision') }}" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control"></textarea>
                             @error('msc_vision')
                             <p class="invalid-feedback" role="alert">
                                 <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
@@ -93,7 +94,7 @@
                     <div class="form-group row">
                         <div class="col-sm-8">
                             <label>Misi</label>
-                            <textarea name="msc_mision" rows="5" cols="10" placeholder="Masukan Misi Sekolah" class="form-control"></textarea>
+                            <textarea name="msc_mision" value="{{ old('msc_mision') }}" rows="5" cols="10" placeholder="Masukan Misi Sekolah" class="form-control"></textarea>
                             @error('msc_mision')
                             <p class="invalid-feedback" role="alert">
                                 <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
@@ -106,14 +107,16 @@
                         <div class="col-sm-3">
                             <label for="input-8">Logo Sekolah</label>
                             <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                            <input type="file" name="msc_logo" id="preview_gambar" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" />
+                            <input type="file" name="msc_logo" id="preview_gambar" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_logo').value=this.value" />
                         </div>
                     </div>
+
+
 
                     <div class="form-group row">
                         <div class="col-sm-5">
                             <label>Kontak Sekolah</label>
-                            <input type="text" name="msc_school_phone_number" class="form-control form-control-rounded" placeholder="Masukan No.Telp Sekolah">
+                            <input type="text" name="msc_school_phone_number" value="{{ old('msc_school_phone_number') }}" class="form-control form-control-rounded" placeholder="Masukan No.Telp Sekolah">
                         </div>
                     </div>
                     
@@ -164,7 +167,7 @@
         },
         messages: {
             msc_name: {
-              required: "Nama foto harus di isi"
+              required: "Nama konfigurasi harus di isi"
             },
         }
     });

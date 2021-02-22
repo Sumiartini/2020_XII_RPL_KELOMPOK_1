@@ -15,7 +15,8 @@ class CreateMasterConfigsTable extends Migration
     {
         Schema::create('master_configs', function (Blueprint $table) {
             $table->bigIncrements('msc_id');
-            $table->bigInteger('msc_master_video_id');
+            $table->foreignId('msc_master_video_id')->nullable();
+            $table->foreign('msc_master_video_id')->references('msv_id')->on('master_videos');
             $table->string('msc_name');
             $table->string('msc_description');
             $table->string('msc_vision');
