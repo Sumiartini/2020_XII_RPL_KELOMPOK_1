@@ -227,6 +227,70 @@ function studentRejected() {
     });
 }
 
+function studentPayment() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'student/payment',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'usr_name', 
+                name:'usr_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stu_payment_picture', 
+                name:'stu_payment_picture', 
+                render: function(data, type, full, meta){
+                    return "<img src=\"" + data + "\"height=\"50\"/>";
+                },
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stu_payment_status', 
+                name:'stu_payment_status', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar pembayaran siswa tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar pembayaran siswa",
+            "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
+
 
 function staff() {
     $('#example').DataTable({

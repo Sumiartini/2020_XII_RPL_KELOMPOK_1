@@ -30,6 +30,8 @@ class CreateStudentsTable extends Migration
             $table->string('stu_nisn')->nullable();
             $table->string('stu_kip_number')->nullable();
             $table->tinyInteger('stu_registration_status')->nullable();
+            $table->string('stu_payment_picture')->nullable();
+            $table->tinyInteger('stu_payment_status')->default('0');
 
             $table->bigInteger('stu_created_by')->unsigned()->nullable();
             $table->bigInteger('stu_updated_by')->unsigned()->nullable();

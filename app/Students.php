@@ -95,6 +95,17 @@ class Students extends Model
 
         return $student_rejected_details;
     }
+
+    public static function getStudentPayment($request)
+    {
+
+        $students_payment = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+            ->whereNotNull('students.stu_payment_picture')
+            ->where('users.usr_is_regist', 0);
+        // dd($students_rejected);
+        return $students_payment;
+    }
+
     public function getStudentEdit($studentID)
     {
         // dd($studentID);
