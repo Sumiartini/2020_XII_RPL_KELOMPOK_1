@@ -15,7 +15,18 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        //
+        if ($request->ajax()) {
+            $master_slides = MasterSlides::all();
+            return Datatables::of($master_slides)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="" type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
+                    return $btn;
+                })->rawColumns(['action'])
+                ->make(true);
+            }
+            // dd($request);
+        return view('landing-page.list-master-slide');
     }
 
     /**
@@ -51,7 +62,7 @@ class LandingPageController extends Controller
         $master_slides->mss_file = $request->mss_file;
         $master_slides->save();
 
-        return redirect('/master-slide')->with('success', 'Data berhasil ditambahkan'); 
+        return redirect('/master-slides')->with('success', 'Data berhasil ditambahkan'); 
     }
 
     /**
