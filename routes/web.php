@@ -215,6 +215,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 });
 
     //Landing page
+    Route::get('/master-slides', function () {
+        return view('landing-page.list-master-slide');
+    });
     Route::get('/master-slide', 'DatatableController@getMasterSlide');
     Route::get('/master-slide/create', 'LandingPageController@create');
     Route::post('/master-slide/create', 'LandingPageController@store');
