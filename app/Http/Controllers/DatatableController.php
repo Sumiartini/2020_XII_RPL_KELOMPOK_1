@@ -11,6 +11,7 @@ use App\PositionTypes;
 use App\Subjects;
 use App\Years;
 use App\majors;
+use App\MasterSlides;
 
 class DatatableController extends Controller
 {
@@ -337,8 +338,19 @@ class DatatableController extends Controller
         ->make(true);
     }
 
-    public function getLandingPage(Request $request)
+    public function getMasterSlide(Request $request)
     {
-        return view('landing-page.list-landing-page');
+        $master_slides = MasterSlides::getMasterSlides($request->query());
+        return Datatables::of($master_slides)
+        ->addColumn('action', function ($row) {
+            $edit = '<a href="' . url('master_slides/edit', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+            
+            return $edit ;
+        })->rawColumns(['action'])
+        ->make(true);
+    }
+
+    public function getMasterConfig(Request $request){
+        return view('landing-page.list-master-config');
     }
 }

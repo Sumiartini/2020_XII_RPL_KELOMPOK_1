@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MasterSlides;
+use App\MasterConfigs;
 
 class LandingPageController extends Controller
 {
@@ -13,7 +15,18 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        //
+        if ($request->ajax()) {
+            $master_slides = MasterSlides::all();
+            return Datatables::of($master_slides)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="" type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
+                    return $btn;
+                })->rawColumns(['action'])
+                ->make(true);
+            }
+            // dd($request);
+        return view('landing-page.list-master-slide');
     }
 
     /**
@@ -23,7 +36,7 @@ class LandingPageController extends Controller
      */
     public function create()
     {
-        return view('landing-page.add-landing-page');
+        return view('landing-page.add-master-slide');
     }
 
     /**
@@ -34,7 +47,22 @@ class LandingPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $requests = $request->input();
+        $massages = [
+            'required' => 'kolom wajib diisi'
+        ];
+        $request->validate([
+            'mss_name'  => 'required',
+            'mss_file'  => 'required',  
+        ], $massages);
+
+        $master_slides = new MasterSlides;
+        $master_slides->mss_name = $request->mss_name;
+        $master_slides->mss_file = $request->mss_file;
+        $master_slides->save();
+
+        return redirect('/master-slides')->with('success', 'Data berhasil ditambahkan'); 
     }
 
     /**
@@ -80,5 +108,11 @@ class LandingPageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function createConfig(){
+        return view('landing-page.add-master-config');
     }
 }

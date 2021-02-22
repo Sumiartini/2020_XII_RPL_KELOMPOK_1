@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Tambah Konten Halaman Arahan
+- Tambah konfigurasi Halaman Arahan
 @endpush
 
 @push('styles')
@@ -33,11 +33,11 @@
 
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Tambah Konten Halaman Arahan</h4>
+        <h4 class="page-title">Tambah konfigurasi Halaman Arahan</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Konten Halaman Arahan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tambah Konten Halaman Arahan</li>
+            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Konfigurasi Halaman Arahan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah Konfigurasi Halaman Arahan</li>
         </ol>
     </div>
 </div>
@@ -46,26 +46,34 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="signupForm" autocomplete="off" method="POST" action="{{ url('student/create') }}" novalidate="novalidate">
+                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student/create') }}" novalidate="novalidate">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
-                        Data Akun
+                        Tambah Konfigurasi Halaman Arahan
                     </h4>
 
                     <div class="form-group row">
 
                         <div class="col-sm-4">
-                            <label>Nama<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="mss_name" placeholder="Masukan Nama">
+                            <label>Nama<span style="color:red"> *</span></label> 
+                            <input type="text" name="mss_name" class="form-control form-control-rounded @error('mss_name') is-invalid @enderror" value="{{ old('mss_name') }}" placeholder="Masukan Nama foto">
+                            @error('mss_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                         <div class="col-sm-4">
-                        <label>Deskripsi<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="mss_description" placeholder="Masukan Deskripsi">                        
-                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-sm-4">
                             <label>File<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="mss_file" placeholder="Masukan File">
+                            <input type="file" id="input-10" name="mss_file" class="@error('mss_file') is-invalid @enderror">
+                            @error('mss_file')
+                            <p class="invalid-feedback" role="alert">
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
                         </div>
                     </div>
                     
@@ -78,6 +86,7 @@
         </div>
     </div>
 </div>
+
 
 <!--Start Back To Top Button-->
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
@@ -100,6 +109,33 @@
 
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+<script>
+   $().ready(function() {
+
+    $("#form-validate").validate({
+        rules: {
+            mss_name: {
+              required: true,
+            },
+            mss_name:{
+                required: true
+            },
+            pst_honorarium:{
+                required: true
+            },
+           
+        },
+        messages: {
+            mss_name: {
+              required: "Nama foto harus di isi"
+            },
+            mss_file: {
+              required: "file harus di isi"
+            },
+        }
+    });
+});
+</script>
 
 @endpush
 @endsection

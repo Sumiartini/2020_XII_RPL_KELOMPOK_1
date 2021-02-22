@@ -979,3 +979,113 @@ function major() {
     });
 }
 
+function master_slide() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'master-slide',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'mss_id',
+                name: 'mss_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'mss_name', 
+                name:'mss_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'mss_file', 
+                name:'mss_file', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar Berkas tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar Berkas",
+            "infoFiltered": "(pencarian dari _MAX_ daftar Berkas)",
+            "lengthMenu": "Tampilkan _MENU_ data",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
+function master_config() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'master-config',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'msc_id',
+                name: 'msc_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'msc_name', 
+                name:'msc_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'msc_is_active', 
+                name:'msc_is_active', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar konfigurasi tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar konfigurasi",
+            "infoFiltered": "(pencarian dari _MAX_ daftar konfigurasi)",
+            "lengthMenu": "Tampilkan _MENU_ data",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
