@@ -46,7 +46,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student/create') }}" novalidate="novalidate">
+                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('master-config/create') }}" novalidate="novalidate">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -55,9 +55,9 @@
 
                     <div class="form-group row">
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <label>Nama<span style="color:red"> *</span></label> 
-                            <input type="text" name="mss_name" class="form-control form-control-rounded @error('mss_name') is-invalid @enderror" value="{{ old('mss_name') }}" placeholder="Masukan Nama foto">
+                            <input type="text" name="mss_name" class="form-control form-control-rounded @error('mss_name') is-invalid @enderror" value="{{ old('mss_name') }}" placeholder="Masukan Nama konfigurasi">
                             @error('mss_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -65,15 +65,55 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <div class="col-sm-4">
-                            <label>File<span style="color:red"> *</span></label>
-                            <input type="file" id="input-10" name="mss_file" class="@error('mss_file') is-invalid @enderror">
-                            @error('mss_file')
+                         <div class="col-sm-8">
+                            <label>Deskripsi</label>
+                            <textarea name="msc_description" rows="5" cols="10" placeholder="Masukan Deskripsi Sekolah" class="form-control"></textarea>
+                            @error('msc_description')
                             <p class="invalid-feedback" role="alert">
                                 <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
                             </p>
                             @enderror
+                        </div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <div class="col-sm-8">
+                            <label>Visi</label>
+                            <textarea name="msc_vision" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control"></textarea>
+                            @error('msc_vision')
+                            <p class="invalid-feedback" role="alert">
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-8">
+                            <label>Misi</label>
+                            <textarea name="msc_mision" rows="5" cols="10" placeholder="Masukan Misi Sekolah" class="form-control"></textarea>
+                            @error('msc_mision')
+                            <p class="invalid-feedback" role="alert">
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">                                                                                     
+                        <div class="col-sm-3">
+                            <label for="input-8">Logo Sekolah</label>
+                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
+                            <input type="file" name="msc_logo" id="preview_gambar" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-5">
+                            <label>Kontak Sekolah</label>
+                            <input type="text" name="msc_school_phone_number" class="form-control form-control-rounded" placeholder="Masukan No.Telp Sekolah">
                         </div>
                     </div>
                     
@@ -114,11 +154,8 @@
 
     $("#form-validate").validate({
         rules: {
-            mss_name: {
+            msc_name: {
               required: true,
-            },
-            mss_name:{
-                required: true
             },
             pst_honorarium:{
                 required: true
@@ -126,11 +163,8 @@
            
         },
         messages: {
-            mss_name: {
+            msc_name: {
               required: "Nama foto harus di isi"
-            },
-            mss_file: {
-              required: "file harus di isi"
             },
         }
     });

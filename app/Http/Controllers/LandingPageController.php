@@ -101,7 +101,24 @@ class LandingPageController extends Controller
 
 
 
-    public function createConfig(){
-        return view('landing-page.add-master-config');
+    public function createConfig(Request $request){
+        $requests = $request->input();
+        $massages = [
+            'required' => 'kolom wajib diisi'
+        ];
+        $request->validate([
+            'mss_name'  => 'required',  
+        ], $massages);
+
+        $master_configs = new MasterConfigs;
+        $master_configs->msc_name = $request->msc_name;
+        $master_configs->msc_description = $request->msc_description;
+        $master_configs->msc_vision = $request->msc_vision;
+        $master_configs->msc_mision = $request->msc_mision;
+        $master_configs->msc_logo = $request->msc_logo;
+        $master_configs->msc_school_phone_number = $request->msc_school_phone_number;
+        $master_configs->save();
+
+        return redirect('/master-slide')->with('success', 'Data berhasil ditambahkan');
     }
 }

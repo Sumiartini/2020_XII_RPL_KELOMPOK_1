@@ -82,6 +82,7 @@
       <ul class="sidebar-submenu">
         <li><a href="{{URL::to('/master-slide')}}"><i class="fa fa-circle-o"></i> Daftar Berkas Informasi</a></li>
         <li><a href="{{URL::to('/master-slide/create')}}"><i class="fa fa-circle-o"></i> Tambah Berkas Informasi</a></li>
+        
         <li><a href="{{URL::to('/master-config')}}"><i class="fa fa-circle-o"></i> Daftar Konfigurasi</a></li>
         <li><a href="{{URL::to('/master-config/create')}}"><i class="fa fa-circle-o"></i> Tambah Konfigurasi</a></li>
       </ul>
