@@ -33,12 +33,17 @@ class CheckRegistrationVerificate
             $user = Auth::user();   
             if ($user->hasRole('student')) {
                 if ($student->str_status == 0) {
-                    if ($user->usr_is_regist == 1 ) {
-                        return redirect('/pending-verification');
+                    if ($student->stu_payment_status == 1) {
+                        if ($user->usr_is_regist == 1 ) {
+                            return redirect('/pending-verification');
+                        }else{
+                            return redirect('student-registration');
+                        }
                     }else{
-                        return redirect('student-registration');
-                    }
-                }    
+                        return redirect('/payment-upload');
+                    }   
+                }
+
             } elseif ( $user->hasRole('teacher')) {
                 if ($teacher->tcr_registration_status == 0) {
                     if ($user->usr_is_regist == 1) {

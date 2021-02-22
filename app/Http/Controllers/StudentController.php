@@ -182,11 +182,11 @@ class StudentController extends Controller
         $student = new students;
         $student = $student->getStudentDetail($studentID);
         $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
-            ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
-            ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
-            ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
-            ->where('usr_id', $student->usr_id)
-            ->get();
+        ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
+        ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')
+        ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
+        ->where('usr_id', $student->usr_id)
+        ->get();
         return view('students.detail-student', ['student' => $student, 'user' => $user]);
     }
     public function show_prospective($studentID)
@@ -276,8 +276,8 @@ class StudentController extends Controller
                 if (is_array($requestData)) {
                     foreach ($requestData as $requestKey => $requestValue) {
                         $studentDetail = StudentDetails::where('std_student_id', $student->stu_id)
-                            ->where('std_type', $type)
-                            ->where('std_key', $requestKey)->first();
+                        ->where('std_type', $type)
+                        ->where('std_key', $requestKey)->first();
 
                         $studentDetail->std_value       = $requestValue;
                         $studentDetail->std_updated_by  = Auth()->user()->usr_id;
@@ -305,14 +305,20 @@ class StudentController extends Controller
     public function formRegistrasion()
     {
         $user = Auth::user();
-
-        if ($user->usr_is_regist == 0 && $user->hasRole('student')) {
-            $majors = Majors::where('mjr_is_active', true)->get();
-            $province = Provinces::select('prv_id', 'prv_name')->get();
-            return view('students.new-registration-student', ['majors' => $majors, 'province' => $province]);
-        } else {
-            return redirect('/pending-verification');
+        $student = Students::where('stu_user_id', $user->usr_id)->first();
+        
+        if ($student->stu_payment_status == 1) {
+            if ($user->usr_is_regist == 0 && $user->hasRole('student')) {
+                $majors = Majors::where('mjr_is_active', true)->get();
+                $province = Provinces::select('prv_id', 'prv_name')->get();
+                return view('students.new-registration-student', ['majors' => $majors, 'province' => $province]);
+            } else {
+                return redirect('/pending-verification');
+            }
+        } else{
+            return redirect ('/payment-upload');
         }
+        
     }
 
     public function storeFormRegistrasion(Request $request)
@@ -381,7 +387,7 @@ class StudentController extends Controller
         ], $messages);
 
         $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            ->where('students.stu_user_id', Auth::user()->usr_id)->first();
+        ->where('students.stu_user_id', Auth::user()->usr_id)->first();
         $user = Auth()->user();
         // dd($user->usr_gender);
         $user->usr_gender           = $request->usr_gender;
@@ -496,13 +502,58 @@ class StudentController extends Controller
         return redirect('students-prospective')->with('success', 'Siswa berhasil ditolak');
     }
 
-    public function restore($stu_id)
-    {
-         $student_registration = StudentRegistration::where('str_student_id',$stu_id)->first();
+    public function restore($stu_id){
+        $student_registration = StudentRegistration::where('str_student_id',$stu_id)->first();
 
         $student_registration->str_status = '0';
         $student_registration->update();
 
         return back()->with('success', 'Siswa berhasil dikembalikan menjadi calon siswa');
+    }
+
+    public function payment(){
+        $user = Auth::user();
+        $student = Students::where('stu_user_id', $user->usr_id)->first();
+        if ($student->stu_payment_status == 1) {
+            if ($user->usr_is_regist == 0 && $user->hasRole('student')) {
+                return redirect('/student-registration');
+            } else {
+                return redirect('/pending-verification');
+            }
+        } else{
+            return view('students.payment', ['student' => $student]);
+        }        
+    }
+
+    public function payment_upload(Request $request)
+    {        
+        $userID = Auth::user()->usr_id;
+        $student = Students::where('stu_user_id', $userID)->first();
+        if ($request->hasFile('stu_payment_picture')) {
+            $files = $request->file('stu_payment_picture');
+            $path = public_path('images/student_files/payments');
+            $files_name = 'images' . '/' . 'student_files' . '/' . 'payments' .  '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $student->stu_payment_picture = $files_name;
+        }
+
+        if ($student->update()) {
+            return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalu email atau telpon.');
+        }        
+
+    }
+
+    public function payment_detail($studentID)
+    {        
+        $student = Students::findOrFail($studentID);        
+        return view('students.detail-payment', ['student' => $student]);
+    }
+
+    public function acceptPayment($studentID)
+    {
+        $student = Students::findOrFail($studentID);
+        $student->stu_payment_status = '1';
+        $student->update();
+        return back()->with('success', 'Pembayaran berhasil diterima');
     }
 }

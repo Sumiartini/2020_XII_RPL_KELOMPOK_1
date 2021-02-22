@@ -39,6 +39,9 @@ Route::get('/register-teacher', 'Auth\RegisterController@registerTeacher');
 Route::get('/register-staff', 'Auth\RegisterController@registerStaff');
 
 Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], function () {
+    //Mengupload bukti pembayaran
+    Route::get('/payment-upload', 'StudentController@payment');
+    Route::post('/payment-upload', 'StudentController@payment_upload');
 
     //Menunggu Verifikasi Terima atau Tolak
     Route::get('/pending-verification', 'Auth\AccountController@pending_verification');
@@ -126,13 +129,20 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('/student/rejected', 'DatatableController@getStudentRejected');
 
+    Route::get('/students-payment', function () {
+        return view('students.list-student-payment');
+    });
+    Route::get('/student/payment', 'DatatableController@getStudentPayment');
+
+    
+
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
     Route::get('/student/{stu_id}', 'StudentController@show_student');
     Route::get('/student/edit/{std_id}', 'StudentController@edit');
     Route::post('/student/edit/{std_id}', 'StudentController@update');
     Route::post('/student/delete', 'StudentController@destroy');    
-    
+    Route::get('/student/payment/{std_id}', 'StudentController@payment_detail');
 
     Route::get('/page/list', 'PageController@index');
     Route::get('/page/detail', 'PageController@show');
@@ -190,12 +200,14 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
     Route::get('position-type/edit-status/{positionTypeID}', 'PositionTypeController@editStatus');
 
-    //terima tolak dan restore siswa
+    //terima, tolak, restore,  dan terima pembayaran siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');
     Route::post('/student/receipted/{str_id}', 'StudentController@storeReceipted');
     Route::get('/student/rejected/{stu_id}', 'StudentController@rejected');
     Route::post('/student/rejected/{str_id}', 'StudentController@storeRejected');
     Route::get('/student/restore/{std_id}', 'StudentController@restore');
+    Route::get('/student/accept-payment/{std_id}', 'StudentController@acceptPayment');
+
     
     //terima tolak dan restore staf
     Route::get('/staff/receipted/{stf_id}', 'StaffController@receipted');
