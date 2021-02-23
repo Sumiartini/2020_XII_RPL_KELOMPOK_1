@@ -122,6 +122,21 @@ class LandingPageController extends Controller
         //
     }
 
+    public function index_master_config()
+    {
+        if ($request->ajax()) {
+            $master_configs = MasterConfigs::all();
+            return Datatables::of($master_configs)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="" type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
+                    return $btn;
+                })->rawColumns(['action'])
+                ->make(true);
+            }
+            // dd($request);
+        return view('landing-page.list-master-slide');
+    }
 
 
     public function createConfig(Request $request){

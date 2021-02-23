@@ -15,7 +15,7 @@ class MasterConfigs extends Model
     public static function getMasterConfigs($request){
 	    $master_configs = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id');
         // dd($students);
-        return $students;
+        return $master_configs;
     }
 
 }
