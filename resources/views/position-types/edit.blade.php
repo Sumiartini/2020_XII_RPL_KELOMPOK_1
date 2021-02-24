@@ -38,7 +38,7 @@
             <div class="alert alert-danger alert-dismissible" role="alert">
               <button type="button" class="close" data-dismiss="alert">×</button>
               <div class="alert-icon contrast-alert">
-                <i class="icon-check"></i>
+                <i class="icon-close"></i>
               </div>
               <div class="alert-message">
                 <span><strong>Gagal!</strong> {{$message}}.</span>

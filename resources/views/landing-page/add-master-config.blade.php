@@ -70,24 +70,21 @@
                          <div class="col-sm-8">
                             <label>Deskripsi</label>
                             <textarea name="msc_description" value="{{ old('msc_description') }}" rows="5" cols="10" placeholder="Masukan Deskripsi Sekolah" class="form-control"></textarea>
-                            @error('msc_description')
-                            <p class="invalid-feedback" role="alert">
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
                         </div>
                     </div>
+
+                   <!--  <div class="form-group row">                                                                                     
+                        <div class="col-sm-3">
+                            <label for="input-8">Video Sekolah</label> 
+                            <input type="file" name="msv_file" onchange="document.getElementById('msv_file').value=this.value" />
+                        </div>
+                    </div> -->
 
 
                     <div class="form-group row">
                         <div class="col-sm-8">
                             <label>Visi</label>
                             <textarea name="msc_vision" value="{{ old('msc_vision') }}" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control"></textarea>
-                            @error('msc_vision')
-                            <p class="invalid-feedback" role="alert">
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
                         </div>
                     </div>
 
@@ -95,19 +92,13 @@
                         <div class="col-sm-8">
                             <label>Misi</label>
                             <textarea name="msc_mision" value="{{ old('msc_mision') }}" rows="5" cols="10" placeholder="Masukan Misi Sekolah" class="form-control"></textarea>
-                            @error('msc_mision')
-                            <p class="invalid-feedback" role="alert">
-                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                            </p>
-                            @enderror
                         </div>
                     </div>
                     
                     <div class="form-group row">                                                                                     
                         <div class="col-sm-3">
-                            <label for="input-8">Logo Sekolah</label>
-                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                            <input type="file" name="msc_logo" id="preview_gambar" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_logo').value=this.value" />
+                            <label for="input-8">Logo Sekolah</label> 
+                            <input type="file" name="msc_logo" onchange="document.getElementById('msc_logo').value=this.value" />
                         </div>
                     </div>
 
@@ -121,7 +112,7 @@
                     </div>
                     
                     <div class="form-footer">
-                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+                       <button type="reset" onclick="window.location.href='{{URL::to('/master-configs')}}'" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
                     </div>
                 </form>

@@ -18,11 +18,11 @@ class CreateMasterConfigsTable extends Migration
             $table->foreignId('msc_master_video_id')->nullable();
             $table->foreign('msc_master_video_id')->references('msv_id')->on('master_videos');
             $table->string('msc_name');
-            $table->string('msc_description');
-            $table->string('msc_vision');
-            $table->string('msc_mision');
-            $table->string('msc_logo');
-            $table->string('msc_school_phone_number');
+            $table->string('msc_description')->nullable();
+            $table->string('msc_vision')->nullable();
+            $table->string('msc_mision')->nullable();
+            $table->string('msc_logo')->nullable();
+            $table->string('msc_school_phone_number')->nullable();
 
             $table->bigInteger('msc_created_by')->unsigned()->nullable();
             $table->bigInteger('msc_updated_by')->unsigned()->nullable();

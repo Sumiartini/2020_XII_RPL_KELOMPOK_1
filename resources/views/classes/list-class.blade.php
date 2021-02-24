@@ -1,13 +1,10 @@
 @extends('layouts.master')
 
 @push('title')
-- Daftar konfigurasi Halaman Arahan
+- Daftar Kelas
 @endpush
 
 @push('styles')
-<!--favicon-->
-<!--favicon-->
-<link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
 <!-- simplebar CSS-->
 <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
 <!-- Bootstrap core CSS-->
@@ -27,46 +24,53 @@
 
 @section('content')
 <div class="row pt-2 pb-2">
-  <div class="col-sm-9">
-    <h4 class="page-title">Daftar konfigurasi Halaman Arahan</h4>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
-      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola konfigurasi Halaman Arahan</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Daftar konfigurasi Halaman Arahan</li>
-    </ol>
-  </div>
+    <div class="col-sm-9">
+        <h4 class="page-title">Kelas</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kelas</li>
+        </ol>
+    </div>
 </div>
-
 <div class="row">
-  <div class="col-lg-12">
-    <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data konfigurasi Halaman Arahan</div>
-      <div class="card-body">
-        <div class="table-responsive">
-
-          @if(Auth()->user()->hasRole('admin'))
-          <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-            <a href="{{URL::to('/master-config/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
-          </div>
-          @else
-          @endif
-          <table id="example" class="table table-bordered" style="width: 100%">
-            <thead>
-              <tr>
-                <th>NO</th>
-                <th>NAMA</th>
-                <th>DESKRIPSI</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-
-        </div>
+    <div class="col-lg-12">
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <div class="alert-icon contrast-alert">
+        <i class="icon-check"></i>
+      </div>
+      <div class="alert-message">
+        <span><strong>Berhasil!</strong> {{$message}}.</span>
       </div>
     </div>
-  </div>
+    @endif
+        <div class="card">
+            <div class="card-header"><i class="fa fa-table"></i> Daftar Kelas</div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
+                        <a href="{{URL::to('class/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH KELAS" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
+                    </div>
+                    <table id="example" class="table table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>NO</th>
+                                <th>Kelas</th>
+                                <th>Status</th>                         
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div><!-- End Row-->
 
 <!--Start Back To Top Button-->
@@ -100,14 +104,10 @@
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js') }}"></script>
 
-<script src="{{ asset('assets/plugins/alerts-boxes/js/sweetalert.min.js')}}"></script>
-<script src="{{ asset('assets/plugins/alerts-boxes/js/sweet-alert-script.js')}}"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
 <script>
     $(document).ready( function () {
-        master_config()
+        classes()
     });
 </script>
 @endpush

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class MasterConfigs extends Model
 {
     protected $table = "master_configs";
@@ -14,8 +15,10 @@ class MasterConfigs extends Model
 
     public static function getMasterConfigs($request){
 	    $master_configs = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id');
-        // dd($students);
+        $master_configs = MasterConfigs::select('msc_id', 'msc_name', 'msc_description' );
+        
         return $master_configs;
     }
+
 
 }

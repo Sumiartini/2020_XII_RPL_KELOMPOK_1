@@ -13,6 +13,7 @@ use App\Years;
 use App\majors;
 use App\MasterSlides;
 use App\MasterConfigs;
+use App\Classes;
 
 class DatatableController extends Controller
 {
@@ -342,6 +343,36 @@ class DatatableController extends Controller
             }
             return $edit . '&nbsp' . $status;
         })->rawColumns(['action', 'mjr_is_active'])
+        ->make(true);
+    }
+
+    public function getClasses(Request $request)
+    {
+        $class = Classes::getClasses($request->query());
+        return Datatables::of($class)
+        ->addColumn('cls_name',function($row){
+            return $row->grl_name . ' ' . $row->mjr_name . ' ' . $row->cls_number;
+        })
+        ->editColumn("cls_is_active", function ($row) {
+            $cls_is_active = $row->cls_is_active;
+            if ($cls_is_active == "0") {
+                return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
+            } elseif ($cls_is_active == "1") {
+                return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
+            } else {
+                return "Tidak punya status aktif";
+            }
+        })
+        ->addColumn('action', function ($row) {
+            $edit = '<a href="' . url('class/edit', $row->cls_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+            $cls_is_active = $row->cls_is_active;
+            if ($cls_is_active == '0') {
+                $status = '<a href="' . url('class/edit-status', $row->cls_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+            }else{
+                $status = '<a href="' . url('class/edit-status', $row->cls_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
+            }
+            return $edit . '&nbsp' . $status;
+        })->rawColumns(['action', 'cls_is_active'])
         ->make(true);
     }
 

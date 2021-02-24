@@ -979,6 +979,62 @@ function major() {
     });
 }
 
+
+function classes() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'class',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'cls_id',
+                name: 'cls_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'cls_name', 
+                name:'cls_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'cls_is_active', 
+                name:'cls_is_active', 
+                orderable: false, 
+                searchable: true
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar Kelas tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar kelas",
+            "infoFiltered": "(pencarian dari _MAX_ daftar kelas)",
+            "lengthMenu": "Tampilkan _MENU_ data",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
 function master_slide() {
     $('#example').DataTable({
       processing: true,
@@ -1060,8 +1116,8 @@ function master_config() {
                 searchable: true
             },
             {
-                data: 'msc_is_active', 
-                name:'msc_is_active', 
+                data: 'msc_description', 
+                name:'msc_description', 
                 orderable: false, 
                 searchable: true
             },
