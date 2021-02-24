@@ -124,8 +124,13 @@
 
                     <div class="col-sm-4">
                         <label> No Registrasi Akta Lahir </label>
+                        @if(isset($student_edit->personal['birth_certificate_registration_no']))
                         <input type="text" class="form-control form-control-rounded" name="personal[birth_certificate_registration_no]" 
                         placeholder="Masukan No Registrasi Akta Lahir" value="{{$student_edit->personal['birth_certificate_registration_no']}}">
+                        @else
+                        <input type="text" class="form-control form-control-rounded" name="personal[birth_certificate_registration_no]" 
+                        placeholder="Masukan No Registrasi Akta Lahir" value="">
+                        @endif
                     </div>
                     
                     <div class="col-sm-4">
@@ -164,8 +169,11 @@
 
                     <div class="col-sm-2">
                         <label> Anak Ke</label>
+                        @if(isset($student_edit->personal['child']))
                         <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="{{$student_edit->personal['child']}}">
-                        
+                        @else
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="">
+                        @endif
                     </div>
 
                     <div class="col-sm-2">
@@ -186,8 +194,8 @@
                 <div class="form-group row">
 
                     <div class="col-sm-4">
-                        <img src="{{ asset('users_profile/'.$student_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                        <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+                        <img src="{{ asset($student_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
+                        <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
 
                         <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
 
@@ -211,22 +219,32 @@
 
                     <div class="col-sm-4">
                         <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
+                        @if(isset($student_edit->father_data['nik']))
                         <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[nik]" class="form-control form-control-rounded form-control-rounded" placeholder="Masukan Nomor NIK" value="{{$student_edit->father_data['nik']}}">
-
+                        @else
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[nik]" class="form-control form-control-rounded form-control-rounded" placeholder="Masukan Nomor NIK" value="">
+                        @endif
                     </div>
 
                     <div class="col-sm-4">
                         <label> Tahun Lahir <span style="color:red"> *</span></label>
+                        @if(isset($student_edit->father_data['year_of_birth']))
                         <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded form-control-rounded" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{$student_edit->father_data['year_of_birth']}}">
-
+                        @else
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded form-control-rounded" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="">
+                        @endif
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-sm-4">
-                        <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
+                        <label>Pendidikan Terakhir<span style="color:red"> *</span></label>                        
                         <select name="father_data[education]" class="form-control form-control-rounded form-control-rounded" id="basic-select" value="">
-                            <option disabled="" selected=""> {{$student_edit->father_data['education']}} </option>
+                            @if(isset($student_edit->father_data['education']))
+                            <option disabled="" selected="" value="{{$student_edit->father_data['education']}}"> {{$student_edit->father_data['education']}} </option>
+                            @else
+                            <option disabled="" selected=""> Pilih </option>
+                            @endif
                             <option value="SD - Sederajat"> SD - Sederajat </option>
                             <option value="SMP - Sederajat"> SMP - Sederajat </option>
                             <option value="SMA - Sederajat"> SMA - Sederajat </option>
@@ -238,7 +256,11 @@
                     <div class="col-sm-4">
                         <label>Pekerjaan<span style="color:red"> *</span></label>
                         <select name="father_data[profession]" class="form-control form-control-rounded form-control-rounded" id="basic-select" value="">
-                            <option disabled="" selected="">{{$student_edit->father_data['profession']}}</option>
+                            @if(isset($student_edit->father_data['profession']))
+                            <option disabled="" selected="" value="{{$student_edit->father_data['profession']}}">{{$student_edit->father_data['profession']}}</option>
+                            @else
+                            <option disabled="" selected=""> Pilih </option>
+                            @endif
                             <option value="Buruh"> Buruh </option>
                             <option value="Wirausaha"> Wirausaha </option>
                             <option value="Wiraswasta"> Wiraswasta </option>
@@ -249,7 +271,11 @@
                     <div class="col-sm-4">
                         <label>Pendapatan Perbulan</label>
                         <select name="father_data[monthly_income]" class="form-control form-control-rounded form-control-rounded" id="basic-select" value="">
+                            @if(isset($student_edit->father_data['monthly_income']))
                             <option value="{{$student_edit->father_data['monthly_income']}}" selected="">{{$student_edit->father_data['monthly_income']}}</option>
+                            @else
+                            <option value="" selected=""> Pilih </option>
+                            @endif
                             <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                             <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                             <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -300,12 +326,20 @@
 
                     <div class="col-sm-4">
                         <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
+                        @if(isset($student_edit->mother_data['nik']))
                         <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[nik]" class="form-control form-control-rounded" placeholder="Masukan Nomor NIK" value="{{$student_edit->mother_data['nik']}}">
+                        @else
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[nik]" class="form-control form-control-rounded" placeholder="Masukan Nomor NIK" value="">
+                        @endif
                     </div>
 
                     <div class="col-sm-4">
                         <label> Tahun Lahir <span style="color:red"> *</span></label>
+                        @if(isset($student_edit->mother_data['year_of_birth']))
                         <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{$student_edit->mother_data['year_of_birth']}}">
+                        @else
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded" id="basic-select" placeholder="Masukan Tahun Lahir" value="">
+                        @endif
                     </div>
                 </div>
 
@@ -315,7 +349,11 @@
                     <div class="col-sm-4">
                         <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
                         <select name="mother_data[education]" class="form-control form-control-rounded" id="basic-select" value="">
-                            <option disabled="" selected="">{{$student_edit->mother_data['education']}}</option>
+                            @if(isset($student_edit->mother_data['education']))
+                            <option disabled="" selected="" value="{{$student_edit->mother_data['education']}}">{{$student_edit->mother_data['education']}}</option>
+                            @else
+                            <option disabled="" selected=""> Pilih </option>
+                            @endif
                             <option value="SD - Sederajat"> SD - Sederajat </option>
                             <option value="SMP - Sederajat"> SMP - Sederajat </option>
                             <option value="SMA - Sederajat"> SMA - Sederajat </option>
@@ -326,7 +364,11 @@
                         <label> Pekerjaan <span style="color:red"> *</span></label>
 
                         <select name="mother_data[profession]" class="form-control form-control-rounded" id="basic-select" value="">
-                            <option disabled="" selected=""> {{$student_edit->mother_data['profession']}} </option>
+                            @if(isset($student_edit->mother_data['profession']))
+                            <option disabled="" selected="" value="{{$student_edit->mother_data['profession']}} "> {{$student_edit->mother_data['profession']}} </option>
+                            @else
+                            <option disabled="" selected=""> Pilih </option>
+                            @endif
                             <option value="Buruh"> Buruh </option>
                             <option value="Wirausaha"> Wirausaha </option>
                             <option value="Wiraswasta"> Wiraswasta </option>
@@ -337,7 +379,11 @@
                     <div class="col-sm-4">
                         <label>Pendapatan Perbulan</label>
                         <select name="mother_data[monthly_income]" class="form-control form-control-rounded" id="basic-select" value="">
+                            @if(isset($student_edit->mother_data['monthly_income']))
                             <option value="{{$student_edit->mother_data['monthly_income']}}" selected="">{{$student_edit->mother_data['monthly_income']}}</option>
+                            @else
+                            <option value="" selected="">Pilih</option>
+                            @endif
                             <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                             <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                             <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -385,22 +431,30 @@
 
                     <div class="col-sm-4">
                         <label>Nama Wali Murid</label>
+                        @if(isset($student_edit->guardian_data['name']))
                         <input type="text" name="guardian_data[name]" class="form-control form-control-rounded" id="input-10" name="firstname" placeholder="Masukan Nama Lengkap" value="{{$student_edit->guardian_data['name']}}">
+                        @else
+                        <input type="text" name="guardian_data[name]" class="form-control form-control-rounded" id="input-10" name="firstname" placeholder="Masukan Nama Lengkap" value="">
+                        @endif
                     </div>
 
                     <div class="col-sm-4">
                         <label>Nomor Identitas Kependudukan (NIK)</label>
+                        @if(isset($student_edit->guardian_data['nik']))
                         <input type="text" name="guardian_data[nik]" class="form-control form-control-rounded" id="input-10" name="firstname" placeholder="Masukan Nomor NIK" value="{{$student_edit->guardian_data['nik']}}">
+                        @else
+                        <input type="text" name="guardian_data[nik]" class="form-control form-control-rounded" id="input-10" name="firstname" placeholder="Masukan Nomor NIK" value="">
+                        @endif
                     </div>
 
                     <div class="col-sm-4">
                         <label>Tahun Lahir</label>
                         <select name="guardian_data[year_of_birth]" class="form-control form-control-rounded" id="basic-select">
 
-                            @if($student_edit->guardian_data['year_of_birth'] == NULL)
-                            <option selected=""  disabled="">Pilih Tahun Lahir</option>
-                            @else
+                            @if(isset($student_edit->guardian_data['year_of_birth']))
                             <option selected="">{{$student_edit->guardian_data['year_of_birth']}}</option>
+                            @else
+                            <option selected=""  disabled="">Pilih Tahun Lahir</option>
                             @endif
                             <option>2001</option>
                             <option>2000</option>
@@ -412,10 +466,10 @@
                     <div class="col-sm-4">
                         <label>Pendidikan Terakhir</label>
                         <select name="guardian_data[education]" class="form-control form-control-rounded" id="basic-select">
-                            @if($student_edit->guardian_data['education'] == NULL)
-                            <option selected="" disabled="">Pilih</option>
-                            @else
+                            @if(isset($student_edit->guardian_data['education']))
                             <option selected="">{{$student_edit->guardian_data['education']}}</option>
+                            @else
+                            <option selected="" disabled="">Pilih</option>
                             @endif
                             <option>SD - Sederajat</option>
                             <option>SMP - Sederajat</option>
@@ -428,10 +482,10 @@
                         <label>Pekerjaan</label>
 
                         <select name="guardian_data[profession]" class="form-control form-control-rounded" id="basic-select">
-                         @if($student_edit->guardian_data['profession'] == NULL)
-                         <option selected="" disabled="">Pilih</option>
-                         @else
+                         @if(isset($student_edit->guardian_data['profession']))
                          <option selected="">{{$student_edit->guardian_data['profession']}}</option>
+                         @else
+                         <option selected="" disabled="">Pilih</option>
                          @endif
                          <option>Buruh</option>
                          <option>Wirausaha</option>
@@ -441,10 +495,10 @@
                  <div class="col-sm-4">
                     <label>Pendapatan Perbulan</label>
                     <select name="guardian_data[monthly_income]" class="form-control form-control-rounded" id="basic-select">
-                     @if($student_edit->guardian_data['monthly_income'] == NULL)
-                     <option selected="" disabled="">Pilih</option>
-                     @else
+                     @if(isset($student_edit->guardian_data['monthly_teleincome']))
                      <option selected="">{{$student_edit->guardian_data['monthly_income']}}</option>
+                     @else
+                     <option selected="" disabled="">Pilih</option>
                      @endif
                      <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                      <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
@@ -458,7 +512,11 @@
          <div class="form-group row">
             <div class="col-sm-4">
                 <label> Nomor Telepon <span style="color:red"> *</span></label>
+                @if(isset($student_edit->guardian_data['phone_number']))
                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{$student_edit->guardian_data['phone_number']}}">
+                @else
+                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="">
+                @endif
                 @error('guardian_data.phone_number')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -562,12 +620,20 @@
         </div>
         <div class="col-sm-4">
             <label>Telepon Rumah</label>
+            @if(isset($student_edit->contact['landline_number']))
             <input type="text" name="contact[landline_number]" value="{{$student_edit->contact['landline_number']}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
+            @else
+            <input type="text" name="contact[landline_number]" value="" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
+            @endif
         </div>
 
         <div class="col-sm-4">
             <label>Email Rumah</label>
+            @if(isset($student_edit->contact['email']))
             <input type="text" name="contact[email]" value="{{$student_edit->contact['email']}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Alamat Email Rumah">
+            @else
+            <input type="text" name="contact[email]" value="" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Alamat Email Rumah">
+            @endif
         </div>
 
     </div>
@@ -581,6 +647,7 @@
 
         <div class="col-sm-4">
             <label> Jenis </label>
+            @if(isset($student_edit->achievement['type']))
             <div class="radio icheck-info">
                 <input type="radio" {{ $student_edit->achievement['type']=='Sains'?'checked':'' }} id="achievementType1" value="Sains" name="achievement[type]">
                 <label for="achievementType1"> Sains </label>
@@ -597,13 +664,31 @@
                 <input type="radio" {{ $student_edit->achievement['type']==''?'checked':'' }} id="achievementType4" value="" name="achievement[type]">
                 <label for="achievementType4"> Tidak ada </label>
             </div>
+            @else
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementType1" value="Sains" name="achievement[type]">
+                <label for="achievementType1"> Sains </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementType2" value="Seni" name="achievement[type]">
+                <label for="achievementType2"> Seni </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementType3" value="Olahraga" name="achievement[type]">
+                <label for="achievementType3"> Olahraga </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementType4" value="" name="achievement[type]">
+                <label for="achievementType4"> Tidak ada </label>
+            </div>
+            @endif
         </div>
 
 
 
         <div class="col-sm-4">
             <label> Tingkat</label>
-
+            @if(isset($student_edit->achievement['achievement_level']))
             <div class="radio icheck-info">
                 <input {{ $student_edit->achievement['achievement_level']=='Sekolah'?'checked':'' }} type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
                 <label for="achievementLevel1"> Sekolah </label>
@@ -635,23 +720,69 @@
                 <input {{ $student_edit->achievement['achievement_level']==''?'checked':'' }} type="radio" id="achievementLevel7" value="" name="achievement[achievement_level]">
                 <label for="achievementLevel7"> Tidak ada </label>
             </div>
+            @else
+
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementLevel1" value="Sekolah" name="achievement[achievement_level]">
+                <label for="achievementLevel1"> Sekolah </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementLevel2" value="Kecamatan" name="achievement[achievement_level]">
+                <label for="achievementLevel2"> Kecamatan </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementLevel3" value="Kabupaten" name="achievement[achievement_level]">
+                <label for="achievementLevel3"> Kabupaten </label>
+            </div>
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementLevel4" value="Provinsi" name="achievement[achievement_level]">
+                <label for="achievementLevel4"> Provinsi </label>
+            </div>
+
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementLevel5" value="Nasional" name="achievement[achievement_level]">
+                <label for="achievementLevel5"> Nasional </label>
+            </div>
+
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementLevel6" value="Internasioanl" name="achievement[achievement_level]">
+                <label for="achievementLevel6"> Internasional </label>
+            </div>
+
+            <div class="radio icheck-info">
+                <input type="radio" id="achievementLevel7" value="" name="achievement[achievement_level]">
+                <label for="achievementLevel7"> Tidak ada </label>
+            </div>
+            @endif
 
         </div>
 
         <div class="col-sm-4">
             <div>
                 <label> Nama Prestasi </label>
+                @if(isset($student_edit->achievement['achievement_name']))
                 <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded" placeholder="Masukan Nama Prestasi" value="{{ $student_edit->achievement['achievement_name'] }}">
+                @else
+                <input type="text" name="achievement[achievement_name]" class="form-control form-control-rounded" placeholder="Masukan Nama Prestasi" value="">
+                @endif
             </div>
 
             <div>
                 <label> Tahun </label>
+                @if(isset($student_edit->achievement['year']))
                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun" value="{{ $student_edit->achievement['year'] }}">
+                @else
+                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="achievement[year]" class="form-control form-control-rounded" placeholder="Masukan Tahun" value="">
+                @endif
             </div>
 
             <div>
                 <label> Penyelenggara </label>
+                @if(isset($student_edit->achievement['organizer']))
                 <input type="text" name="achievement[organizer]" class="form-control form-control-rounded" placeholder="Masukan Nama Penyelenggara Kegiatan" value="{{ $student_edit->achievement['organizer'] }}">
+                @else
+                <input type="text" name="achievement[organizer]" class="form-control form-control-rounded" placeholder="Masukan Nama Penyelenggara Kegiatan" value="">
+                @endif
 
             </div>
         </div>
@@ -667,7 +798,11 @@
         <div class="col-sm-4">
             <label>Rekomendasi dari</label>
             <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="">
+                @if(isset($student_edit->other['recomended_from']))
                 <option value="{{$student_edit->other['recomended_from']}}" selected=""> {{$student_edit->other['recomended_from']}} </option>
+                @else
+                <option value="" selected=""> Pilih </option>
+                @endif
                 <option value="Iklan"> Iklan (Poster, Banner, Dll) </option>
                 <option value="Sosmed"> Sosmed (IG, FB, YT, dll) </option>
                 <option value="Saudara"> Saudara </option>

@@ -428,7 +428,7 @@ class TeacherController extends Controller
         } else {
             dd('gagal user');
         }
-        return redirect('/pending-verification/' . $teacher->tcr_id);
+        return redirect('/pending-verification');
 
     }
 

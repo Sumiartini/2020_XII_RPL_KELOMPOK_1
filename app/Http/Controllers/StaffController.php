@@ -428,7 +428,7 @@ class StaffController extends Controller
         } else {
             dd('gagal user');
         }
-        return redirect('/pending-verification/' . $staff->stf_id);
+        return redirect('/pending-verification');
     }
 
     public function receipted($stf_id)

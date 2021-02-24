@@ -95,11 +95,17 @@ class DatatableController extends Controller
                 return "Tidak punya status aktif";
             }
         })
-        ->addColumn('action', function ($row) {             
-            $accept = '<a href="' . url('student/accept-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';            
+        ->addColumn('action', function ($row) {
+            if ($row->stu_payment_status == "0") {
+                $accept = '<a href="' . url('student/accept-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';            
+                
+            }
             $detail = '<a href="' . url('student/payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
-            return $detail . '&nbsp' . $accept;
-            
+            if ($row->stu_payment_status == "0") {
+                return $detail . '&nbsp' . $accept;
+            } else{
+                return $detail;
+            }
         })->rawColumns(['action', 'stu_payment_status'])
         ->make(true);
     }
