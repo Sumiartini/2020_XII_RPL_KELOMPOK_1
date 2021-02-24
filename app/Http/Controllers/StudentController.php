@@ -538,7 +538,7 @@ class StudentController extends Controller
         }
 
         if ($student->update()) {
-            return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalu email atau telpon.');
+            return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalui email atau nomor telepon anda.');
         }        
 
     }
