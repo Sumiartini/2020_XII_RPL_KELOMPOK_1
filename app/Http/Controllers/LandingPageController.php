@@ -122,6 +122,21 @@ class LandingPageController extends Controller
         //
     }
 
+    public function index_master_config()
+    {
+        if ($request->ajax()) {
+            $master_configs = MasterConfigs::all();
+            return Datatables::of($master_configs)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="" type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
+                    return $btn;
+                })->rawColumns(['action'])
+                ->make(true);
+            }
+            // dd($request);
+        return view('landing-page.list-master-slide');
+    }
 
 
     public function createConfig(Request $request){
@@ -129,6 +144,7 @@ class LandingPageController extends Controller
     }
     
     public function storeConfig(Request $request){
+        // dd($request)
         $requests = $request->input();
         $massages = [
             'required' => 'kolom wajib diisi'
@@ -150,5 +166,30 @@ class LandingPageController extends Controller
 
 
         return redirect('/master-configs')->with('success', 'Data berhasil ditambahkan');
+    }
+
+    public function editConfig($masterConfigID){
+        $master_config = MasterConfigs::where('msc_id', $masterConfigID)->first();
+        return view('landing-page.edit-master-config',['master_config' => $master_config]);
+    }
+
+    public function updateConfig(Request $request, $masterConfigID){
+        // dd($request);
+        $master_config = MasterConfigs::where('msc_id', $masterConfigID)->first();
+         if ($master_config->msc_name == $request->msc_name) {
+            $master_config->msc_name = $request->msc_name;
+            $master_config->update();
+            return redirect('master-configs');
+        }
+        $master_config->msc_name         = $request->msc_name;
+        $master_config->msc_description         = $request->msc_description;
+        // $master_configs->msc_master_video_id     = $request->msv_file;
+        $master_config->msc_vision              = $request->msc_vision;
+        $master_config->msc_mision              = $request->msc_mision;
+        $master_config->msc_logo                = $request->msc_logo;
+        $master_config->msc_school_phone_number = $request->msc_school_phone_number;
+        $master_config->msc_updated_by   = Auth()->user()->usr_id;
+        $master_config->update();
+        return redirect('master-configs')->with('success', 'Berkas berhasil di ubah');
     }
 }

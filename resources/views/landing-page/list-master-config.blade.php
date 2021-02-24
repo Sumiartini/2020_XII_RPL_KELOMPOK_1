@@ -56,7 +56,6 @@
                 <th>NO</th>
                 <th>NAMA</th>
                 <th>DESKRIPSI</th>
-                <th>FOTO</th>
                 <th>Aksi</th>
               </tr>
             </thead>
