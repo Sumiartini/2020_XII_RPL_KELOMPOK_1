@@ -76,6 +76,12 @@
       </a>
     </li>
 
+    <li>
+      <a href="{{ url('classes')}}" class="waves-effect active">
+        <i></i> <span>Kelas</span>
+      </a>
+    </li>
+
      <li>
       <a href="javaScript:void();" class="waves-effect">
          <i></i><span>Halaman Arahan</span><i class="fa fa-angle-left pull-right"></i>

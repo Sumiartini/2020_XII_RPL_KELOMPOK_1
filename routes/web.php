@@ -197,8 +197,19 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/position-type/create', 'PositionTypeController@store');
     Route::get('/position-type/edit/{positionTypeID}', 'PositionTypeController@edit');
     Route::post('/position-type/edit/{positionTypeID}', 'PositionTypeController@update');
+    Route::get('/position-type/edit-status/{positionTypeID}', 'PositionTypeController@editStatus');
 
-    Route::get('position-type/edit-status/{positionTypeID}', 'PositionTypeController@editStatus');
+    Route::get('/classes', function () {
+        return view('classes.list-class');
+    });
+    Route::get('/class', 'DatatableController@getClasses');
+
+    Route::get('/class/create', 'ClassController@create');
+    Route::post('/class/create', 'ClassController@store');
+    Route::get('/class/edit/{classID}', 'ClassController@edit');
+    Route::post('/class/edit/{classID}', 'ClassController@update');
+    Route::get('/class/edit-status/{classID}', 'ClassController@editStatus');
+
 
     //terima, tolak, restore,  dan terima pembayaran siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');
@@ -208,7 +219,6 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/student/restore/{std_id}', 'StudentController@restore');
     Route::get('/student/accept-payment/{std_id}', 'StudentController@acceptPayment');
 
-    
     //terima tolak dan restore staf
     Route::get('/staff/receipted/{stf_id}', 'StaffController@receipted');
     Route::get('/staff/rejected/{stf_id}', 'StaffController@rejected');
@@ -219,8 +229,6 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/teacher/rejected/{tcr_id}', 'TeacherController@rejected');
     Route::get('/teacher/restore/{tcr_id}', 'TeacherController@restore');
     
-
-
     Route::get('/edit-status/{usr_id}', 'Auth\AccountController@edit_status');
     Route::get('/edit-status/school-year/{scy_id}','YearController@edit_status');
     Route::get('/edit-status/major/{mjr_id}','MajorController@edit_status');

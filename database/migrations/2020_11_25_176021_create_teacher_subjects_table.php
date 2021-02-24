@@ -20,7 +20,7 @@ class CreateTeacherSubjectsTable extends Migration
             $table->foreignId('tcs_subject_id');
             $table->foreign('tcs_subject_id')->references('sbj_id')->on('subjects');
             $table->foreignId('tcs_class_id');
-            $table->foreign('tcs_class_id')->references('cls_id')->on('class');
+            $table->foreign('tcs_class_id')->references('cls_id')->on('classes');
             $table->string('tcs_teaching_hours');
 
             $table->bigInteger('tcs_created_by')->unsigned()->nullable();

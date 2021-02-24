@@ -13,15 +13,17 @@ class CreateClassTable extends Migration
      */
     public function up()
     {
-        Schema::create('class', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->bigIncrements('cls_id');
-            $table->foreignId('cls_school_year_id');
-            $table->foreign('cls_school_year_id')->references('scy_id')->on('school_years');
+            // $table->foreignId('cls_school_year_id');
+            // $table->foreign('cls_school_year_id')->references('scy_id')->on('school_years');
             $table->foreignId('cls_major_id');
             $table->foreign('cls_major_id')->references('mjr_id')->on('majors');
             $table->foreignId('cls_grade_level_id');
             $table->foreign('cls_grade_level_id')->references('grl_id')->on('grade_levels');
-            $table->string('cls_name');
+            $table->integer('cls_number');
+
+            $table->boolean('cls_is_active');
 
             $table->bigInteger('cls_created_by')->unsigned()->nullable();
             $table->bigInteger('cls_updated_by')->unsigned()->nullable();

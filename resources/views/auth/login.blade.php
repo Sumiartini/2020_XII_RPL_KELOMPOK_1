@@ -73,7 +73,7 @@
           <div class="form-group">
             <div class="position-relative has-icon-left">
               <label for="usr_email" class="sr-only col-md-6 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-              <input id="usr_email" type="email" class="form-control @error('usr_email') is-invalid @enderror" placeholder="Masukan Email" name="usr_email" style="border-radius: 30px 18px 18px 30px;" value="{{ old('usr_email') }}" autocomplete="off" autofocus>
+              <input id="usr_email" type="email" class="form-control form-control-rounded @error('usr_email') is-invalid @enderror" placeholder="Masukan Email" name="usr_email" value="{{ old('usr_email') }}" autocomplete="off" autofocus>
               <div class="form-control-position">
                 <i class="icon-user"></i>
               </div>

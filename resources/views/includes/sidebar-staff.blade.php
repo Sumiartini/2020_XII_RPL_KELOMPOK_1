@@ -69,6 +69,12 @@
       </a>
     </li>
 
+    <li>
+      <a href="{{ url('classes')}}" class="waves-effect active">
+        <i></i> <span>Kelas</span>
+      </a>
+    </li>
+
   </ul>
 
 </div>
