@@ -47,7 +47,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="signupForm" autocomplete="off" method="POST" action="" novalidate="novalidate">
+                <form method="POST" action="{{ url('master-config/edit/'.$master_config->msc_id) }}" novalidate="novalidate">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -56,23 +56,65 @@
 
                     <div class="form-group row">
 
-                        <div class="col-sm-4">
-                            <label>Nama<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_name" placeholder="Masukan Nama Lengkap" value="{{$student_edit->usr_name}}">
+                        <div class="col-sm-5">
+                            <label>Nama<span style="color:red"> *</span></label> 
+                            <input type="text" name="msc_name" class="form-control form-control-rounded @error('msc_name') is-invalid @enderror" value="{{$master_config->msc_name}}" placeholder="Masukan Nama konfigurasi">
+                            @error('msc_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                         <div class="col-sm-4">
-                        <label>Email<span style="color:red"> *</span></label>
-                            <input type="email" readonly="" class="form-control" id="input-10" name="usr_email" placeholder="Masukan Email" value="{{$student_edit->usr_email}}">                        
+                    </div>
+
+                    <div class="form-group row">
+                         <div class="col-sm-8">
+                            <label>Deskripsi</label>
+                            <textarea name="msc_description" value="{{$master_config->msc_description}}" rows="5" cols="10" placeholder="Masukan Deskripsi Sekolah" class="form-control"></textarea>
                         </div>
-                        <div class="col-sm-4">
-                            <label>Nomor Telepon<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon" value="{{$student_edit->usr_phone_number}}">
+                    </div>
+
+                   <!--  <div class="form-group row">                                                                                     
+                        <div class="col-sm-3">
+                            <label for="input-8">Video Sekolah</label> 
+                            <input type="file" name="msv_file" onchange="document.getElementById('msv_file').value=this.value" />
+                        </div>
+                    </div> -->
+
+
+                    <div class="form-group row">
+                        <div class="col-sm-8">
+                            <label>Visi</label>
+                            <textarea name="msc_vision" value="{{$master_config->msc_vision}}" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-8">
+                            <label>Misi</label>
+                            <textarea name="msc_mision" value="{{$master_config->msc_mision}}" rows="5" cols="10" placeholder="Masukan Misi Sekolah" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">                                                                                     
+                        <div class="col-sm-3">
+                            <label for="input-8">Logo Sekolah</label> 
+                            <input type="file" name="msc_logo" value="{{$master_config->msc_file}}">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <div class="col-sm-5">
+                            <label>Kontak Sekolah</label>
+                            <input type="text" name="msc_school_phone_number" value="{{$master_config->msc_school_phone_number}}" class="form-control form-control-rounded" placeholder="Masukan No.Telp Sekolah">
                         </div>
                     </div>
                 
 
                     <div class="form-footer">
-                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+                        <button type="reset" onclick="window.location.href='{{URL::to('/master-configs')}}'" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
                     </div>
                 </form>

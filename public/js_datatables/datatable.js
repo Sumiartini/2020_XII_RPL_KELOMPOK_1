@@ -1060,8 +1060,8 @@ function master_config() {
                 searchable: true
             },
             {
-                data: 'msc_is_active', 
-                name:'msc_is_active', 
+                data: 'msc_description', 
+                name:'msc_description', 
                 orderable: false, 
                 searchable: true
             },
