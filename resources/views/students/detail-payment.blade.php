@@ -28,22 +28,28 @@
       <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
       <li class="breadcrumb-item"><a href="{{ url('/students-rejected')}}">Daftar Pembayaran</a></li>
       <li class="breadcrumb-item active" aria-current="page">Detail Pembayaran</li>
-  </ol>
-</div>
+    </ol>
+  </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <center>
-                    <h4 class="text-primary">Bukti Pembayaran</h4>
-                    <hr>
-                    <img src="{{ asset($student->stu_payment_picture)}}" class="img-thumbnail"/>
-                </center>
-            </div>
-        </div>
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <center>
+          <div>
+            <h4 class="text-primary">Bukti Pembayaran</h4>
+            <hr>
+            <img src="{{ asset($student->stu_payment_picture)}}" class="img-thumbnail"/>
+          </div>
+          <hr>
+          <div>
+            <a href="{{url('/students-payment')}}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Kembali</a>
+          </div>
+        </center>
+      </div>
     </div>
+  </div>
 </div>
 
 </div>

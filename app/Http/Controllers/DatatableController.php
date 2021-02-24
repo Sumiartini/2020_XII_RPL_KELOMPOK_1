@@ -96,11 +96,17 @@ class DatatableController extends Controller
                 return "Tidak punya status aktif";
             }
         })
-        ->addColumn('action', function ($row) {             
-            $accept = '<a href="' . url('student/accept-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';            
+        ->addColumn('action', function ($row) {
+            if ($row->stu_payment_status == "0") {
+                $accept = '<a href="' . url('student/accept-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';            
+                
+            }
             $detail = '<a href="' . url('student/payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
-            return $detail . '&nbsp' . $accept;
-            
+            if ($row->stu_payment_status == "0") {
+                return $detail . '&nbsp' . $accept;
+            } else{
+                return $detail;
+            }
         })->rawColumns(['action', 'stu_payment_status'])
         ->make(true);
     }
@@ -374,22 +380,53 @@ class DatatableController extends Controller
     {
         $master_slides = MasterSlides::getMasterSlides($request->query());
         return Datatables::of($master_slides)
+        ->editColumn("mss_is_active", function ($row) {
+            $mss_is_active = $row->mss_is_active;
+            if ($mss_is_active == "0") {
+                return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
+            } elseif ($mss_is_active == "1") {
+                return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
+            } else {
+                return "Tidak punya status aktif";
+            }
+        })
         ->addColumn('action', function ($row) {
             $edit = '<a href="' . url('master-slide/edit', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
-            
-            return $edit ;
-        })->rawColumns(['action'])
+            $mss_is_active = $row->mss_is_active;
+            if ($mss_is_active == '0') {
+                $status = '<a href="' . url('master-slide/edit-status', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+            }else{
+                $status = '<a href="' . url('master-slide/edit-status', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
+            }
+            return $edit. '&nbsp' . $status ;
+        })->rawColumns(['action', 'mss_is_active'])
         ->make(true);
     }
 
     public function getMasterConfig(Request $request){
         $master_configs = MasterConfigs::getMasterConfigs($request->query());
         return Datatables::of($master_configs)
+        ->editColumn("msc_is_active", function ($row) {
+            $msc_is_active = $row->msc_is_active;
+            if ($msc_is_active == "0") {
+                return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
+            } elseif ($msc_is_active == "1") {
+                return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
+            } else {
+                return "Tidak punya status aktif";
+            }
+        })
         ->addColumn('action', function ($row) {
-            $edit = '<a href="' . url('master-config/edit', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
-            
-            return $edit ;
-        })->rawColumns(['action'])
+            $edit = '<a href="' . url('master-config/edit', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+            $detail = '<a href="' . url('master-config', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
+            $msc_is_active = $row->msc_is_active;
+            if ($msc_is_active == '0') {
+                $status = '<a href="' . url('master-config/edit-status', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+            }else{
+                $status = '<a href="' . url('master-config/edit-status', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
+            }
+            return $detail . '&nbsp' . $edit. '&nbsp' . $status ;
+        })->rawColumns(['action', 'msc_is_active'])
         ->make(true);
     }
 }

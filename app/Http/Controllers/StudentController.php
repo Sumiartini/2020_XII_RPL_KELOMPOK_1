@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use App\Mail\AddStudent;
+use App\Mail\PaymentMail;
 use Illuminate\Support\Carbon;
 use App\EntryTypes;
 use App\Provinces;
@@ -466,7 +467,7 @@ class StudentController extends Controller
         } else {
             dd('gagal user');
         }
-        return redirect('/pending-verification/' . $student->stu_id);
+        return redirect('/pending-verification');
     }
 
     public function receipted($stu_id)
@@ -554,6 +555,8 @@ class StudentController extends Controller
         $student = Students::findOrFail($studentID);
         $student->stu_payment_status = '1';
         $student->update();
+        $user = User::where('usr_id', $student->stu_user_id)->first();        
+        Mail::to($user['usr_email'])->send(new PaymentMail($user));
         return back()->with('success', 'Pembayaran berhasil diterima');
     }
 }
