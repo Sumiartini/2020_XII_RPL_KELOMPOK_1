@@ -51,8 +51,7 @@
       <div class="card-header"><i class="fa fa-table"></i> Data Siswa</div>
       <div class="card-body">
         <div class="table-responsive">
-
-          @if(Auth()->user()->hasRole('admin'))
+          @if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
           <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
             <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
           </div>
@@ -114,61 +113,14 @@
 <script src="{{ asset('assets/plugins/alerts-boxes/js/sweet-alert-script.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-@if(Auth()->user()->hasRole('admin'))
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
+@if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
 <script>
   $(document).ready(function() {
     student()
   });
-
-  function btnDel(stu_id) {
-    studentID = stu_id;
-    swal({
-        title: "Hapus Siswa",
-        text: 'Siswa yang telah dihapus tidak dapat di kembalikan',
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          $.ajax({
-            type: 'POST',
-            url: 'student/delete',
-            data: {
-              studentID: stu_id,
-              "_token": "{{ csrf_token() }}",
-            },
-            success: function(data) {
-              if (data.status != false) {
-                swal(data.message, {
-                  button: false,
-                  icon: "success",
-                  timer: 1000
-                });
-              } else {
-                swal(data.message, {
-                  button: false,
-                  icon: "error",
-                  timer: 1000
-                });
-              }
-              table.ajax.reload();
-            },
-            error: function(error) {
-              swal('Terjadi kegagalan sistem', {
-                button: false,
-                icon: "error",
-                timer: 1000
-              });
-            }
-          });
-        }
-      });
-  }
 </script>
 @else
-<script src="{{ asset('js_datatables/datatable.js') }}"></script>
 <script>
   $(document).ready(function() {
     studentUsers()

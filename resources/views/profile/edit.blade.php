@@ -40,8 +40,11 @@
       <div class="text-center">
         <form autocomplete="off" action="{{ url('account/profile/'.Auth::user()->usr_id.'/edit')}}" method="POST" id="submitForm" novalidate="novalidate" enctype="multipart/form-data">
           @csrf
+          @if(isset($user->usr_profile_picture))
           <img src="{{ asset($user->usr_profile_picture)}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
-          
+          @else
+          <img src="{{ asset('images/default_profile_picture_20210228.png')}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+          @endif
           <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
 
           <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>

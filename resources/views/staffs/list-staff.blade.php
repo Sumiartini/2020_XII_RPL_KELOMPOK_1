@@ -108,10 +108,19 @@
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js') }}"></script>
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
+@if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
 <script>
   $(document).ready(function() {
     staff()
   });
 </script>
+@else
+<script>
+  $(document).ready(function() {
+    staffUsers()
+  });
+</script>
+@endif
+
 @endpush
 @endsection

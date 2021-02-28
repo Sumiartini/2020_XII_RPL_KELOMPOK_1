@@ -98,13 +98,7 @@
 
   <script>
     $().ready(function() {
-
-    //   $(".submitForm").submit(function(e) {
-    //     $(this).find("button[type='submit']").prop('disabled', true);
-    //     $(".btnSubmit").attr("disabled", true);
-    //     return true;
-    // });
-
+      
     $("#form-validate").validate({
         rules: {
             usr_email: {
@@ -115,7 +109,7 @@
         messages: {
             usr_email: {
               required: "Alamat email harus di isi",
-              email: "Maaf email tidak valid"
+              email: "Email tidak valid"
             },
         }
     });

@@ -51,7 +51,7 @@
     <div class="card-header"><i class="fa fa-table"></i> Data Guru</div>
     <div class="card-body">
       <div class="table-responsive">
-        @if(Auth()->user()->hasRole('admin'))
+        @if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
         <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
           <a href="{{URL::to('/teacher/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH GURU" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
         </div>
@@ -110,10 +110,18 @@
 
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
+@if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
 <script>
   $(document).ready(function() {
     teacher()
   });
 </script>
+@else
+<script>
+  $(document).ready(function() {
+    teacherUsers()
+  });
+</script>
+@endif
 @endpush
 @endsection

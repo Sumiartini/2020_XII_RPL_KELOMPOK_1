@@ -37,7 +37,11 @@
 		<div class="col-lg-12">
 			<div class="profile-card-3 ">
 				<div class="text-center">
+					@if(isset(Auth()->user()->usr_profile_picture))
 					<img src="{{ asset($user->usr_profile_picture)}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+					@else
+					<img src="{{ asset('images/default_profile_picture_20210228.png')}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+					@endif
 				</div>
 				<hr>
 			</div>

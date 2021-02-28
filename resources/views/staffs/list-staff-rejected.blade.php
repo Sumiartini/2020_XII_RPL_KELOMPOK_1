@@ -54,7 +54,7 @@
     <div class="card-header"><i class="fa fa-table"></i> Data Staf ditolak</div>
     <div class="card-body">
       <div class="table-responsive">
-        <table id="example" class="table table-bordered">
+        <table id="example" class="table table-bordered" style="width: 100%;">
           <thead>
 
             <tr>

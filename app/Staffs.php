@@ -17,7 +17,7 @@ class Staffs extends Model
     {
         $staffs = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
             ->where('staffs.stf_registration_status', 1)
-            ->where('users.usr_is_regist', 1);
+            ->where('users.usr_is_regist', 1)->select('users.usr_id', 'users.usr_name','users.usr_is_active','staffs.stf_id','staffs.stf_gtk');
         return $staffs;
     }
 
@@ -38,9 +38,9 @@ class Staffs extends Model
     {
 
         $staffs_prospective = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
-            // ->join('majors', 'students.stu_major_id','=','majors.mjr_id')
             ->where('staffs.stf_registration_status', 0)
-            ->where('users.usr_is_regist', 1);
+            ->where('users.usr_is_regist', 1)
+            ->select('users.usr_name','staffs.stf_id','staffs.stf_nuptk');
         // dd($staff_prospective);
         return $staffs_prospective;
     }
@@ -100,4 +100,4 @@ class Staffs extends Model
 
     }
     
-    }
+}

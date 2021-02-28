@@ -43,7 +43,7 @@ class UserController extends Controller
 
         if ($user->usr_is_active == false) {
             Auth::logout();
-            return redirect()->back()->with(['error' => 'Maaf akun anda di Non Aktifkan, hubungi admin untuk mengaktifkan akun anda']);
+            return redirect()->back()->with(['error' => 'Akun anda di Non Aktifkan, hubungi admin untuk mengaktifkan akun anda']);
         }
         $students = Students::count();
         $teachers = Teachers::count();

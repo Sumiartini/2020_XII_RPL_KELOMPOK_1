@@ -25,10 +25,10 @@
         <i class=""></i> <span>Kelola Guru</span> <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="sidebar-submenu">
-        <li><a href="{{URL::to('/teachers')}}"><i class="fa fa-circle-o"></i> Daftar Guru</a></li>
-        <li><a href="{{URL::to('#')}}"><i class="fa fa-circle-o"></i> Tambah Guru</a></li>
-        <li><a href="{{URL::to('/teachers/prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Guru</a></li>
-        <li><a href="{{URL::to('/teachers/rejected')}}"><i class="fa fa-circle-o"></i> Daftar Guru Ditolak</a></li>
+        <li><a href="{{URL::to('teachers')}}"><i class="fa fa-circle-o"></i> Daftar Guru</a></li>
+        <li><a href="{{URL::to('teacher/create')}}"><i class="fa fa-circle-o"></i> Tambah Guru</a></li>
+        <li><a href="{{URL::to('/teachers-prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Guru</a></li>
+        <li><a href="{{URL::to('/teachers-rejected')}}"><i class="fa fa-circle-o"></i> Daftar Guru Ditolak</a></li>
       </ul>
     </li>
 
@@ -39,9 +39,9 @@
       </a>
       <ul class="sidebar-submenu">
         <li><a href="{{URL::to('/students')}}"><i class="fa fa-circle-o"></i> Daftar Siswa</a></li>
-        <li><a href="{{URL::to('/students/create')}}"><i class="fa fa-circle-o"></i> Tambah Siswa</a></li>
-        <li><a href="{{URL::to('/students/prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Siswa</a></li>
-        <li><a href="{{URL::to('/students/rejected')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Ditolak</a></li>
+        <li><a href="{{URL::to('/student/create')}}"><i class="fa fa-circle-o"></i> Tambah Siswa</a></li>
+        <li><a href="{{URL::to('/students-prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Siswa</a></li>
+        <li><a href="{{URL::to('/students-rejected')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Ditolak</a></li>
       </ul>
     </li>
 

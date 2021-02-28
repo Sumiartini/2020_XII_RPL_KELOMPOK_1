@@ -118,7 +118,7 @@
                         </dd>
                         <dt class="col-sm-5">Tanggal Lahir</dt>
                         <dd class="col-sm-7">
-                            <p>{{ $staff->usr_date_of_birth}}</p>
+                            <p>{{ date('d M Y', strtotime($staff->usr_date_of_birth )) }}</p>
                         </dd>
                         <dt class="col-sm-5">Agama</dt>
                         <dd class="col-sm-7">

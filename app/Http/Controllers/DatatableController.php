@@ -34,7 +34,7 @@ class DatatableController extends Controller
         ->addColumn('action', function ($row) {
             $detail = '<a href="' . url('student', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
 
-            if (Auth()->user()->hasRole('admin')) {
+            if (Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff')) {
                 $edit = '<a href="' . url('student/edit', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
                 $usr_is_active = $row->usr_is_active;
                 if ($usr_is_active == '0') {
@@ -42,10 +42,8 @@ class DatatableController extends Controller
                 }else{
                     $status = '<a href="' . url('edit-status', $row->usr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
                 }
-
             }
-
-            if (Auth()->user()->hasRole('admin')) {
+            if (Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff')) {
                 return $detail . '&nbsp' . $edit . '&nbsp' . $status;
             } else {
                 return $detail;
@@ -190,7 +188,7 @@ class DatatableController extends Controller
         })
         ->addColumn('action', function ($row) {
             $detail = '<a href="' . url('teacher', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
-            if (Auth()->user()->hasRole('admin')) {
+            if (Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff')) {
                 $edit = '<a href="' . url('teacher/edit', $row->tcr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
                 $usr_is_active = $row->usr_is_active;
                 if ($usr_is_active == '0') {
@@ -200,7 +198,7 @@ class DatatableController extends Controller
                 }
             }
 
-            if (Auth()->user()->hasRole('admin')) {
+            if (Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff')) {
                 return $detail . '&nbsp' . $edit . '&nbsp' . $status;
             } else {
                 return $detail;

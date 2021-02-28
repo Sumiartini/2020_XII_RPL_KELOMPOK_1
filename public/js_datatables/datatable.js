@@ -33,7 +33,7 @@ function student() {
                 data: 'usr_is_active', 
                 name:'usr_is_active', 
                 orderable: false, 
-                searchable: true
+                searchable: false
             },
 
             {
@@ -91,7 +91,7 @@ function studentUsers() {
                 data: 'usr_is_active', 
                 name:'usr_is_active', 
                 orderable: false, 
-                searchable: true
+                searchable: false
             },
 
             {
@@ -109,7 +109,7 @@ function studentUsers() {
             "infoEmpty": "Tidak ada daftar Siswa",
             "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
             "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
-            "lengthMenu": "Tampilkan _MENU_ data",
+            "lengthMenu": "Tampilkan _MENU_ baris",
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -313,7 +313,7 @@ function staff() {
             },
             {
                 data: 'usr_name', 
-                name:'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
                 searchable: true
             },
@@ -325,7 +325,7 @@ function staff() {
             },
             {
                 data: 'usr_is_active', 
-                name:'usr_is_active', 
+                name:'users.usr_is_active', 
                 orderable: false, 
                 searchable: true
             },
@@ -370,7 +370,7 @@ function staffUsers() {
             },
             {
                 data: 'usr_name', 
-                name:'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
                 searchable: true
             },
@@ -384,7 +384,7 @@ function staffUsers() {
                 data: 'usr_is_active', 
                 name:'usr_is_active', 
                 orderable: false, 
-                searchable: true
+                searchable: false
             },
 
             {
@@ -402,7 +402,7 @@ function staffUsers() {
             "infoEmpty": "Tidak ada daftar staff",
             "infoFiltered": "(pencarian dari _MAX_ daftar staff)",
             "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
-            "lengthMenu": "Tampilkan _MENU_ data",
+            "lengthMenu": "Tampilkan _MENU_ baris",
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -433,7 +433,7 @@ function staffProspective() {
             },
              {
                 data: 'usr_name', 
-                name:'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
                 searchable: true
             },
@@ -487,7 +487,7 @@ function staffRejected() {
             },
              {
                 data: 'usr_name', 
-                name:'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
                 searchable: true
             },
@@ -542,8 +542,8 @@ function teacher() {
             },
             {
                 data: 'usr_name', 
-                name:'usr_name', 
-                orderable: true, 
+                name:'users.usr_name', 
+                orderable: false, 
                 searchable: true
             },
             {
@@ -556,7 +556,7 @@ function teacher() {
                 data: 'usr_is_active', 
                 name:'usr_is_active', 
                 orderable: false, 
-                searchable: true
+                searchable: false
             },
 
             {
@@ -601,7 +601,7 @@ function teacherUsers() {
             },
             {
                 data: 'usr_name', 
-                name:'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
                 searchable: true
             },
@@ -615,7 +615,7 @@ function teacherUsers() {
                 data: 'usr_is_active', 
                 name:'usr_is_active', 
                 orderable: false, 
-                searchable: true
+                searchable: false
             },
 
             {
@@ -633,7 +633,7 @@ function teacherUsers() {
             "infoEmpty": "Tidak ada daftar guru",
             "infoFiltered": "(pencarian dari _MAX_ daftar guru)",
             "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
-            "lengthMenu": "Tampilkan _MENU_ data",
+            "lengthMenu": "Tampilkan _MENU_ baris",
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -663,7 +663,7 @@ function teacherProspective() {
             },
              {
                 data: 'usr_name', 
-                name:'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
                 searchable: true
             },
@@ -717,7 +717,7 @@ function teacherRejected() {
             },
              {
                 data: 'usr_name', 
-                name:'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
                 searchable: true
             },
