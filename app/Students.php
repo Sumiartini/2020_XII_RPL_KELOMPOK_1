@@ -19,7 +19,8 @@ class Students extends Model
         $students = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
             ->where('student_registrations.str_status', 1)
-            ->where('users.usr_is_regist', 1);
+            ->where('users.usr_is_regist', 1)
+            ->select('users.usr_id', 'users.usr_is_active','students.stu_id','students.stu_candidate_name','students.stu_nis');
         // dd($students);
         return $students;
     }
@@ -41,11 +42,11 @@ class Students extends Model
 
     public static function getStudentProspective($request)
     {
-
         $students_prospective = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
             ->where('student_registrations.str_status', 0)
-            ->where('users.usr_is_regist', 1);            
+            ->where('users.usr_is_regist', 1)
+            ->select('users.usr_id','users.usr_is_active','students.stu_id','students.stu_candidate_name','students.stu_school_origin');            
         // dd($students_prospective);
         return $students_prospective;
     }
@@ -79,7 +80,8 @@ class Students extends Model
         $students_rejected = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
             ->where('student_registrations.str_status', 2)
-            ->where('users.usr_is_regist', 1);
+            ->where('users.usr_is_regist', 1)
+            ->select('students.stu_id', 'students.stu_candidate_name','students.stu_school_origin');
         // dd($students_rejected);
         return $students_rejected;
     }

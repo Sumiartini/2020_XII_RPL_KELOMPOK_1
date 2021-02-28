@@ -18,6 +18,7 @@ class Teachers extends Model
         $teachers = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
             ->where('teachers.tcr_registration_status', 1)
             ->where('users.usr_is_regist', 1)
+            ->select('teachers.tcr_id','teachers.tcr_gtk', 'users.usr_id','users.usr_name','users.usr_is_active')
             ->orderBy('teachers.tcr_gtk');
         return $teachers;
     }
@@ -39,7 +40,8 @@ class Teachers extends Model
     {
         $teachers_prospective = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
         ->where('teachers.tcr_registration_status', 0)
-        ->where('users.usr_is_regist', 1);
+        ->where('users.usr_is_regist', 1)
+        ->select('users.usr_name','teachers.tcr_id','teachers.tcr_nuptk');
         return $teachers_prospective;
     }
 
@@ -70,7 +72,8 @@ class Teachers extends Model
 
         $teachers_rejected = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
             ->where('teachers.tcr_registration_status', 2)
-            ->where('users.usr_is_regist', 1);
+            ->where('users.usr_is_regist', 1)
+            ->select('users.usr_name','teachers.tcr_id','teachers.tcr_nuptk');
         return $teachers_rejected;
     }
 
