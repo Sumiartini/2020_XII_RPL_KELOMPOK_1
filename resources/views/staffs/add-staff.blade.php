@@ -435,21 +435,21 @@
 
                     <div class="form-group row">
 
-                     <div class="col sm-4">
-                         <label>Nama Keahlian </label>
-                         <input type="text" class="form-control form-control-rounded @error('expertise.name') is-invalid @enderror"  name="expertise[name]" placeholder="Masukan Nama Keahlian" value="{{ old('expertise.name') }}">                                        
-                         @error('expertise.name')
-                         <span class="invalid-feedback" role="alert">
+                       <div class="col sm-4">
+                           <label>Nama Keahlian </label>
+                           <input type="text" class="form-control form-control-rounded @error('expertise.name') is-invalid @enderror"  name="expertise[name]" placeholder="Masukan Nama Keahlian" value="{{ old('expertise.name') }}">                                        
+                           @error('expertise.name')
+                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
                     </div>                            
 
                     <div class="col sm-4">
-                     <label>Nama Istansi/Lembaga </label>
-                     <input type="text" class="form-control form-control-rounded @error('expertise.name_of_agency') is-invalid @enderror"  name="expertise[name_of_agency]" placeholder="Masukan Nama Istansi/Lembaga" value="{{ old('expertise.name_of_agency') }}">                                        
-                     @error('expertise.name_of_agency')
-                     <span class="invalid-feedback" role="alert">
+                       <label>Nama Istansi/Lembaga </label>
+                       <input type="text" class="form-control form-control-rounded @error('expertise.name_of_agency') is-invalid @enderror"  name="expertise[name_of_agency]" placeholder="Masukan Nama Istansi/Lembaga" value="{{ old('expertise.name_of_agency') }}">                                        
+                       @error('expertise.name_of_agency')
+                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
@@ -537,11 +537,11 @@
             </div>
 
             <div class="form-footer">
-               <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
-               <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i>SIMPAN</button>
-           </div>
-       </form>
-   </div>
+             <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+             <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i>SIMPAN</button>
+         </div>
+     </form>
+ </div>
 </div>
 </div>
 </div>

@@ -18,6 +18,7 @@ use App\EntryTypes;
 use App\Provinces;
 use App\Districts;
 use App\StudentRegistration;
+use App\StudentPayments;
 
 class StudentController extends Controller
 {
@@ -307,9 +308,9 @@ class StudentController extends Controller
     {
         $user = Auth::user();
         $student = Students::where('stu_user_id', $user->usr_id)->first();
-        
-        if ($student->stu_payment_status == 1) {
-            if ($user->usr_is_regist == 0 && $user->hasRole('student')) {
+        $payment = StudentPayments::where('stp_student_id', $student->stu_id)->first();
+        if ($payment->stp_payment_status == 2 && $user->hasRole('student')) {
+            if ($user->usr_is_regist == 0) {
                 $majors = Majors::where('mjr_is_active', true)->get();
                 $province = Provinces::select('prv_id', 'prv_name')->get();
                 return view('students.new-registration-student', ['majors' => $majors, 'province' => $province]);
@@ -515,31 +516,33 @@ class StudentController extends Controller
     public function payment(){
         $user = Auth::user();
         $student = Students::where('stu_user_id', $user->usr_id)->first();
-        if ($student->stu_payment_status == 1) {
-            if ($user->usr_is_regist == 0 && $user->hasRole('student')) {
+        $payment = StudentPayments::where('stp_student_id', $student->stu_id)->first();        
+        if ($payment->stp_payment_status == 2 && $user->hasRole('student')) {
+            if ($user->usr_is_regist == 0) {
                 return redirect('/student-registration');
             } else {
                 return redirect('/pending-verification');
             }
         } else{
-            return view('students.payment', ['student' => $student]);
+            return view('students.payment', ['payment' => $payment]);
         }        
     }
 
     public function payment_upload(Request $request)
     {        
-        $userID = Auth::user()->usr_id;
-        $student = Students::where('stu_user_id', $userID)->first();
-        if ($request->hasFile('stu_payment_picture')) {
-            $files = $request->file('stu_payment_picture');
+        $userID = Auth::user()->usr_id;        
+        $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
+        ->where('students.stu_user_id', $userID)->first();        
+        if ($request->hasFile('stp_picture')) {
+            $files = $request->file('stp_picture');
             $path = public_path('images/student_files/payments');
             $files_name = 'images' . '/' . 'student_files' . '/' . 'payments' .  '/' . date('Ymd') . '_' . $files->getClientOriginalName();
             $files->move($path, $files_name);
-            $student->stu_payment_picture = $files_name;
+            $payment->stp_picture = $files_name;
         }
-
-        if ($student->update()) {
-            return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalui email atau nomor telepon anda.');
+        $payment->stp_payment_status = 1;
+        if ($payment->update()) {
+            return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalui email atau nomor telepon anda.');            
         }        
 
     }
@@ -552,11 +555,27 @@ class StudentController extends Controller
 
     public function acceptPayment($studentID)
     {
+        $payment = StudentPayments::where('stp_student_id', $studentID)->first();
+        $payment->stp_payment_status = '2';
+        $payment->update();
+
         $student = Students::findOrFail($studentID);
-        $student->stu_payment_status = '1';
-        $student->update();
         $user = User::where('usr_id', $student->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new PaymentMail($user));
         return back()->with('success', 'Pembayaran berhasil diterima');
     }
+
+    public function refusePayment($studentID)
+    {
+        $payment = StudentPayments::where('stp_student_id', $studentID)->first();
+        $payment->stp_payment_status = '3';
+        $payment->update();
+
+        $student = Students::findOrFail($studentID);
+        $user = User::where('usr_id', $student->stu_user_id)->first();        
+        Mail::to($user['usr_email'])->send(new PaymentMail($user));
+        return back()->with('success', 'Pembayaran berhasil ditolak');
+    }
+
+
 }

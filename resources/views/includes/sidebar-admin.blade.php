@@ -82,7 +82,7 @@
       </a>
     </li>
 
-     <li>
+     <!-- <li>
       <a href="javaScript:void();" class="waves-effect">
          <i></i><span>Halaman Arahan</span><i class="fa fa-angle-left pull-right"></i>
       </a>
@@ -93,7 +93,7 @@
         <li><a href="{{URL::to('/master-configs')}}"><i class="fa fa-circle-o"></i> Daftar Konfigurasi</a></li>
         <li><a href="{{URL::to('/master-config/create')}}"><i class="fa fa-circle-o"></i> Tambah Konfigurasi</a></li>
       </ul>
-    </li>
+    </li> -->
   </ul>
 
 </div>

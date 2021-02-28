@@ -218,6 +218,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/student/rejected/{str_id}', 'StudentController@storeRejected');
     Route::get('/student/restore/{std_id}', 'StudentController@restore');
     Route::get('/student/accept-payment/{std_id}', 'StudentController@acceptPayment');
+    Route::get('/student/refuse-payment/{std_id}', 'StudentController@refusePayment');    
 
     //terima tolak dan restore staf
     Route::get('/staff/receipted/{stf_id}', 'StaffController@receipted');

@@ -100,7 +100,8 @@ class Students extends Model
     {
 
         $students_payment = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            ->whereNotNull('students.stu_payment_picture');
+            ->join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
+            ->whereNotNull('student_payments.stp_picture');
         // dd($students_rejected);
         return $students_payment;
     }

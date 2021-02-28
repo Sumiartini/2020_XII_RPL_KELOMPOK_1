@@ -125,7 +125,7 @@
         @endif
         <div class="card">
             <div class="card-body">
-                @if($student->stu_payment_picture == null)
+                @if($payment->stp_payment_status == 0)
                 <h3> Terimakasih anda telah mendaftar di SMK Mahaputra</h3>
                 <p> Untuk melanjutkan pendaftaran anda di haruskan membayar formulir sebesar Rp.150.000 ke nomor rekening di bawah ini</p>
                         <div class="row">
@@ -153,9 +153,9 @@
 
                             <div class="col-sm-4">
                                 <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px" />
-                                <input type="file" name="stu_payment_picture" id="preview_gambar" class="@error('stu_payment_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg onchange="document.getElementById('stu_payment_picture').value=this.value" /><br>
-                                <!-- <button type="button" id="stu_payment_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
-                                @error('stu_payment_picture')
+                                <input type="file" name="stp_picture" id="preview_gambar" class="@error('stp_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg onchange="document.getElementById('stp_picture').value=this.value" /><br>
+                                <!-- <button type="button" id="stp_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
+                                @error('stp_picture')
                                 <p>
                                     <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
                                 </p>
@@ -167,12 +167,54 @@
 
                         </div>
                     </form>
-                @else 
+                @elseif($payment->stp_payment_status == 1)
                 <h3>Terimakasih, pembayaran anda telah berhasil</h3>
                 <p> Tunggu konfirmasi dari kami</p>
                 <p> Kami akan memberikan konfirmasi melalui email atau nomor telepon anda</p>
                 <p> Jika ada pertanyaan silahkan hubungi kami di 022-5893178 | 0895-6304-68373</p>
-                @endif                
+                @else
+                <h3> Terimakasih anda mendaftar di SMK Mahaputra</h3>
+                <p> Pembayaran anda kami  tolak dengan alasana .............. silahkan kirim kembali bukti pembayarannya</p>
+                        <div class="row">
+
+                            <dt class="col-sm-2">Transfer Ke Bank</dt>
+                            <dd class="col-sm-10">
+                                <img src="{{ asset('assets/images/payment-icons/payment-bca.png') }}" height="48">
+                            </dd>
+
+                            <dt class="col-sm-2">Nomor Rekening</dt>
+                            <dd class="col-sm-10">
+                                <input readonly style="border: none; background-color: white; color: #636363;" type="text" value="346 171 4674" id="text-copy"  />
+                                 <button type="button" class="btn btn-outline-primary btn-sm btn-round waves-effect waves-light m-1" onclick="copy_text()">Copy</button>
+                            </dd>
+
+                            <dt class="col-sm-2">Atas Nama</dt>
+                            <dd class="col-sm-10">
+                               Dedi Hidayat.Drs
+                            </dd>
+                        </div>
+                    <form id="form-validate" autocomplete="off" method="POST" action="{{ url('payment-upload') }}" novalidate="novalidate" enctype="multipart/form-data">
+                        @csrf
+                        <label style="margin-top: 30px;">Foto Bukti Transfer<span style="color:red"> *</span></label>
+                        <div class="form-group row">
+
+                            <div class="col-sm-4">
+                                <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px" />
+                                <input type="file" name="stp_picture" id="preview_gambar" class="@error('stp_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg onchange="document.getElementById('stp_picture').value=this.value" /><br>
+                                <!-- <button type="button" id="stp_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
+                                @error('stp_picture')
+                                <p>
+                                    <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                                </p>
+                                @enderror
+                                <div class="footer-form">   
+                                    <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> KIRIM</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                @endif          
             </div>
         </div>
     </div>
@@ -216,12 +258,12 @@
 
     $("#form-validate").validate({
         rules: {            
-            stu_payment_picture:{
+            stp_picture:{
                 required:true
             },
         },  
         messages: {            
-            stu_payment_picture:{
+            stp_picture:{
                 required: "Foto bukti transfer harus di isi"
             },
 

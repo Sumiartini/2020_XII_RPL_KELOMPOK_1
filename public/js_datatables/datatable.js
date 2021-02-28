@@ -253,8 +253,8 @@ function studentPayment() {
                 searchable: true
             },
             {
-                data: 'stu_payment_picture', 
-                name:'stu_payment_picture', 
+                data: 'stp_picture', 
+                name:'stp_picture', 
                 render: function(data, type, full, meta){
                     return "<img src=\"" + data + "\"height=\"50\"/>";
                 },

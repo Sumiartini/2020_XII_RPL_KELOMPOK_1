@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use Illuminate\Support\Str;
 use App\StudentRegistration;
+use App\StudentPayments;
 
 class RegisterController extends Controller
 {
@@ -111,6 +112,11 @@ class RegisterController extends Controller
                 'str_student_id'    => $student->stu_id,
                 'str_status'        => false,
             ]);
+            $student_payment = StudentPayments::create([
+                'stp_student_id'                 => $student->stu_id,
+                'stp_payment_status'             => false,
+            ]);
+
             $user->assignRole('student');
             $user->created_by = $user->usr_id;
         } elseif ($data['role'] == 2) {
