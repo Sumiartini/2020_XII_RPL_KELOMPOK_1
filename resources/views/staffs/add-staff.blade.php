@@ -96,11 +96,6 @@
                         <div class="col-sm-4">
                             <label>NUPTK</label>
                             <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('stf_nuptk') is-invalid @enderror" name="stf_nuptk" placeholder="Masukan NUPTK" value="{{ old('stf_nuptk') }}">
-                            @error('stf_nuptk')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
                             <p style="font-size: 12px;">Boleh di isi boleh tidak</p>
                         </div>
                     </div>
@@ -606,10 +601,7 @@
             "personal[nik]":{
                 required: true,
                 minlength: 10
-            },
-            stf_nuptk:{
-                required: true
-            },
+            },            
             usr_place_of_birth:{
                 required: true,
             },
@@ -723,9 +715,6 @@
             },
             usr_name:{
                 required: "Nama lengkap harus di isi"
-            },
-            stf_nuptk:{
-                required: "NO NUPTK harus di isi"
             },
             usr_place_of_birth:{
                 required: "Tempat lahir harus di isi"
