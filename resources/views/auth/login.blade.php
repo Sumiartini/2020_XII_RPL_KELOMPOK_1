@@ -159,7 +159,7 @@
             },
             usr_email: {
               required: "Alamat email harus di isi",
-              email: "Maaf email tidak valid"
+              email: "Email tidak valid"
             }
         }
     });

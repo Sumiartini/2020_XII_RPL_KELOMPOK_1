@@ -707,7 +707,7 @@
         messages: {
             usr_email:{
                 required: "Email harus di isi",
-                email: "Maaf email tidak valid"
+                email: "Email tidak valid"
             },
             usr_phone_number:{
                 required: "Nomor Telepon harus di isi",

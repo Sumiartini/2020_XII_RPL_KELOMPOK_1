@@ -90,10 +90,6 @@
             <div class="card">
              <div class="user-fullimage text-center">
                <img src="{{ asset($student->usr_profile_picture)}}" alt="user avatar" class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
-<!--                 <div class="details">
-                  <h5 class="mb-1 text-blue ml-3">{{ $student->stu_candidate_name }}</h5>
-                  <h6 class="text-blue ml-3">{{ $student->usr_email }}</h6>
-                 </div> -->
               </div>
                       <div class="row" style="margin-top: 40px; margin-left: 10px;">
 
@@ -188,7 +184,12 @@
                             <p>{{ $student->personal['birth_certificate_registration_no'] }}</p>
                         </dd>
                         @endif
-
+                        @if(isset($student->other['recomended_from']))
+                        <dt class="col-sm-5">Rekomendasi dari</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $student->other['recomended_from'] }}</p>
+                        </dd>
+                        @endif
                         @if(isset($student->str_reason))
                         @if($student->str_status == 0)
 
