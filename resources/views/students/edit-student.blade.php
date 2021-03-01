@@ -136,7 +136,9 @@
                     <div class="col-sm-4">
                         <label> Tinggal Bersama <span style="color:red"> *</span></label>
                         <select class="form-control form-control-rounded" name="personal[living_together]" id="basic-select" value="">
+                            @if(isset($student_edit->personal['living_together']))
                             <option value="{{$student_edit->personal['living_together']}}" disabled="" selected="">{{$student_edit->personal['living_together']}}</option>
+                            @endif
                             <option value="Orang Tua"> Orang Tua </option>
                             <option value="Wali"> Wali </option>
                             <option value="Kos"> Kos </option>
@@ -213,7 +215,7 @@
 
                     <div class="col-sm-4">
                         <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
-                        <input type="text" name="father_data[name]" class="form-control form-control-rounded form-control-rounded" placeholder="Masukan Nama Lengkap" value="{{$student_edit->father_data['name']}}">
+                        <input type="text" name="father_data[name]" class="form-control form-control-rounded form-control-rounded" placeholder="Masukan Nama Lengkap" value="@if(isset($student_edit->father_data['name'])){{$student_edit->father_data['name']}}@endif">
 
                     </div>
 

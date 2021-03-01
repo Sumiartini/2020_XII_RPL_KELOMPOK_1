@@ -23,6 +23,7 @@ class CheckRegistrationVerificate
         if (Auth::check()) {
             $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->join('student_registrations','student_registrations.str_student_id','=','students.stu_id')
+            ->join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
             -> where('students.stu_user_id' , Auth::user()->usr_id)->first();
             // dd($student);
             $teacher = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
@@ -33,7 +34,7 @@ class CheckRegistrationVerificate
             $user = Auth::user();   
             if ($user->hasRole('student')) {
                 if ($student->str_status == 0) {
-                    if ($student->stu_payment_status == 1) {
+                    if ($student->stp_payment_status == 2) {
                         if ($user->usr_is_regist == 1 ) {
                             return redirect('/pending-verification');
                         }else{

@@ -85,23 +85,25 @@ class DatatableController extends Controller
         // dd($students_payment);
         return Datatables::of($students_payment)        
         ->editColumn("stu_payment_status", function ($row) {
-            $stu_payment_status = $row->stu_payment_status;
-            if ($stu_payment_status == "0") {
-                return '<span class="badge badge-danger shadow-warning m-1">Menunggu</span>';
-            } elseif ($stu_payment_status == "1") {
-                return '<span class="badge badge-success shadow-success m-1">Diterima</span>';
-            } else {
+            $stp_payment_status = $row->stp_payment_status;
+            if ($stp_payment_status == "1") {
+                return '<span class="badge badge-danger shadow-warning m-1">Menunggu Verifikasi</span>';
+            } elseif ($stp_payment_status == "2") {
+                return '<span class="badge badge-success shadow-success m-1">Pembayaran Diterima</span>';
+            }elseif ($stp_payment_status == "3") {
+                return '<span class="badge badge-danger shadow-danger m-1">Pembayaran Ditolak</span>';
+            }else {
                 return "Tidak punya status aktif";
             }
         })
         ->addColumn('action', function ($row) {
-            if ($row->stu_payment_status == "0") {
-                $accept = '<a href="' . url('student/accept-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';            
-                
+            if ($row->stp_payment_status == "1") {
+                $accept = '<a href="' . url('student/accept-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check fa-lg"></i></a>';
+                $refuse = '<a href="' . url('student/refuse-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TOLAK" class="btn btn-outline-danger waves-effect waves-light m-1"> <i class="zmdi zmdi-close fa-lg"></i></a>';
             }
             $detail = '<a href="' . url('student/payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
-            if ($row->stu_payment_status == "0") {
-                return $detail . '&nbsp' . $accept;
+            if ($row->stp_payment_status == "1") {
+                return $detail . '&nbsp' . $accept. '&nbsp' . $refuse;
             } else{
                 return $detail;
             }

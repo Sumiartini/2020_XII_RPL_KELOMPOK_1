@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Edit Kata Sandi
+- Alasan Tolak Siswa
 @endpush
 
 @push('styles')
@@ -34,7 +34,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
       <li class="breadcrumb-item"><a href="{{ url('students-prospective') }}">Kelola Calon Siswa</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Tolak Siswa</li>
+      <li class="breadcrumb-item active" aria-current="page"> Alasan Tolak Siswa</li>
     </ol>
   </div>
 </div>

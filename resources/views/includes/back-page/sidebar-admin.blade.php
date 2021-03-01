@@ -48,7 +48,7 @@
         <li><a href="{{URL::to('/student/create')}}"><i class="fa fa-circle-o"></i> Tambah Siswa</a></li>
         <li><a href="{{URL::to('/students-prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Siswa</a></li>
         <li><a href="{{URL::to('/students-rejected')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Ditolak</a></li>
-        <li><a href="{{URL::to('/students-payment')}}"><i class="fa fa-circle-o"></i> Daftar Pembayaran</a></li>
+        <li><a href="{{URL::to('/student-payments')}}"><i class="fa fa-circle-o"></i> Daftar Pembayaran</a></li>
       </ul>
     </li>
 
@@ -82,7 +82,7 @@
       </a>
     </li>
 
-     <li>
+     <!-- <li>
       <a href="javaScript:void();" class="waves-effect">
          <i></i><span>Halaman Arahan</span><i class="fa fa-angle-left pull-right"></i>
       </a>
@@ -93,7 +93,7 @@
         <li><a href="{{URL::to('/master-configs')}}"><i class="fa fa-circle-o"></i> Daftar Konfigurasi</a></li>
         <li><a href="{{URL::to('/master-config/create')}}"><i class="fa fa-circle-o"></i> Tambah Konfigurasi</a></li>
       </ul>
-    </li>
+    </li> -->
   </ul>
 
 </div>

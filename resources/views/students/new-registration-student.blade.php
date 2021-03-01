@@ -38,541 +38,542 @@
     </style>
 @endpush
 @section('content')
-    <div class="container-fluid" style="margin-top: 80px">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate" enctype="multipart/form-data">
-                            @csrf
-                            <h4 style="text-align: center;">FORMULIR PESERTA DIDIK BARU TAHUN PELAJARAN 2021-2022</h4>
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label> Jurusan yang diminati <span style="color:red"> *</span></label>
-                                    <select class="form-control form-control-rounded @error('stu_major_id') is-invalid @enderror" name="stu_major_id" id="basic-select" value="{{ old('stu_major_id') }}">
 
-                                        <option disabled="" {{ old('stu_major_id') == "" ? 'selected' : '' }}> Pilih </option>
-                                        @foreach($majors as $major)
-                                        <option {{ old('stu_major_id') == $major->mjr_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
-                                        @endforeach
+<div class="container-fluid" style="margin-top: 80px">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate" enctype="multipart/form-data">
+                        @csrf
+                        <h4 style="text-align: center;">FORMULIR PESERTA DIDIK BARU TAHUN PELAJARAN 2021-2022</h4>
+                         <div class="form-group row">
+                          <div class="col-sm-4">
+                                <label> Jurusan yang diminati <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('stu_major_id') is-invalid @enderror" name="stu_major_id" id="basic-select" value="{{ old('stu_major_id') }}">
 
-                                    </select>
-                                    @error('stu_major_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                    <option disabled="" {{ old('stu_major_id') == "" ? 'selected' : '' }}> Pilih </option>
+                                    @foreach($majors as $major)
+                                    <option {{ old('stu_major_id') == $major->mjr_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
+                                    @endforeach
+
+                                </select>
+                                @error('stu_major_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
-                            <h4 class="form-header text-uppercase" style="margin-top: 20px">
-                                <i class="  "></i>
-                                Data Calon Peserta Didik
-                            </h4>
+                        </div>
+                        <h4 class="form-header text-uppercase" style="margin-top: 20px">
+                            <i class="  "></i>
+                            Data Calon Peserta Didik
+                        </h4>
 
-                            <div class="form-group row">
+                        <div class="form-group row">
 
-                                <div class="col-sm-4">
-                                    <label> Nama Lengkap <span style="color:red"> *</span></label>
-                                    <input type="text" class="form-control form-control-rounded @error('stu_candidate_name') is-invalid @enderror" name="stu_candidate_name" placeholder="Masukan Nama Lengkap" value="{{ old('stu_candidate_name') }}">
-                                    @error('stu_candidate_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <p style="font-size: 12px;"> Sesuaikan dengan nama di ijazah SD/SMP </p>
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label> Tempat Lahir <span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_place_of_birth" class="form-control form-control-rounded @error('usr_place_of_birth') is-invalid @enderror" placeholder="Masukan Tempat Lahir" value="{{ old('usr_place_of_birth') }}">
-                                    @error('usr_place_of_birth')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label> Tanggal Lahir <span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control form-control-rounded @error('usr_date_of_birth') is-invalid @enderror" placeholder="Tanggal-Bulan-Tahun" value="{{ old('usr_date_of_birth') }}">
-                                    @error('usr_date_of_birth')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
+                            <div class="col-sm-4">
+                                <label> Nama Lengkap <span style="color:red"> *</span></label>
+                                <input type="text" class="form-control form-control-rounded @error('stu_candidate_name') is-invalid @enderror" name="stu_candidate_name" placeholder="Masukan Nama Lengkap" value="{{ old('stu_candidate_name') }}">
+                                @error('stu_candidate_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <p style="font-size: 12px;"> Sesuaikan dengan nama di ijazah SD/SMP </p>
                             </div>
 
-
-                            <div class="form-group row">
-
-                                <div class="col-sm-4">
-                                    <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[nik]" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('personal.nik') }}">
-                                    @error('personal.nik')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <p style="font-size: 12px;"> Sesuaikan dengan kartu keluarga </p>
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <label> Jenis Kelamin <span style="color:red"> *</span></label>
-                                    <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror">
-                                        <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
-                                        <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
-                                    </select>
-                                    @error('usr_gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label> No. WhatsApp <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_whatsapp_number') }}">
-                                    @error('usr_whatsapp_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                             <div class="col-sm-4">
+                                <label> Tempat Lahir <span style="color:red"> *</span></label>
+                                <input type="text" name="usr_place_of_birth" class="form-control form-control-rounded @error('usr_place_of_birth') is-invalid @enderror" placeholder="Masukan Tempat Lahir" value="{{ old('usr_place_of_birth') }}">
+                                @error('usr_place_of_birth')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
-                            <div class="form-group row">
 
-                                <div class="col-sm-4">
-                                    <label> No Telepon siswa <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_phone_number') }}">
-                                    @error('usr_phone_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                             <div class="col-sm-4">
+                                <label> Tanggal Lahir <span style="color:red"> *</span></label>
+                                <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control form-control-rounded @error('usr_date_of_birth') is-invalid @enderror" placeholder="Tanggal-Bulan-Tahun" value="{{ old('usr_date_of_birth') }}">
+                                @error('usr_date_of_birth')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
 
-                                <div class="col-sm-4">
-                                    <label> Agama <span style="color:red"> *</span></label>
-                                    <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" value="{{ old('usr_religion') }}">
-                                        <option disabled="" {{ old('usr_religion') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }} value="Islam"> Islam </option>
-                                        <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }} value="Protestan"> Protestan </option>
-                                        <option {{ old('usr_religion') == "Katolik" ? 'selected' : '' }} value="Katolik"> Katolik </option>
-                                        <option {{ old('usr_religion') == "Hindu" ? 'selected' : '' }} value="Hindu"> Hindu </option>
-                                        <option {{ old('usr_religion') == "Budha" ? 'selected' : '' }} value="Budha"> Budha </option>
-                                        <option {{ old('usr_religion') == "Khonghucu" ? 'selected' : '' }} value="Khonghucu"> Khonghucu </option>
-                                    </select>
-                                    @error('usr_religion')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                        </div>
 
 
+                        <div class="form-group row">
+
+                            <div class="col-sm-4">
+                                <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[nik]" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('personal.nik') }}">
+                                @error('personal.nik')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <p style="font-size: 12px;"> Sesuaikan dengan kartu keluarga </p>
                             </div>
 
 
-                            <h4 class="form-header text-uppercase">
-                                <i class=""></i>
-                                Sekolah Asal (Sekolah SMP/MTS)
-                            </h4>
-
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label> Nama Sekolah <span style="color:red"> *</span></label>
-                                    <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" placeholder="Masukan Asal Sekolah" value="{{ old('stu_school_origin') }}">
-                                    @error('stu_school_origin')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> NPSN <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="school_origin[npsn]" class="form-control form-control-rounded @error('school_origin.npsn') is-invalid @enderror" placeholder="Masukan NPSN" value="{{ old('school_origin.npsn') }}">
-                                    @error('school_origin.npsn')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-
+                            <div class="col-sm-4">
+                                <label> Jenis Kelamin <span style="color:red"> *</span></label>
+                                <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror">
+                                    <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
+                                    <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
+                                    <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
+                                </select>
+                            @error('usr_gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             </div>
 
-                            <h4 class="form-header text-uppercase">
-                                <i class=""></i>
-                                Tempat Tinggal
-                            </h4>
+                            <div class="col-sm-4">
+                                <label> No. WhatsApp <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan Nomor WhatsApp" value="{{ old('usr_whatsapp_number') }}">
+                                @error('usr_whatsapp_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
 
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label> Provinsi <span style="color:red"> *</span></label>
-
-                                    <select name="prv_name" class="form-control single-select form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
-                                        <option disabled="true" selected="true"> Pilih </option>
-                                        @foreach($province as $data)
-                                        <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('prv_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label> Kabupaten/Kota <span style="color:red"> *</span></label>
-
-                                    <select name="cit_name" class="form-control single-select form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
-                                        <option disabled checked="true" selected="true"> Pilih </option>
-                                    </select>
-                                    @error('cit_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label> Kecamatan <span style="color:red"> *</span></label>
-
-                                    <select name="dst_name" class="form-control single-select form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
-                                        <option disabled checked="true" selected="true"> Pilih </option>
-                                    </select>
-                                    @error('dst_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                             <div class="col-sm-4">
+                                <label> No Telepon siswa <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
+                                @error('usr_phone_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-
-                                <div class="col-sm-4">
-                                    <label> Alamat <span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_address" class="form-control form-control-rounded @error('usr_address') is-invalid @enderror" placeholder="Masukan Alamat" value="{{ old('usr_address') }}">
-                                    @error('usr_address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <label> RT <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" placeholder="Masukan Nomor RT" value="{{ old('usr_rt') }}">
-                                    @error('usr_rt')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-2">
-                                    <label> RW <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" placeholder="Masukan Nomor RW" value="{{ old('usr_rw') }}">
-                                    @error('usr_rw')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4">
-                                    <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                                    <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
-                                    @error('usr_rural_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
+                            <div class="col-sm-4">
+                                <label> Agama <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" value="{{ old('usr_religion') }}">
+                                    <option disabled="" {{ old('usr_religion') == "" ? 'selected' : '' }} > Pilih </option>
+                                    <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }}  value="Islam"> Islam </option>
+                                    <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }}  value="Protestan"> Protestan </option>
+                                    <option {{ old('usr_religion') == "Katolik" ? 'selected' : '' }}  value="Katolik"> Katolik </option>
+                                    <option {{ old('usr_religion') == "Hindu" ? 'selected' : '' }}  value="Hindu"> Hindu </option>
+                                    <option {{ old('usr_religion') == "Budha" ? 'selected' : '' }}  value="Budha"> Budha </option>
+                                    <option {{ old('usr_religion') == "Khonghucu" ? 'selected' : '' }}  value="Khonghucu"> Khonghucu </option>
+                                </select>
+                                @error('usr_religion')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label> Kode Pos <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_postal_code" value="" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
-                                    @error('usr_postal_code')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-sm-4">
-                                    <label> Tinggal Bersama <span style="color:red"> *</span></label>
-                                    <select class="form-control form-control-rounded @error('personal.living_together') is-invalid @enderror" name="personal[living_together]">
-                                        <option disabled="" {{ old('personal.living_together') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option {{ old('personal.living_together') == "Orang Tua" ? 'selected' : '' }} value="Orang Tua"> Orang Tua </option>
-                                        <option {{ old('personal.living_together') == "Wali" ? 'selected' : '' }} value="Wali"> Wali </option>
-                                        <option {{ old('personal.living_together') == "Kos" ? 'selected' : '' }} value="Kos"> Kos </option>
-                                        <option {{ old('personal.living_together') == "Asrama" ? 'selected' : '' }} value="Asrama"> Asrama </option>
-                                        <option {{ old('personal.living_together') == "Panti Asuhan" ? 'selected' : '' }} value="Panti Asuhan"> Panti Asuhan </option>
-                                        <option {{ old('personal.living_together') == "Pesantren" ? 'selected' : '' }} value="Pesantren"> Pesantren </option>
-                                    </select>
-                                    @error('personal.living_together')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                           
+                        </div>
 
 
-                                <div class="col-sm-4">
-                                    <label> Status Tempat Tinggal <span style="color:red"> *</span> </label>
-                                    <select class="form-control form-control-rounded @error('personal.status_of_residence') is-invalid @enderror" name="personal[status_of_residence]">
-                                        <option disabled="" {{ old('personal.status_of_residence') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option {{ old('personal.status_of_residence') == "Milik Pribadi" ? 'selected' : '' }} value="Milik Sendiri"> Milik Pribadi </option>
-                                        <option {{ old('personal.status_of_residence') == "Sewa" ? 'selected' : '' }} value="Sewa"> Sewa </option>
-                                    </select>
-                                    @error('personal.status_of_residence')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                        <h4 class="form-header text-uppercase">
+                            <i class=""></i>
+                            Sekolah Asal (Sekolah SMP/MTS)
+                        </h4>
 
-
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label> Nama Sekolah <span style="color:red"> *</span></label>
+                                <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" placeholder="Masukan Nama Sekolah" value="{{ old('stu_school_origin') }}">
+                                @error('stu_school_origin')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
-
-                            <h4 class="form-header text-uppercase">
-                                <i class=""></i>
-                                Data Orang Tua
-                            </h4>
-
-                            <div class="form-group row">
-
-                                <div class="col-sm-4">
-                                    <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
-                                    <input type="text" name="father_data[name]" class="form-control form-control-rounded @error('father_data.name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.name') }}">
-                                    @error('father_data.name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <p style="font-size: 12px;">sesuai akta kelahiran</p>
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <label> Nomor Telepon Ayah <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.phone_number') }}">
-                                    @error('mother_data.phone_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <label> Nama Ayah <span style="color:red"> *</span></label>
-                                    <input type="text" name="father_data[father_name]" class="form-control form-control-rounded @error('father_data.father_name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.father_name') }}">
-                                    @error('father_data.father_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <p style="font-size: 12px;">Nama ayah di ijazah sd/smp</p>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-
-                                <div class="col-sm-4">
-                                    <label> Nama Ibu Kandung <span style="color:red"> *</span></label>
-                                    <input type="text" name="mother_data[name]" class="form-control form-control-rounded @error('mother_data.name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.name') }}">
-                                    @error('mother_data.name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                    <p style="font-size: 12px;">sesuai akta kelahiran</p>
-                                </div>
-
-
-                                <div class="col-sm-4">
-                                    <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.phone_number') }}">
-                                    @error('mother_data.phone_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <h4 class="form-header text-uppercase">
-                                <i class=""></i>
-                                Lainnya <small>(Maksimal File Ukuran 2 MB)</small>
-                            </h4>
-
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <label> Upload Surat Tanda Kelulusan SMP dilegalisir <span style="color:red"> *</span></label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[certificate_of_graduation]">
-                                    @error('other.certificate_of_graduation')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> Upload Ijazah SMP/MTs dilegalisir <span style="color:red"> *</span></label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[junior_high_school_diploma]">
-                                    @error('other.junior_high_school_diploma')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> Upload Ijazah SD/Mi dilegalisir <span style="color:red"> *</span></label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[elementary_school_diploma]">
-                                    @error('other.elementary_school_diploma')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
+                            <div class="col-sm-4">
+                                <label> NPSN <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="school_origin[npsn]" class="form-control form-control-rounded @error('school_origin.npsn') is-invalid @enderror" placeholder="Masukan NPSN" value="{{ old('school_origin.npsn') }}">
+                                @error('school_origin.npsn')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
 
-                            <div class="row" style="margin-top: 40px;">
-                                <div class="col-sm-4">
-                                    <label> Upload Akte Kelahiran <span style="color:red"> *</span></label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[birth_certificate]">
-                                    @error('other.birth_certificate')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> Upload Kartu Keluarga <span style="color:red"> *</span></label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[family_card]">
-                                    @error('other.family_card')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> Upload Keterangan Domisili</label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[domicile_statement]">
-                                    @error('other.domicile_statement')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                    <p style="font-size: 12px;">(Apabila tempat tinggal tidak sesuai dengan kartu keluarga)</p>
-                                </div>
+                        </div>
+
+                        <h4 class="form-header text-uppercase">
+                            <i class=""></i>
+                            Tempat Tinggal
+                        </h4>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label> Provinsi <span style="color:red"> *</span></label>
+
+                                <select name="prv_name" class="form-control single-select form-control-rounded @error('prv_name') is-invalid @enderror" id="provinces">
+                                    <option disabled="true" selected="true"> Pilih </option>
+                                    @foreach($province as $data)
+                                    <option value="{{$data->prv_id}}">{{$data->prv_name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('prv_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
-                            <div class="row" style="margin-top: 20px;">
-                                <div class="col-sm-4">
-                                    <label> Upload KTP Ayah <span style="color:red"> *</span></label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[id_card_father]">
-                                    @error('other.id_card_father')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> Upload KTP Ibu <span style="color:red"> *</span></label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[id_card_mother]">
-                                    @error('other.id_card_mother')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> Upload Surat Kesehatan Badan </label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[health_certificate]">
-                                    @error('other.health_certificate')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                    <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
-                                </div>
+                            <div class="col-sm-4">
+                                <label> Kabupaten/Kota <span style="color:red"> *</span></label>
 
+                                <select name="cit_name" class="form-control single-select form-control-rounded @error('cit_name') is-invalid @enderror" id="cities">
+                                    <option disabled checked="true" selected="true"> Pilih </option>
+                                </select>
+                                @error('cit_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
-                            <div class="row" style="margin-top: 30px;">
-                                <div class="col-sm-4">
-                                    <label> Upload Surat Kesehatan Mata </label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[eye_health_letter]">
-                                    @error('other.eye_health_letter')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                    <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> Upload Kartu PIP/KIP/Keterangan Kematian </label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[card]">
-                                    @error('other.card')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                    <p style="font-size: 12px;">(Apabila ada)</p>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label> Upload Sertifikat/Piagam Penghargaan </label>
-                                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[certificate]">
-                                    @error('other.certificate')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                    <p style="font-size: 12px;">(Apabila ada)</p>
-                                </div>
+                            <div class="col-sm-4">
+                                <label> Kecamatan <span style="color:red"> *</span></label>
+
+                                <select name="dst_name" class="form-control single-select form-control-rounded @error('dst_name') is-invalid @enderror" id="districts">
+                                    <option disabled checked="true" selected="true"> Pilih  </option>
+                                </select>
+                                @error('dst_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-sm-4">
+                                <label> Alamat <span style="color:red"> *</span></label>
+                                <input type="text" name="usr_address" class="form-control form-control-rounded @error('usr_address') is-invalid @enderror" placeholder="Masukan Alamat" value="{{ old('usr_address') }}">
+                                @error('usr_address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
-                            <label for="input-8" style="margin-top: 30px;">Foto calon siswa<span style="color:red"> *</span></label>
-                            <div class="form-group row">
-
-                                <div class="col-sm-4">
-                                    <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px" />
-                                    <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-
-                                    <!-- <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
-                                    @error('usr_profile_picture')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
-
+                            <div class="col-sm-2">
+                                <label> RT <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" placeholder="Masukan Nomor RT" value="{{ old('usr_rt') }}">
+                                @error('usr_rt')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
-
-                            <input type="checkbox" name="terms_and_conditions">
-                            <label>Demikian formulir ini saya buat dengan sebenar-benarnya sesuai dengan petunjuk pengisian dan dapat dipertanggung jawabkan di kemudian hari </label>
-
-                            <div class="form-footer">
-                                <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
-                                <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
+                            <div class="col-sm-2">
+                                <label> RW <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" placeholder="Masukan Nomor RW" value="{{ old('usr_rw') }}">
+                                @error('usr_rw')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
-                        </form>
+                            <div class="col-sm-4">
+                             <label>Desa/Kelurahan<span style="color:red"> *</span></label>
+                             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelurahan" value="{{ old('usr_rural_name') }}">
+                             @error('usr_rural_name')
+                             <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
                     </div>
-                </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label> Kode Pos <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_postal_code" value="" class="form-control form-control-rounded @error('usr_postal_code') is-invalid @enderror" placeholder="Masukan Kode Pos" value="{{ old('usr_postal_code') }}">
+                            @error('usr_postal_code')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                         <div class="col-sm-4">
+                                <label> Tinggal Bersama <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('personal.living_together') is-invalid @enderror" name="personal[living_together]">
+                                    <option disabled=""  {{ old('personal.living_together') == "" ? 'selected' : '' }}> Pilih </option>
+                                    <option {{ old('personal.living_together') == "Orang Tua" ? 'selected' : '' }}  value="Orang Tua"> Orang Tua </option>
+                                    <option {{ old('personal.living_together') == "Wali" ? 'selected' : '' }}  value="Wali"> Wali </option>
+                                    <option {{ old('personal.living_together') == "Kos" ? 'selected' : '' }}  value="Kos"> Kos </option>
+                                    <option {{ old('personal.living_together') == "Asrama" ? 'selected' : '' }}  value="Asrama"> Asrama </option>
+                                    <option {{ old('personal.living_together') == "Panti Asuhan" ? 'selected' : '' }}  value="Panti Asuhan"> Panti Asuhan </option>
+                                    <option {{ old('personal.living_together') == "Pesantren" ? 'selected' : '' }}  value="Pesantren"> Pesantren </option>
+                                </select>
+                                @error('personal.living_together')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+
+                        <div class="col-sm-4">
+                            <label> Status Tempat Tinggal <span style="color:red"> *</span> </label>
+                            <select class="form-control form-control-rounded @error('personal.status_of_residence') is-invalid @enderror" name="personal[status_of_residence]">
+                                <option disabled=""  {{ old('personal.status_of_residence') == "" ? 'selected' : '' }}> Pilih </option>
+                                <option  {{ old('personal.status_of_residence') == "Milik Pribadi" ? 'selected' : '' }} value="Milik Sendiri"> Milik Pribadi </option>
+                                <option  {{ old('personal.status_of_residence') == "Sewa" ? 'selected' : '' }} value="Sewa"> Sewa </option>
+                            </select>
+                            @error('personal.status_of_residence')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+
+                    </div>
+                       
+                        <h4 class="form-header text-uppercase">
+                            <i class=""></i>
+                            Data Orang Tua
+                        </h4>
+                       
+                        <div class="form-group row">
+
+                            <div class="col-sm-4">
+                                <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
+                                <input type="text" name="father_data[name]" class="form-control form-control-rounded @error('father_data.name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.name') }}">
+                                @error('father_data.name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <p style="font-size: 12px;">sesuai akta kelahiran</p>
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                <label> Nomor Telepon Ayah <span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan No Telepon" value="{{ old('mother_data.phone_number') }}">
+                                @error('mother_data.phone_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                <label> Nama Ayah <span style="color:red"> *</span></label>
+                                <input type="text" name="father_data[father_name]" class="form-control form-control-rounded @error('father_data.father_name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.father_name') }}">
+                                @error('father_data.father_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <p style="font-size: 12px;">Nama ayah di ijazah sd/smp</p>
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-sm-4">
+                                <label> Nama Ibu Kandung <span style="color:red"> *</span></label>
+                                <input type="text" name="mother_data[name]" class="form-control form-control-rounded @error('mother_data.name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.name') }}">
+                                @error('mother_data.name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <p style="font-size: 12px;">sesuai akta kelahiran</p>
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                <label> Nomor Telepon Ibu<span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan No Telepon" value="{{ old('mother_data.phone_number') }}">
+                                @error('mother_data.phone_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                    <h4 class="form-header text-uppercase">
+                        <i class=""></i>
+                        Lainnya <small>(Maksimal File Ukuran 2 MB)</small>
+                    </h4>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label> Upload Surat Tanda Kelulusan SMP dilegalisir <span style="color:red"> *</span></label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[certificate_of_graduation]">
+                            @error('other.certificate_of_graduation')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label> Upload Ijazah SMP/MTs dilegalisir <span style="color:red"> *</span></label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[junior_high_school_diploma]">
+                            @error('other.junior_high_school_diploma')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label> Upload Ijazah SD/Mi dilegalisir <span style="color:red"> *</span></label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[elementary_school_diploma]">
+                            @error('other.elementary_school_diploma')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 40px;">
+                        <div class="col-sm-4">
+                            <label> Upload Akte Kelahiran <span style="color:red"> *</span></label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[birth_certificate]">
+                            @error('other.birth_certificate')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label> Upload Kartu Keluarga <span style="color:red"> *</span></label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[family_card]">
+                            @error('other.family_card')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label> Upload Keterangan Domisili</label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[domicile_statement]">
+                            @error('other.domicile_statement')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                            <p style="font-size: 12px;">(Apabila tempat tinggal tidak sesuai dengan kartu keluarga)</p>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-sm-4">
+                            <label> Upload KTP Ayah <span style="color:red"> *</span></label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[id_card_father]">
+                            @error('other.id_card_father')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label> Upload KTP Ibu <span style="color:red"> *</span></label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[id_card_mother]">
+                            @error('other.id_card_mother')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-4">
+                            <label> Upload Surat Kesehatan Badan </label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[health_certificate]">
+                            @error('other.health_certificate')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                            <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
+                        </div>
+
+                    </div>
+
+                    <div class="row" style="margin-top: 30px;">
+                        <div class="col-sm-4">
+                            <label> Upload Surat Kesehatan Mata </label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[eye_health_letter]">
+                            @error('other.eye_health_letter')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                            <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <label> Upload Kartu PIP/KIP/Keterangan Kematian </label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[card]">
+                             @error('other.card')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                            <p style="font-size: 12px;">(Apabila ada)</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <label> Upload Sertifikat/Piagam Penghargaan </label>
+                            <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[certificate]">
+                             @error('other.certificate')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
+                            <p style="font-size: 12px;">(Apabila ada)</p>
+                        </div>
+                    </div>
+
+                    <label for="input-8" style="margin-top: 30px;">Foto calon siswa<span style="color:red"> *</span></label>
+                        <div class="form-group row">
+
+                            <div class="col-sm-4">
+                                <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
+                                <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+
+                                <!-- <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
+                                @error('usr_profile_picture')
+                                <p>
+                                    <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                                </p>
+                                @enderror
+                            </div>
+
+                        </div>
+
+                    <input type="checkbox" name="terms_and_conditions">
+                       <label>Demikian formulir ini saya buat dengan sebenar-benarnya sesuai dengan petunjuk pengisian dan dapat dipertanggung jawabkan di kemudian hari </label>
+                
+                    <div class="form-footer">    
+                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+</div>
     @push('scripts')
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
@@ -601,13 +602,6 @@
 
     <script>
         $().ready(function() {
-
-            //   $(".submitForm").submit(function(e) {
-            //     $(this).find("button[type='submit']").prop('disabled', true);
-            //     $(".btnSubmit").attr("disabled", true);
-            //     return true;
-            // });
-
             $("#form-validate").validate({
                 rules: {
                     stu_major_id: {
@@ -845,7 +839,243 @@
                     $('#tampil_picture').attr('src', e.target.result);
                 }
 
+<<<<<<< HEAD
                 reader.readAsDataURL(input.files[0]);
+=======
+<script>
+    $().ready(function() {
+
+    //   $(".submitForm").submit(function(e) {
+    //     $(this).find("button[type='submit']").prop('disabled', true);
+    //     $(".btnSubmit").attr("disabled", true);
+    //     return true;
+    // });
+
+    $("#form-validate").validate({
+        rules: {
+            stu_major_id:{
+                required: true
+            },
+            stu_candidate_name:{
+                required: true
+            },
+            usr_place_of_birth:{
+                required: true,
+            },
+            usr_date_of_birth:{
+                required: true
+            },
+            "personal[nik]":{
+                required: true,
+                minlength: 10
+            },
+            usr_gender:{
+                required: true
+            },
+            usr_whatsapp_number:{
+                required: true,
+                minlength: 10
+            },
+            usr_phone_number:{
+                required:true,
+                minlength: 10
+            },
+            usr_religion:{
+                required: true
+            },
+            stu_school_origin:{
+                required: true
+            },
+            "school_origin[npsn]":{
+                required: true
+            },
+            prv_name:{
+                required: true
+            },
+            cit_name:{
+                required: true
+            },
+            dst_name:{
+                required: true
+            },
+            usr_address:{
+                required: true
+            },
+            usr_rt:{
+                required: true
+            },
+            usr_rw:{
+                required: true
+            },
+            usr_rural_name:{
+                required: true
+            },
+            usr_postal_code:{
+                required:true
+            },
+            "personal[living_together]":{
+                required: true
+            },
+            "personal[status_of_residence]":{
+                required: true
+            },
+            "father_data[name]":{
+                required: true
+            },
+            "father_data[phone_number]":{
+                required: true,
+                minlength: 10
+            },
+            "father_data[father_name]":{
+                required: true
+            },
+            "mother_data[name]":{
+                required: true
+            },
+            "mother_data[phone_number]":{
+                required:true,
+                minlength: 10
+            },
+            "other[certificate_of_graduation]":{
+                required: true
+            },
+            "other[junior_high_school_diploma]":{
+                required: true,
+            },
+            "other[elementary_school_diploma]":{
+                required: true
+            },
+            "other[birth_certificate]":{
+                required: true
+            },
+            "other[family_card]":{
+                required: true
+            },
+            "other[id_card_father]":{
+                required: true
+            },
+            "other[id_card_mother]":{
+                required: true
+            },
+            usr_profile_picture:{
+                required:true
+            },
+            terms_and_conditions:{
+                required: true
+            },
+
+        },  
+        messages: {
+            stu_major_id:{
+                required: "Jurusan harus di pilih"
+            },
+            stu_candidate_name:{
+                required: "Nama lengkap harus di isi"
+            },
+            usr_place_of_birth:{
+                required: "Tempat lahir harus di isi"
+            },
+            usr_date_of_birth:{
+                required: "Data lahir harus di isi"
+            },
+            "personal[nik]":{
+                required: "Nomor NIK harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_gender:{
+                required: "Jenis kelamin harus di pilih"
+            },
+            usr_whatsapp_number:{
+                required: "No WhatsApp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_phone_number:{
+                required: "No Hp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_religion:{
+                required: "Agama harus di pilih"
+            },
+            stu_school_origin:{
+                required: "Nama sekolah harus di isi"
+            },
+            "school_origin[npsn]":{
+                required: "NPSN asal sekolah harus di isi"
+            },
+            prv_name:{
+                required: "Provinsi harus di pilih"
+            },
+            cit_name:{
+                required: "Kabupaten atau kota harus di pilih"
+            },
+            dst_name:{
+                required: "Kecamatan harus di pilih"
+            },
+            usr_address:{
+                required: "Alamat harus di isi"
+            },
+            usr_rt:{
+                required: "RT harus di isi"
+            },
+            usr_rw:{
+                required: "RW harus di isi"
+            },
+            usr_rural_name:{
+                required: "Desa harus di isi"
+            },
+            usr_postal_code:{
+                required: "Kode pos harus di isi"
+            },
+            "personal[living_together]":{
+                required: "Tinggal bersama harus di pilih"
+            },
+            "personal[status_of_residence]":{
+                required: "Status tinggal harus di pilih"
+            },
+            "father_data[name]":{
+                required: "Nama ayah harus di isi"
+            },
+            "father_data[phone_number]":{
+                required: "Nomor telepon ayah harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "father_data[father_name]":{
+                required: "Nama ayah sesuai ijazah harus di isi"
+            },
+            "mother_data[name]":{
+                required: "Nama ibu wajib di isi"
+            },
+            "mother_data[phone_number]":{
+                required: "Nomor telepon ibu wajib di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "other[certificate_of_graduation]":{
+                required: "Surat tanda kelulusan smp harus di upload"
+            },
+            "other[junior_high_school_diploma]":{
+                required: "Ijazah SMP harus di upload",
+            },
+            "other[elementary_school_diploma]":{
+                required: "Ijazah SD harus di upload"
+            },
+            "other[birth_certificate]":{
+                required: "Akte kelahiran harus di upload"
+            },
+            "other[family_card]":{
+                required: "Kartu keluarga harus di upload"
+            },
+            "other[id_card_father]":{
+                required: "KTP ayah harus di upload"
+            },
+            "other[id_card_mother]":{
+                required: "KTP ibu harus di upload"
+            },
+            usr_profile_picture:{
+                required: "Foto calon siswa tidak boleh kosong"
+            },
+            terms_and_conditions:{
+                required: "&nbsp S&K harus di centang"
+>>>>>>> ae6461e3135c134dc916b6fd558f13352aea6393
             }
         }
         $("#preview_gambar").change(function() {
