@@ -29,7 +29,7 @@
                 Seseorang telah meminta pengaturan ulang kata sandi untuk akun anda di web smk mahaputra. Ikuti tautan di bawah untuk mengubah kata sandi baru:
                 <p style="text-align: center; font-size:20px;">
                 	<a href="{{url('/account/'.$resetPassword->pwr_token.'/forgot-password')}}">
-  				<button style="background-color: dodgerblue; font-family: 'Arial'; border: none; color: yellow; padding: 5px 20px; text-align: center; text-decoration: none; font-size: 16px; border-radius: 8px;"> Klik Disini </button></a>
+  				<button style="background-color: dodgerblue; font-family: 'Arial'; border: none; color: white; padding: 5px 20px; text-align: center; text-decoration: none; font-size: 16px;"> Klik Disini </button></a>
 
             	</p> 
 				Jika Anda tidak ingin mengubah ulang sandi, abaikan email ini dan tidak ada tindakan yang akan diambil.<br><br>
@@ -43,7 +43,7 @@
 
      </tr>
      <tr>
-      <td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
+      <td bgcolor="#70bbd9" style="padding: 30px 30px 30px 30px;">
          <table border="0" cellpadding="0" cellspacing="0" width="100%">
              <tr>
               <td width="75%" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;">
