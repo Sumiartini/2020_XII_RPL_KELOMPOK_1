@@ -174,7 +174,8 @@
                 <p> Jika ada pertanyaan silahkan hubungi kami di 022-5893178 | 0895-6304-68373</p>
                 @else
                 <h3> Terimakasih anda mendaftar di SMK Mahaputra</h3>
-                <p> Pembayaran anda kami  tolak dengan alasana .............. silahkan kirim kembali bukti pembayarannya</p>
+                <p> Pembayaran anda kami  tolak dengan alasan <b>{{$payment->stp_reason}}</b></p>
+                <p> Silahkan kirim kembali bukti pembayarannya</p>
                         <div class="row">
 
                             <dt class="col-sm-2">Transfer Ke Bank</dt>

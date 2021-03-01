@@ -129,7 +129,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('/student/rejected', 'DatatableController@getStudentRejected');
 
-    Route::get('/students-payment', function () {
+    Route::get('/student-payments', function () {
         return view('students.list-student-payment');
     });
     Route::get('/student/payment', 'DatatableController@getStudentPayment');
@@ -218,7 +218,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/student/rejected/{str_id}', 'StudentController@storeRejected');
     Route::get('/student/restore/{std_id}', 'StudentController@restore');
     Route::get('/student/accept-payment/{std_id}', 'StudentController@acceptPayment');
-    Route::get('/student/refuse-payment/{std_id}', 'StudentController@refusePayment');    
+    Route::post('/student/accept-payment/{std_id}', 'StudentController@storeAcceptPayment');
+    Route::get('/student/refuse-payment/{std_id}', 'StudentController@refusePayment');
+    Route::post('/student/refuse-payment/{std_id}', 'StudentController@storeRefusePayment');    
 
     //terima tolak dan restore staf
     Route::get('/staff/receipted/{stf_id}', 'StaffController@receipted');

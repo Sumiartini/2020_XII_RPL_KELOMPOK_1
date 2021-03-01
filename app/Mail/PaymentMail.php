@@ -16,9 +16,10 @@ class PaymentMail extends Mailable
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $payment)
     {
-        $this->user = $user;        ;
+        $this->user = $user;
+        $this->payment = $payment;
     }
 
     /**
@@ -34,7 +35,8 @@ class PaymentMail extends Mailable
                     ->subject($subject)
                     ->with(
                         [
-                            'user' => $this->user                            
+                            'user' => $this->user,
+                            'payment' => $this->payment                           
                         ]
                     );
             }

@@ -533,6 +533,7 @@ class StudentController extends Controller
         $userID = Auth::user()->usr_id;        
         $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
         ->where('students.stu_user_id', $userID)->first();        
+        $payment->stp_payment_status = 1;
         if ($request->hasFile('stp_picture')) {
             $files = $request->file('stp_picture');
             $path = public_path('images/student_files/payments');
@@ -540,7 +541,6 @@ class StudentController extends Controller
             $files->move($path, $files_name);
             $payment->stp_picture = $files_name;
         }
-        $payment->stp_payment_status = 1;
         if ($payment->update()) {
             return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalui email atau nomor telepon anda.');            
         }        
@@ -555,26 +555,44 @@ class StudentController extends Controller
 
     public function acceptPayment($studentID)
     {
+
+        $student_payment = Students::join('student_payments','student_payments.stp_student_id','=','students.stu_id')->where('stu_id',$studentID)->first();
+
+        return view('students.reason-payment-accept',compact('student_payment'));
+    }
+
+    public function storeAcceptPayment(Request $request,$studentID)
+    {
         $payment = StudentPayments::where('stp_student_id', $studentID)->first();
+        $payment->stp_reason = $request->stp_reason;
         $payment->stp_payment_status = '2';
         $payment->update();
 
         $student = Students::findOrFail($studentID);
         $user = User::where('usr_id', $student->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new PaymentMail($user));
-        return back()->with('success', 'Pembayaran berhasil diterima');
+        return redirect('/student-payments')->with('success', 'Pembayaran berhasil diterima');
     }
 
     public function refusePayment($studentID)
     {
+
+        $student_payment = Students::join('student_payments','student_payments.stp_student_id','=','students.stu_id')->where('stu_id',$studentID)->first();
+
+        return view('students.reason-payment-refuse',compact('student_payment'));
+    }
+
+    public function storeRefusePayment(Request $request,$studentID)
+    {
         $payment = StudentPayments::where('stp_student_id', $studentID)->first();
+        $payment->stp_reason = $request->stp_reason;
         $payment->stp_payment_status = '3';
         $payment->update();
 
         $student = Students::findOrFail($studentID);
         $user = User::where('usr_id', $student->stu_user_id)->first();        
-        Mail::to($user['usr_email'])->send(new PaymentMail($user));
-        return back()->with('success', 'Pembayaran berhasil ditolak');
+        Mail::to($user['usr_email'])->send(new PaymentMail($user, $payment));
+        return redirect('/student-payments')->with('success', 'Pembayaran berhasil ditolak');
     }
 
 
