@@ -26,6 +26,7 @@
   <div id="wrapper">
     <div class="card border-primary border-top-sm border-bottom-sm card-authentication1 mx-auto my-5 animated bounceInDown">
       <div class="card-body">
+            <a href="/"><i class="zmdi zmdi-arrow-left fa-2x"></i></a>
         <div class="card-content p-2">
           <div class="text-center">
             <img style="height: 150px; width: 150px;" src="{{ asset('assets/images/mahaputra.jfif') }}">
