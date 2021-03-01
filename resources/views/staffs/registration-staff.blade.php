@@ -1,110 +1,45 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.masterFront')
 
-<head>
+@push('title')
+- Formulir Staf
+@endpush
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SMK Mahaputra - Formulir Staf</title>
-    <!--favicon-->
-    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
-    <!-- simplebar CSS-->
-    <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
-    <!-- Bootstrap core CSS-->
-    <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- animate CSS-->
-    <link href="{{ asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css">
-    <!--Bootstrap Datepicker-->
-    <link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
-    <!-- Icons CSS-->
-    <link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css">
-    <!-- Sidebar CSS-->
-    <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
-    <!-- Custom Style-->
-    <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
-    <!-- select2 -->
-    <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
-    <style>
-        footer {
-            color: #272727;
-            text-align: center;
-            padding: 12px 30px;
-            margin-bottom: -10px;
-            margin-top: 10px;
-            border-top: 1px solid rgb(223, 223, 255);
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-        }
-    </style>
-</head>
+@push('styles')
 
-<body>
-    <header class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('assets/images/mahaputra.jfif') }}" style="width: 50px;" height="50px;"> {{ config('app.name', 'Laravel') }}
-            </a>
+<link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
+<!-- Bootstrap core CSS-->
+<link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+<!-- animate CSS-->
+<link href="{{ asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css">
+<!--Bootstrap Datepicker-->
+<link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
+<!-- Icons CSS-->
+<link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css">
+<!-- Sidebar CSS-->
+<link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
+<!-- Custom Style-->
+<link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+<!-- select2 -->
+<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
+<style>
+   footer {
+    color: #272727;
+    text-align: center;
+    padding: 12px 30px;
+    margin-bottom: -10px;
+    margin-top: 10px;
+    border-top: 1px solid rgb(223, 223, 255);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+</style>
+</style>
+@endpush
+@section('content')
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ __('Register') }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('register-student') }}">Siswa</a>
-                            <a class="dropdown-item" href="{{ url('register-teacher') }}">Guru</a>
-                            <a class="dropdown-item" href="{{ url('register-staff') }}">Staff TU</a>
-                        </div>
-                    </li>
-                    @endif
-                    @else
-
-
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->usr_name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                @endguest
-            </ul>
-        </div>
-    </div>
-</header><br>
-
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 80px;">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -596,20 +531,7 @@
 </div>
 </div>
 </div>
-
-<footer>
-    <div class="container">
-        <div class="text-center">
-            Copyright © 2018 Rocker Admin
-        </div>
-    </div>
-</footer>
-
-
-<!--Start Back To Top Button-->
-<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-<!--End Back To Top Button-->
-
+@push('scripts')
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{ asset('assets/js/popper.min.js')}}"></script>
@@ -638,13 +560,6 @@
 
 <script>
     $().ready(function() {
-
-    //   $(".submitForm").submit(function(e) {
-    //     $(this).find("button[type='submit']").prop('disabled', true);
-    //     $(".btnSubmit").attr("disabled", true);
-    //     return true;
-    // });
-
     $("#form-validate").validate({
         rules: {
             usr_name:{
@@ -695,22 +610,31 @@
                 required:true
             },
             "educational_background[year_grade_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[grade_school]":{
                 required: true
             },
             "educational_background[year_junior_high_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[junior_high_school]":{
                 required: true
             },
             "educational_background[year_senior_high_school]":{
-                required: true
+                required: true,
+                maxlength: 4,
             },
             "educational_background[senior_high_school]":{
                 required: true
+            },
+            "educational_background[year_entry]":{
+                maxlength: 4
+            },
+            "educational_background[year_graduated]":{
+                maxlength: 4
             },
             "other[identity_card]":{
                 required: true
@@ -793,22 +717,31 @@
                 required: "Kode pos harus di isi"
             },
             "educational_background[year_grade_school]":{
-                required: "Tahun lulus SD sederajat harus di isi"
+                required: "Tahun lulus SD sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[grade_school]":{
                 required: "Nama SD sederajat harus di isi"
             },
             "educational_background[year_junior_high_school]":{
-                required: "Tahun lulus SMP sederajat harus di isi"
+                required: "Tahun lulus SMP sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[junior_high_school]":{
                 required: "Nama SMP sederajat harus di isi"
             },
             "educational_background[year_senior_high_school]":{
-                required: "Tahun lulus SMA sederajat harus di isi"
+                required: "Tahun lulus SMA sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[senior_high_school]":{
                 required: "Nama SMA sederajat harus di isi"
+            },
+            "educational_background[year_entry]":{
+                maxlength: "Maksimal 4 digit"
+            },
+            "educational_background[year_graduated]":{
+                maxlength: "Maksimal 4 digit"
             },
             "other[identity_card]":{
                 required: "KTP harus di upload"
@@ -915,7 +848,5 @@
         });
     });
 </script>
-
-</body>
-
-</html>
+@endpush
+@endsection

@@ -370,7 +370,7 @@ class DatatableController extends Controller
                 $status = '<a href="' . url('class/edit-status', $row->cls_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
             }
             return $edit . '&nbsp' . $status;
-        })->rawColumns(['action', 'cls_is_active'])
+        })->rawColumns(['action', 'cls_is_active','cls_name'])
         ->make(true);
     }
 

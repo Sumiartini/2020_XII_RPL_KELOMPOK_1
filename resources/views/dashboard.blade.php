@@ -27,7 +27,7 @@
   <div class="col-sm-9">
     <h4 class="page-title">DASHBOARD</h4>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="javaScript:void();">SMK Mahaputra</a></li>
+      <li class="breadcrumb-item"><a href="javaScript:void();">{{ env('APP_NAME') }}</a></li>
       <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
     </ol>
   </div>

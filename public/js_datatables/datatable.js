@@ -953,7 +953,7 @@ function major() {
                 data: 'mjr_is_active', 
                 name:'mjr_is_active', 
                 orderable: false, 
-                searchable: true
+                searchable: false
             },
 
             {
@@ -1009,7 +1009,7 @@ function classes() {
                 data: 'cls_is_active', 
                 name:'cls_is_active', 
                 orderable: false, 
-                searchable: true
+                searchable: false
             },
 
             {

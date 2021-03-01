@@ -126,10 +126,16 @@
             pst_name: {
               required: true,
             },
+            pst_honorarium:{
+                required: true
+            }
         },
         messages: {
             pst_name: {
               required: "Nama jabatan harus di isi"
+            },
+            pst_honorarium:{
+                required: "Honor jabatan harus di isi"
             }
         }
     });

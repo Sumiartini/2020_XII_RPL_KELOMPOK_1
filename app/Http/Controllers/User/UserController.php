@@ -57,7 +57,7 @@ class UserController extends Controller
                 return view('dashboard', compact('students','teachers','staffs'));
             }
             elseif ($student->str_status == '2' ) {
-                return view('students.student-rejected');
+                return view('students.student-rejected', compact('student'));
             }
             
         } elseif ($user->hasRole('teacher')) {
