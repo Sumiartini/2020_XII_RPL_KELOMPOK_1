@@ -365,7 +365,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Telepon Ayah <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan No Telepon" value="{{ old('mother_data.phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data.phone_number') }}">
                                 @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -403,7 +403,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Telepon Ibu<span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan No Telepon" value="{{ old('mother_data.phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data.phone_number') }}">
                                 @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -597,260 +597,16 @@
         });
     </script>
 
-    <!--Form Validatin Script-->
-    <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+   <!--Form Validatin Script-->
+ <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
-    <script>
-        $().ready(function() {
-            $("#form-validate").validate({
-                rules: {
-                    stu_major_id: {
-                        required: true
-                    },
-                    stu_candidate_name: {
-                        required: true
-                    },
-                    usr_place_of_birth: {
-                        required: true,
-                    },
-                    usr_date_of_birth: {
-                        required: true
-                    },
-                    "personal[nik]": {
-                        required: true,
-                        minlength: 10
-                    },
-                    usr_gender: {
-                        required: true
-                    },
-                    usr_whatsapp_number: {
-                        required: true,
-                        minlength: 10
-                    },
-                    usr_phone_number: {
-                        required: true,
-                        minlength: 10
-                    },
-                    usr_religion: {
-                        required: true
-                    },
-                    stu_school_origin: {
-                        required: true
-                    },
-                    "school_origin[npsn]": {
-                        required: true
-                    },
-                    prv_name: {
-                        required: true
-                    },
-                    cit_name: {
-                        required: true
-                    },
-                    dst_name: {
-                        required: true
-                    },
-                    usr_address: {
-                        required: true
-                    },
-                    usr_rt: {
-                        required: true
-                    },
-                    usr_rw: {
-                        required: true
-                    },
-                    usr_rural_name: {
-                        required: true
-                    },
-                    usr_postal_code: {
-                        required: true
-                    },
-                    "personal[living_together]": {
-                        required: true
-                    },
-                    "personal[status_of_residence]": {
-                        required: true
-                    },
-                    "father_data[name]": {
-                        required: true
-                    },
-                    "father_data[phone_number]": {
-                        required: true,
-                        minlength: 10
-                    },
-                    "father_data[father_name]": {
-                        required: true
-                    },
-                    "mother_data[name]": {
-                        required: true
-                    },
-                    "mother_data[phone_number]": {
-                        required: true,
-                        minlength: 10
-                    },
-                    "other[certificate_of_graduation]": {
-                        required: true
-                    },
-                    "other[junior_high_school_diploma]": {
-                        required: true,
-                    },
-                    "other[elementary_school_diploma]": {
-                        required: true
-                    },
-                    "other[birth_certificate]": {
-                        required: true
-                    },
-                    "other[family_card]": {
-                        required: true
-                    },
-                    "other[id_card_father]": {
-                        required: true
-                    },
-                    "other[id_card_mother]": {
-                        required: true
-                    },
-                    usr_profile_picture: {
-                        required: true
-                    },
-                    terms_and_conditions: {
-                        required: true
-                    },
-
-                },
-                messages: {
-                    stu_major_id: {
-                        required: "Jurusan harus di pilih"
-                    },
-                    stu_candidate_name: {
-                        required: "Nama lengkap harus di isi"
-                    },
-                    usr_place_of_birth: {
-                        required: "Tempat lahir harus di isi"
-                    },
-                    usr_date_of_birth: {
-                        required: "Data lahir harus di isi"
-                    },
-                    "personal[nik]": {
-                        required: "Nomor NIK harus di isi",
-                        minlength: "Minimal 10 digit"
-                    },
-                    usr_gender: {
-                        required: "Jenis kelamin harus di pilih"
-                    },
-                    usr_whatsapp_number: {
-                        required: "No WhatsApp harus di isi",
-                        minlength: "Minimal 10 digit"
-                    },
-                    usr_phone_number: {
-                        required: "No Hp harus di isi",
-                        minlength: "Minimal 10 digit"
-                    },
-                    usr_religion: {
-                        required: "Agama harus di pilih"
-                    },
-                    "school_origin[npsn]": {
-                        required: "NPSN asal sekolah harus di isi"
-                    },
-                    prv_name: {
-                        required: "Provinsi harus di pilih"
-                    },
-                    cit_name: {
-                        required: "Kabupaten atau kota harus di pilih"
-                    },
-                    dst_name: {
-                        required: "Kecamatan harus di pilih"
-                    },
-                    usr_address: {
-                        required: "Alamat harus di isi"
-                    },
-                    usr_rt: {
-                        required: "RT harus di isi"
-                    },
-                    usr_rw: {
-                        required: "RW harus di isi"
-                    },
-                    usr_rural_name: {
-                        required: "Desa harus di isi"
-                    },
-                    usr_postal_code: {
-                        required: "Kode pos harus di isi"
-                    },
-                    "personal[living_together]": {
-                        required: "Tinggal bersama harus di pilih"
-                    },
-                    "personal[status_of_residence]": {
-                        required: "Status tinggal harus di pilih"
-                    },
-                    "father_data[name]": {
-                        required: "Nama ayah harus di isi"
-                    },
-                    "father_data[phone_number]": {
-                        required: "Nomor telepon ayah harus di isi",
-                        minlength: "Minimal 10 digit"
-                    },
-                    "father_data[father_name]": {
-                        required: "Nama ayah sesuai ijazah harus di isi"
-                    },
-                    "mother_data[name]": {
-                        required: "Nama ibu wajib di isi"
-                    },
-                    "mother_data[phone_number]": {
-                        required: "Nomor telepon ibu wajib di isi",
-                        minlength: "Minimal 10 digit"
-                    },
-                    "other[certificate_of_graduation]": {
-                        required: "Surat tanda kelulusan smp harus di upload"
-                    },
-                    "other[junior_high_school_diploma]": {
-                        required: "Ijazah SMP harus di upload",
-                    },
-                    "other[elementary_school_diploma]": {
-                        required: "Ijazah SD harus di upload"
-                    },
-                    "other[birth_certificate]": {
-                        required: "Akte kelahiran harus di upload"
-                    },
-                    "other[family_card]": {
-                        required: "Kartu keluarga harus di upload"
-                    },
-                    "other[id_card_father]": {
-                        required: "KTP ayah harus di upload"
-                    },
-                    "other[id_card_mother]": {
-                        required: "KTP ibu harus di upload"
-                    },
-                    usr_profile_picture: {
-                        required: "Foto calon siswa tidak boleh kosong"
-                    },
-                    terms_and_conditions: {
-                        required: "&nbsp S&K harus di centang"
-                    }
-
-                }
-            });
-        });
-    </script>
-
-    <script>
-        function bacaGambar(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#tampil_picture').attr('src', e.target.result);
-                }
-
-<<<<<<< HEAD
-                reader.readAsDataURL(input.files[0]);
-=======
 <script>
     $().ready(function() {
-
     //   $(".submitForm").submit(function(e) {
     //     $(this).find("button[type='submit']").prop('disabled', true);
     //     $(".btnSubmit").attr("disabled", true);
     //     return true;
     // });
-
     $("#form-validate").validate({
         rules: {
             stu_major_id:{
@@ -963,7 +719,6 @@
             terms_and_conditions:{
                 required: true
             },
-
         },  
         messages: {
             stu_major_id:{
@@ -990,7 +745,7 @@
                 minlength: "Minimal 10 digit"
             },
             usr_phone_number:{
-                required: "No Hp harus di isi",
+                required: "No Telepon harus di isi",
                 minlength: "Minimal 10 digit"
             },
             usr_religion:{
@@ -1075,64 +830,10 @@
             },
             terms_and_conditions:{
                 required: "&nbsp S&K harus di centang"
->>>>>>> ae6461e3135c134dc916b6fd558f13352aea6393
             }
         }
-        $("#preview_gambar").change(function() {
-            bacaGambar(this);
-        });
-    </script>
-
-    <!--Bootstrap Datepicker Js-->
-    <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script>
-        $('#default-datepicker').datepicker({
-            todayHighlight: true
-        });
-        $('#autoclose-datepicker').datepicker({
-            autoclose: true,
-            todayHighlight: true,
-            format: "yyyy-mm-dd"
-        });
-
-        $('#inline-datepicker').datepicker({
-            todayHighlight: true
-        });
-
-        $('#dateragne-picker .input-daterange').datepicker({});
-    </script>
-
-    
-<script>
-    $('#provinces').on('change', function (e) {
-        console.log(e);
-        var prov_id = e.target.value;
-        $.get('{{URL::to('api/json-cities')}}/'+ prov_id  , function (variable) {
-            console.log('variable');
-            $('#cities').empty();
-            $('#cities').append('<option value="">Pilih Kabupaten/Kota</option>');
-
-            $.each(variable.cities, function (val, citiesObj) {
-                $('#cities').append('<option value="'+citiesObj.cit_id+'">'+citiesObj.cit_name+'</option>');
-            });
-
-        });
     });
-
-    $('#cities').on('change', function (e) {
-        console.log(e);
-        var cit_id = e.target.value;
-        $.get('{{URL::to('api/json-districts')}}/'+ cit_id  , function (variable) {
-            console.log('variable');
-            $('#districts').empty();
-            $('#districts').append('<option value="">Pilih Kecamatan</option>');
-
-            $.each(variable.districts, function (val, districtsObj) {
-                $('#districts').append('<option value="'+districtsObj.dst_id+'">'+districtsObj.dst_name+'</option>');
-            });
-
-        });
-    });
+});
 </script>
 @endpush
 @endsection
