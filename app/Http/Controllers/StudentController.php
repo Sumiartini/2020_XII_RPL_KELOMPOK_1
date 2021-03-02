@@ -534,6 +534,10 @@ class StudentController extends Controller
         $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
         ->where('students.stu_user_id', $userID)->first();        
         $payment->stp_payment_status = 1;
+        $payment->stp_payment_method = $request->stp_payment_method;
+        $payment->stp_reason = null;
+        $payment->stp_date_verification = null;
+        $payment->stp_date = now();
         if ($request->hasFile('stp_picture')) {
             $files = $request->file('stp_picture');
             $path = public_path('images/student_files/payments');
@@ -549,8 +553,11 @@ class StudentController extends Controller
 
     public function payment_detail($studentID)
     {        
-        $student = Students::findOrFail($studentID);        
-        return view('students.detail-payment', ['student' => $student]);
+        $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
+                   ->join('users', 'users.usr_id', '=', 'students.stu_user_id')
+                   ->where('student_payments.stp_student_id', $studentID)
+                   ->get();
+        return view('students.detail-payment', ['payment' => $payment]);
     }
 
     public function acceptPayment($studentID)
@@ -565,12 +572,13 @@ class StudentController extends Controller
     {
         $payment = StudentPayments::where('stp_student_id', $studentID)->first();
         $payment->stp_reason = $request->stp_reason;
-        $payment->stp_payment_status = '2';
+        $payment->stp_payment_status = '2';        
+        $payment->stp_date_verification = now();
         $payment->update();
 
         $student = Students::findOrFail($studentID);
         $user = User::where('usr_id', $student->stu_user_id)->first();        
-        Mail::to($user['usr_email'])->send(new PaymentMail($user));
+        Mail::to($user['usr_email'])->send(new PaymentMail($user, $payment));
         return redirect('/student-payments')->with('success', 'Pembayaran berhasil diterima');
     }
 
@@ -587,6 +595,7 @@ class StudentController extends Controller
         $payment = StudentPayments::where('stp_student_id', $studentID)->first();
         $payment->stp_reason = $request->stp_reason;
         $payment->stp_payment_status = '3';
+        $payment->stp_date_verification = now();
         $payment->update();
 
         $student = Students::findOrFail($studentID);

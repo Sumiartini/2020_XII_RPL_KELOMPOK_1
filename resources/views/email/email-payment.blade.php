@@ -30,7 +30,7 @@
             <p>Pembayaran anda telah di terima oleh kami</p>
             Silahkan klik link di bawah ini untuk masuk ke halaman formulir atau login dengan akun yang telah dibuat
             <p style="text-align: center; font-size:20px;">
-              <a href="{{url('/register-student')}}">
+              <a href="{{url('/student-registration')}}">
                 <button style="background-color: dodgerblue; font-family: 'Times New Roman'; border: none; color: white; padding: 5px 20px; text-align: center; text-decoration: none; font-size: 17px; "> Klik Disini </button>
               </a>
             </p><br>
