@@ -14,6 +14,7 @@ use App\majors;
 use App\MasterSlides;
 use App\MasterConfigs;
 use App\Classes;
+use Illuminate\Database\Eloquent\Builder;
 
 class DatatableController extends Controller
 {
@@ -346,7 +347,7 @@ class DatatableController extends Controller
         ->make(true);
     }
 
-    public function getClasses(Request $request)
+public function getClasses(Request $request)
     {
         $class = Classes::getClasses($request->query());
         return Datatables::of($class)
@@ -375,7 +376,6 @@ class DatatableController extends Controller
         })->rawColumns(['action', 'cls_is_active','cls_name'])
         ->make(true);
     }
-
     public function getMasterSlide(Request $request)
     {
         $master_slides = MasterSlides::getMasterSlides($request->query());

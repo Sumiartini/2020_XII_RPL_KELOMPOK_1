@@ -979,46 +979,46 @@ function major() {
     });
 }
 
-
 function classes() {
-    $('#example').DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: 'class',
-      lengthChange: false,
-      dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
-        columns: [
-            {
-                data: 'cls_id',
-                name: 'cls_id',
-                class: 'table-fit text-left',
-                orderable:true,
-                searchable: true,
-                render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }
-            },
-            {
-                data: 'cls_name', 
-                name:'cls_name', 
-                orderable: true, 
-                searchable: true
-            },
-            {
-                data: 'cls_is_active', 
-                name:'cls_is_active', 
-                orderable: false, 
-                searchable: false
-            },
-
-            {
-                data: 'action', 
-                name:'action', 
-                orderable: false, 
-                searchable: false
-            },
-        ],
+$('#example').DataTable({
+ searching: true,
+ processing: true,
+ serverSide: true,
+ ajax: 'class',
+ lengthChange: false,
+ select: true,
+ dom: 'Blfrtip',
+ buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+   columns: [
+        {
+           data: 'cls_id',
+           name: 'cls_id',
+           class: 'table-fit text-left',
+           orderable:true,
+           searchable: true,
+           render: function (data, type, row, meta) {
+               return meta.row + meta.settings._iDisplayStart + 1;
+           }
+        },
+        {
+           data: 'cls_name',
+           name:'majors.mjr_name',
+           orderable: true,
+           searchable: true
+       },
+       {
+           data: 'cls_is_active',
+           name:'cls_is_active',
+           orderable: false,
+           searchable: false
+       },
+       {
+           data: 'action',
+           name:'action',
+           orderable: false,
+           searchable: false
+       },
+   ],
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
@@ -1033,6 +1033,27 @@ function classes() {
             }
         }
     });
+}
+
+function searchClasses() {
+
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("example");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
 }
 
 function master_slide() {

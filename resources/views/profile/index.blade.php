@@ -37,8 +37,9 @@
 		<div class="col-lg-12">
 			<div class="profile-card-3 ">
 				<div class="text-center">
+
 					@if(isset(Auth()->user()->usr_profile_picture))
-					<img src="{{ asset($user->usr_profile_picture)}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+					<img src="{{ asset(Auth()->user()->usr_profile_picture)}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
 					@else
 					<img src="{{ asset('images/default_profile_picture_20210228.png')}}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
 					@endif
@@ -72,51 +73,51 @@
 								<tr>
 									<th>Nama</th>
 									<td>:</td>
-									<td>{{$user->usr_name}}</td>
+									<td>{{ Auth()->user()->usr_name }}</td>
 
 									<th>Email</th>
 									<td>:</td>
-									<td>{{$user->usr_email}}</td>
+									<td>{{ Auth()->user()->usr_email }}</td>
 								</tr>								
 
 								<tr>
 									<th>Jenis Kelamin</th>
 									<td>:</td>
-									<td>{{$user->usr_gender}}</td>
+									<td>{{ Auth()->user()->usr_gender }}</td>
 
 									<th>Agama</th>
 									<td>:</td>
-									<td>{{$user->usr_religion}}</td>
+									<td>{{ Auth()->user()->usr_religion }}</td>
 								</tr>
 
 								<tr>
 									<th>Tempat lahir</th>
 									<td>:</td>
-									<td>{{$user->usr_place_of_birth}}</td>
+									<td>{{ Auth()->user()->usr_place_of_birth }}</td>
 
 									<th>Tanggal lahir</th>
 									<td>:</td>
-									<td>{{$user->usr_date_of_birth}}</td>
+									<td>{{ date('d M Y', strtotime(aUTH()->USER()->usr_date_of_birth )) }}</td>
 								</tr>
 
 								<tr>
 									<th>Alamat</th>
 									<td>:</td>
-									<td>{{$user->usr_address}}</td>
+									<td>{{ Auth()->user()->usr_address }}</td>
 									
 									<th>Desa</th>
 									<td>:</td>
-									<td>{{$user->usr_rural_name}}</td>
+									<td>{{ Auth()->user()->usr_rural_name }}</td>
 								</tr>
 
 								<tr>
 									<th>RT</th>
 									<td>:</td>
-									<td>{{$user->usr_rt}}</td>
+									<td>{{ Auth()->user()->usr_rt }}</td>
 
 									<th>RW</th>
 									<td>:</td>
-									<td>{{$user->usr_rw}}</td>
+									<td>{{ Auth()->user()->usr_rw }}</td>
 								</tr>
 								
 								<tr>
