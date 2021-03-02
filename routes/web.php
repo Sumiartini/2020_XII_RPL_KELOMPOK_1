@@ -149,13 +149,13 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/page/add', 'PageController@create');
     Route::get('/page/edit', 'PageController@edit');
 
-    Route::get('/account/profile/1/edit-password', 'Auth\AccountController@editPassword');
-    Route::post('/account/profile/1/edit-password', 'Auth\AccountController@storeEditPassword');
+    Route::get('/account/profile/edit-password', 'Auth\AccountController@editPassword');
+    Route::post('/account/profile/edit-password', 'Auth\AccountController@storeEditPassword');
 
-    Route::get('/account/profile/{usr_id}/edit', 'Auth\AccountController@editProfile');
-    Route::post('/account/profile/{usr_id}/edit', 'Auth\AccountController@storeEditProfile');
+    Route::get('/account/profile/edit', 'Auth\AccountController@editProfile');
+    Route::post('/account/profile/edit', 'Auth\AccountController@storeEditProfile');
 
-    Route::get('/account/profile/{usr_id}', 'Auth\AccountController@profile');
+    Route::get('/account/profile', 'Auth\AccountController@profile');
 
 
 });

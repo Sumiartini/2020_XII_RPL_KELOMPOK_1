@@ -29,7 +29,7 @@
     <div class="col-sm-9">
         <h4 class="page-title">Tambah Siswa</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
             <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
             <li class="breadcrumb-item active" aria-current="page">Tambah Siswa</li>
         </ol>
@@ -831,7 +831,7 @@
                 <option value="Sosmed"{{ old('other.recomended_from') == "Sosmed" ? 'selected' : '' }}> Sosmed (IG, FB, YT, dll) </option>
                 <option value="Saudara"{{ old('other.recomended_from') == "Saudara" ? 'selected' : '' }}> Saudara </option>
                 <option value="Tetangga"{{ old('other.recomended_from') == "Tetangga" ? 'selected' : '' }}> Tetangga </option>
-                <option value="Siswa/i Mahaputra"{{ old('other.recomended_from') == "Siswa/i Mahaputra" ? 'selected' : '' }}> Siswa/i Mahaputra </option>
+                <option value="Siswa/i Sekolah"{{ old('other.recomended_from') == "Siswa/i Mahaputra" ? 'selected' : '' }}> Siswa/i Sekolah </option>
             </select>
             @error('')
             <span class="invalid-feedback" role="alert">

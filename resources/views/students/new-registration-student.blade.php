@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.masterFront')
 
-<head>
+@push('title')
+- Formulir Siswa
+@endpush
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SMK Mahaputra - Formulir Siswa</title>
-    <!--favicon-->
-    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
-    <!-- simplebar CSS-->
+@push('styles')
     <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
     <!-- Bootstrap core CSS-->
     <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -27,83 +20,24 @@
     <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
     <!-- select2 -->
     <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
-    <style>
-        footer {
-            color: #272727;
-            text-align: center;
-            padding: 12px 30px;
-            margin-bottom: -10px;
-            margin-top: 10px;
-            border-top: 1px solid rgb(223, 223, 255);
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
-            transition: all 0.3s ease;
+    <style type="text/css">
+        footer{
+          bottom: 0px;
+          color: #272727;
+          text-align: center;
+          padding: 12px 30px;
+          right: 0;
+          left: 0;
+          background-color: #f9f9f9;
+          border-top: 1px solid rgb(223, 223, 255);
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          transition: all 0.3s ease; 
         }
     </style>
-</head>
-
-<body>
-    <header class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('assets/images/mahaputra.jfif') }}" style="width: 50px;" height="50px;"> {{ config('app.name', 'Laravel') }}
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ __('Register') }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('register-student') }}">Siswa</a>
-                            <a class="dropdown-item" href="{{ url('register-teacher') }}">Guru</a>
-                            <a class="dropdown-item" href="{{ url('register-staff') }}">Staff TU</a>
-                        </div>
-                    </li>
-                    @endif
-                    @else
-
-
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->usr_name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                @endguest
-            </ul>
-        </div>
-    </div>
-</header><br>
-
+@endpush
+@section('content')
 
 <div class="container-fluid" style="margin-top: 80px">
     <div class="row">
@@ -202,7 +136,7 @@
 
                             <div class="col-sm-4">
                                 <label> No. WhatsApp <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_whatsapp_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan Nomor WhatsApp" value="{{ old('usr_whatsapp_number') }}">
                                 @error('usr_whatsapp_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -214,7 +148,7 @@
 
                              <div class="col-sm-4">
                                 <label> No Telepon siswa <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_phone_number') is-invalid @enderror" name="usr_phone_number" placeholder="Masukan Nomor Telepon" value="{{ old('usr_phone_number') }}">
                                 @error('usr_phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -252,7 +186,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <label> Nama Sekolah <span style="color:red"> *</span></label>
-                                <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" placeholder="Masukan Asal Sekolah" value="{{ old('stu_school_origin') }}">
+                                <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" placeholder="Masukan Nama Sekolah" value="{{ old('stu_school_origin') }}">
                                 @error('stu_school_origin')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -353,7 +287,7 @@
                             </div>
                             <div class="col-sm-4">
                              <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
+                             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelurahan" value="{{ old('usr_rural_name') }}">
                              @error('usr_rural_name')
                              <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -431,7 +365,7 @@
 
                             <div class="col-sm-4">
                                 <label> Nomor Telepon Ayah <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.phone_number') }}">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data.phone_number') }}">
                                 @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -468,8 +402,8 @@
 
 
                             <div class="col-sm-4">
-                                <label> Nomor Telepon <span style="color:red"> *</span></label>
-                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('mother_data.phone_number') }}">
+                                <label> Nomor Telepon Ibu<span style="color:red"> *</span></label>
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  type="text" name="mother_data[phone_number]" class="form-control form-control-rounded @error('mother_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('mother_data.phone_number') }}">
                                 @error('mother_data.phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -640,55 +574,39 @@
     </div>
 </div>
 </div>
+    @push('scripts')
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/js/popper.min.js')}}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
 
-<footer>
-    <div class="container">
-        <div class="text-center">
-            Copyright © 2021 PPDB Mahaputra
-        </div>
-    </div>
-</footer>
+    <!-- simplebar js -->
+    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.js')}}"></script>
+    <!-- waves effect js -->
+    <script src="{{ asset('assets/js/waves.js')}}"></script>
+    <!-- sidebar-menu js -->
+    <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
+    <!-- Custom scripts -->
+    <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
+    <!-- script select2 -->
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.single-select').select2();
+        });
+    </script>
 
-<!--Start Back To Top Button-->
-<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-<!--End Back To Top Button-->
-
-<!-- Bootstrap core JavaScript-->
-<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
-<script src="{{ asset('assets/js/popper.min.js')}}"></script>
-<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-
-<!-- simplebar js -->
-<script src="{{ asset('assets/plugins/simplebar/js/simplebar.js')}}"></script>
-<!-- waves effect js -->
-<script src="{{ asset('assets/js/waves.js')}}"></script>
-<!-- sidebar-menu js -->
-<script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
-<!-- Custom scripts -->
-<script src="{{ asset('assets/js/app-script.js')}}"></script>
-
-<!-- script select2 -->
-<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
-<script>
-    $(document).ready(function() {
-        $('.single-select').select2();                 
-    });
-
-</script>
-
-<!--Form Validatin Script-->
+   <!--Form Validatin Script-->
  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
 <script>
     $().ready(function() {
-
     //   $(".submitForm").submit(function(e) {
     //     $(this).find("button[type='submit']").prop('disabled', true);
     //     $(".btnSubmit").attr("disabled", true);
     //     return true;
     // });
-
     $("#form-validate").validate({
         rules: {
             stu_major_id:{
@@ -801,7 +719,6 @@
             terms_and_conditions:{
                 required: true
             },
-
         },  
         messages: {
             stu_major_id:{
@@ -828,11 +745,14 @@
                 minlength: "Minimal 10 digit"
             },
             usr_phone_number:{
-                required: "No Hp harus di isi",
+                required: "No Telepon harus di isi",
                 minlength: "Minimal 10 digit"
             },
             usr_religion:{
                 required: "Agama harus di pilih"
+            },
+            stu_school_origin:{
+                required: "Nama sekolah harus di isi"
             },
             "school_origin[npsn]":{
                 required: "NPSN asal sekolah harus di isi"
@@ -911,83 +831,9 @@
             terms_and_conditions:{
                 required: "&nbsp S&K harus di centang"
             }
-
         }
     });
 });
 </script>
-
-<script>
-    function bacaGambar(input) {
-     if (input.files && input.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-          $('#tampil_picture').attr('src', e.target.result);
-      }
-
-      reader.readAsDataURL(input.files[0]);
-  }
-}
-$("#preview_gambar").change(function(){
- bacaGambar(this);
-});
-</script>
-
-<!--Bootstrap Datepicker Js-->
-<script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-<script>
-    $('#default-datepicker').datepicker({
-        todayHighlight: true
-    });
-    $('#autoclose-datepicker').datepicker({
-        autoclose: true,
-        todayHighlight: true,
-        format: "yyyy-mm-dd"
-    });
-
-    $('#inline-datepicker').datepicker({
-        todayHighlight: true
-    });
-
-    $('#dateragne-picker .input-daterange').datepicker({});
-</script>
-
-<script>
-    $('#provinces').on('change', function (e) {
-        console.log(e);
-        var prov_id = e.target.value;
-        $.get('{{URL::to('api/json-cities')}}/'+ prov_id  , function (variable) {
-            console.log('variable');
-            $('#cities').empty();
-            $('#cities').append('<option value="">Pilih Kabupaten/Kota</option>');
-
-            $.each(variable.cities, function (val, citiesObj) {
-                $('#cities').append('<option value="'+citiesObj.cit_id+'">'+citiesObj.cit_name+'</option>');
-            });
-
-        });
-    });
-
-    $('#cities').on('change', function (e) {
-        console.log(e);
-        var cit_id = e.target.value;
-        $.get('{{URL::to('api/json-districts')}}/'+ cit_id  , function (variable) {
-            console.log('variable');
-            $('#districts').empty();
-            $('#districts').append('<option value="">Pilih Kecamatan</option>');
-
-            $.each(variable.districts, function (val, districtsObj) {
-                $('#districts').append('<option value="'+districtsObj.dst_id+'">'+districtsObj.dst_name+'</option>');
-            });
-
-        });
-    });
-
-
-</script>
-
-
-</body>
-
-</html>
+@endpush
+@endsection

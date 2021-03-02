@@ -14,7 +14,7 @@ class Classes extends Model
 
     public static function getClasses($request)
     {
-	    $classes = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')->join('majors','classes.cls_major_id','=','majors.mjr_id')->orderBy('cls_grade_level_id')->orderBy('cls_major_id');
+	    $classes = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')->join('majors','classes.cls_major_id','=','majors.mjr_id')->orderBy('cls_grade_level_id')->orderBy('cls_major_id')->select('classes.cls_id','classes.cls_is_active', 'classes.cls_number','grade_levels.grl_name','majors.mjr_name');
         return $classes;
     }
 

@@ -69,7 +69,7 @@
      <div class="card-body">
        <div class="card-title">Edit Kata Sandi</div>
        <hr>
-       <form method="POST" autocomplete="off" action="{{ url('account/profile/1/edit-password')}}" id="submitForm">
+       <form method="POST" autocomplete="off" action="{{ url('account/profile/edit-password')}}" id="form-validate">
         @csrf
 
         <div class="form-group row">
@@ -87,7 +87,7 @@
         <div class="form-group row">
           <label for="input-5" class="col-sm-2 col-form-label">Kata Sandi Baru</label>
           <div class="col-sm-10">
-            <input type="password" name="new_password" class="form-control form-control-rounded @error('new_password') is-invalid @enderror" id="input-5" placeholder="Masukan Kata Sandi Baru" value="{{ old('new_password') }}">
+            <input type="password" name="new_password" class="form-control form-control-rounded @error('new_password') is-invalid @enderror" id="password" placeholder="Masukan Kata Sandi Baru" value="{{ old('new_password') }}">
             @error('new_password')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -120,10 +120,6 @@
 </div>
 </div><!-- End Row-->
 
-@endsection
-
-
-
 @push('scripts')
 
 <!-- Bootstrap core JavaScript-->
@@ -140,14 +136,39 @@
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 <script>
-  $(document).ready(function() {
-    $("#submitForm").submit(function(e) {
-      $(this).find("button[type='submit']").prop('disabled', true);
-      $("#btnSubmit").attr("disabled", true);
-      return true;
-    });      
+  $().ready(function() {
+  $("#form-validate").validate({
+      rules: {
+          current_password: "required",
+          new_password: {
+            required: true,
+            minlength: 8
+          },
+          confirm_new_password: {
+            required: true,
+            equalTo: "#password"
+          },
+          
+      },
+      messages: {
+          current_password: {
+            required: "Kata sandi lama harus di isi",
+          },
+          new_password: {
+            required: "Kata sandi baru harus di isi",
+            minlength: "Minimal kata sandi 8 digit"
+          },
+          confirm_new_password: {
+            required: "Ulangi kata sandi harus di isi",
+            equalTo: "Kata sandi harus sesuai dengan yang baru"
+          },
+      }
   });
+});
 
-</script>
-@endpush    
+  </script>
+@endpush
+@endsection   

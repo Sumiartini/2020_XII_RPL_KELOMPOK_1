@@ -52,6 +52,11 @@
                     <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
                         <a href="{{URL::to('class/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH KELAS" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
                     </div>
+
+<!--                     <div id="example_filter" style="text-align:right; display: inline-block; float:right;">
+                        <label style="font-weight:normal;text-align:left; display: inline-block;">Cari:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example" id="myInput" onkeyup="searchClasses()"></label>
+                    </div> -->
+
                     <table id="example" class="table table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
@@ -110,5 +115,10 @@
         classes()
     });
 </script>
+<!-- <script>
+        $(document).ready( function () {
+        searchClasses()
+    });
+</script> -->
 @endpush
 @endsection

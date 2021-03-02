@@ -14,6 +14,7 @@ use App\majors;
 use App\MasterSlides;
 use App\MasterConfigs;
 use App\Classes;
+use Illuminate\Database\Eloquent\Builder;
 
 class DatatableController extends Controller
 {
@@ -346,7 +347,7 @@ class DatatableController extends Controller
         ->make(true);
     }
 
-    public function getClasses(Request $request)
+public function getClasses(Request $request)
     {
         $class = Classes::getClasses($request->query());
         return Datatables::of($class)
@@ -372,10 +373,9 @@ class DatatableController extends Controller
                 $status = '<a href="' . url('class/edit-status', $row->cls_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
             }
             return $edit . '&nbsp' . $status;
-        })->rawColumns(['action', 'cls_is_active'])
+        })->rawColumns(['action', 'cls_is_active','cls_name'])
         ->make(true);
     }
-
     public function getMasterSlide(Request $request)
     {
         $master_slides = MasterSlides::getMasterSlides($request->query());

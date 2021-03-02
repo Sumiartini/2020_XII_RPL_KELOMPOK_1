@@ -40,10 +40,10 @@
             </a>
           </li>
           <li class="dropdown-divider"></li>
-          <div><a class="dropdown-item" href="{{ url('account/profile/'.Auth::user()->usr_id) }}">
+          <div><a class="dropdown-item" href="{{ url('account/profile/') }}">
               <i class="fa fa-user-circle icons"></i> Profil</a>
           </div>
-          <div><a class="dropdown-item" href="{{ url('account/profile/'.Auth::user()->usr_id.'/edit') }}">
+          <div><a class="dropdown-item" href="{{ url('account/profile/edit') }}">
               <i class="fa fa-edit icons"></i> Edit Profil</a>
           </div>
           <div><a class="dropdown-item" href="{{ url('account/profile/1/edit-password') }}">
@@ -60,10 +60,6 @@
           </div>
         </ul>
       </li>
-
-
-
-
     </ul>
   </nav>
 </header>

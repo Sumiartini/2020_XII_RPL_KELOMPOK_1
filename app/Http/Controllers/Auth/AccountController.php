@@ -125,7 +125,7 @@ class AccountController extends Controller
         ];
 
         $request->validate([
-            'current_password'            => ['required', 'string', 'min:8'],
+            'current_password'            => ['required', 'string'],
             'new_password'                => ['required', 'min:8', 'string', 'same:confirm_new_password'],
             'confirm_new_password'        => ['required', 'min:8', 'string', 'same:new_password'],            
         ], $messages);
@@ -136,27 +136,32 @@ class AccountController extends Controller
             $user->usr_password = Hash::make($request->new_password);
 
             if ($user->update()) {
-                return redirect('/account/profile/1/edit-password')->with(['success' => 'Kata sandi anda berhasil di rubah']);;
+                return redirect('/account/profile/edit-password')->with(['success' => 'Kata sandi anda berhasil di rubah']);;
             } else{
                 dd('gagal');    
             }
         } else {
-            return redirect('/account/profile/1/edit-password')->with(['failed' => 'Masukkan kata sandi lama dengan benar']);;
+            return redirect('/account/profile/edit-password')->with(['failed' => 'Masukkan kata sandi lama dengan benar']);;
         }
     }
 
-    public function profile($usr_id){
-        $user = User::find($usr_id);
-        return view('profile.index',['user' => $user]);
+    public function profile(){
+        return view('profile.index');
     }
 
-    public function editProfile($usr_id)
+    public function editProfile()
     {
-        $user = User::find($usr_id);
-        return view('profile.edit',['user' => $user]);
+        return view('profile.edit');
     }
     public function storeEditProfile(Request $request)
     {
+         $messages = [
+            'required'  =>'Kolom harus diisi',
+        ];
+
+        $request->validate([
+            'usr_name'            => 'required',          
+        ], $messages);
         // dd($request);
         $user = Auth()->user();
 
@@ -180,7 +185,7 @@ class AccountController extends Controller
         
         $user->update();
 
-        return redirect('/account/profile/'.$user->usr_id)->with(['success' => 'Data profil anda berhasil di simpan']);;
+        return redirect('/account/profile/')->with(['success' => 'Data profil anda berhasil di simpan']);;
 
     }
 

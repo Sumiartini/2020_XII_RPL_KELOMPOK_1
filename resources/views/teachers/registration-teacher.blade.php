@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.masterFront')
 
-<head>
+@push('title')
+- Formulir Guru
+@endpush
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SMK Mahaputra - Formulir Guru</title>
-    <!--favicon-->
-    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
+@push('styles')
     <!-- simplebar CSS-->
     <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
     <!-- Bootstrap core CSS-->
@@ -41,71 +35,9 @@
             transition: all 0.3s ease;
         }
     </style>
-</head>
-
-<body>
-    <header class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('assets/images/mahaputra.jfif') }}" style="width: 50px;" height="50px;"> {{ config('app.name', 'Laravel') }}
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ __('Register') }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('register-student') }}">Siswa</a>
-                            <a class="dropdown-item" href="{{ url('register-teacher') }}">Guru</a>
-                            <a class="dropdown-item" href="{{ url('register-staff') }}">Staff TU</a>
-                        </div>
-                    </li>
-                    @endif
-                    @else
-
-
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->usr_name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                @endguest
-            </ul>
-        </div>
-    </div>
-</header><br>
-
-<div class="container-fluid">
-
+@endpush
+@section('content')
+<div class="container-fluid" style="margin-top: 80px;">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -392,7 +324,7 @@
                         <div class="form-group row">
 
                             <div class="col-sm-4">
-                                <label>Tahun Perguruan Tinggi<span style="color:red;">*</span></label>
+                                <label>Tahun Perguruan Tinggi<span style="color:red;"> *</span></label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_entry') is-invalid @enderror year_picker"  name="educational_background[year_entry]" placeholder="Masukan Tahun Perguruan Tinggi" value="{{ old('educational_background.year_entry') }}">
                                 @error('educational_background.year_entry')
                                 <span class="invalid-feedback" role="alert">
@@ -401,7 +333,7 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                                <label>Nama Perguruan Tinggi<span style="color:red;">*</span></label>
+                                <label>Nama Perguruan Tinggi<span style="color:red;"> *</span></label>
                                 <input type="text" class="form-control form-control-rounded @error('educational_background.college') is-invalid @enderror"  name="educational_background[college]" placeholder="Masukan Nama Perguruan Tinggi" value="{{ old('educational_background.college') }}">
                                 @error('educational_background.college')
                                 <span class="invalid-feedback" role="alert">
@@ -410,7 +342,7 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                                <label>Nama Fakultas<span style="color:red;">*</span></label>
+                                <label>Nama Fakultas<span style="color:red;"> *</span></label>
                                 <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_name') is-invalid @enderror" name="educational_background[faculty_name]" placeholder="Masukan Nama Fakultas" value="{{ old('educational_background.faculty_name') }}">
                                 @error('educational_background.faculty_name')
                                 <span class="invalid-feedback" role="alert">
@@ -424,7 +356,7 @@
                         <div class="form-group row">
 
                             <div class="col-sm-4">
-                                <label>Nama Jurusan<span style="color:red;">*</span></label>
+                                <label>Nama Jurusan<span style="color:red;"> *</span></label>
                                 <input type="text" class="form-control form-control-rounded @error('educational_background.faculty_major') is-invalid @enderror"  name="educational_background[faculty_major]" placeholder="Masukan Nama Jurusan" value="{{ old('educational_background.faculty_major') }}">
                                 @error('educational_background.faculty_major')
                                 <span class="invalid-feedback" role="alert">
@@ -433,7 +365,7 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                                <label>Tahun Lulus<span style="color:red;">*</span></label>
+                                <label>Tahun Lulus<span style="color:red;"> *</span></label>
                                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('educational_background.year_graduated') is-invalid @enderror year_picker"  name="educational_background[year_graduated]" placeholder="Masukan Tahun Lulus" value="{{ old('educational_background.year_graduated') }}">
                                 @error('educational_background.year_graduated')
                                 <span class="invalid-feedback" role="alert">
@@ -442,7 +374,7 @@
                                 @enderror
                             </div>
                             <div class="col-sm-4">
-                                <label>Gelar<span style="color:red;">*</span></label>
+                                <label>Gelar<span style="color:red;"> *</span></label>
                                 <input type="text" class="form-control form-control-rounded @error('educational_background.degree') is-invalid @enderror"  name="educational_background[degree]" placeholder="Masukan Gelar" value="{{ old('educational_background.degree') }}">
                                 @error('educational_background.degree')
                                 <span class="invalid-feedback" role="alert">
@@ -620,17 +552,7 @@
         </div>
     </div>
 </div>
-<footer>
-    <div class="container">
-        <div class="text-center">
-            Copyright © 2018 Rocker Admin
-        </div>
-    </div>
-</footer>
-
-<!--Start Back To Top Button-->
-<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-<!--End Back To Top Button-->
+@push('scripts')
 
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
@@ -720,25 +642,29 @@
                 required:true
             },
             "educational_background[year_grade_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[grade_school]":{
                 required: true
             },
             "educational_background[year_junior_high_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[junior_high_school]":{
                 required: true
             },
             "educational_background[year_senior_high_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[senior_high_school]":{
                 required: true
             },
             "educational_background[year_entry]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[college]":{
                 required: true
@@ -750,7 +676,8 @@
                 required: true
             },
             "educational_background[year_graduated]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[degree]":{
                 required: true
@@ -836,22 +763,26 @@
                 required: "Kode pos harus di isi"
             },
             "educational_background[year_grade_school]":{
-                required: "Tahun lulus SD sederajat harus di isi"
+                required: "Tahun lulus SD sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[grade_school]":{
                 required: "Nama SD sederajat harus di isi"
             },
             "educational_background[year_junior_high_school]":{
-                required: "Tahun lulus SMP sederajat harus di isi"
+                required: "Tahun lulus SMP sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[junior_high_school]":{
                 required: "Nama SMP sederajat harus di isi"
             },
             "educational_background[year_senior_high_school]":{
-                required: "Tahun lulus SMA sederajat harus di isi"
+                required: "Tahun lulus SMA sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[year_entry]":{
-                required: "Tahun perguruan tinggi harus di isi"
+                required: "Tahun perguruan tinggi harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[college]":{
                 required: "Nama perguruan tinggi harus di isi"
@@ -863,7 +794,8 @@
                 required: "Nama jurusan harus di isi"
             },
             "educational_background[year_graduated]":{
-                required: "Tahun lulus harus di isi"
+                required: "Tahun lulus harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[degree]":{
                 required: "Gelar harus di isi"
@@ -917,7 +849,6 @@
         bacaGambar(this);
     });
 </script>
-
 <!--Bootstrap Datepicker Js-->
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script>
@@ -974,8 +905,5 @@
         });
     });
 </script>
-
-
-</body>
-
-</html>
+@endpush
+@endsection
