@@ -89,7 +89,7 @@
 <div style="margin-top:80px; " class="col-lg-10">
     <div class="card " style="box-shadow: 10px 10px 8px skyblue;">
         <div class="card-body atas" style="background-color: #599be2;">
-            <h3 style="color: white; text-shadow: 1px 1px 2px white;"> TERIMA KASIH TELAH MENDAFTAR SEBAGAI SISWA DI SMKS MAHAPUTRA CERDAS UTAMA</h3>
+            <h3 style="color: white; text-shadow: 1px 1px 2px white;"> TERIMA KASIH TELAH MENDAFTAR SEBAGAI SISWA DI {{ env('APP_NAME') }}</h3>
             <h4 style="color: white; text-shadow: 1px 1px 2px white;">Mohon maaf, pendaftaran anda kami tolak.</h4> 
             <h4 style="color: white; text-shadow: white;">Dengan alasan karena <u>{{ $student->str_reason }}</u></h4>         
         </div>

@@ -248,9 +248,9 @@ function studentPayment() {
             },
             {
                 data: 'usr_name', 
-                name:'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
-                searchable: true
+                searchable: false
             },
             {
                 data: 'stp_picture', 
@@ -259,13 +259,13 @@ function studentPayment() {
                     return "<img src=\"" + data + "\"height=\"50\"/>";
                 },
                 orderable: true, 
-                searchable: true
+                searchable: false
             },
             {
                 data: 'stu_payment_status', 
                 name:'stu_payment_status', 
                 orderable: false, 
-                searchable: true
+                searchable: false
             },
 
             {
@@ -981,7 +981,7 @@ function major() {
 
 function classes() {
 $('#example').DataTable({
- searching: true,
+ searching: false,
  processing: true,
  serverSide: true,
  ajax: 'class',
@@ -1044,7 +1044,7 @@ function searchClasses() {
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[i];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {

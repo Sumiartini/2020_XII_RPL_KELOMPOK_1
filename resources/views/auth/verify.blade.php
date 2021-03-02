@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('title')
+- Menunggu verifikasi email
+@endpush
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

@@ -857,6 +857,7 @@
         </div>
     </div>
     <div class="form-footer">
+        <a href="{{url('students')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
         <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
         <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
     </div>
@@ -1173,7 +1174,6 @@
 });
 </script>
 <!--Bootstrap Datepicker Js-->
-
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script>
     $('#default-datepicker').datepicker({

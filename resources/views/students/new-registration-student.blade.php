@@ -574,39 +574,55 @@
     </div>
 </div>
 </div>
-    @push('scripts')
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
-    <script src="{{ asset('assets/js/popper.min.js')}}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+@push('scripts')
+<!-- Bootstrap core JavaScript-->
+<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{ asset('assets/js/popper.min.js')}}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
 
-    <!-- simplebar js -->
-    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.js')}}"></script>
-    <!-- waves effect js -->
-    <script src="{{ asset('assets/js/waves.js')}}"></script>
-    <!-- sidebar-menu js -->
-    <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
-    <!-- Custom scripts -->
-    <script src="{{ asset('assets/js/app-script.js')}}"></script>
+<!-- simplebar js -->
+<script src="{{ asset('assets/plugins/simplebar/js/simplebar.js')}}"></script>
+<!-- waves effect js -->
+<script src="{{ asset('assets/js/waves.js')}}"></script>
+<!-- sidebar-menu js -->
+<script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
+<!-- Custom scripts -->
+<script src="{{ asset('assets/js/app-script.js')}}"></script>
 
-    <!-- script select2 -->
-    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
-    <script>
-        $(document).ready(function() {
-            $('.single-select').select2();
-        });
-    </script>
+<!-- script select2 -->
+<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.single-select').select2();
+    });
+</script>
+<!--Bootstrap Datepicker Js-->
+<script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script>
+    $('#default-datepicker').datepicker({
+        todayHighlight: true
+    });
+    $('#autoclose-datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "yyyy-mm-dd"
+    });
 
+    $('#inline-datepicker').datepicker({
+        todayHighlight: true
+    });
+    $('.year_picker').datepicker({
+        autoclose: true,
+        minViewMode: 2,
+        format: 'yyyy'
+    });
+    $('#dateragne-picker .input-daterange').datepicker({});
+</script>
    <!--Form Validatin Script-->
  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
 <script>
     $().ready(function() {
-    //   $(".submitForm").submit(function(e) {
-    //     $(this).find("button[type='submit']").prop('disabled', true);
-    //     $(".btnSubmit").attr("disabled", true);
-    //     return true;
-    // });
     $("#form-validate").validate({
         rules: {
             stu_major_id:{

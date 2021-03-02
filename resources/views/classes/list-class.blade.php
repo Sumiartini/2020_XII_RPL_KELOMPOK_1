@@ -27,7 +27,7 @@
     <div class="col-sm-9">
         <h4 class="page-title">Kelas</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">Kelas</li>
         </ol>
     </div>
@@ -53,9 +53,9 @@
                         <a href="{{URL::to('class/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH KELAS" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
                     </div>
 
-<!--                     <div id="example_filter" style="text-align:right; display: inline-block; float:right;">
+                    <div id="example_filter" style="text-align:right; display: inline-block; float:right;">
                         <label style="font-weight:normal;text-align:left; display: inline-block;">Cari:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example" id="myInput" onkeyup="searchClasses()"></label>
-                    </div> -->
+                    </div>
 
                     <table id="example" class="table table-bordered" style="width: 100%;">
                         <thead>
