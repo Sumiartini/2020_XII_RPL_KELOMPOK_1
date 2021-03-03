@@ -224,7 +224,7 @@
                 stp_picture:{
                     required: "Foto bukti pembayaran harus di isi"
                 }, 
-                stp_picture:{
+                stp_payment_method:{
                     required: "Metode Pembayaran harus di isi"
                 },
 
