@@ -572,8 +572,11 @@
     </div>
 </div>
 </div>
+<<<<<<< HEAD
 </div>
 </div>
+=======
+>>>>>>> 3c3fc54f00e17fee465007759cb903a0fb309bb5
 @push('scripts')
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
@@ -596,17 +599,39 @@
         $('.single-select').select2();
     });
 </script>
+<<<<<<< HEAD
 
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+=======
+<!--Bootstrap Datepicker Js-->
+<script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script>
+    $('#default-datepicker').datepicker({
+        todayHighlight: true
+    });
+    $('#autoclose-datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "yyyy-mm-dd"
+    });
+
+    $('#inline-datepicker').datepicker({
+        todayHighlight: true
+    });
+    $('.year_picker').datepicker({
+        autoclose: true,
+        minViewMode: 2,
+        format: 'yyyy'
+    });
+    $('#dateragne-picker .input-daterange').datepicker({});
+</script>
+   <!--Form Validatin Script-->
+ <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+>>>>>>> 3c3fc54f00e17fee465007759cb903a0fb309bb5
 
 <script>
     $().ready(function() {
-    //   $(".submitForm").submit(function(e) {
-    //     $(this).find("button[type='submit']").prop('disabled', true);
-    //     $(".btnSubmit").attr("disabled", true);
-    //     return true;
-    // });
     $("#form-validate").validate({
         rules: {
             stu_major_id:{

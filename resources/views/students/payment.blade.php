@@ -62,7 +62,7 @@
         <div class="card">
             <div class="card-body">
                 @if($payment->stp_payment_status == 0)
-                <h3> Terimakasih anda telah mendaftar di SMK Mahaputra</h3>
+                <h3> Terimakasih anda telah mendaftar di {{ env('APP_NAME') }}</h3>
                 <p> Untuk melanjutkan pendaftaran anda di haruskan membayar formulir sebesar Rp.150.000 ke nomor rekening di bawah ini atau datang langsung ke sekolah</p>
                 <div class="row">
 
@@ -123,14 +123,14 @@
             <p> Kami akan memberikan konfirmasi melalui email atau nomor telepon anda</p>
             <p> Jika ada pertanyaan silahkan hubungi kami di 022-5893178 | 0895-6304-68373</p>
             @else
-            <h3> Terimakasih anda mendaftar di SMK Mahaputra</h3>
+            <h3> Terimakasih anda mendaftar di {{ env('APP_NAME') }}</h3>
             <p> Pembayaran anda kami  tolak dengan alasan <b>{{$payment->stp_reason}}</b></p>
             <p> Silahkan kirim kembali bukti pembayarannya</p>
             <div class="row">
 
                 <dt class="col-sm-2">Transfer Ke Bank</dt>
                 <dd class="col-sm-10">
-                    <img src="{{ asset('assets/images/payment-icons/payment-bca.png') }}" height="48">
+                   BCA
                 </dd>
 
                 <dt class="col-sm-2">Nomor Rekening</dt>

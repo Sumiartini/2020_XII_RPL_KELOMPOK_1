@@ -2,7 +2,7 @@
 <html>
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>SMK Mahaputra Cerdas Utama</title>
+  <title>{{ env('APP_NAME') }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
@@ -26,7 +26,7 @@
              </tr>
              <tr>
               <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                Seseorang telah meminta pengaturan ulang kata sandi untuk akun anda di web smk mahaputra. Ikuti tautan di bawah untuk mengubah kata sandi baru:
+                Seseorang telah meminta pengaturan ulang kata sandi untuk akun anda di web {{ env('APP_NAME') }}. Ikuti tautan di bawah untuk mengubah kata sandi baru:
                 <p style="text-align: center; font-size:20px;">
                 	<a href="{{url('/account/'.$resetPassword->pwr_token.'/forgot-password')}}">
   				<button style="background-color: dodgerblue; font-family: 'Arial'; border: none; color: white; padding: 5px 20px; text-align: center; text-decoration: none; font-size: 16px;"> Klik Disini </button></a>
@@ -35,7 +35,7 @@
 				Jika Anda tidak ingin mengubah ulang sandi, abaikan email ini dan tidak ada tindakan yang akan diambil.<br><br>
 
 				Terimakasih,<br>
-				Tim PPDB SMK Mahaputra
+				Tim PPDB {{ env('APP_NAME') }}
               </td>
              </tr>
          </table>
@@ -47,7 +47,7 @@
          <table border="0" cellpadding="0" cellspacing="0" width="100%">
              <tr>
               <td width="75%" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;">
-                 © PPDB Smk Mahaputra 2021<br/>
+                 © PPDB {{ env('APP_NAME') }} 2021<br/>
                  Lihat dan <a href="https://www.youtube.com/channel/UCCfYqV-2N44pFhsQpGEedCw" style="color: #ffffff;"><font color="#ffffff"><u>Subscribe</u></font></a> ke channel Youtube Kami.
                 </td>
               <td align="right">

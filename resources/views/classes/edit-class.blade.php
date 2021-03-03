@@ -25,7 +25,7 @@
     <div class="col-sm-9">
         <h4 class="page-title">Edit Kelas</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">{{ env('APP_NAME') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ url('classes') }}">Kelas</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit Kelas</li>
         </ol>
@@ -110,7 +110,9 @@
                     <div class="form-group row">
                         <label for="input-1" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <button type="submit" class="btn btn-primary shadow-primary px-5">Update</button>
+                            <a href="{{url('majors')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
+                            <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Simpan</button>
                         </div>
                     </div>
                 </form>

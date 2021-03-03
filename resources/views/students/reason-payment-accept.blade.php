@@ -32,7 +32,7 @@
   <div class="col-sm-9">
     <h4 class="page-title">Alasan Terima Pembayaran </h4>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">{{ env('APP_NAME') }}</a></li>
       <li class="breadcrumb-item"><a href="{{ url('student-payments') }}">Daftar Pembayaran Siswa</a></li>
       <li class="breadcrumb-item active" aria-current="page">Alasan Terima Pembayaran</li>
     </ol>

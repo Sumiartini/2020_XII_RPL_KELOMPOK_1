@@ -30,7 +30,7 @@
     <div class="col-sm-9">
         <h4 class="page-title">Edit Siswa</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ url('students')}}">Kelola Siswa</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit Siswa</li>
         </ol>
@@ -745,6 +745,7 @@
         </div>
     </div>
     <div class="form-footer">
+        <a href="{{url('students')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
         <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
         <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
     </div>

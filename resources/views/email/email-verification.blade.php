@@ -2,7 +2,7 @@
 <html>
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>SMK Mahaputra Cerdas Utama</title>
+  <title>{{ env('APP_NAME') }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
@@ -26,7 +26,7 @@
              </tr>
              <tr>
               <td style="padding: 20px 0 30px 0; color: #153643; font-family: Times New Roman, sans-serif; font-size: 18px; line-height: 20px;">
-                <p>SELAMAT DATANG DI WEB SMK MAHAPUTRA CERDAS UTAMA</p>
+                <p>SELAMAT DATANG DI WEB {{ env('APP_NAME') }}</p>
                 <center>Silahkan klik link di bawah ini untuk memverifikasi email anda</center>
                 <p style="text-align: center; font-size:20px;">
                   <a href="{{url('/account/'.$user->usr_id.'/'.$user->usr_verification_token.'/activate')}}">
@@ -35,7 +35,7 @@
               </p><br>
 
         Terimakasih,<br>
-        Tim PPDB SMK Mahaputra
+        Tim PPDB {{ env('APP_NAME') }}
               </td>
              </tr>
          </table>
@@ -47,7 +47,7 @@
          <table border="0" cellpadding="0" cellspacing="0" width="100%">
              <tr>
               <td width="75%" style="color: #ffffff; font-family: Times New Roman, sans-serif; font-size: 14px;">
-                 © PPDB Smk Mahaputra 2021<br/>
+                 © PPDB {{ env('APP_NAME') }} 2021<br/>
                  Lihat dan <a href="https://www.youtube.com/channel/UCCfYqV-2N44pFhsQpGEedCw" style="color: #ffffff;"><font color="#ffffff"><u>Subscribe</u></font></a> ke channel Youtube Kami.
                 </td>
               <td align="right">

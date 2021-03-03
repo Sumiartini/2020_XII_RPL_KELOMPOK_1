@@ -46,7 +46,7 @@
           <div><a class="dropdown-item" href="{{ url('account/profile/edit') }}">
               <i class="fa fa-edit icons"></i> Edit Profil</a>
           </div>
-          <div><a class="dropdown-item" href="{{ url('account/profile/1/edit-password') }}">
+          <div><a class="dropdown-item" href="{{ url('account/profile/edit-password') }}">
               <i class="fa fa-lock icons"></i> Edit Password</a>
           </div>
          

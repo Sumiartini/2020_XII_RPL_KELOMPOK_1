@@ -25,7 +25,7 @@
     <div class="col-sm-9">
         <h4 class="page-title">Detail Guru</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ url('/students/')}}">Daftar Guru </a></li>
             <li class="breadcrumb-item active" aria-current="page">Detail Guru</li>
         </ol>
@@ -37,7 +37,7 @@
   <div class="col-sm-9">
     <h4 class="page-title">Daftar Calon Guru</h4>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">{{ env('APP_NAME') }}</a></li>
       <li class="breadcrumb-item"><a href="{{ url('/students-prospective')}}">Daftar Calon Guru</a></li>
       <li class="breadcrumb-item active" aria-current="page">Detail Calon Guru</li>
   </ol>
@@ -49,7 +49,7 @@
   <div class="col-sm-9">
     <h4 class="page-title">Daftar Guru Ditolak</h4>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
       <li class="breadcrumb-item"><a href="{{ url('/students-rejected')}}">Daftar Guru Ditolak</a></li>
       <li class="breadcrumb-item active" aria-current="page">Detail Guru Ditolak</li>
   </ol>
@@ -138,6 +138,9 @@
                         <dd class="col-sm-7">
                             <p>{{ $teacher->usr_whatsapp_number }}</p>
                         </dd>
+                    </div>
+                    <div>
+                      <a href="{{url('teachers')}}" class="btn btn-primary" style="margin-bottom: 20px; margin-left: 25px; "><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>
             </div>
             </div>
