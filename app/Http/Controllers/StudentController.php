@@ -280,10 +280,19 @@ class StudentController extends Controller
                         $studentDetail = StudentDetails::where('std_student_id', $student->stu_id)
                         ->where('std_type', $type)
                         ->where('std_key', $requestKey)->first();
-
-                        $studentDetail->std_value       = $requestValue;
-                        $studentDetail->std_updated_by  = Auth()->user()->usr_id;
-                        $studentDetailSave              = $studentDetail->update();
+                        if (isset($studentDetail)) {
+                            $studentDetail->std_value       = $requestValue;
+                            $studentDetail->std_updated_by  = Auth()->user()->usr_id;
+                            $studentDetailSave              = $studentDetail->update();                            
+                        }else{
+                            $studentDetail = new StudentDetails;
+                            $studentDetail->std_student_id = $student->stu_id;
+                            $studentDetail->std_type       = $type;
+                            $studentDetail->std_key        = $requestKey;
+                            $studentDetail->std_value      = $requestValue;
+                            $studentDetail->std_created_by = Auth()->user()->usr_id;
+                            $studentDetailSave              = $studentDetail->save();
+                        }
                     }
                 }
             }
@@ -554,9 +563,9 @@ class StudentController extends Controller
     public function payment_detail($studentID)
     {        
         $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
-                   ->join('users', 'users.usr_id', '=', 'students.stu_user_id')
-                   ->where('student_payments.stp_student_id', $studentID)
-                   ->get();
+        ->join('users', 'users.usr_id', '=', 'students.stu_user_id')
+        ->where('student_payments.stp_student_id', $studentID)
+        ->get();
         return view('students.detail-payment', ['payment' => $payment]);
     }
 
@@ -579,7 +588,7 @@ class StudentController extends Controller
         $student = Students::findOrFail($studentID);
         $user = User::where('usr_id', $student->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new PaymentMail($user, $payment));
-        return redirect('/student-payments')->with('success', 'Pembayaran berhasil diterima');
+        return redirect('/student/payment/'.$studentID)->with('success', 'Pembayaran berhasil diterima');
     }
 
     public function refusePayment($studentID)
@@ -601,7 +610,7 @@ class StudentController extends Controller
         $student = Students::findOrFail($studentID);
         $user = User::where('usr_id', $student->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new PaymentMail($user, $payment));
-        return redirect('/student-payments')->with('success', 'Pembayaran berhasil ditolak');
+        return redirect('/student/payment/'.$studentID)->with('success', 'Pembayaran berhasil ditolak');
     }
 
 

@@ -1037,23 +1037,31 @@ $('#example').DataTable({
 
 function searchClasses() {
 
-  var input, filter, table, tr, td, i, txtValue;
+  var input, filter, table, tr, td, i, txtValue, count;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("example");
   tr = table.getElementsByTagName("tr");
+  count = 0;
 
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[i];
-    if (td) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {        
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
+        count++;
       } else {
         tr[i].style.display = "none";
       }
     }
   }
+  if (count == 0) {
+    $('#empty').show()
+  }else{
+    $('#empty').hide()
+  }
+
 }
 
 function master_slide() {

@@ -70,7 +70,7 @@
      <div class="card-body">
        <div class="card-title">Tolak Pembayaran</div>
        <hr>
-       <form method="POST" autocomplete="off" action="{{ url('student/refuse-payment/'.$student_payment->stu_id)}}" id="submitForm">
+       <form method="POST" autocomplete="off" action="{{ url('student/refuse-payment/'.$student_payment->stu_id)}}" id="form-validate">
         @csrf
 
         <div class="form-group row">
@@ -118,14 +118,24 @@
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 <script>
-  $(document).ready(function() {
-    $("#submitForm").submit(function(e) {
-      $(this).find("button[type='submit']").prop('disabled', true);
-      $("#btnSubmit").attr("disabled", true);
-      return true;
-    });      
-  });
+  $().ready(function() {
 
+    $("#form-validate").validate({
+      rules: {
+        stp_reason: {
+          required: true,
+        }
+      },
+      messages: {
+        stp_reason: {
+          required: "Alasan Pembayaran ditolak harus di isi"
+        }
+      }
+    });
+  });
 </script>
+
 @endpush    

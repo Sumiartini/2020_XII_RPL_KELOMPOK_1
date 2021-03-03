@@ -99,7 +99,7 @@
                     </div>
                 </div>
 
-                <label style="margin-top: 30px;">Foto Bukti Transfer<span style="color:red"> *</span></label>
+                <label style="margin-top: 30px;">Kirim Foto Bukti Pembayaran<span style="color:red"> *</span></label>
                 <div class="form-group row">
 
                     <div class="col-sm-4">
@@ -161,7 +161,7 @@
                 </div>
             </div>
             
-            <label style="margin-top: 30px;">Foto Bukti Transfer<span style="color:red"> *</span></label>
+            <label style="margin-top: 30px;">Kirim Foto Bukti Pembayaran<span style="color:red"> *</span></label>
             <div class="form-group row">
 
                 <div class="col-sm-4">
@@ -222,7 +222,7 @@
             },  
             messages: {            
                 stp_picture:{
-                    required: "Foto bukti transfer harus di isi"
+                    required: "Foto bukti pembayaran harus di isi"
                 }, 
                 stp_picture:{
                     required: "Metode Pembayaran harus di isi"
