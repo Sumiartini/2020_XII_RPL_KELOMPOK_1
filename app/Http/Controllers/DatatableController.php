@@ -88,7 +88,7 @@ class DatatableController extends Controller
         ->editColumn("stu_payment_status", function ($row) {
             $stp_payment_status = $row->stp_payment_status;
             if ($stp_payment_status == "1") {
-                return '<span class="badge badge-danger shadow-warning m-1">Menunggu Verifikasi</span>';
+                return '<span class="badge badge-warning shadow-warning m-1">Menunggu Verifikasi</span>';
             } elseif ($stp_payment_status == "2") {
                 return '<span class="badge badge-success shadow-success m-1">Pembayaran Diterima</span>';
             }elseif ($stp_payment_status == "3") {
