@@ -51,6 +51,10 @@ class StaffController extends Controller
         $messages = [
             'required'  => 'Kolom wajib diisi',
             'unique'    => 'Kolom yang digunakan telah terdaftar',
+            'mimes'     => 'File tidak support',
+            'size'      => 'Ukuran file Max 2 MB',
+            'uploaded'  => 'Gagal di unggah, ukuran file max 2 MB'
+
         ];
         $request->validate([
             'usr_name'                                          => 'required',
@@ -83,12 +87,12 @@ class StaffController extends Controller
             'educational_background.faculty_major'              => 'required',
             'educational_background.year_graduated'             => 'required',
             'educational_background.degree'                     => 'required',
-            'other.identity_card'                               => 'required',
-            'other.family_card'                                 => 'required',
-            'other.scholar_diploma'                             => 'required',
-            'other.curriculum_vitae'                            => 'required',
-            'other.application_letter'                          => 'required',
-            'other.resume'                                      => 'required',
+            'other.identity_card'                     => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.family_card'                       => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.scholar_diploma'                   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.curriculum_vitae'                  => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.application_letter'                => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.resume'                            => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
             
         ], $messages);
 

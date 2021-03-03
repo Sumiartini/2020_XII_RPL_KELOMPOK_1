@@ -1036,7 +1036,7 @@
         },  
         messages: {
             usr_name:{
-                required: "Nama lengkap harus di isi"
+                required: "Nama Akun harus di isi"
             },
             usr_email:{
                 required: "Email harus di isi",
@@ -1053,7 +1053,7 @@
                 required: "Jenis kelamin harus di pilih"
             },
             stu_nisn:{
-                required: "NISN wajib di isi"
+                required: "NISN harus di isi"
             },
             usr_whatsapp_number:{
                 required: "No WhatsApp harus di isi",
