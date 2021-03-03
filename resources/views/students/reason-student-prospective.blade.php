@@ -89,7 +89,7 @@
         <div class="form-group row">
           <label for="input-1" class="col-sm-2 col-form-label"></label>
           <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Simpan</button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
           </div>
         </div>
       </form>

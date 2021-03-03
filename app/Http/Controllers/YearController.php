@@ -55,7 +55,13 @@ class YearController extends Controller
         $last_year_check = Years::where('scy_last_year', $request->scy_last_year)->first();
         // dd($class_check);
         if ($first_year_check OR $last_year_check) {
-            return redirect()->back()->with('error', 'Tahun Ajaran Sudah Tersedia');
+            if ($first_year_check AND $last_year_check) {                
+                return redirect()->back()->with('error', 'Tahun Ajaran Sudah Tersedia');
+            }elseif($first_year_check){
+                return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Awal yang dimasukkan Sudah Tersedia');
+            }else{
+                return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Akhir yang dimasukkan Sudah Tersedia');
+            }
         }
         $year               = new Years;
         $year->scy_first_year = $request->scy_first_year;
@@ -102,24 +108,60 @@ class YearController extends Controller
     {
         $year = Years::where('scy_id', $yearID)->first();
         
-        if ($year->scy_first_year == $request->scy_first_year AND $year->scy_last_year == $request->scy_last_year) {
+        $year_check = Years::where('scy_first_year', $request->scy_first_year)->where('scy_last_year', $request->scy_last_year)->first();
+        $first_year_check = Years::where('scy_first_year', $request->scy_first_year)->first();
+        $last_year_check = Years::where('scy_last_year', $request->scy_last_year)->first();
+        
+        if ($year_check) {
             $year->scy_first_year = $request->scy_first_year;
-            $year->scy_last_year = $request->scy_last_year;
+            $year->scy_last_year = $request->scy_last_year;        
             $year->scy_name     = $request->scy_first_year.'/'.$request->scy_last_year;
+            $year->scy_updated_by = Auth()->user()->usr_id; 
             $year->update();
-            return redirect('school-years');
-        }
-        if ($year->scy_first_year == $request->scy_first_year OR $year->scy_last_year == $request->scy_last_year) {
-            return redirect()->back()->with('error', 'Tahun Ajaran Sudah Tersedia');
+            return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');  
         }
 
-        $year->scy_first_year = $request->scy_first_year;
-        $year->scy_last_year = $request->scy_last_year;        
-        $year->scy_name     = $request->scy_first_year.'/'.$request->scy_last_year;
-        $year->scy_updated_by = Auth()->user()->usr_id; 
-        $year->update();
-        return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');
+        if (isset($first_year_check->scy_id)) {
+            if ($first_year_check->scy_id == $yearID) {
+
+                if (isset($last_year_check->scy_id)) {
+                    if ($last_year_check->scy_id != $yearID) {
+                        return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Akhir yang dimasukkan Sudah Tersedia');
+                    }else{
+                        $year->scy_first_year = $request->scy_first_year;
+                        $year->scy_last_year = $request->scy_last_year;        
+                        $year->scy_name     = $request->scy_first_year.'/'.$request->scy_last_year;
+                        $year->scy_updated_by = Auth()->user()->usr_id; 
+                        $year->update();
+                        return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');                
+                    }                    
+                }else{
+                    $year->scy_first_year = $request->scy_first_year;
+                    $year->scy_last_year = $request->scy_last_year;        
+                    $year->scy_name     = $request->scy_first_year.'/'.$request->scy_last_year;
+                    $year->scy_updated_by = Auth()->user()->usr_id; 
+                    $year->update();
+                    return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');  
+                }
+            }else{
+                return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Awal yang dimasukkan Sudah Tersedia');
+            }
+        }else{
+            if ($last_year_check->scy_id != $yearID) {
+                return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Akhir yang dimasukkan Sudah Tersedia');
+            }else{
+                $year->scy_first_year = $request->scy_first_year;
+                $year->scy_last_year = $request->scy_last_year;        
+                $year->scy_name     = $request->scy_first_year.'/'.$request->scy_last_year;
+                $year->scy_updated_by = Auth()->user()->usr_id; 
+                $year->update();
+                return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');  
+            }
+        }
     }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
