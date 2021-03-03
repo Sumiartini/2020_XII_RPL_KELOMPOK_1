@@ -397,10 +397,10 @@ function staffUsers() {
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
-            "zeroRecords": "Daftar staff tidak tersedia",
+            "zeroRecords": "Daftar staf tidak tersedia",
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
-            "infoEmpty": "Tidak ada daftar staff",
-            "infoFiltered": "(pencarian dari _MAX_ daftar staff)",
+            "infoEmpty": "Tidak ada daftar staf",
+            "infoFiltered": "(pencarian dari _MAX_ daftar staf)",
             "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
             "lengthMenu": "Tampilkan _MENU_ baris",
             "paginate": {
@@ -454,10 +454,10 @@ function staffProspective() {
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
-            "zeroRecords": "Daftar Calon staff tidak tersedia",
+            "zeroRecords": "Daftar Calon staf tidak tersedia",
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
-            "infoEmpty": "Tidak ada daftar calon staff",
-            "infoFiltered": "(pencarian dari _MAX_ daftar calon staff)",
+            "infoEmpty": "Tidak ada daftar calon staf",
+            "infoFiltered": "(pencarian dari _MAX_ daftar calon staf)",
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -508,10 +508,10 @@ function staffRejected() {
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
-            "zeroRecords": "Daftar Calon staff ditolak tidak tersedia",
+            "zeroRecords": "Daftar Calon staf ditolak tidak tersedia",
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
-            "infoEmpty": "Tidak ada daftar calon staff ditolak",
-            "infoFiltered": "(pencarian dari _MAX_ daftar calon staff)",
+            "infoEmpty": "Tidak ada daftar calon staf ditolak",
+            "infoFiltered": "(pencarian dari _MAX_ daftar calon staf)",
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"

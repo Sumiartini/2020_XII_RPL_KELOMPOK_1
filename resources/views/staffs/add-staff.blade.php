@@ -614,22 +614,31 @@
                 required:true
             },
             "educational_background[year_grade_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[grade_school]":{
                 required: true
             },
             "educational_background[year_junior_high_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[junior_high_school]":{
                 required: true
             },
             "educational_background[year_senior_high_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[senior_high_school]":{
                 required: true
+            },
+            "educational_background[year_entry]":{
+                maxlength: 4
+            },
+            "educational_background[year_graduated]":{
+                maxlength: 4
             },
             "other[identity_card]":{
                 required: true
@@ -717,22 +726,31 @@
                 required: "Kode pos harus di isi"
             },
             "educational_background[year_grade_school]":{
-                required: "Tahun lulus SD sederajat harus di isi"
+                required: "Tahun lulus SD sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[grade_school]":{
                 required: "Nama SD sederajat harus di isi"
             },
             "educational_background[year_junior_high_school]":{
-                required: "Tahun lulus SMP sederajat harus di isi"
+                required: "Tahun lulus SMP sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[junior_high_school]":{
                 required: "Nama SMP sederajat harus di isi"
             },
             "educational_background[year_senior_high_school]":{
-                required: "Tahun lulus SMA sederajat harus di isi"
+                required: "Tahun lulus SMA sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[senior_high_school]":{
                 required: "Nama SMA sederajat harus di isi"
+            },
+            "educational_background[year_entry]":{
+                maxlength: "Maksimal 4 digit"
+            },
+            "educational_background[year_graduated]":{
+                maxlength: "Maksimal 4 digit"
             },
             "other[identity_card]":{
                 required: "KTP harus di upload"

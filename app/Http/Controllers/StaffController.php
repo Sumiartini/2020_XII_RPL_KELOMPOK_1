@@ -46,7 +46,7 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        // dd($request);
         $requests = $request->input();
         $messages = [
             'required'  => 'Kolom wajib diisi',
@@ -81,12 +81,6 @@ class StaffController extends Controller
             'educational_background.junior_high_school'         => 'required',
             'educational_background.year_senior_high_school'    => 'required',
             'educational_background.senior_high_school'         => 'required',
-            'educational_background.year_entry'                 => 'required',
-            'educational_background.college'                    => 'required',
-            'educational_background.faculty_name'               => 'required',
-            'educational_background.faculty_major'              => 'required',
-            'educational_background.year_graduated'             => 'required',
-            'educational_background.degree'                     => 'required',
             'other.identity_card'                     => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
             'other.family_card'                       => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
             'other.scholar_diploma'                   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
@@ -440,7 +434,7 @@ class StaffController extends Controller
         $staff = Staffs::findOrFail($stf_id);
         $staff->stf_registration_status = '1';
         $staff->update();
-        return back()->with('success', 'Staff berhasil diterima');
+        return back()->with('success', 'Staf berhasil diterima');
     }
 
     public function rejected($stf_id)
@@ -450,7 +444,7 @@ class StaffController extends Controller
         $staff->stf_registration_status = '2';
         $staff->update();
 
-        return back()->with('success', 'Staff berhasil ditolak');
+        return back()->with('success', 'Staf berhasil ditolak');
     }
 
     public function restore($stf_id)
@@ -460,7 +454,7 @@ class StaffController extends Controller
         $staff->stf_registration_status = '0';
         $staff->update();
 
-        return back()->with('success', 'Staff berhasil dikembalikan menjadi calon staff');
+        return back()->with('success', 'Staf berhasil dikembalikan menjadi calon staf');
     }
 }
 

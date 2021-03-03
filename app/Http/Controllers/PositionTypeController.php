@@ -87,13 +87,16 @@ class PositionTypeController extends Controller
     public function update(Request $request, $position_typeID)
     {
         $position_type = PositionTypes::where('pst_id', $position_typeID)->first();
-
+        $honorarium = str_replace(".", "", $request->pst_honorarium);
+        if ($position_type->pst_name == $request->pst_name && $position_type->pst_honorarium == $honorarium) {
+            return redirect('position-types');
+        }
         if ($position_type->pst_name == $request->pst_name) {
             $position_type->pst_name = $request->pst_name;
             $position_type->pst_honorarium = str_replace(".", "", $request->pst_honorarium);
             $position_type->pst_updated_by = Auth()->user()->usr_id;
             $position_type->update();
-            return redirect('position-types');
+            return redirect('position-types')->with('success', 'Jabatan berhasil di ubah');
         }
         $check_subject_name = PositionTypes::where('pst_name', $request->pst_name)->first();
         if ($check_subject_name) {
