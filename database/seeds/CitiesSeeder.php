@@ -12,58 +12,55 @@ class CitiesSeeder extends Seeder
     public function run()
     {
         DB::table('cities')->insert([
-        	'cit_province_id' => '1',
-        	'cit_name' => 'Bandung',
+            'cit_province_id' => '1',
+            'cit_name' => 'Bandung',
         ]);
 
         DB::table('cities')->insert([
-        	'cit_province_id' => '1',
-        	'cit_name' => 'Bandung Barat',
+            'cit_province_id' => '1',
+            'cit_name' => 'Bandung Barat',
         ]);
 
         DB::table('cities')->insert([
-        	'cit_province_id' => '1',
-        	'cit_name' => 'Bekasi',
+            'cit_province_id' => '1',
+            'cit_name' => 'Bekasi',
         ]);
 
         DB::table('cities')->insert([
-        	'cit_province_id' => '1',
-        	'cit_name' => 'Bogor',
+            'cit_province_id' => '1',
+            'cit_name' => 'Bogor',
         ]);
 
         DB::table('cities')->insert([
-        	'cit_province_id' => '1',
-        	'cit_name' => 'Ciamis',
+            'cit_province_id' => '1',
+            'cit_name' => 'Ciamis',
         ]);
 
         DB::table('cities')->insert([
-        	'cit_province_id' => '2',
-        	'cit_name' => 'Banjarnegara',
+            'cit_province_id' => '2',
+            'cit_name' => 'Banjarnegara',
         ]);
 
 
         DB::table('cities')->insert([
-        	'cit_province_id' => '2',
-        	'cit_name' => 'Banyumas',
+            'cit_province_id' => '2',
+            'cit_name' => 'Banyumas',
         ]);
 
         
         DB::table('cities')->insert([
-        	'cit_province_id' => '2',
-        	'cit_name' => 'Batang',
+            'cit_province_id' => '2',
+            'cit_name' => 'Batang',
         ]);
 
         
         DB::table('cities')->insert([
-        	'cit_province_id' => '2',
-        	'cit_name' => 'Blora',
+            'cit_province_id' => '2',
+            'cit_name' => 'Blora',
         ]);
         DB::table('cities')->insert([
-        	'cit_province_id' => '2',
-        	'cit_name' => 'Boyolali',
+            'cit_province_id' => '2',
+            'cit_name' => 'Boyolali',
         ]);
-
-        
-
     }
 }
