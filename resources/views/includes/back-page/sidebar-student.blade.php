@@ -2,7 +2,7 @@
 <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
   <div class="brand-logo">
     <img src="{{ asset('assets/images/mahaputra.jfif') }}" style="width: 40px; height: 40px; border-radius: 50%;" class="logo-icon" alt="logo icon">
-    <h5 class="logo-text" style="cursor: default;">{{ env('APP_NAME') }}</h5>
+    <h5 class="logo-text" style="cursor: default; font-size: 15px; margin-left: 5px;">{{ env('APP_NAME') }}</h5>
   </div>
 
 

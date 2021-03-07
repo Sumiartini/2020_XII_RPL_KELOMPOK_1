@@ -136,8 +136,17 @@ class YearController extends Controller
                 return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Awal yang dimasukkan Sudah Tersedia');
             }
         }else{
-            if ($last_year_check->scy_id != $yearID) {
-                return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Akhir yang dimasukkan Sudah Tersedia');
+            if (isset($last_year_check->scy_id)) {
+                if ($last_year_check->scy_id != $yearID) {
+                    return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Akhir yang dimasukkan Sudah Tersedia');
+                }else{
+                    $year->scy_first_year = $request->scy_first_year;
+                    $year->scy_last_year = $request->scy_last_year;        
+                    $year->scy_name     = $request->scy_first_year.'/'.$request->scy_last_year;
+                    $year->scy_updated_by = Auth()->user()->usr_id; 
+                    $year->update();
+                    return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');                
+                }                    
             }else{
                 $year->scy_first_year = $request->scy_first_year;
                 $year->scy_last_year = $request->scy_last_year;        
