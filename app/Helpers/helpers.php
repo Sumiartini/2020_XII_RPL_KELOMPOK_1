@@ -54,3 +54,7 @@ function moneyFormat($number){
     $result =  number_format($number,0, ',' , '.'); 
     return $result;
 }
+
+function year(){
+    return date('Y');
+}

@@ -55,7 +55,7 @@
                     <table id="example" class="table table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th>NO</th>
+                                <th scope="col" class="sort" width="10px;">NO</th>
                                 <th>Nama Jurusan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>

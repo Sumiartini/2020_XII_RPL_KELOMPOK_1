@@ -8,18 +8,7 @@ class YearController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $years = Years::all();
-            return Datatables::of($years)
-            ->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                $btn = '<a href="" type="button" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
-                return $btn;
-            })->rawColumns(['action'])
-            ->make(true);
-        }
-            // dd($request);
-        return view('years.list-year');
+
     }
 
     /**
