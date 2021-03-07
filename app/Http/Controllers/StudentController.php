@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\StudentDetails;
 use App\Majors;
+use App\Years;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -42,9 +43,10 @@ class StudentController extends Controller
     public function create()
     {
         $majors = Majors::where('mjr_is_active', true)->get();
+        $school_years = Years::orderBy('scy_name','ASC')->get();
         $entry_types = EntryTypes::get();
         $province = Provinces::select('prv_id', 'prv_name')->get();
-        return view('students.add-student', ['majors' => $majors, 'entry_types'  => $entry_types, 'province' => $province]);
+        return view('students.add-student', ['majors' => $majors, 'entry_types'  => $entry_types, 'province' => $province, 'school_years' => $school_years]);
     }
 
     /**
@@ -152,7 +154,7 @@ class StudentController extends Controller
             if ($student->save()) {
                 $student_registration  = new StudentRegistration;
                 $student_registration->str_student_id = $student->stu_id;
-                $student_registration->str_school_year_id = 5;
+                $student_registration->str_school_year_id = $request->str_school_year_id;
                 $student_registration->str_status = 1;
                 $student_registration->str_created_by = Auth()->user()->usr_id;
                 $student_registration->save();
@@ -320,9 +322,11 @@ class StudentController extends Controller
         $payment = StudentPayments::where('stp_student_id', $student->stu_id)->first();
         if ($payment->stp_payment_status == 2 && $user->hasRole('student')) {
             if ($user->usr_is_regist == 0) {
+                $school_year = Years::where('scy_is_form_registration', 1)->first();
+                // dd($year['scy_name'], $year->scy_name);
                 $majors = Majors::where('mjr_is_active', true)->get();
                 $province = Provinces::select('prv_id', 'prv_name')->get();
-                return view('students.new-registration-student', ['majors' => $majors, 'province' => $province]);
+                return view('students.new-registration-student', ['majors' => $majors, 'province' => $province, 'school_year' => $school_year]);
             } else {
                 return redirect('/pending-verification');
             }
@@ -431,8 +435,8 @@ class StudentController extends Controller
             $student->stu_major_id         = $request->stu_major_id;
             $student->stu_created_by = Auth()->user()->usr_id;
 
-            $student_registration           = StudentRegistration::where('str_student_id', $student->stu_id)->first();
-            $student_registration->str_school_year_id = 5;
+            $student_registration          = StudentRegistration::where('str_student_id', $student->stu_id)->first();
+            $student_registration->str_school_year_id = $request->str_school_year_id;
             $student_registration->str_created_by = Auth()->user()->usr_id;
             $student_registration->update();
 

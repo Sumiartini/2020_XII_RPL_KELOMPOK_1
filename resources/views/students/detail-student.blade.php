@@ -190,6 +190,12 @@
                 <p>{{ $student->other['recomended_from'] }}</p>
             </dd>
             @endif
+
+            <dt class="col-sm-5">Tahun Ajaran</dt>
+            <dd class="col-sm-7">
+                <p>{{ $student->scy_name }}</p>
+            </dd>
+
             @if(isset($student->str_reason))
             @if($student->str_status == 0)
 

@@ -18,9 +18,8 @@ class CreateSchoolYearsTable extends Migration
             $table->string('scy_first_year')->unique();
             $table->string('scy_last_year')->unique();
             $table->string('scy_name');
-            $table->tinyInteger('scy_is_active')->nullable();
+            $table->tinyInteger('scy_is_form_registration')->nullable();
             
-
             $table->bigInteger('scy_created_by')->unsigned()->nullable();
             $table->bigInteger('scy_updated_by')->unsigned()->nullable();
             $table->bigInteger('scy_deleted_by')->unsigned()->nullable();

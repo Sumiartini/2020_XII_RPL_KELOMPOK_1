@@ -57,7 +57,7 @@
               <tr>
                 <th>NO</th>
                 <th>Tahun Ajaran</th>
-                <th>Status</th>
+                <th>Status Registrasi</th>
                 <th>Aksi</th>
               </tr>
             </thead>

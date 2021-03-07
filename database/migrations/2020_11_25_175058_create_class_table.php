@@ -15,8 +15,8 @@ class CreateClassTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->bigIncrements('cls_id');
-            // $table->foreignId('cls_school_year_id');
-            // $table->foreign('cls_school_year_id')->references('scy_id')->on('school_years');
+            $table->foreignId('cls_school_year_id');
+            $table->foreign('cls_school_year_id')->references('scy_id')->on('school_years');
             $table->foreignId('cls_major_id');
             $table->foreign('cls_major_id')->references('mjr_id')->on('majors');
             $table->foreignId('cls_grade_level_id');

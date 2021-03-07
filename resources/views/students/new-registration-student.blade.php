@@ -46,7 +46,7 @@
                 <div class="card-body">
                     <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate" enctype="multipart/form-data">
                         @csrf
-                        <h4 style="text-align: center;">FORMULIR PESERTA DIDIK BARU TAHUN PELAJARAN 2021-2022</h4>
+                        <h4 style="text-align: center;">FORMULIR PESERTA DIDIK BARU TAHUN PELAJARAN {{ $school_year->scy_name }}</h4>
                         <div class="form-group row">
                           <div class="col-sm-4">
                             <label> Jurusan yang diminati <span style="color:red"> *</span></label>
@@ -563,7 +563,7 @@
 
             <input type="checkbox" name="terms_and_conditions">
             <label>Demikian formulir ini saya buat dengan sebenar-benarnya sesuai dengan petunjuk pengisian dan dapat dipertanggung jawabkan di kemudian hari </label>
-
+            <input type="hidden" name="str_school_year_id" value="{{ $school_year->scy_id }}">
             <div class="form-footer">    
                 <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
                 <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
