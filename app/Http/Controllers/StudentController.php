@@ -322,6 +322,7 @@ class StudentController extends Controller
             if ($user->usr_is_regist == 0) {
                 $majors = Majors::where('mjr_is_active', true)->get();
                 $province = Provinces::select('prv_id', 'prv_name')->get();
+                // $setting = Setting
                 return view('students.new-registration-student', ['majors' => $majors, 'province' => $province]);
             } else {
                 return redirect('/pending-verification');
