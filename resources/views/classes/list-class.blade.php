@@ -62,11 +62,12 @@
                             <tr>
                                 <th>NO</th>
                                 <th>Kelas</th>
+                                <th>Tahun Ajaran</th>
                                 <th>Status</th>                         
                                 <th>Aksi</th>
                             </tr>
                             <tr>                                
-                                <td class="text-center" style="display: none" id="empty" colspan="4">Data Kelas Tidak Tersedia</td>
+                                <td class="text-center" style="display: none" id="empty" colspan="5">Data Kelas Tidak Tersedia</td>
                             </tr>
                         </thead>
                         <tbody>

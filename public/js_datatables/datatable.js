@@ -896,8 +896,8 @@ function school_year() {
                 searchable: true
             },
             {
-                data: 'scy_is_active', 
-                name:'scy_is_active', 
+                data: 'scy_is_form_registration', 
+                name:'scy_is_form_registration', 
                 orderable: false, 
                 searchable: true
             },
@@ -930,8 +930,43 @@ function major() {
       serverSide: true,
       ajax: 'major',
       lengthChange: false,
+      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      // dom: 
+      //   "<'row'<'col-sm-2 text-left'l><'col-sm-8 text-center'B><'col-sm-2'f>>" +
+      //   "<'row'<'col-sm-12'tr>>" +
+      //   "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','45%','50%',]
+                  }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'mjr_id',
@@ -939,6 +974,7 @@ function major() {
                 class: 'table-fit text-left',
                 orderable:true,
                 searchable: true,
+                margin: [10, 0],
                 render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }
@@ -947,7 +983,8 @@ function major() {
                 data: 'mjr_name', 
                 name:'mjr_name', 
                 orderable: true, 
-                searchable: true
+                searchable: true,
+                width: '*'
             },
             {
                 data: 'mjr_is_active', 
@@ -960,7 +997,8 @@ function major() {
                 data: 'action', 
                 name:'action', 
                 orderable: false, 
-                searchable: false
+                searchable: false,
+                width: '*'
             },
         ],
         "language": {
@@ -971,6 +1009,13 @@ function major() {
             "infoEmpty": "Tidak ada daftar jurusan",
             "infoFiltered": "(pencarian dari _MAX_ daftar jurusan)",
             "lengthMenu": "Tampilkan _MENU_ data",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -1002,7 +1047,7 @@ $('#example').DataTable({
         },
         {
            data: 'cls_name',
-           name:'majors.mjr_name',
+           name:'cls_name',
            orderable: true,
            searchable: true
        },

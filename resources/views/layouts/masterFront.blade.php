@@ -26,7 +26,7 @@
         <footer>
             <div class="container">
                 <div class="text-center">
-                    Copyright © 2021 PPDB {{ env('APP_NAME') }}
+                    Copyright © {{ year() }} PPDB {{ env('APP_NAME') }}
                 </div>
             </div>
         </footer>

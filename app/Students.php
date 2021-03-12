@@ -31,6 +31,7 @@ class Students extends Model
             ->join('majors', 'students.stu_major_id', '=', 'majors.mjr_id')
             ->join('entry_types', 'students.stu_entry_type_id', '=', 'entry_types.ent_id')
             ->join('student_registrations','student_registrations.str_student_id','=','students.stu_id')
+            ->join('school_years','student_registrations.str_school_year_id','=','school_years.scy_id')
             ->where('stu_id', $studentID)->firstOrFail();
         // dd($students);
         $student_details = StudentDetails::where('std_student_id', $students->stu_id)->where('std_deleted_at', null)->get();

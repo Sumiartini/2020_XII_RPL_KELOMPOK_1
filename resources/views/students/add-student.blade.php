@@ -525,7 +525,7 @@
 
             <div class="col-sm-4">
                 <label> Tahun Lahir </label>
-                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[year_of_birth]" class="form-control form-control-rounded @error('guardian_data.year_of_birth') is-invalid @enderror year_picker" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('guardian_data.year_of_birth') }}">
+                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[year_of_birth]" class="form-control form-control-rounded @error('guardian_data.year_of_birth') is-invalid @enderror year_picker" placeholder="Masukan Tahun Lahir" value="{{ old('guardian_data.year_of_birth') }}">
 
                 @error('guardian_data.year_of_birth')
                 <span class="invalid-feedback" role="alert">
@@ -855,6 +855,22 @@
             </span>
             @enderror
         </div>
+
+        <div class="col-sm-4">
+            <label>Tahun Ajaran<span style="color:red"> *</span></label>
+            <select name="str_school_year_id" class="form-control form-control-rounded @error('str_school_year_id') is-invalid @enderror" value="{{ old('str_school_year_id') }}">
+                <option disabled="" {{ old('str_school_year_id') == "" ? 'selected' : '' }}> Pilih </option>
+                @foreach($school_years as $school_year)
+                <option {{ old('stu_entry_type_id') == "$school_year->scy_id" ? 'selected' : '' }} value="{{ $school_year->scy_id }}">{{ $school_year->scy_name }}</option>
+                @endforeach
+            </select>
+
+            @error('str_school_year_id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
     </div>
     <div class="form-footer">
         <a href="{{url('students')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
@@ -963,7 +979,8 @@
                 minlength: 10
             },
             "father_data[year_of_birth]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "father_data[education]":{
                 required: true
@@ -986,7 +1003,8 @@
                 minlength: 10
             },
             "mother_data[year_of_birth]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "mother_data[education]":{
                 required: true
@@ -1000,6 +1018,15 @@
             },
             "mother_data[disability]":{
                 required: true
+            },
+            "guardian_data[year_of_birth]":{
+                maxlength: 4
+            },
+            "guardian_data[nik]":{
+                minlength: 10
+            },
+            "guardian_data[phone_number]":{
+                minlength: 10
             },
             prv_name:{
                 required: true
@@ -1031,8 +1058,10 @@
             },
             stu_entry_type_id:{
                 required: true
+            },
+            str_school_year_id:{
+                required:true
             }
-
         },  
         messages: {
             usr_name:{
@@ -1089,7 +1118,8 @@
                 minlength: "Minimal 10 digit"
             },
             "father_data[year_of_birth]":{
-                required: "Tahun lahir ayah harus di isi"
+                required: "Tahun lahir ayah harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "father_data[education]":{
                 required: "Pendidikan ayah harus di dipilih"
@@ -1109,7 +1139,8 @@
                 minlength: "Minimal 10 digit"
             },
             "mother_data[year_of_birth]":{
-                required: "Tahun lahir ibu harus di isi"
+                required: "Tahun lahir ibu harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "mother_data[education]":{
                 required: "Pendidikan ibu harus di dipilih"
@@ -1121,6 +1152,16 @@
                 required: "Telepon ibu harus di isi",
                 minlength: "Minimal 10 digit"
             },
+            "guardian_data[year_of_birth]":{
+                maxlength: "Maksimal 4 digit"
+            },
+            "guardian_data[nik]":{
+                minlength: "Minimal 10 digit"
+            },
+            "guardian_data[phone_number]":{
+                minlength: "Minimal 10 digit"
+            },
+
             prv_name:{
                 required: "Provinsi harus di pilih"
             },
@@ -1151,6 +1192,9 @@
             },
             stu_entry_type_id:{
                 required: "Jalur masuk harus di pilih"
+            },
+            str_school_year_id:{
+                required: "Tahun ajaran harus di pilih"
             }
         }
     });
