@@ -326,6 +326,7 @@ class StudentController extends Controller
                 // dd($year['scy_name'], $year->scy_name);
                 $majors = Majors::where('mjr_is_active', true)->get();
                 $province = Provinces::select('prv_id', 'prv_name')->get();
+
                 return view('students.new-registration-student', ['majors' => $majors, 'province' => $province, 'school_year' => $school_year]);
             } else {
                 return redirect('/pending-verification');
