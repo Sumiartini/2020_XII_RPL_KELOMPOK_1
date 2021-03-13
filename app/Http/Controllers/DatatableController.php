@@ -375,7 +375,11 @@ public function getClasses(Request $request)
                 $status = '<a href="' . url('class/edit-status', $row->cls_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
             }
             return $edit . '&nbsp' . $status;
-        })->rawColumns(['action', 'cls_is_active', 'cls_major_id'])
+        })
+        ->filterColumn('search_cls_name', function($query, $keyword) {
+                $query->whereRaw("CONCAT(grade_levels.grl_name,'-',majors.mjr_name,'-', classes.cls_number ) like ?", ["%{$keyword}%"]);
+        })
+        ->rawColumns(['action', 'cls_is_active'])
         ->make(true);
     }
     public function getMasterSlide(Request $request)

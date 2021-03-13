@@ -132,7 +132,7 @@
                   <tr>
                       <th>Tanggal Lahir</th>
                       <td>:</td>
-                      <td>{{ $teacher_prospective->usr_date_of_birth}}</td>
+                      <td>{{ getDateOfBirth($teacher_prospective->usr_date_of_birth) }}</td>
                   </tr>
 
                   <tr>
@@ -373,7 +373,13 @@
                         <th scope="row">
                             Foto Calon Guru</th>
                         <td>:</td>
-                        <td><img src="{{ asset($teacher_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/></td>
+                        <td>
+                        @if(isset($teacher_prospective->usr_profile_picture))
+                        <img src="{{ asset($teacher_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/>
+                        @else                  
+                        <img src="{{ asset('images/default_profile_picture_20210228.png')}}" class="img-thumbnail profile" alt="Profile Picture"/>
+                        @endif
+                        </td>
                     </tr>
                   </body>
                 </table>

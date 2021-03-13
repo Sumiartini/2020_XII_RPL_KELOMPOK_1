@@ -57,18 +57,6 @@
 </div>
 @endif
 
-<!-- <div class="col-lg-12">
-    <div class="profile-card-3 ">
-        <div class="text-center">
-            <img src="{{ url('assets/images/avatars/avatar-2.png')}}" alt="user avatar" class="card-img-top" style="width: 200px;
-            height: 200px;
-            background: #dac52c;
-            border-radius: 100%;">
-        </div>
-        <hr>
-    </div>
-</div> -->
-
 <div class="col-lg-12">
   @if ($message = Session::get('success'))
   <div class="alert alert-success alert-dismissible" role="alert">
@@ -89,11 +77,11 @@
            <div class="profile-card-3">
             <div class="card">
              <div class="user-fullimage text-center">
+                @if(isset($teacher->usr_profile_picture))
                <img src="{{ asset($teacher->usr_profile_picture)}}" alt="user avatar"  class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
-<!--                 <div class="details">
-                  <h5 class="mb-1 text-blue ml-3">{{ $teacher->stu_candidate_name }}</h5>
-                  <h6 class="text-blue ml-3">{{ $teacher->usr_email }}</h6>
-                 </div> -->
+                @else
+                <img src="{{ asset('images/default_profile_picture_20210228.png')}}" alt="user avatar"  class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
+                @endif
               </div>
                 <div class="row" style="margin-top: 40px; margin-left: 10px;">
 
@@ -124,7 +112,7 @@
                         </dd>
                         <dt class="col-sm-5">Tanggal Lahir</dt>
                         <dd class="col-sm-7">
-                            <p>{{ date('d M Y', strtotime($teacher->usr_date_of_birth )) }}</p>
+                            <p>{{ getDateOfBirth($teacher->usr_date_of_birth) }}</p>
                         </dd>
                         <dt class="col-sm-5">Agama</dt>
                         <dd class="col-sm-7">

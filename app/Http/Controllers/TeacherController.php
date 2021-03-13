@@ -225,7 +225,8 @@ class TeacherController extends Controller
         ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
         ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')        
         ->where('usr_id', $teacher_edit->usr_id)
-        ->get();   
+        ->get();
+        // dd($user);
         return view('teachers.edit-teacher', ['teacher_edit' => $teacher_edit, 'province' => $province, 'user' => $user]);
     }
 
@@ -238,7 +239,7 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $teacherID)
     {
-        //dd('sini');
+        // dd($request);
         $requests = $request->input();
         $teacher = Teachers::where('tcr_id', $teacherID)->first();
         $teacher->tcr_nuptk     = $request->tcr_nuptk;        
@@ -272,13 +273,25 @@ class TeacherController extends Controller
                 if (is_array($requetcdata)) {
                     foreach ($requetcdata as $requestKey => $requestValue) {
                             // dd($requests, $request, $requetcdata, $requestKey, $requestValue, $key);                            
-                        $teacherDetail = new TeacherDetails;
-                        $teacherDetail->tcd_teacher_id = $teacher->tcr_id;
-                        $teacherDetail->tcd_type       = $key;
-                        $teacherDetail->tcd_key        = $requestKey;
-                        $teacherDetail->tcd_value      = $requestValue;
-                        $teacherDetail->tcd_created_by = Auth()->user()->usr_id;
-                        $teacherDetail->save();
+                        $teacherDetail = TeacherDetails::where('tcd_teacher_id', $teacher->tcr_id)
+                        ->where('tcd_type', $key)
+                        ->where('tcd_key', $requestKey)->first();
+                        if (isset($teacherDetail)) {
+                            $teacherDetail->tcd_teacher_id = $teacher->tcr_id;
+                            $teacherDetail->tcd_type       = $key;
+                            $teacherDetail->tcd_key        = $requestKey;
+                            $teacherDetail->tcd_value      = $requestValue;
+                            $teacherDetail->tcd_created_by = Auth()->user()->usr_id;
+                            $teacherDetail->update();                            
+                        }else{
+                            $teacherDetail = new TeacherDetails;
+                            $teacherDetail->tcd_teacher_id = $teacher->tcr_id;
+                            $teacherDetail->tcd_type       = $key;
+                            $teacherDetail->tcd_key        = $requestKey;
+                            $teacherDetail->tcd_value      = $requestValue;
+                            $teacherDetail->tcd_created_by = Auth()->user()->usr_id;
+                            $teacherDetail->save();
+                        }
                     }
                 }
             }

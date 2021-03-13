@@ -157,7 +157,7 @@
                   <tr>
                     <th>Tanggal Lahir</th>
                     <td>:</td>
-                    <td>{{ date('d M Y', strtotime($student_prospective->usr_date_of_birth )) }}</td>
+                    <td>{{ getDateOfBirth($student_prospective->usr_date_of_birth) }}</td>
                   </tr>
 
                   @if(isset($student_prospective->personal['birth_certificate_registration_no']))
@@ -221,7 +221,13 @@
                     <th scope="row">
                       Foto Calon siswa</th>
                     <td>:</td>
-                    <td><img src="{{ asset($student_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/></td>
+                    <td>
+                      @if(isset($student_prospective->usr_profile_picture))
+                      <img src="{{ asset($student_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/>
+                      @else                  
+                      <img src="{{ asset('images/default_profile_picture_20210228.png')}}" class="img-thumbnail profile" alt="Profile Picture"/>
+                      @endif
+                    </td>
                   </tr>
                 </tbody>
               </table>

@@ -25,7 +25,7 @@
   <div id="wrapper">
     <div class="card border-primary border-top-sm border-bottom-sm card-authentication1 mx-auto my-4 animated bounceInDown">
       <div class="card-body">
-         <a href="/"><i class="zmdi zmdi-arrow-left fa-2x"></i></a>
+          <a href="/" data-toggle="tooltip" data-placement="right" title="KEMBALI KE HALAMAN UTAMA" type="button"><i class="zmdi zmdi-arrow-left fa-2x"></i></a>
         <div class="card-content p-2">
           <div class="text-center">
             <img style="height: 150px; width: 150px;" src="{{ asset('assets/images/mahaputra.jfif') }}">
@@ -121,66 +121,62 @@
   </div>
   <!--wrapper-->
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
-  <script src="{{ asset('assets/js/popper.min.js')}}"></script>
-  <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{ asset('assets/js/popper.min.js')}}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+<!-- sidebar-menu js -->
+<script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
+<!-- Custom scripts -->
+<script src="{{ asset('assets/js/app-script.js')}}"></script>
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
-  <!--Form Validatin Script-->
-  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-
-  <script>
-    $().ready(function() {
-
-    //   $(".submitForm").submit(function(e) {
-    //     $(this).find("button[type='submit']").prop('disabled', true);
-    //     $(".btnSubmit").attr("disabled", true);
-    //     return true;
-    // });
-
-    $("#form-validate").validate({
-        rules: {
-            usr_name: "required",
-            password: {
-              required: true,
-              minlength: 8
-            },
-            password_confirmation: {
-              required: true,
-              equalTo: "#password"
-            },
-            usr_email: {
-              required: true,
-              email: true
-            },
-             usr_phone_number: {
-              required: true,
-              minlength: 10
-            },
-        },
-        messages: {
-            usr_name: {
-              required: "Nama harus di isi",
-            },
-            password: {
-              required: "Kata sandi harus di isi",
-              minlength: "Minimal kata sandi 8 digit"
-            },
-            password_confirmation: {
-              required: "Ulangi kata sandi harus di isi",
-              equalTo: "Kata sandi wajib sesuai dengan yang awal"
-            },
-            usr_email: {
-              required: "Alamat email harus di isi",
-              email: "Email tidak valid"
-            },
-            usr_phone_number: { 
-              required: "Nomor telepon harus di isi",
-              minlength: "Nomor telepon min 10 digit"},
-        }
-    });
+<script>
+$().ready(function() {
+$("#form-validate").validate({
+      rules: {
+          usr_name: "required",
+          password: {
+            required: true,
+            minlength: 8
+          },
+          password_confirmation: {
+            required: true,
+            equalTo: "#password"
+          },
+          usr_email: {
+            required: true,
+            email: true
+          },
+           usr_phone_number: {
+            required: true,
+            minlength: 10
+          },
+      },
+      messages: {
+          usr_name: {
+            required: "Nama harus di isi",
+          },
+          password: {
+            required: "Kata sandi harus di isi",
+            minlength: "Minimal kata sandi 8 digit"
+          },
+          password_confirmation: {
+            required: "Ulangi kata sandi harus di isi",
+            equalTo: "Kata sandi wajib sesuai dengan yang awal"
+          },
+          usr_email: {
+            required: "Alamat email harus di isi",
+            email: "Email tidak valid"
+          },
+          usr_phone_number: { 
+            required: "Nomor telepon harus di isi",
+            minlength: "Nomor telepon min 10 digit"},
+      }
+  });
 });
 
-    </script>
+</script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Carbon;
 
 function mappingData($data, $model){
     // dd($data, $model);
@@ -57,4 +58,10 @@ function moneyFormat($number){
 
 function year(){
     return date('Y');
+}
+
+function getDateOfBirth($usr_date_of_birth){
+    if (isset($usr_date_of_birth)) {
+        return Carbon::parse($usr_date_of_birth)->translatedFormat('l, d F Y');
+    }
 }

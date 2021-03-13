@@ -1026,12 +1026,11 @@ function major() {
 
 function classes() {
 $('#example').DataTable({
- searching: false,
+ searching: true,
  processing: true,
  serverSide: true,
  ajax: 'class',
  lengthChange: false,
- select: true,
  dom: 'Blfrtip',
  buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
    columns: [
@@ -1047,7 +1046,13 @@ $('#example').DataTable({
         },
         {
            data: 'cls_name',
-           name:'cls_name',
+           name:'search_cls_name',
+           orderable: true,
+           searchable: true
+       },
+       {
+           data: 'scy_name',
+           name:'school_years.scy_name',
            orderable: true,
            searchable: true
        },

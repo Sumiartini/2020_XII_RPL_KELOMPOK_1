@@ -26,6 +26,7 @@
   <div id="wrapper">
     <div class="card border-primary border-top-sm border-bottom-sm card-authentication1 mx-auto my-5 animated bounceInDown">
       <div class="card-body">
+         <a href="/" data-toggle="tooltip" data-placement="right" title="KEMBALI KE HALAMAN UTAMA" type="button"><i class="zmdi zmdi-arrow-left fa-2x"></i></a>
         <div class="card-content p-2">
           <div class="text-center">
             <img style="height: 150px; width: 150px;" src="{{ asset('assets/images/mahaputra.jfif') }}">
@@ -50,13 +51,14 @@
   </div>
   <!--wrapper-->
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{asset('assets/js/jquery.min.js')}}"></script>
-  <script src="{{asset('assets/js/popper.min.js')}}"></script>
-  <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-
+<!-- Bootstrap core JavaScript-->
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<!-- sidebar-menu js -->
+<script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
+<!-- Custom scripts -->
+<script src="{{ asset('assets/js/app-script.js')}}"></script>
+<!--Form Validatin Script-->
 </body>
-
-<!-- Mirrored from codervent.com/rocker/color-version/authentication-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Nov 2019 12:20:55 GMT -->
-
 </html>

@@ -53,10 +53,6 @@
                         <a href="{{URL::to('class/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH KELAS" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
                     </div>
 
-                    <div id="example_filter" style="text-align:right; display: inline-block; float:right; margin-right: 14px; ">
-                        <label style="font-weight:normal;text-align:left; display: inline-block;">Cari:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example" id="myInput" onkeyup="searchClasses()"></label>
-                    </div>
-
                     <table id="example" class="table table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
@@ -65,9 +61,6 @@
                                 <th>Tahun Ajaran</th>
                                 <th>Status</th>                         
                                 <th>Aksi</th>
-                            </tr>
-                            <tr>                                
-                                <td class="text-center" style="display: none" id="empty" colspan="5">Data Kelas Tidak Tersedia</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,10 +112,5 @@
         classes()
     });
 </script>
-<!-- <script>
-        $(document).ready( function () {
-        searchClasses()
-    });
-</script> -->
 @endpush
 @endsection

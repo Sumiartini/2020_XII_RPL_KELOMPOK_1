@@ -41,7 +41,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('teacher/edit/'.$teacher_edit->tcr_id) }}" novalidate="novalidate" enctype="multipart/form-data">
+                <form  autocomplete="off" method="POST" action="{{ url('teacher/edit/'.$teacher_edit->tcr_id) }}" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -87,7 +87,7 @@
                         </div>
                         <div class="col-sm-4">
                             <label>NIK <span style="color:red;">*</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" name="personal[nik]" placeholder="Masukan NIK" value="{{  $teacher_edit->personal['nik'] }}">
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" name="personal[nik]" placeholder="Masukan NIK" value="@if(isset($teacher_edit->personal['nik'])){{$teacher_edit->personal['nik']}}@endif">
                             @error('personal.nik')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -119,7 +119,7 @@
 
                         <div class="col-sm-4">
                             <label>Tanggal Lahir <span style="color:red;">*</span></label>
-                            <input type="text" id="autoclose-datepicker" class="form-control form-control-rounded @error('usr_date_of_birth') is-invalid @enderror" name="usr_date_of_birth" placeholder="Tanggal/Bulan/Tahun" value="{{  $teacher_edit->usr_date_of_birth }}">
+                            <input type="text" id="autoclose-datepicker" class="form-control form-control-rounded @error('usr_date_of_birth') is-invalid @enderror" name="usr_date_of_birth" placeholder="Tanggal/Bulan/Tahun" value="{{ $teacher_edit->usr_date_of_birth }}">
                             @error('usr_date_of_birth')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -130,7 +130,7 @@
                         <div class="col-sm-4">
                             <label> Agama <span style="color:red"> *</span></label>
                             <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
-                                <option value="{{$teacher_edit->usr_religion}}" selected=""> {{$teacher_edit->usr_religion}} </option>                                
+                                <option value="{{$teacher_edit->usr_religion}}" selected> @if(isset($teacher_edit->usr_religion)) {{$teacher_edit->usr_religion}} @else Pilih @endif</option>                                
                                 <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }} value="Islam"> Islam </option>
                                 <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }} value="Protestan"> Protestan </option>
                                 <option {{ old('usr_religion') == "Katolik" ? 'selected' : '' }} value="Katolik"> Katolik </option>
@@ -148,8 +148,8 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label> Jenis Kelamin <span style="color:red"> *</span></label>
-                            <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
-                                <option value="{{$teacher_edit->usr_gender}}" selected=""> {{$teacher_edit->usr_gender}} </option>                                
+                            <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror">
+                                <option value="{{$teacher_edit->usr_gender}}" selected="">@if(isset($teacher_edit->usr_gender)) {{$teacher_edit->usr_gender}} @else Pilih @endif</option>                                
                                 <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
                                 <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
                             </select>
@@ -174,10 +174,14 @@
                     <div class="form-group row">
 
                         <div class="col-sm-4">
-                            <img src="{{ asset($teacher_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                            <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+                            @if(isset($teacher_edit->usr_profile_picture))
+                            <img src="{{ asset($teacher_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+                            @else
+                            <img src="{{ asset('images/default_profile_picture_20210228.png') }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+                            @endif
+                            <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
 
-                            <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
+                            <!-- <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
 
                         </div>
                     </div>
@@ -234,7 +238,6 @@
                     @endforeach
 
                     <div class="form-group row">
-
                         <div class="col-sm-4">
                             <label> Alamat <span style="color:red"> *</span></label>
                             <input type="text" name="usr_address" class="form-control form-control-rounded @error('usr_address') is-invalid @enderror" placeholder="Masukan Alamat" value="{{ $teacher_edit->usr_address }}">
@@ -480,7 +483,7 @@
                         <div class="col-sm-4">
                             <label>Status</label>
                             <select class="form-control form-control-rounded @error('teaching_history.status') is-invalid @enderror" id="basic-select" name="teaching_history[status]">
-                                <option checked="true" selected="true" value="{{$teacher_edit->teaching_history['status']}}"> {{$teacher_edit->teaching_history['status']}} </option>
+                                <option checked="true" selected="true" value="{{$teacher_edit->teaching_history['status']}}"> @if(isset($teacher_edit->teaching_history['status'])) {{ $teacher_edit->teaching_history['status'] }} @else pilih @endif</option>
                                 <option value="Aktif" {{ old('teaching_history.status') == "Aktif" ? 'selected' : '' }}>Aktif</option>
                                 <option value="Tidak aktif" {{ old('teaching_history.status') == "Tidak aktif" ? 'selected' : '' }}>Tidak Aktif</option>
                             </select>
@@ -536,12 +539,6 @@
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 <script>
     $().ready(function() {
-
-    //   $(".submitForm").submit(function(e) {
-    //     $(this).find("button[type='submit']").prop('disabled', true);
-    //     $(".btnSubmit").attr("disabled", true);
-    //     return true;
-    // });
 
     $("#form-validate").validate({
         rules: {
@@ -602,25 +599,29 @@
                 required:true
             },
             "educational_background[year_grade_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[grade_school]":{
                 required: true
             },
             "educational_background[year_junior_high_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[junior_high_school]":{
                 required: true
             },
             "educational_background[year_senior_high_school]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[senior_high_school]":{
                 required: true
             },
             "educational_background[year_entry]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[college]":{
                 required: true
@@ -632,7 +633,8 @@
                 required: true
             },
             "educational_background[year_graduated]":{
-                required: true
+                required: true,
+                maxlength: 4
             },
             "educational_background[degree]":{
                 required: true
@@ -655,9 +657,9 @@
             "other[resume]":{
                 required: true
             },
-            usr_profile_picture:{
-                required:true
-            },
+            // usr_profile_picture:{
+            //     required:true
+            // },
             terms_and_conditions:{
                 required: true
             },
@@ -724,22 +726,26 @@
                 required: "Kode pos harus di isi"
             },
             "educational_background[year_grade_school]":{
-                required: "Tahun lulus SD sederajat harus di isi"
+                required: "Tahun lulus SD sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[grade_school]":{
                 required: "Nama SD sederajat harus di isi"
             },
             "educational_background[year_junior_high_school]":{
-                required: "Tahun lulus SMP sederajat harus di isi"
+                required: "Tahun lulus SMP sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[junior_high_school]":{
                 required: "Nama SMP sederajat harus di isi"
             },
             "educational_background[year_senior_high_school]":{
-                required: "Tahun lulus SMA sederajat harus di isi"
+                required: "Tahun lulus SMA sederajat harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[year_entry]":{
-                required: "Tahun perguruan tinggi harus di isi"
+                required: "Tahun perguruan tinggi harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[college]":{
                 required: "Nama perguruan tinggi harus di isi"
@@ -751,7 +757,8 @@
                 required: "Nama jurusan harus di isi"
             },
             "educational_background[year_graduated]":{
-                required: "Tahun lulus harus di isi"
+                required: "Tahun lulus harus di isi",
+                maxlength: "Maksimal 4 digit"
             },
             "educational_background[degree]":{
                 required: "Gelar harus di isi"
@@ -777,9 +784,9 @@
             "other[resume]":{
                 required: "Resume harus di upload"
             },
-            usr_profile_picture:{
-                required: "Foto calon guru tidak boleh kosong"
-            },
+            // usr_profile_picture:{
+            //     required: "Foto guru tidak boleh kosong"
+            // },
             terms_and_conditions:{
                 required: "&nbsp S&K harus di centang"
             }
@@ -803,16 +810,6 @@
     }
     $("#preview_gambar").change(function() {
         bacaGambar(this);
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $("#submitForm").submit(function(e) {
-            $(this).find("button[type='submit']").prop('disabled', true);
-            $("#btnSubmit").attr("disabled", true);
-            return true;
-        });
     });
 </script>
 

@@ -35,6 +35,7 @@
       -o-transition: all 0.3s ease;
       transition: all 0.3s ease; 
   }
+
 </style>
 @endpush
 @section('content')
@@ -599,24 +600,20 @@
 <!--Bootstrap Datepicker Js-->
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script>
-    $('#default-datepicker').datepicker({
-        todayHighlight: true
-    });
     $('#autoclose-datepicker').datepicker({
         autoclose: true,
-        todayHighlight: true,
-        format: "yyyy-mm-dd"
+        format: "yyyy-mm-dd",
+        orientation: "bottom auto",
+        // endDate: '-14y',
+        // startDate: '-21y',
     });
 
-    $('#inline-datepicker').datepicker({
-        todayHighlight: true
-    });
     $('.year_picker').datepicker({
         autoclose: true,
         minViewMode: 2,
-        format: 'yyyy'
+        format: 'yyyy',
+        orientation: "auto",
     });
-    $('#dateragne-picker .input-daterange').datepicker({});
 </script>
    <!--Form Validatin Script-->
  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
@@ -747,7 +744,7 @@
                 required: "Tempat lahir harus di isi"
             },
             usr_date_of_birth:{
-                required: "Data lahir harus di isi"
+                required: "Tanggal lahir harus di isi"
             },
             "personal[nik]":{
                 required: "Nomor NIK harus di isi",
@@ -872,17 +869,12 @@
 <!--Bootstrap Datepicker Js-->
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script>
-    $('#default-datepicker').datepicker({
-        todayHighlight: true
-    });
     $('#autoclose-datepicker').datepicker({
         autoclose: true,
         todayHighlight: true,
-        format: "yyyy-mm-dd"
-    });
-
-    $('#inline-datepicker').datepicker({
-        todayHighlight: true
+        format: "yyyy-mm-dd",
+        // endDate: '-14y',
+        // startDate: '-21y',
     });
 
     $('.year_picker').datepicker({
@@ -890,8 +882,6 @@
         minViewMode: 2,
         format: 'yyyy'
     });
-
-    $('#dateragne-picker .input-daterange').datepicker({});
 </script>
 
 <script>

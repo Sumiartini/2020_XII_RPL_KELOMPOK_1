@@ -916,13 +916,6 @@
 
 <script>
     $().ready(function() {
-
-    //   $(".submitForm").submit(function(e) {
-    //     $(this).find("button[type='submit']").prop('disabled', true);
-    //     $(".btnSubmit").attr("disabled", true);
-    //     return true;
-    // });
-
     $("#form-validate").validate({
         rules: {
             usr_name:{
@@ -1092,7 +1085,7 @@
                 required: "Tempat lahir harus di isi"
             },
             usr_date_of_birth:{
-                required: "Data lahir harus di isi"
+                required: "Tanggal lahir harus di isi"
             },
             "personal[living_together]":{
                 required: "Tinggal bersama harus di pilih"
@@ -1220,25 +1213,21 @@
 <!--Bootstrap Datepicker Js-->
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script>
-    $('#default-datepicker').datepicker({
-        todayHighlight: true
-    });
-    $('#autoclose-datepicker').datepicker({
+     $('#autoclose-datepicker').datepicker({
         autoclose: true,
         todayHighlight: true,
-        format: "yyyy-mm-dd"
+        format: "yyyy-mm-dd",
+        orientation: "auto",
+        // endDate: '-14y',
+        // startDate: '-21y',
     });
 
-    $('#inline-datepicker').datepicker({
-        todayHighlight: true
-    });
     $('.year_picker').datepicker({
         autoclose: true,
         minViewMode: 2,
-        format: 'yyyy'
+        format: 'yyyy',
+        orientation: "auto",
     });
-
-    $('#dateragne-picker .input-daterange').datepicker({});
 </script>
 
 <script>
