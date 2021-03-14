@@ -184,15 +184,14 @@
 
                 <label>Foto siswa<span style="color:red"> *</span></label>    
                 <div class="form-group row">
-
-                    <div class="col-sm-4">
-                        <img src="{{ asset($student_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
-                        <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-
-                        <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
-
+                 <div class="col-sm-4">
+                        @if(isset($student_edit->usr_profile_picture))
+                        <img src="{{ asset($student_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+                        @else
+                        <img src="{{ asset('images/default_profile_picture_20210228.png') }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+                        @endif
+                        <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
                     </div>
-
                 </div>
 
 
@@ -216,7 +215,7 @@
 
                     <div class="col-sm-4">
                         <label> Tahun Lahir <span style="color:red"> *</span></label>                        
-                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded form-control-rounded" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="@if(isset($student_edit->father_data['year_of_birth'])){{$student_edit->father_data['year_of_birth']}}@endif">
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded form-control-rounded year_picker" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="@if(isset($student_edit->father_data['year_of_birth'])){{$student_edit->father_data['year_of_birth']}}@endif">
                     </div>
                 </div>
 
@@ -303,7 +302,7 @@
 
                     <div class="col-sm-4">
                         <label> Tahun Lahir <span style="color:red"> *</span></label>                        
-                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded" id="basic-select" placeholder="Masukan Tahun Lahir" value="@if(isset($student_edit->mother_data['year_of_birth'])) {{$student_edit->mother_data['year_of_birth']}} @endif">
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded year_picker" placeholder="Masukan Tahun Lahir" value="@if(isset($student_edit->mother_data['year_of_birth'])) {{$student_edit->mother_data['year_of_birth']}} @endif">
                     </div>
                 </div>
 
@@ -393,12 +392,7 @@
 
                     <div class="col-sm-4">
                         <label>Tahun Lahir</label>
-                        <select name="guardian_data[year_of_birth]" class="form-control form-control-rounded" id="basic-select">
-                            
-                            <option selected="" value="@if(isset($student_edit->guardian_data['year_of_birth'])) {{$student_edit->guardian_data['year_of_birth']}} @endif"> @if(isset($student_edit->guardian_data['year_of_birth'])) {{$student_edit->guardian_data['year_of_birth']}} @else Pilih @endif</option>
-                            <option value="2000">2000</option>
-                            <option value="2001">2001</option>
-                        </select>
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[year_of_birth]" class="form-control form-control-rounded year_picker" placeholder="Masukan Tahun Lahir" value="@if(isset($student_edit->guardian_data['year_of_birth'])) {{$student_edit->guardian_data['year_of_birth']}} @endif">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -816,19 +810,16 @@
 <!--Bootstrap Datepicker Js-->
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script>
-    $('#default-datepicker').datepicker({
-        todayHighlight: true
-    });
+
     $('#autoclose-datepicker').datepicker({
         autoclose: true,
         todayHighlight: true
     });
-
-    $('#inline-datepicker').datepicker({
-        todayHighlight: true
+    $('.year_picker').datepicker({
+        autoclose: true,
+        minViewMode: 2,
+        format: 'yyyy'
     });
-
-    $('#dateragne-picker .input-daterange').datepicker({});
 </script>
 
 <script>

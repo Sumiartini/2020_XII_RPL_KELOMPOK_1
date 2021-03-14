@@ -57,19 +57,21 @@
 </div>
 @endif
 
-<div class="col-lg-12">
-  @if ($message = Session::get('success'))
-  <div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <div class="alert-icon contrast-alert">
-       <i class="icon-check"></i>
-   </div>
-   <div class="alert-message">
-    <span><strong>Berhasil!</strong> {{$message}}.</span>
-</div>
+@if ($message = Session::get('success'))
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+                <div class="alert-icon contrast-alert">
+                    <i class="icon-check"></i>
+                </div>
+                <div class="alert-message">
+                    <span><strong>Berhasil!</strong> {{$message}}.</span>
+            </div>
+        </div>
+    </div>
 </div>
 @endif
-</div>
 
 
 <div class="row">
@@ -88,6 +90,11 @@
                         <dt class="col-sm-5">Nama Guru</dt>
                         <dd class="col-sm-7">
                             <p>{{ $teacher->usr_name }}</p>
+                        </dd>
+
+                        <dt class="col-sm-5">Email</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $teacher->usr_email }}</p>
                         </dd>
 
                         <dt class="col-sm-5">Nomor Telepon</dt>

@@ -26,6 +26,7 @@
   <div id="wrapper">
     <div class="card border-primary border-top-sm border-bottom-sm card-authentication1 mx-auto my-5 animated bounceInDown">
       <div class="card-body">
+        <a href="/" data-toggle="tooltip" data-placement="right" title="KEMBALI KE HALAMAN UTAMA" type="button"><i class="zmdi zmdi-arrow-left fa-2x"></i></a>
         <div class="card-content p-2">
           <div class="text-center">
             <img style="height: 150px; width: 150px;" src="{{ asset('assets/images/mahaputra.jfif') }}">
@@ -39,7 +40,7 @@
             <div class="form-group">
               <div class="position-relative has-icon-left">
                 <label for="exampleInputPassword" class="sr-only">New Password</label>
-                <input type="password" id="password" class="form-control form-control-rounded @error('password') is-invalid @enderror" placeholder="New Password" name="password" autocomplete="new-password">
+                <input type="password" id="password" class="form-control form-control-rounded @error('password') is-invalid @enderror" placeholder="Masukan kata sandi baru" name="password" autocomplete="new-password">
                 @error('password')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -54,7 +55,7 @@
             <div class="form-group">
               <div class="position-relative has-icon-left">
                 <label for="exampleInputPassword" class="sr-only">Retype NewPassword</label>
-                <input type="password" id="password-confirm" class="form-control form-control-rounded" placeholder="Retype New Password" name="password_confirmation" autocomplete="new-password">
+                <input type="password" id="password-confirm" class="form-control form-control-rounded" placeholder="Masukan ulang kata sandi baru" name="password_confirmation" autocomplete="new-password">
                 @error('password')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -66,6 +67,10 @@
               </div>
             </div>
             <button id="btnSubmit" type="submit" class="btn btn-primary shadow-primary btn-round btn-block waves-effect waves-light">Reset Password</button>
+            <div class="text-center pt-3">
+              <hr>
+              <p class="text-muted">Sudah ingat kata sandi? <a href="{{ route('login') }}"> Log In</a></p>
+            </div>
           </form>
         </div>
       </div>
@@ -77,45 +82,41 @@
   </div>
   <!--wrapper-->
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{asset('assets/js/jquery.min.js')}}"></script>
-  <script src="{{asset('assets/js/popper.min.js')}}"></script>
-  <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-  <!--Form Validatin Script-->
-  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-
-  <script>
-    $().ready(function() {
-
-    //   $(".submitForm").submit(function(e) {
-    //     $(this).find("button[type='submit']").prop('disabled', true);
-    //     $(".btnSubmit").attr("disabled", true);
-    //     return true;
-    // });
-
-    $("#form-validate").validate({
-        rules: {
-            password: {
-              required: true,
-              minlength: 8
-            },
-            password_confirmation: {
-              required: true,
-              equalTo: "#password"
-            },
-        },
-        messages: {
-            password: {
-              required: "Kata sandi harus di isi",
-              minlength: "Minimal kata sandi 8 digit"
-            },
-            password_confirmation: {
-              required: "Ulangi kata sandi harus di isi",
-              equalTo: "Kata sandi wajib sesuai dengan yang awal"
-            },
-        }
-    });
+<!-- Bootstrap core JavaScript-->
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+<!-- sidebar-menu js -->
+<script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
+<!-- Custom scripts -->
+<script src="{{ asset('assets/js/app-script.js')}}"></script>
+<script>
+  $().ready(function() {
+  $("#form-validate").validate({
+      rules: {
+          password: {
+            required: true,
+            minlength: 8
+          },
+          password_confirmation: {
+            required: true,
+            equalTo: "#password"
+          },
+      },
+      messages: {
+          password: {
+            required: "Kata sandi harus di isi",
+            minlength: "Minimal kata sandi 8 digit"
+          },
+          password_confirmation: {
+            required: "Ulangi kata sandi harus di isi",
+            equalTo: "Kata sandi wajib sesuai dengan yang awal"
+          },
+      }
+  });
 });
-    </script>
+  </script>
 </body>
 </html>

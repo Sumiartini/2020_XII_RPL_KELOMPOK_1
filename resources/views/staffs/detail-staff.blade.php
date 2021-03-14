@@ -56,19 +56,23 @@
 </div>
 </div>
 @endif
-<div class="col-lg-12">
-  @if ($message = Session::get('success'))
-  <div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <div class="alert-icon contrast-alert">
-       <i class="icon-check"></i>
-   </div>
-   <div class="alert-message">
-    <span><strong>Berhasil!</strong> {{$message}}.</span>
-</div>
+
+@if ($message = Session::get('success'))
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+                <div class="alert-icon contrast-alert">
+                    <i class="icon-check"></i>
+                </div>
+                <div class="alert-message">
+                    <span><strong>Berhasil!</strong> {{$message}}.</span>
+            </div>
+        </div>
+    </div>
 </div>
 @endif
-</div>
+
 
 <div class="row">
         <div class="col-lg-5">
@@ -86,6 +90,14 @@
                         <dt class="col-sm-5">Nama Staf</dt>
                         <dd class="col-sm-7">
                             <p>{{ $staff->usr_name }}</p>
+                        </dd>
+                        <dt class="col-sm-5">Email</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_email }}</p>
+                        </dd>
+                        <dt class="col-sm-5">Nomor Telepon</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ $staff->usr_phone_number }}</p>
                         </dd>
                         @if(isset($staff->personal['nik']))
                         <dt class="col-sm-5">NIK</dt>

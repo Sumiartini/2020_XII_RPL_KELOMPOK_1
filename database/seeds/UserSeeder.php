@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
-            
+            'usr_district_id' => 2102,
         ]);
 
         $admin->assignRole('admin');
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
             'usr_religion'      => 'Islam',
-            
+            'usr_district_id' => 2102,
         ]);
 
         $siswa2 = User::create([
@@ -72,6 +72,7 @@ class UserSeeder extends Seeder
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
             'usr_religion'      => 'Protestan',
+            'usr_district_id' => 2102,
         ]);
 
         $siswa3 = User::create([
@@ -93,7 +94,8 @@ class UserSeeder extends Seeder
             'usr_rw'    => '21',
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
-            'usr_religion'      => 'Islam',       
+            'usr_religion'      => 'Islam',
+            'usr_district_id' => 2102,     
         ]);
 
         $siswa4 = User::create([
@@ -115,7 +117,8 @@ class UserSeeder extends Seeder
             'usr_rw'    => '21',
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
-            'usr_religion'      => 'Islam', 
+            'usr_religion'      => 'Islam',
+            'usr_district_id' => 2102, 
         ]);
 
         $siswa5 = User::create([
@@ -137,7 +140,8 @@ class UserSeeder extends Seeder
             'usr_rw'    => '21',
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
-            'usr_religion'      => 'Islam', 
+            'usr_religion'      => 'Islam',
+            'usr_district_id' => 2102,
         ]);
 
         $siswa1->assignRole('student');
@@ -155,6 +159,7 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_district_id' => 2102,
         ]);
 
         $guru2 = User::create([
@@ -166,6 +171,7 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => false,
+            'usr_district_id' => 2102,
         ]);
 
         $guru3 = User::create([
@@ -177,6 +183,7 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_district_id' => 2102,
         ]);
 
         $guru1->assignRole('teacher');
@@ -194,6 +201,7 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_district_id' => 2102,
         ]);
 
         $staff_TU2 = User::create([
@@ -205,6 +213,7 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => false,
+            'usr_district_id' => 2102,
         ]);
 
         $staff_TU3 = User::create([
@@ -216,6 +225,7 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_district_id' => 2102,
         ]);
 
 

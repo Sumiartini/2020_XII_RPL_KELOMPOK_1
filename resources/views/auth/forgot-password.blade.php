@@ -26,7 +26,7 @@
   <div id="wrapper">
     <div class="card border-primary border-top-sm border-bottom-sm card-authentication1 mx-auto my-5 animated bounceInDown">
       <div class="card-body">
-            <a href="/"><i class="zmdi zmdi-arrow-left fa-2x"></i></a>
+        <a href="/" data-toggle="tooltip" data-placement="right" title="KEMBALI KE HALAMAN UTAMA" type="button"><i class="zmdi zmdi-arrow-left fa-2x"></i></a>
         <div class="card-content p-2">
           <div class="text-center">
             <img style="height: 150px; width: 150px;" src="{{ asset('assets/images/mahaputra.jfif') }}">
@@ -93,27 +93,30 @@
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<!-- sidebar-menu js -->
+<script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
+<!-- Custom scripts -->
+<script src="{{ asset('assets/js/app-script.js')}}"></script>
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
-  <!--Form Validatin Script-->
-  <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-
-  <script>
-    $().ready(function() {
-      
-    $("#form-validate").validate({
-        rules: {
-            usr_email: {
-              required: true,
-              email: true
-            },
-        },
-        messages: {
-            usr_email: {
-              required: "Alamat email harus di isi",
-              email: "Email tidak valid"
-            },
-        }
-    });
+<script>
+  $().ready(function() {
+    
+  $("#form-validate").validate({
+      rules: {
+          usr_email: {
+            required: true,
+            email: true
+          },
+      },
+      messages: {
+          usr_email: {
+            required: "Alamat email harus di isi",
+            email: "Email tidak valid"
+          },
+      }
+  });
 });
 </script>
 </body>

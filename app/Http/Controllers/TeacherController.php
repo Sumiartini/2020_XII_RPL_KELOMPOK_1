@@ -258,7 +258,8 @@ class TeacherController extends Controller
             $user->usr_rw               = $request->usr_rw;
             $user->usr_rural_name       = $request->usr_rural_name;
             $user->usr_postal_code      = $request->usr_postal_code;
-
+            $user->usr_phone_number     = $request->usr_phone_number;
+            
             if ($request->hasFile('usr_profile_picture')) {
                 $files = $request->file('usr_profile_picture');
                 $path = public_path('images/users_profile');
@@ -281,7 +282,7 @@ class TeacherController extends Controller
                             $teacherDetail->tcd_type       = $key;
                             $teacherDetail->tcd_key        = $requestKey;
                             $teacherDetail->tcd_value      = $requestValue;
-                            $teacherDetail->tcd_created_by = Auth()->user()->usr_id;
+                            $teacherDetail->tcd_updated_by = Auth()->user()->usr_id;
                             $teacherDetail->update();                            
                         }else{
                             $teacherDetail = new TeacherDetails;

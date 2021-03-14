@@ -221,11 +221,12 @@ class StaffController extends Controller
 
         $staff_edit = $staff->getStaffEdit($staffID);        
         $province = Provinces::select('prv_id', 'prv_name')->get();
-        $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
+         $user = User::join('districts', 'districts.dst_id', '=', 'users.usr_district_id')
         ->join('cities', 'cities.cit_id', '=', 'districts.dst_city_id')
         ->join('provinces', 'provinces.prv_id', '=', 'cities.cit_province_id')        
         ->where('usr_id', $staff_edit->usr_id)
-        ->get();   
+        ->get();
+
         return view('staffs.edit-staff', ['staff_edit' => $staff_edit, 'province' => $province, 'user' => $user]);
 
     }
@@ -268,17 +269,29 @@ class StaffController extends Controller
         }
         
         if ($user->update()) {
-            foreach ($requests as $key => $requetcdata) {
-                if (is_array($requetcdata)) {
-                    foreach ($requetcdata as $requestKey => $requestValue) {
-                            // dd($requests, $request, $requetcdata, $requestKey, $requestValue, $key);                            
-                        $staffDetail = new StaffDetails;
-                        $staffDetail->sfd_staff_id   = $staff->stf_id;
-                        $staffDetail->sfd_type       = $key;
-                        $staffDetail->sfd_key        = $requestKey;
-                        $staffDetail->sfd_value      = $requestValue;
-                        $staffDetail->sfd_created_by = Auth()->user()->usr_id;
-                        $staffDetail->save();
+            foreach ($requests as $key => $requestData) {
+                if (is_array($requestData)) {
+                    foreach ($requestData as $requestKey => $requestValue) {
+                            // dd($requests, $request, $requestData, $requestKey, $requestValue, $key);
+                        $staffDetail = StaffDetails::where('sfd_staff_id', $staff->stf_id)
+                        ->where('sfd_type', $key)
+                        ->where('sfd_key', $requestKey)->first();
+                        if (isset($staffDetail)) {
+                            $staffDetail->sfd_staff_id   = $staff->stf_id;
+                            $staffDetail->sfd_type       = $key;
+                            $staffDetail->sfd_key        = $requestKey;
+                            $staffDetail->sfd_value      = $requestValue;
+                            $staffDetail->sfd_updated_by = Auth()->user()->usr_id;
+                            $staffDetail->update();                            
+                        }else{
+                            $staffDetail = new StaffDetails;
+                            $staffDetail->sfd_staff_id   = $staff->stf_id;
+                            $staffDetail->sfd_type       = $key;
+                            $staffDetail->sfd_key        = $requestKey;
+                            $staffDetail->sfd_value      = $requestValue;
+                            $staffDetail->sfd_created_by = Auth()->user()->usr_id;
+                            $staffDetail->save();
+                        }
                     }
                 }
             }

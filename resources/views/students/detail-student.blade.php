@@ -58,19 +58,21 @@
 </div>
 @endif
 
-<div class="col-lg-12">
-  @if ($message = Session::get('success'))
-  <div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <div class="alert-icon contrast-alert">
-     <i class="icon-check"></i>
- </div>
- <div class="alert-message">
-    <span><strong>Berhasil!</strong> {{$message}}.</span>
-</div>
+@if ($message = Session::get('success'))
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+                <div class="alert-icon contrast-alert">
+                    <i class="icon-check"></i>
+                </div>
+                <div class="alert-message">
+                    <span><strong>Berhasil!</strong> {{$message}}.</span>
+            </div>
+        </div>
+    </div>
 </div>
 @endif
-</div>
 
 <div class="row">
     <div class="col-lg-6">
@@ -90,12 +92,15 @@
                 <p>{{ $student->stu_candidate_name }}</p>
             </dd>
 
-            @if(isset($student->stu_nisn))
+            <dt class="col-sm-5">Email </dt>
+            <dd class="col-sm-7">
+                <p>{{ $student->usr_email }}</p>
+            </dd>
+
             <dt class="col-sm-5">NISN</dt>
             <dd class="col-sm-7">
                 <p>{{ $student->stu_nisn }}</p>
             </dd>
-            @endif
 
             <dt class="col-sm-5">Jurusan yang di minati</dt>
             <dd class="col-sm-7">

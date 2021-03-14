@@ -72,7 +72,7 @@ class StudentDetailsSeeder extends Seeder
             'std_student_id' => '1',
             'std_type'  => 'father_data',
             'std_key'   => 'year_of_birth',
-            'std_value' => '1988-04-06',
+            'std_value' => '1988',
         ]);
 
         DB::table('student_details')->insert([           
@@ -128,7 +128,7 @@ class StudentDetailsSeeder extends Seeder
             'std_student_id' => '1',
             'std_type'  => 'mother_data',
             'std_key'   => 'year_of_birth',
-            'std_value' => '1992-05-08',
+            'std_value' => '1992',
         ]);
 
         DB::table('student_details')->insert([            
@@ -341,7 +341,7 @@ class StudentDetailsSeeder extends Seeder
             'std_student_id' => '2',
             'std_type'  => 'father_data',
             'std_key'   => 'year_of_birth',
-            'std_value' => '1998-05-08',
+            'std_value' => '1998',
         ]);
 
         DB::table('student_details')->insert([           
@@ -397,7 +397,7 @@ class StudentDetailsSeeder extends Seeder
             'std_student_id' => '2',
             'std_type'  => 'mother_data',
             'std_key'   => 'year_of_birth',
-            'std_value' => '1995-09-10',
+            'std_value' => '1995',
         ]);
 
         DB::table('student_details')->insert([            
@@ -610,7 +610,7 @@ class StudentDetailsSeeder extends Seeder
             'std_student_id' => '3',
             'std_type'  => 'father_data',
             'std_key'   => 'year_of_birth',
-            'std_value' => '1994-05-08',
+            'std_value' => '1994',
         ]);
 
         DB::table('student_details')->insert([           
@@ -666,7 +666,7 @@ class StudentDetailsSeeder extends Seeder
             'std_student_id' => '3',
             'std_type'  => 'mother_data',
             'std_key'   => 'year_of_birth',
-            'std_value' => '1997-10-10',
+            'std_value' => '1997',
         ]);
 
         DB::table('student_details')->insert([            
@@ -878,7 +878,7 @@ class StudentDetailsSeeder extends Seeder
             'std_student_id' => '4',
             'std_type'  => 'father_data',
             'std_key'   => 'year_of_birth',
-            'std_value' => '1989-05-08',
+            'std_value' => '1989',
         ]);
 
         DB::table('student_details')->insert([           
@@ -934,7 +934,7 @@ class StudentDetailsSeeder extends Seeder
             'std_student_id' => '4',
             'std_type'  => 'mother_data',
             'std_key'   => 'year_of_birth',
-            'std_value' => '1990-10-07',
+            'std_value' => '1990',
         ]);
 
         DB::table('student_details')->insert([            
