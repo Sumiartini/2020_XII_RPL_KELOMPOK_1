@@ -68,18 +68,18 @@
 
                     <dt class="col-sm-2">Transfer Ke Bank</dt>
                     <dd class="col-sm-10">
-                        BCA
+                        BRI
                     </dd>
 
                     <dt class="col-sm-2">Nomor Rekening</dt>
                     <dd class="col-sm-10">
-                        <input readonly style="border: none; background-color: white; color: #636363;" type="text" value="346 171 4674" id="text-copy"  />
+                        <input readonly style="border: none; background-color: white; color: #636363;" type="text" value="2104 01 000183 30 7" id="text-copy"  />
                         <button type="button" class="btn btn-outline-primary btn-sm btn-round waves-effect waves-light m-1" onclick="copy_text()">Copy</button>
                     </dd>
 
                     <dt class="col-sm-2">Atas Nama</dt>
                     <dd class="col-sm-10">
-                       Dedi Hidayat.Drs
+                       SMKS Mahaputra Cerdas Utama
                    </dd>
                </div>
                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('payment-upload') }}" novalidate="novalidate" enctype="multipart/form-data">
