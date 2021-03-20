@@ -17,6 +17,7 @@ class CreateMasterSlidesTable extends Migration
             $table->bigIncrements('mss_id');
             $table->string('mss_name');
             $table->string('mss_file');
+            $table->tinyInteger('mss_is_active')->nullable();
 
             $table->bigInteger('mss_created_by')->unsigned()->nullable();
             $table->bigInteger('mss_updated_by')->unsigned()->nullable();

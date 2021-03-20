@@ -246,6 +246,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/master-slide/create', 'LandingPageController@store');
     Route::get('/master-slide/edit/{mss_id}', 'LandingPageController@edit');
     Route::post('/master-slide/edit/{mss_id}', 'LandingPageController@update');
+    Route::get('/master-slide/edit-status/{mss_id}', 'LandingPageController@editStatus');
 
     Route::get('/master-configs', function () {
         return view('landing-page.list-master-config');

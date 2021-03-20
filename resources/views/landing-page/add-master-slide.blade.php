@@ -55,7 +55,7 @@
                         <label for="input-2" class="col-sm-3 col-form-label">File</label>
                     
                         <div class="col-sm-9">
-                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 250px; width: 1000px"/>
+                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>
                             <div></div>
                             <input type="file" name="mss_file" id="preview_gambar" class="@error('mss_file') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('mss_file').value=this.value" /><br>
                             @error('mss_file')
@@ -102,7 +102,22 @@
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+<script>
+    function bacaGambar(input) {
+       if (input.files && input.files[0]) {
+          var reader = new FileReader();
 
+          reader.onload = function (e) {
+              $('#tampil_picture').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  $("#preview_gambar").change(function(){
+   bacaGambar(this);
+});
+</script>
 <script>
    $().ready(function() {
 

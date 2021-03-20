@@ -59,17 +59,15 @@ class LandingPageController extends Controller
 
         $master_slides = new MasterSlides;
         $master_slides->mss_name        = $request->mss_name;
-        $master_slides->mss_file        = $request->mss_file;
+        $master_slides->mss_is_active   = 1;
         $master_slides->mss_created_by  = Auth()->user()->usr_id;
-        // if ($request->hasFile('mss_file')) {
-        //     $files = $request->file('mss_file');
-        //     $path = public_path('images/landing_pictures');
-        //     $files_name = 'images' . '/' . 'landing_pictures' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
-        //     $files->move($path, $files_name);
-        //     $user->mss_file = $files_name;
-        // }else{
-        //     dd('gagal');
-        // }
+        if ($request->hasFile('mss_file')) {
+            $files = $request->file('mss_file');
+            $path = public_path('images/landing_pictures');
+            $files_name = 'images' . '/' . 'landing_pictures' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $master_slides->mss_file = $files_name;
+        }
         $master_slides->save();
 
         return redirect('/master-slides')->with('success', 'Data berhasil ditambahkan'); 
@@ -110,14 +108,43 @@ class LandingPageController extends Controller
         $master_slide = MasterSlides::where('mss_id', $masterSlideID)->first();
          if ($master_slide->mss_name == $request->mss_name) {
             $master_slide->mss_name = $request->mss_name;
+            if ($request->hasFile('mss_file')) {
+                $files = $request->file('mss_file');
+                $path = public_path('images/landing_pictures');
+                $files_name = 'images' . '/' . 'landing_pictures' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+                $files->move($path, $files_name);
+                $master_slide->mss_file = $files_name;
+            }
             $master_slide->update();
             return redirect('master-slides');
         }
         $master_slide->mss_name         = $request->mss_name;
+        if ($request->hasFile('mss_file')) {
+            $files = $request->file('mss_file');
+            $path = public_path('images/landing_pictures');
+            $files_name = 'images' . '/' . 'landing_pictures' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $master_slide->mss_file = $files_name;
+        }
         $master_slide->mss_updated_by   = Auth()->user()->usr_id;
         $master_slide->update();
         return redirect('master-slides')->with('success', 'Berkas berhasil di ubah');
 
+    }
+
+     public function editStatus($masterSlideID)
+    {
+        $slide = MasterSlides::where('mss_id', $masterSlideID)->first();
+        if ($slide->mss_is_active == 1) {
+            $slide->mss_is_active = 0;
+            $slide->mss_updated_by = Auth()->user()->usr_id;
+            $slide->update();
+            return redirect()->back()->with('success', 'Mata pelajaran berhasil di non aktifkan');
+        }else{
+            $slide->mss_is_active = 1;
+            $slide->update();
+            return redirect()->back()->with('success', 'Mata pelajaran berhasil di aktifkan');
+        }
     }
 
     /**
