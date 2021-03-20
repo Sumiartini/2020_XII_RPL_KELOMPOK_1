@@ -61,6 +61,15 @@ class LandingPageController extends Controller
         $master_slides->mss_name        = $request->mss_name;
         $master_slides->mss_file        = $request->mss_file;
         $master_slides->mss_created_by  = Auth()->user()->usr_id;
+        // if ($request->hasFile('mss_file')) {
+        //     $files = $request->file('mss_file');
+        //     $path = public_path('images/landing_pictures');
+        //     $files_name = 'images' . '/' . 'landing_pictures' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+        //     $files->move($path, $files_name);
+        //     $user->mss_file = $files_name;
+        // }else{
+        //     dd('gagal');
+        // }
         $master_slides->save();
 
         return redirect('/master-slides')->with('success', 'Data berhasil ditambahkan'); 

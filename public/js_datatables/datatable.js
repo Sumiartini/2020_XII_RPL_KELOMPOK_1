@@ -1141,7 +1141,10 @@ function master_slide() {
             },
             {
                 data: 'mss_file', 
-                name:'mss_file', 
+                name:'mss_file',
+                render: function(data, type, full, meta){
+                    return "<img src=\"" + data + "\"height=\"50\"/>";
+                }, 
                 orderable: false, 
                 searchable: true
             },
