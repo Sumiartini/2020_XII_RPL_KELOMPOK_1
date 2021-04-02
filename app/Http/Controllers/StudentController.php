@@ -327,7 +327,7 @@ class StudentController extends Controller
                 $majors = Majors::where('mjr_is_active', true)->get();
                 $province = Provinces::select('prv_id', 'prv_name')->get();
 
-                return view('students.new-registration-student', ['majors' => $majors, 'province' => $province, 'school_year' => $school_year]);
+                return view('students.registration-student', ['majors' => $majors, 'province' => $province, 'school_year' => $school_year]);
             } else {
                 return redirect('/pending-verification');
             }
@@ -339,7 +339,7 @@ class StudentController extends Controller
 
     public function storeFormRegistrasion(Request $request)
     {
-        // dd($request);
+        dd($request);
         $requests = $request->input();
         $messages = [
             'required'  => 'Kolom wajib diisi',
@@ -352,10 +352,10 @@ class StudentController extends Controller
         $request->validate([
             'stu_candidate_name'            => 'required',
             'usr_gender'                    => 'required',
-            // 'stu_nisn'                      => 'required | unique:students,stu_nisn',
-            'usr_phone_number'              => 'required',
+            'stu_nisn'                      => 'required | unique:students,stu_nisn',
+            'usr_phone_number'              => 'required | unique:users,usr_whatsapp_number',
             'usr_whatsapp_number'           => 'required | unique:users,usr_whatsapp_number',
-            'usr_place_of_birth'            => 'required',
+            'usr_place_of_birth'            => 'required',    
             'usr_date_of_birth'             => 'required',
             'personal.nik'                  => 'required',
             'personal.living_together'      => 'required',
@@ -367,16 +367,16 @@ class StudentController extends Controller
             'usr_profile_picture'           => 'required | mimes:jpeg,jpg,png|max:2048',
             'father_data.name'              => 'required',
             'father_data.father_name'       => 'required',
-            // 'father_data.nik'               => 'required',
-            // 'father_data.year_of_birth'     => 'required',
-            // 'father_data.education'         => 'required',
-            // 'father_data.profession'        => 'required',
+            'father_data.nik'               => 'required',
+            'father_data.year_of_birth'     => 'required',
+            'father_data.education'         => 'required',
+            'father_data.profession'        => 'required',
             'father_data.phone_number'      => 'required',
             'mother_data.name'              => 'required',
-            // 'mother_data.nik'               => 'required',
-            // 'mother_data.year_of_birth'     => 'required',
-            // 'mother_data.education'         => 'required',
-            // 'mother_data.profession'        => 'required',
+            'mother_data.nik'               => 'required',
+            'mother_data.year_of_birth'     => 'required',
+            'mother_data.education'         => 'required',
+            'mother_data.profession'        => 'required',
             'mother_data.phone_number'      => 'required',
             'prv_name'                      => 'required',
             'cit_name'                      => 'required',
@@ -386,6 +386,7 @@ class StudentController extends Controller
             'usr_rw'                        => 'required',
             'usr_rural_name'                => 'required',
             'usr_postal_code'               => 'required',
+            'contact.email'                 => 'required',
 
             'other.certificate_of_graduation'   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
             'other.junior_high_school_diploma'  => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',

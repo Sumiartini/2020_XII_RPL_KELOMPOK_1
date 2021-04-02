@@ -1,121 +1,56 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.masterFront')
 
-<head>
+@push('title')
+- Formulir Siswa
+@endpush
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SMK Mahaputra - Formulir Siswa</title>
-    <!--favicon-->
-    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
-    <!-- simplebar CSS-->
-    <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
-    <!-- Bootstrap core CSS-->
-    <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- animate CSS-->
-    <link href="{{ asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css">
-    <!--Bootstrap Datepicker-->
-    <link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
-    <!-- Icons CSS-->
-    <link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css">
-    <!-- Sidebar CSS-->
-    <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
-    <!-- Custom Style-->
-    <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
-    <!-- select2 -->
-    <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
-    <style>
-        footer {
-            color: #272727;
-            text-align: center;
-            padding: 12px 30px;
-            margin-bottom: -10px;
-            margin-top: 10px;
-            border-top: 1px solid rgb(223, 223, 255);
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-        }
-    </style>
-</head>
+@push('styles')
+<link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
+<!-- Bootstrap core CSS-->
+<link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+<!-- animate CSS-->
+<link href="{{ asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css">
+<!--Bootstrap Datepicker-->
+<link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
+<!-- Icons CSS-->
+<link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css">
+<!-- Sidebar CSS-->
+<link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
+<!-- Custom Style-->
+<link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+<!-- select2 -->
+<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
+<style type="text/css">
+    footer{
+      bottom: 0px;
+      color: #272727;
+      text-align: center;
+      padding: 12px 30px;
+      right: 0;
+      left: 0;
+      background-color: #f9f9f9;
+      border-top: 1px solid rgb(223, 223, 255);
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease; 
+  }
 
-<body>
-    <header class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('assets/images/mahaputra.jfif') }}" style="width: 50px;" height="50px;"> {{ config('app.name', 'Laravel') }}
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                </ul>
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @if (Route::has('register'))
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ __('Register') }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('register-student') }}">Siswa</a>
-                            <a class="dropdown-item" href="{{ url('register-teacher') }}">Guru</a>
-                            <a class="dropdown-item" href="{{ url('register-staff') }}">Staff TU</a>
-                        </div>
-                    </li>
-                    @endif
-                    @else
-
-
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->usr_name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                    @endguest
-                </ul>
-            </div>
-        </div>
-    </header><br>
-
-    <div class="container-fluid" style="margin-top: 80px">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <form id="submitForm" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate" enctype="multipart/form-data">
-                            @csrf
-                            <h4 class="form-header text-uppercase">
+</style>
+@endpush
+@section('content')
+<div class="container-fluid" style="margin-top: 80px">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student-registration') }}" novalidate="novalidate" enctype="multipart/form-data">
+                        @csrf
+                        <h4 style="text-align: center;">FORMULIR PESERTA DIDIK BARU TAHUN PELAJARAN {{ $school_year->scy_name }}</h4>
+                            <h4 class="form-header text-uppercase" style="margin-top: 20px">
                                 <i class="  "></i>
-                                Data Calon Siswa
+                                Data Calon Peserta Didik
                             </h4>
-
                             <div class="form-group row">
 
                                 <div class="col-sm-4">
@@ -128,24 +63,19 @@
                                     @enderror
                                     <p style="font-size: 12px;"> Sesuaikan dengan nama di ijazah SD/SMP </p>
                                 </div>
-
-
                                 <div class="col-sm-4">
-                                    <label> Jenis Kelamin <span style="color:red"> *</span></label>
-
-                                    <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror" id="basic-select">
-                                        <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
-                                        <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
-                                    </select>
-                                    @error('usr_gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-
+                                <label> Jenis Kelamin <span style="color:red"> *</span></label>
+                                <select name="usr_gender" class="form-control form-control-rounded @error('usr_gender') is-invalid @enderror">
+                                    <option disabled="" {{ old('usr_gender') == "" ? 'selected' : '' }}> Pilih </option>
+                                    <option {{ old('usr_gender') == "Laki-Laki" ? 'selected' : '' }} value="Laki-laki"> Laki Laki </option>
+                                    <option {{ old('usr_gender') == "Perempuan" ? 'selected' : '' }} value="Perempuan"> Perempuan </option>
+                                </select>
+                                @error('usr_gender')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                 </div>
-
                                 <div class="col-sm-4">
                                     <label> NISN <span style="color:red"> *</span></label>
                                     <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('stu_nisn') is-invalid @enderror" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{ old('stu_nisn') }}">
@@ -215,46 +145,42 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label> Tinggal Bersama <span style="color:red"> *</span></label>
-                                    <select class="form-control form-control-rounded @error('personal.living_together') is-invalid @enderror" name="personal[living_together]" id="basic-select" value="{{ old('personal.living_together') }}">
-                                        <option disabled="" {{ old('personal.living_together') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option {{ old('personal.living_together') == "Orang Tua" ? 'selected' : '' }} value="Orang Tua"> Orang Tua </option>
-                                        <option {{ old('personal.living_together') == "Wali" ? 'selected' : '' }} value="Wali"> Wali </option>
-                                        <option {{ old('personal.living_together') == "Kos" ? 'selected' : '' }} value="Kos"> Kos </option>
-                                        <option {{ old('personal.living_together') == "Asrama" ? 'selected' : '' }} value="Asrama"> Asrama </option>
-                                        <option {{ old('personal.living_together') == "Panti Asuhan" ? 'selected' : '' }} value="Panti Asuhan"> Panti Asuhan </option>
-                                        <option {{ old('personal.living_together') == "Pesantren" ? 'selected' : '' }} value="Pesantren"> Pesantren </option>
-                                    </select>
-                                    @error('personal.living_together')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                <label> Tinggal Bersama <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('personal.living_together') is-invalid @enderror" name="personal[living_together]">
+                                    <option disabled=""  {{ old('personal.living_together') == "" ? 'selected' : '' }}> Pilih </option>
+                                    <option {{ old('personal.living_together') == "Orang Tua" ? 'selected' : '' }}  value="Orang Tua"> Orang Tua </option>
+                                    <option {{ old('personal.living_together') == "Wali" ? 'selected' : '' }}  value="Wali"> Wali </option>
+                                    <option {{ old('personal.living_together') == "Kos" ? 'selected' : '' }}  value="Kos"> Kos </option>
+                                    <option {{ old('personal.living_together') == "Asrama" ? 'selected' : '' }}  value="Asrama"> Asrama </option>
+                                    <option {{ old('personal.living_together') == "Panti Asuhan" ? 'selected' : '' }}  value="Panti Asuhan"> Panti Asuhan </option>
+                                    <option {{ old('personal.living_together') == "Pesantren" ? 'selected' : '' }}  value="Pesantren"> Pesantren </option>
+                                </select>
+                                @error('personal.living_together')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
 
                             </div>
 
-
                             <div class="form-group row">
                                 <div class="col-sm-4">
-                                    <label> Asal Sekolah <span style="color:red"> *</span></label>
-                                    <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" id="basic-select" placeholder="Masukan Asal Sekolah" value="{{ old('stu_school_origin') }}">
-                                    @error('stu_school_origin')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
+                                <label> asal Sekolah <span style="color:red"> *</span></label>
+                                <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" placeholder="Masukan asal Sekolah" value="{{ old('stu_school_origin') }}">
+                                @error('stu_school_origin')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
                                 <div class="col-sm-4">
                                     <label> Jurusan yang diminati <span style="color:red"> *</span></label>
-                                    <select class="form-control form-control-rounded @error('stu_major_id') is-invalid @enderror" name="stu_major_id" id="basic-select" value="{{ old('stu_major_id') }}">
-
+                                        <select class="form-control form-control-rounded @error('stu_major_id') is-invalid @enderror" name="stu_major_id" id="basic-select" value="{{ old('stu_major_id') }}">
                                         <option disabled="" {{ old('stu_major_id') == "" ? 'selected' : '' }}> Pilih </option>
                                         @foreach($majors as $major)
                                         <option {{ old('stu_major_id') == $major->mjr_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
                                         @endforeach
-
                                     </select>
                                     @error('stu_major_id')
                                     <span class="invalid-feedback" role="alert">
@@ -262,8 +188,6 @@
                                     </span>
                                     @enderror
                                 </div>
-
-
                                 <div class="col-sm-2">
                                     <label> Anak Ke</label>
                                     <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal.child') }}">
@@ -275,41 +199,24 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <label> Agama <span style="color:red"> *</span></label>
-                                    <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select" value="{{ old('usr_religion') }}">
-                                        <option disabled="" {{ old('usr_religion') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }} value="Islam"> Islam </option>
-                                        <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }} value="Protestan"> Protestan </option>
-                                        <option {{ old('usr_religion') == "Katolik" ? 'selected' : '' }} value="Katolik"> Katolik </option>
-                                        <option {{ old('usr_religion') == "Hindu" ? 'selected' : '' }} value="Hindu"> Hindu </option>
-                                        <option {{ old('usr_religion') == "Budha" ? 'selected' : '' }} value="Budha"> Budha </option>
-                                        <option {{ old('usr_religion') == "Khonghucu" ? 'selected' : '' }} value="Khonghucu"> Khonghucu </option>
-                                    </select>
-                                    @error('usr_religion')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                <label> Agama <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" value="{{ old('usr_religion') }}">
+                                    <option disabled="" {{ old('usr_religion') == "" ? 'selected' : '' }} > Pilih </option>
+                                    <option {{ old('usr_religion') == "Islam" ? 'selected' : '' }}  value="Islam"> Islam </option>
+                                    <option {{ old('usr_religion') == "Protestan" ? 'selected' : '' }}  value="Protestan"> Protestan </option>
+                                    <option {{ old('usr_religion') == "Katolik" ? 'selected' : '' }}  value="Katolik"> Katolik </option>
+                                    <option {{ old('usr_religion') == "Hindu" ? 'selected' : '' }}  value="Hindu"> Hindu </option>
+                                    <option {{ old('usr_religion') == "Budha" ? 'selected' : '' }}  value="Budha"> Budha </option>
+                                    <option {{ old('usr_religion') == "Khonghucu" ? 'selected' : '' }}  value="Khonghucu"> Khonghucu </option>
+                                </select>
+                                @error('usr_religion')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                 </div>
-
                             </div>
 
-                            <label>Foto calon siswa<span style="color:red"> *</span></label>
-                            <div class="form-group row">
-
-                                <div class="col-sm-4">
-                                    <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px" />
-                                    <input type="file" name="usr_profile_picture" id="preview_gambar" class="img-thumbnail @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" style="display:none" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-
-                                    <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
-                                    @error('usr_profile_picture')
-                                    <p>
-                                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
-                                    </p>
-                                    @enderror
-                                </div>
-
-                            </div>
                             <h4 class="form-header text-uppercase">
                                 <i class=""></i>
                                 Data Ayah
@@ -339,8 +246,7 @@
 
                                 <div class="col-sm-4">
                                     <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
-
+                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[year_of_birth]" class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror" placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
                                     @error('father_data.year_of_birth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -351,38 +257,38 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-4">
-                                    <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
-                                    <select name="father_data[education]" class="form-control form-control-rounded @error('father_data.education') is-invalid @enderror" id="basic-select" value="{{ old('father_data.education') }}">
-                                        <option disabled="" {{ old('father_data.education') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option value="SD - Sederajat" {{ old('father_data.education') == "SD - Sederajat" ? 'selected' : '' }}> SD - Sederajat </option>
-                                        <option value="SMP - Sederajat" {{ old('father_data.education') == "SMP - Sederajat" ? 'selected' : '' }}> SMP - Sederajat </option>
-                                        <option value="SMA - Sederajat" {{ old('father_data.education') == "SMA - Sederajat" ? 'selected' : '' }}> SMA - Sederajat </option>
-                                        <option value="KULIAH - Sederajat" {{ old('father_data.education') == "KULIAH - Sederajat" ? 'selected' : '' }}> KULIAH - Sederajat </option>
-                                    </select>
-                                    @error('father_data.education')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <label> Pendidikan Terakhir <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('father_data.education') is-invalid @enderror" name="father_data[education]" value="{{ old('father_data[education]') }}">
+                                    <option disabled="" {{ old('father_data.education') == "" ? 'selected' : '' }} > Pilih </option>
+                                    <option {{ old('father_data.education') == "SD - Sederajat" ? 'selected' : '' }}  value="SD - Sederajat"> SD - Sederajat </option>
+                                    <option {{ old('father_data.education') == "SMP - Sederajat" ? 'selected' : '' }}  value="SMP - Sederajat"> SMP - Sederajat </option>
+                                    <option {{ old('father_data.education') == "SMA - Sederajat" ? 'selected' : '' }}  value="SMA - Sederajat"> SMA - Sederajat </option>
+                                    <option {{ old('father_data.education') == "KULIAH - Sederajat" ? 'selected' : '' }}  value="KULIAH - Sederajat"> KULIAH - Sederajat </option>
+                                </select>
+                                @error('father_data.education')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
 
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label>Pekerjaan<span style="color:red"> *</span></label>
-                                    <select name="father_data[profession]" class="form-control form-control-rounded @error('father_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('father_data.profession') }}">
+                                    <label> Pekerjaan <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('father_data.profession') is-invalid @enderror" name="father_data[profession]" value="{{ old('father_data[profession]') }}">
                                         <option disabled="" {{ old('father_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
                                         <option value="Buruh" {{ old('father_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
                                         <option value="Wirausaha" {{ old('father_data.profession') == "Wirausaha" ? 'selected' : '' }}> Wirausaha </option>
                                         <option value="Wiraswasta" {{ old('father_data.profession') == "Wiraswasta" ? 'selected' : '' }}> Wiraswasta </option>
                                         <option value="Ibu Rumah Tangga" {{ old('father_data.profession') == "Ibu Rumah Tangga" ? 'selected' : '' }}> Ibu Rumah Tangga </option>
                                     </select>
-                                    @error('father_data.profession')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-
+                                     @error('father_data.profession')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                 </div>
+
                                 <div class="col-sm-4">
                                     <label>Pendapatan Perbulan</label>
                                     <select name="father_data[monthly_income]" class="form-control form-control-rounded @error('father_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('father_data.monthly_income') }}">
@@ -399,9 +305,6 @@
                             </div>
 
                             <div class="form-group row">
-
-
-
                                 <div class="col-sm-4">
                                     <label> Nomor Telepon <span style="color:red"> *</span></label>
                                     <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('father_data.phone_number') }}">
@@ -411,8 +314,6 @@
                                     </span>
                                     @enderror
                                 </div>
-
-
                                 <div class="col-sm-4">
                                     <label> Disabilitas <span style="color:red"> *</span></label> <br>
 
@@ -456,44 +357,44 @@
 
                                 <div class="col-sm-4">
                                     <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data.year_of_birth') is-invalid @enderror" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('mother_data.year_of_birth') }}">
-
+                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data.year_of_birth') is-invalid @enderror" placeholder="Masukan Tahun Lahir" value="{{ old('mother_data.year_of_birth') }}">
                                     @error('mother_data.year_of_birth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
                                 </div>
+
+                               
                             </div>
 
 
                             <div class="form-group row">
                                 <div class="col-sm-4">
-                                    <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
-                                    <select name="mother_data[education]" class="form-control form-control-rounded @error('mother_data.education') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.education') }}">
-                                        <option disabled="" {{ old('mother_data.education') == "" ? 'selected' : '' }}> Pilih </option>
-                                        <option value="SD - Sederajat" {{ old('mother_data.education') == "SD - Sederajat" ? 'selected' : '' }}> SD - Sederajat </option>
-                                        <option value="SMP - Sederajat" {{ old('mother_data.education') == "SMP - Sederajat" ? 'selected' : '' }}> SMP - Sederajat </option>
-                                        <option value="SMA - Sederajat" {{ old('mother_data.education') == "SMA - Sederajat" ? 'selected' : '' }}> SMA - Sederajat </option>
-                                        <option value="KULIAH - Sederajat" {{ old('mother_data.education') == "KULIAH - Sederajat" ? 'selected' : '' }}> KULIAH - Sederajat </option>
-                                    </select>
-                                    @error('mother_data.education')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <label> Pendidikan Terakhir <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('mother_data.education') is-invalid @enderror" name="mother_data[education]" value="{{ old('mother_data[education]') }}">
+                                    <option disabled="" {{ old('mother_data.education') == "" ? 'selected' : '' }} > Pilih </option>
+                                    <option {{ old('mother_data.education') == "SD - Sederajat" ? 'selected' : '' }}  value="SD - Sederajat"> SD - Sederajat </option>
+                                    <option {{ old('mother_data.education') == "SMP - Sederajat" ? 'selected' : '' }}  value="SMP - Sederajat"> SMP - Sederajat </option>
+                                    <option {{ old('mother_data.education') == "SMA - Sederajat" ? 'selected' : '' }}  value="SMA - Sederajat"> SMA - Sederajat </option>
+                                    <option {{ old('mother_data.education') == "KULIAH - Sederajat" ? 'selected' : '' }}  value="KULIAH - Sederajat"> KULIAH - Sederajat </option>
+                                </select>
+                                @error('mother_data.education')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
 
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label>Pekerjaan<span style="color:red"> *</span></label>
-                                    <select name="mother_data[profession]" class="form-control form-control-rounded @error('mother_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('mother_data.profession') }}">
+                                    <label> Pekerjaan <span style="color:red"> *</span></label>
+                                <select class="form-control form-control-rounded @error('mother_data.profession') is-invalid @enderror" name="mother_data[profession]" value="{{ old('mother_data[profession]') }}">
                                         <option disabled="" {{ old('mother_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
                                         <option value="Buruh" {{ old('mother_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
                                         <option value="Wirausaha" {{ old('mother_data.profession') == "Wirausaha" ? 'selected' : '' }}> Wirausaha </option>
                                         <option value="Wiraswasta" {{ old('mother_data.profession') == "Wiraswasta" ? 'selected' : '' }}> Wiraswasta </option>
                                         <option value="Ibu Rumah Tangga" {{ old('mother_data.profession') == "Ibu Rumah Tangga" ? 'selected' : '' }}> Ibu Rumah Tangga </option>
-
                                     </select>
                                     @error('mother_data.profession')
                                     <span class="invalid-feedback" role="alert">
@@ -548,8 +449,6 @@
                                 <i class=""></i>
                                 Data Wali (Boleh diisi boleh tidak)
                             </h4>
-
-
                             <div class="form-group row">
 
                                 <div class="col-sm-4">
@@ -575,7 +474,6 @@
                                 <div class="col-sm-4">
                                     <label> Tahun Lahir </label>
                                     <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[year_of_birth]" class="form-control form-control-rounded @error('guardian_data.year_of_birth') is-invalid @enderror" id="basic-select" placeholder="Masukan Tahun Lahir" value="{{ old('guardian_data.year_of_birth') }}">
-
                                     @error('guardian_data.year_of_birth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -585,7 +483,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-4">
-                                    <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
+                                    <label>Pendidikan Terakhir</label>
                                     <select name="guardian_data[education]" class="form-control form-control-rounded @error('guardian_data.education') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.education') }}">
                                         <option value="" {{ old('guardian_data.education') == "" ? 'selected' : '' }}> Pilih </option>
                                         <option value="SD - Sederajat" {{ old('guardian_data.education') == "SD - Sederajat" ? 'selected' : '' }}> SD - Sederajat </option>
@@ -602,7 +500,7 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label>Pekerjaan<span style="color:red"> *</span></label>
+                                    <label>Pekerjaan</label>
                                     <select name="guardian_data[profession]" class="form-control form-control-rounded @error('guardian_data.profession') is-invalid @enderror" id="basic-select" value="{{ old('guardian_data.profession') }}">
                                         <option {{ old('guardian_data.profession') == "" ? 'selected' : '' }} value="">Pilih</option>
                                         <option value="Buruh" {{ old('guardian_data.profession') == "Buruh" ? 'selected' : '' }}> Buruh </option>
@@ -866,12 +764,12 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <h4 class="form-header text-uppercase">
-                                <i class=""></i>
-                                Lainnya
-                            </h4>
-                            <div class="form-group row">
+                            
+            <h4 class="form-header text-uppercase">
+                <i class=""></i>
+                Lainnya <small>(Maksimal File Ukuran 2 MB)</small>
+            </h4>
+            <div class="form-group row">
                                 <div class="col-sm-4">
                                     <label>Rekomendasi dari</label>
                                     <select name="other[recomended_from]" class="form-control form-control-rounded @error('other.recomended_from') is-invalid @enderror" id="basic-select" value="{{ old('other.recomended_from') }}">
@@ -889,137 +787,564 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-footer">
-                                <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
-                                <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label> Upload Surat Tanda Kelulusan SMP dilegalisir <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[certificate_of_graduation]">
+                    @error('other.certificate_of_graduation')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Ijazah SMP/MTs dilegalisir <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[junior_high_school_diploma]">
+                    @error('other.junior_high_school_diploma')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Ijazah SD/Mi dilegalisir <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[elementary_school_diploma]">
+                    @error('other.elementary_school_diploma')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
                 </div>
             </div>
-        </div>
-    </div>
 
-    <footer>
-        <div class="container">
-            <div class="text-center">
-                Copyright © 2021 PPDB Mahaputra
+
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-sm-4">
+                    <label> Upload Akte Kelahiran <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[birth_certificate]">
+                    @error('other.birth_certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Kartu Keluarga <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[family_card]">
+                    @error('other.family_card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Keterangan Domisili</label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[domicile_statement]">
+                    @error('other.domicile_statement')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Apabila tempat tinggal tidak sesuai dengan kartu keluarga)</p>
+                </div>
             </div>
-        </div>
-    </footer>
 
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-sm-4">
+                    <label> Upload KTP Ayah <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[id_card_father]">
+                    @error('other.id_card_father')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload KTP Ibu <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[id_card_mother]">
+                    @error('other.id_card_mother')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Surat Kesehatan Badan </label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[health_certificate]">
+                    @error('other.health_certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
+                </div>
 
-    <!--Start Back To Top Button-->
-    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-    <!--End Back To Top Button-->
+            </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
-    <script src="{{ asset('assets/js/popper.min.js')}}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-4">
+                    <label> Upload Surat Kesehatan Mata </label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[eye_health_letter]">
+                    @error('other.eye_health_letter')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Kartu PIP/KIP/Keterangan Kematian </label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[card]">
+                    @error('other.card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Apabila ada)</p>
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Sertifikat/Piagam Penghargaan </label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[certificate]">
+                    @error('other.certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Apabila ada)</p>
+                </div>
+            </div>
 
-    <!-- simplebar js -->
-    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.js')}}"></script>
-    <!-- waves effect js -->
-    <script src="{{ asset('assets/js/waves.js')}}"></script>
-    <!-- sidebar-menu js -->
-    <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
-    <!-- Custom scripts -->
-    <script src="{{ asset('assets/js/app-script.js')}}"></script>
+            <label for="input-8" style="margin-top: 30px;">Foto calon siswa<span style="color:red"> *</span></label>
+            <div class="form-group row">
 
-    <!-- script select2 -->
-    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
-    <script>
-        $(document).ready(function() {
-            $('.single-select').select2();
-        });
-    </script>
+                <div class="col-sm-4">
+                    <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/> 
+                    <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
 
-    <!--Form Validatin Script-->
-    <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-    <script>
-        function bacaGambar(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+                    <!-- <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
+                    @error('usr_profile_picture')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
 
-                reader.onload = function(e) {
-                    $('#tampil_picture').attr('src', e.target.result);
-                }
+            </div>
 
-                reader.readAsDataURL(input.files[0]);
+            <input type="checkbox" name="terms_and_conditions">
+            <label>Demikian formulir ini saya buat dengan sebenar-benarnya sesuai dengan petunjuk pengisian dan dapat dipertanggung jawabkan di kemudian hari </label>
+            <input type="hidden" name="str_school_year_id" value="{{ $school_year->scy_id }}">
+            <div class="form-footer">    
+                <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL </button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+@push('scripts')
+<!-- Bootstrap core JavaScript-->
+<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{ asset('assets/js/popper.min.js')}}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+
+<!-- simplebar js -->
+<script src="{{ asset('assets/plugins/simplebar/js/simplebar.js')}}"></script>
+<!-- waves effect js -->
+<script src="{{ asset('assets/js/waves.js')}}"></script>
+<!-- sidebar-menu js -->
+<script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
+<!-- Custom scripts -->
+<script src="{{ asset('assets/js/app-script.js')}}"></script>
+
+<!-- script select2 -->
+<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.single-select').select2();
+    });
+</script>
+<!--Bootstrap Datepicker Js-->
+<script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script>
+    $('#autoclose-datepicker').datepicker({
+        autoclose: true,
+        format: "yyyy-mm-dd",
+        orientation: "bottom auto",
+        // endDate: '-14y',
+        // startDate: '-21y',
+    });
+
+    $('.year_picker').datepicker({
+        autoclose: true,
+        minViewMode: 2,
+        format: 'yyyy',
+        orientation: "auto",
+    });
+</script>
+   <!--Form Validatin Script-->
+ <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+
+<script>
+    $().ready(function() {
+    $("#form-validate").validate({
+        rules: {
+            stu_major_id:{
+                required: true
+            },
+            stu_candidate_name:{
+                required: true
+            },
+            usr_place_of_birth:{
+                required: true
+            },
+            usr_date_of_birth:{
+                required: true
+            },
+            "personal[nik]":{
+                required: true,
+                minlength: 10
+            },
+            usr_gender:{
+                required: true
+            },
+            stu_nisn:{
+                required: true,
+                minlength: 10
+            },
+            usr_whatsapp_number:{
+                required: true,
+                minlength: 10
+            },
+            usr_phone_number:{
+                required:true,
+                minlength: 10
+            },
+            usr_religion:{
+                required: true
+            },
+            stu_school_origin:{
+                required: true
+            },
+            "school_origin[npsn]":{
+                required: true
+            },
+            prv_name:{
+                required: true
+            },
+            cit_name:{
+                required: true
+            },
+            dst_name:{
+                required: true
+            },
+            usr_address:{
+                required: true
+            },
+            usr_rt:{
+                required: true
+            },
+            usr_rw:{
+                required: true
+            },
+            usr_rural_name:{
+                required: true
+            },
+            usr_postal_code:{
+                required:true
+            },
+            "contact[email]": {
+            required: true,
+            email: true
+            },
+            "personal[living_together]":{
+                required: true
+            },
+            "personal[status_of_residence]":{
+                required: true
+            },
+            "father_data[name]":{
+                required: true
+            },
+            "father_data[phone_number]":{
+                required: true,
+                minlength: 10
+            },
+            "father_data[nik]":{
+                required: true,
+                minlength: 10
+            },
+            "father_data[year_of_birth]":{
+                required: true
+            },
+            "father_data[education]":{
+                required: true
+            },
+            "father_data[profession]":{
+                required: true
+            },
+            "mother_data[name]":{
+                required: true
+            },
+            "mother_data[phone_number]":{
+                required:true,
+                minlength: 10
+            },
+             "mother_data[nik]":{
+                required:true,
+                minlength: 10
+            },
+            "mother_data[year_of_birth]":{
+                required: true
+            },
+            "mother_data[education]":{
+                required: true
+            },
+            "mother_data[profession]":{
+                required: true
+            },
+            "other[certificate_of_graduation]":{
+                required: true
+            },
+            "other[junior_high_school_diploma]":{
+                required: true
+            },
+            "other[elementary_school_diploma]":{
+                required: true
+            },
+            "other[birth_certificate]":{
+                required: true
+            },
+            "other[family_card]":{
+                required: true
+            },
+            "other[id_card_father]":{
+                required: true
+            },
+            "other[id_card_mother]":{
+                required: true
+            },
+            usr_profile_picture:{
+                required:true
+            },
+            terms_and_conditions:{
+                required: true
+            },
+        },  
+        messages: {
+            stu_major_id:{
+                required: "Jurusan harus di pilih"
+            },
+            stu_candidate_name:{
+                required: "Nama lengkap harus di isi"
+            },
+            usr_place_of_birth:{
+                required: "Tempat lahir harus di isi"
+            },
+            usr_date_of_birth:{
+                required: "Tanggal lahir harus di isi"
+            },
+            "personal[nik]":{
+                required: "Nomor NIK harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_gender:{
+                required: "Jenis kelamin harus di pilih"
+            },
+            stu_nisn:{
+                required: "NISN harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_whatsapp_number:{
+                required: "No WhatsApp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_phone_number:{
+                required: "No Telepon harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_religion:{
+                required: "Agama harus di pilih"
+            },
+            stu_school_origin:{
+                required: "asal sekolah harus di isi"
+            },
+            "school_origin[npsn]":{
+                required: "NPSN asal sekolah harus di isi"
+            },
+            prv_name:{
+                required: "Provinsi harus di pilih"
+            },
+            cit_name:{
+                required: "Kabupaten atau kota harus di pilih"
+            },
+            dst_name:{
+                required: "Kecamatan harus di pilih"
+            },
+            usr_address:{
+                required: "Alamat harus di isi"
+            },
+            usr_rt:{
+                required: "RT harus di isi"
+            },
+            usr_rw:{
+                required: "RW harus di isi"
+            },
+            usr_rural_name:{
+                required: "Desa harus di isi"
+            },
+            usr_postal_code:{
+                required: "Kode pos harus di isi"
+            },
+            "contact[email]": {
+            required: "Alamat email harus di isi",
+            email: "Email tidak valid"
+            },
+            "personal[living_together]":{
+                required: "Tinggal bersama harus di pilih"
+            },
+            "personal[status_of_residence]":{
+                required: "Status tinggal harus di pilih"
+            },
+            "father_data[name]":{
+                required: "Nama ayah harus di isi"
+            },
+            "father_data[phone_number]":{
+                required: "Nomor telepon ayah harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "father_data[nik]":{
+                required: "NIK ayah harus di isi",
+                 minlength: "Minimal 10 digit"
+            },
+            "father_data[year_of_birth]":{
+                required: "tahun lahir harus di isi"
+            },
+            "father_data[education]":{
+                required: "Pendidikan terakhir harus di pilih"
+            },
+            "father_data[profession]":{
+                required: "pekerjaan harus di pilih"
+            },
+            "mother_data[name]":{
+                required: "Nama ibu harus di isi"
+            },
+            "mother_data[phone_number]":{
+                required: "Nomor telepon ibu harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "mother_data[nik]":{
+                required: "NIK ibu harus di isi",
+                 minlength: "Minimal 10 digit"
+            },
+            "mother_data[year_of_birth]":{
+                required: "tahun lahir harus di isi"
+            },
+            "mother_data[education]":{
+                required: "Pendidikan terakhir harus di pilih"
+            },
+            "mother_data[profession]":{
+                required: "pekerjaan harus di pilih"
+            },
+            "other[certificate_of_graduation]":{
+                required: "Surat tanda kelulusan smp harus di upload"
+            },
+            "other[junior_high_school_diploma]":{
+                required: "Ijazah SMP harus di upload",
+            },
+            "other[elementary_school_diploma]":{
+                required: "Ijazah SD harus di upload"
+            },
+            "other[birth_certificate]":{
+                required: "Akte kelahiran harus di upload"
+            },
+            "other[family_card]":{
+                required: "Kartu keluarga harus di upload"
+            },
+            "other[id_card_father]":{
+                required: "KTP ayah harus di upload"
+            },
+            "other[id_card_mother]":{
+                required: "KTP ibu harus di upload"
+            },
+            usr_profile_picture:{
+                required: "Foto calon siswa tidak boleh kosong"
+            },
+            terms_and_conditions:{
+                required: "&nbsp S&K harus di centang"
             }
         }
-        $("#preview_gambar").change(function() {
-            bacaGambar(this);
-        });
-    </script>
+    });
+});
+</script>
 
-    <script>
-        $(document).ready(function() {
-            $("#submitForm").submit(function(e) {
-                $(this).find("button[type='submit']").prop('disabled', true);
-                $("#btnSubmit").attr("disabled", true);
-                return true;
+<script>
+    function bacaGambar(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#tampil_picture').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#preview_gambar").change(function() {
+        bacaGambar(this);
+    });
+</script>
+
+<!--Bootstrap Datepicker Js-->
+<script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script>
+    $('#autoclose-datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "yyyy-mm-dd",
+        // endDate: '-14y',
+        // startDate: '-21y',
+    });
+
+    $('.year_picker').datepicker({
+        autoclose: true,
+        minViewMode: 2,
+        format: 'yyyy'
+    });
+</script>
+
+<script>
+    $('#provinces').on('change', function (e) {
+        console.log(e);
+        var prov_id = e.target.value;
+        $.get('{{URL::to('api/json-cities')}}/'+ prov_id  , function (variable) {
+            console.log('variable');
+            $('#cities').empty();
+            $('#cities').append('<option value="">Pilih Kabupaten/Kota</option>');
+
+            $.each(variable.cities, function (val, citiesObj) {
+                $('#cities').append('<option value="'+citiesObj.cit_id+'">'+citiesObj.cit_name+'</option>');
             });
+
         });
-    </script>
+    });
 
-    <!--Bootstrap Datepicker Js-->
-    <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script>
-        $('#default-datepicker').datepicker({
-            todayHighlight: true
+    $('#cities').on('change', function (e) {
+        console.log(e);
+        var cit_id = e.target.value;
+        $.get('{{URL::to('api/json-districts')}}/'+ cit_id  , function (variable) {
+            console.log('variable');
+            $('#districts').empty();
+            $('#districts').append('<option value="">Pilih Kecamatan</option>');
+
+            $.each(variable.districts, function (val, districtsObj) {
+                $('#districts').append('<option value="'+districtsObj.dst_id+'">'+districtsObj.dst_name+'</option>');
+            });
+
         });
-        $('#autoclose-datepicker').datepicker({
-            autoclose: true,
-            todayHighlight: true,
-            format: "yyyy-mm-dd"
-        });
-
-        $('#inline-datepicker').datepicker({
-            todayHighlight: true
-        });
-
-        $('#dateragne-picker .input-daterange').datepicker({});
-    </script>
-
-    <script>
-        $('#provinces').on('change', function(e) {
-            console.log(e);
-            var prov_id = e.target.value;
-            $.get('{{URL::to('
-                api / json - cities ')}}/' + prov_id,
-                function(variable) {
-                    console.log('variable');
-                    $('#cities').empty();
-                    $('#cities').append('<option value="">Pilih Kabupaten/Kota</option>');
-
-                    $.each(variable.cities, function(val, citiesObj) {
-                        $('#cities').append('<option value="' + citiesObj.cit_id + '">' + citiesObj.cit_name + '</option>');
-                    });
-
-                });
-        });
-
-        $('#cities').on('change', function(e) {
-            console.log(e);
-            var cit_id = e.target.value;
-            $.get('{{URL::to('
-                api / json - districts ')}}/' + cit_id,
-                function(variable) {
-                    console.log('variable');
-                    $('#districts').empty();
-                    $('#districts').append('<option value="">Pilih Kecamatan</option>');
-
-                    $.each(variable.districts, function(val, districtsObj) {
-                        $('#districts').append('<option value="' + districtsObj.dst_id + '">' + districtsObj.dst_name + '</option>');
-                    });
-
-                });
-        });
-    </script>
-
-
-</body>
-
-</html>
+    });
+</script>
+@endpush
+@endsection
