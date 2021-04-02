@@ -57,7 +57,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+         //dd($request);
         $requests = $request->input();
         $messages = [
             'required'  => 'Kolom wajib diisi',
@@ -102,6 +102,20 @@ class StudentController extends Controller
             'usr_rural_name'                => 'required',
             'usr_postal_code'               => 'required',
             'contact.email'                 => 'required',
+
+            'other.certificate_of_graduation'   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.junior_high_school_diploma'  => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.elementary_school_diploma'   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.birth_certificate'           => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.family_card'                 => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.domicile_statement'          => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.id_card_father'              => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.id_card_mother'              => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
+            'other.health_certificate'          => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.eye_health_letter'           => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.card'                        => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.certificate'                 => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+
 
         ], $messages);
 
@@ -175,6 +189,27 @@ class StudentController extends Controller
             } else {
                 dd('gagal student ');
             }
+            $images = $request->file('other');
+            // dd($image);
+            if ($images) {
+                foreach ($images as $key => $image) {
+                    // dd($images, $key, $image);
+                    if ($image) {
+                        $path = public_path('images/student_files');
+                        $files_name = 'images' .'/'. 'student_files' .'/'. date('Ymd') . '_' . $image->getClientOriginalName();
+                        // dd($images);
+                        $image->move($path, $files_name);
+                        $studentDetail = new StudentDetails;
+                        $studentDetail->std_student_id = $student->stu_id;
+                        $studentDetail->std_type       = 'other';
+                        $studentDetail->std_key        = $key;
+                        $studentDetail->std_value      = $files_name;
+                        $studentDetail->std_created_by = $user->usr_id;
+                        $studentDetail->save();
+                    }
+                }
+            }
+        
         } else {
             dd('gagal user');
         }

@@ -872,6 +872,138 @@
             @enderror
         </div>
     </div>
+
+    <h4 class="form-header text-uppercase">
+        <i class=""></i>
+        Dokumen <small>(Maksimal File Ukuran 2 MB)</small>
+
+    </h4>
+   <div class="row">
+                <div class="col-sm-4">
+                    <label> Upload Surat Tanda Kelulusan SMP dilegalisir <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[certificate_of_graduation]">
+                    @error('other.certificate_of_graduation')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Ijazah SMP/MTs dilegalisir <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[junior_high_school_diploma]">
+                    @error('other.junior_high_school_diploma')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Ijazah SD/Mi dilegalisir <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[elementary_school_diploma]">
+                    @error('other.elementary_school_diploma')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+            </div>
+            
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-sm-4">
+                    <label> Upload Akte Kelahiran <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[birth_certificate]">
+                    @error('other.birth_certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Kartu Keluarga <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[family_card]">
+                    @error('other.family_card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Keterangan Domisili</label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[domicile_statement]">
+                    @error('other.domicile_statement')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Apabila tempat tinggal tidak sesuai dengan kartu keluarga)</p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-sm-4">
+                    <label> Upload KTP Ayah <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[id_card_father]">
+                    @error('other.id_card_father')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload KTP Ibu <span style="color:red"> *</span></label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[id_card_mother]">
+                    @error('other.id_card_mother')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Surat Kesehatan Badan </label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[health_certificate]">
+                    @error('other.health_certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-4">
+                    <label> Upload Surat Kesehatan Mata </label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[eye_health_letter]">
+                    @error('other.eye_health_letter')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Keterangan disesuaikan keadaan yang sebenar-benarnya)</p>
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Kartu PIP/KIP/Keterangan Kematian </label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[card]">
+                    @error('other.card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Apabila ada)</p>
+                </div>
+                <div class="col-sm-4">
+                    <label> Upload Sertifikat/Piagam Penghargaan </label>
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," type="file" name="other[certificate]">
+                    @error('other.certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    <p style="font-size: 12px;">(Apabila ada)</p>
+                </div>
+            </div>
+
     <div class="form-footer">
         <a href="{{url('students')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
         <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
@@ -1189,7 +1321,31 @@
             str_school_year_id:{
                 required: "Tahun ajaran harus di pilih"
             }
-        }
+            "other[certificate_of_graduation]":{
+                required: "Surat tanda kelulusan smp harus di upload"
+            },
+            "other[junior_high_school_diploma]":{
+                required: "Ijazah SMP harus di upload"
+            },
+            "other[elementary_school_diploma]":{
+                required: "Ijazah SD harus di upload"
+            },
+            "other[birth_certificate]":{
+                required: "Akte kelahiran harus di upload"
+            },
+            "other[family_card]":{
+                required: "Kartu keluarga harus di upload"
+            },
+            "other[id_card_father]":{
+                required: "KTP ayah harus di upload"
+            },
+            "other[id_card_mother]":{
+                required: "KTP ibu harus di upload"
+            },
+            usr_profile_picture:{
+                required: "Foto calon siswa tidak boleh kosong"
+            }
+        
     });
 });
 </script>
