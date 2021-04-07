@@ -41,7 +41,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form id="submitForm" autocomplete="off" method="POST" action="{{ url('student/edit/'.$student_edit->stu_id) }}" novalidate="novalidate" enctype="multipart/form-data">
+                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('student/edit/'.$student_edit->stu_id) }}" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -52,15 +52,11 @@
 
                         <div class="col-sm-4">
                             <label>Nama<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="usr_name" placeholder="Masukan Nama" value="{{$student_edit->usr_name}}">
+                            <input type="text" class="form-control form-control-rounded" name="usr_name" placeholder="Masukan Nama" value="{{$student_edit->usr_name}}">
                         </div>
                         <div class="col-sm-4">
                             <label>Email<span style="color:red"> *</span></label>
-                            <input type="email" readonly="" class="form-control form-control-rounded" id="input-10" name="usr_email" placeholder="Masukan Email" value="{{$student_edit->usr_email}}">                        
-                        </div>
-                        <div class="col-sm-4">
-                            <label>Nomor Telepon<span style="color:red"> *</span></label>
-                            <input type="text" class="form-control form-control-rounded" id="input-10" name="usr_phone" placeholder="Masukan Nomor Telepon" value="{{$student_edit->usr_phone_number}}">
+                            <input type="email" readonly="" class="form-control form-control-rounded" name="usr_email" placeholder="Masukan Email" value="{{$student_edit->usr_email}}">                        
                         </div>
                     </div>
 
@@ -81,7 +77,7 @@
                         <div class="col-sm-4">
                             <label> Jenis Kelamin <span style="color:red"> *</span></label>
 
-                            <select name="usr_gender" class="form-control form-control-rounded" id="basic-select">
+                            <select name="usr_gender" class="form-control form-control-rounded">
                                 <option value="{{$student_edit->usr_gender}}" selected=""> {{$student_edit->usr_gender}} </option>
                                 <option value="Laki-laki"> Laki Laki </option>
                                 <option value="Perempuan"> Perempuan </option>
@@ -119,7 +115,7 @@
 
                     <div class="col-sm-4">
                         <label> Tanggal Lahir <span style="color:red"> *</span></label>
-                        <input id="autoclose-datepicker" type="text" value="{{$student_edit->usr_date_of_birth}}" name="usr_date_of_birth" class="form-control form-control-rounded" id="input-11">
+                        <input id="autoclose-datepicker" type="text" placeholder="Masukan Tanggal Lahir" value="{{$student_edit->usr_date_of_birth}}" name="usr_date_of_birth" class="form-control form-control-rounded" id="input-11">
                     </div>
 
                     <div class="col-sm-4">
@@ -131,8 +127,12 @@
                     
                     <div class="col-sm-4">
                         <label> Tinggal Bersama <span style="color:red"> *</span></label>
-                        <select class="form-control form-control-rounded" name="personal[living_together]" id="basic-select" value="">                            
-                            <option value="@if(isset($student_edit->personal['living_together'])){{$student_edit->personal['living_together']}} @endif" disabled="" selected="">@if(isset($student_edit->personal['living_together'])){{$student_edit->personal['living_together']}}@endif</option>
+                        <select class="form-control form-control-rounded" name="personal[living_together]" value="">          
+                            @if(isset($student_edit->personal['living_together']))                  
+                            <option value="{{$student_edit->personal['living_together']}}" selected="">{{$student_edit->personal['living_together']}}</option>
+                            @else
+                            <option value="" disabled="" selected=""> Pilih </option>
+                            @endif
                             <option value="Orang Tua"> Orang Tua </option>
                             <option value="Wali"> Wali </option>
                             <option value="Kos"> Kos </option>
@@ -142,20 +142,19 @@
                         </select>
                     </div>
 
-                </div>
+                </div>  
 
 
                 <div class="form-group row">
                     <div class="col-sm-4">
                         <label> Asal Sekolah <span style="color:red"> *</span></label>
-                        <input type="text" name="stu_school_origin" class="form-control form-control-rounded" id="basic-select" placeholder="Masukan Asal Sekolah" value="{{$student_edit->stu_school_origin}}">
+                        <input type="text" name="stu_school_origin" class="form-control form-control-rounded" placeholder="Masukan Asal Sekolah" value="{{$student_edit->stu_school_origin}}">
 
                     </div>
 
                     <div class="col-sm-4">
                         <label> Jurusan yang diminati <span style="color:red"> *</span></label>
-                        <select class="form-control form-control-rounded" name="stu_major_id" id="basic-select" value="">
-
+                        <select class="form-control form-control-rounded" name="stu_major_id">
                             @foreach($majors as $major)
                             <option {{ $major->mjr_id == $student_edit->stu_major_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
                             @endforeach
@@ -165,12 +164,12 @@
 
                     <div class="col-sm-2">
                         <label> Anak Ke</label>                        
-                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="@if(isset($student_edit->personal['child'])){{$student_edit->personal['child']}}@endif">
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Masukan Anak Ke" value="@if(isset($student_edit->personal['child'])){{$student_edit->personal['child']}}@endif">
                     </div>
 
                     <div class="col-sm-2">
                         <label> Agama <span style="color:red"> *</span></label>
-                        <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion" id="basic-select">
+                        <select class="form-control form-control-rounded @error('usr_religion') is-invalid @enderror" name="usr_religion">
                             <option value="{{$student_edit->usr_religion}}" selected=""> {{$student_edit->usr_religion}} </option>
                             <option value="Islam"> Islam </option>
                             <option value="Protestan"> Protestan </option>
@@ -190,7 +189,7 @@
                         @else
                         <img src="{{ asset('images/default_profile_picture_20210228.png') }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
                         @endif
-                        <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+                        <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
                     </div>
                 </div>
 
@@ -204,7 +203,7 @@
 
                     <div class="col-sm-4">
                         <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
-                        <input type="text" name="father_data[name]" class="form-control form-control-rounded form-control-rounded" placeholder="Masukan Nama Lengkap" value="@if(isset($student_edit->father_data['name'])){{$student_edit->father_data['name']}}@endif">
+                        <input type="text" name="father_data[name]" class="form-control form-control-rounded form-control-rounded" placeholder="Masukan Nama Ayah Kandung" value="@if(isset($student_edit->father_data['name'])){{$student_edit->father_data['name']}}@endif">
 
                     </div>
 
@@ -215,7 +214,7 @@
 
                     <div class="col-sm-4">
                         <label> Tahun Lahir <span style="color:red"> *</span></label>                        
-                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded form-control-rounded year_picker" name="father_data[year_of_birth]" id="basic-select" placeholder="Masukan Tahun Lahir" value="@if(isset($student_edit->father_data['year_of_birth'])){{$student_edit->father_data['year_of_birth']}}@endif">
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded form-control-rounded year_picker" name="father_data[year_of_birth]" placeholder="Masukan Tahun Lahir" value="@if(isset($student_edit->father_data['year_of_birth'])){{$student_edit->father_data['year_of_birth']}}@endif">
                     </div>
                 </div>
 
@@ -223,7 +222,11 @@
                     <div class="col-sm-4">
                         <label>Pendidikan Terakhir<span style="color:red"> *</span></label>                        
                         <select name="father_data[education]" class="form-control form-control-rounded form-control-rounded" id="basic-select" value="">                            
-                            <option disabled="" selected="" value="@if(isset($student_edit->father_data['education'])){{$student_edit->father_data['education']}}@endif"> @if(isset($student_edit->father_data['education'])) {{$student_edit->father_data['education']}} @else pilih @endif </option>
+                            @if(isset($student_edit->father_data['education']))
+                            <option selected="" value="{{$student_edit->father_data['education']}}"> {{$student_edit->father_data['education']}}</option>
+                            @else
+                            <option disabled="" selected="" value=""> Pilih </option>
+                            @endif
                             <option value="SD - Sederajat"> SD - Sederajat </option>
                             <option value="SMP - Sederajat"> SMP - Sederajat </option>
                             <option value="SMA - Sederajat"> SMA - Sederajat </option>
@@ -234,8 +237,12 @@
 
                     <div class="col-sm-4">
                         <label>Pekerjaan<span style="color:red"> *</span></label>
-                        <select name="father_data[profession]" class="form-control form-control-rounded form-control-rounded" id="basic-select" value="">                            
-                            <option disabled="" selected="" value="@if(isset($student_edit->father_data['profession'])){{$student_edit->father_data['profession']}} @endif">@if(isset($student_edit->father_data['profession'])) {{$student_edit->father_data['profession']}} @else Pilih @endif</option>
+                        <select name="father_data[profession]" class="form-control form-control-rounded form-control-rounded" value="">            
+                            @if(isset($student_edit->father_data['profession']))                
+                            <option selected="" value="{{$student_edit->father_data['profession']}}">{{$student_edit->father_data['profession']}}</option>
+                            @else
+                            <option disabled="" selected="" value=""> Pilih </option>
+                            @endif
                             <option value="Buruh"> Buruh </option>
                             <option value="Wirausaha"> Wirausaha </option>
                             <option value="Wiraswasta"> Wiraswasta </option>
@@ -245,8 +252,12 @@
 
                     <div class="col-sm-4">
                         <label>Pendapatan Perbulan</label>
-                        <select name="father_data[monthly_income]" class="form-control form-control-rounded form-control-rounded" id="basic-select" value="">                            
-                            <option value="@if(isset($student_edit->father_data['monthly_income'])) {{$student_edit->father_data['monthly_income']}} @endif" selected="">@if(isset($student_edit->father_data['monthly_income'])) {{$student_edit->father_data['monthly_income']}} @else Pilih @endif</option>
+                        <select name="father_data[monthly_income]" class="form-control form-control-rounded form-control-rounded" value="">                            
+                            @if(isset($student_edit->father_data['monthly_income'])) 
+                            <option value="{{$student_edit->father_data['monthly_income']}}" selected="">{{$student_edit->father_data['monthly_income']}}</option>
+                            @else
+                            <option disabled="" value="" selected=""> Pilih </option>
+                            @endif
                             <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                             <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                             <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -292,7 +303,7 @@
 
                     <div class="col-sm-4">
                         <label> Nama Ibu Kandung <span style="color:red"> *</span></label>
-                        <input type="text" name="mother_data[name]" class="form-control form-control-rounded" placeholder="Masukan Nama Lengkap" value="{{$student_edit->mother_data['name']}}">
+                        <input type="text" name="mother_data[name]" class="form-control form-control-rounded" placeholder="Masukan Nama Ibu Kandung" value="{{$student_edit->mother_data['name']}}">
                     </div>
 
                     <div class="col-sm-4">
@@ -311,8 +322,12 @@
 
                     <div class="col-sm-4">
                         <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
-                        <select name="mother_data[education]" class="form-control form-control-rounded" id="basic-select" value="">                            
-                            <option disabled="" selected="" value="@if(isset($student_edit->mother_data['education'])) {{$student_edit->mother_data['education']}} @endif"> @if(isset($student_edit->mother_data['education'])) {{$student_edit->mother_data['education']}} @else Pilih @endif</option>
+                        <select name="mother_data[education]" class="form-control form-control-rounded" id="basic-select" value="">                    
+                            @if(isset($student_edit->mother_data['education']))        
+                            <option selected="" value="{{$student_edit->mother_data['education']}}"> {{$student_edit->mother_data['education']}}</option>
+                            @else
+                            <option disabled="" selected="" value=""> Pilih </option>
+                            @endif
                             <option value="SD - Sederajat"> SD - Sederajat </option>
                             <option value="SMP - Sederajat"> SMP - Sederajat </option>
                             <option value="SMA - Sederajat"> SMA - Sederajat </option>
@@ -322,8 +337,12 @@
                     <div class="col-sm-4">
                         <label> Pekerjaan <span style="color:red"> *</span></label>
 
-                        <select name="mother_data[profession]" class="form-control form-control-rounded" id="basic-select" value="">                            
-                            <option disabled="" selected="" value="@if(isset($student_edit->mother_data['profession'])) {{$student_edit->mother_data['profession']}} @endif"> @if(isset($student_edit->mother_data['profession'])) {{$student_edit->mother_data['profession']}} @else Pilih @endif</option>
+                        <select name="mother_data[profession]" class="form-control form-control-rounded" id="basic-select" value="">                    
+                            @if(isset($student_edit->mother_data['profession']))         
+                            <option selected="" value="{{$student_edit->mother_data['profession']}}"> {{$student_edit->mother_data['profession']}}</option>
+                            @else
+                            <option disabled="" selected="" value=""> Pilih </option>
+                            @endif
                             <option value="Buruh"> Buruh </option>
                             <option value="Wirausaha"> Wirausaha </option>
                             <option value="Wiraswasta"> Wiraswasta </option>
@@ -334,7 +353,11 @@
                     <div class="col-sm-4">
                         <label>Pendapatan Perbulan</label>
                         <select name="mother_data[monthly_income]" class="form-control form-control-rounded" id="basic-select" value="">                            
-                            <option value="@if(isset($student_edit->mother_data['monthly_income'])) {{$student_edit->mother_data['monthly_income']}} @endif" selected=""> @if(isset($student_edit->mother_data['monthly_income'])) {{$student_edit->mother_data['monthly_income']}} @else Pilih @endif</option>
+                            @if(isset($student_edit->mother_data['monthly_income'])) 
+                            <option value="{{$student_edit->mother_data['monthly_income']}}" selected="">{{$student_edit->mother_data['monthly_income']}}</option>
+                            @else
+                            <option disabled="" value="" selected=""> Pilih </option>
+                            @endif
                             <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                             <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                             <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -382,12 +405,12 @@
 
                     <div class="col-sm-4">
                         <label>Nama Wali Murid</label>                        
-                        <input type="text" name="guardian_data[name]" class="form-control form-control-rounded" id="input-10" name="firstname" placeholder="Masukan Nama Lengkap" value="@if(isset($student_edit->guardian_data['name'])) {{$student_edit->guardian_data['name']}} @endif">
+                        <input type="text" name="guardian_data[name]" class="form-control form-control-rounded" placeholder="Masukan Nama Wali Murid" value="@if(isset($student_edit->guardian_data['name'])) {{$student_edit->guardian_data['name']}} @endif">
                     </div>
 
                     <div class="col-sm-4">
                         <label>Nomor Identitas Kependudukan (NIK)</label>                        
-                        <input type="text" name="guardian_data[nik]" class="form-control form-control-rounded" id="input-10" name="firstname" placeholder="Masukan Nomor NIK" value="@if(isset($student_edit->guardian_data['nik'])) {{$student_edit->guardian_data['nik']}} @endif">
+                        <input type="text" name="guardian_data[nik]" class="form-control form-control-rounded" placeholder="Masukan Nomor NIK" value="@if(isset($student_edit->guardian_data['nik'])) {{$student_edit->guardian_data['nik']}} @endif">
                     </div>
 
                     <div class="col-sm-4">
@@ -400,7 +423,11 @@
                     <div class="col-sm-4">
                         <label>Pendidikan Terakhir</label>
                         <select name="guardian_data[education]" class="form-control form-control-rounded" id="basic-select">                            
-                            <option selected="" value="@if(isset($student_edit->guardian_data['education'])) {{$student_edit->guardian_data['education']}} @endif"> @if(isset($student_edit->guardian_data['education'])) {{$student_edit->guardian_data['education']}} @else Pilih @endif</option>
+                            @if(isset($student_edit->guardian_data['education'])) 
+                            <option selected="" value="{{$student_edit->guardian_data['education']}}">{{$student_edit->guardian_data['education']}}</option>
+                            @else
+                            <option disabled="" selected="" value=""> Pilih </option>
+                            @endif
                             <option value="SD - Sederajat">SD - Sederajat</option>
                             <option value="SMP - Sederajat">SMP - Sederajat</option>
                             <option value="SMA - Sederajat">SMA - Sederajat</option>
@@ -412,8 +439,11 @@
                         <label>Pekerjaan</label>
 
                         <select name="guardian_data[profession]" class="form-control form-control-rounded" id="basic-select">
-                         
-                         <option selected="" value="@if(isset($student_edit->guardian_data['profession'])) {{$student_edit->guardian_data['profession']}} @endif"> @if(isset($student_edit->guardian_data['profession'])) {{$student_edit->guardian_data['profession']}} @else Pilih @endif</option>
+                         @if(isset($student_edit->guardian_data['profession']))
+                         <option selected="" value="{{$student_edit->guardian_data['profession']}}">{{$student_edit->guardian_data['profession']}}</option>
+                         @else
+                         <option disabled="" selected="" value=""> Pilih </option>
+                         @endif
                          <option value="Buruh">Buruh</option>
                          <option value="Wirausaha">Wirausaha</option>
                      </select>
@@ -421,8 +451,12 @@
                  </div>
                  <div class="col-sm-4">
                     <label>Pendapatan Perbulan</label>
-                    <select name="guardian_data[monthly_income]" class="form-control form-control-rounded" id="basic-select">                     
-                     <option selected="" value="@if(isset($student_edit->guardian_data['monthly_teleincome'])) {{$student_edit->guardian_data['monthly_income']}} @endif"> @if(isset($student_edit->guardian_data['monthly_teleincome'])) {{$student_edit->guardian_data['monthly_income']}} @else Pilih @endif</option>
+                    <select name="guardian_data[monthly_income]" class="form-control form-control-rounded" id="basic-select">              
+                     @if(isset($student_edit->guardian_data['monthly_income']))       
+                     <option selected="" value="{{$student_edit->guardian_data['monthly_income']}}">{{$student_edit->guardian_data['monthly_income']}}</option>
+                     @else
+                     <option disabled="" selected="" value=""> Pilih </option>
+                     @endif
                      <option value="kurang dari Rp. 500.000"> kurang dari Rp. 500.000 </option>
                      <option value="Rp. 500.000 - Rp.1.000.000"> Rp. 500.000 - Rp.1.000.000 </option> 
                      <option value="Rp. 1.000.000 - Rp. 2.000.000"> Rp. 1.000.000 - Rp. 2.000.000 </option>
@@ -434,7 +468,7 @@
          </div>
          <div class="form-group row">
             <div class="col-sm-4">
-                <label> Nomor Telepon <span style="color:red"> *</span></label>                
+                <label> Nomor Telepon </label>                
                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="guardian_data[phone_number]" class="form-control form-control-rounded @error('guardian_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="@if(isset($student_edit->guardian_data['phone_number'])) {{$student_edit->guardian_data['phone_number']}} @endif">
                 @error('guardian_data.phone_number')
                 <span class="invalid-feedback" role="alert">
@@ -512,22 +546,22 @@
 
             <div class="col-sm-4">
                 <label>Alamat<span style="color:red"> *</span></label>
-                <input type="text" name="usr_address" value="{{$student_edit->usr_address}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Alamat">
+                <input type="text" name="usr_address" value="{{$student_edit->usr_address}}" class="form-control form-control-rounded" placeholder="Masukan Alamat">
             </div>
 
             <div class="col-sm-2">
                 <label>RT<span style="color:red"> *</span></label>
-                <input type="text" name="usr_rt" value="{{$student_edit->usr_rt}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor RT">
+                <input type="text" name="usr_rt" value="{{$student_edit->usr_rt}}" class="form-control form-control-rounded" placeholder="Masukan Nomor RT">
             </div>
 
             <div class="col-sm-2">
                 <label>RW<span style="color:red"> *</span></label>
-                <input type="text" name="usr_rw" value="{{$student_edit->usr_rw}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor RW">
+                <input type="text" name="usr_rw" value="{{$student_edit->usr_rw}}" class="form-control form-control-rounded" placeholder="Masukan Nomor RW">
             </div>
 
             <div class="col-sm-4">
                 <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-                <input type="text" name="usr_rural_name" value="{{$student_edit->usr_rural_name}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Desa/Kelurahan">
+                <input type="text" name="usr_rural_name" value="{{$student_edit->usr_rural_name}}" class="form-control form-control-rounded" placeholder="Masukan Desa/Kelurahan">
             </div>
 
         </div>
@@ -535,16 +569,16 @@
         <div class="form-group row">
          <div class="col-sm-4">
             <label>Kode Pos<span style="color:red"> *</span></label>
-            <input type="text" name="usr_postal_code" value="{{$student_edit->usr_postal_code}}" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Kode Pos">
+            <input type="text" name="usr_postal_code" value="{{$student_edit->usr_postal_code}}" class="form-control form-control-rounded" placeholder="Masukan Kode Pos">
         </div>
         <div class="col-sm-4">
             <label>Telepon Rumah</label>            
-            <input type="text" name="contact[landline_number]" value="@if(isset($student_edit->contact['landline_number'])) {{$student_edit->contact['landline_number']}} @endif" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Nomor Telepon Rumah">
+            <input type="text" name="contact[landline_number]" value="@if(isset($student_edit->contact['landline_number'])) {{$student_edit->contact['landline_number']}} @endif" class="form-control form-control-rounded" placeholder="Masukan Nomor Telepon Rumah">
         </div>
 
         <div class="col-sm-4">
             <label>Email Rumah</label>            
-            <input type="text" name="contact[email]" value="@if(isset($student_edit->contact['email'])) {{$student_edit->contact['email']}} @endif" class="form-control form-control-rounded" id="input-10" placeholder="Masukan Alamat Email Rumah">
+            <input type="text" name="contact[email]" value="@if(isset($student_edit->contact['email'])) {{$student_edit->contact['email']}} @endif" class="form-control form-control-rounded" placeholder="Masukan Alamat Email Rumah">
         </div>
 
     </div>
@@ -776,9 +810,306 @@
     });
 
 </script>
-
 <!--Form Validatin Script-->
 <script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+
+<script>
+    $().ready(function() {
+    $("#form-validate").validate({
+        rules: {
+            usr_name:{
+                required: true
+            },
+            usr_email:{
+                required: true
+            },
+            stu_major_id:{
+                required: true
+            },
+            stu_candidate_name:{
+                required: true
+            },
+            usr_place_of_birth:{
+                required: true
+            },
+            usr_date_of_birth:{
+                required: true
+            },
+            "personal[nik]":{
+                required: true,
+                minlength: 10
+            },
+            usr_gender:{
+                required: true
+            },
+            stu_nisn:{
+                required: true,
+                minlength: 10
+            },
+            usr_whatsapp_number:{
+                required: true,
+                minlength: 10
+            },
+            usr_phone_number:{
+                required:true,
+                minlength: 10
+            },
+            usr_religion:{
+                required: true
+            },
+            stu_school_origin:{
+                required: true
+            },
+            "school_origin[npsn]":{
+                required: true
+            },
+            prv_name:{
+                required: true
+            },
+            cit_name:{
+                required: true
+            },
+            dst_name:{
+                required: true
+            },
+            usr_address:{
+                required: true
+            },
+            usr_rt:{
+                required: true
+            },
+            usr_rw:{
+                required: true
+            },
+            usr_rural_name:{
+                required: true
+            },
+            usr_postal_code:{
+                required:true
+            },
+            "contact[email]": {
+            required: true,
+            },
+            "personal[living_together]":{
+                required: true
+            },
+            "personal[status_of_residence]":{
+                required: true
+            },
+            "father_data[name]":{
+                required: true
+            },
+            "father_data[phone_number]":{
+                required: true,
+                minlength: 10
+            },
+            "father_data[nik]":{
+                required: true,
+                minlength: 10
+            },
+            "father_data[year_of_birth]":{
+                required: true
+            },
+            "father_data[education]":{
+                required: true
+            },
+            "father_data[profession]":{
+                required: true
+            },
+            "mother_data[name]":{
+                required: true
+            },
+            "mother_data[phone_number]":{
+                required:true,
+                minlength: 10
+            },
+             "mother_data[nik]":{
+                required:true,
+                minlength: 10
+            },
+            "mother_data[year_of_birth]":{
+                required: true
+            },
+            "mother_data[education]":{
+                required: true
+            },
+            "mother_data[profession]":{
+                required: true
+            },
+            "other[certificate_of_graduation]":{
+                required: true
+            },
+            "other[junior_high_school_diploma]":{
+                required: true
+            },
+            "other[elementary_school_diploma]":{
+                required: true
+            },
+            "other[birth_certificate]":{
+                required: true
+            },
+            "other[family_card]":{
+                required: true
+            },
+            "other[id_card_father]":{
+                required: true
+            },
+            "other[id_card_mother]":{
+                required: true
+            },
+            terms_and_conditions:{
+                required: true
+            },
+        },  
+        messages: {
+            usr_name:{
+                required: "Nama harus di isi"
+            },
+            usr_email:{
+                required: "Email harus di isi"
+            },
+            stu_major_id:{
+                required: "Jurusan harus di pilih"
+            },
+            stu_candidate_name:{
+                required: "Nama lengkap harus di isi"
+            },
+            usr_place_of_birth:{
+                required: "Tempat lahir harus di isi"
+            },
+            usr_date_of_birth:{
+                required: "Tanggal lahir harus di isi"
+            },
+            "personal[nik]":{
+                required: "Nomor NIK harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_gender:{
+                required: "Jenis kelamin harus di pilih"
+            },
+            stu_nisn:{
+                required: "NISN harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_whatsapp_number:{
+                required: "No WhatsApp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_phone_number:{
+                required: "No Telepon harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_religion:{
+                required: "Agama harus di pilih"
+            },
+            stu_school_origin:{
+                required: "asal sekolah harus di isi"
+            },
+            "school_origin[npsn]":{
+                required: "NPSN asal sekolah harus di isi"
+            },
+            prv_name:{
+                required: "Provinsi harus di pilih"
+            },
+            cit_name:{
+                required: "Kabupaten atau kota harus di pilih"
+            },
+            dst_name:{
+                required: "Kecamatan harus di pilih"
+            },
+            usr_address:{
+                required: "Alamat harus di isi"
+            },
+            usr_rt:{
+                required: "RT harus di isi"
+            },
+            usr_rw:{
+                required: "RW harus di isi"
+            },
+            usr_rural_name:{
+                required: "Desa harus di isi"
+            },
+            usr_postal_code:{
+                required: "Kode pos harus di isi"
+            },
+            "contact[email]": {
+            required: "Alamat email harus di isi",
+            email: "Email tidak valid"
+            },
+            "personal[living_together]":{
+                required: "Tinggal bersama harus di pilih"
+            },
+            "personal[status_of_residence]":{
+                required: "Status tinggal harus di pilih"
+            },
+            "father_data[name]":{
+                required: "Nama ayah harus di isi"
+            },
+            "father_data[phone_number]":{
+                required: "Nomor telepon ayah harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "father_data[nik]":{
+                required: "NIK ayah harus di isi",
+                 minlength: "Minimal 10 digit"
+            },
+            "father_data[year_of_birth]":{
+                required: "tahun lahir harus di isi"
+            },
+            "father_data[education]":{
+                required: "Pendidikan terakhir harus di pilih"
+            },
+            "father_data[profession]":{
+                required: "pekerjaan harus di pilih"
+            },
+            "mother_data[name]":{
+                required: "Nama ibu harus di isi"
+            },
+            "mother_data[phone_number]":{
+                required: "Nomor telepon ibu harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "mother_data[nik]":{
+                required: "NIK ibu harus di isi",
+                 minlength: "Minimal 10 digit"
+            },
+            "mother_data[year_of_birth]":{
+                required: "tahun lahir harus di isi"
+            },
+            "mother_data[education]":{
+                required: "Pendidikan terakhir harus di pilih"
+            },
+            "mother_data[profession]":{
+                required: "pekerjaan harus di pilih"
+            },
+            "other[certificate_of_graduation]":{
+                required: "Surat tanda kelulusan smp harus di upload"
+            },
+            "other[junior_high_school_diploma]":{
+                required: "Ijazah SMP harus di upload",
+            },
+            "other[elementary_school_diploma]":{
+                required: "Ijazah SD harus di upload"
+            },
+            "other[birth_certificate]":{
+                required: "Akte kelahiran harus di upload"
+            },
+            "other[family_card]":{
+                required: "Kartu keluarga harus di upload"
+            },
+            "other[id_card_father]":{
+                required: "KTP ayah harus di upload"
+            },
+            "other[id_card_mother]":{
+                required: "KTP ibu harus di upload"
+            },
+            terms_and_conditions:{
+                required: "&nbsp S&K harus di centang"
+            }
+        }
+    });
+});
+</script>
 <script>
     $(document).ready(function() {
         $("#submitForm").submit(function(e) {

@@ -673,7 +673,7 @@
 
             <div class="col-sm-2">
                 <label> RT <span style="color:red"> *</span></label>
-                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" placeholder="Masukan Nomor RT" value="{{ old('usr_rt') }}">
+                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rt" class="form-control form-control-rounded @error('usr_rt') is-invalid @enderror" placeholder="Masukan RT" value="{{ old('usr_rt') }}">
                 @error('usr_rt')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -682,7 +682,7 @@
             </div>
             <div class="col-sm-2">
                 <label> RW <span style="color:red"> *</span></label>
-                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" placeholder="Masukan Nomor RW" value="{{ old('usr_rw') }}">
+                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="usr_rw" class="form-control form-control-rounded @error('usr_rw') is-invalid @enderror" placeholder="Masukan RW" value="{{ old('usr_rw') }}">
                 @error('usr_rw')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -691,7 +691,7 @@
             </div>
             <div class="col-sm-4">
              <label>Desa/Kelurahan<span style="color:red"> *</span></label>
-             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelularah" value="{{ old('usr_rural_name') }}">
+             <input type="text" name="usr_rural_name" class="form-control form-control-rounded @error('usr_rural_name') is-invalid @enderror" placeholder="Masukan Desa/Kelurahan" value="{{ old('usr_rural_name') }}">
              @error('usr_rural_name')
              <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -1054,104 +1054,50 @@
                 required: true
             },
             usr_email:{
-                required: true,
-                email   : true
-            },
-            usr_phone_number:{
-                required: true,
-                minlength: 10
-            },
-            stu_candidate_name:{
-                required: true
-            },
-            usr_gender:{
-                required: true
-            },
-            stu_nisn:{
-                required: true
-            },
-            usr_whatsapp_number:{
-                required: true,
-                minlength: 10
-            },           
-            usr_place_of_birth:{
-                required: true,
-            },
-            usr_date_of_birth:{
-                required: true
-            },
-            "personal[living_together]":{
-                required: true,
-            },
-            stu_school_origin:{
                 required: true
             },
             stu_major_id:{
                 required: true
             },
+            stu_candidate_name:{
+                required: true
+            },
+            usr_place_of_birth:{
+                required: true
+            },
+            usr_date_of_birth:{
+                required: true
+            },
+            "personal[nik]":{
+                required: true,
+                minlength: 10
+            },
+            usr_gender:{
+                required: true
+            },
+            stu_nisn:{
+                required: true,
+                minlength: 10
+            },
+            usr_whatsapp_number:{
+                required: true,
+                minlength: 10
+            },
+            usr_phone_number:{
+                required:true,
+                minlength: 10
+            },
+            usr_profile_picture:{
+                required: true
+            },
             usr_religion:{
                 required: true
             },
-            usr_profile_picture:{
-                required:true
-            },
-
-            "father_data[name]":{
+            stu_school_origin:{
                 required: true
             },
-            "father_data[nik]":{
-                required: true,
-                minlength: 10
-            },
-            "father_data[year_of_birth]":{
-                required: true,
-                maxlength: 4
-            },
-            "father_data[education]":{
+            "school_origin[npsn]":{
                 required: true
-            },
-            "father_data[profession]":{
-                required: true
-            },
-            "father_data[phone_number]":{
-                required: true,
-                minlength: 10
-            },
-            "father_data[disability]":{
-                required: true
-            },
-            "mother_data[name]":{
-                required: true
-            },
-            "mother_data[nik]":{
-                required: true,
-                minlength: 10
-            },
-            "mother_data[year_of_birth]":{
-                required: true,
-                maxlength: 4
-            },
-            "mother_data[education]":{
-                required: true
-            },
-            "mother_data[profession]":{
-                required: true
-            },
-            "mother_data[phone_number]":{
-                required: true,
-                minlength: 10
-            },
-            "mother_data[disability]":{
-                required: true
-            },
-            "guardian_data[year_of_birth]":{
-                maxlength: 4
-            },
-            "guardian_data[nik]":{
-                minlength: 10
-            },
-            "guardian_data[phone_number]":{
-                minlength: 10
             },
             prv_name:{
                 required: true
@@ -1177,41 +1123,98 @@
             usr_postal_code:{
                 required:true
             },
-            "contact[email]":{
+            "contact[email]": {
+            required: true,
+            },
+            "personal[living_together]":{
+                required: true
+            },
+            "personal[status_of_residence]":{
+                required: true
+            },
+            "father_data[name]":{
+                required: true
+            },
+            "father_data[phone_number]":{
                 required: true,
-                email: true
+                minlength: 10
+            },
+            "father_data[nik]":{
+                required: true,
+                minlength: 10
+            },
+            "father_data[year_of_birth]":{
+                required: true
+            },
+            "father_data[education]":{
+                required: true
+            },
+            "father_data[profession]":{
+                required: true
+            },
+            "mother_data[name]":{
+                required: true
+            },
+            "mother_data[phone_number]":{
+                required:true,
+                minlength: 10
+            },
+             "mother_data[nik]":{
+                required:true,
+                minlength: 10
+            },
+            "mother_data[year_of_birth]":{
+                required: true
+            },
+            "mother_data[education]":{
+                required: true
+            },
+            "mother_data[profession]":{
+                required: true
+            },
+            "other[certificate_of_graduation]":{
+                required: true
+            },
+            "other[junior_high_school_diploma]":{
+                required: true
+            },
+            "other[elementary_school_diploma]":{
+                required: true
+            },
+            "other[birth_certificate]":{
+                required: true
+            },
+            "other[family_card]":{
+                required: true
+            },
+            "other[id_card_father]":{
+                required: true
+            },
+            "other[id_card_mother]":{
+                required: true
+            },
+            terms_and_conditions:{
+                required: true
             },
             stu_entry_type_id:{
                 required: true
             },
             str_school_year_id:{
-                required:true
-            }
+                required: true
+            },
         },  
         messages: {
             usr_name:{
-                required: "Nama Akun harus di isi"
+                required: "Nama harus di isi"
             },
             usr_email:{
-                required: "Email harus di isi",
-                email: "Email tidak valid"
+                required: "Email harus di isi"
             },
-            usr_phone_number:{
-                required: "Nomor Telepon harus di isi",
-                minlength: "Minimal 10 digit"
+            stu_major_id:{
+                required: "Jurusan harus di pilih"
             },
             stu_candidate_name:{
-                required: "Nama lengkap siswa harus di isi"
-            },
-            usr_gender:{
-                required: "Jenis kelamin harus di pilih"
-            },
-            stu_nisn:{
-                required: "NISN harus di isi"
-            },
-            usr_whatsapp_number:{
-                required: "No WhatsApp harus di isi",
-                minlength: "Minimal 10 digit"
+                required: "Nama lengkap harus di isi"
             },
             usr_place_of_birth:{
                 required: "Tempat lahir harus di isi"
@@ -1219,74 +1222,37 @@
             usr_date_of_birth:{
                 required: "Tanggal lahir harus di isi"
             },
-            "personal[living_together]":{
-                required: "Tinggal bersama harus di pilih"
+            "personal[nik]":{
+                required: "Nomor NIK harus di isi",
+                minlength: "Minimal 10 digit"
             },
-            stu_school_origin:{
-                required: "Asal sekolah harus di isi"
+            usr_gender:{
+                required: "Jenis kelamin harus di pilih"
             },
-            stu_major_id:{
-                required: "Jurusan diminati harus di pilih"
+            stu_nisn:{
+                required: "NISN harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_whatsapp_number:{
+                required: "No WhatsApp harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_phone_number:{
+                required: "No Telepon harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            usr_profile_picture:{
+                required: "Foto calon siswa harus di isi"
             },
             usr_religion:{
                 required: "Agama harus di pilih"
             },
-            usr_profile_picture:{
-                required: "Foto calon siswa tidak boleh kosong"
+            stu_school_origin:{
+                required: "asal sekolah harus di isi"
             },
-
-            "father_data[name]":{
-                required: "Nama ayah harus di isi"
+            "school_origin[npsn]":{
+                required: "NPSN asal sekolah harus di isi"
             },
-            "father_data[nik]":{
-                required: "NIK ayah harus di isi",
-                minlength: "Minimal 10 digit"
-            },
-            "father_data[year_of_birth]":{
-                required: "Tahun lahir ayah harus di isi",
-                maxlength: "Maksimal 4 digit"
-            },
-            "father_data[education]":{
-                required: "Pendidikan ayah harus di dipilih"
-            },
-            "father_data[profession]":{
-                required: "Pekerjaan ayah harus di pilih"
-            },
-            "father_data[phone_number]":{
-                required: "Telepon ayah harus di isi",
-                minlength: "Minimal 10 digit"
-            },
-            "mother_data[name]":{
-                required: "Nama ibu harus di isi"
-            },
-            "mother_data[nik]":{
-                required: "NIK ibu harus di isi",
-                minlength: "Minimal 10 digit"
-            },
-            "mother_data[year_of_birth]":{
-                required: "Tahun lahir ibu harus di isi",
-                maxlength: "Maksimal 4 digit"
-            },
-            "mother_data[education]":{
-                required: "Pendidikan ibu harus di dipilih"
-            },
-            "mother_data[profession]":{
-                required: "Pekerjaan ibu harus di pilih"
-            },
-            "mother_data[phone_number]":{
-                required: "Telepon ibu harus di isi",
-                minlength: "Minimal 10 digit"
-            },
-            "guardian_data[year_of_birth]":{
-                maxlength: "Maksimal 4 digit"
-            },
-            "guardian_data[nik]":{
-                minlength: "Minimal 10 digit"
-            },
-            "guardian_data[phone_number]":{
-                minlength: "Minimal 10 digit"
-            },
-
             prv_name:{
                 required: "Provinsi harus di pilih"
             },
@@ -1311,21 +1277,61 @@
             usr_postal_code:{
                 required: "Kode pos harus di isi"
             },
-            "contact[email]":{
-                required: "Email harus di isi",
-                email: "Email tidak valid"
+            "contact[email]": {
+            required: "Alamat email harus di isi",
+            email: "Email tidak valid"
             },
-            stu_entry_type_id:{
-                required: "Jalur masuk harus di pilih"
+            "personal[living_together]":{
+                required: "Tinggal bersama harus di pilih"
             },
-            str_school_year_id:{
-                required: "Tahun ajaran harus di pilih"
-            }
+            "personal[status_of_residence]":{
+                required: "Status tinggal harus di pilih"
+            },
+            "father_data[name]":{
+                required: "Nama ayah harus di isi"
+            },
+            "father_data[phone_number]":{
+                required: "Nomor telepon ayah harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "father_data[nik]":{
+                required: "NIK ayah harus di isi",
+                 minlength: "Minimal 10 digit"
+            },
+            "father_data[year_of_birth]":{
+                required: "tahun lahir harus di isi"
+            },
+            "father_data[education]":{
+                required: "Pendidikan terakhir harus di pilih"
+            },
+            "father_data[profession]":{
+                required: "pekerjaan harus di pilih"
+            },
+            "mother_data[name]":{
+                required: "Nama ibu harus di isi"
+            },
+            "mother_data[phone_number]":{
+                required: "Nomor telepon ibu harus di isi",
+                minlength: "Minimal 10 digit"
+            },
+            "mother_data[nik]":{
+                required: "NIK ibu harus di isi",
+                 minlength: "Minimal 10 digit"
+            },
+            "mother_data[year_of_birth]":{
+                required: "tahun lahir harus di isi"
+            },
+            "mother_data[education]":{
+                required: "Pendidikan terakhir harus di pilih"
+            },
+            "mother_data[profession]":{
+                required: "pekerjaan harus di pilih"
+            },
             "other[certificate_of_graduation]":{
                 required: "Surat tanda kelulusan smp harus di upload"
             },
             "other[junior_high_school_diploma]":{
-                required: "Ijazah SMP harus di upload"
+                required: "Ijazah SMP harus di upload",
             },
             "other[elementary_school_diploma]":{
                 required: "Ijazah SD harus di upload"
@@ -1342,10 +1348,16 @@
             "other[id_card_mother]":{
                 required: "KTP ibu harus di upload"
             },
-            usr_profile_picture:{
-                required: "Foto calon siswa tidak boleh kosong"
-            }
-        
+            terms_and_conditions:{
+                required: "&nbsp S&K harus di centang"
+            },
+            stu_entry_type_id:{
+                required: "Jalur harus di pilih"
+            },
+            str_school_year_id:{
+                required: "Tahun ajaran harus di pilih"
+            },
+        }
     });
 });
 </script>

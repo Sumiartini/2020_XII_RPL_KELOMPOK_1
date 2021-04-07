@@ -102,6 +102,8 @@ class StudentController extends Controller
             'usr_rural_name'                => 'required',
             'usr_postal_code'               => 'required',
             'contact.email'                 => 'required',
+            'str_school_year_id'            => 'required',
+            'stu_entry_type_id'             => 'required',
 
             'other.certificate_of_graduation'   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
             'other.junior_high_school_diploma'  => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
@@ -276,9 +278,71 @@ class StudentController extends Controller
     public function update(Request $request, $studentID)
     {
         // dd($request);
-        $requests = $request->input();
-
         $student                        = Students::where('stu_id', $studentID)->first();
+        $user                       = User::where('usr_id', $student->stu_user_id)->first();
+
+        $requests = $request->input();
+        $messages = [
+            'required'  => 'Kolom wajib diisi',
+            'unique'    => 'Kolom yang digunakan telah terdaftar',
+            'mimes'     => 'File tidak support',
+            'size'      => 'Ukuran file Max 2 MB',
+            'uploaded'  => 'Gagal di unggah, ukuran file max 2 MB'
+        ];
+
+        $request->validate([
+            'stu_candidate_name'            => 'required',
+            'usr_gender'                    => 'required',
+            'stu_nisn'                      => 'required | unique:students,stu_nisn,'.$student->stu_id.',stu_id',
+            'usr_phone_number'              => 'required | unique:users,usr_whatsapp_number,'.$user->usr_id.',usr_id',
+            'usr_whatsapp_number'           => 'required | unique:users,usr_whatsapp_number,'.$user->usr_id.',usr_id',
+            'usr_place_of_birth'            => 'required',    
+            'usr_date_of_birth'             => 'required',            
+            'personal.living_together'      => 'required',            
+            // 'school_origin.npsn'            => 'required'
+            'stu_school_origin'             => 'required',
+            'stu_major_id'                  => 'required',
+            'usr_religion'                  => 'required',
+            // 'usr_profile_picture'           => 'required | max:2048',
+            'father_data.name'              => 'required',
+            // 'father_data.father_name'       => 'required',
+            'father_data.nik'               => 'required',
+            'father_data.year_of_birth'     => 'required',
+            'father_data.education'         => 'required',
+            'father_data.profession'        => 'required',
+            'father_data.phone_number'      => 'required',
+            'mother_data.name'              => 'required',
+            'mother_data.nik'               => 'required',
+            'mother_data.year_of_birth'     => 'required',
+            'mother_data.education'         => 'required',
+            'mother_data.profession'        => 'required',
+            'mother_data.phone_number'      => 'required',
+            'prv_name'                      => 'required',
+            'cit_name'                      => 'required',
+            'dst_name'                      => 'required',
+            'usr_address'                   => 'required',
+            'usr_rt'                        => 'required',
+            'usr_rw'                        => 'required',
+            'usr_rural_name'                => 'required',
+            'usr_postal_code'               => 'required',
+            'contact.email'                 => 'required',
+
+            // 'other.certificate_of_graduation'   => 'required | max:2048',
+            // 'other.junior_high_school_diploma'  => 'required | max:2048',
+            // 'other.elementary_school_diploma'   => 'required | max:2048',
+            // 'other.birth_certificate'           => 'required | max:2048',
+            // 'other.family_card'                 => 'required | max:2048',
+            // 'other.domicile_statement'          => 'max:2048',
+            // 'other.id_card_father'              => 'required | max:2048',
+            // 'other.id_card_mother'              => 'required | max:2048',
+            // 'other.health_certificate'          => 'max:2048',
+            // 'other.eye_health_letter'           => 'max:2048',
+            // 'other.card'                        => 'max:2048',
+            // 'other.certificate'                 => 'max:2048',
+
+        ], $messages);
+
+//proses update data student
         $student->stu_candidate_name    = $request->stu_candidate_name;
         $student->stu_nisn              = $request->stu_nisn;
         $student->stu_school_origin     = $request->stu_school_origin;
@@ -287,7 +351,7 @@ class StudentController extends Controller
         $student->stu_entry_type_id     = $request->stu_entry_type_id;
         $student->update();
 
-        $user                       = User::where('usr_id', $student->stu_user_id)->first();
+//proses update data user
         $user->usr_name             = $request->usr_name;
         // $user->usr_phone            = $request->usr_phone; //no.telp saat registrasi
         $user->usr_phone_number     = $request->usr_phone_number;
@@ -374,7 +438,7 @@ class StudentController extends Controller
 
     public function storeFormRegistrasion(Request $request)
     {
-        dd($request);
+         // dd($request);
         $requests = $request->input();
         $messages = [
             'required'  => 'Kolom wajib diisi',
@@ -391,17 +455,15 @@ class StudentController extends Controller
             'usr_phone_number'              => 'required | unique:users,usr_whatsapp_number',
             'usr_whatsapp_number'           => 'required | unique:users,usr_whatsapp_number',
             'usr_place_of_birth'            => 'required',    
-            'usr_date_of_birth'             => 'required',
-            'personal.nik'                  => 'required',
-            'personal.living_together'      => 'required',
-            'personal.status_of_residence'  => 'required',
-            'school_origin.npsn'            => 'required',
+            'usr_date_of_birth'             => 'required',            
+            'personal.living_together'      => 'required',            
+            // 'school_origin.npsn'            => 'required'
             'stu_school_origin'             => 'required',
             'stu_major_id'                  => 'required',
             'usr_religion'                  => 'required',
-            'usr_profile_picture'           => 'required | mimes:jpeg,jpg,png|max:2048',
+            'usr_profile_picture'           => 'required | max:2048',
             'father_data.name'              => 'required',
-            'father_data.father_name'       => 'required',
+            // 'father_data.father_name'       => 'required',
             'father_data.nik'               => 'required',
             'father_data.year_of_birth'     => 'required',
             'father_data.education'         => 'required',
@@ -423,25 +485,25 @@ class StudentController extends Controller
             'usr_postal_code'               => 'required',
             'contact.email'                 => 'required',
 
-            'other.certificate_of_graduation'   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
-            'other.junior_high_school_diploma'  => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
-            'other.elementary_school_diploma'   => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
-            'other.birth_certificate'           => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
-            'other.family_card'                 => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
-            'other.domicile_statement'          => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
-            'other.id_card_father'              => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
-            'other.id_card_mother'              => 'required | mimes:jpeg,png,jpg,pdf,doc,docx | max:2048',
-            'other.health_certificate'          => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
-            'other.eye_health_letter'           => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
-            'other.card'                        => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
-            'other.certificate'                 => 'max:2048 | mimes:jpeg,png,jpg,pdf,doc,docx',
+            'other.certificate_of_graduation'   => 'required | max:2048',
+            'other.junior_high_school_diploma'  => 'required | max:2048',
+            'other.elementary_school_diploma'   => 'required | max:2048',
+            'other.birth_certificate'           => 'required | max:2048',
+            'other.family_card'                 => 'required | max:2048',
+            'other.domicile_statement'          => 'max:2048',
+            'other.id_card_father'              => 'required | max:2048',
+            'other.id_card_mother'              => 'required | max:2048',
+            'other.health_certificate'          => 'max:2048',
+            'other.eye_health_letter'           => 'max:2048',
+            'other.card'                        => 'max:2048',
+            'other.certificate'                 => 'max:2048',
 
         ], $messages);
 
         $student = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
         ->where('students.stu_user_id', Auth::user()->usr_id)->first();
         $user = Auth()->user();
-        // dd($user->usr_gender);
+        // dd($user->usr_name);
         $user->usr_gender           = $request->usr_gender;
         $user->usr_whatsapp_number  = $request->usr_whatsapp_number;
         $user->usr_phone_number  = $request->usr_phone_number;
