@@ -24,7 +24,17 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_gender' => '-',
             'usr_district_id' => 2102,
+            'usr_place_of_birth' => 'Bandung',
+            'usr_date_of_birth' => '2003-02-04',
+            'usr_address'   => 'Sompok',
+            'usr_rt'    => '01',
+            'usr_rw'    => '21',
+            'usr_postal_code'   => '40921',
+            'usr_rural_name'    => 'Sangkanhurip',
+            'usr_religion'      => 'Islam',
+            
         ]);
 
         $admin->assignRole('admin');
@@ -40,7 +50,7 @@ class UserSeeder extends Seeder
             'usr_is_active' => true,
             'usr_is_regist' => true,
             'usr_gender' => 'Laki-laki',
-            'usr_district_id' => '234',
+            'usr_district_id' => 2102,  
             'usr_place_of_birth' => 'Bandung',
             'usr_date_of_birth' => '2003-02-04',
             'usr_address'   => 'Sompok',
@@ -49,7 +59,7 @@ class UserSeeder extends Seeder
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
             'usr_religion'      => 'Islam',
-            'usr_district_id' => 2102,
+            
         ]);
 
         $siswa2 = User::create([
@@ -63,7 +73,7 @@ class UserSeeder extends Seeder
             'usr_is_active' => true,
             'usr_is_regist' => false,
             'usr_gender' => 'Laki-laki',
-            'usr_district_id' => '222',
+            'usr_district_id' => 2102,
             'usr_place_of_birth' => 'Bandung',
             'usr_date_of_birth' => '2003-02-04',
             'usr_address'   => 'Sompok',
@@ -72,7 +82,7 @@ class UserSeeder extends Seeder
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
             'usr_religion'      => 'Protestan',
-            'usr_district_id' => 2102,
+            
         ]);
 
         $siswa3 = User::create([
@@ -86,7 +96,7 @@ class UserSeeder extends Seeder
             'usr_is_active' => true,
             'usr_is_regist' => true,
             'usr_gender' => 'Perempuan',
-            'usr_district_id' => '28',
+            'usr_district_id' => 2102,
             'usr_place_of_birth' => 'Bandung',
             'usr_date_of_birth' => '2003-02-04',
             'usr_address'   => 'Sompok',
@@ -95,7 +105,7 @@ class UserSeeder extends Seeder
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
             'usr_religion'      => 'Islam',
-            'usr_district_id' => 2102,     
+                 
         ]);
 
         $siswa4 = User::create([
@@ -109,7 +119,7 @@ class UserSeeder extends Seeder
             'usr_is_active' => true,
             'usr_is_regist' => true,
             'usr_gender' => 'Perempuan',
-            'usr_district_id' => '14',
+            'usr_district_id' => 2102,
             'usr_place_of_birth' => 'Bandung',
             'usr_date_of_birth' => '2003-02-04',
             'usr_address'   => 'Sompok',
@@ -118,7 +128,7 @@ class UserSeeder extends Seeder
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
             'usr_religion'      => 'Islam',
-            'usr_district_id' => 2102, 
+             
         ]);
 
         $siswa5 = User::create([
@@ -132,7 +142,7 @@ class UserSeeder extends Seeder
             'usr_is_active' => true,
             'usr_is_regist' => true,
             'usr_gender' => 'Perempuan',
-            'usr_district_id' => '22',
+            'usr_district_id' => 2102,
             'usr_place_of_birth' => 'Bandung',
             'usr_date_of_birth' => '2003-02-04',
             'usr_address'   => 'Sompok',
@@ -141,7 +151,7 @@ class UserSeeder extends Seeder
             'usr_postal_code'   => '40921',
             'usr_rural_name'    => 'Sangkanhurip',
             'usr_religion'      => 'Islam',
-            'usr_district_id' => 2102,
+            
         ]);
 
         $siswa1->assignRole('student');
@@ -159,7 +169,16 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_gender' => 'Perempuan',
             'usr_district_id' => 2102,
+            'usr_place_of_birth' => 'Bandung',
+            'usr_date_of_birth' => '2003-02-04',
+            'usr_address'   => 'Sompok',
+            'usr_rt'    => '01',
+            'usr_rw'    => '21',
+            'usr_postal_code'   => '40921',
+            'usr_rural_name'    => 'Sangkanhurip',
+            'usr_religion'      => 'Islam',
         ]);
 
         $guru2 = User::create([
@@ -171,7 +190,16 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => false,
+            'usr_gender' => 'Laki-laki',
             'usr_district_id' => 2102,
+            'usr_place_of_birth' => 'Bandung',
+            'usr_date_of_birth' => '2003-02-04',
+            'usr_address'   => 'Sompok',
+            'usr_rt'    => '01',
+            'usr_rw'    => '21',
+            'usr_postal_code'   => '40921',
+            'usr_rural_name'    => 'Sangkanhurip',
+            'usr_religion'      => 'Islam',
         ]);
 
         $guru3 = User::create([
@@ -183,7 +211,16 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_gender' => 'Perempuan',
             'usr_district_id' => 2102,
+            'usr_place_of_birth' => 'Bandung',
+            'usr_date_of_birth' => '2003-02-04',
+            'usr_address'   => 'Sompok',
+            'usr_rt'    => '01',
+            'usr_rw'    => '21',
+            'usr_postal_code'   => '40921',
+            'usr_rural_name'    => 'Sangkanhurip',
+            'usr_religion'      => 'Islam',
         ]);
 
         $guru1->assignRole('teacher');
@@ -201,7 +238,16 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_gender' => 'Laki-laki',
             'usr_district_id' => 2102,
+            'usr_place_of_birth' => 'Bandung',
+            'usr_date_of_birth' => '2003-02-04',
+            'usr_address'   => 'Sompok',
+            'usr_rt'    => '01',
+            'usr_rw'    => '21',
+            'usr_postal_code'   => '40921',
+            'usr_rural_name'    => 'Sangkanhurip',
+            'usr_religion'      => 'Islam',
         ]);
 
         $staff_TU2 = User::create([
@@ -213,7 +259,16 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => false,
+            'usr_gender' => 'Laki-laki',
             'usr_district_id' => 2102,
+            'usr_place_of_birth' => 'Bandung',
+            'usr_date_of_birth' => '2003-02-04',
+            'usr_address'   => 'Sompok',
+            'usr_rt'    => '01',
+            'usr_rw'    => '21',
+            'usr_postal_code'   => '40921',
+            'usr_rural_name'    => 'Sangkanhurip',
+            'usr_religion'      => 'Islam',
         ]);
 
         $staff_TU3 = User::create([
@@ -225,7 +280,16 @@ class UserSeeder extends Seeder
             'usr_verification_token' => str_replace('/', '', Hash::make(Str::random(12))),
             'usr_is_active' => true,
             'usr_is_regist' => true,
+            'usr_gender' => 'Perempuan',
             'usr_district_id' => 2102,
+            'usr_place_of_birth' => 'Bandung',
+            'usr_date_of_birth' => '2003-02-04',
+            'usr_address'   => 'Sompok',
+            'usr_rt'    => '01',
+            'usr_rw'    => '21',
+            'usr_postal_code'   => '40921',
+            'usr_rural_name'    => 'Sangkanhurip',
+            'usr_religion'      => 'Islam',
         ]);
 
 
