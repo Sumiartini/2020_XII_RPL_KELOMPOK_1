@@ -716,5 +716,22 @@ class StudentController extends Controller
         return redirect('/student/payment/'.$studentID)->with('success', 'Pembayaran berhasil ditolak');
     }
 
-
+    public function updateStatusToReRegistration(Request $request)
+    {
+         if ($request->ajax()) {
+            $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->where('str_status', 1)->get();
+            $check_status_student = StudentRegistration::where('str_status',1)->count();
+            if ($check_status_student == 0) {
+               return response()->json(['code' => 400, 'message' => 'Tidak ada siswa yang harus daftar ulang'], 400);
+            }else{
+                foreach ($students as $student) {
+                    $student_registration = StudentRegistration::where('str_status', $student->str_status)->first();
+                    $student_registration->str_status = 5;
+                    $student_registration->str_updated_by = Auth()->user()->usr_id;
+                    $student_registration->update();
+                }
+             return response()->json(['code' => 200, 'message' => 'Semua status siswa menjadi sedang daftar ulang'], 200);
+           }
+        }
+    }
 }

@@ -43,4 +43,19 @@ class User extends Authenticatable
     protected $casts = [
         'usr_email_verified_at' => 'datetime',
     ];
+
+    public function getRememberToken()
+    {
+        return $this->usr_remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->usr_remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'usr_remember_token';
+    }
 }
