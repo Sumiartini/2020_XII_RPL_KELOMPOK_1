@@ -26,7 +26,7 @@
         <h4 class="page-title">Tambah Berkas Informasi Halaman Arahan</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Berkas Informasi Halaman Arahan</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('master-slides') }}">Kelola Berkas Informasi Halaman Arahan</a></li>
             <li class="breadcrumb-item active" aria-current="page">Tambah Berkas Informasi Halaman Arahan</li>
         </ol>
     </div>
@@ -41,8 +41,8 @@
                 <form method="POST" autocomplete="off" action="{{ url('master-slide/create') }}" id="form-validate" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Nama</label>
-                        <div class="col-sm-9">
+                        <label for="input-2" class="col-sm-3 col-form-label">Nama<span style="color:red"> *</span></label>
+                        <div class="col-sm-8">
                             <input type="text" name="mss_name" class="form-control form-control-rounded @error('mss_name') is-invalid @enderror" value="{{ old('mss_name') }}" placeholder="Masukan Nama Berkas">
                         @error('mss_name')
                             <span class="invalid-feedback" role="alert">
@@ -52,9 +52,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">File</label>
+                        <label for="input-2" class="col-sm-3 col-form-label">File<span style="color:red"> *</span></label>
                     
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>
                             <div></div>
                             <input type="file" name="mss_file" id="preview_gambar" class="@error('mss_file') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('mss_file').value=this.value" /><br>
@@ -70,7 +70,7 @@
                     <div class="form-group row">
                         <label for="input-1" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <a href="{{url('majors')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
+                            <a href="{{url('master-slides')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
                             <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                             <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Simpan</button>
                         </div>
@@ -136,10 +136,10 @@
         },
         messages: {
             mss_name: {
-              required: "Nama foto harus di isi"
+              required: "Kolom Wajib Diisi"
             },
             mss_file: {
-              required: "file harus di isi"
+              required: "Kolom Wajib Diisi"
             },
         }
     });

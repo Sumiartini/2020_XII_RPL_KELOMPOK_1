@@ -195,7 +195,13 @@ class LandingPageController extends Controller
         // $master_configs->msc_master_video_id     = $request->msv_file;
         $master_configs->msc_vision              = $request->msc_vision;
         $master_configs->msc_mision              = $request->msc_mision;
-        $master_configs->msc_logo                = $request->msc_logo;
+        if ($request->hasFile('msc_logo')) {
+            $files = $request->file('msc_logo');
+            $path = public_path('images/school_logo');
+            $files_name = 'images' . '/' . 'school_logo' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $master_configs->msc_logo = $files_name;
+        }
         $master_configs->msc_school_phone_number = $request->msc_school_phone_number;
         $master_configs->save();
 
@@ -222,7 +228,13 @@ class LandingPageController extends Controller
         // $master_configs->msc_master_video_id     = $request->msv_file;
         $master_config->msc_vision              = $request->msc_vision;
         $master_config->msc_mision              = $request->msc_mision;
-        $master_config->msc_logo                = $request->msc_logo;
+        if ($request->hasFile('msc_logo')) {
+            $files = $request->file('msc_logo');
+            $path = public_path('images/school_logo');
+            $files_name = 'images' . '/' . 'school_logo' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $master_configs->msc_logo = $files_name;
+        }
         $master_config->msc_school_phone_number = $request->msc_school_phone_number;
         $master_config->msc_updated_by   = Auth()->user()->usr_id;
         $master_config->update();
