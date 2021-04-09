@@ -35,8 +35,9 @@ class YearController extends Controller
             'required'  => 'Kolom wajib diisi',
         ];
         $request->validate([
-            'scy_first_year'      => 'required',
-            'scy_last_year'      => 'required',
+            'scy_first_year'         => 'required',
+            'scy_last_year'          => 'required',
+            'scy_payment_price'      => 'required',
         ], $messages);
 
 
@@ -52,12 +53,13 @@ class YearController extends Controller
                 return redirect()->back()->with('error', 'Tahun Ajaran dengan Tahun Akhir yang dimasukkan Sudah Tersedia');
             }
         }
-        $year               = new Years;
-        $year->scy_first_year = $request->scy_first_year;
-        $year->scy_last_year = $request->scy_last_year;        
-        $year->scy_name     = $request->scy_first_year.'/'.$request->scy_last_year;
+        $year                       = new Years;
+        $year->scy_first_year       = $request->scy_first_year;
+        $year->scy_last_year        = $request->scy_last_year;        
+        $year->scy_name             = $request->scy_first_year.'/'.$request->scy_last_year;
+        $year->scy_payment_price    = $request->scy_payment_price;
         $year->scy_is_form_registration ='0';
-        $year->scy_created_by = Auth()->user()->usr_id; 
+        $year->scy_created_by   = Auth()->user()->usr_id; 
         $year->save();
 
         return redirect('/school-years')->with('success', 'Tahun Ajaran berhasil ditambahkan');
@@ -103,8 +105,9 @@ class YearController extends Controller
         
         if ($year_check) {
             $year->scy_first_year = $request->scy_first_year;
-            $year->scy_last_year = $request->scy_last_year;        
-            $year->scy_name     = $request->scy_first_year.'/'.$request->scy_last_year;
+            $year->scy_last_year  = $request->scy_last_year;        
+            $year->scy_name       = $request->scy_first_year.'/'.$request->scy_last_year;
+            $year->scy_payment_price = $request->scy_payment_price;
             $year->scy_updated_by = Auth()->user()->usr_id; 
             $year->update();
             return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');  
