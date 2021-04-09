@@ -55,7 +55,7 @@
 
     <li>
       <a href="{{ url('school-years')}}" class="waves-effect active">
-        <i></i> <span>Tahun Ajaran</span>
+        <i></i> <span>Tahun Ajaran Dan Biaya</span>
       </a>
     </li>
 

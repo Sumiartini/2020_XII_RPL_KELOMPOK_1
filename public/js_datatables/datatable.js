@@ -54,8 +54,54 @@ function student() {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
             }
-        }
+        },
     });
+
+    $('body').on('click', '.update_to_re_registration', function() {
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            swal({
+                title: "Siswa",
+                text: 'Apakah yakin ingin mengubah status siswa ke daftar ulang?',
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                closeOnClickOutside: false,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'update/re-registration',
+                        data: {
+                            _token: _token
+                        },
+                        success: function(data) {
+                            if (data.status != false) {
+                                swal(data.message, {
+                                    button: false,
+                                    icon: "success",
+                                    timer: 1000
+                                });
+                            } else {
+                                swal(data.message, {
+                                    button: false,
+                                    icon: "error",
+                                    timer: 1000
+                                });
+                            }
+                            $('#example').DataTable().ajax.reload()
+                        },
+                        error: function(error) {
+                            console.log(error)
+                            swal('Tidak ada siswa yang harus daftar ulang', {
+                                button: false,
+                                icon: "error",
+                                timer: 1000
+                            });
+                        }
+                    });
+                }
+            });
+        });
 }
 
 function studentUsers() {
@@ -898,6 +944,13 @@ function school_year() {
             {
                 data: 'scy_is_form_registration', 
                 name:'scy_is_form_registration', 
+                orderable: false, 
+                searchable: true
+            },
+
+             {
+                data: 'scy_payment_price', 
+                name:'scy_payment_price', 
                 orderable: false, 
                 searchable: true
             },
