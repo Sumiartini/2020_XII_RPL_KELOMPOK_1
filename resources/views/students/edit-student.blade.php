@@ -85,13 +85,24 @@
                         </div>
 
                         <div class="col-sm-4">
-                            <label> NISN <span style="color:red"> *</span></label>
-                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{$student_edit->stu_nisn}}">
+                            <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[nik]" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="@if(isset($student_edit->personal['nik'])){{$student_edit->personal['nik']}}@endif">
+                            @error('personal.nik')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <p style="font-size: 12px;"> Sesuaikan dengan kartu keluarga </p>
                         </div>
 
                     </div>
 
                     <div class="form-group row">
+
+                        <div class="col-sm-4">
+                            <label> NISN <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{$student_edit->stu_nisn}}">
+                        </div>
 
                         <div class="col-sm-4">
                             <label> Nomor Telepon<span style="color:red"> *</span></label>
@@ -102,16 +113,15 @@
                             <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{$student_edit->usr_whatsapp_number}}">
                         </div>
 
-
-                        <div class="col-sm-4">
-                         <label> Tempat Lahir <span style="color:red"> *</span></label>
-                         <input type="text" name="usr_place_of_birth" class="form-control form-control-rounded"  placeholder="Masukan Tempat Lahir" value="{{$student_edit->usr_place_of_birth}}">
-                     </div>
-
                  </div>
 
 
                  <div class="form-group row">
+
+                    <div class="col-sm-4">
+                         <label> Tempat Lahir <span style="color:red"> *</span></label>
+                         <input type="text" name="usr_place_of_birth" class="form-control form-control-rounded"  placeholder="Masukan Tempat Lahir" value="{{$student_edit->usr_place_of_birth}}">
+                    </div>
 
                     <div class="col-sm-4">
                         <label> Tanggal Lahir <span style="color:red"> *</span></label>
@@ -124,7 +134,12 @@
                         <input type="text" class="form-control form-control-rounded" name="personal[birth_certificate_registration_no]" 
                         placeholder="Masukan No Registrasi Akta Lahir" value="@if(isset($student_edit->personal['birth_certificate_registration_no'])){{$student_edit->personal['birth_certificate_registration_no']}}@endif">
                     </div>
-                    
+
+                </div>  
+
+
+                <div class="form-group row">
+
                     <div class="col-sm-4">
                         <label> Tinggal Bersama <span style="color:red"> *</span></label>
                         <select class="form-control form-control-rounded" name="personal[living_together]" value="">          
@@ -142,16 +157,24 @@
                         </select>
                     </div>
 
-                </div>  
-
-
-                <div class="form-group row">
                     <div class="col-sm-4">
                         <label> Asal Sekolah <span style="color:red"> *</span></label>
                         <input type="text" name="stu_school_origin" class="form-control form-control-rounded" placeholder="Masukan Asal Sekolah" value="{{$student_edit->stu_school_origin}}">
 
                     </div>
 
+                    <div class="col-sm-4">
+                        <label> NPSN <span style="color:red"> *</span></label>
+                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="school_origin[npsn]" class="form-control form-control-rounded @error('school_origin.npsn') is-invalid @enderror" placeholder="Masukan NPSN" value="@if(isset($student_edit->school_origin['npsn'])){{$student_edit->school_origin['npsn']}}@endif">
+                        @error('school_origin.npsn')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <div class="col-sm-4">
                         <label> Jurusan yang diminati <span style="color:red"> *</span></label>
                         <select class="form-control form-control-rounded" name="stu_major_id">
@@ -160,7 +183,6 @@
                             @endforeach
                         </select>
                     </div>
-
 
                     <div class="col-sm-2">
                         <label> Anak Ke</label>                        
@@ -204,6 +226,17 @@
                     <div class="col-sm-4">
                         <label> Nama Ayah Kandung <span style="color:red"> *</span></label>
                         <input type="text" name="father_data[name]" class="form-control form-control-rounded form-control-rounded" placeholder="Masukan Nama Ayah Kandung" value="@if(isset($student_edit->father_data['name'])){{$student_edit->father_data['name']}}@endif">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label> Nama Ayah <span style="color:red"> *</span></label>
+                        <input type="text" name="father_data[father_name]" class="form-control form-control-rounded @error('father_data.father_name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="@if(isset($student_edit->father_data['father_name'])){{$student_edit->father_data['father_name']}}@endif">
+                        @error('father_data.father_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                        <p style="font-size: 12px;">Nama ayah di ijazah sd/smp</p>
 
                     </div>
 
@@ -211,14 +244,15 @@
                         <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
                         <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[nik]" class="form-control form-control-rounded form-control-rounded" placeholder="Masukan Nomor NIK" value="@if(isset($student_edit->father_data['nik'])){{$student_edit->father_data['nik']}}@endif">
                     </div>
+                </div>
+
+                <div class="form-group row">
 
                     <div class="col-sm-4">
                         <label> Tahun Lahir <span style="color:red"> *</span></label>                        
                         <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded form-control-rounded year_picker" name="father_data[year_of_birth]" placeholder="Masukan Tahun Lahir" value="@if(isset($student_edit->father_data['year_of_birth'])){{$student_edit->father_data['year_of_birth']}}@endif">
                     </div>
-                </div>
 
-                <div class="form-group row">
                     <div class="col-sm-4">
                         <label>Pendidikan Terakhir<span style="color:red"> *</span></label>                        
                         <select name="father_data[education]" class="form-control form-control-rounded form-control-rounded" id="basic-select" value="">                            
@@ -250,6 +284,10 @@
 
                     </div>
 
+                </div>
+
+                <div class="form-group row">
+
                     <div class="col-sm-4">
                         <label>Pendapatan Perbulan</label>
                         <select name="father_data[monthly_income]" class="form-control form-control-rounded form-control-rounded" value="">                            
@@ -266,10 +304,6 @@
                             <option value="lebih dari Rp. 4.000.000"> lebih dari Rp. 4.000.000 </option>
                         </select>
                     </div>
-
-                </div>
-
-                <div class="form-group row">
 
                     <div class="col-sm-4">
                         <label> Nomor Telepon <span style="color:red"> *</span></label>
@@ -291,7 +325,6 @@
                     </div>
 
                 </div>
-
 
 
                 <h4 class="form-header text-uppercase">
@@ -916,6 +949,9 @@
             "father_data[profession]":{
                 required: true
             },
+            "father_data[father_name]":{
+                required: true
+            },
             "mother_data[name]":{
                 required: true
             },
@@ -1061,6 +1097,9 @@
             },
             "father_data[profession]":{
                 required: "pekerjaan harus di pilih"
+            },
+            "father_data[father_name]":{
+                required: "Nama ayah sesuai ijazah harus di isi"
             },
             "mother_data[name]":{
                 required: "Nama ibu harus di isi"

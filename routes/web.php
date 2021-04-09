@@ -241,6 +241,18 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
     Route::post('/update/re-registration', 'StudentController@updateStatusToReRegistration');
 });
+    //wali kelas
+    Route::get('/homeroom-teachers', function () {
+        return view('homeroom-teachers.list-homeroom-teacher');
+    });
+    Route::get('/homeroom-teacher', 'DatatableController@getHomeroomTeacher');
+
+    Route::get('/homeroom-teacher/create', 'HomeroomTeacherController@create');
+    Route::post('/homeroom-teacher/create', 'HomeroomTeacherController@store');
+    Route::get('/homeroom-teacher/edit/{homeroom-teacherID}', 'HomeroomTeacherController@edit');
+    Route::post('/homeroom-teacher/edit/{homeroom-teacherID}', 'HomeroomTeacherController@update');
+    Route::get('/homeroom-teacher/edit-status/{homeroom-teacherID}', 'HomeroomTeacherController@editStatus');
+
 
     //Landing page
     Route::get('/master-slides', function () {

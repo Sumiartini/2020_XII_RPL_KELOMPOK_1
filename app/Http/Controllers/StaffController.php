@@ -332,7 +332,7 @@ class StaffController extends Controller
             'usr_profile_picture.mimes'     => 'Foto tidak support',
             'mimes'                         => 'file tidak support',
             'size'                          => 'Ukuran file Max 2 MB',
-            'uploaded'  => 'Gagal di unggal, ukuran file max 2 MB'
+            'uploaded'  => 'Gagal di unggah, ukuran file max 2 MB'
         ];
 
         $request->validate([

@@ -14,6 +14,7 @@ use App\majors;
 use App\MasterSlides;
 use App\MasterConfigs;
 use App\Classes;
+use App\HomeroomTeachers;
 use Illuminate\Database\Eloquent\Builder;
 
 class DatatableController extends Controller
@@ -436,6 +437,40 @@ public function getClasses(Request $request)
             }
             return $detail . '&nbsp' . $edit. '&nbsp' . $status ;
         })->rawColumns(['action', 'msc_is_active'])
+        ->make(true);
+    }
+
+    public function getHomeroomTeacher(Request $request)
+    {
+        $homeroom_teacher = HomeroomTeachers::getHomeroomTeacher($request->query());
+        return Datatables::of($homeroom_teacher)
+        ->addColumn('cls_name',function($row){
+            return $row->grl_name . ' ' . $row->mjr_name . ' ' . $row->cls_number;
+        })
+        ->editColumn("hrt_is_active", function ($row) {
+            $hrt_is_active = $row->hrt_is_active;
+            if ($hrt_is_active == "0") {
+                return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
+            } elseif ($hrt_is_active == "1") {
+                return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
+            } else {
+                return "Tidak punya status aktif";
+            }
+        })
+        ->addColumn('action', function ($row) {
+            $edit = '<a href="' . url('homeroom-teacher/edit', $row->hrt_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+            $hrt_is_active = $row->hrt_is_active;
+            if ($hrt_is_active == '0') {
+                $status = '<a href="' . url('homeroom-teacher/edit-status', $row->hrt_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+            }else{
+                $status = '<a href="' . url('homeroom-teacher/edit-status', $row->hrt_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
+            }
+            return $edit . '&nbsp' . $status;
+       })
+        ->filterColumn('search_cls_name', function($query, $keyword) {
+                $query->whereRaw("CONCAT(grade_levels.grl_name,'-',majors.mjr_name,'-', classes.cls_number ) like ?", ["%{$keyword}%"]);
+        })
+        ->rawColumns(['action', 'hrt_is_active'])
         ->make(true);
     }
 }

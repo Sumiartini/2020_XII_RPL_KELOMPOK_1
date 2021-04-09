@@ -109,9 +109,21 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-
                         </div>
 
+                        <div class="col-sm-4">
+                            <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
+                            <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[nik]" class="form-control form-control-rounded @error('personal.nik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('personal.nik') }}">
+                            @error('personal.nik')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <p style="font-size: 12px;"> Sesuaikan dengan kartu keluarga </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-sm-4">
                             <label> NISN <span style="color:red"> *</span></label>
                             <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('stu_nisn') is-invalid @enderror" name="stu_nisn" placeholder="Masukan Nomor NISN" value="{{ old('stu_nisn') }}">
@@ -121,11 +133,6 @@
                             </span>
                             @enderror
                         </div>
-
-                    </div>
-
-                    <div class="form-group row">
-
 
                      <div class="col-sm-4">
                         <label> No. WhatsApp <span style="color:red"> *</span></label>
@@ -148,7 +155,11 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-sm-4">
                        <label> Tanggal Lahir <span style="color:red"> *</span></label>
                        <input type="text" name="usr_date_of_birth" id="autoclose-datepicker" class="form-control form-control-rounded @error('usr_date_of_birth') is-invalid @enderror" placeholder="Tanggal-Bulan-Tahun" value="{{ old('usr_date_of_birth') }}">
                        @error('usr_date_of_birth')
@@ -157,11 +168,6 @@
                     </span>
                     @enderror
                 </div>
-
-            </div>
-
-
-            <div class="form-group row">
 
                 <div class="col-sm-4">
                     <label> No Registrasi Akta Lahir </label>
@@ -190,7 +196,10 @@
                     </span>
                     @enderror
                 </div>
+            </div>
 
+
+            <div class="form-group row">
                 <div class="col-sm-4">
                     <label> Asal Sekolah <span style="color:red"> *</span></label>
                     <input type="text" name="stu_school_origin" class="form-control form-control-rounded @error('stu_school_origin') is-invalid @enderror" placeholder="Masukan Asal Sekolah" value="{{ old('stu_school_origin') }}">
@@ -200,30 +209,35 @@
                     </span>
                     @enderror
                 </div>
-            </div>
 
-
-            <div class="form-group row">
-
+                <div class="col-sm-4">
+                    <label> NPSN <span style="color:red"> *</span></label>
+                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="school_origin[npsn]" class="form-control form-control-rounded @error('school_origin.npsn') is-invalid @enderror" placeholder="Masukan NPSN" value="{{ old('school_origin.npsn') }}">
+                    @error('school_origin.npsn')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
 
                <div class="col-sm-4">
-                <label> Jurusan yang diminati <span style="color:red"> *</span></label>
-                <select class="form-control form-control-rounded @error('stu_major_id') is-invalid @enderror" name="stu_major_id" value="{{ old('stu_major_id') }}">
-
+                    <label> Jurusan yang diminati <span style="color:red"> *</span></label>
+                    <select class="form-control form-control-rounded @error('stu_major_id') is-invalid @enderror" name="stu_major_id" value="{{ old('stu_major_id') }}">
                     <option disabled="" {{ old('stu_major_id') == "" ? 'selected' : '' }} > Pilih </option>
                     @foreach($majors as $major)
                     <option {{ old('stu_major_id') == $major->mjr_id ? 'selected' : '' }} value="{{ $major->mjr_id }}">{{ $major->mjr_name }}</option>
                     @endforeach
 
-                </select>
-                @error('stu_major_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+                    </select>
+                    @error('stu_major_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                </div>
 
-
+            <div class="form-group row">
             <div class="col-sm-4">
                 <label> Anak Ke</label>
                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="personal[child]" class="form-control form-control-rounded @error('personal.child') is-invalid @enderror" placeholder="Anak Ke" value="{{ old('personal.child') }}">
@@ -286,6 +300,18 @@
             </div>
 
             <div class="col-sm-4">
+                <label> Nama Ayah <span style="color:red"> *</span></label>
+                <input type="text" name="father_data[father_name]" class="form-control form-control-rounded @error('father_data.father_name') is-invalid @enderror" placeholder="Masukan Nama Lengkap" value="{{ old('father_data.father_name') }}">
+                @error('father_data.father_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                <p style="font-size: 12px;">Nama ayah di ijazah sd/smp</p>
+
+            </div>
+
+            <div class="col-sm-4">
                 <label> Nomor Identitas Kependudukan (NIK) <span style="color:red"> *</span></label>
                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[nik]" class="form-control form-control-rounded @error('father_data.nik') is-invalid @enderror" placeholder="Masukan Nomor NIK" value="{{ old('father_data.nik') }}">
                 @error('father_data.nik')
@@ -294,20 +320,18 @@
                 </span>
                 @enderror
             </div>
-
-            <div class="col-sm-4">
-                <label> Tahun Lahir <span style="color:red"> *</span></label>
-                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror year_picker" name="father_data[year_of_birth]"  placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
-
-                @error('father_data.year_of_birth')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
         </div>
 
         <div class="form-group row">
+            <div class="col-sm-4">
+                    <label> Tahun Lahir <span style="color:red"> *</span></label>
+                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror year_picker" name="father_data[year_of_birth]"  placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
+                    @error('father_data.year_of_birth')
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+            </div>
             <div class="col-sm-4">
                 <label>Pendidikan Terakhir<span style="color:red"> *</span></label>
                 <select name="father_data[education]" class="form-control form-control-rounded @error('father_data.education') is-invalid @enderror" value="{{ old('father_data.education') }}">
@@ -341,6 +365,10 @@
                 @enderror
 
             </div>
+            
+        </div>
+
+        <div class="form-group row">
             <div class="col-sm-4">
                 <label>Pendapatan Perbulan</label>
                 <select name="father_data[monthly_income]" class="form-control form-control-rounded @error('father_data.monthly_income') is-invalid @enderror" id="basic-select" value="{{ old('father_data.monthly_income') }}">
@@ -354,9 +382,7 @@
                 </select>
 
             </div>
-        </div>
 
-        <div class="form-group row">
             <div class="col-sm-4">
                 <label> Nomor Telepon <span style="color:red"> *</span></label>
                 <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[phone_number]" class="form-control form-control-rounded @error('father_data.phone_number') is-invalid @enderror" placeholder="Masukan Nomor Telepon" value="{{ old('father_data.phone_number') }}">
@@ -366,6 +392,7 @@
                 </span>
                 @enderror
             </div>
+
             <div class="col-sm-4">
                 <label> Disabilitas <span style="color:red"> *</span></label> <br>
 
@@ -1152,6 +1179,9 @@
             "father_data[profession]":{
                 required: true
             },
+            "father_data[father_name]":{
+                required: true
+            },
             "mother_data[name]":{
                 required: true
             },
@@ -1317,6 +1347,9 @@
             "mother_data[nik]":{
                 required: "NIK ibu harus di isi",
                  minlength: "Minimal 10 digit"
+            },
+            "father_data[father_name]":{
+                required: "Nama ayah sesuai ijazah harus di isi"
             },
             "mother_data[year_of_birth]":{
                 required: "tahun lahir harus di isi"

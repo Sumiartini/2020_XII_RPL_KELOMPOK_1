@@ -1280,3 +1280,65 @@ function master_config() {
     });
 }
 
+function homeroom_teacher() {
+$('#example').DataTable({
+ searching: true,
+ processing: true,
+ serverSide: true,
+ ajax: 'homeroom-teacher',
+ lengthChange: false,
+ dom: 'Blfrtip',
+ buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+   columns: [
+        {
+           data: 'hrt_id',
+           name: 'hrt_id',
+           class: 'table-fit text-left',
+           orderable:true,
+           searchable: true,
+           render: function (data, type, row, meta) {
+               return meta.row + meta.settings._iDisplayStart + 1;
+           }
+        },
+        {
+           data: 'usr_name', 
+           name:'users.usr_name', 
+           orderable: true, 
+           searchable: true
+       },
+       {
+            data: 'cls_name',
+           name:'search_cls_name',
+           orderable: true,
+           searchable: true
+           
+       },
+       {
+           data: 'hrt_is_active',
+           name:'hrt_is_active',
+           orderable: false,
+           searchable: false
+       },
+       {
+           data: 'action',
+           name:'action',
+           orderable: false,
+           searchable: false
+       },
+   ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar Wali Kelas tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar Wali Kelas",
+            "infoFiltered": "(pencarian dari _MAX_ daftar Wali Kelas)",
+            "lengthMenu": "Tampilkan _MENU_ data",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+

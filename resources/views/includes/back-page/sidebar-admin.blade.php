@@ -78,9 +78,13 @@
     </li>
 
     <li>
-      <a href="{{ url('classes')}}" class="waves-effect active">
-        <i></i> <span>Kelas</span>
+      <a href="javaScript:void();" class="waves-effect">
+        <i></i> <span>Kelola Kelas</span> <i class="fa fa-angle-left pull-right"></i>
       </a>
+      <ul class="sidebar-submenu">
+        <li><a href="{{URL::to('classes')}}"><i class="fa fa-circle-o"></i> Daftar Kelas</a></li>
+        <li><a href="{{URL::to('homeroom-teachers')}}"><i class="fa fa-circle-o"></i> Daftar Wali Kelas</a></li>
+      </ul>
     </li>
 
      <li>
