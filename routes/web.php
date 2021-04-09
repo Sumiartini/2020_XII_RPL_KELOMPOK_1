@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Students;
+use App\StudentRegistration;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -235,6 +238,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/edit-status/{usr_id}', 'Auth\AccountController@edit_status');
     Route::get('/edit-status/school-year/{scy_id}','YearController@edit_status');
     Route::get('/edit-status/major/{mjr_id}','MajorController@edit_status');
+
+    Route::post('/update/re-registration', 'StudentController@updateStatusToReRegistration');
 });
 
     //Landing page
@@ -244,9 +249,12 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/master-slide', 'DatatableController@getMasterSlide');
     Route::get('/master-slide/create', 'LandingPageController@create');
     Route::post('/master-slide/create', 'LandingPageController@store');
+    Route::get('/master-slide/{mss_id}', 'LandingPageController@show');
     Route::get('/master-slide/edit/{mss_id}', 'LandingPageController@edit');
     Route::post('/master-slide/edit/{mss_id}', 'LandingPageController@update');
     Route::get('/master-slide/edit-status/{mss_id}', 'LandingPageController@editStatus');
+
+    
 
     Route::get('/master-configs', function () {
         return view('landing-page.list-master-config');
@@ -254,6 +262,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/master-config', 'DatatableController@getMasterConfig');
     Route::get('/master-config/create', 'LandingPageController@createConfig');
     Route::post('/master-config/create', 'LandingPageController@storeConfig');
+    Route::get('/master-config/{msc_id}', 'LandingPageController@showConfig');
     Route::get('/master-config/edit/{msc_id}', 'LandingPageController@editConfig');
     Route::post('/master-config/edit/{msc_id}', 'LandingPageController@updateConfig');
 
@@ -261,3 +270,43 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
     Route::get('/download-file-teacher/images/teacher_files/{locationFile}','User\UserController@downloadFileTeacher');
     Route::get('/download-file-staff/images/staff_files/{locationFile}','User\UserController@downloadFileStaff');
+
+    Route::get('asdf', function(Request $request){
+        $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->get();
+        
+        foreach ($students as $student) {
+
+            if ($student->str_status == 1) {
+                echo "$student->str_status";
+                // dd($student->str_status == 1);
+                $student_registrations = StudentRegistration::where('str_status', $student->str_status)->get();
+                foreach ($student_registrations as $student_registration){
+                    $student_registration->str_status = 5;
+                    $student_registration->str_updated_by = Auth()->user()->usr_id;
+                    // $student_registration->update();
+                }
+                return response()->json(['code' => 200, 'message' => 'Semua status siswa menjadi sedang daftar ulang'], 200);
+            
+            }else{
+                dd("ahmad");
+            }
+            
+        }
+    });
+
+     Route::get('test', function(Request $request){
+        $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->where('str_status', 1)->get();
+       $check_status_student = StudentRegistration::where('str_status',1)->count();
+       if ($check_status_student == 0) {
+           return response()->json(['code' => 400, 'message' => 'Tidak ada siswa yang harus daftar ulang'], 400);
+       }else{
+            foreach ($students as $student) {
+                $student_registration = StudentRegistration::where('str_status', $student->str_status)->first();
+                $student_registration->str_status = 5;
+                $student_registration->str_updated_by = Auth()->user()->usr_id;
+                $student_registration->update();
+            }
+         return response()->json(['code' => 200, 'message' => 'Semua status siswa menjadi sedang daftar ulang'], 200);
+       }
+        
+    });

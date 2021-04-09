@@ -53,7 +53,9 @@
         <div class="table-responsive">
           @if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
           <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-            <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
+            <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i></a>
+
+          <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="UBAH KE DAFTAR ULANG" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a>
           </div>
           @else
           @endif
@@ -111,7 +113,6 @@
 
 <script src="{{ asset('assets/plugins/alerts-boxes/js/sweetalert.min.js')}}"></script>
 <script src="{{ asset('assets/plugins/alerts-boxes/js/sweet-alert-script.js')}}"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
 @if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
