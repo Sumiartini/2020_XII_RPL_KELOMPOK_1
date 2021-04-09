@@ -92,6 +92,19 @@
   </div>
 </div>
 
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Jumlah Biaya PPDB</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="scy_payment_price" class="form-control form-control @error('scy_payment_price') is-invalid @enderror" value="{{ $year->scy_payment_price }}" placeholder="Masukan Jumlah Biaya PPDB">
+                            @error('scy_payment_price')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+
 <div class="form-group row">
     <label for="input-1" class="col-sm-3 col-form-label"></label>
     <div class="col-sm-9">
@@ -167,6 +180,9 @@
     scy_last_year:{
         required: true
     },
+    scy_payment_price: {
+      required: true
+    }
 },
 messages: {
   scy_first_year: {
@@ -174,7 +190,10 @@ messages: {
 },
 scy_last_year: {
     required: "Tahun harus diisi"
-},     
+}, 
+scy_payment_price: {
+  required: "Jumlah Biaya PPDB Harus Diisi"
+},    
 }
 });
 });

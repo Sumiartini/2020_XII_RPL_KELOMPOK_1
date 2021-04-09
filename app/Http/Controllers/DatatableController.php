@@ -306,7 +306,7 @@ class DatatableController extends Controller
             } else {
                 return "Tidak punya status aktif";
             }
-        })->editColumn("scy_payment_price", function ($row){
+        })->editColumn("scy_payment_price", function ($row) {
             $scy_payment_price = moneyFormat($row->scy_payment_price);
             return "Rp. " . $scy_payment_price;
         })
@@ -337,7 +337,7 @@ class DatatableController extends Controller
                 return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
             } else {
                 return "Tidak punya status aktif";
-            }
+            } 
         })
         ->addColumn('action', function ($row) {
             $edit = '<a href="' . url('major/edit', $row->mjr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
