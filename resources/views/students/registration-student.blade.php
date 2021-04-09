@@ -453,7 +453,7 @@
 
                                 <div class="col-sm-4">
                                     <label> Nama Lengkap </label>
-                                    <input type="text" name="guardian_data[name]" class="form-control form-control-rounded @error('guardian_data[name]') is-invalid @enderror" name="firstname" placeholder="Masukan Nama Lengkap" value="{{ old('guardian_data[name]') }}">
+                                    <input type="text" name="guardian_data[name]" class="form-control form-control-rounded @error('guardian_data[name]') is-invalid @enderror" name="guardian_data[name]" placeholder="Masukan Nama Lengkap" value="{{ old('guardian_data[name]') }}">
                                     @error('guardian_data[name]')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -306,6 +306,9 @@ class DatatableController extends Controller
             } else {
                 return "Tidak punya status aktif";
             }
+        })->editColumn("scy_payment_price", function ($row){
+            $scy_payment_price = moneyFormat($row->scy_payment_price);
+            return "Rp. " . $scy_payment_price;
         })
         ->addColumn('action', function ($row) {
             $edit = '<a href="' . url('school-year/edit', $row->scy_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';

@@ -948,6 +948,13 @@ function school_year() {
                 searchable: true
             },
 
+             {
+                data: 'scy_payment_price', 
+                name:'scy_payment_price', 
+                orderable: false, 
+                searchable: true
+            },
+
             {
                 data: 'action', 
                 name:'action', 
