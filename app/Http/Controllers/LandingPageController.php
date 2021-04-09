@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\MasterSlides;
 use App\MasterConfigs;
+use App\MasterVideos;
+
 
 class LandingPageController extends Controller
 {
@@ -186,13 +188,18 @@ class LandingPageController extends Controller
             'required' => 'kolom wajib diisi'
         ];
         $request->validate([
-            'msc_name'  => 'required',  
+            'msc_name'  => 'required',
         ], $massages);
+
+        $master_videos = new MasterVideos;
+        $master_videos->msv_name = $request->msv_name;
+        $master_videos->msv_file = $request->msv_file;
+        $master_videos->msv_created_by = Auth()->user()->usr_id;
+        $master_videos->save();
 
         $master_configs = new MasterConfigs;
         $master_configs->msc_name                = $request->msc_name;
         $master_configs->msc_description         = $request->msc_description;
-        // $master_configs->msc_master_video_id     = $request->msv_file;
         $master_configs->msc_vision              = $request->msc_vision;
         $master_configs->msc_mision              = $request->msc_mision;
         if ($request->hasFile('msc_logo')) {
@@ -223,7 +230,7 @@ class LandingPageController extends Controller
             $master_config->update();
             return redirect('master-configs');
         }
-        $master_config->msc_name         = $request->msc_name;
+        $master_config->msc_name                = $request->msc_name;
         $master_config->msc_description         = $request->msc_description;
         // $master_configs->msc_master_video_id     = $request->msv_file;
         $master_config->msc_vision              = $request->msc_vision;
@@ -233,7 +240,7 @@ class LandingPageController extends Controller
             $path = public_path('images/school_logo');
             $files_name = 'images' . '/' . 'school_logo' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
             $files->move($path, $files_name);
-            $master_configs->msc_logo = $files_name;
+            $master_config->msc_logo = $files_name;
         }
         $master_config->msc_school_phone_number = $request->msc_school_phone_number;
         $master_config->msc_updated_by   = Auth()->user()->usr_id;

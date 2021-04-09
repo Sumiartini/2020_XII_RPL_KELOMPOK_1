@@ -56,7 +56,7 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Deskripsi</label>
                          <div class="col-sm-8">
-                            <textarea name="msc_description" <?php echo "$master_config->msc_description']" ?> rows="5" cols="10" placeholder="Masukan Deskripsi Sekolah" class="form-control @error('msc_description') is-invalid @enderror"></textarea>
+                            <textarea name="msc_description" rows="5" cols="10" placeholder="Masukan Deskripsi Sekolah" class="form-control @error('msc_description') is-invalid @enderror">{{$master_config->msc_description}}</textarea>
                             @error('msc_description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -66,9 +66,21 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Video Sekolah</label>                    
+                        <label for="input-2" class="col-sm-3 col-form-label">Nama video</label>
                         <div class="col-sm-8">
-                            <input type="url" name="msv_file" class="form-control form-control-rounded @error('msv_file') is-invalid @enderror" value="{{$master_config->msv_file}}" placeholder="Masukan Link Video">
+                            <input type="text" name="msv_name" class="form-control form-control-rounded @error('msv_name') is-invalid @enderror" value="{{$master_config->msv_name}}" placeholder="Masukan Nama Video">
+                            @error('msv_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror 
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="input-2" class="col-sm-3 col-form-label">Url Video Sekolah</label>                    
+                        <div class="col-sm-8">
+                            <input type="url" name="msv_file" class="form-control form-control-rounded @error('msv_file') is-invalid @enderror" value="{{$master_config->msv_file}}" placeholder="Masukan Link Vide Sekolah">
                             @error('msv_file')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -81,7 +93,7 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Visi Sekolah</label>
                         <div class="col-sm-8">
-                            <textarea name="msc_vision" value="{{$master_config->msc_vision}}" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control @error('msc_vision') is-invalid @enderror"></textarea>
+                            <textarea name="msc_vision" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control @error('msc_vision') is-invalid @enderror">{{$master_config->msc_vision}}</textarea>
                             @error('msc_vision')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -93,7 +105,7 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Misi Sekolah</label>
                         <div class="col-sm-8">
-                            <textarea name="msc_mision" value="{{$master_config->msc_mision}}" rows="5" cols="10" placeholder="Masukan Misi Sekolah" class="form-control @error('msc_mision') is-invalid @enderror"></textarea>
+                            <textarea name="msc_mision" rows="5" cols="10" placeholder="Masukan Misi Sekolah" class="form-control @error('msc_mision') is-invalid @enderror">{{$master_config->msc_mision}}</textarea>
                             @error('msc_mision')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -206,6 +218,7 @@
             msc_name: {
               required: "Kolom Wajib Diisi"
             },
+
             msc_school_phone_number:{
                 minlength: "Minimal 10 digit"
             },
