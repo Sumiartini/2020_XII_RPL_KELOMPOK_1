@@ -81,7 +81,10 @@ class RegisterController extends Controller
             'usr_email' => ['required', 'string', 'max:255', 'unique:users,usr_email'],
             //untuk pattern regex email bila butuh 'regex:/(.*)@gmail|yahoo\.com/i'
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'usr_phone_number' => ['required', 'min:10','regex:/^([0-9\s\-\+\(\)]*)$/'],
+            'usr_phone_number' => ['required', 'min:10','regex:/^([0-9\s\-\+\(\)]*)$/']
+        ],
+        [
+            'usr_email.unique' => 'User Email Sudah Digunakan'
         ]);
     }
 

@@ -66,6 +66,18 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="input-2" class="col-sm-3 col-form-label">Nama video</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="msv_name" class="form-control form-control-rounded @error('msv_name') is-invalid @enderror" value="{{ old('msv_name') }}" placeholder="Masukan Nama Video">
+                            @error('msv_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror 
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Video Sekolah</label>                    
                         <div class="col-sm-8">
                             <input type="url" name="msv_file" class="form-control form-control-rounded @error('msv_file') is-invalid @enderror" value="{{ old('msv_file') }}" placeholder="Masukan Link Video">
@@ -196,6 +208,9 @@
             msc_school_phone_number:{
                 minlength: 10 
             },
+            msv_file:{
+                url: true,
+            },
           
             pst_honorarium:{
                 required: true
@@ -208,6 +223,9 @@
             },
             msc_school_phone_number:{
                 minlength: "Minimal 10 digit"
+            },
+            msv_file:{
+                url: "HARAP MASUKKAN URL YANG VALID."
             },
            
         }
