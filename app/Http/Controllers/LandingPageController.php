@@ -198,6 +198,7 @@ class LandingPageController extends Controller
         $master_videos->save();
 
         $master_configs = new MasterConfigs;
+        $master_configs->msc_master_video_id     = $master_videos->msv_id;
         $master_configs->msc_name                = $request->msc_name;
         $master_configs->msc_description         = $request->msc_description;
         $master_configs->msc_vision              = $request->msc_vision;
@@ -210,6 +211,7 @@ class LandingPageController extends Controller
             $master_configs->msc_logo = $files_name;
         }
         $master_configs->msc_school_phone_number = $request->msc_school_phone_number;
+        $master_configs->msc_created_by = Auth()->user()->usr_id;
         $master_configs->save();
 
 
@@ -218,33 +220,71 @@ class LandingPageController extends Controller
     }
 
     public function editConfig($masterConfigID){
-        $master_config = MasterConfigs::where('msc_id', $masterConfigID)->first();
+        $master_config = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id')
+                        ->where('master_configs.msc_id', $masterConfigID)->first();
         return view('landing-page.edit-master-config',['master_config' => $master_config]);
     }
 
     public function updateConfig(Request $request, $masterConfigID){
         // dd($request);
+        $massages = [
+            'required' => 'kolom wajib diisi'
+        ];
+        $request->validate([
+            'msc_name'  => 'required',
+        ], $massages);
+
+
         $master_config = MasterConfigs::where('msc_id', $masterConfigID)->first();
          if ($master_config->msc_name == $request->msc_name) {
-            $master_config->msc_name = $request->msc_name;
+            $master_video = MasterVideos::where('msv_id', $master_config->msc_master_video_id)->first();
+            $master_video->msv_name = $request->msv_name;
+            $master_video->msv_file = $request->msv_file;
+            $master_video->msv_updated_by = Auth()->user()->usr_id;
+            $master_video->update();
+            
+            $master_config->msc_master_video_id     = $master_video->msv_id;
+            $master_config->msc_name                = $request->msc_name;
+            $master_config->msc_description         = $request->msc_description;
+            $master_config->msc_vision              = $request->msc_vision;
+            $master_config->msc_mision              = $request->msc_mision;
+            if ($request->hasFile('msc_logo')) {
+                $files = $request->file('msc_logo');
+                $path = public_path('images/school_logo');
+                $files_name = 'images' . '/' . 'school_logo' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+                $files->move($path, $files_name);
+                $master_config->msc_logo = $files_name;
+            }
+            $master_config->msc_school_phone_number = $request->msc_school_phone_number;
+            $master_config->msc_updated_by   = Auth()->user()->usr_id;
             $master_config->update();
+
             return redirect('master-configs');
+
         }
-        $master_config->msc_name                = $request->msc_name;
-        $master_config->msc_description         = $request->msc_description;
-        // $master_configs->msc_master_video_id     = $request->msv_file;
-        $master_config->msc_vision              = $request->msc_vision;
-        $master_config->msc_mision              = $request->msc_mision;
-        if ($request->hasFile('msc_logo')) {
-            $files = $request->file('msc_logo');
-            $path = public_path('images/school_logo');
-            $files_name = 'images' . '/' . 'school_logo' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
-            $files->move($path, $files_name);
-            $master_config->msc_logo = $files_name;
-        }
-        $master_config->msc_school_phone_number = $request->msc_school_phone_number;
-        $master_config->msc_updated_by   = Auth()->user()->usr_id;
-        $master_config->update();
+
+            $master_video = MasterVideos::where('msv_id', $master_config->msc_master_video_id)->first();
+            $master_video->msv_name = $request->msv_name;
+            $master_video->msv_file = $request->msv_file;
+            $master_video->msv_updated_by = Auth()->user()->usr_id;
+            $master_video->update();
+            
+            $master_config->msc_master_video_id     = $master_video->msv_id;
+            $master_config->msc_name                = $request->msc_name;
+            $master_config->msc_description         = $request->msc_description;
+            $master_config->msc_vision              = $request->msc_vision;
+            $master_config->msc_mision              = $request->msc_mision;
+            if ($request->hasFile('msc_logo')) {
+                $files = $request->file('msc_logo');
+                $path = public_path('images/school_logo');
+                $files_name = 'images' . '/' . 'school_logo' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+                $files->move($path, $files_name);
+                $master_config->msc_logo = $files_name;
+            }
+            $master_config->msc_school_phone_number = $request->msc_school_phone_number;
+            $master_config->msc_updated_by   = Auth()->user()->usr_id;
+            $master_config->update();
+    
         return redirect('master-configs')->with('success', 'Berkas berhasil di ubah');
     }
 }
