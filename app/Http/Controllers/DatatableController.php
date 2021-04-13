@@ -401,14 +401,15 @@ public function getClasses(Request $request)
             }
         })
         ->addColumn('action', function ($row) {
-            $edit = '<a href="' . url('master-slide/edit', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+            $edit = '<a href="' . url('master-slide/edit', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+            $detail = '<a href="' . url('master-slide', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
             $mss_is_active = $row->mss_is_active;
             if ($mss_is_active == '0') {
                 $status = '<a href="' . url('master-slide/edit-status', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
             }else{
                 $status = '<a href="' . url('master-slide/edit-status', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
             }
-            return $edit. '&nbsp' . $status ;
+            return $detail. '&nbsp' .$edit. '&nbsp' . $status ;
         })->rawColumns(['action', 'mss_is_active'])
         ->make(true);
     }

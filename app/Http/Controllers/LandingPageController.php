@@ -81,9 +81,10 @@ class LandingPageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($masterSlideID)
     {
-        //
+        $master_slide = MasterSlides::where('mss_id', $masterSlideID)->get();
+        return view('landing-page.detail-master-slide', ['master_slide' => $master_slide]);
     }
 
     /**
@@ -176,6 +177,12 @@ class LandingPageController extends Controller
         return view('landing-page.list-master-slide');
     }
 
+    public function showConfig($masterConfigID)
+    {
+        $master_config = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id')
+                        ->where('master_configs.msc_id', $masterConfigID)->get();
+        return view('landing-page.detail-master-config',['master_config' => $master_config]);
+    }
 
     public function createConfig(Request $request){
         return view('landing-page.add-master-config');
@@ -287,4 +294,6 @@ class LandingPageController extends Controller
     
         return redirect('master-configs')->with('success', 'Berkas berhasil di ubah');
     }
+
+
 }
