@@ -33,6 +33,12 @@
       <a href="{{URL::to('/students')}}" class="waves-effect">
         <i></i> <span>Daftar Siswa</span>
       </a>
+  </li>
+
+     <li>
+      <a href="{{URL::to('/school/payment/pay')}}" class="waves-effect">
+        <i></i> <span>Bayar PPDB</span>
+      </a>
     </li>
 
   </ul>

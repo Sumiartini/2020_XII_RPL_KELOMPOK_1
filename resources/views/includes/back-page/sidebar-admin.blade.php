@@ -99,5 +99,12 @@
         <!-- <li><a href="{{URL::to('/master-config/create')}}"><i class="fa fa-circle-o"></i> Tambah Konfigurasi</a></li> -->
       </ul>
     </li>
+
+     <li>
+      <a href="{{ url('school-payments')}}" class="waves-effect active">
+        <i></i> <span>Kelola Pembayaran PPDB</span>
+      </a>
+    </li>
+
   </ul>
 </div>

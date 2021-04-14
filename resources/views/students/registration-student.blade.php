@@ -289,7 +289,7 @@
 
                                  <div class="col-sm-4">
                                     <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[year_of_birth]" class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror" placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
+                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="father_data[year_of_birth]" class="form-control form-control-rounded @error('father_data.year_of_birth') is-invalid @enderror year_picker" placeholder="Masukan Tahun Lahir" value="{{ old('father_data.year_of_birth') }}">
                                     @error('father_data.year_of_birth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -399,7 +399,7 @@
 
                                 <div class="col-sm-4">
                                     <label> Tahun Lahir <span style="color:red"> *</span></label>
-                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data.year_of_birth') is-invalid @enderror" placeholder="Masukan Tahun Lahir" value="{{ old('mother_data.year_of_birth') }}">
+                                    <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="mother_data[year_of_birth]" class="form-control form-control-rounded @error('mother_data.year_of_birth') is-invalid @enderror year_picker" placeholder="Masukan Tahun Lahir" value="{{ old('mother_data.year_of_birth') }}">
                                     @error('mother_data.year_of_birth')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

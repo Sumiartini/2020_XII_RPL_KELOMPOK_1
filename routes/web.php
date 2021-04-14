@@ -137,7 +137,11 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('/student/payment', 'DatatableController@getStudentPayment');
 
-    
+    Route::get('/school-payments', function () {
+        return view('school-payments.list-school-payment');
+    });
+    Route::get('/school/payment', 'DatatableController@getStudentPayment');
+
 
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
@@ -146,6 +150,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/student/edit/{std_id}', 'StudentController@update');
     Route::post('/student/delete', 'StudentController@destroy');    
     Route::get('/student/payment/{std_id}', 'StudentController@payment_detail');
+    Route::get('school/payment/pay', 'StudentController@school_payment');
+    Route::post('school/payment/pay', );
 
     Route::get('/page/list', 'PageController@index');
     Route::get('/page/detail', 'PageController@show');
@@ -322,3 +328,4 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
        }
         
     });
+
