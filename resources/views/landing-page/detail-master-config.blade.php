@@ -45,11 +45,11 @@
       <dt class="col-sm-2">Foto</dt>
       <dd class="col-sm-10">
            <div class="user-fullimage text-center">
-            <img src="{{ asset($master_config->msv_file)}}" alt="user avatar" class="card-img-top">
+            <img src="{{ asset($master_config->msc_logo)}}" alt="user avatar"  class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
           </div>
       </dd>
       <dd class="col-sm-12">  
-          <a href="{{url('/master-config/edit/'.$master_slide->msc_id)}}" class="btn btn-success" style="float: right;"> <i class="fa fa-edit fa-lg"></i>edit</a> 
+          <a href="{{url('/master-config/edit/'.$master_config->msc_id)}}" class="btn btn-success" style="float: right;"> <i class="fa fa-edit fa-lg"></i>edit</a> 
       </dd>
       @endforeach
        </div>
