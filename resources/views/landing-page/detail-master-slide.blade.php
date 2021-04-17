@@ -31,16 +31,12 @@
     </ol>
   </div>
 </div>
-
-
-
-
   <div class="card">
     <div class="card-body">
       <h5 class="card-title text-primary">Data Berkas Informasi</h5>
       <hr>  
       <div class="row" style="margin-top: 20px;">
-      @foreach($master_slide as $master_slide)
+      
       <dt class="col-sm-2">Nama</dt>
       <dd class="col-sm-10">
           <p>{{ $master_slide->mss_name }}</p>
@@ -54,7 +50,7 @@
       <dd class="col-sm-12">  
           <a href="{{url('/master-slide/edit/'.$master_slide->mss_id)}}" class="btn btn-success" style="float: right;"> <i class="fa fa-edit fa-lg"></i>edit</a> 
       </dd>
-      @endforeach
+      
        </div>
      
    
