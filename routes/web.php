@@ -217,8 +217,13 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/class/create', 'ClassController@store');
     Route::get('/class/edit/{classID}', 'ClassController@edit');
     Route::post('/class/edit/{classID}', 'ClassController@update');
-    Route::get('/class/edit-status/{classID}', 'ClassController@editStatus');
+    Route::get('/class/edit-status/{classID}', 'ClassController@editStatus');    
+    Route::get('/class/{classID}', 'ClassController@show_class');
 
+    //studentClass
+    Route::get('/class/{classID}/add-student', 'ClassController@add_student');
+    Route::post('/class/create-student-class', 'ClassController@store_add_student');
+    
 
     //terima, tolak, restore,  dan terima pembayaran siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');

@@ -9,6 +9,7 @@ use App\Majors;
 
 class Students extends Model
 {
+    protected $table = "students";
     protected $primaryKey = 'stu_id';
     const CREATED_AT = 'stu_created_at';
     const UPDATED_AT = 'stu_updated_at';
