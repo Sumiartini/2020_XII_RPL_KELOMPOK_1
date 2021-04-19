@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Daftar Siswa
+- Siswa daftar pindah
 @endpush
 
 @push('styles')
@@ -25,17 +25,18 @@
 @section('content')
 <div class="row pt-2 pb-2">
   <div class="col-sm-9">
-    <h4 class="page-title">Daftar Siswa</h4>
+    <h4 class="page-title">Siswa daftar pindah</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">{{ env('APP_NAME') }}</a></li>
       <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Daftar Siswa</li>
+      <li class="breadcrumb-item active" aria-current="page">Siswa daftar pindah</li>
     </ol>
   </div>
 </div>
 
 <div class="row">
   <div class="col-lg-12">
+
     @if ($message = Session::get('success'))
     <div class="alert alert-success alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert">×</button>
@@ -51,36 +52,25 @@
       <div class="card-header"><i class="fa fa-table"></i> Data Siswa</div>
       <div class="card-body">
         <div class="table-responsive">
-          @if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
-          <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-            <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i></a>
 
-          <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="UBAH KE DAFTAR ULANG" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a>
-          <!-- <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="GENERATE NIS" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a> -->
-          </div>
-          @else
-          @endif
           <table id="example" class="table table-bordered" style="width: 100%">
             <thead>
               <tr>
                 <th>NO</th>
                 <th>NAMA</th>
                 <th>NIS</th>
-                <th>STATUS</th>
-                <th>Aksi</th>
+                <th>ALASAN PINDAH</th>
+                <th>STATUS AKUN</th>
               </tr>
             </thead>
             <tbody>
             </tbody>
-
-
           </table>
         </div>
       </div>
     </div>
   </div>
 </div><!-- End Row-->
-
 <!--Start Back To Top Button-->
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
 <!--End Back To Top Button-->
@@ -116,18 +106,10 @@
 <script src="{{ asset('assets/plugins/alerts-boxes/js/sweet-alert-script.js')}}"></script>
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
-@if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
 <script>
   $(document).ready(function() {
-    student()
+    studentMove()
   });
 </script>
-@else
-<script>
-  $(document).ready(function() {
-    studentUsers()
-  });
-</script>
-@endif
 @endpush
 @endsection

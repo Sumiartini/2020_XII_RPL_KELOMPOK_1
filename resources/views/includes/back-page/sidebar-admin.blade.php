@@ -50,6 +50,10 @@
         <li><a href="{{URL::to('/students-prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Siswa</a></li>
         <li><a href="{{URL::to('/students-rejected')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Ditolak</a></li>
         <li><a href="{{URL::to('/student-payments')}}"><i class="fa fa-circle-o"></i> Daftar Pembayaran</a></li>
+        <li><a href="{{URL::to('/student-re-registrations')}}"><i class="fa fa-circle-o"></i> Siswa daftar ulang</a></li>
+        <li><a href="{{URL::to('/student-moves')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Pindah</a></li>
+        <li><a href="{{URL::to('/student-drop-outs')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Dikeluarkan</a></li>
+        
       </ul>
     </li>
 
