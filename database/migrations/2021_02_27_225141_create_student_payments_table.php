@@ -17,12 +17,16 @@ class CreateStudentPaymentsTable extends Migration
             $table->bigIncrements('stp_id');
             $table->foreignId('stp_student_id');
             $table->foreign('stp_student_id')->references('stu_id')->on('students');
+            $table->foreignId('stp_school_year_id')->nullable();
+            $table->foreign('stp_school_year_id')->references('scy_id')->on('school_years');
             $table->string('stp_payment_method')->nullable();
             $table->string('stp_picture')->nullable();
             $table->string('stp_reason')->nullable();
             $table->tinyInteger('stp_payment_status')->default('0');
             $table->date('stp_date')->nullable();
             $table->date('stp_date_verification')->nullable();
+            $table->string('stp_nominal')->nullable();
+            $table->tinyInteger('stp_type_payment')->nullable();
 
             $table->bigInteger('stp_created_by')->unsigned()->nullable();
             $table->bigInteger('stp_updated_by')->unsigned()->nullable();

@@ -43,6 +43,8 @@ class CheckRegistrationVerificate
                     }else{
                         return redirect('/payment-upload');
                     }   
+                }elseif($student->str_status == 5){
+                    return redirect('re-registration');
                 }
 
             } elseif ( $user->hasRole('teacher')) {
