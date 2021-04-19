@@ -139,6 +139,11 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('/student/payment', 'DatatableController@getStudentPayment');
 
+    Route::get('/school-payments', function () {
+        return view('school-payments.list-school-payment');
+    });
+    Route::get('/school/payment', 'DatatableController@getStudentPayment');
+
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
     Route::get('/student/{stu_id}', 'StudentController@show_student');
@@ -146,6 +151,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/student/edit/{std_id}', 'StudentController@update');
     Route::post('/student/delete', 'StudentController@destroy');    
     Route::get('/student/payment/{std_id}', 'StudentController@payment_detail');
+    Route::get('school/payment/pay', 'StudentController@school_payment');
+    Route::post('school/payment/pay', );
 
     Route::get('/student-move', 'DatatableController@getListStudentMove');
     Route::get('/student-moves', function(){
@@ -299,6 +306,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/master-config/{msc_id}', 'LandingPageController@showConfig');
     Route::get('/master-config/edit/{msc_id}', 'LandingPageController@editConfig');
     Route::post('/master-config/edit/{msc_id}', 'LandingPageController@updateConfig');
+    Route::get('/master-config/edit-status/{msc_id}', 'LandingPageController@editStatusConfig');
 
     //download file
     Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');

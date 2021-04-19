@@ -716,6 +716,12 @@ class StudentController extends Controller
         return redirect('/student/payment/'.$studentID)->with('success', 'Pembayaran berhasil ditolak');
     }
 
+    public function school_payment(Request $request)
+    {
+
+        return view('school-payments.school-payment');   
+    }
+
     public function updateStatusToReRegistration(Request $request)
     {
          if ($request->ajax()) {
@@ -734,6 +740,7 @@ class StudentController extends Controller
            }
         }
     }
+
     public function reRegistration()
     {
         $user = User::findOrFail(Auth::user()->usr_id);

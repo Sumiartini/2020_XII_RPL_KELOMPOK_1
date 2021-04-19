@@ -57,7 +57,7 @@ class YearController extends Controller
         $year->scy_first_year       = $request->scy_first_year;
         $year->scy_last_year        = $request->scy_last_year;        
         $year->scy_name             = $request->scy_first_year.'/'.$request->scy_last_year;
-        $year->scy_payment_price    = $request->scy_payment_price;
+        $year->scy_payment_price    = str_replace(".", "" , $request->scy_payment_price);
         $year->scy_is_form_registration ='0';
         $year->scy_created_by   = Auth()->user()->usr_id; 
         $year->save();
@@ -107,7 +107,7 @@ class YearController extends Controller
             $year->scy_first_year = $request->scy_first_year;
             $year->scy_last_year  = $request->scy_last_year;        
             $year->scy_name       = $request->scy_first_year.'/'.$request->scy_last_year;
-            $year->scy_payment_price = $request->scy_payment_price;
+            $year->scy_payment_price = str_replace(".", "" , $request->scy_payment_price);
             $year->scy_updated_by = Auth()->user()->usr_id; 
             $year->update();
             return redirect('school-years')->with('success', 'Tahun Ajaran berhasil di ubah');  
