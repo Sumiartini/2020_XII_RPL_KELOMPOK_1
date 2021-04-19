@@ -36,8 +36,21 @@ class HomeroomTeacherController extends Controller
         $homeroom_teacher_check = HomeroomTeachers::where('hrt_teacher_id', $request->usr_name)->where('hrt_class_id', $request->cls_name)->first();
     	// dd($homeroom_teacher_check);
     	if ($homeroom_teacher_check) {
-    		return redirect()->back()->with('error', 'Wali Kelas sudah tersedia');
+    		return redirect()->back()->with('error', 'wali Kelas sudah terdaftar');
     	}
+
+        $teacher_check = HomeroomTeachers::where('hrt_teacher_id', $request->usr_name)->first();
+    	// dd($teacher_check);
+    	if ($teacher_check) {
+    		return redirect()->back()->with('error', 'Guru sudah terdaftar');
+    	}
+
+    	$class_check = HomeroomTeachers::where('hrt_class_id', $request->cls_name)->first();
+    	// dd($class_check);
+    	if ($class_check) {
+    		return redirect()->back()->with('error', 'Kelas sudah terdaftar');
+    	}
+
 
         $homeroom_teachers	= new HomeroomTeachers;
         $homeroom_teachers->hrt_teacher_id = $request->usr_name;
