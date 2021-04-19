@@ -1201,6 +1201,12 @@ function master_slide() {
                 orderable: false, 
                 searchable: true
             },
+            {
+                data: 'mss_is_active', 
+                name:'mss_is_active', 
+                orderable: false, 
+                searchable: false
+            },
 
             {
                 data: 'action', 
@@ -1255,6 +1261,12 @@ function master_config() {
                 name:'msc_description', 
                 orderable: false, 
                 searchable: true
+            },
+            {
+                data: 'msc_is_active', 
+                name:'msc_is_active', 
+                orderable: false, 
+                searchable: false
             },
 
             {
