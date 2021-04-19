@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\StudentDetails;
 use App\EntryTypes;
 use App\Majors;
+use App\User;
 
 class Students extends Model
 {
@@ -23,6 +24,14 @@ class Students extends Model
             ->select('users.usr_id', 'users.usr_is_active','students.stu_id','students.stu_candidate_name','students.stu_nis');
         // dd($students);
         return $students;
+    }
+    public static function getListStudentReRegistration($request)
+    {
+        $student_re_registrations = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+            ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+            ->where('student_registrations.str_status', 5)
+            ->select('users.usr_id', 'users.usr_is_active','students.stu_id','students.stu_candidate_name','students.stu_nis');
+        return $student_re_registrations;
     }
 
     public function getStudentDetail($studentID)
@@ -121,5 +130,26 @@ class Students extends Model
         $get_student_edit = mappingData($get_student_edit, $students_edit);
 
         return $get_student_edit;
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'stu_user_id');
+    }
+
+    public static function getListStudentMove($request)
+    {
+         $student_move = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+            ->join('student_registrations', 'student_registrations.str_student_id', '=', 'students.stu_id')
+            ->where('student_registrations.str_status', 4);
+        // dd($students_rejected);
+        return $student_move;
+    }
+    public static function getListStudentDropOut($request)
+    {
+         $student_move = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
+            ->join('student_registrations', 'student_registrations.str_student_id', '=', 'students.stu_id')
+            ->where('student_registrations.str_status', 3);
+        // dd($students_rejected);
+        return $student_move;
     }
 }

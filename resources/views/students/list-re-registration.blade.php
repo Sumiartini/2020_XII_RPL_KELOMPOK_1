@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Daftar Siswa
+- Siswa daftar ulang
 @endpush
 
 @push('styles')
@@ -25,17 +25,18 @@
 @section('content')
 <div class="row pt-2 pb-2">
   <div class="col-sm-9">
-    <h4 class="page-title">Daftar Siswa</h4>
+    <h4 class="page-title">Siswa daftar ulang</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">{{ env('APP_NAME') }}</a></li>
       <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Daftar Siswa</li>
+      <li class="breadcrumb-item active" aria-current="page">Siswa daftar ulang</li>
     </ol>
   </div>
 </div>
 
 <div class="row">
   <div class="col-lg-12">
+
     @if ($message = Session::get('success'))
     <div class="alert alert-success alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert">×</button>
@@ -50,16 +51,13 @@
     <div class="card">
       <div class="card-header"><i class="fa fa-table"></i> Data Siswa</div>
       <div class="card-body">
-        <div class="table-responsive">
-          @if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
-          <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-            <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i></a>
-
-          <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="UBAH KE DAFTAR ULANG" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a>
-          <!-- <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="GENERATE NIS" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a> -->
+        <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
+          <!-- <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i></a>
+            
+          <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="UBAH KE DAFTAR ULANG" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a> -->
           </div>
-          @else
-          @endif
+        <div class="table-responsive">
+
           <table id="example" class="table table-bordered" style="width: 100%">
             <thead>
               <tr>
@@ -72,14 +70,53 @@
             </thead>
             <tbody>
             </tbody>
-
-
           </table>
         </div>
       </div>
     </div>
   </div>
 </div><!-- End Row-->
+
+
+<div class="modal fade" id="largesizemodal" style="display: none;" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fa fa-star"></i> Modal title</h5>
+        <button type="button" class="close" onclick="reset()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label for="rounded-input" class="col-sm-3 col-form-label">Nama Lengkap</label>
+            <div class="col-sm-9">
+              <input type="text" id="stu_candidate_name" class="form-control form-control-rounded">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="rounded-input" class="col-sm-3 col-form-label">Nomor induk siswa</label>
+            <div class="col-sm-9">
+              <input type="text" id="stu_name" class="form-control form-control-rounded">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="rounded-input" class="col-sm-3 col-form-label">ROUNDED INPUT</label>
+            <div class="col-sm-9">
+              <input type="text" id="rounded-input" class="form-control form-control-rounded">
+            </div>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="reset()" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+        <button type="button" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--Start Back To Top Button-->
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
@@ -116,18 +153,41 @@
 <script src="{{ asset('assets/plugins/alerts-boxes/js/sweet-alert-script.js')}}"></script>
 
 <script src="{{ asset('js_datatables/datatable.js') }}"></script>
-@if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
 <script>
   $(document).ready(function() {
-    student()
+    studentReRegistration()
   });
 </script>
-@else
+
 <script>
-  $(document).ready(function() {
-    studentUsers()
-  });
+    function reset()
+    {
+        $('#example').DataTable().ajax.reload()
+        $('#largesizemodal').modal('hide')
+        
+    }
+
+    // function largesizemodal() {
+    //     reset();
+    //     $('#asdf').modal('show');
+    // }
+        function editSubject(event) {
+        var stu_id = $(event).data("id");
+        let _url = `/student/re-registration/${stu_id}`;
+        // $('#titleError').text('');
+        $.ajax({
+            url: _url,
+            type: "GET",
+            success: function(response) {
+                if (response) {
+                    $("#stu_id").val(response.stu_id);
+                    $("#stu_candidate_name").val(response.stu_candidate_name);
+                    $("#stu_nis").val(response.stu_nis);
+                    $('#largesizemodal').modal('show');
+                }
+            }
+        });
+    }
 </script>
-@endif
 @endpush
 @endsection
