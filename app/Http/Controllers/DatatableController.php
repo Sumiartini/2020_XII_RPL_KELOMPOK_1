@@ -38,6 +38,9 @@ class DatatableController extends Controller
 
             if (Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff')) {
                 $edit = '<a href="' . url('student/edit', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
+                $move = '<a href="' . url('student/move', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="PINDAH" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-walk fa-lg"></i></a>';
+                $drop_out = '<a href="' . url('student/drop-out', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DI KELUARKAN" class="btn btn-outline-danger waves-effect waves-light m-1"> <i class="zmdi zmdi-run fa-lg"></i></a>';
+
                 $usr_is_active = $row->usr_is_active;
                 if ($usr_is_active == '0') {
                     $status = '<a href="' . url('edit-status', $row->usr_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
@@ -46,7 +49,7 @@ class DatatableController extends Controller
                 }
             }
             if (Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff')) {
-                return $detail . '&nbsp' . $edit . '&nbsp' . $status;
+                return $detail . '&nbsp' . $edit . '&nbsp' . $move . '&nbsp' . $drop_out . '&nbsp' . $status;
             } else {
                 return $detail;
             }
@@ -473,6 +476,67 @@ public function getClasses(Request $request)
                 $query->whereRaw("CONCAT(grade_levels.grl_name,'-',majors.mjr_name,'-', classes.cls_number ) like ?", ["%{$keyword}%"]);
         })
         ->rawColumns(['action', 'hrt_is_active'])
+        ->make(true);
+    }
+
+    public function getListReRegistration(Request $request)
+    {
+        $student_re_registrations = Students::getListStudentReRegistration($request->query());
+        return Datatables::of($student_re_registrations)
+        ->editColumn("usr_is_active", function ($row) {
+            $usr_is_active = $row->usr_is_active;
+            if ($usr_is_active == "0") {
+                return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
+            } elseif ($usr_is_active == "1") {
+                return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
+            } else {
+                return "Tidak punya status aktif";
+            }
+        })
+        ->addColumn('action', function ($row) {
+
+            // $status = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $postion_type->pst_id . '" data-original-title="Status" class="btn btn-info status"><i class="mdi mdi-information-outline"></i></a>';
+
+            $move = '<a href="javascript:void(0)" data-toggle="modal"  data-id="' . $row->stu_id . '" onclick="editSubject(event.target)"  type="button" data-toggle="tooltip" data-placement="top" title="DI KELUARKAN" class="btn btn-outline-danger waves-effect waves-light m-1"> <i class="zmdi zmdi-run fa-lg"></i></a>';
+
+            
+            $confirm = '<a href="' . url('student/edit', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA DAFTAR ULANG" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
+            return $move . '&nbsp' . $confirm;
+        })->rawColumns(['action', 'usr_is_active'])
+        ->make(true);   
+    }
+
+    public function getListStudentMove(Request $request)
+    {
+        $student_move = Students::getListStudentMove($request->query());
+        return Datatables::of($student_move)
+        ->editColumn("usr_is_active", function ($row) {
+            $usr_is_active = $row->usr_is_active;
+            if ($usr_is_active == "0") {
+                return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
+            } elseif ($usr_is_active == "1") {
+                return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
+            } else {
+                return "Tidak punya status aktif";
+            }
+        })->rawColumns(['usr_is_active'])
+        ->make(true);
+    }
+
+    public function getListStudentDropOut(Request $request)
+    {
+        $student_drop_out = Students::getListStudentDropOut($request->query());
+        return Datatables::of($student_drop_out)
+        ->editColumn("usr_is_active", function ($row) {
+            $usr_is_active = $row->usr_is_active;
+            if ($usr_is_active == "0") {
+                return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
+            } elseif ($usr_is_active == "1") {
+                return '<span class="badge badge-success shadow-success m-1">Aktif</span>';
+            } else {
+                return "Tidak punya status aktif";
+            }
+        })->rawColumns(['usr_is_active'])
         ->make(true);
     }
 }
