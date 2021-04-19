@@ -249,9 +249,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
     Route::get('/homeroom-teacher/create', 'HomeroomTeacherController@create');
     Route::post('/homeroom-teacher/create', 'HomeroomTeacherController@store');
-    Route::get('/homeroom-teacher/edit/{homeroom-teacherID}', 'HomeroomTeacherController@edit');
-    Route::post('/homeroom-teacher/edit/{homeroom-teacherID}', 'HomeroomTeacherController@update');
-    Route::get('/homeroom-teacher/edit-status/{homeroom-teacherID}', 'HomeroomTeacherController@editStatus');
+    Route::get('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@edit');
+    Route::post('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@update');
+    Route::get('/homeroom-teacher/edit-status/{homeroomTeacherID}', 'HomeroomTeacherController@editStatus');
 
 
     //Landing page
