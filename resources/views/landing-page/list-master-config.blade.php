@@ -67,6 +67,7 @@
                 <th>NO</th>
                 <th>NAMA</th>
                 <th>DESKRIPSI</th>
+                <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>
