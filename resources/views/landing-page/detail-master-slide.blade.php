@@ -31,16 +31,12 @@
     </ol>
   </div>
 </div>
-
-
-
-
   <div class="card">
     <div class="card-body">
       <h5 class="card-title text-primary">Data Berkas Informasi</h5>
       <hr>  
       <div class="row" style="margin-top: 20px;">
-      @foreach($master_slide as $master_slide)
+      
       <dt class="col-sm-2">Nama</dt>
       <dd class="col-sm-10">
           <p>{{ $master_slide->mss_name }}</p>
@@ -48,13 +44,13 @@
       <dt class="col-sm-2">Foto</dt>
       <dd class="col-sm-10">
            <div class="user-fullimage">
-            <img src="{{ asset($master_slide->mss_file)}}" alt="user avatar"  class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">            
+            <img src="{{ asset($master_slide->mss_file)}}" alt="user avatar"  class="card-img-top" >            
           </div>
       </dd>
       <dd class="col-sm-12">  
           <a href="{{url('/master-slide/edit/'.$master_slide->mss_id)}}" class="btn btn-success" style="float: right;"> <i class="fa fa-edit fa-lg"></i>edit</a> 
       </dd>
-      @endforeach
+      
        </div>
      
    

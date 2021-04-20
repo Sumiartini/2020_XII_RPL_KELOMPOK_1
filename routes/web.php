@@ -61,7 +61,9 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
     Route::get('/teacher-registration', 'TeacherController@formRegistrasion');
     Route::post('/teacher-registration', 'TeacherController@storeFormRegistrasion');
 
-
+    Route::get('/re-registration', 'StudentController@reRegistration');
+    Route::post('/re-registration', 'StudentController@reRegistrationStore');
+    
 });
 
 Route::get('/download/download-file', 'User\UserController@downloadFile')->middleware('auth','verified');
@@ -142,7 +144,6 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     });
     Route::get('/school/payment', 'DatatableController@getSchoolPayment');
 
-
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
     Route::get('/student/{stu_id}', 'StudentController@show_student');
@@ -158,6 +159,28 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/school-payment/{std_id}', 'StudentController@student_payment_detail');
     Route::get('/school-payment/detail/{std_id}', 'StudentController@school_payment_detail');
 
+    Route::get('/student-move', 'DatatableController@getListStudentMove');
+    Route::get('/student-moves', function(){
+        return view('students.list-student-move');
+    });
+    Route::get('/student/move/{studentID}', 'StudentController@studentMove');
+    Route::post('/student/move/{studentID}', 'StudentController@updateStudentMove');
+    
+    Route::get('/student-dropout', 'DatatableController@getListStudentDropOut');
+    Route::get('/student-drop-outs', function(){
+        return view('students.list-student-drop-out');
+    });
+    Route::get('/student/drop-out/{studentID}', 'StudentController@studentDropOut');
+    Route::post('/student/drop-out/{studentID}', 'StudentController@updateStudentDropOut');
+        
+
+
+    Route::get('/student-re-registrations', function(){
+        return view('students.list-re-registration');
+    });
+    Route::get('/student/re/registration', 'DatatableController@getListReRegistration');
+    Route::get('/student/re-registration/{studentID}', 'StudentController@getShowReRegistration');
+    
     Route::get('/page/list', 'PageController@index');
     Route::get('/page/detail', 'PageController@show');
     Route::get('/page/add', 'PageController@create'); 
@@ -222,8 +245,13 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/class/create', 'ClassController@store');
     Route::get('/class/edit/{classID}', 'ClassController@edit');
     Route::post('/class/edit/{classID}', 'ClassController@update');
-    Route::get('/class/edit-status/{classID}', 'ClassController@editStatus');
+    Route::get('/class/edit-status/{classID}', 'ClassController@editStatus');    
+    Route::get('/class/{classID}', 'ClassController@show_class');
 
+    //studentClass
+    Route::get('/class/{classID}/add-student', 'ClassController@add_student');
+    Route::post('/class/create-student-class', 'ClassController@store_add_student');
+    
 
     //terima, tolak, restore,  dan terima pembayaran siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');
@@ -260,9 +288,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
     Route::get('/homeroom-teacher/create', 'HomeroomTeacherController@create');
     Route::post('/homeroom-teacher/create', 'HomeroomTeacherController@store');
-    Route::get('/homeroom-teacher/edit/{homeroom-teacherID}', 'HomeroomTeacherController@edit');
-    Route::post('/homeroom-teacher/edit/{homeroom-teacherID}', 'HomeroomTeacherController@update');
-    Route::get('/homeroom-teacher/edit-status/{homeroom-teacherID}', 'HomeroomTeacherController@editStatus');
+    Route::get('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@edit');
+    Route::post('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@update');
+    Route::get('/homeroom-teacher/edit-status/{homeroomTeacherID}', 'HomeroomTeacherController@editStatus');
 
 
     //Landing page
@@ -294,44 +322,3 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
     Route::get('/download-file-teacher/images/teacher_files/{locationFile}','User\UserController@downloadFileTeacher');
     Route::get('/download-file-staff/images/staff_files/{locationFile}','User\UserController@downloadFileStaff');
-
-    Route::get('asdf', function(Request $request){
-        $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->get();
-        
-        foreach ($students as $student) {
-
-            if ($student->str_status == 1) {
-                echo "$student->str_status";
-                // dd($student->str_status == 1);
-                $student_registrations = StudentRegistration::where('str_status', $student->str_status)->get();
-                foreach ($student_registrations as $student_registration){
-                    $student_registration->str_status = 5;
-                    $student_registration->str_updated_by = Auth()->user()->usr_id;
-                    // $student_registration->update();
-                }
-                return response()->json(['code' => 200, 'message' => 'Semua status siswa menjadi sedang daftar ulang'], 200);
-            
-            }else{
-                dd("ahmad");
-            }
-            
-        }
-    });
-
-     Route::get('test', function(Request $request){
-        $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->where('str_status', 1)->get();
-       $check_status_student = StudentRegistration::where('str_status',1)->count();
-       if ($check_status_student == 0) {
-           return response()->json(['code' => 400, 'message' => 'Tidak ada siswa yang harus daftar ulang'], 400);
-       }else{
-            foreach ($students as $student) {
-                $student_registration = StudentRegistration::where('str_status', $student->str_status)->first();
-                $student_registration->str_status = 5;
-                $student_registration->str_updated_by = Auth()->user()->usr_id;
-                $student_registration->update();
-            }
-         return response()->json(['code' => 200, 'message' => 'Semua status siswa menjadi sedang daftar ulang'], 200);
-       }
-        
-    });
-

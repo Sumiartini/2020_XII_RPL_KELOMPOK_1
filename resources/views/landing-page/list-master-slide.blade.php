@@ -39,6 +39,17 @@
 
 <div class="row">
   <div class="col-lg-12">
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <div class="alert-icon contrast-alert">
+       <i class="icon-check"></i>
+     </div>
+     <div class="alert-message">
+      <span><strong>Berhasil!</strong> {{$message}}.</span>
+    </div>
+  </div>
+  @endif
     <div class="card">
       <div class="card-header"><i class="fa fa-table"></i> Data Berkas Informasi Halaman Arahan</div>
       <div class="card-body">
@@ -56,6 +67,7 @@
                 <th>NO</th>
                 <th>NAMA</th>
                 <th>FOTO</th>
+                <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>

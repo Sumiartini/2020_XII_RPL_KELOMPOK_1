@@ -34,6 +34,17 @@
 
 <div class="row">
     <div class="col-lg-12">
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <div class="alert-icon contrast-alert">
+               <i class="icon-check"></i>
+             </div>
+             <div class="alert-message">
+              <span><strong>Berhasil!</strong> {{$message}}.</span>
+            </div>
+          </div>
+          @endif
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Edit Konfigurasi Halaman Arahan</div>
@@ -77,11 +88,19 @@
                         </div>
                     </div>
 
+
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Url Video Sekolah</label>                    
+                        <label for="input-2" class="col-sm-3 col-form-label"></label>                    
                         <div class="col-sm-8">
-                            <input type="url" name="msv_file" class="form-control form-control-rounded @error('msv_file') is-invalid @enderror" value="{{$master_config->msv_file}}" placeholder="Masukan Link Vide Sekolah">
-                            @error('msv_file')
+                            <iframe class="rounded" src="{{ $master_config->msv_file }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 760px; height: 400px;"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="input-2" class="col-sm-3 col-form-label">Url Video</label>                    
+                        <div class="col-sm-8">
+                            <input type="url" name="msv_url_video" class="form-control form-control-rounded @error('msv_url_video') is-invalid @enderror" value="{{$master_config->msv_url_video}}" placeholder="Masukan Link Vide Sekolah">
+                            @error('msv_url_video')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

@@ -836,5 +836,103 @@ class StudentController extends Controller
         }
     }
 
+    public function reRegistration()
+    {
+        $user = User::findOrFail(Auth::user()->usr_id);
+        $student = Students::join('users', 'students.stu_user_id','=','users.usr_id')->firstOrFail();
+        return view('students.re-registration',compact('student'));
+    }
+    public function reRegistrationStore(Request $request)
+    {
+       dd($request);
+    }
+    public function getShowReRegistration($studentID)
+    {
+        $student_re_registration = Students::find($studentID);
+        return response()->json($student_re_registration);
+    }
 
+    public function studentMove($studentID)
+    {
+        $student = Students::where('stu_id', $studentID)->firstOrFail();
+        return view('students.student-move', ['student' => $student]);
+    }
+    public function updateStudentMove(Request $request, $studentID)
+    {
+        $messages = [
+            'required'  => 'Kolom wajib diisi',
+            'size'      => 'Ukuran file Max 2 MB',
+            'uploaded'  => 'Gagal di unggah, ukuran file max 2 MB'
+        ];
+
+        $request->validate([
+            'str_upload_file'   => 'required | max:2048',
+        ], $messages);
+
+        $student_registration = StudentRegistration::where('str_student_id', $studentID)->firstOrFail();
+        $student = Students::where('stu_id', $studentID)->first();
+        $user = User::where('usr_id', $student->stu_user_id)->firstOrFail();
+        // dd($student_registration, $student, $user);
+        if (Hash::check($request->usr_password, Auth()->user()->usr_password)) {
+            if ($request->hasFile('str_upload_file')) {
+                $files = $request->file('str_upload_file');
+                $path = public_path('images/student_files/student_move');
+                $files_name = 'images' . '/' . 'student_files' .'/'. 'student_move' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+                $files->move($path, $files_name);
+                $student_registration->str_upload_file = $files_name;
+            }
+            $student_registration->str_reason = $request->str_reason;
+            $student_registration->str_status = 4;
+            $student_registration->str_updated_by = Auth()->user()->usr_id;
+            $student_registration->update();
+            
+            $user->usr_is_active = false;
+            $user->usr_updated_by = Auth()->user()->usr_id;
+            $user->update();
+            return redirect('students')->with('success', 'Data siswa pindah berhasil di simpan');   
+        }
+        return back()->with('error', 'Kata sandi verifikasi salah');    
+    }
+
+    public function studentDropOut($studentID)
+    {
+        $student = Students::where('stu_id', $studentID)->firstOrFail();
+        return view('students.student-drop-out', ['student' => $student]);
+    }
+    public function updateStudentDropOut(Request $request, $studentID)
+    {
+        $messages = [
+            'required'  => 'Kolom wajib diisi',
+            'size'      => 'Ukuran file Max 2 MB',
+            'uploaded'  => 'Gagal di unggah, ukuran file max 2 MB'
+        ];
+
+        $request->validate([
+            'str_upload_file'   => 'required | max:2048',
+        ], $messages);
+
+        $student_registration = StudentRegistration::where('str_student_id', $studentID)->firstOrFail();
+        $student = Students::where('stu_id', $studentID)->first();
+        $user = User::where('usr_id', $student->stu_user_id)->firstOrFail();
+        // dd($student_registration, $student, $user);
+        if (Hash::check($request->usr_password, Auth()->user()->usr_password)) {
+            if ($request->hasFile('str_upload_file')) {
+                $files = $request->file('str_upload_file');
+                $path = public_path('images/student_files/student_drop_out');
+                $files_name = 'images' . '/' . 'student_files' .'/'. 'student_drop_out' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+                $files->move($path, $files_name);
+                $student_registration->str_upload_file = $files_name;
+            }
+            $student_registration->str_reason = $request->str_reason;
+            $student_registration->str_status = 3;
+            $student_registration->str_updated_by = Auth()->user()->usr_id;
+            $student_registration->update();
+            
+            $user->usr_is_active = false;
+            $user->usr_updated_by = Auth()->user()->usr_id;
+            $user->update();
+            return redirect('students')->with('success', 'Data siswa dikeluarkan berhasil di simpan');   
+        }
+        return back()->with('error', 'Kata sandi verifikasi salah');    
+    }
 }

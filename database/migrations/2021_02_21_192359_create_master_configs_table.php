@@ -24,6 +24,8 @@ class CreateMasterConfigsTable extends Migration
             $table->string('msc_logo')->nullable();
             $table->string('msc_school_phone_number')->nullable();
 
+            $table->tinyInteger('msc_is_active')->nullable();
+
             $table->bigInteger('msc_created_by')->unsigned()->nullable();
             $table->bigInteger('msc_updated_by')->unsigned()->nullable();
             $table->bigInteger('msc_deleted_by')->unsigned()->nullable();

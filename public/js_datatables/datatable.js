@@ -1319,6 +1319,12 @@ function master_slide() {
                 orderable: false, 
                 searchable: true
             },
+            {
+                data: 'mss_is_active', 
+                name:'mss_is_active', 
+                orderable: false, 
+                searchable: false
+            },
 
             {
                 data: 'action', 
@@ -1373,6 +1379,12 @@ function master_config() {
                 name:'msc_description', 
                 orderable: false, 
                 searchable: true
+            },
+            {
+                data: 'msc_is_active', 
+                name:'msc_is_active', 
+                orderable: false, 
+                searchable: false
             },
 
             {
@@ -1460,3 +1472,226 @@ $('#example').DataTable({
     });
 }
 
+function studentReRegistration() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'student/re/registration',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'stu_candidate_name', 
+                name:'stu_candidate_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stu_nis', 
+                name:'stu_nis', 
+                orderable: false, 
+                searchable: true
+            },
+            {
+                data: 'usr_is_active', 
+                name:'usr_is_active', 
+                orderable: false, 
+                searchable: false
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Siswa daftar ulang tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada Siswa daftar ulang",
+            "infoFiltered": "(pencarian dari _MAX_ Siswa daftar ulang)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        },
+    });
+
+    $('body').on('click', '.update_to_re_registration', function() {
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            swal({
+                title: "Siswa",
+                text: 'Apakah yakin ingin mengubah status siswa ke daftar ulang?',
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                closeOnClickOutside: false,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'update/re-registration',
+                        data: {
+                            _token: _token
+                        },
+                        success: function(data) {
+                            if (data.status != false) {
+                                swal(data.message, {
+                                    button: false,
+                                    icon: "success",
+                                    timer: 1000
+                                });
+                            } else {
+                                swal(data.message, {
+                                    button: false,
+                                    icon: "error",
+                                    timer: 1000
+                                });
+                            }
+                            $('#example').DataTable().ajax.reload()
+                        },
+                        error: function(error) {
+                            console.log(error)
+                            swal('Tidak ada siswa yang harus daftar ulang', {
+                                button: false,
+                                icon: "error",
+                                timer: 1000
+                            });
+                        }
+                    });
+                }
+            });
+        });
+}
+
+function studentMove() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'student-move',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'stu_candidate_name', 
+                name:'stu_candidate_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stu_nis', 
+                name:'stu_nis', 
+                orderable: false, 
+                searchable: true
+            },
+            {
+                data: 'str_reason', 
+                name:'student_registrations.str_reason', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'usr_is_active', 
+                name:'usr_is_active', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Siswa pindah tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada Siswa pindah",
+            "infoFiltered": "(pencarian dari _MAX_ Siswa pindah)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        },
+    });
+}
+
+function studentDropOut() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'student-dropout',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'stu_candidate_name', 
+                name:'stu_candidate_name', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'stu_nis', 
+                name:'stu_nis', 
+                orderable: false, 
+                searchable: true
+            },
+            {
+                data: 'str_reason', 
+                name:'student_registrations.str_reason', 
+                orderable: true, 
+                searchable: true
+            },
+            {
+                data: 'usr_is_active', 
+                name:'usr_is_active', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Siswa dikeluarkan tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada Siswa dikeluarkan",
+            "infoFiltered": "(pencarian dari _MAX_ Siswa dikeluarkan)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        },
+    });
+}

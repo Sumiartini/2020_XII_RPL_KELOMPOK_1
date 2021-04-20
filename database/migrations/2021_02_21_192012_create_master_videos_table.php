@@ -16,7 +16,9 @@ class CreateMasterVideosTable extends Migration
         Schema::create('master_videos', function (Blueprint $table) {
             $table->bigIncrements('msv_id');
             $table->string('msv_name')->nullable();
-            $table->string('msv_file')->nullable();
+            $table->string('msv_url_video')->nullable();
+
+            $table->tinyInteger('msv_is_active')->nullable();
 
             $table->bigInteger('msv_created_by')->unsigned()->nullable();
             $table->bigInteger('msv_updated_by')->unsigned()->nullable();

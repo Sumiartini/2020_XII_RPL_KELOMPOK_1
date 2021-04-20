@@ -55,7 +55,8 @@
           <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
             <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i></a>
 
-          <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="UBAH KE DAFTAR ULANG" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a>
+          <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="UBAH KE DAFTAR ULANG" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a>
+          <!-- <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="GENERATE NIS" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a> -->
           </div>
           @else
           @endif
@@ -106,7 +107,7 @@
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/jszip.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/pdfmake.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/bootstrap-datatable/js/vfs_fonts.js') }}"></script>
+
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js') }}"></script>
