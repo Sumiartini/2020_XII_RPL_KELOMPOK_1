@@ -36,7 +36,7 @@
   </li>
 
      <li>
-      <a href="{{URL::to('/school/payment/pay')}}" class="waves-effect">
+      <a href="{{URL::to('/school-payment/pay')}}" class="waves-effect">
         <i></i> <span>Bayar PPDB</span>
       </a>
     </li>

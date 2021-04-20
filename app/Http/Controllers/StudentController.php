@@ -20,6 +20,8 @@ use App\Provinces;
 use App\Districts;
 use App\StudentRegistration;
 use App\StudentPayments;
+use Illuminate\Support\Facades\DB;
+
 
 class StudentController extends Controller
 {
@@ -682,6 +684,7 @@ class StudentController extends Controller
 
     public function storeAcceptPayment(Request $request,$studentID)
     {
+
         $payment = StudentPayments::where('stp_student_id', $studentID)->first();
         $payment->stp_reason = $request->stp_reason;
         $payment->stp_payment_status = '2';        
@@ -716,12 +719,104 @@ class StudentController extends Controller
         return redirect('/student/payment/'.$studentID)->with('success', 'Pembayaran berhasil ditolak');
     }
 
-    public function school_payment(Request $request)
-    {
-
-        return view('school-payments.school-payment');   
+    public function schoolPayment(Request $request)
+    {        
+        $school_year = Years::join('students', 'students.stu_school_year_id', 'school_years.scy_id')
+                              ->join('student_payments', 'stp_student_id', 'students.stu_id')
+                              ->where('students.stu_user_id', Auth::user()->usr_id)                              
+                              ->where('stp_type_payment', 2);
+        $years = Years::orderBy('scy_name', 'ASC')->get();
+        //dd($school_year);
+        return view('school-payments.school-payment' , ['school_year' => $school_year, 'years' => $years]);   
     }
 
+    public function storeSchoolPayment(Request $request)
+    {
+        
+        $student = Students::join('users','students.stu_user_id','=','users.usr_id')->where('students.stu_user_id',Auth()->user()->usr_id)->first();
+        $payment = new StudentPayments;
+        $payment->stp_student_id = $student->stu_id;
+        $payment->stp_school_year_id = $request->stp_school_year_id;
+        $payment->stp_payment_status = 1;
+        $payment->stp_payment_method = $request->stp_payment_method;
+        $payment->stp_reason = null;
+        $payment->stp_date_verification = null;
+        $payment->stp_date = now();
+        $payment->stp_nominal = str_replace(".", "", $request->stp_nominal);
+        $payment->stp_type_payment = $request->stp_type_payment;
+        if ($request->hasFile('stp_picture')) {
+            $files = $request->file('stp_picture');
+            $path = public_path('images/student_files/payments');
+            $files_name = 'images' . '/' . 'student_files' . '/' . 'payments' .  '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $payment->stp_picture = $files_name;
+        }
+        //dd($payment);
+        if ($payment->save()) {
+            return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalui email atau nomor telepon anda.');            
+        }        
+
+    }
+
+    public function createSchoolPayment()
+    {
+         $school_year = Years::join('students', 'students.stu_school_year_id', 'school_years.scy_id')
+                              ->join('student_payments', 'stp_student_id', 'students.stu_id')  
+                              ->join('school_years', 'student_payments.stp_school_year_id', '=', 'school_years.scy_id')               
+                              ->where('stp_type_payment', 2);
+        $student = Students::orderBy('stu_candidate_name','ASC')->get();
+        $years = Years::orderBy('scy_name', 'ASC')->get();
+        //dd($school_year);
+        return view('school-payments.add-school-payment' , ['school_year' => $school_year, 'student' => $student, 'years' => $years]);  
+    }
+
+    public function storeCreate(Request $request)
+    {
+      
+        $payment = new StudentPayments;
+        $payment->stp_student_id = $request->stp_student_id;
+        $payment->stp_school_year_id = $request->stp_school_year_id;
+        $payment->stp_payment_status = 1;
+        $payment->stp_payment_method = $request->stp_payment_method;
+        $payment->stp_reason = null;
+        $payment->stp_date_verification = null;
+        $payment->stp_date = now();
+        $payment->stp_nominal = str_replace(".", "", $request->stp_nominal);
+        $payment->stp_type_payment = $request->stp_type_payment;
+        if ($request->hasFile('stp_picture')) {
+            $files = $request->file('stp_picture');
+            $path = public_path('images/student_files/payments');
+            $files_name = 'images' . '/' . 'student_files' . '/' . 'payments' .  '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $payment->stp_picture = $files_name;
+        }
+        //dd($payment);
+        if ($payment->save()) {
+            return redirect('/school-payments')->with('success', 'Data Berhasil Ditambahkan');
+        }        
+
+    }
+
+     public function student_payment_detail($studentID)
+    {        
+        $no = 1;
+        $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
+        ->join('users', 'users.usr_id', '=', 'students.stu_user_id')
+        ->where('student_payments.stp_student_id', $studentID)
+        ->get();
+        return view('school-payments.detail-student-payment', ['payment' => $payment, 'no' => $no]);
+    }
+
+    public function school_payment_detail($studentPaymentID)
+    {
+        $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
+        ->join('users', 'users.usr_id', '=', 'students.stu_user_id')
+        ->where('student_payments.stp_id', $studentPaymentID)
+       ->get();
+        return view('school-payments.detail-school-payment', ['payment' => $payment]);    
+    }
+
+    
     public function updateStatusToReRegistration(Request $request)
     {
          if ($request->ajax()) {

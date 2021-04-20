@@ -113,11 +113,24 @@ class DatatableController extends Controller
         ->make(true);
     }
 
+    public function getSchoolPayment(Request $request)
+    {
+        $school_payment = Students::getSchoolPayment($request->query());
+        return Datatables::of($school_payment)
+        ->addColumn('action', function ($row) {
+            $detail = '<a href="' . url('school-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
+            
+                return $detail;
+          
+        })->rawColumns(['action', 'stu_payment_status'])
+        ->make(true);
+    }
+
     public function getStaffs(Request $request)
     {
         $staffs = Staffs::getStaffs($request->query());
         return Datatables::of($staffs)
-        ->editColumn("usr_is_active", function ($row) {
+    ->editColumn("usr_is_active", function ($row) {
             $usr_is_active = $row->usr_is_active;
             if ($usr_is_active == "0") {
                 return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
