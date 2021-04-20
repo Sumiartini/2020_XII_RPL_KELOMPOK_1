@@ -743,13 +743,38 @@ class StudentController extends Controller
 
     public function reRegistration()
     {
-        $user = User::findOrFail(Auth::user()->usr_id);
-        $student = Students::join('users', 'students.stu_user_id','=','users.usr_id')->firstOrFail();
-        return view('students.re-registration',compact('student'));
+        $student = Students::where('stu_user_id', Auth()->user()->usr_id)
+        ->join('users','students.stu_user_id','=','users.usr_id')
+        ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+        ->join('school_years', 'student_registrations.str_school_year_id','=','school_years.scy_id')
+        ->firstOrFail();
+        if ($student->str_status != '5') {
+            return back();
+        }
+        $student_payment = StudentPayments::where('stp_student_id',$student->stu_id)->where('stp_payment_status', 2)->where('stp_type_payment', 2)->sum('stp_nominal');
+        $ppdb_payment_price = $student->scy_payment_price;
+        $remaining_payment = $ppdb_payment_price - $student_payment;
+        return view('students.re-registration',compact('student', 'student_payment', 'ppdb_payment_price', 'remaining_payment'));
     }
     public function reRegistrationStore(Request $request)
     {
-       dd($request);
+        if ($request->ajax()) {
+            if(Hash::check($request->usr_password, Auth()->user()->usr_password)) {
+            $student_registration = StudentRegistration::where('str_student_id', $request->stu_id)->first();
+            $student_registration->str_status = 6;
+            $student_registration->str_reason = "Selamat anda diterima daftar ulang";
+            $student_registration->str_updated_by = Auth()->user()->usr_id;
+            $student_registration->update();
+            return response()->json([
+                    'success' => true,
+                    'message' => 'Selamat anda berhasil daftar ulang'
+                ], 200);
+            }
+            return response()->json([
+                'success' => false,
+                'message' => 'Konfirmasi kata sandi salah'
+            ], 401);
+        }
     }
     public function getShowReRegistration($studentID)
     {
