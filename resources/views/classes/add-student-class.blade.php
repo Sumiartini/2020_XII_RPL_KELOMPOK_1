@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Edit Wali Kelas
+- Tambah Kelas Siswa
 @endpush
 
 @push('styles')
@@ -23,18 +23,18 @@
 @section('content')
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Edit Wali Kelas</h4>
+        <h4 class="page-title">Tambah Siswa</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">{{ env('APP_NAME') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('homeroom-teachers') }}">Wali Kelas</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Wali Kelas</li>
+            <li class="breadcrumb-item"><a href="{{ url('classes') }}">Kelas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah Kelas</li>
         </ol>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12">
-     @if ($message = Session::get('success'))
+        @if ($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert">×</button>
           <div class="alert-icon contrast-alert">
@@ -58,20 +58,19 @@
         @endif
         <div class="card">
             <div class="card-body">
-                <div class="card-title">Edit Wali Kelas</div>
+                <div class="card-title">Tambah Kelas</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('major/create')}}" id="form-validate">
+                <form method="POST" autocomplete="off" action="{{ url('class/create-student-class')}}" id="form-validate">
                     @csrf
-                        <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Nama Wali Kelas <span style="color:red;">*</span></label>
+
+                     <div class="form-group row">
+                        <label for="input-3" class="col-sm-3 col-form-label">Kelas</label>
                         <div class="col-sm-9">
-                        <select name="usr_name" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror">
-                                <option disabled="" selected> Pilih </option>
-                                @foreach($teachers as $teacher)
-                                <option value="{{$teacher->tcr_id}}">{{$teacher->usr_name}}</option>
-                                @endforeach
+                                <select name="cls_id" class="form-control form-control-rounded @error('grade_level') is-invalid @enderror">
+                                @foreach($class as $class)
+                                <option selected value="{{ $class->cls_id }}">{{ $class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }}</option>                                
                             </select>
-                        @error('usr_name')
+                            @error('grade_level')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -80,15 +79,15 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Nama Kelas</label>
+                        <label for="input-3" class="col-sm-3 col-form-label"> Siswa </label>
                         <div class="col-sm-9">
-                                <select name="cls_name" class="form-control form-control-rounded @error('cls_name') is-invalid @enderror">
-                                <option disabled="" selected> Pilih </option>
-                                @foreach($classes as $class)
-                                <option value="{{$class->cls_id}}">{{$class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }}</option>
+                                <select name="stu_id" class="form-control form-control-rounded @error('grade_level') is-invalid @enderror">
+                                <option selected="" disabled=""> Pilih </option>
+                                @foreach($student as $student)
+                                <option value="{{ $student->stu_id }}">{{ $student->stu_candidate_name }}</option>
                                 @endforeach
                             </select>
-                            @error('cls_name')
+                            @error('grade_level')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -99,7 +98,8 @@
                     <div class="form-group row">
                         <label for="input-1" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <a href="{{url('homeroom-teachers')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
+                            <a href="{{url('class/'.$class->cls_id)}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
+                            @endforeach
                             <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                             <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Simpan</button>
                         </div>
@@ -137,21 +137,26 @@
 
     $("#form-validate").validate({
         rules: {
-            usr_name: {
+            cls_number: {
               required: true,
             },
-            cls_name: {
-                required: true,
+            cls_major:{
+                required: true
             },
-            
+            cls_grade_level:{
+                required: true
+            }
         },
         messages: {
-            usr_name: {
-              required: "Nama Wali Kelas harus di isi"
+            cls_number: {
+              required: "Nomor Kelas harus di isi"
+            },     
+            cls_major: {
+                required: "Nama jurusan harus di pilih"
             },
-            cls_name: {
-                required: "Nama Kelas harus di isi"
-            }     
+            cls_grade_level:{
+                required: "Tingkatan kelas harus di pilih"
+            },
         }
     });
 });

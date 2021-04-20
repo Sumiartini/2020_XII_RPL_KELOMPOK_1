@@ -142,7 +142,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/school-payments', function () {
         return view('school-payments.list-school-payment');
     });
-    Route::get('/school/payment', 'DatatableController@getStudentPayment');
+    Route::get('/school/payment', 'DatatableController@getSchoolPayment');
 
     Route::get('/student/create', 'StudentController@create');
     Route::post('/student/create', 'StudentController@store');
@@ -151,8 +151,13 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/student/edit/{std_id}', 'StudentController@update');
     Route::post('/student/delete', 'StudentController@destroy');    
     Route::get('/student/payment/{std_id}', 'StudentController@payment_detail');
-    Route::get('school/payment/pay', 'StudentController@school_payment');
-    Route::post('school/payment/pay', );
+    //pembayaran ppdb
+    Route::get('/school-payment/pay', 'StudentController@schoolPayment');
+    Route::post('/school-payment/pay', 'StudentController@storeSchoolPayment');
+    Route::get('/school-payment/create', 'StudentController@createSchoolPayment');
+    Route::post('/school-payment/create', 'StudentController@storeCreate');
+    Route::get('/school-payment/{std_id}', 'StudentController@student_payment_detail');
+    Route::get('/school-payment/detail/{std_id}', 'StudentController@school_payment_detail');
 
     Route::get('/student-move', 'DatatableController@getListStudentMove');
     Route::get('/student-moves', function(){
@@ -178,7 +183,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     
     Route::get('/page/list', 'PageController@index');
     Route::get('/page/detail', 'PageController@show');
-    Route::get('/page/add', 'PageController@create');
+    Route::get('/page/add', 'PageController@create'); 
     Route::get('/page/edit', 'PageController@edit');
 
     Route::get('/account/profile/edit-password', 'Auth\AccountController@editPassword');
@@ -240,8 +245,13 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/class/create', 'ClassController@store');
     Route::get('/class/edit/{classID}', 'ClassController@edit');
     Route::post('/class/edit/{classID}', 'ClassController@update');
-    Route::get('/class/edit-status/{classID}', 'ClassController@editStatus');
+    Route::get('/class/edit-status/{classID}', 'ClassController@editStatus');    
+    Route::get('/class/{classID}', 'ClassController@show_class');
 
+    //studentClass
+    Route::get('/class/{classID}/add-student', 'ClassController@add_student');
+    Route::post('/class/create-student-class', 'ClassController@store_add_student');
+    
 
     //terima, tolak, restore,  dan terima pembayaran siswa
     Route::get('/student/receipted/{stu_id}', 'StudentController@receipted');
@@ -278,9 +288,9 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
 
     Route::get('/homeroom-teacher/create', 'HomeroomTeacherController@create');
     Route::post('/homeroom-teacher/create', 'HomeroomTeacherController@store');
-    Route::get('/homeroom-teacher/edit/{homeroom-teacherID}', 'HomeroomTeacherController@edit');
-    Route::post('/homeroom-teacher/edit/{homeroom-teacherID}', 'HomeroomTeacherController@update');
-    Route::get('/homeroom-teacher/edit-status/{homeroom-teacherID}', 'HomeroomTeacherController@editStatus');
+    Route::get('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@edit');
+    Route::post('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@update');
+    Route::get('/homeroom-teacher/edit-status/{homeroomTeacherID}', 'HomeroomTeacherController@editStatus');
 
 
     //Landing page

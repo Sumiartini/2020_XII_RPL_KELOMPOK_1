@@ -119,11 +119,11 @@ class LandingPageController extends Controller
             $slide->mss_is_active = 0;
             $slide->mss_updated_by = Auth()->user()->usr_id;
             $slide->update();
-            return redirect()->back()->with('success', 'Mata pelajaran berhasil di non aktifkan');
+            return redirect()->back()->with('success', 'berhasil di non aktifkan');
         }else{
             $slide->mss_is_active = 1;
             $slide->update();
-            return redirect()->back()->with('success', 'Mata pelajaran berhasil di aktifkan');
+            return redirect()->back()->with('success', 'berhasil di aktifkan');
         }
     }
 
@@ -167,7 +167,8 @@ class LandingPageController extends Controller
 
         $master_videos = new MasterVideos;
         $master_videos->msv_name = $request->msv_name;
-        $master_videos->msv_file = $request->msv_file;
+        $master_videos->msv_url_video = $request->msv_url_video;
+        $master_videos->msv_is_active = 1;
         $master_videos->msv_created_by = Auth()->user()->usr_id;
         $master_videos->save();
 
@@ -185,12 +186,13 @@ class LandingPageController extends Controller
             $master_configs->msc_logo = $files_name;
         }
         $master_configs->msc_school_phone_number = $request->msc_school_phone_number;
+        $master_configs->msc_is_active   = 1;
         $master_configs->msc_created_by = Auth()->user()->usr_id;
         $master_configs->save();
 
 
 
-        return redirect('/master-configs')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/master-configs')->with('success', ' berhasil ditambahkan');
     }
 
     public function editConfig($masterConfigID){
@@ -212,7 +214,7 @@ class LandingPageController extends Controller
         $master_config = MasterConfigs::where('msc_id', $masterConfigID)->first();
         $master_video = MasterVideos::where('msv_id', $master_config->msc_master_video_id)->first();
         $master_video->msv_name = $request->msv_name;
-        $master_video->msv_file = $request->msv_file;
+        $master_video->msv_url_video = $request->msv_url_video;
         $master_video->msv_updated_by = Auth()->user()->usr_id;
         $master_video->update();
         
@@ -231,7 +233,26 @@ class LandingPageController extends Controller
         $master_config->msc_updated_by   = Auth()->user()->usr_id;
         $master_config->update();
 
-        return redirect('master-config/'.$masterConfigID)->with('success', 'Berkas berhasil di ubah');
+        return redirect('master-config/'.$masterConfigID)->with('success', 'berhasil di ubah');
+    }
+
+    public function editStatusConfig($masterConfigID)
+    {
+        $config = MasterConfigs::where('msc_id', $masterConfigID)->first();
+        $video = MasterVideos::where('msv_id', $config->msc_master_video_id)->first();
+        
+        if ($config->msc_is_active == 1) {
+            $config->msc_is_active = 0;
+            $video->msv_is_active = 0;
+            $config->msc_updated_by = Auth()->user()->usr_id;
+            $config->update();
+            return redirect()->back()->with('success', 'berhasil di non aktifkan');
+        }else{
+            $config->msc_is_active = 1;
+            $video->msv_is_active = 1;
+            $config->update();
+            return redirect()->back()->with('success', 'berhasil di aktifkan');
+        }
     }
 
 

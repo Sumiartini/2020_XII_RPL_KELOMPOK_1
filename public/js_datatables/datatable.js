@@ -336,7 +336,125 @@ function studentPayment() {
     });
 }
 
+function schoolPayment() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'school/payment',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'stu_candidate_name', 
+                name:'students.stu_candidate_name', 
+                orderable: true, 
+                searchable: false
+            },
+            {
+                data: 'stp_picture', 
+                name:'stp_picture', 
+                render: function(data, type, full, meta){
+                    return "<img src=\"" + data + "\"height=\"50\"/>";
+                },
+                orderable: true, 
+                searchable: false
+            },
 
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar pembayaran siswa tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar pembayaran siswa",
+            "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
+
+function detailStudentPayment() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'school/payment',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'stu_candidate_name', 
+                name:'students.stu_candidate_name', 
+                orderable: true, 
+                searchable: false
+            },
+            {
+                data: 'stp_picture', 
+                name:'stp_picture', 
+                render: function(data, type, full, meta){
+                    return "<img src=\"" + data + "\"height=\"50\"/>";
+                },
+                orderable: true, 
+                searchable: false
+            },
+            {
+                data: 'stu_payment_status', 
+                name:'stu_payment_status', 
+                orderable: false, 
+                searchable: false
+            },
+
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar pembayaran siswa tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar pembayaran siswa",
+            "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
 
 function staff() {
     $('#example').DataTable({
@@ -1201,6 +1319,12 @@ function master_slide() {
                 orderable: false, 
                 searchable: true
             },
+            {
+                data: 'mss_is_active', 
+                name:'mss_is_active', 
+                orderable: false, 
+                searchable: false
+            },
 
             {
                 data: 'action', 
@@ -1255,6 +1379,12 @@ function master_config() {
                 name:'msc_description', 
                 orderable: false, 
                 searchable: true
+            },
+            {
+                data: 'msc_is_active', 
+                name:'msc_is_active', 
+                orderable: false, 
+                searchable: false
             },
 
             {

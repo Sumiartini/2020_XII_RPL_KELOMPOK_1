@@ -5,21 +5,24 @@
 @endpush
 
 @push('styles')
-
+<!--favicon-->
+  <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon">
+  <!-- jquery steps CSS-->
+  <link rel="stylesheet" type="text/css" href="{{asset('assets/plugins/jquery.steps/css/jquery.steps.css')}}">
   <!-- simplebar CSS-->
-<link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
-<!-- Bootstrap core CSS-->
-<link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-<!-- animate CSS-->
-<link href="{{ asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css">
-<!--Bootstrap Datepicker-->
-<link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
-<!-- Icons CSS-->
-<link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css">
-<!-- Sidebar CSS-->
-<link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
-<!-- Custom Style-->
-<link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet"/>
+  <!-- Bootstrap core CSS-->
+  <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="{{asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css"/>
+  <!-- Sidebar CSS-->
+  <link href="{{asset('assets/css/sidebar-menu.css')}}" rel="stylesheet"/>
+  <!-- Custom Style-->
+  <link href="{{asset('assets/css/app-style.css')}}" rel="stylesheet"/>
+  <!-- select2 -->
+<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 
 @endpush
 
@@ -35,8 +38,8 @@
      </div>
 </div>
 <div class="row">
-  <div class="col-lg-12">
-    @if ($message = Session::get('success'))
+    <div class="col-lg-12">
+      @if ($message = Session::get('success'))
     <div class="alert alert-success alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert">×</button>
       <div class="alert-icon contrast-alert">
@@ -47,46 +50,39 @@
     </div>
   </div>
   @endif
-  </div>
-    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">PEMBAYARAN IURAN PESERTA DIDIK BARU</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('/school-payment/pay')}}" id="form-validate" enctype="multipart/form-data" novalidate="novalidate">
+                <form method="POST" autocomplete="off" action="{{ url('/school-payment/create')}}" id="form-validate" enctype="multipart/form-data" novalidate="novalidate">
                     @csrf
-                    <p style=" text-align: center;">Silahkan Upload Bukti Pembayaran PPDB</p>
                   <div class="row">
-
-                    <dt class="col-sm-2">Sisa Pembayaran</dt>
-                    <dd class="col-sm-10">
-                        
-                    </dd>
-
-                    <dt class="col-sm-2">Transfer Ke Bank</dt>
-                    <dd class="col-sm-10">
-                        BRI
-                    </dd>
-
-                    <dt class="col-sm-2">Nomor Rekening</dt>
-                    <dd class="col-sm-10">
-                        <input readonly style="border: none; background-color: white; color: #636363;" type="text" value="2104 01 000183 30 7" id="text-copy"  />
-                        <button type="button" class="btn btn-outline-primary btn-sm btn-round waves-effect waves-light m-1" onclick="copy_text()">Copy</button>
-                    </dd>
-
-                    <dt class="col-sm-2">Atas Nama</dt>
-                    <dd class="col-sm-10">
-                       SMKS Mahaputra Cerdas Utama
-                   </dd><br><br>
 
                         <label for="input-2" class="col-sm-2 col-form-label">Nominal Bayar<span style="color:red"> *</span></label>
                         <div class="col-sm-9">
-                            <input type="text" id="stp_nominal" name="stp_nominal" value="{{ old('stp_nominal') }}" class="@error('stp_nominal') is-invalid @enderror form-control form-control-rounded" placeholder="Masukan Nominal Bayar">
+                            <input type="text" id="stp_nominal" name="stp_nominal" value="{{ old('stp_nominal') }}" class="@error('stp_nominal') is-invalid @enderror form-control form-control-rounded " placeholder="Masukan Nominal Bayar ">
                             @error('stp_nominal')
                             <p>
                                 <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
                             </p>
-                    @enderror
+                            @enderror
+                        </div><br><br>
+
+
+
+                        <label for="input-2" class="col-sm-2 col-form-label">Nama Siswa<span style="color:red"> *</span></label>
+                        <div class="col-sm-9">
+                          <select name="stp_student_id" class="form-control form-control-rounded @error('stp_student_id') is-invalid @enderror" value="{{ old('stp_student_id') }}">
+                            <option disabled="" {{ old('stp_student_id') == "" ? 'selected' : '' }}> Pilih </option>
+                             @foreach($student as $stu_name)
+                            <option {{ old('stp_student_id') == "$stu_name->stu_id" ? 'selected' : '' }} value="{{ $stu_name->stu_id }}">{{ $stu_name->stu_candidate_name }}</option>
+                             @endforeach
+                        </select>                            
+                            @error('stp_student_id')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror
                         </div><br><br>
 
                         <label class="col-sm-2 col-form-label">Tahun Ajaran<span style="color:red"> *</span></label>
@@ -103,9 +99,9 @@
                               <strong>{{ $message }}</strong>
                           </span>
                           @enderror
-                          
                         </div>
                         
+
                         <div class="col-sm-9">
                            <input type="hidden" name="stp_type_payment" class="form-control form-control col-sm-4" value="2">
                         </div>
@@ -113,15 +109,15 @@
                 </div>
 
 
-            <label style="margin-top: 10px;">Pilih Metode Pembayaran<span style="color:red"> *</span></label>
+                   <label style="margin-top: 10px;">Pilih Metode Pembayaran<span style="color:red"> *</span></label>
             <div class="form-group row">
                 <div class="col-sm-5">
                     <div class="radio icheck-info icheck-inline">
-                        <input type="radio" checked="" id="stp_payment_method1" value="Transfer Bank" name="stp_payment_method">
+                        <input type="radio"  id="stp_payment_method1" value="Transfer Bank" name="stp_payment_method">
                         <label for="stp_payment_method1"> Transfer Bank </label>
                     </div>
                     <div class="radio icheck-info icheck-inline">
-                        <input type="radio" id="stp_payment_method2" value="Offline Ke Sekolah" name="stp_payment_method">
+                        <input type="radio" checked="" id="stp_payment_method2" value="Offline Ke Sekolah" name="stp_payment_method">
                         <label for="stp_payment_method2"> Offline Ke Sekolah </label>
                     </div>
                 </div>
@@ -177,6 +173,8 @@
 
 </script>
 
+<!--Form Validatin Script-->
+<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
 
 
 <script>
@@ -196,8 +194,13 @@
 });
 </script>
 
-<!--Form Validatin Script-->
-<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/jquery-mask/jquery.mask.min.js')}}"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+     $( '#stp_nominal' ).mask('000.000.000.000.000', {
+        reverse: true});
+   });
+</script>
 
 <script>
  $().ready(function() {
@@ -210,9 +213,13 @@
       stp_picture:{
         required:true,
       },
+      stp_student_id:{
+        required:true,
+      },
       stp_school_year_id:{
         required:true,
       }
+      
     },
     messages: {
       stp_nominal:{
@@ -221,19 +228,15 @@
       stp_picture:{
         required:"Foto Bukti Pembayaran Harus Diisi",
       },
+      stp_student_id:{
+        required:"Nama Siswa Harus Dipilih",
+      },
       stp_school_year_id:{
-        required:"Tahun Ajaran Harus Diisi",
+        required:"Tahun Ajaran Siswa Harus Dipilih",
       }
     },
   });
 });
-</script>
-<script src="{{ asset('assets/plugins/jquery-mask/jquery.mask.min.js')}}"></script>
-<script type="text/javascript">
-  $(document).ready(function () {
-     $( '#stp_nominal' ).mask('000.000.000.000.000', {
-        reverse: true});
-   });
 </script>
 
 <script type="text/javascript">

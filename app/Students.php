@@ -10,6 +10,7 @@ use App\User;
 
 class Students extends Model
 {
+    protected $table = "students";
     protected $primaryKey = 'stu_id';
     const CREATED_AT = 'stu_created_at';
     const UPDATED_AT = 'stu_updated_at';
@@ -114,10 +115,20 @@ class Students extends Model
 
         $students_payment = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
-            // ->join('school_years', 'student_payments.stp_school_year_id', '=', 'school_years.scy_id')
-            ->whereNotNull('student_payments.stp_picture');
+            ->join('school_years', 'student_payments.stp_school_year_id', '=', 'school_years.scy_id')
+            ->whereNotNull('student_payments.stp_picture')
+            ->where('stp_type_payment', 1);
         // dd($students_rejected);
         return $students_payment;
+    }
+
+    public static function getSchoolPayment($request)
+    {
+        $schools_payment = StudentPayments::join('students', 'student_payments.stp_student_id', '=', 'students.stu_id')
+            ->whereNotNull('student_payments.stp_picture')
+            ->where('student_payments.stp_type_payment', 2)->groupBy('student_payments.stp_student_id');
+        
+        return $schools_payment;
     }
 
     public function getStudentEdit($studentID)

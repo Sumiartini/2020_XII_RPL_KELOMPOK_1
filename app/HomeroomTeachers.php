@@ -24,4 +24,14 @@ class HomeroomTeachers extends Model
         ->select('homeroom_teachers.hrt_id','homeroom_teachers.hrt_is_active','users.usr_name', 'classes.cls_number','grade_levels.grl_name','majors.mjr_name');
         return $homeroom_teacher;
     }
+
+    public function getHomeroomTeacherEdit($homeroomTeacherID)
+    {
+        // dd($homeroomTeacherID);
+        $homeroom_teachers_edit =HomeroomTeachers::join('teachers','homeroom_teachers.hrt_teacher_id','=','teachers.tcr_id')
+        ->join('classes','homeroom_teachers.hrt_class_id','=','classes.cls_id')
+        ->where('hrt_id', $homeroomTeacherID)->firstOrFail();
+
+        return $homeroom_teachers_edit;
+    }
 }

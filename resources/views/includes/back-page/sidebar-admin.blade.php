@@ -49,7 +49,6 @@
         <li><a href="{{URL::to('/student/create')}}"><i class="fa fa-circle-o"></i> Tambah Siswa</a></li>
         <li><a href="{{URL::to('/students-prospective')}}"><i class="fa fa-circle-o"></i> Daftar Calon Siswa</a></li>
         <li><a href="{{URL::to('/students-rejected')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Ditolak</a></li>
-        <li><a href="{{URL::to('/student-payments')}}"><i class="fa fa-circle-o"></i> Daftar Pembayaran</a></li>
         <li><a href="{{URL::to('/student-re-registrations')}}"><i class="fa fa-circle-o"></i> Siswa daftar ulang</a></li>
         <li><a href="{{URL::to('/student-moves')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Pindah</a></li>
         <li><a href="{{URL::to('/student-drop-outs')}}"><i class="fa fa-circle-o"></i> Daftar Siswa Dikeluarkan</a></li>
@@ -57,6 +56,16 @@
       </ul>
     </li>
 
+    <li>
+      <a href="javaScript:void();" class="waves-effect">
+        <i class=""></i> <span>Kelola Pembayaran</span> <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="sidebar-submenu">
+        <li><a href="{{URL::to('/school-payments')}}"><i class="fa fa-circle-o"></i>Pembayaran PPDB</a></li>
+        <li><a href="{{URL::to('/student-payments')}}"><i class="fa fa-circle-o"></i>Pembayaran Formulir</a></li>
+      </ul>
+    </li>
+    
     <li>
       <a href="{{ url('school-years')}}" class="waves-effect active">
         <i></i> <span>Tahun Ajaran Dan Biaya</span>
@@ -104,11 +113,7 @@
       </ul>
     </li>
 
-     <li>
-      <a href="{{ url('school-payments')}}" class="waves-effect active">
-        <i></i> <span>Kelola Pembayaran PPDB</span>
-      </a>
-    </li>
+    
 
   </ul>
 </div>
