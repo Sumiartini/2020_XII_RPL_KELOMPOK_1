@@ -39,7 +39,7 @@ class DatatableController extends Controller
             if (Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff')) {
                 $edit = '<a href="' . url('student/edit', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="EDIT" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="fa fa-edit fa-lg"></i></a>';
                 $move = '<a href="' . url('student/move', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="PINDAH" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-walk fa-lg"></i></a>';
-                $drop_out = '<a href="' . url('student/drop-out', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DI KELUARKAN" class="btn btn-outline-danger waves-effect waves-light m-1"> <i class="zmdi zmdi-run fa-lg"></i></a>';
+                $drop_out = '<a href="' . url('student/drop-out', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="KELUARKAN" class="btn btn-outline-danger waves-effect waves-light m-1"> <i class="zmdi zmdi-run fa-lg"></i></a>';
 
                 $usr_is_active = $row->usr_is_active;
                 if ($usr_is_active == '0') {
@@ -116,11 +116,24 @@ class DatatableController extends Controller
         ->make(true);
     }
 
+    public function getSchoolPayment(Request $request)
+    {
+        $school_payment = Students::getSchoolPayment($request->query());
+        return Datatables::of($school_payment)
+        ->addColumn('action', function ($row) {
+            $detail = '<a href="' . url('school-payment', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="DETAIL" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-info-outline fa-lg"></i></a>';
+            
+                return $detail;
+          
+        })->rawColumns(['action', 'stu_payment_status'])
+        ->make(true);
+    }
+
     public function getStaffs(Request $request)
     {
         $staffs = Staffs::getStaffs($request->query());
         return Datatables::of($staffs)
-        ->editColumn("usr_is_active", function ($row) {
+    ->editColumn("usr_is_active", function ($row) {
             $usr_is_active = $row->usr_is_active;
             if ($usr_is_active == "0") {
                 return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
@@ -494,14 +507,9 @@ public function getClasses(Request $request)
             }
         })
         ->addColumn('action', function ($row) {
-
-            // $status = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $postion_type->pst_id . '" data-original-title="Status" class="btn btn-info status"><i class="mdi mdi-information-outline"></i></a>';
-
-            $move = '<a href="javascript:void(0)" data-toggle="modal"  data-id="' . $row->stu_id . '" onclick="editSubject(event.target)"  type="button" data-toggle="tooltip" data-placement="top" title="DI KELUARKAN" class="btn btn-outline-danger waves-effect waves-light m-1"> <i class="zmdi zmdi-run fa-lg"></i></a>';
-
-            
-            $confirm = '<a href="' . url('student/edit', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="TERIMA DAFTAR ULANG" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
-            return $move . '&nbsp' . $confirm;
+            $move = '<a href="' . url('student/move', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="PINDAH" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-walk fa-lg"></i></a>';
+            $drop_out = '<a href="' . url('student/drop-out', $row->stu_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="KELUARKAN" class="btn btn-outline-danger waves-effect waves-light m-1"> <i class="zmdi zmdi-run fa-lg"></i></a>';
+            return $move . '&nbsp' . $drop_out;
         })->rawColumns(['action', 'usr_is_active'])
         ->make(true);   
     }

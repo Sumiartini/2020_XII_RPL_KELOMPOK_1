@@ -7,9 +7,11 @@
 @push('styles')
 <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
 <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet">
 <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/parsley.css') }}">
 <style type="text/css">
     <style>
     html , body{
@@ -21,7 +23,7 @@
       color: #272727;
       text-align: center;
       padding: 12px 30px;
-      position: fixed;
+      
       right: 0;
       left: 0;
       background-color: #f9f9f9;
@@ -38,99 +40,127 @@
 @section('content')
 
 <div style="margin-top:80px; width: 100%;" class="col-lg-12">
-    <div class="card ">
+    <div class="row mt-30">
+    <div class="col-lg-6">
+       <div class="card">
+          <div class="card-header text-uppercase">Profile siswa</div>
+          <div class="card-body">
+            <div class="media">
+              <img class="mr-3 rounded" src="{{ $student->usr_profile_picture }}" width="150px;" height="150px;" alt="user avatar">
+              <div class="media-body">
+                <dt>Nama lengkap</dt>
+                <dd>
+                    <p>{{ $student->stu_candidate_name }}</p>
+                </dd>
+                <dt>NIS</dt>
+                <dd>
+                    <p>{{ $student->stu_nis }}</p>
+                </dd>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+       <div class="card">
+          <div class="card-header text-uppercase">Pembayaran PPDB</div>
+          <div class="card-body">
+           <div class="media">
+              <div class="media-body">
+                <dt>Pembayaran PPDB</dt>
+                <dd>
+                    <p>Rp. {{ moneyFormat($ppdb_payment_price) }}</p>
+                </dd>
+                <dt>PPDB yang sudah dibayar</dt>
+                <dd>
+                    <p>Rp. {{ moneyFormat($student_payment) }}</p>
+                </dd> 
+                <dt>Sisa bayar uang PPDB</dt>
+                <dd>
+                    <p>Rp. {{ moneyFormat($remaining_payment) }}</p>
+                </dd> 
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div> 
+      <div class="card ">
         <div class="card-body">
-            <h4 class="text-center"> Hallo, {{ $student->stu_candidate_name }}</h4>
-            <h5 class="text-center">Anda dalam tahap daftar ulang. Mohon konfirmasi data dibawah ini</h5>
             <div class="col-lg-12">
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <div class="alert-icon contrast-alert">
+                   <i class="icon-check"></i>
+                 </div>
+                 <div class="alert-message">
+                  <span><strong>Berhasil!</strong> {{$message}}.</span>
+                </div>
+                </div>
+                @endif
+
+                @if ($message = Session::get('error'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                 <button type="button" class="close" data-dismiss="alert">×</button>
+                 <div class="alert-icon contrast-alert">
+                   <i class="icon-close"></i>
+                 </div>
+                 <div class="alert-message">
+                  <span><strong>Gagal!</strong> {{$message}}.</span>
+                </div>
+                </div>
+                @endif
                 <form id="validate_form">
-                   
+                  <input type="hidden" id="stu_id" value="{{ $student->stu_id }}">
                    <div class="form-group row pt-4">
-                      <label for="rounded-input" class="col-sm-2 col-form-label">Nama siswa</label>
+                      <label for="rounded-input" class="col-sm-2 col-form-label">Konfirmasi kata sandi</label>
                       <div class="col-sm-10">
-                        <input type="text" name="stu_candidate_name"  class="form-control form-control-rounded">
+                        <input id="usr_password" type="password" name="usr_password" class="form-control form-control-rounded input-password mb-2" placeholder="Kata sandi" data-parsley-required-message="Kata sandi wajib di isi" required data-parsley-trigger="keyup">
                       </div>
                     </div>
-
-                    <div class="form-group row pt-4">
-                      <label for="rounded-input" class="col-sm-2 col-form-label">Nomor induk siswa</label>
-                      <div class="col-sm-10">
-                        <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" placeholder="Masukan nomor induk siswa" name="stu_nis" class="form-control form-control-rounded">
-                      </div>
-                    </div>
+                    <span class="text-danger">Catatan:</span><span> Jika ada kesalahan dalam pembayaran PPDB silahkan hubungi Bendahara {{ env('APP_NAME') }}</span><br><br>
                     <div class="form-group row">
-                      <label for="rounded-input" class="col-sm-2 col-form-label">Konfirmasi uang ppdb</label>
+                      <label for="rounded-input" class="col-sm-2"></label>
                       <div class="col-sm-10">
-                        <input type="text" placeholder="e.g. 5000000" name="confirm_payment" class="form-control form-control-rounded confirm_payment">
-                      </div>
-                    </div>
-
-                    <span class="text-danger">Catatan:</span><span> Konfirmasi uang PPDB adalah pembayaran uang bangunan anda sudah berapa Rupiah, Mohon tidak menginputkan asal karena ini semua sudah terintegrasi dengan sistem</span>
-
-                    <div class="form-group row">
-                      <label for="rounded-input" class="col-sm-2 col-form-label"></label>
-                      <div class="col-sm-10">
-                        <input type="submit" name="submit" id="submit" class="btn btn-success" value="Konfirmasi">
+                        <input type="submit" id="submit" class="btn btn-success" value="Konfirmasi">
                       </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
+    </div>   
 </div>
-
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
 
 @push('scripts')
 <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{ asset('assets/js/popper.min.js')}}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-
 <script src="{{ asset('assets/plugins/simplebar/js/simplebar.js')}}"></script>
 <script src="{{ asset('assets/js/waves.js')}}"></script>
 <script src="{{ asset('assets/js/sidebar-menu.js')}}"></script>
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
-
-<!--Form Validatin Script-->
-<script src="{{ asset('assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-<script src="{{ asset('assets/plugins/jquery-mask/jquery.mask.min.js')}}"></script>
-
+<script src="{{ asset('assets/plugins/alerts-boxes/js/sweetalert.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/alerts-boxes/js/sweet-alert-script.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 <script>
- $(document).ready(function () {
- $( '.confirm_payment' ).mask('000.000.000.000.000', {
-        reverse: true});
-
-$("#validate_form").validate({
-      rules: {
-          stu_nis: {
-            required: true,
-          },
-          confirm_payment: {
-            required: true
-          },
-      },
-      messages: {
-          stu_nis: {
-            required: "Nomor induk siswa harus di isi"
-          },
-          confirm_payment: {
-            required: "Uang PPDB harus di isi"
-          }
-      }
-  });
-});
-
-</script>
-<!-- <script>  
-  if($('#validate_form').validate().valid())
+$(document).ready(function(){  
+ $('#validate_form').parsley();
+ $('#validate_form').on('submit', function(event){
+  event.preventDefault();
+  if($('#validate_form').parsley().isValid())
   {
-    console.log("ahmad")
+    var stu_id = $("#stu_id").val();
+    var usr_password = $("#usr_password").val();
     var _token = $("meta[name='csrf-token']").attr("content");
      $.ajax({
-      url:"#",
+      url:"re-registration",
       method:"POST",
       data:{
-  
+        stu_id: stu_id,
+        usr_password: usr_password,
+        _token: _token,
       },
       beforeSend:function(){
        $('#submit').attr('disabled','disabled');
@@ -141,21 +171,30 @@ $("#validate_form").validate({
        $('#validate_form')[0].reset();
        $('#validate_form').parsley().reset();
        $('#submit').attr('disabled',false);
-       $('#submit').val('Submit');
-         alert("success")
-           
-        window.location.href = "redirectTo";
-   
+       $('#submit').val('KONFIRMASi');
+
+       window.location.href = "dashboard";
+       swal(data.message, {
+            button: false,
+            icon: "success",
+            timer: 2000
+        });
       },
       error:function(error)
       {
-           alert("gagal")
-          $('#submit').attr('disabled',false);
-          $('#submit').val('MASUK');
+        swal(error.responseJSON.message, {
+              button: false,
+              icon: "error",
+              timer: 2000
+          });
+        $('#submit').attr('disabled',false);
+        $('#submit').val('KONFIRMASI');
       }
 
    });
   }
-</script> -->
+ });
+});  
+</script>
 @endpush
 @endsection

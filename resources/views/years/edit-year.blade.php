@@ -95,7 +95,7 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-3 col-form-label">Jumlah Biaya PPDB</label>
                         <div class="col-sm-9">
-                            <input type="text" name="scy_payment_price" class="form-control form-control @error('scy_payment_price') is-invalid @enderror" value="{{ $year->scy_payment_price }}" placeholder="Masukan Jumlah Biaya PPDB">
+                            <input type="text" id="str_payment_price" name="scy_payment_price" class="form-control form-control @error('scy_payment_price') is-invalid @enderror" value="{{ $year->scy_payment_price }}" placeholder="Masukan Jumlah Biaya PPDB">
                             @error('scy_payment_price')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -167,6 +167,14 @@
     autoclose: true,
     format: 'yyyy'
 });
+</script>
+
+<script src="{{ asset('assets/plugins/jquery-mask/jquery.mask.min.js')}}"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+     $( '#str_payment_price' ).mask('000.000.000.000.000', {
+        reverse: true});
+   });
 </script>
 
 <script>

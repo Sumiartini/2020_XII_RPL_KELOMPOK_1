@@ -53,7 +53,7 @@ class UserController extends Controller
             if ($student->str_status == '0' ) {
                 return redirect('student-registration');    
             }
-            elseif ($student->str_status == '1' ) {
+            elseif ($student->str_status == '1' || '6') {
                 return view('dashboard', compact('students','teachers','staffs'));
             }
             elseif ($student->str_status == '2' ) {
