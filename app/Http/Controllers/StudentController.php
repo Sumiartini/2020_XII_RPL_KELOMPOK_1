@@ -805,7 +805,9 @@ class StudentController extends Controller
         $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
         ->join('users', 'users.usr_id', '=', 'students.stu_user_id')
         ->where('student_payments.stp_student_id', $studentID)
+        ->where('student_payments.stp_type_payment', 2)
         ->get();
+
         return view('school-payments.detail-student-payment', ['payment' => $payment, 'no' => $no]);
     }
 
@@ -818,12 +820,45 @@ class StudentController extends Controller
         return view('school-payments.detail-school-payment', ['payment' => $payment]);    
     }
 
+
+    public function acceptSchoolPayment($studentPaymentID)
+    {
+
+        $school_payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
+                            ->where('stp_id',$studentPaymentID)->first();
+        $school_payment->stp_payment_status = '2';
+        $school_payment->update();
+
+       return redirect('/school-payment/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil dierima');    
+
+   }
+
+    public function refuseSchoolPayment($studentPaymentID)
+    {
+
+        $school_payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
+                            ->where('stp_id',$studentPaymentID)->first();
+
+        return view('school-payments.reason-payment-refuse',compact('school_payment'));
+    }
+
+    public function storeRefuseSchoolPayment(Request $request,$studentPaymentID)
+    {
+
+        $payment = StudentPayments::join('students','student_payments.stp_student_id','=','students.stu_id')->where('stp_id', $studentPaymentID)->first();
+        $payment->stp_reason = $request->stp_reason;
+        $payment->stp_payment_status = '3';
+        $payment->stp_date_verification = now();
+        $payment->update();
     
+        return redirect('/school-payment/'.$payment->stu_id)->with('success', 'Pembayaran berhasil ditolak');
+    }
+
     public function updateStatusToReRegistration(Request $request)
     {
          if ($request->ajax()) {
-            $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->where('str_status', 1)->get();
-            $check_status_student = StudentRegistration::where('str_status',1)->count();
+            $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->where('str_status', 1)->orWhere('str_status', 6)->get();
+            $check_status_student = StudentRegistration::where('str_status',1)->orWhere('str_status', 6)->count();
             if ($check_status_student == 0) {
                return response()->json(['code' => 400, 'message' => 'Tidak ada siswa yang harus daftar ulang'], 400);
             }else{

@@ -158,6 +158,10 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/school-payment/create', 'StudentController@storeCreate');
     Route::get('/school-payment/{std_id}', 'StudentController@student_payment_detail');
     Route::get('/school-payment/detail/{std_id}', 'StudentController@school_payment_detail');
+    
+    Route::get('/school-payment/accept-payment/{stp_id}', 'StudentController@acceptSchoolPayment');
+    Route::get('/school-payment/refuse-payment/{std_id}', 'StudentController@refuseSchoolPayment');
+    Route::post('/school-payment/refuse-payment/{std_id}', 'StudentController@storeRefuseSchoolPayment');
 
     Route::get('/student-move', 'DatatableController@getListStudentMove');
     Route::get('/student-moves', function(){

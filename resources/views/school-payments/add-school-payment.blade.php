@@ -5,8 +5,7 @@
 @endpush
 
 @push('styles')
-<!--favicon-->
-  <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon">
+
   <!-- jquery steps CSS-->
   <link rel="stylesheet" type="text/css" href="{{asset('assets/plugins/jquery.steps/css/jquery.steps.css')}}">
   <!-- simplebar CSS-->
@@ -32,7 +31,9 @@
         <h4 class="page-title">Pembayaran PPDB</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
-            <li class="breadcrumb-item"><a href="javaScript:void();">Bayar PPDB</a></li>
+            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Pembayaran</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('school-payments')}}">Pembayaran PPDB</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah Pembayaran</a></li>
             
          </ol>
      </div>
@@ -57,8 +58,24 @@
                 <form method="POST" autocomplete="off" action="{{ url('/school-payment/create')}}" id="form-validate" enctype="multipart/form-data" novalidate="novalidate">
                     @csrf
                   <div class="row">
-
-                        <label for="input-2" class="col-sm-2 col-form-label">Nominal Bayar<span style="color:red"> *</span></label>
+ 
+                        <label for="input-2" class="col-sm-2 col-form-label">Nama Siswa<span style="color:red"> *</span></label>
+                          <div class="col-sm-9">
+                            <select id="name" name="stp_student_id" class="form-control form-control-rounded @error('stp_student_id') is-invalid @enderror" value="{{ old('stp_student_id') }}">
+                             <option disabled="true" selected="true"> Pilih </option>
+                             @foreach($student as $stu_name)
+                              <option {{ old('stp_student_id') == "$stu_name->stu_id" ? 'selected' : '' }} value="{{ $stu_name->stu_id }}">{{ $stu_name->stu_candidate_name }}
+                              </option>
+                               @endforeach
+                            </select>
+                             @error('stp_student_id')
+                              <p>
+                                  <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                              </p>
+                              @enderror
+                          </div><br><br>
+                         
+                           <label for="input-2" class="col-sm-2 col-form-label">Nominal Bayar<span style="color:red"> *</span></label>
                         <div class="col-sm-9">
                             <input type="text" id="stp_nominal" name="stp_nominal" value="{{ old('stp_nominal') }}" class="@error('stp_nominal') is-invalid @enderror form-control form-control-rounded " placeholder="Masukan Nominal Bayar ">
                             @error('stp_nominal')
@@ -69,8 +86,7 @@
                         </div><br><br>
 
 
-
-                        <label for="input-2" class="col-sm-2 col-form-label">Nama Siswa<span style="color:red"> *</span></label>
+                        <!-- <label for="input-2" class="col-sm-2 col-form-label">Nama Siswa<span style="color:red"> *</span></label>
                         <div class="col-sm-9">
                           <select name="stp_student_id" class="form-control form-control-rounded @error('stp_student_id') is-invalid @enderror" value="{{ old('stp_student_id') }}">
                             <option disabled="" {{ old('stp_student_id') == "" ? 'selected' : '' }}> Pilih </option>
@@ -84,24 +100,7 @@
                             </p>
                             @enderror
                         </div><br><br>
-
-                        <label class="col-sm-2 col-form-label">Tahun Ajaran<span style="color:red"> *</span></label>
-                        <div class="col-sm-9">
-                          <select name="stp_school_year_id" class="form-control form-control-rounded @error('str_school_year_id') is-invalid @enderror" value="{{ old('stp_school_year_id') }}">
-                          <option disabled="" {{ old('stp_school_year_id') == "" ? 'selected' : '' }}> Pilih </option>
-                          @foreach($years as $school_year)
-                          <option {{ old('stp_school_year_id') == "$school_year->scy_id" ? 'selected' : '' }} value="{{ $school_year->scy_id }}">{{ $school_year->scy_name }}</option>
-                          @endforeach
-                          </select>
-
-                          @error('stp_school_year_id')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                        </div>
-                        
-
+ -->
                         <div class="col-sm-9">
                            <input type="hidden" name="stp_type_payment" class="form-control form-control col-sm-4" value="2">
                         </div>
@@ -253,6 +252,15 @@
             msg: 'Nomor rekening berhasil di copy'
         });
     }
+</script>
+
+<!-- script select2 -->
+<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('#name').select2();                 
+    });
+
 </script>
 
 @endpush

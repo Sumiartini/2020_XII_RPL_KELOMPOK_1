@@ -29,7 +29,7 @@
         <h4 class="page-title">Pembayaran PPDB</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
-            <li class="breadcrumb-item"><a href="javaScript:void();">Bayar PPDB</a></li>
+            <li class="breadcrumb-item" aria-current="page">Bayar PPDB</a></li>
             
          </ol>
      </div>
@@ -71,7 +71,7 @@
                     <dt class="col-sm-2">Nomor Rekening</dt>
                     <dd class="col-sm-10">
                         <input readonly style="border: none; background-color: white; color: #636363;" type="text" value="2104 01 000183 30 7" id="text-copy"  />
-                        <button type="button" class="btn btn-outline-primary btn-sm btn-round waves-effect waves-light m-1" onclick="copy_text()">Copy</button>
+                        <button type="button" class="btn btn-outline-primary btn-sm btn-round waves-effect waves-light m-1" onclick="copy_text()">Salin</button>
                     </dd>
 
                     <dt class="col-sm-2">Atas Nama</dt>

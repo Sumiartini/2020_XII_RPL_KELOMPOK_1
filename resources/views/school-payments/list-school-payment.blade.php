@@ -25,11 +25,11 @@
 @section('content')
 <div class="row pt-2 pb-2">
   <div class="col-sm-9">
-    <h4 class="page-title">Daftar Pembayaran Siswa</h4>
+    <h4 class="page-title">Daftar Pembayaran PPDB</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
-      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Daftar Pembayaran Siswa</li>
+      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Pembayaran</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Pembayaran PPDB</li>
     </ol>
   </div>
 </div>
@@ -51,7 +51,7 @@
     <div class="card-header"><i class="fa fa-table"></i> Data Pembayaran PPDB</div>
     <div class="card-body">
       <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-          <a href="{{URL::to('/school-payment/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH PEMBAYARAN PPDB SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
+          <a href="{{URL::to('/school-payment/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH PEMBAYARAN" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
         </div>
       <div class="table-responsive">
         <table id="example" class="table table-bordered" style="width:100%;">
@@ -100,7 +100,7 @@
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/jszip.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/pdfmake.min.js') }}"></script>
-
+<script src="{{ asset('assets/plugins/bootstrap-datatable/js/vfs_fonts.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js') }}"></script>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @push('title')
-- Siswa daftar pindah
+- Daftar siswa pindah
 @endpush
 
 @push('styles')
@@ -25,11 +25,11 @@
 @section('content')
 <div class="row pt-2 pb-2">
   <div class="col-sm-9">
-    <h4 class="page-title">Siswa daftar pindah</h4>
+    <h4 class="page-title">Daftar siswa pindah</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">{{ env('APP_NAME') }}</a></li>
       <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Siswa daftar pindah</li>
+      <li class="breadcrumb-item active" aria-current="page">Daftar siswa pindah</li>
     </ol>
   </div>
 </div>
@@ -97,7 +97,7 @@
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/jszip.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/pdfmake.min.js') }}"></script>
-
+<script src="{{ asset('assets/plugins/bootstrap-datatable/js/vfs_fonts.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js') }}"></script>
