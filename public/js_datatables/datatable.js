@@ -293,8 +293,8 @@ function studentPayment() {
                 }
             },
             {
-                data: 'usr_name', 
-                name:'users.usr_name', 
+                data: 'stu_candidate_name', 
+                name:'students.stu_candidate_name', 
                 orderable: true, 
                 searchable: false
             },

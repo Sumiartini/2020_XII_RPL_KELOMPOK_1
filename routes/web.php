@@ -150,7 +150,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/student/edit/{std_id}', 'StudentController@edit');
     Route::post('/student/edit/{std_id}', 'StudentController@update');
     Route::post('/student/delete', 'StudentController@destroy');    
-    Route::get('/student/payment/{std_id}', 'StudentController@payment_detail');
+    Route::get('/student/payment/{stp_id}', 'StudentController@payment_detail');
     //pembayaran ppdb
     Route::get('/school-payment/pay', 'StudentController@schoolPayment');
     Route::post('/school-payment/pay', 'StudentController@storeSchoolPayment');

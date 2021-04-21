@@ -113,16 +113,9 @@ class Students extends Model
     public static function getStudentPayment($request)
     {
 
-        $students_payment = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            ->join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
-<<<<<<< HEAD
-            ->whereNotNull('student_payments.stp_picture');
-=======
-            ->join('school_years', 'student_payments.stp_school_year_id', '=', 'school_years.scy_id')
+        $students_payment = Students::join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
             ->whereNotNull('student_payments.stp_picture')
-            ->where('stp_type_payment', 1);
->>>>>>> 52d978794368cf8ccb55ca9da7a97efafc553f0a
-        // dd($students_rejected);
+            ->where('student_payments.stp_type_payment', 1);
         return $students_payment;
     }
 
