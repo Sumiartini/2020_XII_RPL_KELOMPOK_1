@@ -20,6 +20,7 @@ use App\Provinces;
 use App\Districts;
 use App\StudentRegistration;
 use App\StudentPayments;
+use App\StudentClass;
 use Illuminate\Support\Facades\DB;
 
 
