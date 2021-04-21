@@ -20,6 +20,8 @@ use App\Provinces;
 use App\Districts;
 use App\StudentRegistration;
 use App\StudentPayments;
+use App\StudentClass;
+
 
 class StudentController extends Controller
 {
