@@ -45,9 +45,9 @@ class UserController extends Controller
             Auth::logout();
             return redirect()->back()->with(['error' => 'Akun anda di Non Aktifkan, hubungi admin untuk mengaktifkan akun anda']);
         }
-        $students = Students::count();
-        $teachers = Teachers::count();
-        $staffs = Staffs::count();
+        $students = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('str_status', 1)->orWhere('str_status', 6)->count();
+        $teachers = Teachers::where('tcr_registration_status', 1)->count();
+        $staffs = Staffs::where('stf_registration_status', 1)->count();
 
         if ($user->hasRole('student')) {
             if ($student->str_status == '0' ) {

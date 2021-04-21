@@ -110,7 +110,7 @@
                     <div class="form-group row">
                         <label for="input-1" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <a href="{{url('majors')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
+                            <a href="{{url('classes')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
                             <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                             <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Simpan</button>
                         </div>

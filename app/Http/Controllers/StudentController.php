@@ -820,8 +820,8 @@ class StudentController extends Controller
     public function updateStatusToReRegistration(Request $request)
     {
          if ($request->ajax()) {
-            $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->where('str_status', 1)->get();
-            $check_status_student = StudentRegistration::where('str_status',1)->count();
+            $students = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->select('str_id', 'str_student_id' ,'str_status')->where('str_status', 1)->orWhere('str_status', 6)->get();
+            $check_status_student = StudentRegistration::where('str_status',1)->orWhere('str_status', 6)->count();
             if ($check_status_student == 0) {
                return response()->json(['code' => 400, 'message' => 'Tidak ada siswa yang harus daftar ulang'], 400);
             }else{
