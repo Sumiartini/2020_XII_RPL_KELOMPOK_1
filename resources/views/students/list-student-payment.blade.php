@@ -28,8 +28,8 @@
     <h4 class="page-title">Daftar Pembayaran Siswa</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
-      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Siswa</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Daftar Pembayaran Siswa</li>
+      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Pembayaran</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Daftar Pembayaran Formulir</li>
     </ol>
   </div>
 </div>

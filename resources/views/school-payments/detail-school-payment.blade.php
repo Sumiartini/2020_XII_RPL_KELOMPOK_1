@@ -23,11 +23,14 @@
 
 <div class="row pt-2 pb-2">
   <div class="col-sm-9">
-    <h4 class="page-title">Detail Pembayaran</h4>
+    <h4 class="page-title">Detail Data Pembayaran</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
-      <li class="breadcrumb-item"><a href="{{ url('/school-payments')}}">Daftar Pembayaran</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Detail Pembayaran</li>
+      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Pembayaran</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('/school-payments')}}">Pembayaran PPDB</a></li>
+      <li class="breadcrumb-item"><a href="javaScript:void();">Detail Pembayaran Siswa</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detail Data Pembayaran</li>
+
     </ol>
   </div>
 </div>
@@ -113,7 +116,7 @@
    </div>
    <hr>
    <div>
-    <a href="{{url('/school-payments/')}}" class="btn btn-primary" style="float: left;"><i class="fa fa-arrow-left"></i> Kembali</a>
+    <a href="{{url('/school-payment/'.$payment->stu_id)}}" class="btn btn-primary" style="float: left;"><i class="fa fa-arrow-left"></i> Kembali</a>
     @if($payment->stp_payment_status == 1)
     <a href="{{url('/student/refuse-payment/'.$payment->stu_id)}}" class="btn btn-danger" style="float: right;">Tolak</a>
     <a href="{{url('/student/accept-payment/'.$payment->stu_id)}}" class="btn btn-success" style="float: right; margin-right: 2px;">Terima</a>
