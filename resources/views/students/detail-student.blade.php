@@ -719,22 +719,6 @@
                 <dd class="col-sm-3">                    
                     <p> edit </p>
                 </dd>
-
-                <dt class="col-sm-4">Kelas XI</dt>
-                <dd class="col-sm-5">                    
-                    <p> </p>
-                </dd>
-                <dd class="col-sm-3">                    
-                    <p> tambah </p>
-                </dd>
-
-                <dt class="col-sm-4">Kelas X</dt>
-                <dd class="col-sm-5">                    
-                    <p> </p>
-                </dd>
-                <dd class="col-sm-3">                    
-                    <p> tambah </p>
-                </dd>
             </div>
         </div>
     </div>

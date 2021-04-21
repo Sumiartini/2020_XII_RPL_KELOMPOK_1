@@ -59,17 +59,22 @@
                 <table id="example" class="table table-bordered" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>NO</th>
-                            <th>Nama Siswa</th>
-                            <th>NISN</th>
+                            <th> NO </th>
+                            <th> Nama Siswa </th>
+                            <th> NISN </th>
+                            <th> Aksi </th>
                         </tr>                            
                     </thead>
                     <tbody>
                         @foreach($student as $row => $student)
                         <tr>
-                            <td>{{++$row}}</td>
-                            <td>{{$student->stu_candidate_name}}</td>
-                            <td>{{$student->stu_nisn}}</td>
+                            <td> {{++$row}} </td>
+                            <td> {{$student->stu_candidate_name}} </td>
+                            <td> {{$student->stu_nisn}} </td>
+                            <td> 
+                                <a href="{{ url('class/'. $student->stc_id. '/move-student-class' )}}" type="button" data-toggle="tooltip" data-placement="top" title="PINDAH" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-walk fa-lg"></i></a>
+                            </td>
+
                         </tr>
                         @endforeach
                     </tbody>

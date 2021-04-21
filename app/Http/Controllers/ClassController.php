@@ -166,4 +166,34 @@ class ClassController extends Controller
             }
         }
     }
+
+    public function move_student_class($studentClassID)
+    {
+        $student = StudentClass::join('students', 'students.stu_id', '=', 'student_classes.stc_student_id')
+                                ->join('classes', 'classes.cls_id', 'student_classes.stc_class_id')
+                                ->join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
+                                ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+                                ->where('stc_id', $studentClassID)->get();
+        $class = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
+        ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+        ->get();
+        return view('classes.move-student-class', ['student' => $student, 'class' => $class]);
+    }
+
+    public function store_move_student_class(Request $request, $studentClassID)
+    {
+        $class_check = Classes::where('cls_id', $request->cls_id)->first();
+        $student = StudentClass::where('stc_id', $studentClassID)->first();
+        $class_student = Classes::where('cls_id', $student->stc_class_id)->first();
+        
+        if ($class_check->cls_grade_level_id == $class_student->cls_grade_level_id) {
+        $studentClass = StudentClass::where('stc_id', $studentClassID)->first();
+        $studentClass->stc_class_id = $request->cls_id;
+        $studentClass->stc_updated_by = Auth()->user()->usr_id;
+        $studentClass->update();
+        return redirect('/class/'.$studentClass->stc_class_id)->with('success', 'Siswa Berhasil Dipindahkan');
+        }else{
+            return back()->with('error', 'Siswa hanya dapat pindah kelas dengan tingkatan yang sama');
+        }
+    }
 }

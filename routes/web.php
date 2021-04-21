@@ -255,6 +255,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     //studentClass
     Route::get('/class/{classID}/add-student', 'ClassController@add_student');
     Route::post('/class/create-student-class', 'ClassController@store_add_student');
+    Route::get('/class/{studentClassID}/move-student-class', 'ClassController@move_student_class');
+    Route::post('/class/{studentClassID}/move-student-class', 'ClassController@store_move_student_class');
     
 
     //terima, tolak, restore,  dan terima pembayaran siswa
