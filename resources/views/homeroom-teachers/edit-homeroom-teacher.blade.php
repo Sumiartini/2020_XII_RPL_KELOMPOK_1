@@ -60,15 +60,19 @@
             <div class="card-body">
                 <div class="card-title">Edit Wali Kelas</div>
                 <hr>
-                <form method="POST" autocomplete="off" action="{{ url('major/create')}}" id="form-validate">
+                <form method="POST" autocomplete="off" action="{{ url('homeroom-teacher/edit/'.$homeroom_teachers->hrt_id)}}" id="form-validate">
                     @csrf
                         <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Wali Kelas <span style="color:red;">*</span></label>
                         <div class="col-sm-9">
                         <select name="usr_name" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror">
-                                <option disabled="" selected> Pilih </option>
+                                <option selected value="{{ $homeroom_teachers->tcr_id }}"> {{ $homeroom_teachers->usr_name }} </option>
                                 @foreach($teachers as $teacher)
+
+                                 @if($homeroom_teachers->hrt_teacher_id != $teacher->tcr_id)
                                 <option value="{{$teacher->tcr_id}}">{{$teacher->usr_name}}</option>
+                                 @endif
+
                                 @endforeach
                             </select>
                         @error('usr_name')
@@ -83,9 +87,13 @@
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Kelas</label>
                         <div class="col-sm-9">
                                 <select name="cls_name" class="form-control form-control-rounded @error('cls_name') is-invalid @enderror">
-                                <option disabled="" selected> Pilih </option>
+                                <option selected value="{{ $homeroom_teachers->cls_id }}">{{$homeroom_teachers->grl_name. ' ' .$homeroom_teachers->mjr_name. ' ' .$homeroom_teachers->cls_number }}</option>
                                 @foreach($classes as $class)
+
+                                @if($homeroom_teachers->hrt_class_id != $class->cls_id)
                                 <option value="{{$class->cls_id}}">{{$class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }}</option>
+                                @endif
+
                                 @endforeach
                             </select>
                             @error('cls_name')
