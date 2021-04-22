@@ -34,6 +34,10 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentRegistrationSeeder::class);
         $this->call(StudentClassSeeder::class);
         $this->call(HomeroomTeacherSeeder::class);
+        $this->call(MasterSlideSeeder::class);
+        $this->call(MasterVideoSeeder::class);
+        $this->call(MasterConfigSeeder::class);
+        
         
         
     }

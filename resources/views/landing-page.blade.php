@@ -406,8 +406,8 @@ footer{
 }
 
 .info-profil iframe{
-     width: 750px; 
-     height: 422px;
+     width: 830px; 
+     height: 469px;
 }
 
 /*info jurusan*/
@@ -573,6 +573,7 @@ footer{
         <div class="container">
             <h1 class="display-4"><span>Selamat Datang</span> di SMK Mahaputra Cerdas Utama, sekolah dengan konsep <span>Green School</span> pertama di <span>Kabupaten Bandung</span></h1>
             <div class="container">
+                 @foreach($master_slide as $master_slide)
                 <div class="bd-example">
                     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -583,13 +584,15 @@ footer{
                             <li data-target="" data-slide-to="4"></li>
                         </ol>
                         <div class="carousel-inner">
-                            @foreach($master_slide as $master_slide)
+                            
                             <div class="carousel-item active">
+                               
                                 <img src="{{ asset($master_slide->mss_file)}}" class="d-block w-100" alt="...">
+                                
                                 <div class="carousel-caption d-none d-md-block">
                                 </div>
                             </div>
-                            @endforeach
+                            
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -601,6 +604,7 @@ footer{
                         </a>
                     </div>
                 </div>
+                @endforeach
 
             </div>
             <div class="row justify-content-center">
@@ -632,39 +636,33 @@ footer{
     </div>
     <!-- akhir jumbotron -->
 
-
+                    @foreach($master_config as $master_config)
                      <div class="row justify-content-center">
                         <div class="col-lg-7 info-profil">
                             <h3 class="text-center">PROFIL</h3>
                                <p align="justify">
-                                   SMKS Mahaputra Cerdas Utama didirikan pada 22 Agustus tahun 2016, 
-                                   adalah salah satu SMK swasta yang ada di Kabupaten Bandung yang memiliki program study Multimedia (MM) dan Rekyasa Perangkat Lunak (RPL), 
-                                   menjadi sekolah pertama di Kabupaten Bandung dengan Konsep Green School
-                                   atau Sekolah Hijau yang ramah lingkungan SMKS Mahaputra Cerdas Utama berkomitmen untuk mencetak Sumber Daya Manusia (SDM) yang unggul di era 4.0. 
+                                
+                                   {{$master_config->msc_description}}
+                            
                                  </p>
-                                 <br>   
-                                 <iframe class="rounded" src="https://www.youtube.com/embed/is-6lNoy9zM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                 <br> 
+                                   
+                                 <iframe class="rounded" src="https://www.youtube.com/embed/9ALpIk7HmTM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                  <br><br>
-                                 <iframe class="rounded" src="https://www.youtube.com/embed/YLEZwd8Qc8c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                 <br><br>
-                                 <iframe class="rounded" src="https://www.youtube.com/embed/sugJyk6a590" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                 <br><br>
-                                 <iframe class="rounded" src="https://www.youtube.com/embed/8MgZKPN5GDQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                 <br><br>
+                                 
+                                 
                                 
                             <h3 class="text-center">Visi</h3>
-                                <p align="justify">
-                                    Menjadi penyelenggara pendidikan kejuruan berkarakter religius, yang melahirkan tenaga ahli, terampil, kreatif, inovatif, dan berpengetahuan yang ramah lingkungan di tahun 2025.    
+                                <p align="justify"> 
+                                {{$master_config->msc_vision}}  
                                 </p>    
                             <br>    
                             <h3 class="text-center">Misi</h3>
                                 
                                 <ol>
-                                    <li>Menyelenggarakan pendidikan kejuruan berkarakter religius. </li>  
-                                     <li>Melahirkan tenaga ahli tingkat menengah yang berakhlakul karimah.</li>
-                                     <li>Mewujudkan tenaga terampil, kreatif, inovatif, dan berpengetahuan. </li>
-                                     <li>Membangun perilaku yang peduli terhdap lingkungan. </li>
-                                     <li>Menjalin kerjasama kerjasama dengan lembaga akademik dan non akademik ditingkat lokal, nasional, dan internasioanal
+                                    
+                                    <li>{{$master_config->msc_mision}}</li>
+                                      
                                  </ol> 
 
 
@@ -679,81 +677,18 @@ footer{
             <h3 class="text-center font-weight-bold" style="color: #599be2; text-shadow: 0.50px 0.50px 0.50px blue; font-family: viga;">PROGRAM KEAHLIAN <br>SMK MAHAPUTRA CERDAS UTAMA</h3>
             </div>
             <div class="col-lg-6">
-                <img src="assets/images/RPL.jpg" class="img-fluid">
+                <img src="assets/images/slide/RPL.jpg" class="img-fluid">
                 <a class="jurusan" style="color: #599be2;" ><b>REKAYASA PERANGKAT LUNAK</b></a>
             </div>
             <div class="col-lg-6">
-                <img src="assets/images/MM.jpg"  class="img-fluid">
+                <img src="assets/images/slide/MM.jpg"  class="img-fluid">
                 <a class="jurusan" style="color: #599be2;" ><b>MULTIMEDIA</b></a>
             </div>
         </div>
         <!-- akhir info panel -->
     </div>
 
-    <!-- info team -->
-    <section class="info-team">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h4>Projek Tim PPDB</h4>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-3 justify-content-center d-flex">
-                 <figure class="figure ">
-                  <img src="assets/images/team/amad.png" class="figure-img img-fluid rounded-circle ahmad " alt="">
-                  <figcaption class="figure-caption">
-                    <h5>Ahmad Suherman</h5>
-                    <p class="t"> XII RPL1</p>
-                    <p class="pju t">Rekayasa Perangkat Lunak</p>
-                  </figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3 justify-content-center d-flex">
-                 <figure class="figure">
-                  <img src="assets/images/team/ren.png" class="figure-img img-fluid rounded-circle rendy " alt="">
-                  <figcaption class="figure-caption">
-                    <h5>Rendy Joshua Hutagaol</h5>
-                    <p class="t"> XII RPL1</p>
-                    <p class="pju t">Rekayasa Perangkat Lunak</p>
-                  </figcaption>
-                </figure>
-            </div>        
-        </div>
-         <div class="row justify-content-center">
-            <div class="col-lg-3 justify-content-center d-flex">
-                <figure class="figure">
-                  <img src="assets/images/team/des.png" class="figure-img img-fluid rounded-circle dede" alt="">
-                  <figcaption class="figure-caption">
-                    <h5>Dede Suminar</h5>
-                    <p class="pde t"> XII RPL1</p>
-                    <p class="pd t">Rekayasa Perangkat Lunak</p>
-                  </figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3 justify-content-center d-flex">
-                 <figure class="figure">
-                  <img src="assets/images/team/el.png" class="figure-img img-fluid rounded-circle elsa" alt="">
-                  <figcaption class="figure-caption">
-                    <h5>Elsa Susilawati</h5>
-                    <p class="psa t"> XII RPL2</p>
-                    <p class="ps t">Rekayasa Perangkat Lunak</p>
-                  </figcaption>
-                </figure>
-            </div>
-            <div class="col-lg-3 justify-content-center d-flex">   
-                 <figure class="figure">
-                  <img src="assets/images/team/sum.png" class="figure-img img-fluid rounded-circle sumi" alt="">
-                  <figcaption class="figure-caption">
-                    <h5>Sumiartini Sri Rahayu</h5>
-                    <p class="t"> XII RPL2</p>
-                    <p class="pju t" >Rekayasa Perangkat Lunak</p>
-                  </figcaption>
-                </figure>
-            </div>        
-        </div>
-    </section>
-    <!--akhir info team -->
+   
 
     <!-- footer -->
         <footer>
@@ -763,7 +698,9 @@ footer{
                         <!-- footer about -->
                         <div class="footer-about">
                             <div class="footer-about__img">
-                                <img class="img-fluid" src="assets/images/logo.png" style="margin-top: 20px;">  
+                                
+                                <img class="img-fluid" src="{{ asset($master_config->msc_logo)}}" style="margin-top: 20px;">
+                                 
                             </div>
                         </div>
 
@@ -774,12 +711,15 @@ footer{
                          <p>
                               <h5 class=""><b>SMK MAHAPUTRA CERDAS UTAMA</b></h5>
                                 <p class="alamat">Jl Katapang Andir KM. 4 Kp Pasantren Ds Sukamukti Kec Katapang Kab Bandung</p>
-                                <p class="alamat">022-5893178 | 0895-6304-68373</p>
-                                <a href="https://mail.google.com/"><i class="zmdi zmdi-email fa-2x" style="color: darkblue;"></i></a>
-                                <a href="https://web.facebook.com/"><i class="fa fa-facebook-square fa-2x" style="color: darkblue;"></i></a>
-                                <a href="https://www.instagram.com/"><i class="fa fa-instagram fa-2x" style="color: darkblue;"></i></a>
-                                <a href="https://twitter.com"><i class="fa fa-twitter-square fa-2x" style="color: darkblue;"></i></a>
-                                <a href="https://www.youtube.com"><i class="fa fa-youtube-play fa-2x" style="color: darkblue;"></i></a>
+                               
+                                <p class="alamat">
+                                    {{$master_config->msc_school_phone_number}}
+                                </p>
+                                
+                                <a href="mailto:smkmahaputracerdasutama@gmail.com?subject=Saya%20ingin%20lebih%20tau%20mengenai%20SMK%20Mahaputra&body=Isi%20dengan%20pertanyaan%20mengenai%20SMK%20Mahaputra.%20"><i class="zmdi zmdi-email fa-2x" style="color: darkblue;"></i></a>
+                                <a href="https://web.facebook.com/SMKMAHAPUTRACERDASUTAMA"><i class="fa fa-facebook-square fa-2x" style="color: darkblue;"></i></a>
+                                <a href="https://www.instagram.com/smkmahaputracerdasutama"><i class="fa fa-instagram fa-2x" style="color: darkblue;"></i></a>
+                                <a href="https://www.youtube.com/channel/UCCfYqV-2N44pFhsQpGEedCw"><i class="fa fa-youtube-play fa-2x" style="color: darkblue;"></i></a>
                             </p>
                     </div>
 
@@ -792,7 +732,7 @@ footer{
             </div>
         </footer>
         <!-- akhir footer -->
-
+        @endforeach
 
 
     <!-- Optional JavaScript; choose one of the two! -->
