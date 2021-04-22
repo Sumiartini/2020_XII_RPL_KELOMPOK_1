@@ -651,6 +651,7 @@ class StudentController extends Controller
         $payment->stp_payment_status = 1;
         $payment->stp_payment_method = $request->stp_payment_method;
         $payment->stp_reason = null;
+        $payment->stp_type_payment = 1;
         $payment->stp_date_verification = null;
         $payment->stp_date = now();
         if ($request->hasFile('stp_picture')) {
@@ -666,11 +667,11 @@ class StudentController extends Controller
 
     }
 
-    public function payment_detail($studentID)
+    public function payment_detail($paymentID)
     {        
         $payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
         ->join('users', 'users.usr_id', '=', 'students.stu_user_id')
-        ->where('student_payments.stp_student_id', $studentID)
+        ->where('student_payments.stp_id', $paymentID)
         ->get();
         return view('students.detail-payment', ['payment' => $payment]);
     }
