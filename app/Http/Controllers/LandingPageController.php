@@ -256,4 +256,14 @@ class LandingPageController extends Controller
     }
 
 
+    //Integrasi landing Page
+
+    public function integrationLandingPage(){
+        $master_slide  = MasterSlides::all();
+        $master_config = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id')->get();
+        return view('landing-page',['master_config' => $master_config, 'master_slide' => $master_slide]);
+    }
+
+
+
 }

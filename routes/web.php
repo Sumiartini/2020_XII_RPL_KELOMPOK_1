@@ -20,9 +20,7 @@ Route::get('/logout', function () {
     abort(404);
 });
 
-Route::get('/', function () {
-    return view('landing-page');
-});
+Route::get('/', 'LandingPageController@integrationLandingPage');
 
 Auth::routes();
 
@@ -307,6 +305,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/master-config/edit/{msc_id}', 'LandingPageController@editConfig');
     Route::post('/master-config/edit/{msc_id}', 'LandingPageController@updateConfig');
     Route::get('/master-config/edit-status/{msc_id}', 'LandingPageController@editStatusConfig');
+
 
     //download file
     Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
