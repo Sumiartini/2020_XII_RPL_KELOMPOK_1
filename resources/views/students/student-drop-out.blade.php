@@ -73,7 +73,7 @@
        <form method="POST" autocomplete="off" action="{{ url('student/drop-out/'.$student->stu_id)}}" id="form-validate" enctype="multipart/form-data">
         @csrf
         <div class="form-group row">
-            <label for="input-2" class="col-sm-4 col-form-label">Bukti foto surat dikeluarkan:</label>
+            <label for="input-2" class="col-sm-4 col-form-label">Bukti foto surat dikeluarkan<span style="color:red"> *</span></label>
             <div class="col-sm-8">
                 <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; border-color: white;" / >
                 <div></div>
@@ -87,7 +87,7 @@
         </div>
 
         <div class="form-group row">
-          <label for="input-4" class="col-sm-4 col-form-label">Detail alasan dikeluarkan: </label>
+          <label for="input-4" class="col-sm-4 col-form-label">Detail alasan dikeluarkan<span style="color:red"> *</span></label>
           <div class="col-sm-8">
             <textarea rows="5" class="form-control" name="str_reason"></textarea>
             @error('str_reason')
@@ -99,7 +99,7 @@
         </div>
 
         <div class="form-group row">
-          <label for="input-4" class="col-sm-4 col-form-label">Verifikasi sandi: </label>
+          <label for="input-4" class="col-sm-4 col-form-label">Verifikasi sandi<span style="color:red"> *</span></label>
           <div class="col-sm-8">
             <input type="password" name="usr_password" class="form-control form-control-rounded @error('usr_password') is-invalid @enderror" id="input-4" placeholder="Masukan kata sandi">
             @error('usr_password')

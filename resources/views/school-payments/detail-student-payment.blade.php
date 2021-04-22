@@ -110,22 +110,34 @@
      <div class="card">
         <div class="card-header text-uppercase">Pembayaran PPDB</div>
         <div class="card-body">
-         <div class="media">
-            <div class="media-body">
-              <dt>Pembayaran PPDB</dt>
-              <dd>
-                  <p>Rp. 1000000</p>
-              </dd>
-              <dt>PPDB yang sudah dibayar</dt>
-              <dd>
-                  <p>Rp. 60000000</p>
-              </dd> 
-              <dt>Sisa bayar uang PPDB</dt>
-              <dd>
-                  <p>Rp. 40000000</p>
-              </dd> 
+           <div class="col-lg-6">
+              <p class="lead">Amount Due 2/22/2014</p>
+              <div class="table-responsive">
+                <table class="table">
+ <!--                  <tr>
+                    <th>Month</th>
+                    <th>Savings</th>
+                    <th>Savings for holiday!</th>
+                  </tr> -->
+                  <tr>
+                    <td rowspan="3">1</td>
+                    <td>Jumlah bayar</td>
+                    <td>:</td>
+                     <td>Rp. 1.000.000</td>
+                  </tr>
+                  <tr>
+                    <td>February</td>
+                    <td>$80</td>
+                     <td>$100</td>
+                  </tr>
+                  <tr>
+                    <td>February</td>
+                    <td>$80</td>
+                     <td>$100</td>
+                  </tr>
+                </table>
+              </div>
             </div>
-          </div>
         </div>
       </div>
   </div>

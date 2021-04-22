@@ -231,7 +231,14 @@ class StudentController extends Controller
         ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
         ->where('usr_id', $student->usr_id)
         ->get();
-        return view('students.detail-student', ['student' => $student, 'user' => $user]);
+
+        $student_check = StudentClass::where('student_classes.stc_student_id', $studentID)->first();
+        $student_class = StudentClass::join('classes', 'classes.cls_id', 'student_classes.stc_class_id')
+                                       ->join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
+                                       ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+                                       ->where('student_classes.stc_student_id', $studentID)
+                                       ->get();
+        return view('students.detail-student', ['student' => $student, 'user' => $user, 'student_class' => $student_class, 'student_check' => $student_check]);
     }
     public function show_prospective($studentID)
     {
@@ -678,17 +685,8 @@ class StudentController extends Controller
 
     public function acceptPayment($studentID)
     {
-
-        $student_payment = Students::join('student_payments','student_payments.stp_student_id','=','students.stu_id')->where('stu_id',$studentID)->first();
-
-        return view('students.reason-payment-accept',compact('student_payment'));
-    }
-
-    public function storeAcceptPayment(Request $request,$studentID)
-    {
-
         $payment = StudentPayments::where('stp_student_id', $studentID)->first();
-        $payment->stp_reason = $request->stp_reason;
+        $payment->stp_reason = 'Pembayaran diterima karena data valid';
         $payment->stp_payment_status = '2';        
         $payment->stp_date_verification = now();
         $payment->update();
@@ -696,7 +694,7 @@ class StudentController extends Controller
         $student = Students::findOrFail($studentID);
         $user = User::where('usr_id', $student->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new PaymentMail($user, $payment));
-        return redirect('/student/payment/'.$studentID)->with('success', 'Pembayaran berhasil diterima');
+        return redirect('/student/payment/'.$payment->stp_id)->with('success', 'Pembayaran berhasil diterima');
     }
 
     public function refusePayment($studentID)
