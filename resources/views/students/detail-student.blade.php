@@ -63,11 +63,11 @@
     <div class="col-lg-12">
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">×</button>
-                <div class="alert-icon contrast-alert">
-                    <i class="icon-check"></i>
-                </div>
-                <div class="alert-message">
-                    <span><strong>Berhasil!</strong> {{$message}}.</span>
+            <div class="alert-icon contrast-alert">
+                <i class="icon-check"></i>
+            </div>
+            <div class="alert-message">
+                <span><strong>Berhasil!</strong> {{$message}}.</span>
             </div>
         </div>
     </div>
@@ -76,16 +76,16 @@
 
 <div class="row">
     <div class="col-lg-6">
-     <div class="profile-card-3">
+       <div class="profile-card-3">
         <div class="card">
-           <div class="user-fullimage text-center">
+         <div class="user-fullimage text-center">
             @if(isset($student->usr_profile_picture))
             <img src="{{ asset($student->usr_profile_picture)}}" alt="user avatar"  class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
             @else
             <img src="{{ asset('images/default_profile_picture_20210228.png')}}" alt="user avatar"  class="card-img-top" style="margin-top: 40px; width: 200px; height: 200px;">
             @endif
-         </div>
-         <div class="row" style="margin-top: 40px; margin-left: 10px;">
+        </div>
+        <div class="row" style="margin-top: 40px; margin-left: 10px;">
 
             <dt class="col-sm-5">Nama Siswa </dt>
             <dd class="col-sm-7">
@@ -213,17 +213,17 @@
             @endif
             @endif
         </div>
-    <div>
-      <a href="{{url('students')}}" class="btn btn-primary" style="margin-bottom: 20px; margin-left: 25px;"><i class="fa fa-arrow-left"></i> Kembali</a>
-    </div>
-    </div>
+        <div>
+          <a href="{{url('students')}}" class="btn btn-primary" style="margin-bottom: 20px; margin-left: 25px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+      </div>
+  </div>
 </div>
 </div>
 <div class="col-lg-6">
- <div class="card">
+   <div class="card">
     <div class="card-body">
         <ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
-            
+
             <li class="nav-item">
                 <a href="javascript:void();" data-target="#domisili" data-toggle="pill" class="nav-link"><i class="zmdi zmdi-pin-drop"></i> <span class="hidden-xs">Domisili</span></a>
             </li>
@@ -238,10 +238,13 @@
             <li class="nav-item">
                 <a href="javascript:void();" data-target="#dokumen" data-toggle="pill" class="nav-link"><i class="fa fa-file-text-o fa-3x"></i> <span class="hidden-xs">Dokumen</span></a>
             </li>
+            <li class="nav-item">
+                <a href="javascript:void();" data-target="#kelas" data-toggle="pill" class="nav-link"><i class="fa fa-file-text-o fa-3x"></i> <span class="hidden-xs">Kelas</span></a>
+            </li>
         </ul>
         <div class="tab-content p-3">
-            
-            <div class="tab-pane" id="domisili">
+
+            <div class="tab-pane" id="domisili" selected>
                 <div class="row" style="margin-top: 20px">
 
                     @foreach($user as $data)
@@ -303,8 +306,8 @@
                 </div>
             </div>
             <div class="tab-pane" id="orangTua">
-               @if(isset($student->father_data))<h5>Data Ayah</h5><hr>@endif
-               <div class="row">
+             @if(isset($student->father_data))<h5>Data Ayah</h5><hr>@endif
+             <div class="row">
                 @if(isset($student->father_data['name']))
                 <dt class="col-sm-5">Nama Ayah</dt>
                 <dd class="col-sm-7">
@@ -484,7 +487,7 @@
                     <p>{{ $student->guardian_data['disability'] }}</p>
                 </dd>
                 @endif
-            </div>    
+            </div>             
         </div>
 
         <div class="tab-pane" id="dokumen">
@@ -503,6 +506,7 @@
                     </div>
                 </div>
                 @endif
+                
                 @if(isset($student->other['junior_high_school_diploma']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -10px;">
@@ -517,6 +521,7 @@
                     </div>
                 </div>
                 @endif
+                
                 @if(isset($student->other['elementary_school_diploma']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -10px;">
@@ -531,6 +536,7 @@
                     </div>
                 </div>
                 @endif
+                
                 @if(isset($student->other['birht_certificate']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -15px;">
@@ -545,6 +551,7 @@
                     </div>
                 </div>
                 @endif
+                
                 @if(isset($student->other['family_card']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -15px;">
@@ -559,6 +566,7 @@
                     </div>
                 </div>
                 @endif
+                
                 @if(isset($student->other['domicile_statement']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -15px;">
@@ -573,6 +581,7 @@
                     </div>
                 </div>
                 @endif
+                
                 @if(isset($student->other['id_card_father']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -15px;">
@@ -587,6 +596,7 @@
                     </div>
                 </div>
                 @endif
+                
                 @if(isset($student->other['id_card_mother']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -15px;">
@@ -601,6 +611,7 @@
                     </div>
                 </div>
                 @endif
+                
                 @if(isset($student->other['health_certificate']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -15px;">
@@ -615,6 +626,7 @@
                     </div>
                 </div>
                 @endif
+
                 @if(isset($student->other['eye_health_letter']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -15px;">
@@ -629,6 +641,7 @@
                     </div>
                 </div>
                 @endif
+
                 @if(isset($student->other['card']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -15px;">
@@ -643,6 +656,7 @@
                     </div>
                 </div>
                 @endif
+
                 @if(isset($student->other['certificate']))
                 <div class="card-body">
                     <div class="row" style="margin-top: -18px;">
@@ -657,7 +671,6 @@
                     </div>
                 </div>
                 @endif
-
             </div>
         </div>
 
@@ -694,6 +707,18 @@
                 </dd>
                 @endif
                 
+            </div>            
+        </div>
+
+        <div class="tab-pane" id="kelas">
+            <div class="row">                    
+                <dt class="col-sm-4">Kelas X</dt>
+                <dd class="col-sm-5">                    
+                    <p> X RPL 1</p>
+                </dd>
+                <dd class="col-sm-3">                    
+                    <p> edit </p>
+                </dd>
             </div>
         </div>
     </div>

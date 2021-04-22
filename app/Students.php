@@ -10,6 +10,7 @@ use App\User;
 
 class Students extends Model
 {
+    protected $table = "students";
     protected $primaryKey = 'stu_id';
     const CREATED_AT = 'stu_created_at';
     const UPDATED_AT = 'stu_updated_at';
@@ -20,6 +21,7 @@ class Students extends Model
         $students = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
             ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
             ->where('student_registrations.str_status', 1)
+            ->orWhere('student_registrations.str_status', 6)
             ->where('users.usr_is_regist', 1)
             ->select('users.usr_id', 'users.usr_is_active','students.stu_id','students.stu_candidate_name','students.stu_nis');
         // dd($students);
@@ -111,12 +113,19 @@ class Students extends Model
     public static function getStudentPayment($request)
     {
 
-        $students_payment = Students::join('users', 'students.stu_user_id', '=', 'users.usr_id')
-            ->join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
-            // ->join('school_years', 'student_payments.stp_school_year_id', '=', 'school_years.scy_id')
-            ->whereNotNull('student_payments.stp_picture');
-        // dd($students_rejected);
+        $students_payment = Students::join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
+            ->whereNotNull('student_payments.stp_picture')
+            ->where('student_payments.stp_type_payment', 1);
         return $students_payment;
+    }
+
+    public static function getSchoolPayment($request)
+    {
+        $schools_payment = StudentPayments::join('students', 'student_payments.stp_student_id', '=', 'students.stu_id')
+            ->whereNotNull('student_payments.stp_picture')
+            ->where('student_payments.stp_type_payment', 2)->groupBy('student_payments.stp_student_id');
+        
+        return $schools_payment;
     }
 
     public function getStudentEdit($studentID)

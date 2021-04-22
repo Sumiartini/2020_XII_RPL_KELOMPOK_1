@@ -5,7 +5,39 @@ function student() {
       ajax: 'student',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stu_id',
@@ -50,6 +82,13 @@ function student() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar Siswa",
             "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -156,6 +195,13 @@ function studentUsers() {
             "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
             "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
             "lengthMenu": "Tampilkan _MENU_ baris",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -172,7 +218,39 @@ function studentProspective() {
       ajax: 'student/prospective',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+       buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stu_id',
@@ -211,6 +289,13 @@ function studentProspective() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar calon siswa",
             "infoFiltered": "(pencarian dari _MAX_ daftar calon siswa)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -226,7 +311,39 @@ function studentRejected() {
       ajax: 'student/rejected',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+       buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stu_id',
@@ -265,6 +382,13 @@ function studentRejected() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar calon siswa ditolak",
             "infoFiltered": "(pencarian dari _MAX_ daftar calon siswa)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -280,7 +404,39 @@ function studentPayment() {
       ajax: 'student/payment',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stu_id',
@@ -293,8 +449,8 @@ function studentPayment() {
                 }
             },
             {
-                data: 'usr_name', 
-                name:'users.usr_name', 
+                data: 'stu_candidate_name', 
+                name:'students.stu_candidate_name', 
                 orderable: true, 
                 searchable: false
             },
@@ -328,6 +484,13 @@ function studentPayment() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar pembayaran siswa",
             "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -336,7 +499,101 @@ function studentPayment() {
     });
 }
 
+function schoolPayment() {
+    $('#example').DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: 'school/payment',
+      lengthChange: false,
+      dom: 'Blfrtip',
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
+        columns: [
+            {
+                data: 'stu_id',
+                name: 'stu_id',
+                class: 'table-fit text-left',
+                orderable:true,
+                searchable: true,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                data: 'stu_candidate_name', 
+                name:'students.stu_candidate_name', 
+                orderable: true, 
+                searchable: false
+            },
+            {
+                data: 'stp_picture', 
+                name:'stp_picture', 
+                render: function(data, type, full, meta){
+                    return "<img src=\"" + data + "\"height=\"50\"/>";
+                },
+                orderable: true, 
+                searchable: false
+            },
 
+            {
+                data: 'action', 
+                name:'action', 
+                orderable: false, 
+                searchable: false
+            },
+        ],
+        "language": {
+            "search": "Cari:",
+            "processing": "Mohon tunggu",
+            "zeroRecords": "Daftar pembayaran siswa tidak tersedia",
+            "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
+            "infoEmpty": "Tidak ada daftar pembayaran siswa",
+            "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
+            "paginate": {
+                "previous": "sebelumnya",
+                "next": "selanjutnya"
+            }
+        }
+    });
+}
 
 function staff() {
     $('#example').DataTable({
@@ -345,7 +602,39 @@ function staff() {
       ajax: 'staff',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+       buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stf_id',
@@ -390,6 +679,13 @@ function staff() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar staf",
             "infoFiltered": "(pencarian dari _MAX_ daftar staf)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -449,6 +745,13 @@ function staffUsers() {
             "infoFiltered": "(pencarian dari _MAX_ daftar staf)",
             "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
             "lengthMenu": "Tampilkan _MENU_ baris",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -465,7 +768,39 @@ function staffProspective() {
       ajax: 'staff/prospective',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+       buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stf_id',
@@ -504,6 +839,13 @@ function staffProspective() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar calon staf",
             "infoFiltered": "(pencarian dari _MAX_ daftar calon staf)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -519,7 +861,39 @@ function staffRejected() {
       ajax: 'staff/rejected',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+       buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stf_id',
@@ -558,6 +932,13 @@ function staffRejected() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar calon staf ditolak",
             "infoFiltered": "(pencarian dari _MAX_ daftar calon staf)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -574,7 +955,39 @@ function teacher() {
       ajax: 'teacher',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+       buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'tcr_id',
@@ -620,6 +1033,13 @@ function teacher() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar guru",
             "infoFiltered": "(pencarian dari _MAX_ daftar guru)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -680,6 +1100,13 @@ function teacherUsers() {
             "infoFiltered": "(pencarian dari _MAX_ daftar guru)",
             "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
             "lengthMenu": "Tampilkan _MENU_ baris",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -695,7 +1122,39 @@ function teacherProspective() {
       ajax: 'teacher/prospective',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'tcr_id',
@@ -734,6 +1193,13 @@ function teacherProspective() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar calon guru",
             "infoFiltered": "(pencarian dari _MAX_ daftar calon guru)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -749,7 +1215,39 @@ function teacherRejected() {
       ajax: 'teacher/rejected',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'tcr_id',
@@ -788,6 +1286,13 @@ function teacherRejected() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar calon guru ditolak",
             "infoFiltered": "(pencarian dari _MAX_ daftar calon guru)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -804,11 +1309,39 @@ function position_type() {
       ajax: 'position-type',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
-      // dom: 
-      //   "<'row'<'col-sm-5 text-left'B><'col-sm-5 text-center'l><'col-sm-2'f>>" +
-      //   "<'row'<'col-sm-12'tr>>" +
-      //   "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'pst_id',
@@ -854,6 +1387,13 @@ function position_type() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar jabatan",
             "infoFiltered": "(pencarian dari _MAX_ daftar jabatan)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -869,7 +1409,39 @@ function subject() {
       ajax: 'subject',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'sbj_id',
@@ -908,6 +1480,13 @@ function subject() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar mata pelajaran",
             "infoFiltered": "(pencarian dari _MAX_ daftar mata pelajaran)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -923,7 +1502,39 @@ function school_year() {
       ajax: 'school-year',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'scy_id',
@@ -969,6 +1580,13 @@ function school_year() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada daftar tahun ajaran",
             "infoFiltered": "(pencarian dari _MAX_ daftar tahun ajaran)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -1007,7 +1625,9 @@ function major() {
                  customize: function (doc) {
                     doc.content[1].table.widths = 
                         Array(doc.content[1].table.body[0].length + 1).join('*').split('');
-                        doc.content[1].table.widths = ['5%','45%','50%',]
+                        doc.content[1].table.widths = ['5%','50%','45%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
                   }
             },
             {
@@ -1085,7 +1705,39 @@ $('#example').DataTable({
  ajax: 'class',
  lengthChange: false,
  dom: 'Blfrtip',
- buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+ buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
    columns: [
         {
            data: 'cls_id',
@@ -1130,6 +1782,13 @@ $('#example').DataTable({
             "infoEmpty": "Tidak ada daftar kelas",
             "infoFiltered": "(pencarian dari _MAX_ daftar kelas)",
             "lengthMenu": "Tampilkan _MENU_ data",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -1174,7 +1833,39 @@ function master_slide() {
       ajax: 'master-slide',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'mss_id',
@@ -1223,6 +1914,13 @@ function master_slide() {
             "infoEmpty": "Tidak ada daftar Berkas",
             "infoFiltered": "(pencarian dari _MAX_ daftar Berkas)",
             "lengthMenu": "Tampilkan _MENU_ data",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -1238,7 +1936,39 @@ function master_config() {
       ajax: 'master-config',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+      buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'msc_id',
@@ -1284,6 +2014,13 @@ function master_config() {
             "infoEmpty": "Tidak ada daftar konfigurasi",
             "infoFiltered": "(pencarian dari _MAX_ daftar konfigurasi)",
             "lengthMenu": "Tampilkan _MENU_ data",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -1300,7 +2037,39 @@ $('#example').DataTable({
  ajax: 'homeroom-teacher',
  lengthChange: false,
  dom: 'Blfrtip',
- buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+ buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
    columns: [
         {
            data: 'hrt_id',
@@ -1346,6 +2115,13 @@ $('#example').DataTable({
             "infoEmpty": "Tidak ada daftar Wali Kelas",
             "infoFiltered": "(pencarian dari _MAX_ daftar Wali Kelas)",
             "lengthMenu": "Tampilkan _MENU_ data",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -1361,7 +2137,39 @@ function studentReRegistration() {
       ajax: 'student/re/registration',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+       buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stu_id',
@@ -1406,6 +2214,13 @@ function studentReRegistration() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada Siswa daftar ulang",
             "infoFiltered": "(pencarian dari _MAX_ Siswa daftar ulang)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -1467,7 +2282,39 @@ function studentMove() {
       ajax: 'student-move',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+        buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3, 4]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3, 4]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','25%','20%', '30%','20%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3, 4]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stu_id',
@@ -1511,6 +2358,13 @@ function studentMove() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada Siswa pindah",
             "infoFiltered": "(pencarian dari _MAX_ Siswa pindah)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
@@ -1526,7 +2380,39 @@ function studentDropOut() {
       ajax: 'student-dropout',
       lengthChange: false,
       dom: 'Blfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'print', 'colvis'],
+       buttons: [
+            {
+                extend: 'copy',
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                     columns: [0, 1, 2, 3, 4]
+                },
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                     columns: [0, 1, 2, 3, 4]
+                  },
+                 customize: function (doc) {
+                    doc.content[1].table.widths = 
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.content[1].table.widths = ['5%','25%','20%', '30%','20%'];
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                  },
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                     columns: [0, 1, 2, 3, 4]
+                  },
+            },
+            {
+                extend: 'colvis',
+            }
+        ],
         columns: [
             {
                 data: 'stu_id',
@@ -1570,6 +2456,13 @@ function studentDropOut() {
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
             "infoEmpty": "Tidak ada Siswa dikeluarkan",
             "infoFiltered": "(pencarian dari _MAX_ Siswa dikeluarkan)",
+            "buttons": {
+                    "copy": "salin",
+                    "excel": "excel",
+                    "pdf": "pdf",
+                    "print": "cetak",
+                    "colvis": "visibilitas kolom",
+                },
             "paginate": {
                 "previous": "sebelumnya",
                 "next": "selanjutnya"
