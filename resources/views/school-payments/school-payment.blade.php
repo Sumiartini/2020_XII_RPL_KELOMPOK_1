@@ -5,7 +5,8 @@
 @endpush
 
 @push('styles')
-
+<!-- notifications css -->
+<link rel="stylesheet" href="{{ asset('assets/plugins/notifications/css/lobibox.min.css')}}"/>
   <!-- simplebar CSS-->
 <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet">
 <!-- Bootstrap core CSS-->
@@ -47,6 +48,18 @@
     </div>
   </div>
   @endif
+
+  @if ($message = Session::get('error'))
+<div class="alert alert-danger alert-dismissible" role="alert">
+ <button type="button" class="close" data-dismiss="alert">×</button>
+ <div class="alert-icon contrast-alert">
+   <i class="icon-close"></i>
+ </div>
+ <div class="alert-message">
+  <span><strong>Gagal!</strong> {{$message}}.</span>
+</div>
+</div>
+@endif
   </div>
     <div class="col-lg-12">
         <div class="card">
@@ -60,7 +73,7 @@
 
                     <dt class="col-sm-2">Sisa Pembayaran</dt>
                     <dd class="col-sm-10">
-                        
+                        Rp. {{ moneyFormat($remaining_payment) }}
                     </dd>
 
                     <dt class="col-sm-2">Transfer Ke Bank</dt>
@@ -88,24 +101,7 @@
                             </p>
                     @enderror
                         </div><br><br>
-
-                        <label class="col-sm-2 col-form-label">Tahun Ajaran<span style="color:red"> *</span></label>
-                        <div class="col-sm-9">
-                          <select name="stp_school_year_id" class="form-control form-control-rounded @error('str_school_year_id') is-invalid @enderror" value="{{ old('stp_school_year_id') }}">
-                          <option disabled="" {{ old('stp_school_year_id') == "" ? 'selected' : '' }}> Pilih </option>
-                          @foreach($years as $school_year)
-                          <option {{ old('stp_school_year_id') == "$school_year->scy_id" ? 'selected' : '' }} value="{{ $school_year->scy_id }}">{{ $school_year->scy_name }}</option>
-                          @endforeach
-                          </select>
-
-                          @error('stp_school_year_id')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                          @enderror
-                          
-                        </div>
-                        
+ 
                         <div class="col-sm-9">
                            <input type="hidden" name="stp_type_payment" class="form-control form-control col-sm-4" value="2">
                         </div>
@@ -168,16 +164,16 @@
 <!-- Custom scripts -->
 <script src="{{ asset('assets/js/app-script.js')}}"></script>
 
+<!--notification js -->
+<script src="{{ asset('assets/plugins/notifications/js/lobibox.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/notifications/js/notifications.min.js')}}"></script>
 <!-- script select2 -->
 <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <script>
     $(document).ready(function() {
         $('.single-select').select2();                 
     });
-
 </script>
-
-
 
 <script>
     function bacaGambar(input) {

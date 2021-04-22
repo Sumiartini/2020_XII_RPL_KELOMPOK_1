@@ -47,6 +47,17 @@
     </div>
   </div>
   @endif
+      @if ($message = Session::get('error'))
+<div class="alert alert-danger alert-dismissible" role="alert">
+ <button type="button" class="close" data-dismiss="alert">×</button>
+ <div class="alert-icon contrast-alert">
+   <i class="icon-close"></i>
+ </div>
+ <div class="alert-message">
+  <span><strong>Gagal!</strong> {{$message}}.</span>
+</div>
+</div>
+@endif
   <div class="card">
     <div class="card-header"><i class="fa fa-table"></i> Data Pembayaran PPDB</div>
     <div class="card-body">

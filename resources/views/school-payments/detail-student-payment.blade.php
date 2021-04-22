@@ -104,45 +104,37 @@
   </div>
   </div>
 </div>
-
 <div class="row">
   <div class="col-12">
      <div class="card">
         <div class="card-header text-uppercase">Pembayaran PPDB</div>
         <div class="card-body">
-           <div class="col-lg-6">
-              <p class="lead">Amount Due 2/22/2014</p>
-              <div class="table-responsive">
-                <table class="table">
- <!--                  <tr>
-                    <th>Month</th>
-                    <th>Savings</th>
-                    <th>Savings for holiday!</th>
-                  </tr> -->
-                  <tr>
-                    <td rowspan="3">1</td>
-                    <td>Jumlah bayar</td>
-                    <td>:</td>
-                     <td>Rp. 1.000.000</td>
-                  </tr>
-                  <tr>
-                    <td>February</td>
-                    <td>$80</td>
-                     <td>$100</td>
-                  </tr>
-                  <tr>
-                    <td>February</td>
-                    <td>$80</td>
-                     <td>$100</td>
-                  </tr>
-                </table>
-              </div>
+         <div class="media">
+            <div class="media-body">
+              <dt>Nominal Pembayaran PPDB</dt>
+                <dd>
+                 <p>Rp. {{ moneyFormat($ppdb_payment_price) }}</p>
+                </dd>
+              <dt>Jumlah Pembayaran yang sudah dibayar</dt>
+              <dd>
+                  <p>Rp. {{ moneyFormat($student_payment) }}</p>
+              </dd> 
+              <dt>Sisa Pembayaran</dt>
+              <dd>
+                  @if($remaining_payment == 0)
+                  <p>Rp. {{ moneyFormat($remaining_payment) }} <span class="badge badge-success">Lunas</span></p>
+                  @elseif($remaining_payment >= 0)
+                  <p>Rp. {{ moneyFormat($remaining_payment) }} <span class="badge badge-warning">Belum lunas</span></p>
+                  @elseif($remaining_payment <= 0)
+                  <p>Rp. {{ moneyFormat($remaining_payment) }} <span class="badge badge-danger">Pembayaran melebihi batas</span></p>
+                  @endif
+              </dd> 
             </div>
+          </div>
         </div>
       </div>
   </div>
 </div>
-
 @endsection
 
 @push('scripts')

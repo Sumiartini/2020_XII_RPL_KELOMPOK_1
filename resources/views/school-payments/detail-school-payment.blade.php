@@ -65,7 +65,7 @@
 
         <dt class="col-sm-6">Nominal Bayar </dt>
         <dd class="col-sm-6">
-          <p>{{ $payment->stp_nominal }}</p>
+          <p>Rp. {{ moneyFormat($payment->stp_nominal) }}</p>
         </dd>
 
         <dt class="col-sm-6">Tanggal Pembayaran </dt>

@@ -26,13 +26,13 @@
        </tr>
        <tr>
         <td style="padding: 20px 0 30px 0; color: #153643; font-family: Times New Roman, sans-serif; font-size: 18px; line-height: 20px;">
-          @if($payment->stp_payment_status == 2)
+          @if($school_payment->stp_payment_status == 2)
             <p>Terimakasih Telah Melakukan Pembayaran PPDB</p>
               <p>Pembayaran anda telah di terima oleh kami</p>
             <br>
           @else
             <p>Maaf Pembayaran anda kami tolak dengan alasan</p>
-            <p><b>{{$payment->stp_reason}}</b></p>
+            <p><b>{{$school_payment->stp_reason}}</b></p>
             Silahkan lakukan pembayaran ulang           
             <br>
           @endif
