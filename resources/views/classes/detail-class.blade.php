@@ -26,7 +26,7 @@
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
         @foreach($class as $class)
-        <h4 class="page-title">Detail Kelas {{$class->grl_name . ' ' . $class->mjr_name . ' ' . $class->cls_number }}</h4>
+        <h4 class="page-title">Detail Kelas {{$class->grl_name . ' ' . $class->mjr_name . ' ' . $class->cls_number }}</h4> 
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('classes')}}">Kelas</a></li>
@@ -48,12 +48,17 @@
     </div>
     @endif
     <div class="card">            
-        <div class="card-header"><i class="fa fa-table"></i> Daftas Siswa {{$class->grl_name . ' ' . $class->mjr_name . ' ' . $class->cls_number }} </div>
+        <div class="card-header"><i class="fa fa-table"></i> Daftas Siswa {{$class->grl_name . ' ' . $class->mjr_name . ' ' . $class->cls_number }}</div> 
         
         <div class="card-body">
             <div class="table-responsive">
-                <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
-                    <a href="{{URL::to('class/'.$class->cls_id.'/add-student')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
+                <div class="container row" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
+                    <div class="col-4">
+                        <a href="{{URL::to('class/'.$class->cls_id.'/add-student')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
+                    </div>
+                    <div class="col-8">
+                        <h5 class="float-right">Wali Kelas : {{ $teacher->usr_name }} </h5>
+                    </div>
                 </div>
                 @endforeach
                 <table id="example" class="table table-bordered" style="width: 100%;">
@@ -72,7 +77,7 @@
                             <td> {{$student->stu_candidate_name}} </td>
                             <td> {{$student->stu_nisn}} </td>
                             <td> 
-                                <a href="{{ url('class/'. $student->stc_id. '/move-student-class' )}}" type="button" data-toggle="tooltip" data-placement="top" title="PINDAH" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-walk fa-lg"></i></a>
+                                <a href="{{ url('class/'. $student->stc_id. '/move-student-class' )}}" data-toggle="tooltip" data-placement="top" title="PINDAH KELAS" type="button" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-walk fa-lg"></i></a>
                             </td>
 
                         </tr>

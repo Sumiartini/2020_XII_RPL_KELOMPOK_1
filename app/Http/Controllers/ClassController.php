@@ -8,6 +8,7 @@ use App\Majors;
 use App\GradeLevels;
 use App\StudentClass;
 use App\Students;
+use App\HomeroomTeachers;
 
 class ClassController extends Controller
 {
@@ -114,11 +115,15 @@ class ClassController extends Controller
         ->where('cls_id', $classID)
         ->get();
 
+        $teacher = HomeroomTeachers::join('classes', 'classes.cls_id', '=', 'homeroom_teachers.hrt_class_id')
+                                    ->join('teachers', 'teachers.tcr_id', 'homeroom_teachers.hrt_teacher_id')
+                                    ->join('users', 'users.usr_id', '=', 'teachers.tcr_user_id')
+                                    ->where('classes.cls_id', $classID)->first();
         $student = StudentClass::join('students', 'students.stu_id', '=', 'student_classes.stc_student_id')
                    ->join('classes', 'classes.cls_id', '=', 'student_classes.stc_class_id')
                    ->where('classes.cls_id', $classID)
                    ->get();
-        return view('classes.detail-class', ['class' => $class, 'student' => $student]);
+        return view('classes.detail-class', ['class' => $class, 'student' => $student, 'teacher' => $teacher]);
     }
 
     public function add_student($classID)
@@ -194,6 +199,50 @@ class ClassController extends Controller
         return redirect('/class/'.$studentClass->stc_class_id)->with('success', 'Siswa Berhasil Dipindahkan');
         }else{
             return back()->with('error', 'Siswa hanya dapat pindah kelas dengan tingkatan yang sama');
+        }
+    }
+
+    public function add_class_student($studentID)
+    {
+        $student = Students::where('stu_id', $studentID)->first();
+        $class = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
+        ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+        ->get();
+        return view('classes.add-class-student', ['student' => $student, 'class' => $class]);        
+    }
+
+    public function store_add_class_student(Request $request)
+    {
+        $student_check = StudentClass::where('stc_student_id', $request->stu_id)->first();
+        $class_check = Classes::where('cls_id', $request->cls_id)->first();     
+
+        if ($student_check == null) {
+            if ($class_check->cls_grade_level_id == 1) {
+            $studentClass = new StudentClass;
+            $studentClass->stc_student_id    = $request->stu_id;
+            $studentClass->stc_class_id      = $request->cls_id;
+            $studentClass->stc_created_by    = Auth()->user()->usr_id;
+            $studentClass->save();
+            return redirect('/class/'.$studentClass->stc_class_id)->with('success', 'Siswa telah ditambahkan');
+            }else{
+                return back()->with('error', 'Masukkan dulu kelas siswa sebelumnya. Siswa tidak dapat loncat kelas');
+            }
+        }else{
+            $student_class = Classes::where('cls_id', $student_check->stc_class_id)->first();
+            if ($class_check->cls_grade_level_id > $student_class->cls_grade_level_id) {
+                if ($class_check->cls_grade_level_id == 2) {
+                    $studentClass = new StudentClass;
+                    $studentClass->stc_student_id    = $request->stu_id;
+                    $studentClass->stc_class_id      = $request->cls_id;
+                    $studentClass->stc_created_by    = Auth()->user()->usr_id;
+                    $studentClass->save();
+                    return redirect('/class/'.$studentClass->stc_class_id);        
+                }else{
+                    return back()->with('error', 'Masukkan dulu kelas siswa sebelumnya. Siswa tidak dapat loncat kelas');
+                }
+            }else{
+                return back()->with('error', 'Siswa telah memiliki kelas atau kelas siswa sebelumnya lebih rendah atau sama dengan kelas yang baru ditambahkan');
+            }
         }
     }
 }
