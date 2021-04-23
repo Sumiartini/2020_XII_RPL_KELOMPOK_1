@@ -757,7 +757,6 @@ class StudentController extends Controller
 
         $payment = new StudentPayments;
         $payment->stp_student_id = $student->stu_id;
-        $payment->stp_school_year_id = $request->stp_school_year_id;
         $payment->stp_payment_status = 1;
         $payment->stp_payment_method = $request->stp_payment_method;
         $payment->stp_reason = null;
@@ -782,8 +781,7 @@ class StudentController extends Controller
     public function createSchoolPayment()
     {
          $school_year = Years::join('students', 'students.stu_school_year_id', 'school_years.scy_id')
-                              ->join('student_payments', 'stp_student_id', 'students.stu_id')  
-                              ->join('school_years', 'student_payments.stp_school_year_id', '=', 'school_years.scy_id')               
+                              ->join('student_payments', 'stp_student_id', 'students.stu_id')                 
                               ->where('stp_type_payment', 2);
         $student = Students::orderBy('stu_candidate_name','ASC')->get();
         //dd($school_year);
@@ -810,7 +808,6 @@ class StudentController extends Controller
 
         $payment = new StudentPayments;
         $payment->stp_student_id = $request->stp_student_id;
-        $payment->stp_school_year_id = $request->stp_school_year_id;
         $payment->stp_payment_status = 1;
         $payment->stp_payment_method = $request->stp_payment_method;
         $payment->stp_reason = null;

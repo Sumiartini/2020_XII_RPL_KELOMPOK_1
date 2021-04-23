@@ -17,8 +17,6 @@ class CreateStudentPaymentsTable extends Migration
             $table->bigIncrements('stp_id');
             $table->foreignId('stp_student_id');
             $table->foreign('stp_student_id')->references('stu_id')->on('students');
-            $table->foreignId('stp_school_year_id')->nullable();
-            $table->foreign('stp_school_year_id')->references('scy_id')->on('school_years');
             $table->string('stp_payment_method')->nullable();
             $table->string('stp_picture')->nullable();
             $table->string('stp_reason')->nullable();

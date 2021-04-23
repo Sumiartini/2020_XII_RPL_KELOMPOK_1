@@ -848,6 +848,9 @@
             "other[resume]":{
                 required: "Resume harus di upload"
             },
+            "other[scholar_diploma]":{
+                required: "Ijazah Minimal D4/S1 Harus Di Upload"
+            },
             usr_profile_picture:{
                 required: "Foto calon guru tidak boleh kosong"
             },

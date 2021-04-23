@@ -129,12 +129,16 @@
                   <p>Rp. {{ moneyFormat($remaining_payment) }} <span class="badge badge-danger">Pembayaran melebihi batas</span></p>
                   @endif
               </dd> 
+
+              <hr>
+  <a href="{{url('/school-payments')}}" class="btn btn-primary" style="float: left;"><i class="fa fa-arrow-left"></i> Kembali</a>
             </div>
           </div>
         </div>
       </div>
   </div>
 </div>
+
 @endsection
 
 @push('scripts')
