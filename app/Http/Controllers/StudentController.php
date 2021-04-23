@@ -796,6 +796,7 @@ class StudentController extends Controller
         $student = Students::join('users','students.stu_user_id','=','users.usr_id')        
         ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
         ->join('school_years', 'student_registrations.str_school_year_id','=','school_years.scy_id')
+        ->where('stu_id', $request->stp_student_id)
         ->firstOrFail();
 
         $student_payment = StudentPayments::where('stp_student_id',$student->stu_id)->where('stp_payment_status', 2)->where('stp_type_payment', 2)->sum('stp_nominal');
@@ -803,7 +804,7 @@ class StudentController extends Controller
         $remaining_payment = $ppdb_payment_price - $student_payment;
 
         if ($student->scy_payment_price == $student_payment) {
-            dd($student, $student_payment);
+             //dd($student, $student_payment);
             return redirect('/school-payments')->with('error', 'Data Gagal Ditambahkan, Siswa telah melunasi pembayarannya!');
         }
 

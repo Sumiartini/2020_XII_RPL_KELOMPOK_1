@@ -118,8 +118,8 @@
    <div>
     <a href="{{url('/school-payment/'.$payment->stu_id)}}" class="btn btn-primary" style="float: left;"><i class="fa fa-arrow-left"></i> Kembali</a>
     @if($payment->stp_payment_status == 1)
-    <a href="{{url('/student/refuse-payment/'.$payment->stu_id)}}" class="btn btn-danger" style="float: right;">Tolak</a>
-    <a href="{{url('/student/accept-payment/'.$payment->stu_id)}}" class="btn btn-success" style="float: right; margin-right: 2px;">Terima</a>
+    <a href="{{url('/school-payment/refuse-payment/'.$payment->stp_id)}}" class="btn btn-danger" style="float: right;">Tolak</a>
+    <a href="{{url('/school-payment/accept-payment/'.$payment->stp_id)}}" class="btn btn-success" style="float: right; margin-right: 2px;">Terima</a>
     @endif
   </div>
   @endforeach
