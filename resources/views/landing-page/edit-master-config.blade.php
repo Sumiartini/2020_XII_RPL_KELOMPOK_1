@@ -92,7 +92,7 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label"></label>                    
                         <div class="col-sm-8">
-                            <iframe class="rounded" src="{{ $master_config->msv_url_video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 760px; height: 400px;"></iframe>
+                            <iframe class="rounded" src="{{ $master_config->msv_url_video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 660px; height: 375px;"></iframe>
                         </div>
                     </div>
 

@@ -57,7 +57,7 @@
       @if(isset($master_config->msv_url_video))
       <dt class="col-sm-2"></dt>
       <dd class="col-sm-10">
-          <iframe class="rounded" src="{{ $master_config->msv_url_video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 960px; height: 400px;"></iframe>
+          <iframe class="rounded" src="{{ $master_config->msv_url_video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 700px; height: 400px;"></iframe>
       </dd>
         
        
@@ -82,7 +82,7 @@
       <dt class="col-sm-2">Logo Sekolah</dt>
       <dd class="col-sm-10">
            <div class="user-fullimage ">
-            <img src="{{ asset($master_config->msc_logo)}}" alt="user avatar"  class="card-img-top" style="margin-bottom: 10px; width: 200px; height: 200px;">
+            <img src="{{ asset($master_config->msc_logo)}}" alt="user avatar"  class="card-img-top" style="margin-bottom: 10px; width: 250px; height: 250px;">
           </div>
       </dd>
       @endif
