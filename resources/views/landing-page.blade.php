@@ -406,8 +406,8 @@ footer{
 }
 
 .info-profil iframe{
-     width: 830px; 
-     height: 469px;
+     width: 750px; 
+     height: 400px;
 }
 
 /*info jurusan*/
@@ -573,38 +573,25 @@ footer{
         <div class="container">
             <h1 class="display-4"><span>Selamat Datang</span> di SMK Mahaputra Cerdas Utama, sekolah dengan konsep <span>Green School</span> pertama di <span>Kabupaten Bandung</span></h1>
             <div class="container">
-                 @foreach($master_slide as $master_slide)
-                <div class="bd-example">
-                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="" data-slide-to="0" class="active"></li>
-                            <li data-target="" data-slide-to="1"></li>
-                            <li data-target="" data-slide-to="2"></li>
-                            <li data-target="" data-slide-to="3"></li>
-                            <li data-target="" data-slide-to="4"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            
-                            <div class="carousel-item active">
-                               
-                                <img src="{{ asset($master_slide->mss_file)}}" class="d-block w-100" alt="...">
-                                
-                                <div class="carousel-caption d-none d-md-block">
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    @foreach ($master_slide->take(3) as $master_slide)
+                    <div class="carousel-item @if($loop->first) active @endif">
+                      <img class="d-block w-100" src="{{$master_slide->mss_file}}" alt="{{$master_slide->mss_name}}">
                     </div>
+                    @endforeach
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
                 </div>
-                @endforeach
+
 
             </div>
             <div class="row justify-content-center">
