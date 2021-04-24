@@ -26,7 +26,7 @@
     <h4 class="page-title">Detail Konfigurasi</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
-      <li class="breadcrumb-item"><a href="{{ url('/master-slides')}}">Daftar Konfigurasi</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('master-configs') }}">Daftar Konfigurasi</a></li>
       <li class="breadcrumb-item active" aria-current="page">Detail Konfigurasi</li>
     </ol>
   </div>
