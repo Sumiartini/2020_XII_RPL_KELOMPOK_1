@@ -17,6 +17,9 @@
 <link href="{{ asset('assets/css/sidebar-menu.css')}}" rel="stylesheet" />
 <!-- Custom Style-->
 <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet" />
+<!-- select2 -->
+<link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
+
 
 @endpush
 
@@ -65,34 +68,33 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Wali Kelas <span style="color:red;">*</span></label>
                         <div class="col-sm-9">
-                        <select name="usr_name" class="form-control form-control-rounded @error('usr_name') is-invalid @enderror">
-                                <option disabled="" selected> Pilih </option>
+                        <select  name="usr_name" class="form-control single-select form-control-rounded @error('usr_name') is-invalid @enderror">
+                                <option disabled="true" selected="true"> Pilih </option>
                                 @foreach($teachers as $teacher)
-                                <option value="{{$teacher->tcr_id}}">{{$teacher->usr_name}}</option>
+                                <option {{ old('usr_name') == "$teacher->tcr_id" ? 'selected' : '' }} value="{{$teacher->tcr_id}}">{{$teacher->usr_name}}</option>
                                 @endforeach
                             </select>
                         @error('usr_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror 
+                        <p>
+                            <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                        </p>
+                        @enderror 
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Nama Kelas</label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Nama Kelas <span style="color:red;">*</span></label>
                         <div class="col-sm-9">
-                                <select name="cls_name" class="form-control form-control-rounded @error('cls_name') is-invalid @enderror">
-                                <option disabled="" selected> Pilih </option>
+                        <select name="cls_name" class="form-control single-select form-control-rounded @error('cls_name') is-invalid @enderror">
+                                <option disabled="true" selected="true"> Pilih </option>
                                 @foreach($classes as $class)
-                                <option value="{{$class->cls_id}}">{{$class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }}</option>
+                                <option {{ old('cls_name') == "$class->cls_id" ? 'selected' : '' }} value="{{$class->cls_id}}">{{$class->grl_name . ' ' . $class->mjr_name . ' ' . $class->cls_number}}</option>
                                 @endforeach
                             </select>
-                            @error('cls_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror 
+                        @error('cls_name')
+                        <p>
+                            <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                        </p>
+                        @enderror 
                         </div>
                     </div>
                     
@@ -111,7 +113,7 @@
     </div>
 </div><!-- End Row-->
 
-@endsection
+
 
 
 
@@ -157,4 +159,13 @@
     });
 });
 </script>
+
+<!-- script select2 -->
+<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.single-select').select2();                 
+    });
+</script>
 @endpush
+@endsection

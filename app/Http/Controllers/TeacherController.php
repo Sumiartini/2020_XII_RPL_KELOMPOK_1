@@ -362,12 +362,12 @@ class TeacherController extends Controller
             'educational_background.faculty_major'              => 'required',
             'educational_background.year_graduated'             => 'required',
             'educational_background.degree'                     => 'required',
-            'other.identity_card'                               => 'required',
-            'other.family_card'                                 => 'required',
-            'other.scholar_diploma'                             => 'required',
-            'other.curriculum_vitae'                            => 'required',
-            'other.application_letter'                          => 'required',
-            'other.resume'                                      => 'required',
+            // 'other.identity_card'                               => 'required',
+            // 'other.family_card'                                 => 'required',
+            // 'other.scholar_diploma'                             => 'required',
+            // 'other.curriculum_vitae'                            => 'required',
+            // 'other.application_letter'                          => 'required',
+            // 'other.resume'                                      => 'required',
             
         ], $messages);
         // dd("Kesini");

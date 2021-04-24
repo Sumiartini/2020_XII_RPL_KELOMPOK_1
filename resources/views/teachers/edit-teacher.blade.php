@@ -493,6 +493,106 @@
 
                     </div>
 
+            <h4 class="form-header text-uppercase">
+                <i class=""></i>
+                Lainnya <small>(Maksimal File Ukuran 2 MB)</small>
+            </h4>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Tanda Penduduk (KTP) </label>
+                    @if(isset($teacher_edit->other['identity_card']))
+                    <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['identity_card']}}</a></p>
+                    @endif
+                    <div class="custom-file">
+                        <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[identity_card]').value=this.value" type="file" name="other[identity_card]" class="@error('other[identity_card]') is-invalid @enderror" id="preview_gambar">
+                        @error('other.identity_card')
+                        <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                        </p>
+                        @enderror   
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Keluarga </label>
+                    @if(isset($teacher_edit->other['family_card']))
+                    <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['family_card']}}</a></p>
+                    @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[family_card]').value=this.value" type="file" name="other[family_card]" class="@error('other[family_card]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.family_card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah Minimal SMA/SEDERAJAT Dilegalisir</label>
+                    @if(isset($teacher_edit->other['scholar_diploma']))
+                    <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['scholar_diploma']}}</a></p>
+                    @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[scholar_diploma]').value=this.value" type="file" name="other[scholar_diploma]" class="@error('other[scholar_diploma]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.scholar_diploma')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Lamaran </label>
+                    @if(isset($teacher_edit->other['curriculum_vitae']))
+                    <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['curriculum_vitae']}}</a></p>
+                    @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[curriculum_vitae]').value=this.value" type="file" name="other[curriculum_vitae]" class="@error('other[curriculum_vitae]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.curriculum_vitae')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div> 
+
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Lamaran </label>
+                    @if(isset($teacher_edit->other['application_letter']))
+                    <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['application_letter']}}</a></p>
+                    @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[application_letter]').value=this.value" type="file" name="other[application_letter]" class="@error('other[application_letter]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.application_letter')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Resume </label>
+                    @if(isset($teacher_edit->other['resume']))
+                    <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['resume']}}</a></p>
+                    @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[resume]').value=this.value" type="file" name="other[resume]" class="@error('other[resume]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.resume')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+
                     <div class="form-footer">
                         <a href="{{url('teachers')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
                         <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>

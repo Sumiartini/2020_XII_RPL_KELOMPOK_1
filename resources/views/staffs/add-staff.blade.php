@@ -497,7 +497,7 @@
                 <div class="col-sm-4">
                     <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px" />
                     <input type="file"  name="usr_profile_picture" id="preview_gambar" class="@error('usr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-                    <!-- <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button> -->
+                   <button type="button" id="usr_profile_picture" class="btn btn-outline-primary btn-sm waves-effect waves-light m-2" onclick="document.getElementById('preview_gambar').click()"> Pilih Gambar </button>
                     @error('usr_profile_picture')
                     <p>
                         <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>

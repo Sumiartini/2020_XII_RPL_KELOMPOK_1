@@ -805,6 +805,198 @@
             @enderror
         </div>
     </div>
+
+    <h4 class="form-header text-uppercase">
+        <i class=""></i>
+        Dokumen <small>(Maksimal File Ukuran 2 MB)</small>
+
+    </h4>
+
+    <div class="row">
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Tanda Kelulusan SMP dilegalisir </label>
+                    @if(isset($student_edit->other['certificate_of_graduation']))
+                    <p><i class="fa fa-file-word"></i>{{$student_edit->other['certificate_of_graduation']}}</a></p>
+                    @endif
+                    <div class="custom-file">
+                        <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[certificate_of_graduation]').value=this.value" type="file" name="other[certificate_of_graduation]" class="@error('other[certificate_of_graduation]') is-invalid @enderror" id="preview_gambar">
+                        @error('other.certificate_of_graduation')
+                        <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                        </p>
+                        @enderror   
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah SMP/MTs dilegalisir  </label>
+                    @if(isset($student_edit->other['junior_high_school_diploma']))
+                    <p><i class="fa fa-file-word"></i>{{$student_edit->other['junior_high_school_diploma']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                        <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[junior_high_school_diploma]').value=this.value" type="file" name="other[junior_high_school_diploma]" class="@error('other[junior_high_school_diploma]') is-invalid @enderror" id="preview_gambar">
+                        @error('other.junior_high_school_diploma')
+                        <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                        </p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah SD/Mi dilegalisir</label>
+                    @if(isset($student_edit->other['elementary_school_diploma']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['elementary_school_diploma']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[elementary_school_diploma]').value=this.value" type="file" name="other[elementary_school_diploma]" class="@error('other[elementary_school_diploma]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.elementary_school_diploma')
+                    <p>
+                    <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+            </div>
+            </div>
+            
+            <div class="row" style="margin-top: 40px;">
+                <div class="col-sm-4">                    
+                    <label class="col-form-label" for="exampleInputFile"> Upload Akte Kelahiran</label>
+                     @if(isset($student_edit->other['birth_certificate']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['birth_certificate']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[birth_certificate]').value=this.value" type="file" name="other[birth_certificate]" class="@error('other[birth_certificate]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.birth_certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Keluarga </label>
+                     @if(isset($student_edit->other['family_card']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['family_card']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[family_card]').value=this.value" type="file" name="other[family_card]" class="@error('other[family_card]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.family_card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Keterangan Domisili</label>
+                     @if(isset($student_edit->other['domicile_statement']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['domicile_statement']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[domicile_statement]').value=this.value" type="file" name="other[domicile_statement]" class="@error('other[domicile_statement]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.domicile_statement')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+
+                </div>
+            </div>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload KTP Ayah </label>
+                     @if(isset($student_edit->other['id_card_father']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['id_card_father']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[id_card_father]').value=this.value" type="file" name="other[id_card_father]" class="@error('other[id_card_father]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.id_card_father')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+
+                </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload KTP Ibu </label>
+                    @if(isset($student_edit->other['id_card_mother']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['id_card_mother']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[id_card_mother]').value=this.value" type="file" name="other[id_card_mother]" class="@error('other[id_card_mother]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.id_card_mother')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Kesehatan Badan </label>
+                     @if(isset($student_edit->other['health_certificate']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['health_certificate']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[health_certificate]').value=this.value" type="file" name="other[health_certificate]" class="@error('other[health_certificate]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.health_certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Kesehatan Mata </label>
+                    @if(isset($student_edit->other['eye_health_letter']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['eye_health_letter']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[eye_health_letter]').value=this.value" type="file" name="other[eye_health_letter]" class="@error('other[eye_health_letter]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.eye_health_letter')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu PIP/KIP/Keterangan Kematian </label>
+                    @if(isset($student_edit->other['card']))
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['card']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[card]').value=this.value" type="file" name="other[card]" class="@error('other[card]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.card')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div>
+                <div class="col-sm-4">      
+                    <label class="col-form-label" for="exampleInputFile"> Upload Sertifikat/Piagam Penghargaan </label>
+                     @if(isset($student_edit->other['certificate'])) 
+                     <p><i class="fa fa-file-word"></i>{{$student_edit->other['certificate']}}</a></p>
+                     @endif
+                    <div class="custom-file">
+                    <input accept="image/x-png,image/gif,image/jpeg, application/pdf, .doc,.docx,application/msword," onchange="document.getElementById('other[certificate]').value=this.value" type="file" name="other[certificate]" class="@error('other[certificate]') is-invalid @enderror" id="preview_gambar">
+                    @error('other.certificate')
+                    <p>
+                        <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                    </p>
+                    @enderror
+                </div>
+                </div>
+            </div>
+
     <div class="form-footer">
         <a href="{{url('students')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
         <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
@@ -972,27 +1164,27 @@
             "mother_data[profession]":{
                 required: true
             },
-            "other[certificate_of_graduation]":{
-                required: true
-            },
-            "other[junior_high_school_diploma]":{
-                required: true
-            },
-            "other[elementary_school_diploma]":{
-                required: true
-            },
-            "other[birth_certificate]":{
-                required: true
-            },
-            "other[family_card]":{
-                required: true
-            },
-            "other[id_card_father]":{
-                required: true
-            },
-            "other[id_card_mother]":{
-                required: true
-            },
+            // "other[certificate_of_graduation]":{
+            //     required: true
+            // },
+            // "other[junior_high_school_diploma]":{
+            //     required: true
+            // },
+            // "other[elementary_school_diploma]":{
+            //     required: true
+            // },
+            // "other[birth_certificate]":{
+            //     required: true
+            // },
+            // "other[family_card]":{
+            //     required: true
+            // },
+            // "other[id_card_father]":{
+            //     required: true
+            // },
+            // "other[id_card_mother]":{
+            //     required: true
+            // },
             terms_and_conditions:{
                 required: true
             },
@@ -1121,27 +1313,27 @@
             "mother_data[profession]":{
                 required: "pekerjaan harus di pilih"
             },
-            "other[certificate_of_graduation]":{
-                required: "Surat tanda kelulusan smp harus di upload"
-            },
-            "other[junior_high_school_diploma]":{
-                required: "Ijazah SMP harus di upload",
-            },
-            "other[elementary_school_diploma]":{
-                required: "Ijazah SD harus di upload"
-            },
-            "other[birth_certificate]":{
-                required: "Akte kelahiran harus di upload"
-            },
-            "other[family_card]":{
-                required: "Kartu keluarga harus di upload"
-            },
-            "other[id_card_father]":{
-                required: "KTP ayah harus di upload"
-            },
-            "other[id_card_mother]":{
-                required: "KTP ibu harus di upload"
-            },
+            // "other[certificate_of_graduation]":{
+            //     required: "Surat tanda kelulusan smp harus di upload"
+            // },
+            // "other[junior_high_school_diploma]":{
+            //     required: "Ijazah SMP harus di upload",
+            // },
+            // "other[elementary_school_diploma]":{
+            //     required: "Ijazah SD harus di upload"
+            // },
+            // "other[birth_certificate]":{
+            //     required: "Akte kelahiran harus di upload"
+            // },
+            // "other[family_card]":{
+            //     required: "Kartu keluarga harus di upload"
+            // },
+            // "other[id_card_father]":{
+            //     required: "KTP ayah harus di upload"
+            // },
+            // "other[id_card_mother]":{
+            //     required: "KTP ibu harus di upload"
+            // },
             terms_and_conditions:{
                 required: "&nbsp S&K harus di centang"
             }
