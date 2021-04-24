@@ -142,7 +142,7 @@
                                  </p>
                                  <br> 
                                    
-                                 <iframe class="rounded" src="https://www.youtube.com/embed/9ALpIk7HmTM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                 <iframe class="rounded" src="{{$master_config->msv_url_video}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                  <br><br>
                                  
                                  
@@ -157,7 +157,8 @@
 
                                 <ol>
                                     
-                                    <li>{{$master_config->msc_mision}}</li>
+                                    <!-- <li></li> -->
+                                    {{$master_config->msc_mision}}
                                       
                                  </ol> 
 
@@ -209,7 +210,7 @@
                                 <p class="alamat">Jl Katapang Andir KM. 4 Kp Pasantren Ds Sukamukti Kec Katapang Kab Bandung</p>
                                
                                 <p class="alamat">
-                                    {{$master_config->msc_school_phone_number}}
+                                    {{$master_config->msc_first_school_phone_number}} | {{$master_config->msc_second_school_phone_number}}
                                 </p>
                                 
                                 <a href="mailto:smkmahaputracerdasutama@gmail.com?subject=Saya%20ingin%20lebih%20tau%20mengenai%20SMK%20Mahaputra&body=Isi%20dengan%20pertanyaan%20mengenai%20SMK%20Mahaputra.%20"><i class="zmdi zmdi-email fa-2x" style="color: darkblue;"></i></a>

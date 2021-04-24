@@ -145,8 +145,15 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Kontak Sekolah</label>
                         <div class="col-sm-8">
-                            <input  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('msc_school_phone_number') is-invalid @enderror" name="msc_school_phone_number" placeholder="Masukan No.Telp Sekolah" value="{{ old('msc_school_phone_number') }}">
-                            @error('msc_school_phone_number')
+                            <input  oninput="this.value = this.value.replace(/[^0-9.]/g, '-').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('msc_first_school_phone_number') is-invalid @enderror" name="msc_first_school_phone_number" placeholder="Masukan No.Telp Sekolah" value="{{ old('msc_first_school_phone_number') }}">
+                            @error('msc_first_school_phone_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <br>
+                            <input  oninput="this.value = this.value.replace(/[^0-9.]/g, '-').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('msc_second_school_phone_number') is-invalid @enderror" name="msc_second_school_phone_number" placeholder="Masukan No.Telp Sekolah" value="{{ old('msc_second_school_phone_number') }}">
+                            @error('msc_second_school_phone_number')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

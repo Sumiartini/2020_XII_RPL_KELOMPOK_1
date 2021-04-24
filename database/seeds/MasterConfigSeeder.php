@@ -23,8 +23,7 @@ class MasterConfigSeeder extends Seeder
             
             'msc_vision' 				=> 'Menjadi penyelenggara pendidikan kejuruan berkarakter religius, yang melahirkan tenaga ahli, terampil, kreatif, inovatif, dan berpengetahuan yang ramah lingkungan di tahun 2025.',
             
-            'msc_mision' 				=> 
-            '1. Menyelenggarakan pendidikan kejuruan berkarakter religius.
+            'msc_mision' 				=> '1. Menyelenggarakan pendidikan kejuruan berkarakter religius.
             2. Melahirkan tenaga ahli tingkat menengah yang berakhlakul karimah.
             3. Mewujudkan tenaga terampil, kreatif, inovatif, dan berpengetahuan.
             4. Membangun perilaku yang peduli terhdap lingkungan.
@@ -32,7 +31,8 @@ class MasterConfigSeeder extends Seeder
             ',
             
             'msc_logo' 					=> 'assets/images/logo.png',
-            'msc_school_phone_number' 	=> '022-5893178 | 0895-6304-68373',
+            'msc_first_school_phone_number' 	=> '022-5893178',
+            'msc_second_school_phone_number'     => '0895-6304-68373',
             'msc_is_active' 			=> 1,
 
         ]);

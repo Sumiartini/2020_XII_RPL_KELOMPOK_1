@@ -54,13 +54,13 @@
           <p>{{ $master_config->msv_name }}</p>
       </dd>
       @endif
-      @if(isset($master_config->msv_file))
+      @if(isset($master_config->msv_url_video))
       <dt class="col-sm-2"></dt>
       <dd class="col-sm-10">
-          <iframe class="rounded" src="{{ $master_config->msv_file }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 960px; height: 400px;"></iframe>
+          <iframe class="rounded" src="{{ $master_config->msv_url_video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 960px; height: 400px;"></iframe>
       </dd>
-      @endif  
-      @if(isset($master_config->msv_url_video)) 
+        
+       
       <dt class="col-sm-2">URL Video</dt>
       <dd class="col-sm-10">
           <p>{{ $master_config->msv_url_video }}</p>
@@ -86,12 +86,13 @@
           </div>
       </dd>
       @endif
-      @if(isset($master_config->msc_school_phone_number))
+      
       <dt class="col-sm-2">Kontak Sekolah</dt>
       <dd class="col-sm-10">
-          <p>{{ $master_config->msc_school_phone_number }}</p>
+
+          <p>{{ $master_config->msc_first_school_phone_number }} | {{ $master_config->msc_second_school_phone_number }}</p>
       </dd>
-      @endif
+      
       <dd class="col-sm-12">  
           <a href="{{url('/master-config/edit/'.$master_config->msc_id)}}" class="btn btn-success" style="float: right;"> <i class="fa fa-edit fa-lg"></i>edit</a> 
       </dd>

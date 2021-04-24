@@ -185,11 +185,11 @@ class LandingPageController extends Controller
             $files->move($path, $files_name);
             $master_configs->msc_logo = $files_name;
         }
-        $master_configs->msc_school_phone_number = $request->msc_school_phone_number;
+        $master_configs->msc_first_school_phone_number = $request->msc_first_school_phone_number;
+        $master_configs->msc_second_school_phone_number = $request->msc_second_school_phone_number;
         $master_configs->msc_is_active   = 1;
         $master_configs->msc_created_by = Auth()->user()->usr_id;
         $master_configs->save();
-
 
 
         return redirect('/master-configs')->with('success', ' berhasil ditambahkan');
@@ -229,7 +229,8 @@ class LandingPageController extends Controller
             $files->move($path, $files_name);
             $master_config->msc_logo = $files_name;
         }
-        $master_config->msc_school_phone_number = $request->msc_school_phone_number;
+        $master_config->msc_first_school_phone_number = $request->msc_first_school_phone_number;
+        $master_config->msc_second_school_phone_number = $request->msc_second_school_phone_number;
         $master_config->msc_updated_by   = Auth()->user()->usr_id;
         $master_config->update();
 
