@@ -1934,6 +1934,10 @@ function master_config() {
       processing: true,
       serverSide: true,
       ajax: 'master-config',
+      columnDefs: [{
+                    targets: 2,
+                    className: 'd-flex text-wrap',
+                }],
       lengthChange: false,
       dom: 'Blfrtip',
       buttons: [
@@ -1988,10 +1992,12 @@ function master_config() {
             },
             {
                 data: 'msc_description', 
-                name:'msc_description', 
+                name:'msc_description',
                 orderable: false, 
-                searchable: true
+                searchable: true,
+
             },
+
             {
                 data: 'msc_is_active', 
                 name:'msc_is_active', 
@@ -2006,6 +2012,7 @@ function master_config() {
                 searchable: false
             },
         ],
+
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
@@ -2027,6 +2034,7 @@ function master_config() {
             }
         }
     });
+
 }
 
 function homeroom_teacher() {

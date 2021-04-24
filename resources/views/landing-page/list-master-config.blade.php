@@ -66,7 +66,7 @@
               <tr>
                 <th>NO</th>
                 <th>NAMA</th>
-                <th>DESKRIPSI</th>
+                <th style="overflow-wrap: break-word;">DESKRIPSI</th>
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>
@@ -122,5 +122,6 @@
         master_config()
     });
 </script>
+
 @endpush
 @endsection
