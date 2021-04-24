@@ -576,11 +576,15 @@ footer{
                 
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
-                    @foreach ($master_slide->take(3) as $master_slide)
+                    
+                    @foreach ($master_slide->take(6) as $master_slide)
+                    
                     <div class="carousel-item @if($loop->first) active @endif">
-                      <img class="d-block w-100" src="{{$master_slide->mss_file}}" alt="{{$master_slide->mss_name}}">
+                      <img class="d-block w-100" src="@if($master_slide->mss_is_active == 1) {{$master_slide->mss_file}} @endif" alt="">
                     </div>
+                    
                     @endforeach
+
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -624,6 +628,7 @@ footer{
     <!-- akhir jumbotron -->
 
                     @foreach($master_config as $master_config)
+                    @if($master_config->msc_is_active == 1)
                      <div class="row justify-content-center">
                         <div class="col-lg-7 info-profil">
                             <h3 class="text-center">PROFIL</h3>
@@ -646,6 +651,7 @@ footer{
                             <br>    
                             <h3 class="text-center">Misi</h3>
                                 
+
                                 <ol>
                                     
                                     <li>{{$master_config->msc_mision}}</li>
@@ -714,11 +720,12 @@ footer{
             </div>
             <div class="container" style="color: navy;">
                  <p>
-                    SMK MAHAPUTRA CERDAS UTAMA © 2020
+                    SMK MAHAPUTRA CERDAS UTAMA © 2021
                 </p>
             </div>
         </footer>
         <!-- akhir footer -->
+        @endif
         @endforeach
 
 
