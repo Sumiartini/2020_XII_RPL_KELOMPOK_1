@@ -104,7 +104,6 @@
   </div>
   </div>
 </div>
-
 <div class="row">
   <div class="col-12">
      <div class="card">
@@ -112,18 +111,27 @@
         <div class="card-body">
          <div class="media">
             <div class="media-body">
-              <dt>Pembayaran PPDB</dt>
+              <dt>Nominal Pembayaran PPDB</dt>
+                <dd>
+                 <p>Rp. {{ moneyFormat($ppdb_payment_price) }}</p>
+                </dd>
+              <dt>Jumlah Pembayaran yang sudah dibayar</dt>
               <dd>
-                  <p>Rp. 1000000</p>
-              </dd>
-              <dt>PPDB yang sudah dibayar</dt>
-              <dd>
-                  <p>Rp. 60000000</p>
+                  <p>Rp. {{ moneyFormat($student_payment) }}</p>
               </dd> 
-              <dt>Sisa bayar uang PPDB</dt>
+              <dt>Sisa Pembayaran</dt>
               <dd>
-                  <p>Rp. 40000000</p>
+                  @if($remaining_payment == 0)
+                  <p>Rp. {{ moneyFormat($remaining_payment) }} <span class="badge badge-success">Lunas</span></p>
+                  @elseif($remaining_payment >= 0)
+                  <p>Rp. {{ moneyFormat($remaining_payment) }} <span class="badge badge-warning">Belum lunas</span></p>
+                  @elseif($remaining_payment <= 0)
+                  <p>Rp. {{ moneyFormat($remaining_payment) }} <span class="badge badge-danger">Pembayaran melebihi batas</span></p>
+                  @endif
               </dd> 
+
+              <hr>
+  <a href="{{url('/school-payments')}}" class="btn btn-primary" style="float: left;"><i class="fa fa-arrow-left"></i> Kembali</a>
             </div>
           </div>
         </div>

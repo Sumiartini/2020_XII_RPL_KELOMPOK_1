@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use App\Mail\AddStudent;
 use App\Mail\PaymentMail;
+use App\Mail\SchoolPaymentMail;
 use Illuminate\Support\Carbon;
 use App\EntryTypes;
 use App\Provinces;
@@ -231,7 +232,14 @@ class StudentController extends Controller
         ->select('users.*', 'districts.*', 'cities.*', 'provinces.*')
         ->where('usr_id', $student->usr_id)
         ->get();
-        return view('students.detail-student', ['student' => $student, 'user' => $user]);
+
+        $student_check = StudentClass::where('student_classes.stc_student_id', $studentID)->first();
+        $student_class = StudentClass::join('classes', 'classes.cls_id', 'student_classes.stc_class_id')
+                                       ->join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
+                                       ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+                                       ->where('student_classes.stc_student_id', $studentID)
+                                       ->get();
+        return view('students.detail-student', ['student' => $student, 'user' => $user, 'student_class' => $student_class, 'student_check' => $student_check]);
     }
     public function show_prospective($studentID)
     {
@@ -678,17 +686,8 @@ class StudentController extends Controller
 
     public function acceptPayment($studentID)
     {
-
-        $student_payment = Students::join('student_payments','student_payments.stp_student_id','=','students.stu_id')->where('stu_id',$studentID)->first();
-
-        return view('students.reason-payment-accept',compact('student_payment'));
-    }
-
-    public function storeAcceptPayment(Request $request,$studentID)
-    {
-
         $payment = StudentPayments::where('stp_student_id', $studentID)->first();
-        $payment->stp_reason = $request->stp_reason;
+        $payment->stp_reason = 'Pembayaran diterima karena data valid';
         $payment->stp_payment_status = '2';        
         $payment->stp_date_verification = now();
         $payment->update();
@@ -696,7 +695,7 @@ class StudentController extends Controller
         $student = Students::findOrFail($studentID);
         $user = User::where('usr_id', $student->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new PaymentMail($user, $payment));
-        return redirect('/student/payment/'.$studentID)->with('success', 'Pembayaran berhasil diterima');
+        return redirect('/student/payment/'.$payment->stp_id)->with('success', 'Pembayaran berhasil diterima');
     }
 
     public function refusePayment($studentID)
@@ -727,18 +726,37 @@ class StudentController extends Controller
                               ->join('student_payments', 'stp_student_id', 'students.stu_id')
                               ->where('students.stu_user_id', Auth::user()->usr_id)                              
                               ->where('stp_type_payment', 2);
-        $years = Years::orderBy('scy_name', 'ASC')->get();
         //dd($school_year);
-        return view('school-payments.school-payment' , ['school_year' => $school_year, 'years' => $years]);   
+        $student = Students::where('stu_user_id', Auth()->user()->usr_id)
+        ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+        ->join('school_years', 'student_registrations.str_school_year_id','=','school_years.scy_id')
+        ->firstOrFail();
+        
+        $student_payment = StudentPayments::where('stp_student_id',$student->stu_id)->where('stp_payment_status', 2)->where('stp_type_payment', 2)->sum('stp_nominal');
+        $ppdb_payment_price = $student->scy_payment_price;
+        $remaining_payment = $ppdb_payment_price - $student_payment;
+
+        return view('school-payments.school-payment' , ['school_year' => $school_year, 'remaining_payment' => $remaining_payment]);   
     }
 
     public function storeSchoolPayment(Request $request)
     {
         
-        $student = Students::join('users','students.stu_user_id','=','users.usr_id')->where('students.stu_user_id',Auth()->user()->usr_id)->first();
+        $student = Students::join('users','students.stu_user_id','=','users.usr_id')->where('students.stu_user_id',Auth()->user()->usr_id)
+        ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+        ->join('school_years', 'student_registrations.str_school_year_id','=','school_years.scy_id')
+        ->firstOrFail();
+
+        $student_payment = StudentPayments::where('stp_student_id',$student->stu_id)->where('stp_payment_status', 2)->where('stp_type_payment', 2)->sum('stp_nominal');
+        $ppdb_payment_price = $student->scy_payment_price;
+        $remaining_payment = $ppdb_payment_price - $student_payment;
+
+        if ($student->scy_payment_price == $student_payment) {
+            return redirect()->back()->with('error', 'Terimakasih Anda sudah melunasi pembayaran PPDB, Anda tidak dapat melakukan pembayaran lagi!');
+        }
+
         $payment = new StudentPayments;
         $payment->stp_student_id = $student->stu_id;
-        $payment->stp_school_year_id = $request->stp_school_year_id;
         $payment->stp_payment_status = 1;
         $payment->stp_payment_method = $request->stp_payment_method;
         $payment->stp_reason = null;
@@ -755,7 +773,7 @@ class StudentController extends Controller
         }
         //dd($payment);
         if ($payment->save()) {
-            return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalui email atau nomor telepon anda.');            
+            return back()->with('success', 'Pembayaran berhasil diupload, tunggu konfirmasi selanjutnya. Kami akan mengkonfirmasi melalui email anda.');            
         }        
 
     }
@@ -763,21 +781,33 @@ class StudentController extends Controller
     public function createSchoolPayment()
     {
          $school_year = Years::join('students', 'students.stu_school_year_id', 'school_years.scy_id')
-                              ->join('student_payments', 'stp_student_id', 'students.stu_id')  
-                              ->join('school_years', 'student_payments.stp_school_year_id', '=', 'school_years.scy_id')               
+                              ->join('student_payments', 'stp_student_id', 'students.stu_id')                 
                               ->where('stp_type_payment', 2);
         $student = Students::orderBy('stu_candidate_name','ASC')->get();
-        $years = Years::orderBy('scy_name', 'ASC')->get();
         //dd($school_year);
-        return view('school-payments.add-school-payment' , ['school_year' => $school_year, 'student' => $student, 'years' => $years]);  
+        return view('school-payments.add-school-payment' , ['school_year' => $school_year, 'student' => $student]);  
     }
 
     public function storeCreate(Request $request)
     {
-      
+        
+        $student = Students::join('users','students.stu_user_id','=','users.usr_id')        
+        ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+        ->join('school_years', 'student_registrations.str_school_year_id','=','school_years.scy_id')
+        ->where('stu_id', $request->stp_student_id)
+        ->firstOrFail();
+
+        $student_payment = StudentPayments::where('stp_student_id',$student->stu_id)->where('stp_payment_status', 2)->where('stp_type_payment', 2)->sum('stp_nominal');
+        $ppdb_payment_price = $student->scy_payment_price;
+        $remaining_payment = $ppdb_payment_price - $student_payment;
+
+        if ($student->scy_payment_price == $student_payment) {
+             //dd($student, $student_payment);
+            return redirect('/school-payments')->with('error', 'Data Gagal Ditambahkan, Siswa telah melunasi pembayarannya!');
+        }
+
         $payment = new StudentPayments;
         $payment->stp_student_id = $request->stp_student_id;
-        $payment->stp_school_year_id = $request->stp_school_year_id;
         $payment->stp_payment_status = 1;
         $payment->stp_payment_method = $request->stp_payment_method;
         $payment->stp_reason = null;
@@ -808,7 +838,16 @@ class StudentController extends Controller
         ->where('student_payments.stp_type_payment', 2)
         ->get();
 
-        return view('school-payments.detail-student-payment', ['payment' => $payment, 'no' => $no]);
+         $student = Students::where('stu_id',$studentID)
+        ->join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')
+        ->join('school_years', 'student_registrations.str_school_year_id','=','school_years.scy_id')
+        ->firstOrFail();
+        
+        $student_payment = StudentPayments::where('stp_student_id',$student->stu_id)->where('stp_payment_status', 2)->where('stp_type_payment', 2)->sum('stp_nominal');
+        $ppdb_payment_price = $student->scy_payment_price;
+        $remaining_payment = $ppdb_payment_price - $student_payment;
+
+        return view('school-payments.detail-student-payment', compact('no','payment','student_payment','ppdb_payment_price','remaining_payment'));
     }
 
     public function school_payment_detail($studentPaymentID)
@@ -829,6 +868,9 @@ class StudentController extends Controller
         $school_payment->stp_payment_status = '2';
         $school_payment->update();
 
+        $user = User::where('usr_id', $school_payment->stu_user_id)->first();        
+        Mail::to($user['usr_email'])->send(new SchoolPaymentMail($user, $school_payment));
+
        return redirect('/school-payment/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil dierima');    
 
    }
@@ -845,13 +887,16 @@ class StudentController extends Controller
     public function storeRefuseSchoolPayment(Request $request,$studentPaymentID)
     {
 
-        $payment = StudentPayments::join('students','student_payments.stp_student_id','=','students.stu_id')->where('stp_id', $studentPaymentID)->first();
-        $payment->stp_reason = $request->stp_reason;
-        $payment->stp_payment_status = '3';
-        $payment->stp_date_verification = now();
-        $payment->update();
-    
-        return redirect('/school-payment/'.$payment->stu_id)->with('success', 'Pembayaran berhasil ditolak');
+        $school_payment = StudentPayments::join('students','student_payments.stp_student_id','=','students.stu_id')->where('stp_id', $studentPaymentID)->first();
+        $school_payment->stp_reason = $request->stp_reason;
+        $school_payment->stp_payment_status = '3';
+        $school_payment->stp_date_verification = now();
+        $school_payment->update();
+        
+        $user = User::where('usr_id', $school_payment->stu_user_id)->first();        
+        Mail::to($user['usr_email'])->send(new SchoolPaymentMail($user, $school_payment));
+
+        return redirect('/school-payment/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil ditolak');
     }
 
     public function updateStatusToReRegistration(Request $request)

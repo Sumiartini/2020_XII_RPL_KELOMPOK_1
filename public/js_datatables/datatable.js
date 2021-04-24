@@ -542,7 +542,7 @@ function schoolPayment() {
         columns: [
             {
                 data: 'stu_id',
-                name: 'stu_id',
+                name: 'students.stu_id',
                 class: 'table-fit text-left',
                 orderable:true,
                 searchable: true,

@@ -99,6 +99,15 @@ class UserController extends Controller
         return response()->download($pdf, $newName, $headers);
     }
 
+    public function downloadFilePPDB()
+    {
+        $pdf = ("download/RINCIAN-PPDB-TH2021.pdf");
+        $headers = ['Content-Type: application/pdf'];
+        $newName = 'PPDB2021-info-'.time().'.pdf';
+        return response()->download($pdf, $newName, $headers);
+    }
+
+
     public function downloadFileStudent($locationFile)
     {
         // dd($locationFile);

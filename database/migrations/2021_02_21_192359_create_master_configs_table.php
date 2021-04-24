@@ -18,9 +18,9 @@ class CreateMasterConfigsTable extends Migration
             $table->foreignId('msc_master_video_id')->nullable();
             $table->foreign('msc_master_video_id')->references('msv_id')->on('master_videos');
             $table->string('msc_name');
-            $table->string('msc_description')->nullable();
+            $table->longText('msc_description')->nullable();
             $table->string('msc_vision')->nullable();
-            $table->string('msc_mision')->nullable();
+            $table->longText('msc_mision')->nullable();
             $table->string('msc_logo')->nullable();
             $table->string('msc_school_phone_number')->nullable();
 

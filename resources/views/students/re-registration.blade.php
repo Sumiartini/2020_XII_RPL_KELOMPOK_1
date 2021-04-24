@@ -46,7 +46,11 @@
           <div class="card-header text-uppercase">Profile siswa</div>
           <div class="card-body">
             <div class="media">
+              @isset($user->usr_profile_picture)
               <img class="mr-3 rounded" src="{{ $student->usr_profile_picture }}" width="150px;" height="150px;" alt="user avatar">
+              @else
+              <img class="mr-3 rounded" src="{{ asset('images/default_profile_picture_20210228.png') }}" width="150px;" height="150px;" alt="user avatar">
+              @endif
               <div class="media-body">
                 <dt>Nama lengkap</dt>
                 <dd>
@@ -114,8 +118,8 @@
                 <form id="validate_form">
                   <input type="hidden" id="stu_id" value="{{ $student->stu_id }}">
                    <div class="form-group row pt-4">
-                      <label for="rounded-input" class="col-sm-2 col-form-label">Konfirmasi kata sandi</label>
-                      <div class="col-sm-10">
+                      <label for="rounded-input" class="col-sm-3 col-form-label">Konfirmasi kata sandi<span style="color:red"> *</span></label>
+                      <div class="col-sm-9">
                         <input id="usr_password" type="password" name="usr_password" class="form-control form-control-rounded input-password mb-2" placeholder="Kata sandi" data-parsley-required-message="Kata sandi wajib di isi" required data-parsley-trigger="keyup">
                       </div>
                     </div>
