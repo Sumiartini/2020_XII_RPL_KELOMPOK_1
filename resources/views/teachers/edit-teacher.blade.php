@@ -170,17 +170,7 @@
                         </div>
                     </div>
 
-                    <label style="margin-top: 30px;">Foto calon Guru<span style="color:red"> *</span></label>
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            @if(isset($teacher_edit->usr_profile_picture))
-                            <img src="{{ asset($teacher_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
-                            @else
-                            <img src="{{ asset('images/default_profile_picture_20210228.png') }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
-                            @endif
-                            <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
-                        </div>
-                    </div>
+                    
 
 
                     <h4 class="form-header text-uppercase">
@@ -500,7 +490,7 @@
 
             <div class="row" style="margin-top: 30px;">
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Tanda Penduduk (KTP) </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Tanda Penduduk (KTP)<span style="color:red"> *</span> </label>
                     @if(isset($teacher_edit->other['identity_card']))
                     <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['identity_card']}}</a></p>
                     @endif
@@ -515,7 +505,7 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Keluarga </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Keluarga <span style="color:red"> *</span></label>
                     @if(isset($teacher_edit->other['family_card']))
                     <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['family_card']}}</a></p>
                     @endif
@@ -530,7 +520,7 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah Minimal SMA/SEDERAJAT Dilegalisir</label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah Minimal SMA/SEDERAJAT Dilegalisir<span style="color:red"> *</span></label>
                     @if(isset($teacher_edit->other['scholar_diploma']))
                     <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['scholar_diploma']}}</a></p>
                     @endif
@@ -547,7 +537,7 @@
 
             <div class="row" style="margin-top: 30px;">
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Lamaran </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Lamaran <span style="color:red"> *</span></label>
                     @if(isset($teacher_edit->other['curriculum_vitae']))
                     <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['curriculum_vitae']}}</a></p>
                     @endif
@@ -562,7 +552,7 @@
                 </div> 
 
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Lamaran </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Lamaran<span style="color:red"> *</span> </label>
                     @if(isset($teacher_edit->other['application_letter']))
                     <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['application_letter']}}</a></p>
                     @endif
@@ -577,7 +567,7 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Resume </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Resume<span style="color:red"> *</span> </label>
                     @if(isset($teacher_edit->other['resume']))
                     <p><i class="fa fa-file-word"></i>{{$teacher_edit->other['resume']}}</a></p>
                     @endif
@@ -591,6 +581,18 @@
                 </div>
             </div>
         </div>
+        
+        <label style="margin-top: 30px;">Foto calon Guru<span style="color:red"> *</span></label>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            @if(isset($teacher_edit->usr_profile_picture))
+                            <img src="{{ asset($teacher_edit->usr_profile_picture) }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+                            @else
+                            <img src="{{ asset('images/default_profile_picture_20210228.png') }}" class="img-thumbnail" id="tampil_picture" style="object-fit: cover; height: 200px; width: 200px"/>
+                            @endif
+                            <input type="file" name="usr_profile_picture" id="preview_gambar" class=" @error('isr_profile_picture') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('usr_profile_picture').value=this.value" /><br>
+                        </div>
+                    </div>
 
 
                     <div class="form-footer">
@@ -736,24 +738,7 @@
             "educational_background[degree]":{
                 required: true
             },
-            "other[identity_card]":{
-                required: true
-            },
-            "other[family_card]":{
-                required: true,
-            },
-            "other[senior_high_school_diploma]":{
-                required: true
-            },
-            "other[curriculum_vitae]":{
-                required: true
-            },
-            "other[application_letter]":{
-                required: true
-            },
-            "other[resume]":{
-                required: true
-            },
+            
             // usr_profile_picture:{
             //     required:true
             // },
@@ -862,24 +847,6 @@
             },
             "educational_background[senior_high_school]":{
                 required: "Nama SMA sederajat harus di isi"
-            },
-            "other[identity_card]":{
-                required: "KTP harus di upload"
-            },
-            "other[family_card]":{
-                required: "Kartu keluarga harus di upload",
-            },
-            "other[senior_high_school_diploma]":{
-                required: "ijazah legalisir SMA atau SMK harus di upload"
-            },
-            "other[curriculum_vitae]":{
-                required: "CV harus di upload"
-            },
-            "other[application_letter]":{
-                required: "Surat lamaran harus di upload"
-            },
-            "other[resume]":{
-                required: "Resume harus di upload"
             },
             // usr_profile_picture:{
             //     required: "Foto guru tidak boleh kosong"
