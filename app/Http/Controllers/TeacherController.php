@@ -296,9 +296,45 @@ class TeacherController extends Controller
                     }
                 }
             }
+            $images = $request->file('other');
+            // dd($image);
+            if ($images) {
+                foreach ($images as $key => $image) {
+                    // dd($images, $key, $image);
+                    if ($image) {
+                        $path = public_path('images/teacher_files');
+                        $files_name = 'images' .'/'. 'teacher_files' .'/'. date('Ymd') . '_' . $image->getClientOriginalName();
+                        // dd($images);
+                        $image->move($path, $files_name);
+                        $teacherDetail = TeacherDetails::where('tcd_teacher_id', $teacher->tcr_id)
+                        ->where('tcd_type', $key)
+                        ->where('tcd_key', $requestKey)->first();
+                        if (isset($teacherDetail)) {
+                            $teacherDetail->tcd_teacher_id = $teacher->tcr_id;
+                            $teacherDetail->tcd_type       = 'other';
+                            $teacherDetail->tcd_key        = $key;
+                            $teacherDetail->tcd_value      = $files_name;
+                            $teacherDetail->tcd_updated_by = Auth()->user()->usr_id;
+                            $teacherDetail->update();                            
+                        }else{
+                            $teacherDetail = new TeacherDetails;
+                            $teacherDetail->tcd_teacher_id = $teacher->tcr_id;
+                            $teacherDetail->tcd_type       = 'other';
+                            $teacherDetail->tcd_key        = $key;
+                            $teacherDetail->tcd_value      = $files_name;
+                            $teacherDetail->tcd_created_by = Auth()->user()->usr_id;
+                            $teacherDetail->save();
+                        }
+                    }
+                }
+            }
+        } else {
+            dd('gagal user');
             
         }
+
         return redirect('teacher/' . $teacherID)->with('success', 'Data berhasil diubah');
+
 
     }
 
