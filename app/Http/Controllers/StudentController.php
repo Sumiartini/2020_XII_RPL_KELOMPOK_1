@@ -404,12 +404,45 @@ class StudentController extends Controller
                             $studentDetail->std_value      = $requestValue;
                             $studentDetail->std_created_by = Auth()->user()->usr_id;
                             $studentDetailSave              = $studentDetail->save();
+                            }
                         }
                     }
                 }
+                $images = $request->file('other');
+                // dd($image);
+                if ($images) {
+                    foreach ($images as $key => $image) {
+                        // dd($images, $key, $image);
+                        if ($image) {
+                            $path = public_path('images/student_files');
+                            $files_name = 'images' .'/'. 'student_files' .'/'. date('Ymd') . '_' . $image->getClientOriginalName();
+                            // dd($images);
+                            $image->move($path, $files_name);
+                            $studentDetail = StudentDetails::where('std_student_id', $student->stu_id)
+                            ->where('std_type', $type)
+                            ->where('std_key', $requestKey)->first();
+                        if (isset($studentDetail)) {
+                            $studentDetail = new StudentDetails;
+                            $studentDetail->std_student_id = $student->stu_id;
+                            $studentDetail->std_type       = 'other';
+                            $studentDetail->std_key        = $key;
+                            $studentDetail->std_value      = $files_name;
+                            $studentDetail->std_created_by = $user->usr_id;
+                            $studentDetail->update();
+                        }else{
+                            $studentDetail = new StudentDetails;
+                            $studentDetail->std_student_id = $student->stu_id;
+                            $studentDetail->std_type       = 'other';
+                            $studentDetail->std_key        = $key;
+                            $studentDetail->std_value      = $files_name;
+                            $studentDetail->std_created_by = $user->usr_id;
+                            $studentDetail->save();
+                        }
+                    }
+                } 
             }
         }
-
+ 
         return redirect('student/' . $studentID)->with('success', 'Data berhasil diubah');
     }
     /**
