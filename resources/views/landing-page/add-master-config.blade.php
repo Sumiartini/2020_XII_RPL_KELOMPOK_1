@@ -77,22 +77,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Nama video</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="msv_name" class="form-control form-control-rounded @error('msv_name') is-invalid @enderror" value="{{ old('msv_name') }}" placeholder="Masukan Nama Video">
-                            @error('msv_name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror 
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">URL Video </label>                    
                         <div class="col-sm-8">
-                            <input type="url" name="msv_url_video" class="form-control form-control-rounded @error('msv_url_video') is-invalid @enderror" value="{{ old('msv_url_video') }}" placeholder="Masukan Link Video">
-                            @error('msv_url_video')
+                            <input type="url" name="msc_url_video" class="form-control form-control-rounded @error('msc_url_video') is-invalid @enderror" value="{{ old('msc_url_video') }}" placeholder="Masukan Link Video">
+                            @error('msc_url_video')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -150,6 +138,36 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                        </div>
+                    </div>
+
+                     <div class="form-group row">
+                        <label for="input-2" class="col-sm-3 col-form-label">Poster MM<span style="color:red"> *</span></label>
+                    
+                        <div class="col-sm-8">
+                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>
+                            <div></div>
+                            <input type="file" name="msc_poster_mm" id="preview_gambar" class="@error('msc_poster_mm') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_poster_mm').value=this.value" /><br>
+                            @error('msc_poster_mm')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror 
+                        </div>
+                    </div>
+
+                     <div class="form-group row">
+                        <label for="input-2" class="col-sm-3 col-form-label">Poster RPL<span style="color:red"> *</span></label>
+                    
+                        <div class="col-sm-8">
+                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>
+                            <div></div>
+                            <input type="file" name="msc_poster_rpl" id="preview_gambar" class="@error('msc_poster_rpl') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_poster_rpl').value=this.value" /><br>
+                            @error('msc_poster_rpl')
+                            <p>
+                                <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
+                            </p>
+                            @enderror 
                         </div>
                     </div>
                     

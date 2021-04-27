@@ -146,8 +146,7 @@ class LandingPageController extends Controller
 
     public function showConfig($masterConfigID)
     {
-        $master_config = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id')
-                        ->where('master_configs.msc_id', $masterConfigID)->get();
+        $master_config = MasterConfigs::where('msc_id', $masterConfigID)->get();
         return view('landing-page.detail-master-config',['master_config' => $master_config]);
     }
 
@@ -165,24 +164,30 @@ class LandingPageController extends Controller
             'msc_name'  => 'required',
         ], $massages);
 
-        $master_videos = new MasterVideos;
-        $master_videos->msv_name = $request->msv_name;
-        $master_videos->msv_url_video = $request->msv_url_video;
-        $master_videos->msv_is_active = 1;
-        $master_videos->msv_created_by = Auth()->user()->usr_id;
-        $master_videos->save();
-
         $master_configs = new MasterConfigs;
-        $master_configs->msc_master_video_id     = $master_videos->msv_id;
         $master_configs->msc_name                = $request->msc_name;
         $master_configs->msc_description         = $request->msc_description;
+        $master_configs->msc_url_video           = $request->msc_url_video;
         $master_configs->msc_vision              = $request->msc_vision;
         $master_configs->msc_first_mision               = $request->msc_first_mision;
         $master_configs->msc_second_mision              = $request->msc_second_mision;
         $master_configs->msc_third_mision               = $request->msc_third_mision;
         $master_configs->msc_fourth_mision              = $request->msc_fourth_mision;
         $master_configs->msc_fifth_mision               = $request->msc_fifth_mision;
-
+        if ($request->hasFile('msc_poster_mm')) {
+            $files = $request->file('msc_poster_mm');
+            $path = public_path('images/poster_jurusan');
+            $files_name = 'images' . '/' . 'poster_jurusan' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $master_configs->msc_poster_mm = $files_name;
+        }
+        if ($request->hasFile('msc_poster_rpl')) {
+            $files = $request->file('msc_poster_rpl');
+            $path = public_path('images/poster_jurusan');
+            $files_name = 'images' . '/' . 'poster_jurusan' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $master_configs->msc_poster_rpl = $files_name;
+        }
         if ($request->hasFile('msc_logo')) {
             $files = $request->file('msc_logo');
             $path = public_path('images/school_logo');
@@ -192,7 +197,7 @@ class LandingPageController extends Controller
         }
         $master_configs->msc_first_school_phone_number = $request->msc_first_school_phone_number;
         $master_configs->msc_second_school_phone_number = $request->msc_second_school_phone_number;
-        $master_configs->msc_is_active   = 1;
+        $master_configs->msc_is_active   = 0;
         $master_configs->msc_created_by = Auth()->user()->usr_id;
         $master_configs->save();
 
@@ -201,8 +206,7 @@ class LandingPageController extends Controller
     }
 
     public function editConfig($masterConfigID){
-        $master_config = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id')
-                        ->where('master_configs.msc_id', $masterConfigID)->first();
+        $master_config = MasterConfigs::where('master_configs.msc_id', $masterConfigID)->first();
         return view('landing-page.edit-master-config',['master_config' => $master_config]);
     }
 
@@ -217,21 +221,29 @@ class LandingPageController extends Controller
 
 
         $master_config = MasterConfigs::where('msc_id', $masterConfigID)->first();
-        $master_video = MasterVideos::where('msv_id', $master_config->msc_master_video_id)->first();
-        $master_video->msv_name = $request->msv_name;
-        $master_video->msv_url_video = $request->msv_url_video;
-        $master_video->msv_updated_by = Auth()->user()->usr_id;
-        $master_video->update();
-        
         $master_config->msc_name                = $request->msc_name;
         $master_config->msc_description         = $request->msc_description;
+        $master_config->msc_url_video          = $request->msc_url_video;
         $master_config->msc_vision              = $request->msc_vision;
-        $master_config->msc_first_mision               = $request->msc_first_mision;
-        $master_config->msc_second_mision              = $request->msc_second_mision;
-        $master_config->msc_third_mision               = $request->msc_third_mision;
-        $master_config->msc_fourth_mision              = $request->msc_fourth_mision;
-        $master_config->msc_fifth_mision               = $request->msc_fifth_mision;
-
+        $master_config->msc_first_mision        = $request->msc_first_mision;
+        $master_config->msc_second_mision       = $request->msc_second_mision;
+        $master_config->msc_third_mision        = $request->msc_third_mision;
+        $master_config->msc_fourth_mision       = $request->msc_fourth_mision;
+        $master_config->msc_fifth_mision        = $request->msc_fifth_mision;
+        if ($request->hasFile('msc_poster_mm')) {
+            $files = $request->file('msc_poster_mm');
+            $path = public_path('images/poster_jurusan');
+            $files_name = 'images' . '/' . 'poster_jurusan' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $master_config->msc_poster_mm = $files_name;
+        }
+        if ($request->hasFile('msc_poster_rpl')) {
+            $files = $request->file('msc_poster_rpl');
+            $path = public_path('images/poster_jurusan');
+            $files_name = 'images' . '/' . 'poster_jurusan' . '/' . date('Ymd') . '_' . $files->getClientOriginalName();
+            $files->move($path, $files_name);
+            $master_config->msc_poster_rpl = $files_name;
+        }
         if ($request->hasFile('msc_logo')) {
             $files = $request->file('msc_logo');
             $path = public_path('images/school_logo');
@@ -250,20 +262,14 @@ class LandingPageController extends Controller
     public function editStatusConfig($masterConfigID)
     {
         $config = MasterConfigs::where('msc_id', $masterConfigID)->first();
-        $video = MasterVideos::where('msv_id', $config->msc_master_video_id)->first();
-        
-        if ($config->msc_is_active == 1) {
-            $config->msc_is_active = 0;
-            $video->msv_is_active = 0;
-            $config->msc_updated_by = Auth()->user()->usr_id;
-            $config->update();
-            return redirect()->back()->with('success', 'berhasil di non aktifkan');
-        }else{
-            $config->msc_is_active = 1;
-            $video->msv_is_active = 1;
-            $config->update();
-            return redirect()->back()->with('success', 'berhasil di aktifkan');
-        }
+        $configs = MasterConfigs::where('msc_is_active',1)->firstOrFail();
+        $configs->msc_is_active = 0;
+        $configs->update();
+
+        $config->msc_is_active = 1;
+        $config->msc_updated_by = Auth()->user()->usr_id;
+        $config->update();
+        return redirect()->back()->with('success', 'berhasil di perbarui');
     }
 
 
@@ -271,7 +277,7 @@ class LandingPageController extends Controller
 
     public function integrationLandingPage(){
         $master_slide  = MasterSlides::all();
-        $master_config = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id')->get();
+        $master_config = MasterConfigs::all();
         return view('landing-page',['master_config' => $master_config, 'master_slide' => $master_slide]);
     }
 

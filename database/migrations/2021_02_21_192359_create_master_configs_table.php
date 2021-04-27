@@ -15,16 +15,17 @@ class CreateMasterConfigsTable extends Migration
     {
         Schema::create('master_configs', function (Blueprint $table) {
             $table->bigIncrements('msc_id');
-            $table->foreignId('msc_master_video_id')->nullable();
-            $table->foreign('msc_master_video_id')->references('msv_id')->on('master_videos');
             $table->string('msc_name');
             $table->longText('msc_description')->nullable();
+            $table->string('msc_url_video')->nullable();
             $table->string('msc_vision')->nullable();
             $table->string('msc_first_mision')->nullable();
             $table->string('msc_second_mision')->nullable();
             $table->string('msc_third_mision')->nullable();
             $table->string('msc_fourth_mision')->nullable();
             $table->string('msc_fifth_mision')->nullable();
+            $table->string('msc_poster_mm')->nullable();
+            $table->string('msc_poster_rpl')->nullable();
             $table->string('msc_logo')->nullable();
             $table->string('msc_first_school_phone_number')->nullable();
             $table->string('msc_second_school_phone_number')->nullable();

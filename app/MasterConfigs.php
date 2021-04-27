@@ -14,7 +14,6 @@ class MasterConfigs extends Model
     protected $guarded = [];
 
     public static function getMasterConfigs($request){
-	    $master_configs = MasterConfigs::join('master_videos', 'master_configs.msc_master_video_id', '=', 'master_videos.msv_id');
         $master_configs = MasterConfigs::select('msc_id', 'msc_name', 'msc_description', 'msc_is_active' );
         
         return $master_configs;
