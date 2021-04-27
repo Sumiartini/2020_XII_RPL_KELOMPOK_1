@@ -65,7 +65,7 @@
 
 
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Deskripsi</label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Deskripsi<span style="color:red"> *</span></label>
                          <div class="col-sm-8">
                             <textarea name="msc_description" value="{{ old('msc_description') }}" rows="5" cols="10" placeholder="Masukan Deskripsi Sekolah" class="form-control @error('msc_description') is-invalid @enderror"></textarea>
                             @error('msc_description')
@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">URL Video </label>                    
+                        <label for="input-2" class="col-sm-3 col-form-label">URL Video <span style="color:red"> *</span></label>                    
                         <div class="col-sm-8">
                             <input type="url" name="msc_url_video" class="form-control form-control-rounded @error('msc_url_video') is-invalid @enderror" value="{{ old('msc_url_video') }}" placeholder="Masukan Link Video">
                             @error('msc_url_video')
@@ -90,7 +90,7 @@
 
 
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Visi Sekolah</label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Visi Sekolah<span style="color:red"> *</span></label>
                         <div class="col-sm-8">
                             <textarea name="msc_vision" value="{{ old('msc_vision') }}" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control @error('msc_vision') is-invalid @enderror"></textarea>
                             @error('msc_vision')
@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Misi Sekolah</label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Misi Sekolah<span style="color:red"> *</span></label>
                         <div class="col-sm-8">
                             <input type="text" name="msc_first_mision" class="form-control form-control-rounded @error('msc_first_mision') is-invalid @enderror" value="{{ old('msc_first_mision') }}" placeholder="Masukan Misi Sekolah">
                             @error('msc_first_mision')
@@ -145,7 +145,6 @@
                         <label for="input-2" class="col-sm-3 col-form-label">Poster MM<span style="color:red"> *</span></label>
                     
                         <div class="col-sm-8">
-                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>
                             <div></div>
                             <input type="file" name="msc_poster_mm" id="preview_gambar" class="@error('msc_poster_mm') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_poster_mm').value=this.value" /><br>
                             @error('msc_poster_mm')
@@ -160,9 +159,9 @@
                         <label for="input-2" class="col-sm-3 col-form-label">Poster RPL<span style="color:red"> *</span></label>
                     
                         <div class="col-sm-8">
-                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>
+                            
                             <div></div>
-                            <input type="file" name="msc_poster_rpl" id="preview_gambar" class="@error('msc_poster_rpl') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_poster_rpl').value=this.value" /><br>
+                            <input type="file" name="msc_poster_rpl" id="preview_gambar_dua" class="@error('msc_poster_rpl') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_poster_rpl').value=this.value" /><br>
                             @error('msc_poster_rpl')
                             <p>
                                 <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
@@ -172,12 +171,12 @@
                     </div>
                     
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Logo Sekolah</label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Logo Sekolah<span style="color:red"> *</span></label>
                     
                         <div class="col-sm-8">
-                            <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>
+                            
                             <div></div>
-                            <input type="file" name="msc_logo" id="preview_gambar" class="@error('msc_logo') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_logo').value=this.value" /><br>
+                            <input type="file" name="msc_logo" id="preview_gambar_tiga" class="@error('msc_logo') is-invalid @enderror" accept="image/x-png,image/gif,image/jpeg" onchange="document.getElementById('msc_logo').value=this.value" /><br>
                             @error('msc_logo')
                             <p>
                                 <strong style="font-size: 80%;color: #dc3545;">{{$message}}</strong>
@@ -189,7 +188,7 @@
 
 
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">Kontak Sekolah</label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Kontak Sekolah<span style="color:red"> *</span></label>
                         <div class="col-sm-8">
                             <input  oninput="this.value = this.value.replace(/[^0-9.]/g, '-').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('msc_first_school_phone_number') is-invalid @enderror" name="msc_first_school_phone_number" placeholder="Masukan No.Telp Sekolah" value="{{ old('msc_first_school_phone_number') }}">
                             @error('msc_first_school_phone_number')
@@ -262,6 +261,38 @@
 });
 </script>
 <script>
+    function bacaGambar(input) {
+       if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#tampil_picture').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  $("#preview_gambar_dua").change(function(){
+   bacaGambar(this);
+});
+</script>
+<script>
+    function bacaGambar(input) {
+       if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#tampil_picture').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  $("#preview_gambar_tiga").change(function(){
+   bacaGambar(this);
+});
+</script>
+<script>
    $().ready(function() {
 
     $("#form-validate").validate({
@@ -269,11 +300,52 @@
             msc_name: {
               required: true,
             },
-            msc_school_phone_number:{
-                minlength: 10 
+            msc_description:{
+                required: true,
             },
-            msv_file:{
+            msc_url_video:{
                 url: true,
+                required: true,
+            },
+
+            msc_vision:{
+                required: true,
+            },
+
+            msc_first_mision:{
+                required: true,
+            },
+            msc_second_mision:{
+                required: true,
+            },
+            msc_third_mision:{
+                required: true,
+            },
+            msc_fourth_mision:{
+                required: true,
+            },
+            msc_fifth_mision:{
+                required: true,
+            },
+
+            msc_poster_mm:{
+                required: true,
+            },
+            msc_poster_rpl:{
+                required: true,
+            },
+            msc_logo:{
+                required: true,
+            },
+
+            msc_first_school_phone_number:{
+                minlength: 10,
+                required: true, 
+            },
+
+            msc_second_school_phone_number:{
+                minlength: 10,
+                required: true, 
             },
           
             pst_honorarium:{
@@ -285,11 +357,52 @@
             msc_name: {
               required: "Kolom Wajib Diisi"
             },
-            msc_school_phone_number:{
-                minlength: "Minimal 10 digit"
+            msc_description: {
+              required: "Kolom Wajib Diisi"
             },
-            msv_file:{
-                url: "HARAP MASUKKAN URL YANG VALID."
+            
+            msc_url_video:{
+                url: "HARAP MASUKKAN URL YANG VALID.",
+                required: "Kolom Wajib Diisi"
+            },
+
+            msc_vision: {
+              required: "Kolom Wajib Diisi"
+            },
+
+            msc_first_mision: {
+              required: "Kolom Wajib Diisi"
+            },
+            msc_second_mision: {
+              required: "Kolom Wajib Diisi"
+            },
+            msc_third_mision: {
+              required: "Kolom Wajib Diisi"
+            },
+            msc_fourth_mision: {
+              required: "Kolom Wajib Diisi"
+            },
+            msc_fifth_mision: {
+              required: "Kolom Wajib Diisi"
+            },
+
+            msc_poster_mm: {
+              required: "Kolom Wajib Diisi"
+            },
+            msc_poster_rpl: {
+              required: "Kolom Wajib Diisi"
+            },
+            msc_logo: {
+              required: "Kolom Wajib Diisi"
+            },
+
+            msc_first_school_phone_number:{
+                minlength: "Minimal 10 digit",
+                required: "Kolom Wajib Diisi"
+            },
+            msc_second_school_phone_number:{
+                minlength: "Minimal 10 digit",
+                required: "Kolom Wajib Diisi"
             },
            
         }

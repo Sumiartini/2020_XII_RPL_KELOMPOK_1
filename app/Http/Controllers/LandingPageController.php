@@ -162,6 +162,19 @@ class LandingPageController extends Controller
         ];
         $request->validate([
             'msc_name'  => 'required',
+            'msc_description'  => 'required',
+            'msc_url_video'  => 'required',
+            'msc_vision'  => 'required',
+            'msc_first_mision'  => 'required',
+            'msc_second_mision'  => 'required',
+            'msc_third_mision'  => 'required',
+            'msc_fourth_mision'  => 'required',
+            'msc_fifth_mision'  => 'required',
+            'msc_poster_mm'  => 'required',
+            'msc_poster_rpl'  => 'required',
+            'msc_logo'  => 'required',
+            'msc_first_school_phone_number'  => 'required',
+            'msc_second_school_phone_number'  => 'required',
         ], $massages);
 
         $master_configs = new MasterConfigs;

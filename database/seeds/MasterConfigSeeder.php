@@ -14,7 +14,7 @@ class MasterConfigSeeder extends Seeder
         DB::table('master_configs')->insert([
             'msc_id' 				        => '1',
 
-        	'msc_name' 				        => 'Konfigurasi',
+        	'msc_name' 				        => 'Profil SMKS Mahaputra',
 
             'msc_description' 		        => ' SMKS Mahaputra Cerdas Utama didirikan pada 22 Agustus tahun 2016, 
                                                adalah salah satu SMK swasta yang ada di Kabupaten Bandung yang memiliki program study Multimedia (MM) dan Rekyasa Perangkat Lunak (RPL), 
