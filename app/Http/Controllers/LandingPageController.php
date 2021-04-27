@@ -177,7 +177,12 @@ class LandingPageController extends Controller
         $master_configs->msc_name                = $request->msc_name;
         $master_configs->msc_description         = $request->msc_description;
         $master_configs->msc_vision              = $request->msc_vision;
-        $master_configs->msc_mision              = $request->msc_mision;
+        $master_configs->msc_first_mision               = $request->msc_first_mision;
+        $master_configs->msc_second_mision              = $request->msc_second_mision;
+        $master_configs->msc_third_mision               = $request->msc_third_mision;
+        $master_configs->msc_fourth_mision              = $request->msc_fourth_mision;
+        $master_configs->msc_fifth_mision               = $request->msc_fifth_mision;
+
         if ($request->hasFile('msc_logo')) {
             $files = $request->file('msc_logo');
             $path = public_path('images/school_logo');
@@ -221,7 +226,12 @@ class LandingPageController extends Controller
         $master_config->msc_name                = $request->msc_name;
         $master_config->msc_description         = $request->msc_description;
         $master_config->msc_vision              = $request->msc_vision;
-        $master_config->msc_mision              = $request->msc_mision;
+        $master_config->msc_first_mision               = $request->msc_first_mision;
+        $master_config->msc_second_mision              = $request->msc_second_mision;
+        $master_config->msc_third_mision               = $request->msc_third_mision;
+        $master_config->msc_fourth_mision              = $request->msc_fourth_mision;
+        $master_config->msc_fifth_mision               = $request->msc_fifth_mision;
+
         if ($request->hasFile('msc_logo')) {
             $files = $request->file('msc_logo');
             $path = public_path('images/school_logo');

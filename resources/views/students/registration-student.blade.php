@@ -489,7 +489,7 @@
 
                             <h4 class="form-header text-uppercase">
                                 <i class=""></i>
-                                Data Wali (Boleh diisi boleh tidak)
+                                Data Wali (opsional)
                             </h4>
                             <div class="form-group row">
 
@@ -726,7 +726,7 @@
 
                             <h4 class="form-header text-uppercase">
                                 <i class=""></i>
-                                Prestasi (Boleh diisi boleh tidak)
+                                Prestasi (opsional)
                             </h4>
                             <div class="form-group row">
 

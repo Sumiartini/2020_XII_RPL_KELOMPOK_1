@@ -96,7 +96,7 @@
                         <div class="col-sm-4">
                             <label>NUPTK</label>
                             <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('tcr_nuptk') is-invalid @enderror" name="stf_nuptk" placeholder="Masukan NUPTK" value="{{ $staff_edit->stf_nuptk }}">                            
-                            <p style="font-size: 12px;">Boleh di isi boleh tidak</p>
+                            <p style="font-size: 12px;">opsional</p>
                         </div>
                     </div>
 

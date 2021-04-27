@@ -112,7 +112,7 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Visi Sekolah</label>
                         <div class="col-sm-8">
-                            <textarea name="msc_vision" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control @error('msc_vision') is-invalid @enderror">{{$master_config->msc_vision}}</textarea>
+                           <textarea name="msc_vision" rows="5" cols="10" placeholder="Masukan Visi Sekolah" class="form-control @error('msc_vision') is-invalid @enderror">{{$master_config->msc_vision}}</textarea>
                             @error('msc_vision')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -124,8 +124,36 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Misi Sekolah</label>
                         <div class="col-sm-8">
-                            <textarea name="msc_mision" rows="5" cols="10" placeholder="Masukan Misi Sekolah" class="form-control @error('msc_mision') is-invalid @enderror">{{$master_config->msc_mision}}</textarea>
-                            @error('msc_mision')
+                             <input type="text" name="msc_first_mision" class="form-control form-control-rounded @error('msc_first_mision') is-invalid @enderror" value="{{$master_config->msc_first_mision}}" placeholder="Masukan Misi Sekolah">
+                            @error('msc_first_mision')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <br>
+                            <input type="text" name="msc_second_mision" class="form-control form-control-rounded @error('msc_second_mision') is-invalid @enderror" value="{{$master_config->msc_second_mision}}" placeholder="Masukan Misi Sekolah">
+                            @error('msc_second_mision')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <br>
+                            <input type="text" name="msc_third_mision" class="form-control form-control-rounded @error('msc_third_mision') is-invalid @enderror" value="{{$master_config->msc_third_mision}}" placeholder="Masukan Misi Sekolah">
+                            @error('msc_third_mision')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <br>
+                            <input type="text" name="msc_fourth_mision" class="form-control form-control-rounded @error('msc_fourth_mision') is-invalid @enderror" value="{{$master_config->msc_fourth_mision}}" placeholder="Masukan Misi Sekolah">
+                            @error('msc_fourth_mision')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <br>
+                            <input type="text" name="msc_fifth_mision" class="form-control form-control-rounded @error('msc_fifth_mision') is-invalid @enderror" value="{{$master_config->msc_fifth_mision}}" placeholder="Masukan Misi Sekolah">
+                            @error('msc_fifth_mision')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

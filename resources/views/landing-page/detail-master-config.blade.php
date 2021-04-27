@@ -66,16 +66,42 @@
           <p>{{ $master_config->msv_url_video }}</p>
       </dd>
       @endif
+     
       @if(isset($master_config->msc_vision))
-      <dt class="col-sm-2">Visi Sekolah</dt>
+      <dt class="col-sm-2">V
+      isi Sekolah</dt>
       <dd class="col-sm-10">
-          <p>{{ $master_config->msc_vision }}</p>
+          <p>{{$master_config->msc_vision}}</p>
       </dd>
       @endif
-      @if(isset($master_config->msc_mision))
+      @if(isset($master_config->msc_first_mision))
       <dt class="col-sm-2">Misi Sekolah</dt>
       <dd class="col-sm-10">
-          <p>{{ $master_config->msc_mision }}</p>
+          <p>{{ $master_config->msc_first_mision }}</p>
+      </dd>
+      @endif
+      @if(isset($master_config->msc_second_mision))
+      <dt class="col-sm-2"></dt>
+      <dd class="col-sm-10">
+          <p>{{ $master_config->msc_second_mision }}</p>
+      </dd>
+      @endif
+      @if(isset($master_config->msc_third_mision))
+      <dt class="col-sm-2"></dt>
+      <dd class="col-sm-10">
+          <p>{{ $master_config->msc_third_mision }}</p>
+      </dd>
+      @endif
+      @if(isset($master_config->msc_fourth_mision))
+      <dt class="col-sm-2"></dt>
+      <dd class="col-sm-10">
+          <p>{{ $master_config->msc_fourth_mision }}</p>
+      </dd>
+      @endif
+      @if(isset($master_config->msc_fifth_mision))
+      <dt class="col-sm-2"></dt>
+      <dd class="col-sm-10">
+          <p>{{ $master_config->msc_fifth_mision }}</p>
       </dd>
       @endif
       @if(isset($master_config->msc_logo))

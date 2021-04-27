@@ -157,8 +157,12 @@
 
                                 <ol>
                                     
-                                    <!-- <li></li> -->
-                                    {{$master_config->msc_mision}}
+                                    <li>{{$master_config->msc_first_mision}}</li>
+                                    <li>{{$master_config->msc_second_mision}}</li>
+                                    <li>{{$master_config->msc_third_mision}}</li>
+                                    <li>{{$master_config->msc_fourth_mision}}</li>
+                                    <li>{{$master_config->msc_fifth_mision }}</li>
+                                    
                                       
                                  </ol> 
 
