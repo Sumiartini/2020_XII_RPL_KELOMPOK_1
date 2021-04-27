@@ -297,6 +297,39 @@ class StaffController extends Controller
             }
             
         }
+
+          $images = $request->file('other');
+             //dd($images);
+            if ($images) {
+                foreach ($images as $key => $image) {
+                    // dd($images, $key, $image);
+                    if ($image) {
+                        $path = public_path('images/staff_files');
+                        $files_name = 'images' .'/'. 'staff_files' .'/'. date('Ymd') . '_' . $image->getClientOriginalName();
+                        // dd($images);
+                        $image->move($path, $files_name);
+                        $staffDetail = StaffDetails::where('sfd_staff_id', $staff->stf_id)
+                        ->where('sfd_type', $key)
+                        ->where('sfd_key', $requestKey)->first();
+                        if (isset($staffDetail)) {
+                            $staffDetail->sfd_staff_id = $staff->stf_id;
+                            $staffDetail->sfd_type       = 'other';
+                            $staffDetail->sfd_key        = $key;
+                            $staffDetail->sfd_value      = $files_name;
+                            $staffDetail->sfd_updated_by = Auth()->user()->usr_id;
+                            $staffDetail->update();                            
+                        }else{
+                            $staffDetail = new StaffDetails;
+                            $staffDetail->sfd_staff_id = $staff->stf_id;
+                            $staffDetail->sfd_type       = 'other';
+                            $staffDetail->sfd_key        = $key;
+                            $staffDetail->sfd_value      = $files_name;
+                            $staffDetail->sfd_created_by = Auth()->user()->usr_id;
+                            $staffDetail->save();
+                        }
+                    }
+                }
+            }
         return redirect('staff/' . $staffID)->with('success', 'Data berhasil diubah');
     }
 
