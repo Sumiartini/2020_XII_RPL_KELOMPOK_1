@@ -523,7 +523,7 @@
 
             <div class="row" style="margin-top: 30px;">
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Lamaran<span style="color:red;">*</span> </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Curriculum vitae (CV)<span style="color:red;">*</span> </label>
                     @if(isset($staff_edit->other['curriculum_vitae']))
                     <p><a href="{{ url('download-file-staff/'. $staff_edit->other['curriculum_vitae']) }}"><i class="fa fa-file-word"></i>{{$staff_edit->other['curriculum_vitae']}}</a></p>
                     @endif
