@@ -189,7 +189,7 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label> NPSN <span style="color:red"> *</span></label>
+                                    <label> NPSN Asal Sekolah<span style="color:red"> *</span></label>
                                     <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" name="school_origin[npsn]" class="form-control form-control-rounded @error('school_origin.npsn') is-invalid @enderror" placeholder="Masukan NPSN" value="{{ old('school_origin.npsn') }}">
                                     @error('school_origin.npsn')
                                     <span class="invalid-feedback" role="alert">

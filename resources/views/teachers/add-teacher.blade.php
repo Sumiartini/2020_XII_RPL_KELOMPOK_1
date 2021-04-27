@@ -102,7 +102,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                            <p style="font-size: 12px;">opsional</p>
+                            <p style="margin-top:5px; font-size: 12px;">( opsional )</p>
                         </div>
                     </div>
 
