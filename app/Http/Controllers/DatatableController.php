@@ -23,6 +23,12 @@ class DatatableController extends Controller
     {
         $students = Students::getStudents($request->query());
         return Datatables::of($students)
+        ->editColumn('stu_nis', function($row){
+            if ($row->stu_nis == null) {
+                return $row->stu_nis;
+            }
+            return getFormatNis($row->stu_nis);  
+        })
         ->editColumn("usr_is_active", function ($row) {
             $usr_is_active = $row->usr_is_active;
             if ($usr_is_active == "0") {

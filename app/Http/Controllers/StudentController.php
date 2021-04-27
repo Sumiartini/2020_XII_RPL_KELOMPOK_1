@@ -627,20 +627,15 @@ class StudentController extends Controller
         return redirect('/pending-verification');
     }
 
-    public function receipted($stu_id)
-    {
-        $student_registration = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('stu_id',$stu_id)->first();
-
-        return view('students.reason-student-prospective',compact('student_registration'));
-    }
-
-    public function Storereceipted(Request $request, $str_id)
+    public function receipted($str_id)
     {
         $student_registration = StudentRegistration::where('str_id',$str_id)->first();
-        $student_registration->str_reason = $request->str_reason;
+
         $student_registration->str_status = '1';
+        $student_registration->str_reason = 'Siswa diterima karena data yang di inputkan telah terverifikasi';
         $student_registration->update();
-        return redirect('students-prospective')->with('success', 'Siswa berhasil diterima');
+
+       return redirect('students-prospective')->with('success', 'Siswa berhasil diterima'); 
     }
 
     public function rejected($stu_id)
@@ -899,12 +894,13 @@ class StudentController extends Controller
         $school_payment = StudentPayments::join('students', 'students.stu_id', '=', 'student_payments.stp_student_id')
                             ->where('stp_id',$studentPaymentID)->first();
         $school_payment->stp_payment_status = '2';
+        $school_payment->stp_reason = 'Pembayaran diterima karena data valid';
         $school_payment->update();
 
         $user = User::where('usr_id', $school_payment->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new SchoolPaymentMail($user, $school_payment));
 
-       return redirect('/school-payment/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil dierima');    
+       return redirect('/school-payment/detail/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil dierima');    
 
    }
 
@@ -929,7 +925,7 @@ class StudentController extends Controller
         $user = User::where('usr_id', $school_payment->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new SchoolPaymentMail($user, $school_payment));
 
-        return redirect('/school-payment/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil ditolak');
+        return redirect('/school-payment/detail/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil ditolak');
     }
 
     public function updateStatusToReRegistration(Request $request)
@@ -1074,5 +1070,27 @@ class StudentController extends Controller
             return redirect('students')->with('success', 'Data siswa dikeluarkan berhasil di simpan');   
         }
         return back()->with('error', 'Kata sandi verifikasi salah');    
+    }
+    public function generateNis(Request $request)
+    {
+        if ($request->ajax()) {
+            $student_check_nis = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->where('stu_nis', NULL)->where('str_status', 1)->orWhere('str_status',6)->orderBy('stu_candidate_name','desc')->get();
+            $check_count_nis = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->where('stu_nis', NULL)->where('str_status', 1)->orWhere('str_status',6)->count();
+                if ($check_count_nis == 0) {
+                    return response()->json(['status' => false,'code' => 400, 'message' => 'Tidak ada siswa yang perlu digenerate'], 400);
+                }
+            foreach($student_check_nis as $key => $student){
+                $count_nis = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->where('stu_nis', NULL)->where('str_status', 1)->orWhere('str_status',6)->count();
+                $school_year_first = StudentRegistration::find($student->str_id)->getSchoolYear->scy_first_year;
+                $school_year_last = StudentRegistration::find($student->str_id)->getSchoolYear->scy_last_year;
+                $school_year_combined = schoolYearFirst($school_year_first, $school_year_last);
+                for ($i=1; $i <= $count_nis; $i++) { 
+                    $start_format = $i;
+                }
+                $student->stu_nis = $school_year_combined.'10'. sprintf("%03d", $start_format);
+                $student->update();
+            };
+            return response()->json(['status' => true, 'code' => 200, 'message' => 'Nis siswa berhasil di generate'], 200);
+        }
     }
 }

@@ -1,7 +1,7 @@
 function student() {
     $('#example').DataTable({
       processing: true,
-      serverSide: true,
+      serverSide: false,
       ajax: 'student',
       lengthChange: false,
       dom: 'Blfrtip',
@@ -58,7 +58,7 @@ function student() {
             {
                 data: 'stu_nis', 
                 name:'stu_nis', 
-                orderable: false, 
+                orderable: true, 
                 searchable: true
             },
             {
@@ -99,7 +99,7 @@ function student() {
     $('body').on('click', '.update_to_re_registration', function() {
             let _token = $('meta[name="csrf-token"]').attr('content');
             swal({
-                title: "Siswa",
+                title: "Status Siswa",
                 text: 'Apakah yakin ingin mengubah status siswa ke daftar ulang?',
                 icon: "warning",
                 buttons: true,
@@ -141,6 +141,59 @@ function student() {
                 }
             });
         });
+
+    $('body').on('click', '.generate_nis', function() {
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        swal({
+            title: "NIS Siswa",
+            text: 'Apakah yakin memberi NIS untuk siswa?',
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            closeOnClickOutside: false,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'student/nis/generate',
+                    data: {
+                        _token: _token
+                    },
+                    success: function(data) {
+                        if (data.status != false) {
+                            swal(data.message, {
+                                button: false,
+                                icon: "success",
+                                timer: 1000
+                            });
+                        } else {
+                            swal(data.message, {
+                                button: false,
+                                icon: "error",
+                                timer: 1000
+                            });
+                        }
+                        $('#example').DataTable().ajax.reload()
+                    },
+                    error: function(error) {
+                        if (error.responseJSON.status == false) {
+                            swal(error.responseJSON.message, {
+                                button: false,
+                                icon: "error",
+                                timer: 1000
+                            });
+                        }else{
+                            swal('Terjadi kegagalan sistem', {
+                                button: false,
+                                icon: "error",
+                                timer: 1000
+                            });
+                        }    
+                    }
+                });
+            }
+        });
+    });
 }
 
 function studentUsers() {
@@ -576,10 +629,10 @@ function schoolPayment() {
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
-            "zeroRecords": "Daftar pembayaran siswa tidak tersedia",
+            "zeroRecords": "Daftar pembayaran PPDB siswa tidak tersedia",
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
-            "infoEmpty": "Tidak ada daftar pembayaran siswa",
-            "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "infoEmpty": "Tidak ada daftar pembayaran PPDB siswa",
+            "infoFiltered": "(pencarian dari _MAX_ daftar PPDB Siswa)",
             "buttons": {
                     "copy": "salin",
                     "excel": "excel",
@@ -1706,38 +1759,38 @@ $('#example').DataTable({
  lengthChange: false,
  dom: 'Blfrtip',
  buttons: [
-            {
-                extend: 'copy',
-            },
-            {
-                extend: 'excel',
-                exportOptions: {
-                     columns: [0, 1, 2, 3]
-                },
-            },
-            {
-                extend: 'pdf',
-                exportOptions: {
-                     columns: [0, 1, 2, 3]
-                  },
-                 customize: function (doc) {
-                    doc.content[1].table.widths = 
-                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
-                        doc.content[1].table.widths = ['5%','35%','30%', '30%'];
-                        doc.styles.tableBodyEven.alignment = 'center';
-                        doc.styles.tableBodyOdd.alignment = 'center';
-                  },
-            },
-            {
-                extend: 'print',
-                exportOptions: {
-                     columns: [0, 1, 2, 3]
-                  },
-            },
-            {
-                extend: 'colvis',
-            }
-        ],
+    {
+        extend: 'copy',
+    },
+    {
+        extend: 'excel',
+        exportOptions: {
+             columns: [0, 1, 2, 3]
+        },
+    },
+    {
+        extend: 'pdf',
+        exportOptions: {
+             columns: [0, 1, 2, 3]
+          },
+         customize: function (doc) {
+            doc.content[1].table.widths = 
+                Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                doc.content[1].table.widths = ['5%','35%','30%', '30%'];
+                doc.styles.tableBodyEven.alignment = 'center';
+                doc.styles.tableBodyOdd.alignment = 'center';
+          },
+    },
+    {
+        extend: 'print',
+        exportOptions: {
+             columns: [0, 1, 2, 3]
+          },
+    },
+    {
+        extend: 'colvis',
+    }
+],
    columns: [
         {
            data: 'cls_id',
@@ -1752,13 +1805,13 @@ $('#example').DataTable({
         {
            data: 'cls_name',
            name:'search_cls_name',
-           orderable: true,
+           orderable: false,
            searchable: true
        },
        {
            data: 'scy_name',
            name:'school_years.scy_name',
-           orderable: true,
+           orderable: false,
            searchable: true
        },
        {
@@ -1934,10 +1987,12 @@ function master_config() {
       processing: true,
       serverSide: true,
       ajax: 'master-config',
-      columnDefs: [{
-                    targets: 2,
-                    className: 'd-flex text-wrap',
-                }],
+      columnDefs: [
+        {
+            targets: 2,
+            className: 'text-wrap',
+        }
+      ],
       lengthChange: false,
       dom: 'Blfrtip',
       buttons: [
@@ -2092,13 +2147,13 @@ $('#example').DataTable({
         {
            data: 'usr_name', 
            name:'users.usr_name', 
-           orderable: true, 
+           orderable: false, 
            searchable: true
        },
        {
             data: 'cls_name',
            name:'search_cls_name',
-           orderable: true,
+           orderable: false,
            searchable: true
            
        },

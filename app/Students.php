@@ -23,7 +23,7 @@ class Students extends Model
             ->where('student_registrations.str_status', 1)
             ->orWhere('student_registrations.str_status', 6)
             ->where('users.usr_is_regist', 1)
-            ->select('users.usr_id', 'users.usr_is_active','students.stu_id','students.stu_candidate_name','students.stu_nis');
+            ->select('users.usr_id', 'users.usr_is_active','students.stu_id','students.stu_candidate_name','students.stu_nis')->orderBy('stu_candidate_name','asc');
         // dd($students);
         return $students;
     }

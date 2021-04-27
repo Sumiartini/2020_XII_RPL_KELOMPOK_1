@@ -15,7 +15,7 @@
 
     <li>
       <a href="{{URL::to('/staffs')}}" class="waves-effect">
-        <i class="icon-list icons"></i> <span>Daftar Staf</span>
+        <i class=""></i> <span>Daftar Staf</span>
       </a>
     </li>
 

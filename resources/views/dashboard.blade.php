@@ -144,7 +144,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">{{ $students }} Siswa </h4>
+            <a href="{{URL::to('/students')}}"><h4 class="text-white">{{ $students }} Siswa </h4>
             <span class="text-white">TOTAL SISWA</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -159,7 +159,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">{{ $teachers }} Guru </h4>
+            <a href="{{URL::to('/teachers')}}"><h4 class="text-white">{{ $teachers }} Guru </h4>
             <span class="text-white">TOTAL GURU</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -174,7 +174,7 @@
       <div class="card-body">
         <div class="media">
           <div class="media-body text-left">
-            <h4 class="text-white">{{ $staffs }} Staf </h4>
+            <a href="{{URL::to('/staffs')}}"><h4 class="text-white">{{ $staffs }} Staf </h4>
             <span class="text-white">TOTAL STAF</span>
           </div>
           <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
@@ -185,6 +185,142 @@
     </div>
   </div>
 
+</div>
+
+<div class="row mt-4">
+  <div class="col-12 col-lg-6 col-xl-4">
+    <div class="card bg-pattern-primary">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body text-left">
+            <a href="{{URL::to('/students-prospective')}}"><h4 class="text-white">{{ $students_prospective }} Calon Siswa </h4>
+            <span class="text-white">TOTAL CALON SISWA</span>
+          </div>
+          <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
+            <a href="{{URL::to('/students-prospective')}}"><i class="icon-user text-white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6 col-xl-4">
+    <div class="card bg-pattern-danger">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body text-left">
+            <a href="{{URL::to('/teachers-prospective')}}"><h4 class="text-white">{{ $teachers_prospective }} Calon Guru </h4>
+            <span class="text-white">TOTAL CALON GURU</span>
+          </div>
+          <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
+            <a href="{{URL::to('/teachers-prospective')}}"><i class="icon-user text-white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6 col-xl-4">
+    <div class="card bg-pattern-success">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body text-left">
+            <a href="{{URL::to('/staffs-prospective')}}"><h4 class="text-white">{{ $staffs_prospective }} Calon Staf </h4>
+            <span class="text-white">TOTAL CALON STAF</span>
+          </div>
+          <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
+            <a href="{{URL::to('/staffs-prospective')}}"><i class="icon-user text-white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row mt-4">
+  <div class="col-12 col-lg-6 col-xl-4">
+    <div class="card bg-pattern-primary">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body text-left">
+            <a href="{{URL::to('/students-rejected')}}"><h4 class="text-white">{{ $students_rejected }} Siswa Ditolak</h4>
+            <span class="text-white">TOTAL SISWA DITOLAK</span>
+          </div>
+          <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
+            <a href="{{URL::to('/students-rejected')}}"><i class="icon-user text-white"></i></a>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6 col-xl-4">
+    <div class="card bg-pattern-danger">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body text-left">
+            <a href="{{URL::to('/teachers-rejected')}}"><h4 class="text-white">{{ $teachers_rejected }} Guru Ditolak</h4>
+            <span class="text-white">TOTAL GURU DITOLAK</span>
+          </div>
+          <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
+            <a href="{{URL::to('/teachers-rejected')}}"><i class="icon-user text-white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6 col-xl-4">
+    <div class="card bg-pattern-success">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body text-left">
+            <a href="{{URL::to('/staffs-rejected')}}"><h4 class="text-white">{{ $staffs_rejected }} Staf Ditolak</h4>
+            <span class="text-white">TOTAL STAF DITOLAK</span>
+          </div>
+          <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
+            <a href="{{URL::to('/staffs-rejected')}}"><i class="icon-user text-white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row mt-4">
+  <div class="col-12 col-lg-6 col-xl-4">
+    <div class="card bg-pattern-primary">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body text-left">
+            <a href="{{URL::to('/student-moves')}}"><h4 class="text-white">{{ $students_moves }} Siswa Pindah</h4>
+            <span class="text-white">TOTAL SISWA PINDAH</span>
+          </div>
+          <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
+            <a href="{{URL::to('/student-moves')}}"><i class="icon-user text-white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<div class="row mt-4">
+  <div class="col-12 col-lg-6 col-xl-4">
+    <div class="card bg-pattern-primary">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-body text-left">
+            <a href="{{URL::to('/student-drop-outs')}}"><h4 class="text-white">{{ $students_drop_outs }} Siswa Keluar </h4>
+            <span class="text-white">TOTAL SISWA KELUAR</span>
+          </div>
+          <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
+            <a href="{{URL::to('/student-drop-outs')}}"><i class="icon-user text-white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </div>
 
 

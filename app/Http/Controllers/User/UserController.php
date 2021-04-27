@@ -45,9 +45,25 @@ class UserController extends Controller
             Auth::logout();
             return redirect()->back()->with(['error' => 'Akun anda di Non Aktifkan, hubungi admin untuk mengaktifkan akun anda']);
         }
+        
+        
+
+        //siswa
         $students = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('str_status', 1)->orWhere('str_status', 6)->count();
+        $students_rejected = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('str_status', 2)->count();
+        $students_prospective = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('str_status', 0)->count(); 
+        $students_moves = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('str_status', 4)->count();
+        $students_drop_outs = Students::join('student_registrations','student_registrations.str_student_id','=','students.stu_id')->where('str_status', 3)->count(); 
+       //guru
         $teachers = Teachers::where('tcr_registration_status', 1)->count();
+        $teachers_rejected = Teachers::where('tcr_registration_status', 2)->count();
+        $teachers_prospective = Teachers::where('tcr_registration_status', 0)->count();
+
+        //staff
         $staffs = Staffs::where('stf_registration_status', 1)->count();
+        $staffs_rejected = Staffs::where('stf_registration_status', 2)->count();
+        $staffs_prospective = Staffs::where('stf_registration_status', 0)->count();
+
 
         if ($user->hasRole('student')) {
             if ($student->str_status == '0' ) {
@@ -83,7 +99,7 @@ class UserController extends Controller
             }
             
         } elseif ($user->hasRole('admin')) {
-            return view('dashboard', compact('students','teachers','staffs'));
+            return view('dashboard', compact('students', 'students_rejected', 'students_prospective', 'students_moves', 'students_drop_outs', 'teachers','staffs','staffs_prospective','staffs_rejected','teachers_prospective','teachers_rejected'));
         } else {
             abort(404);
         }
