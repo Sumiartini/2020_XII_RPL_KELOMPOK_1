@@ -52,11 +52,11 @@
       <div class="card-body">
         <div class="table-responsive">
           @if(Auth()->user()->hasRole('admin') OR Auth()->user()->hasRole('staff'))
-          <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
+          <div class="container-fluid" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
             <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i></a>
 
-          <a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="UBAH KE DAFTAR ULANG" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a>
-          <!-- <a href="javascript:void(0)" data-toggle="tooltip" data-placement="left" title="GENERATE NIS" type="button" class="btn btn-outline-info waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a> -->
+            <a  href="javascript:void(0)" width="100%" data-toggle="tooltip" data-placement="top" title="GENERATE NIS SISWA" type="button" class="btn btn-outline-info waves-effect waves-light m-1 float-right generate_nis"> <i class="icon-exclamation icon-lg"></i></a>
+            <a href="javascript:void(0)" width="100%" data-toggle="tooltip" data-placement="left" title="UBAH KE DAFTAR ULANG" type="button" class="btn btn-outline-warning waves-effect waves-light m-1 update_to_re_registration float-right"> <i class="icon-exclamation icon-lg"></i></a>
           </div>
           @else
           @endif
@@ -72,8 +72,6 @@
             </thead>
             <tbody>
             </tbody>
-
-
           </table>
         </div>
       </div>

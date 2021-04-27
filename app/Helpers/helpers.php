@@ -65,3 +65,24 @@ function getDateOfBirth($usr_date_of_birth){
         return Carbon::parse($usr_date_of_birth)->translatedFormat('l, d F Y');
     }
 }
+
+function schoolYearFirst($first_year, $last_year)
+{
+    // dd($first_year, $last_year);
+    $chop_first_year = substr($first_year, 2); 
+    $chop_last_year = substr($last_year, 2); 
+    $combined = $chop_first_year . $chop_last_year;
+    return $combined;
+}
+
+function getFormatNis($studentNIS)
+{
+    $titik = '.';
+    $student_nis_one = substr_replace($studentNIS, $titik, 4, 0);
+    $student_nis_two = substr_replace($student_nis_one, $titik, 7, 0);
+    if($studentNIS =! null){
+        return $student_nis_two;
+    } else{
+        return $student_NIS;
+    }
+}

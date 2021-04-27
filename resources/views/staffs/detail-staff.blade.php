@@ -330,93 +330,104 @@
                     </div>
                 </div>
 
-                <div class="tab-pane" id="dokumen">             
-                    
-                    <div class="row">
-            @if(isset($staff->other['identity_card']))
-              <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-staff/'. $staff->other['identity_card']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
+                <div class="tab-pane" id="dokumen"> 
+
+                @if(isset($staff->other['identity_card']))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-form-label" for="exampleInputFile">Kartu Tanda Penduduk (KTP)</label>
                     </div>
-                    <div class="col-lg-6" style="text-align: left; font-weight: bold; margin-left: -35px; margin-top: 5px;">
-                        <p>Kartu Tanda Penduduk (KTP)</p> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-12">
+                        <a href="{{ url('download-file-staff/'. $staff->other['identity_card']) }}">                        
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true" ></i>
+                        {{$staff->other['identity_card']}}
+                        </a>
                     </div>     
                 </div>
-            </div>
-            @endif  
-            @if(isset($staff->other['family_card']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-staff/'. $staff->other['family_card']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 10px;"></i>
-                        </a>
+                @endif            
+                
+
+                @if(isset($staff->other['family_card']))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-form-label" for="exampleInputFile">Kartu Keluarga</label>
                     </div>
-                    <div class="col-lg-6" style="text-align: left; font-weight: bold; margin-left: -13px; margin-top: 5px;">
-                        <p>Kartu Keluarga</p> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-12">
+                        <a href="{{ url('download-file-staff/'. $staff->other['family_card']) }}">                        
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true" ></i>
+                        {{$staff->other['family_card']}}
+                        </a>
                     </div>     
                 </div>
-            </div>  
-            @endif
-            @if(isset($staff->other['senior_high_school_diploma']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-staff/'. $staff->other['senior_high_school_diploma']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
+                @endif
+
+                @if(isset($staff->other['scholar_diploma']))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-form-label" for="exampleInputFile">Ijazah Minimal SMA/SEDERAJAT Dilegalisir</label>
                     </div>
-                    <div class="col-lg-10" style="text-align: left; font-weight: bold; margin-left: -110px; margin-top: 13px;">
-                        <p>Surat Tanda Kelulusan Minimal SMA/SMK dilegalisir </p> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-12">
+                        <a href="{{ url('download-file-staff/'. $staff->other['scholar_diploma']) }}">                        
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true" ></i>
+                        {{$staff->other['scholar_diploma']}}
+                        </a>
                     </div>     
                 </div>
-            </div>  
-            @endif 
-            @if(isset($staff->other['curriculum_vitae']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-staff/'. $staff->other['curriculum_vitae']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
+                @endif
+
+                @if(isset($staff->other['curriculum_vitae']))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-form-label" for="exampleInputFile">Curriculum vitae (CV)</label>
                     </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -25px; margin-top: 5px;">
-                        <p>Curriculum vitae (CV)</p> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-12">
+                        <a href="{{ url('download-file-staff/'. $staff->other['curriculum_vitae']) }}">                        
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true" ></i>
+                        {{$staff->other['curriculum_vitae']}}
+                        </a>
                     </div>     
                 </div>
-            </div> 
-            @endif 
-            @if(isset($staff->other['application_letter']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-staff/'. $staff->other['application_letter']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
+                @endif
+
+                @if(isset($staff->other['application_letter']))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-form-label" for="exampleInputFile">Surat Lamaran</label>
                     </div>
-                    <div class="col-lg-8" style="text-align: left; font-weight: bold; margin-left: -12px; margin-top: 13px;">
-                        <p>Surat Lamaran</p> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-12">
+                        <a href="{{ url('download-file-staff/'. $staff->other['application_letter']) }}">                        
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true" ></i>
+                        {{$staff->other['application_letter']}}
+                        </a>
                     </div>     
                 </div>
-            </div>  
-            @endif
-            @if(isset($staff->other['resume']))
-            <div class="card-body">
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-lg-4">
-                        <a href="{{ url('download-file-staff/'. $staff->other['resume']) }}">
-                        <i class="fa fa-file-text-o fa-3x" aria-hidden="true" style="margin-left: 20px;"></i>
-                        </a>
+                @endif
+
+                 @if(isset($staff->other['resume']))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-form-label" for="exampleInputFile">resume</label>
                     </div>
-                    <div class="col-lg-6" style="text-align: left; font-weight: bold; margin-left: -115px; margin-top: 13px;">
-                        <p>Resume</p> 
+                </div>
+                <div class="row" >
+                    <div class="col-lg-12">
+                        <a href="{{ url('download-file-staff/'. $staff->other['resume']) }}">                        
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true" ></i>
+                        {{$staff->other['resume']}}
+                        </a>
                     </div>     
                 </div>
-            </div>
-            @endif
+                @endif
             
 
                     </div>

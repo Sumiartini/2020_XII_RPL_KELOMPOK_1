@@ -185,6 +185,8 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/student/re/registration', 'DatatableController@getListReRegistration');
     Route::get('/student/re-registration/{studentID}', 'StudentController@getShowReRegistration');
     
+    Route::post('/student/nis/generate', 'StudentController@generateNis');
+
     Route::get('/page/list', 'PageController@index');
     Route::get('/page/detail', 'PageController@show');
     Route::get('/page/add', 'PageController@create'); 
