@@ -1075,4 +1075,26 @@ class StudentController extends Controller
         }
         return back()->with('error', 'Kata sandi verifikasi salah');    
     }
+    public function generateNis(Request $request)
+    {
+        if ($request->ajax()) {
+            $student_check_nis = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->where('stu_nis', NULL)->where('str_status', 1)->orWhere('str_status',6)->orderBy('stu_candidate_name','desc')->get();
+            $check_count_nis = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->where('stu_nis', NULL)->where('str_status', 1)->orWhere('str_status',6)->count();
+                if ($check_count_nis == 0) {
+                    return response()->json(['status' => false,'code' => 400, 'message' => 'Tidak ada siswa yang perlu digenerate'], 400);
+                }
+            foreach($student_check_nis as $key => $student){
+                $count_nis = Students::join('student_registrations', 'student_registrations.str_student_id','=','students.stu_id')->where('stu_nis', NULL)->where('str_status', 1)->orWhere('str_status',6)->count();
+                $school_year_first = StudentRegistration::find($student->str_id)->getSchoolYear->scy_first_year;
+                $school_year_last = StudentRegistration::find($student->str_id)->getSchoolYear->scy_last_year;
+                $school_year_combined = schoolYearFirst($school_year_first, $school_year_last);
+                for ($i=1; $i <= $count_nis; $i++) { 
+                    $start_format = $i;
+                }
+                $student->stu_nis = $school_year_combined.'10'. sprintf("%03d", $start_format);
+                $student->update();
+            };
+            return response()->json(['status' => true, 'code' => 200, 'message' => 'Nis siswa berhasil di generate'], 200);
+        }
+    }
 }

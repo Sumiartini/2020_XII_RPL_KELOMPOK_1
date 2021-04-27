@@ -4227,6 +4227,9 @@ table.grid td {
     color: #e9eaea!important;
 }
 
+.text-wrap {
+    white-space: normal !important;
+}
 /* Shadows */
 .shadow-primary{
 	box-shadow: 0 7px 30px rgba(2, 140, 253, 0.7)!important;
