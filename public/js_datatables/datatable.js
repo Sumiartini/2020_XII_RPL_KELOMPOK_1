@@ -770,8 +770,8 @@ function staffUsers() {
                 searchable: true
             },
             {
-                data: 'stf_gtk', 
-                name:'stf_gtk', 
+                data: 'gtn_number', 
+                name:'gtk_numbers.gtn_number', 
                 orderable: false, 
                 searchable: true
             },
@@ -1125,8 +1125,8 @@ function teacherUsers() {
                 searchable: true
             },
             {
-                data: 'tcr_gtk', 
-                name:'tcr_gtk', 
+                data: 'gtn_number', 
+                name:'gtk_numbers.gtn_number', 
                 orderable: false, 
                 searchable: true
             },

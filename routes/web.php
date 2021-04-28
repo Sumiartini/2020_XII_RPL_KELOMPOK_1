@@ -5,6 +5,35 @@ use Illuminate\Support\Facades\Auth;
 use App\Students;
 use App\StudentRegistration;
 
+
+Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack', 'role:student']], function () {
+    Route::get('/school-payment/pay', 'StudentController@schoolPayment');
+    Route::post('/school-payment/pay', 'StudentController@storeSchoolPayment');
+});
+
+Route::get('/logout', function () {
+    abort(404);
+});
+
+Route::get('/', 'LandingPageController@integrationLandingPage');
+
+Auth::routes();
+
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/account/forgot-password', 'Auth\AccountController@forgotPassword')->name('forgot.password');
+    Route::post('/account/forgot-password', 'Auth\AccountController@sendEmailForgotPassword')->name('forgot.password');
+    Route::get('/account/{resetVerificationToken}/forgot-password', 'Auth\AccountController@verifyForgotToken');
+    Route::post('/account/reset-password', 'Auth\AccountController@updatePassword')->name('password-reset');
+    Route::get('/select-registration', 'Auth\RegisterController@selectRegistration');
+    Route::get('/register-student', 'Auth\RegisterController@registerStudent');
+    Route::get('/register-teacher', 'Auth\RegisterController@registerTeacher');
+    Route::get('/register-staff', 'Auth\RegisterController@registerStaff');
+});
+
+Route::get('/account/{userId}/{userVerificationToken}/activate', 'Auth\AccountController@verifyToken');
+Route::get('/account/waiting-verification', 'Auth\AccountController@waitingVerification');
+Route::post('/account/resend-verification', 'Auth\AccountController@resendVerification');
+
 Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack', 'role:admin|staff']], function () {
  Route::get('/teachers-prospective', function(){
         return view('teachers.list-teacher-prospective');
@@ -128,34 +157,6 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/master-config/edit-status/{msc_id}', 'LandingPageController@editStatusConfig');
     
 });
-
-Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack', 'role:student']], function () {
-    Route::get('/school-payment/pay', 'StudentController@schoolPayment');
-    Route::post('/school-payment/pay', 'StudentController@storeSchoolPayment');
-});
-
-Route::get('/logout', function () {
-    abort(404);
-});
-
-Route::get('/', 'LandingPageController@integrationLandingPage');
-
-Auth::routes();
-
-Route::group(['middleware' => ['guest']], function () {
-    Route::get('/account/forgot-password', 'Auth\AccountController@forgotPassword')->name('forgot.password');
-    Route::post('/account/forgot-password', 'Auth\AccountController@sendEmailForgotPassword')->name('forgot.password');
-    Route::get('/account/{resetVerificationToken}/forgot-password', 'Auth\AccountController@verifyForgotToken');
-    Route::post('/account/reset-password', 'Auth\AccountController@updatePassword')->name('password-reset');
-    Route::get('/select-registration', 'Auth\RegisterController@selectRegistration');
-    Route::get('/register-student', 'Auth\RegisterController@registerStudent');
-    Route::get('/register-teacher', 'Auth\RegisterController@registerTeacher');
-    Route::get('/register-staff', 'Auth\RegisterController@registerStaff');
-});
-
-Route::get('/account/{userId}/{userVerificationToken}/activate', 'Auth\AccountController@verifyToken');
-Route::get('/account/waiting-verification', 'Auth\AccountController@waitingVerification');
-Route::post('/account/resend-verification', 'Auth\AccountController@resendVerification');
 
 Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], function () {
     //Mengupload bukti pembayaran
