@@ -5,16 +5,134 @@ use Illuminate\Support\Facades\Auth;
 use App\Students;
 use App\StudentRegistration;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack', 'role:admin|staff']], function () {
+ Route::get('/teachers-prospective', function(){
+        return view('teachers.list-teacher-prospective');
+    });
+    Route::get('teacher/prospective', 'DatatableController@getTeachersProspective');
+
+    Route::get('/teachers-rejected', function(){
+        return view('teachers.list-teacher-rejected');
+    });
+    Route::get('teacher/rejected', 'DatatableController@getTeachersRejected');
+    Route::get('/teacher/create', 'TeacherController@create');
+    Route::post('/teacher/create', 'TeacherController@store');
+    Route::get('/teacher/edit/{tcr_id}', 'TeacherController@edit');
+    Route::post('/teacher/edit/{tcr_id}', 'TeacherController@update');
+    Route::get('/teacher/restore/{tcr_id}', 'TeacherController@restore');
+
+    Route::get('/staffs-prospective', function () {
+        return view('staffs.list-staff-prospective');
+    });
+    Route::get('/staff/prospective', 'DatatableController@getStaffsProspective');
+
+    Route::get('/staffs-rejected', function () {
+        return view('staffs.list-staff-rejected');
+    });
+    Route::get('/staff/rejected', 'DatatableController@getStaffsRejected');
+
+    Route::post('/staff/create', 'StaffController@store');
+    Route::get('/staff/create', 'StaffController@create');
+    Route::get('/staff/edit/{stf_id}', 'StaffController@edit');
+    Route::post('/staff/edit/{stf_id}', 'StaffController@update');
+
+    
+    Route::get('/school-payments', function () {
+        return view('school-payments.list-school-payment');
+    });
+    Route::get('/school/payment', 'DatatableController@getSchoolPayment');
+    Route::get('/student/create', 'StudentController@create');
+    Route::post('/student/create', 'StudentController@store');
+    Route::get('/student/edit/{std_id}', 'StudentController@edit');
+    Route::post('/student/edit/{std_id}', 'StudentController@update');
+
+    Route::get('/student/payment/{stp_id}', 'StudentController@payment_detail');
+    Route::get('/student/payment', 'DatatableController@getStudentPayment');
+    Route::get('/student-payments', function () {
+        return view('students.list-student-payment');
+    });
+    //pembayaran ppdb
+    
+    Route::get('/school-payment/create', 'StudentController@createSchoolPayment');
+    Route::post('/school-payment/create', 'StudentController@storeCreate');
+    Route::get('/school-payment/{std_id}', 'StudentController@student_payment_detail');
+    Route::get('/school-payment/detail/{std_id}', 'StudentController@school_payment_detail');
+    
+    Route::get('/school-payment/accept-payment/{stp_id}', 'StudentController@acceptSchoolPayment');
+    Route::get('/school-payment/refuse-payment/{std_id}', 'StudentController@refuseSchoolPayment');
+    Route::post('/school-payment/refuse-payment/{std_id}', 'StudentController@storeRefuseSchoolPayment');
+
+    Route::get('/student-move', 'DatatableController@getListStudentMove');
+    Route::get('/student-moves', function(){
+        return view('students.list-student-move');
+    });
+    Route::get('/student/move/{studentID}', 'StudentController@studentMove');
+    Route::post('/student/move/{studentID}', 'StudentController@updateStudentMove');
+    
+    Route::get('/student-dropout', 'DatatableController@getListStudentDropOut');
+    Route::get('/student-drop-outs', function(){
+        return view('students.list-student-drop-out');
+    });
+    Route::get('/student/drop-out/{studentID}', 'StudentController@studentDropOut');
+    Route::post('/student/drop-out/{studentID}', 'StudentController@updateStudentDropOut');
+
+    Route::get('/student-re-registrations', function(){
+        return view('students.list-re-registration');
+    });
+    Route::get('/student/re/registration', 'DatatableController@getListReRegistration');
+    Route::post('/student/nis/generate', 'StudentController@generateNis');
+
+    Route::get('/students-prospective', function () {
+        return view('students.list-student-prospective');
+    });
+    Route::get('/student/prospective', 'DatatableController@getStudentProspective');
+
+    Route::get('/students-rejected', function () {
+        return view('students.list-student-rejected');
+    });
+    Route::get('/student/rejected', 'DatatableController@getStudentRejected');
+    
+   //wali kelas
+    Route::get('/homeroom-teachers', function () {
+        return view('homeroom-teachers.list-homeroom-teacher');
+    });
+    Route::get('/homeroom-teacher', 'DatatableController@getHomeroomTeacher');
+
+    Route::get('/homeroom-teacher/create', 'HomeroomTeacherController@create');
+    Route::post('/homeroom-teacher/create', 'HomeroomTeacherController@store');
+    Route::get('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@edit');
+    Route::post('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@update');
+    Route::get('/homeroom-teacher/edit-status/{homeroomTeacherID}', 'HomeroomTeacherController@editStatus');
+
+    //Landing page
+    Route::get('/master-slides', function () {
+        return view('landing-page.list-master-slide');
+    });
+    Route::get('/master-slide', 'DatatableController@getMasterSlide');
+    Route::get('/master-slide/create', 'LandingPageController@create');
+    Route::post('/master-slide/create', 'LandingPageController@store');
+    Route::get('/master-slide/{mss_id}', 'LandingPageController@show');
+    Route::get('/master-slide/edit/{mss_id}', 'LandingPageController@edit');
+    Route::post('/master-slide/edit/{mss_id}', 'LandingPageController@update');
+    Route::get('/master-slide/edit-status/{mss_id}', 'LandingPageController@editStatus');
+
+    Route::get('/master-configs', function () {
+        return view('landing-page.list-master-config');
+    });
+    Route::get('/master-config', 'DatatableController@getMasterConfig');
+    Route::get('/master-config/create', 'LandingPageController@createConfig');
+    Route::post('/master-config/create', 'LandingPageController@storeConfig');
+    Route::get('/master-config/{msc_id}', 'LandingPageController@showConfig');
+    Route::get('/master-config/edit/{msc_id}', 'LandingPageController@editConfig');
+    Route::post('/master-config/edit/{msc_id}', 'LandingPageController@updateConfig');
+    Route::get('/master-config/edit-status/{msc_id}', 'LandingPageController@editStatusConfig');
+    
+});
+
+Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack', 'role:student']], function () {
+    Route::get('/school-payment/pay', 'StudentController@schoolPayment');
+    Route::post('/school-payment/pay', 'StudentController@storeSchoolPayment');
+});
 
 Route::get('/logout', function () {
     abort(404);
@@ -24,20 +142,20 @@ Route::get('/', 'LandingPageController@integrationLandingPage');
 
 Auth::routes();
 
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/account/forgot-password', 'Auth\AccountController@forgotPassword')->name('forgot.password');
+    Route::post('/account/forgot-password', 'Auth\AccountController@sendEmailForgotPassword')->name('forgot.password');
+    Route::get('/account/{resetVerificationToken}/forgot-password', 'Auth\AccountController@verifyForgotToken');
+    Route::post('/account/reset-password', 'Auth\AccountController@updatePassword')->name('password-reset');
+    Route::get('/select-registration', 'Auth\RegisterController@selectRegistration');
+    Route::get('/register-student', 'Auth\RegisterController@registerStudent');
+    Route::get('/register-teacher', 'Auth\RegisterController@registerTeacher');
+    Route::get('/register-staff', 'Auth\RegisterController@registerStaff');
+});
 
 Route::get('/account/{userId}/{userVerificationToken}/activate', 'Auth\AccountController@verifyToken');
 Route::get('/account/waiting-verification', 'Auth\AccountController@waitingVerification');
 Route::post('/account/resend-verification', 'Auth\AccountController@resendVerification');
-
-Route::get('/account/forgot-password', 'Auth\AccountController@forgotPassword')->name('forgot.password');
-Route::post('/account/forgot-password', 'Auth\AccountController@sendEmailForgotPassword')->name('forgot.password');
-Route::get('/account/{resetVerificationToken}/forgot-password', 'Auth\AccountController@verifyForgotToken');
-Route::post('/account/reset-password', 'Auth\AccountController@updatePassword')->name('password-reset');
-
-Route::get('/select-registration', 'Auth\RegisterController@selectRegistration');
-Route::get('/register-student', 'Auth\RegisterController@registerStudent');
-Route::get('/register-teacher', 'Auth\RegisterController@registerTeacher');
-Route::get('/register-staff', 'Auth\RegisterController@registerStaff');
 
 Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], function () {
     //Mengupload bukti pembayaran
@@ -61,6 +179,7 @@ Route::group(['middleware' => ['auth', 'verified', 'DisablePreventBack']], funct
 
     Route::get('/re-registration', 'StudentController@reRegistration');
     Route::post('/re-registration', 'StudentController@reRegistrationStore');
+
     
 });
 
@@ -73,134 +192,28 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/staffs', function () {
         return view('staffs.list-staff');
     });
+
     Route::get('staff', 'DatatableController@getStaffs');
-
-    Route::get('/staffs-prospective', function () {
-        return view('staffs.list-staff-prospective');
-    });
-    Route::get('/staff/prospective', 'DatatableController@getStaffsProspective');
-
-    Route::get('/staffs-rejected', function () {
-        return view('staffs.list-staff-rejected');
-    });
-    Route::get('/staff/rejected', 'DatatableController@getStaffsRejected');
-
-   
-    Route::post('/staff/create', 'StaffController@store');
-    Route::get('/staff/create', 'StaffController@create');
     Route::get('/staff/{stf_id}', 'StaffController@show_staff');
-    Route::get('/staff/edit/{stf_id}', 'StaffController@edit');
-    Route::post('/staff/edit/{stf_id}', 'StaffController@update');
-    Route::get('/staffs/delete/1', 'StaffController@destroy');
-
 
     Route::get('/teachers', function () {
         return view('teachers.list-teacher');
     });
     Route::get('teacher', 'DatatableController@getTeachers');
-
-    Route::get('/teachers-prospective', function(){
-        return view('teachers.list-teacher-prospective');
-    });
-    Route::get('teacher/prospective', 'DatatableController@getTeachersProspective');
-
-    Route::get('/teachers-rejected', function(){
-        return view('teachers.list-teacher-rejected');
-    });
-    Route::get('teacher/rejected', 'DatatableController@getTeachersRejected');
-
-
-    Route::get('/teacher/create', 'TeacherController@create');
-    Route::post('/teacher/create', 'TeacherController@store');
     Route::get('/teacher/{tcr_id}', 'TeacherController@show_teacher');
-    Route::get('/teacher/edit/{tcr_id}', 'TeacherController@edit');
-    Route::post('/teacher/edit/{tcr_id}', 'TeacherController@update');
-    Route::get('/teachers/delete/1', 'TeacherController@destroy');
-    Route::get('/teacher/restore/{tcr_id}', 'TeacherController@restore');
-
     Route::get('/students', function () {
         return view('students.list-student');
     });
+
     Route::get('/student', 'DatatableController@getStudent');
-
-    //Error double route "students/prospective" !!
-    Route::get('/students-prospective', function () {
-        return view('students.list-student-prospective');
-    });
-    Route::get('/student/prospective', 'DatatableController@getStudentProspective');
-
-    Route::get('/students-rejected', function () {
-        return view('students.list-student-rejected');
-    });
-    Route::get('/student/rejected', 'DatatableController@getStudentRejected');
-
-    Route::get('/student-payments', function () {
-        return view('students.list-student-payment');
-    });
-    Route::get('/student/payment', 'DatatableController@getStudentPayment');
-
-    Route::get('/school-payments', function () {
-        return view('school-payments.list-school-payment');
-    });
-    Route::get('/school/payment', 'DatatableController@getSchoolPayment');
-
-    Route::get('/student/create', 'StudentController@create');
-    Route::post('/student/create', 'StudentController@store');
     Route::get('/student/{stu_id}', 'StudentController@show_student');
-    Route::get('/student/edit/{std_id}', 'StudentController@edit');
-    Route::post('/student/edit/{std_id}', 'StudentController@update');
-    Route::post('/student/delete', 'StudentController@destroy');    
-    Route::get('/student/payment/{stp_id}', 'StudentController@payment_detail');
-    //pembayaran ppdb
-    Route::get('/school-payment/pay', 'StudentController@schoolPayment');
-    Route::post('/school-payment/pay', 'StudentController@storeSchoolPayment');
-    Route::get('/school-payment/create', 'StudentController@createSchoolPayment');
-    Route::post('/school-payment/create', 'StudentController@storeCreate');
-    Route::get('/school-payment/{std_id}', 'StudentController@student_payment_detail');
-    Route::get('/school-payment/detail/{std_id}', 'StudentController@school_payment_detail');
-    
-    Route::get('/school-payment/accept-payment/{stp_id}', 'StudentController@acceptSchoolPayment');
-    Route::get('/school-payment/refuse-payment/{std_id}', 'StudentController@refuseSchoolPayment');
-    Route::post('/school-payment/refuse-payment/{std_id}', 'StudentController@storeRefuseSchoolPayment');
-
-    Route::get('/student-move', 'DatatableController@getListStudentMove');
-    Route::get('/student-moves', function(){
-        return view('students.list-student-move');
-    });
-    Route::get('/student/move/{studentID}', 'StudentController@studentMove');
-    Route::post('/student/move/{studentID}', 'StudentController@updateStudentMove');
-    
-    Route::get('/student-dropout', 'DatatableController@getListStudentDropOut');
-    Route::get('/student-drop-outs', function(){
-        return view('students.list-student-drop-out');
-    });
-    Route::get('/student/drop-out/{studentID}', 'StudentController@studentDropOut');
-    Route::post('/student/drop-out/{studentID}', 'StudentController@updateStudentDropOut');
-        
-
-
-    Route::get('/student-re-registrations', function(){
-        return view('students.list-re-registration');
-    });
-    Route::get('/student/re/registration', 'DatatableController@getListReRegistration');
     Route::get('/student/re-registration/{studentID}', 'StudentController@getShowReRegistration');
-    
-    Route::post('/student/nis/generate', 'StudentController@generateNis');
-
-    Route::get('/page/list', 'PageController@index');
-    Route::get('/page/detail', 'PageController@show');
-    Route::get('/page/add', 'PageController@create'); 
-    Route::get('/page/edit', 'PageController@edit');
 
     Route::get('/account/profile/edit-password', 'Auth\AccountController@editPassword');
     Route::post('/account/profile/edit-password', 'Auth\AccountController@storeEditPassword');
-
     Route::get('/account/profile/edit', 'Auth\AccountController@editProfile');
     Route::post('/account/profile/edit', 'Auth\AccountController@storeEditProfile');
-
     Route::get('/account/profile', 'Auth\AccountController@profile');
-
-
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBack', 'role:admin|staff']], function () {
@@ -288,47 +301,11 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/edit-status/major/{mjr_id}','MajorController@edit_status');
 
     Route::post('/update/re-registration', 'StudentController@updateStatusToReRegistration');
-});
-    //wali kelas
-    Route::get('/homeroom-teachers', function () {
-        return view('homeroom-teachers.list-homeroom-teacher');
-    });
-    Route::get('/homeroom-teacher', 'DatatableController@getHomeroomTeacher');
 
-    Route::get('/homeroom-teacher/create', 'HomeroomTeacherController@create');
-    Route::post('/homeroom-teacher/create', 'HomeroomTeacherController@store');
-    Route::get('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@edit');
-    Route::post('/homeroom-teacher/edit/{homeroomTeacherID}', 'HomeroomTeacherController@update');
-    Route::get('/homeroom-teacher/edit-status/{homeroomTeacherID}', 'HomeroomTeacherController@editStatus');
-
-
-    //Landing page
-    Route::get('/master-slides', function () {
-        return view('landing-page.list-master-slide');
-    });
-    Route::get('/master-slide', 'DatatableController@getMasterSlide');
-    Route::get('/master-slide/create', 'LandingPageController@create');
-    Route::post('/master-slide/create', 'LandingPageController@store');
-    Route::get('/master-slide/{mss_id}', 'LandingPageController@show');
-    Route::get('/master-slide/edit/{mss_id}', 'LandingPageController@edit');
-    Route::post('/master-slide/edit/{mss_id}', 'LandingPageController@update');
-    Route::get('/master-slide/edit-status/{mss_id}', 'LandingPageController@editStatus');
-
+    //Error double route "students/prospective" !!
     
-
-    Route::get('/master-configs', function () {
-        return view('landing-page.list-master-config');
-    });
-    Route::get('/master-config', 'DatatableController@getMasterConfig');
-    Route::get('/master-config/create', 'LandingPageController@createConfig');
-    Route::post('/master-config/create', 'LandingPageController@storeConfig');
-    Route::get('/master-config/{msc_id}', 'LandingPageController@showConfig');
-    Route::get('/master-config/edit/{msc_id}', 'LandingPageController@editConfig');
-    Route::post('/master-config/edit/{msc_id}', 'LandingPageController@updateConfig');
-    Route::get('/master-config/edit-status/{msc_id}', 'LandingPageController@editStatusConfig');
-
-
+});
     //download file
-    Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
-    Route::get('/download-file-teacher/images/teacher_files/{locationFile}','User\UserController@downloadFileTeacher');
-    Route::get('/download-file-staff/images/staff_files/{locationFile}','User\UserController@downloadFileStaff');
+Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
+Route::get('/download-file-teacher/images/teacher_files/{locationFile}','User\UserController@downloadFileTeacher');
+Route::get('/download-file-staff/images/staff_files/{locationFile}','User\UserController@downloadFileStaff');

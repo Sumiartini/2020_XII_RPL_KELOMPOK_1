@@ -6,13 +6,14 @@ use App\Staffs;
 use App\User;
 use App\Provinces;
 use App\StaffDetails;
-
+use App\Years;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use App\Mail\AddStaff;
+use App\GtkNumber;
 
 class StaffController extends Controller
 {
@@ -35,7 +36,9 @@ class StaffController extends Controller
     public function create()
     {
         $province = Provinces::select('prv_id', 'prv_name')->get();
-        return view('staffs.add-staff', ['province' => $province]);
+        $school_years = Years::select('scy_id', 'scy_name')->get();
+
+        return view('staffs.add-staff', ['province' => $province, 'school_years' => $school_years]);
     }
 
     /**
@@ -74,6 +77,7 @@ class StaffController extends Controller
             'usr_rw'                                            => 'required',
             'usr_rural_name'                                    => 'required',
             'usr_profile_picture'                               => 'required',
+            'stf_school_year_id'                                => 'required',
             'personal.nik'                                      => 'required',
             'educational_background.year_grade_school'          => 'required',
             'educational_background.grade_school'               => 'required',
@@ -131,8 +135,22 @@ class StaffController extends Controller
             $staff->stf_entry_year            = $request->stf_entry_year;
             $staff->stf_registration_status   = 1;
             $staff->stf_created_by = Auth()->user()->usr_id;
+            $staff->stf_school_year_id        = $request->stf_school_year_id;
+            $staff->save();
 
-            if ($staff->save()) {
+            $get_gtk_number = GtkNumber::latest('gtn_id')->first();
+            $serial_number_last = substr($get_gtk_number->gtn_number, 4) + 1; 
+            $serial_number_first = schoolYearFirst($staff->school_year->scy_first_year, $staff->school_year->scy_last_year);
+
+            $gtk_number = new GtkNumber;
+            $gtk_number->gtn_number = $serial_number_first . sprintf("%03d", $serial_number_last);
+            $gtk_number->gtn_created_by = Auth()->user()->usr_id;
+            $gtk_number->save();
+
+            $staff->stf_gtk_number_id = $gtk_number->gtn_id;
+            $staff->stf_entry_year = date('F Y');
+
+            if ($staff->update()) {
                 foreach ($requests as $key => $requetcdata) {
                     if (is_array($requetcdata)) {
                         foreach ($requetcdata as $requestKey => $requestValue) {
@@ -348,8 +366,9 @@ class StaffController extends Controller
         $user = Auth::user();
 
         if ($user->usr_is_regist == 0 && $user->hasRole('staff')) {
-            $province = Provinces::select('prv_id', 'prv_name')->get();            
-            return view('staffs.registration-staff', ['province' => $province]);            
+            $school_year = Years::where('scy_is_form_registration', 1)->first();    
+            $province = Provinces::select('prv_id', 'prv_name')->get();       
+            return view('staffs.registration-staff', ['province' => $province, 'school_year' => $school_year]);            
         }else{
             return redirect('/pending-verification');
         }
@@ -429,6 +448,7 @@ class StaffController extends Controller
         if ($user->update()) {
             $staff->stf_nuptk                 = $request->stf_nuptk;
             $staff->stf_registration_status   = "0";
+            $staff->stf_school_year_id        = $request->stf_school_year_id;
             $staff->stf_created_by = Auth()->user()->usr_id;
 
             if ($staff->update()) {
@@ -478,7 +498,23 @@ class StaffController extends Controller
     public function receipted($stf_id)
     {
         $staff = Staffs::findOrFail($stf_id);
+        $gtk_number = GtkNumber::latest('gtn_id')->first();
+        $serial_number_last = substr($gtk_number->gtn_number, 4) + 1; 
+        $serial_number_first = schoolYearFirst($staff->school_year->scy_first_year, $staff->school_year->scy_last_year);
+
+        if ($staff->stf_gtk_number_id != null) {
+            $staff->stf_registration_status = '1';
+            $staff->update();
+            return back()->with('success', 'Staf berhasil diterima');
+        }
+        $gtk_number = new GtkNumber;
+        $gtk_number->gtn_number = $serial_number_first . sprintf("%03d", $serial_number_last);
+        $gtk_number->gtn_created_by = Auth()->user()->usr_id;
+        $gtk_number->save();
+
+        $staff->stf_gtk_number_id = $gtk_number->gtn_id;
         $staff->stf_registration_status = '1';
+        $staff->stf_entry_year = date('F Y');
         $staff->update();
         return back()->with('success', 'Staf berhasil diterima');
     }

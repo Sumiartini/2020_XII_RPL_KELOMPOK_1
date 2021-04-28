@@ -518,7 +518,7 @@
             </div>
             <input type="checkbox" name="terms_and_conditions">
              <label>Demikian formulir ini saya buat dengan sebenar-benarnya sesuai dengan petunjuk pengisian dan dapat dipertanggung jawabkan di kemudian hari </label>
-                
+            <input type="hidden" name="stf_school_year_id" value="{{ $school_year->scy_id }}">
 
             <div class="form-footer">
                 <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-check-square-o"></i> BATAL</button>

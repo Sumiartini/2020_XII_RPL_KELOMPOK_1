@@ -900,7 +900,7 @@ class StudentController extends Controller
         $user = User::where('usr_id', $school_payment->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new SchoolPaymentMail($user, $school_payment));
 
-       return redirect('/school-payment/detail/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil dierima');    
+       return redirect('/school-payment/detail/'.$school_payment->stp_id)->with('success', 'Pembayaran berhasil dierima');    
 
    }
 
@@ -925,7 +925,7 @@ class StudentController extends Controller
         $user = User::where('usr_id', $school_payment->stu_user_id)->first();        
         Mail::to($user['usr_email'])->send(new SchoolPaymentMail($user, $school_payment));
 
-        return redirect('/school-payment/detail/'.$school_payment->stu_id)->with('success', 'Pembayaran berhasil ditolak');
+        return redirect('/school-payment/detail/'.$school_payment->stp_id)->with('success', 'Pembayaran berhasil ditolak');
     }
 
     public function updateStatusToReRegistration(Request $request)

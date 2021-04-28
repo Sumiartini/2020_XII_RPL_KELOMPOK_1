@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
 use App\Mail\AddTeacher;
+use App\Years;
+use App\GtkNumber;
 
 class TeacherController extends Controller
 {
@@ -33,7 +35,8 @@ class TeacherController extends Controller
     public function create()
     {
         $province = Provinces::select('prv_id', 'prv_name')->get();
-        return view('teachers.add-teacher', ['province' => $province]);
+        $school_years = Years::select('scy_id', 'scy_name')->get();
+        return view('teachers.add-teacher', ['province' => $province, 'school_years' => $school_years]);
     }
 
     /**
@@ -57,6 +60,7 @@ class TeacherController extends Controller
             'usr_gender'                                        => 'required',            
             'usr_whatsapp_number'                               => 'required | unique:users,usr_whatsapp_number',
             'usr_place_of_birth'                                => 'required',
+            'tcr_school_year_id'                                => 'required',
             'usr_date_of_birth'                                 => 'required',
             'usr_religion'                                      => 'required',
             'prv_name'                                          => 'required',
@@ -130,9 +134,23 @@ class TeacherController extends Controller
             $teacher->tcr_nuptk                 = $request->tcr_nuptk;
             $teacher->tcr_entry_year            = $request->tcr_entry_year;
             $teacher->tcr_registration_status   = 1;
-            $teacher->tcr_created_by = Auth()->user()->usr_id;
+            $teacher->tcr_school_year_id        = $request->tcr_school_year_id;
+            $teacher->tcr_created_by            = Auth()->user()->usr_id;
+            $teacher->save();
 
-            if ($teacher->save()) {
+            $get_gtk_number = GtkNumber::latest('gtn_id')->first();
+            $serial_number_last = substr($get_gtk_number->gtn_number, 4) + 1; 
+            $serial_number_first = schoolYearFirst($teacher->school_year->scy_first_year, $teacher->school_year->scy_last_year);
+
+            $gtk_number = new GtkNumber;
+            $gtk_number->gtn_number = $serial_number_first . sprintf("%03d", $serial_number_last);
+            $gtk_number->gtn_created_by = Auth()->user()->usr_id;
+            $gtk_number->save();
+
+            $teacher->tcr_gtk_number_id = $gtk_number->gtn_id;
+            $teacher->tcr_entry_year = date('F Y');
+
+            if ($teacher->update()) {
                 foreach ($requests as $key => $requetcdata) {
                     if (is_array($requetcdata)) {
                         foreach ($requetcdata as $requestKey => $requestValue) {
@@ -353,9 +371,10 @@ class TeacherController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->usr_is_regist == 0 && $user->hasRole('teacher')) {            
+        if ($user->usr_is_regist == 0 && $user->hasRole('teacher')) {   
+            $school_year = Years::where('scy_is_form_registration', 1)->first();         
             $province = Provinces::select('prv_id', 'prv_name')->get();
-            return view('teachers.registration-teacher', ['province' => $province]);
+            return view('teachers.registration-teacher', ['province' => $province, 'school_year' => $school_year]);
         }else{
             return redirect('/pending-verification');
         }
@@ -435,6 +454,7 @@ class TeacherController extends Controller
         if ($user->update()) {
             $teacher->tcr_nuptk                 = $request->tcr_nuptk;
             $teacher->tcr_registration_status   = "0";
+            $teacher->tcr_school_year_id        = $request->tcr_school_year_id;
             $teacher->tcr_created_by = Auth()->user()->usr_id;
 
             if ($teacher->update()) {
@@ -485,7 +505,24 @@ class TeacherController extends Controller
     public function receipted($tcr_id)
     {
         $teacher = Teachers::findOrFail($tcr_id);
+        $gtk_number = GtkNumber::latest('gtn_id')->first();
+        $serial_number_last = substr($gtk_number->gtn_number, 4) + 1; 
+        $serial_number_first = schoolYearFirst($teacher->school_year->scy_first_year, $teacher->school_year->scy_last_year);
+
+        if ($teacher->tcr_gtk_number_id != null) {
+            $teacher->tcr_registration_status = '1';
+            $teacher->update();
+            return back()->with('success', 'Guru berhasil diterima');
+        }
+
+        $gtk_number = new GtkNumber;
+        $gtk_number->gtn_number = $serial_number_first . sprintf("%03d", $serial_number_last);
+        $gtk_number->gtn_created_by = Auth()->user()->usr_id;
+        $gtk_number->save();
+
+        $teacher->tcr_gtk_number_id = $gtk_number->gtn_id;
         $teacher->tcr_registration_status = '1';
+        $teacher->tcr_entry_year = date('F Y');
         $teacher->update();
         return back()->with('success', 'Guru berhasil diterima');
     }

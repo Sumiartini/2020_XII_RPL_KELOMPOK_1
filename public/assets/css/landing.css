@@ -124,7 +124,7 @@ html , body{
 }
 
 .info-profil iframe{
-     width: 450px; 
+     width: 100%; 
      height: 180px;
 }
 
@@ -319,8 +319,8 @@ footer{
 }
 
 .info-profil iframe{
-     width: 750px; 
-     height: 400px;
+    width: 100%;
+    height: 300px;
 }
 
 /*info jurusan*/

@@ -92,7 +92,7 @@ class UserController extends Controller
                 return redirect('staff-registration');
             }
             elseif ($staff->stf_registration_status == '1') {
-                return view('dashboard', compact('students','teachers','staffs'));
+                return view('dashboard', compact('students','teachers','staffs','students_prospective','teachers_prospective','staffs_prospective','students_rejected','teachers_rejected','staffs_rejected','students_moves','students_drop_outs'));
             }
                if ($staff->stf_registration_status == '2') {
                 return view('staffs.staff-rejected');

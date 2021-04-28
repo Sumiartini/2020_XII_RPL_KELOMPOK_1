@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolYearsSeeder::class);
         $this->call(MajorsSeeder::class);
         $this->call(EntryTypesSeeder::class);
+        $this->call(GtkNumbersSeeder::class);
         $this->call(StudentsSeeder::class);
         $this->call(StudentDetailsSeeder::class);
         $this->call(PositionTypesSeeder::class);
