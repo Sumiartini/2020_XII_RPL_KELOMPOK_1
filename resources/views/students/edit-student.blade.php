@@ -814,7 +814,7 @@
 
     <div class="row">
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Tanda Kelulusan SMP dilegalisir </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Tanda Kelulusan SMP dilegalisir <span style="color:red"> *</span></label>
                     @if(isset($student_edit->other['certificate_of_graduation']))
                     <p><a href="{{ url('download-file-student/'. $student_edit->other['certificate_of_graduation']) }}"><i class="fa fa-file-word"></i>{{$student_edit->other['certificate_of_graduation']}}</a></p>
                     @endif
@@ -829,7 +829,7 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah SMP/MTs dilegalisir  </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah SMP/MTs dilegalisir <span style="color:red"> *</span> </label>
                     @if(isset($student_edit->other['junior_high_school_diploma']))
                     <p><a href="{{ url('download-file-student/'. $student_edit->other['junior_high_school_diploma']) }}"><i class="fa fa-file-word"></i>{{$student_edit->other['junior_high_school_diploma']}}</a></p>
                      @endif
@@ -844,7 +844,7 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah SD/Mi dilegalisir</label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Ijazah SD/Mi dilegalisir <span style="color:red"> *</span></label>
                     @if(isset($student_edit->other['elementary_school_diploma']))
                      <p><a href="{{ url('download-file-student/'. $student_edit->other['elementary_school_diploma']) }}"><i class="fa fa-file-word"></i>{{$student_edit->other['elementary_school_diploma']}}</a></p>
                      @endif
@@ -861,7 +861,7 @@
             
             <div class="row" style="margin-top: 40px;">
                 <div class="col-sm-4">                    
-                    <label class="col-form-label" for="exampleInputFile"> Upload Akte Kelahiran</label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Akte Kelahiran <span style="color:red"> *</span></label>
                      @if(isset($student_edit->other['birth_certificate']))
                      <p><a href="{{ url('download-file-student/'. $student_edit->other['birth_certificate']) }}"><i class="fa fa-file-word"></i>{{$student_edit->other['birth_certificate']}}</a></p>
                      @endif
@@ -875,7 +875,7 @@
                 </div>
                 </div>
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Keluarga </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Kartu Keluarga <span style="color:red"> *</span> </label>
                      @if(isset($student_edit->other['family_card']))
                      <p><a href="{{ url('download-file-student/'. $student_edit->other['family_card']) }}"><i class="fa fa-file-word"></i>{{$student_edit->other['family_card']}}</a></p>
                      @endif
@@ -889,7 +889,7 @@
                 </div>
                 </div>
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Keterangan Domisili</label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Keterangan Domisili </label>
                      @if(isset($student_edit->other['domicile_statement']))
                      <p><a href="{{ url('download-file-student/'.$student_edit->other['domicile_statement']) }}"><i class="fa fa-file-word"></i>{{$student_edit->other['domicile_statement']}}</a></p>
                      @endif
@@ -907,7 +907,7 @@
 
             <div class="row" style="margin-top: 20px;">
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload KTP Ayah </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload KTP Ayah <span style="color:red"> *</span></label>
                      @if(isset($student_edit->other['id_card_father']))
                      <p><a href="{{ url('download-file-student/'.$student_edit->other['domicile_statement']) }}"><i class="fa fa-file-word"></i>{{$student_edit->other['id_card_father']}}</a></p>
                      @endif
@@ -922,7 +922,7 @@
                 </div>
                 </div>
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload KTP Ibu </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload KTP Ibu <span style="color:red"> *</span></label>
                     @if(isset($student_edit->other['id_card_mother']))
                      <p><a href="{{ url('download-file-student/'. $student_edit->other['id_card_mother']) }}"><i class="fa fa-file-word"></i>{{$student_edit->other['id_card_mother']}}</a></p>
                      @endif

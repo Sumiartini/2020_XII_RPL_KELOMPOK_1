@@ -279,6 +279,90 @@ class StudentDetailsSeeder extends Seeder
             'std_value' => 'Tetangga',
         ]);
 
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'certificate_of_graduation',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'junior_high_school_diploma',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'elementary_school_diploma',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'birht_certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'family_card',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'domicile_statement',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'id_card_father',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'id_card_mother',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'health_certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'eye_health_letter',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'card',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '1',
+            'std_type'  => 'other',
+            'std_key'   => 'certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
         
         //student kedua
         DB::table('student_details')->insert([
@@ -546,6 +630,90 @@ class StudentDetailsSeeder extends Seeder
             'std_type'  => 'other',
             'std_key'   => 'recomended_from',
             'std_value' => 'Tetangga',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'certificate_of_graduation',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'junior_high_school_diploma',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'elementary_school_diploma',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'birht_certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'family_card',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'domicile_statement',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'id_card_father',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'id_card_mother',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'health_certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'eye_health_letter',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'card',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '2',
+            'std_type'  => 'other',
+            'std_key'   => 'certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
         ]);
 
 
@@ -817,6 +985,90 @@ class StudentDetailsSeeder extends Seeder
             'std_value' => 'Tetangga',
         ]);
 
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'certificate_of_graduation',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'junior_high_school_diploma',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'elementary_school_diploma',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'birht_certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'family_card',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'domicile_statement',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'id_card_father',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'id_card_mother',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'health_certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'eye_health_letter',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'card',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '3',
+            'std_type'  => 'other',
+            'std_key'   => 'certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
         //student keempat
         DB::table('student_details')->insert([
             'std_student_id' => '4',
@@ -1085,5 +1337,88 @@ class StudentDetailsSeeder extends Seeder
             'std_value' => 'Tetangga',
         ]);
 
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'certificate_of_graduation',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'junior_high_school_diploma',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'elementary_school_diploma',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'birht_certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'family_card',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'domicile_statement',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'id_card_father',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'id_card_mother',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'health_certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'eye_health_letter',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'card',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
+
+        DB::table('student_details')->insert([            
+            'std_student_id' => '4',
+            'std_type'  => 'other',
+            'std_key'   => 'certificate',
+            'std_value' => 'assets/images/formulir.jpeg',
+        ]);
     }
 }
