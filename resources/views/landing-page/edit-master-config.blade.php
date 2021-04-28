@@ -23,11 +23,11 @@
 
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Edit Konfigurasi Halaman Arahan</h4>
+        <h4 class="page-title">Edit Konfigurasi</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Konfigurasi Halaman Arahan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Konfigurasi Halaman Arahan</li>
+            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Konfigurasi</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Konfigurasi</li>
         </ol>
     </div>
 </div>
@@ -47,7 +47,7 @@
           @endif
         <div class="card">
             <div class="card-body">
-                <div class="card-title">Edit Konfigurasi Halaman Arahan</div>
+                <div class="card-title">Edit Konfigurasi</div>
                 <hr>
                 <form method="POST" autocomplete="off" action="{{ url('master-config/edit/'.$master_config->msc_id) }}" id="form-validate" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf

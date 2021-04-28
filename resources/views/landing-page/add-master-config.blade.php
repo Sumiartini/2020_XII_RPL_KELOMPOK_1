@@ -23,7 +23,7 @@
 
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Tambah konfigurasi Halaman Arahan</h4>
+        <h4 class="page-title">Tambah konfigurasi</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
             <li class="breadcrumb-item"><a href="{{ url('master-configs') }}">Kelola Konfigurasi Halaman Arahan</a></li>

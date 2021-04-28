@@ -49,7 +49,7 @@
     </div>
     @endif
     <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data Siswa</div>
+      <div class="card-header"><i class="fa fa-table"></i> Data Siswa daftar ulang</div>
       <div class="card-body">
         <div class="container" style="margin-bottom: 10px; margin-left: -5px; margin-top: -4px;">
           <!-- <a href="{{URL::to('/student/create')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i></a>
