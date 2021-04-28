@@ -133,7 +133,7 @@ class UserSeeder extends Seeder
 
         $siswa5 = User::create([
             'usr_name' => 'Sumiartini Sri Rahayu',
-            'usr_email' => 'Sumi@gmail.com',
+            'usr_email' => 'Sumiartinisrirahayu@gmail.com',
             'usr_phone_number' => '08213456789',
             'usr_whatsapp_number' => '08213456789',
             'usr_password' => Hash::make('sumi123'),
