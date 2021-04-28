@@ -28,11 +28,11 @@
 @section('content')
 <div class="row pt-2 pb-2">
   <div class="col-sm-9">
-    <h4 class="page-title">Daftar Berkas Informasi Halaman Arahan</h4>
+    <h4 class="page-title">Daftar Berkas Informasi</h4>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">SMK Mahaputra</a></li>
-      <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Berkas Informasi Halaman Arahan</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Daftar Berkas Informasi Halaman Arahan</li>
+      <li class="breadcrumb-item"><a href="javaScript:void();">Halaman Arahan</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Daftar Berkas Informasi</li>
     </ol>
   </div>
 </div>
@@ -51,7 +51,7 @@
   </div>
   @endif
     <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data Berkas Informasi Halaman Arahan</div>
+      <div class="card-header"><i class="fa fa-table"></i> Data Berkas Informasi </div>
       <div class="card-body">
         <div class="table-responsive">
 
@@ -66,7 +66,7 @@
               <tr>
                 <th>NO</th>
                 <th>NAMA</th>
-                <th>FOTO</th>
+                <th>Poster</th>
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>

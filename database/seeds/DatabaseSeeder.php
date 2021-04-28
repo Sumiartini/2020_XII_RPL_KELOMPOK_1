@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentDetailsSeeder::class);
         $this->call(PositionTypesSeeder::class);
         $this->call(TeachersSeeder::class);
+        $this->call(TeacherDetailsSeeder::class);
         $this->call(StaffsSeeder::class);
         $this->call(TeacherPositionsSeeder::class);
         $this->call(StaffPositionsSeeder::class);
@@ -36,8 +37,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentClassSeeder::class);
         $this->call(HomeroomTeacherSeeder::class);
         $this->call(MasterSlideSeeder::class);
-        $this->call(MasterVideoSeeder::class);
         $this->call(MasterConfigSeeder::class);
+        $this->call(StaffDetailsSeeder::class);
+
         
         
         

@@ -41,14 +41,16 @@
       <dd class="col-sm-10">
           <p>{{ $master_slide->mss_name }}</p>
       </dd>
-      <dt class="col-sm-2">Foto</dt>
+      <dt class="col-sm-2">Poster</dt>
       <dd class="col-sm-10">
            <div class="user-fullimage">
             <img src="{{ asset($master_slide->mss_file)}}" alt="user avatar"  class="card-img-top" >            
           </div>
       </dd>
-      <dd class="col-sm-12">  
-          <a href="{{url('/master-slide/edit/'.$master_slide->mss_id)}}" class="btn btn-success" style="float: right;"> <i class="fa fa-edit fa-lg"></i>edit</a> 
+
+      <dd class="col-sm-12">
+          <a href="{{url('/master_slide/edit/'.$master_slide->mss_id)}}" class="btn btn-success" style="float: right;"> <i class="fa fa-edit fa-lg"></i>edit</a> 
+          <a href="{{url('master-slides')}}" class="btn btn-primary" style="float: right;  margin-right: 5px;"><i class="fa fa-arrow-left"></i> Kembali</a>  
       </dd>
       
        </div>

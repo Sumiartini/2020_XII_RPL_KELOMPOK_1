@@ -79,7 +79,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
-                                <p style="font-size: 12px;">Boleh di isi boleh tidak</p>
+                                <p style="margin-top:5px; font-size: 12px;">( opsional )</p>    
                             </div>
 
                         </div>
@@ -501,7 +501,7 @@
                     @enderror
                 </div>
             </div>
-            <label style="margin-top: 30px;">Foto calon staff<span style="color:red"> *</span></label>
+            <label style="margin-top: 30px;">Foto calon staf<span style="color:red"> *</span></label>
             <div class="form-group row">
 
                 <div class="col-sm-4">
@@ -521,7 +521,7 @@
             <input type="hidden" name="stf_school_year_id" value="{{ $school_year->scy_id }}">
 
             <div class="form-footer">
-                <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-check-square-o"></i> BATAL</button>
+                <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                 <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
             </div>
 

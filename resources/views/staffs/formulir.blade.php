@@ -124,6 +124,7 @@
                         <div class="col-sm-4">
                             <label>NUPTK</label>
                             <input type="text" class="form-control" id="input-10" name="stf_nuptk" placeholder="Masukan NUPTK">
+                            <p style="font-size: 12px;">opsional</p>
                         </div>
                         
                     </div>

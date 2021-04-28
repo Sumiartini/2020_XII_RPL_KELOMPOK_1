@@ -96,7 +96,7 @@
                         <div class="col-sm-4">
                             <label>NUPTK</label>
                             <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('stf_nuptk') is-invalid @enderror" name="stf_nuptk" placeholder="Masukan NUPTK" value="{{ old('stf_nuptk') }}">
-                            <p style="font-size: 12px;">Boleh di isi boleh tidak</p>
+                            <p style="margin-top:5px; font-size: 12px;">( opsional )</p>
                         </div>
                     </div>
 

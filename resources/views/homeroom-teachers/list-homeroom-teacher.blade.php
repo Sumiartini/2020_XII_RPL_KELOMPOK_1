@@ -28,7 +28,7 @@
         <h4 class="page-title">Wali Kelas</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">{{ env('APP_NAME') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Wali Kelas</li>
+            <li class="breadcrumb-item active" aria-current="page">Daftar Wali Kelas</li>
         </ol>
     </div>
 </div>

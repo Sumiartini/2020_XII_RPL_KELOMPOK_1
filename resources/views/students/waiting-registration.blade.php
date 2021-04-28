@@ -189,7 +189,7 @@
                   </tr> 
                   @if(isset($student_prospective->school_origin['npsn']))
                   <tr>
-                    <th>NPSN Sekolah asal</th>
+                    <th>NPSN Asal Sekolah</th>
                     <td>:</td>
                     <td>{{ $student_prospective->school_origin['npsn'] }}</td>
                   </tr>
@@ -211,104 +211,14 @@
                     <td>:</td>
                     <td>{{ $student_prospective->usr_religion }}</td>
                   </tr>
-                  @if(isset($student_prospective->other['recomended_form']))
-                  <tr>
-                    <th>Rekomendasi Dari</th>
-                    <td>:</td>
-                    <td>{{ $student_prospective->other['recomended_from'] }}</td>
-                  </tr>
-                  @endif
-                  <tr>
-                    <th scope="row">
-                      Foto Calon siswa</th>
-                    <td>:</td>
-                    <td>
-                      @if(isset($student_prospective->usr_profile_picture))
-                      <img src="{{ asset($student_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/>
-                      @else                  
-                      <img src="{{ asset('images/default_profile_picture_20210228.png')}}" class="img-thumbnail profile" alt="Profile Picture"/>
-                      @endif
-                    </td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title">Data Domisili</h5>
-              <div class="table-responsive">
-               <table class="table table-active">       
-                <tbody>
-                  @foreach($student as $data)
-                  <tr>
-                    <th >Provinsi</th>
-                    <td>:</td>
-                    <td>{{$data->prv_name}}</td>
-                  </tr>
-                  <tr>
-                    <th>Kota/Kabupaten</th>
-                    <td>:</td>
-                    <td>{{$data->cit_name}}</td>
-                  </tr>
-
-                  <tr>
-                    <th >Kecamatan</th>
-                    <td>:</td>
-                    <td>{{$data->dst_name}}</td>
-                  </tr>
-                  @endforeach
-                  <tr>
-                    <th>Alamat</th>
-                    <td>:</td>
-                    <td>{{ $student_prospective->usr_address }}</td>
-                  </tr>
-
-                  <tr>
-                    <th >RT</th>
-                    <td>:</td>
-                    <td>{{ $student_prospective->usr_rt }}</td>
-                  </tr>
-                  <tr>
-                    <th>RW</th>
-                    <td>:</td>
-                    <td>{{ $student_prospective->usr_rw }}</td>
-                  </tr>
-
-                  <tr>
-                    <th >Desa/Kelurahan</th>
-                    <td>:</td>
-                    <td>{{ $student_prospective->usr_rural_name }}</td>
-                  </tr>
-                  <tr>
-                    <th>Kode pos</th>
-                    <td>:</td>
-                    <td>{{ $student_prospective->usr_postal_code }}</td>
-                  </tr>
-                  @if(isset($student_prospective->contact['living_together']))
-                  <tr>
-                    <th >Telepon rumah</th>
-                    <td>:</td>
-                    <td>{{ $student_prospective->contact['living_together'] }}</td>
-                  </tr>
-                  @endif
-                  @if(isset($student_prospective->contact['email']))
-                  <tr>
-                    <th>Email rumah</th>
-                    <td>:</td>
-                    <td>{{ $student_prospective->contact['email'] }}</td>
-                  </tr>
-                  @endif
-                </tbody>
-            </table>
-        </div>
-        </div>
-    </div>
-    </div>
-        
-    @if(isset($student_prospective->father_data))
-      <div class="col-lg-5">
-          <div class="card hihi">
-            <div class="card-body">
+          
+         @if(isset($student_prospective->father_data))
+         <div class="card-body">
               <h5 class="card-title"> Data Ayah </h5>
               <div class="table-responsive">
                 <table class="table table-active">
@@ -520,6 +430,80 @@
               </div>
             </div>
             @endif
+    </div>
+    </div>
+        
+   
+      <div class="col-lg-5">
+          <div class="card hihi">
+              <div class="card-body">
+              <h5 class="card-title">Data Domisili</h5>
+              <div class="table-responsive">
+               <table class="table table-active">       
+                <tbody>
+                  @foreach($student as $data)
+                  <tr>
+                    <th >Provinsi</th>
+                    <td>:</td>
+                    <td>{{$data->prv_name}}</td>
+                  </tr>
+                  <tr>
+                    <th>Kota/Kabupaten</th>
+                    <td>:</td>
+                    <td>{{$data->cit_name}}</td>
+                  </tr>
+
+                  <tr>
+                    <th >Kecamatan</th>
+                    <td>:</td>
+                    <td>{{$data->dst_name}}</td>
+                  </tr>
+                  @endforeach
+                  <tr>
+                    <th>Alamat</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->usr_address }}</td>
+                  </tr>
+
+                  <tr>
+                    <th >RT</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->usr_rt }}</td>
+                  </tr>
+                  <tr>
+                    <th>RW</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->usr_rw }}</td>
+                  </tr>
+
+                  <tr>
+                    <th >Desa/Kelurahan</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->usr_rural_name }}</td>
+                  </tr>
+                  <tr>
+                    <th>Kode pos</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->usr_postal_code }}</td>
+                  </tr>
+                  @if(isset($student_prospective->contact['living_together']))
+                  <tr>
+                    <th >Telepon rumah</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->contact['living_together'] }}</td>
+                  </tr>
+                  @endif
+                  @if(isset($student_prospective->contact['email']))
+                  <tr>
+                    <th>Email rumah</th>
+                    <td>:</td>
+                    <td>{{ $student_prospective->contact['email'] }}</td>
+                  </tr>
+                  @endif
+                </tbody>
+            </table>
+        </div>
+        </div>
             @if(isset($student_prospective->achievement))
             <div class="card-body">
               <h5 class="card-title"> Prestasi </h5>
@@ -566,8 +550,170 @@
       </div>
     </div>
     @endif
-</div>
-</div>
+    <div class="card-body">
+              <h5 class="card-title"> Lainnya </h5>
+              <div class="table-responsive">
+                <table class="table table-active">
+                  <body>
+                      <tr>
+                        <th>Rekomendasi Dari</th>
+                        <td>:</td>
+                        @if(isset($student_prospective->other['recomended_form']))
+                        <td>{{ $student_prospective->other['recomended_from'] }}</td>
+                        @endif
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">
+                          Foto Calon siswa</th>
+                        <td>:</td>
+                        <td>
+                          @if(isset($student_prospective->usr_profile_picture))
+                          <img src="{{ asset($student_prospective->usr_profile_picture)}}" class="img-thumbnail profile" alt="Profile Picture"/>
+                          @else                  
+                          <img src="{{ asset('images/default_profile_picture_20210228.png')}}" class="img-thumbnail profile" alt="Profile Picture"/>
+                          @endif
+                        </td>
+                      </tr> 
+                    <tr>
+                        <th scope="row">
+                            Surat Tanda Kelulusan SMP dilegalisir</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['certificate_of_graduation']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['certificate_of_graduation']) }}">
+                        {{ $student_prospective->other['certificate_of_graduation'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Ijazah SMP/MTs dilegalisir</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['junior_high_school_diploma']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['junior_high_school_diploma']) }}">
+                        {{ $student_prospective->other['junior_high_school_diploma'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Ijazah SD/Mi dilegalisir</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['elementary_school_diploma']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['elementary_school_diploma']) }}">
+                        {{ $student_prospective->other['elementary_school_diploma'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Akte Kelahiran</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['birth_certificate']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['birth_certificate']) }}">
+                        {{ $student_prospective->other['birth_certificate'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Kartu Keluarga</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['family_card']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['family_card']) }}">
+                        {{ $student_prospective->other['family_card'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Keterangan Domisili</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['domicile_statement']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['domicile_statement']) }}">
+                        {{ $student_prospective->other['domicile_statement'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            KTP Ayah</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['id_card_father']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['id_card_father']) }}">
+                        {{ $student_prospective->other['id_card_father'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            KTP Ibu</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['id_card_mother']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['id_card_mother']) }}">
+                        {{ $student_prospective->other['id_card_mother'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Surat Kesehatan Badan</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['health_certificate']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['health_certificate']) }}">
+                        {{ $student_prospective->other['health_certificate'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Surat Kesehatan Mata</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['eye_health_letter']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['eye_health_letter']) }}">
+                        {{ $student_prospective->other['eye_health_letter'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Kartu PIP/KIP/Keterangan Kematian</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['card']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['card']) }}">
+                        {{ $student_prospective->other['card'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Sertifikat/Piagam Penghargaan</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($student_prospective->other['certificate']))
+                        <a href="{{ url('download-file-student/'. $student_prospective->other['certificate']) }}">
+                        {{ $student_prospective->other['certificate'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                   
+                  </body>
+                </table>
+              </div>
+            </div>
+         </div>
+      </div>
 
 </div>
 

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>{{ env('APP_NAME') }} - Daftar Staff</title>
+  <title>{{ env('APP_NAME') }} - Daftar Staf</title>
   <!--favicon-->
   <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
   <!-- Bootstrap core CSS-->

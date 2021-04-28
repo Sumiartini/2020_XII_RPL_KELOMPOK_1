@@ -135,26 +135,20 @@
 
     $("#form-validate").validate({
         rules: {
-            cls_number: {
+            cls_id: {
               required: true,
             },
-            cls_major:{
-                required: true
-            },
-            cls_grade_level:{
+            stu_idstu_id:{
                 required: true
             }
         },
         messages: {
-            cls_number: {
-              required: "Nomor Kelas harus di isi"
+            cls_id: {
+              required: "Kelas harus di pilih"
             },     
-            cls_major: {
-                required: "Nama jurusan harus di pilih"
-            },
-            cls_grade_level:{
-                required: "Tingkatan kelas harus di pilih"
-            },
+            stu_id: {
+                required: "Nama Siswa harus di pilih"
+            }
         }
     });
 });

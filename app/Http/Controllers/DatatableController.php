@@ -468,10 +468,12 @@ public function getClasses(Request $request)
             $msc_is_active = $row->msc_is_active;
             if ($msc_is_active == '0') {
                 $status = '<a href="' . url('master-config/edit-status', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
-            }else{
-                $status = '<a href="' . url('master-config/edit-status', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
             }
-            return $detail . '&nbsp' . $edit. '&nbsp' . $status ;
+            if ($msc_is_active == '0') {
+                return $detail . '&nbsp' .$edit . '&nbsp' . $status;
+            }else{
+                return $detail . '&nbsp' . $edit;
+            }
         })->rawColumns(['action', 'msc_is_active'])
         ->make(true);
     }

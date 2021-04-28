@@ -23,11 +23,11 @@
 
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Tambah Berkas Informasi Halaman Arahan</h4>
+        <h4 class="page-title">Tambah Berkas Informasi</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('master-slides') }}">Kelola Berkas Informasi Halaman Arahan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tambah Berkas Informasi Halaman Arahan</li>
+            <li class="breadcrumb-item"><a href="{{ url('master-slides') }}">Halaman Arahan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah Berkas Informasi</li>
         </ol>
     </div>
 </div>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">File<span style="color:red"> *</span></label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Poster<span style="color:red"> *</span></label>
                     
                         <div class="col-sm-8">
                             <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>

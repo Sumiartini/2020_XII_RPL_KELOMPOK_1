@@ -200,6 +200,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
         return view('teachers.list-teacher');
     });
     Route::get('teacher', 'DatatableController@getTeachers');
+
     Route::get('/teacher/{tcr_id}', 'TeacherController@show_teacher');
     Route::get('/students', function () {
         return view('students.list-student');
@@ -306,6 +307,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     
 });
     //download file
+
 Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
 Route::get('/download-file-teacher/images/teacher_files/{locationFile}','User\UserController@downloadFileTeacher');
 Route::get('/download-file-staff/images/staff_files/{locationFile}','User\UserController@downloadFileStaff');
