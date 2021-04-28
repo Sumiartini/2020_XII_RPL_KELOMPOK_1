@@ -539,6 +539,7 @@
                 </div>
                 @endif 
 
+                @if(isset($student->other['birth_certificate']))
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="col-form-label" for="exampleInputFile">Akte Kelahiran</label>
@@ -548,13 +549,11 @@
                     <div class="col-lg-12">
                         <a href="{{ url('download-file-student/'. $student->other['birth_certificate']) }}">                        
                         <i class="fa fa-file-text-o fa-2x" aria-hidden="true" ></i>
-                        @if(isset($student->other['birht_certificate']))
-                        {{$student->other['birht_certificate']}}
-                        @endif
+                        {{$student->other['birth_certificate']}}
                         </a>
                     </div>     
                 </div>
-                 
+                 @endif
 
                 @if(isset($student->other['family_card']))
                 <div class="row">
