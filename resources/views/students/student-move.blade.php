@@ -152,7 +152,7 @@
       rules: {
           str_reason: {
             required: true,
-            minlenth: 10
+            minlength: 10
           },
           str_upload_file: "required",
           usr_password: "required"
@@ -160,7 +160,7 @@
       messages: {
           str_reason: {
             required: "Alasan siswa pindah harus di isi",
-            minlenth: "Alasan minimal 10 karakter"
+            minlength: "Alasan minimal 10 karakter"
           },
           str_upload_file: "Masukan bukti surat pindah",
           usr_password: "Masukan kata sandi"

@@ -49,7 +49,7 @@
     </div>
     @endif
     <div class="card">
-      <div class="card-header"><i class="fa fa-table"></i> Data Siswa</div>
+      <div class="card-header"><i class="fa fa-table"></i> Data Siswa Pindah</div>
       <div class="card-body">
         <div class="table-responsive">
 

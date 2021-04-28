@@ -24,11 +24,11 @@
 
 <div class="row pt-2 pb-2">
     <div class="col-sm-9">
-        <h4 class="page-title">Edit Berkas Informasi Halaman Arahan</h4>
+        <h4 class="page-title">Edit Berkas Informasi</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('dashboard')}}">SMK Mahaputra</a></li>
-            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Berkas Informasi Halaman Arahan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Berkas Informasi Halaman Arahan</li>
+            <li class="breadcrumb-item"><a href="javaScript:void();">Kelola Berkas Informasi</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Berkas Informasi</li>
         </ol>
     </div>
 </div>
@@ -37,7 +37,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div class="card-title">Edit Berkas Informasi Halaman Arahan</div>
+                <div class="card-title">Edit Berkas Informasi</div>
                 <hr>
                 <form method="POST" autocomplete="off" action="{{ url('master-slide/edit/'.$master_slide->mss_id) }}" id="form-validate" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf

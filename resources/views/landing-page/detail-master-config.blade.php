@@ -124,8 +124,12 @@
           <p>{{ $master_config->msc_first_school_phone_number }} | {{ $master_config->msc_second_school_phone_number }}</p>
       </dd>
       
-      <dd class="col-sm-12">  
+      <dd class="col-sm-12">
+
           <a href="{{url('/master-config/edit/'.$master_config->msc_id)}}" class="btn btn-success" style="float: right;"> <i class="fa fa-edit fa-lg"></i>edit</a> 
+          <a href="{{url('master-configs')}}" class="btn btn-primary" style="float: right;  margin-right: 5px;"><i class="fa fa-arrow-left"></i> Kembali</a> 
+          
+           
       </dd>
       @endforeach
        </div>
