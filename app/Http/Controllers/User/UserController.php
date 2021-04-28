@@ -92,7 +92,7 @@ class UserController extends Controller
                 return redirect('staff-registration');
             }
             elseif ($staff->stf_registration_status == '1') {
-                return view('dashboard', compact('students','teachers','staffs'));
+                return view('dashboard', compact('students', 'students_rejected', 'students_prospective', 'students_moves', 'students_drop_outs', 'teachers','staffs','staffs_prospective','staffs_rejected','teachers_prospective','teachers_rejected'));
             }
                if ($staff->stf_registration_status == '2') {
                 return view('staffs.staff-rejected');
@@ -104,7 +104,7 @@ class UserController extends Controller
             abort(404);
         }
 
-        // return view('dashboard');
+        // return view('dashboard',);
     }
 
    public function downloadFile()

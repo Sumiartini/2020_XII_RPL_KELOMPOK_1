@@ -28,7 +28,7 @@ class MasterConfigSeeder extends Seeder
             'msc_first_mision' 				=> 'Menyelenggarakan pendidikan kejuruan berkarakter religius.',
             'msc_second_mision'             => 'Melahirkan tenaga ahli tingkat menengah yang berakhlakul karimah.',
             'msc_third_mision'              => 'Mewujudkan tenaga terampil, kreatif, inovatif, dan berpengetahuan.',
-            'msc_fourth_mision'             => 'Membangun perilaku yang peduli terhdap lingkungan.',
+            'msc_fourth_mision'             => 'Membangun perilaku yang peduli terhadap lingkungan.',
             'msc_fifth_mision'              => 'Menjalin kerjasama kerjasama dengan lembaga akademik dan non akademik ditingkat lokal, nasional, dan internasioanal.',
             
             'msc_poster_mm'                 =>'assets/images/slide/MM.jpg',
