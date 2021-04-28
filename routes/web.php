@@ -110,8 +110,6 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('teacher/rejected', 'DatatableController@getTeachersRejected');
 
 
-    Route::get('/teacher/create', 'TeacherController@create');
-    Route::post('/teacher/create', 'TeacherController@store');
     Route::get('/teacher/{tcr_id}', 'TeacherController@show_teacher');
     Route::get('/teacher/edit/{tcr_id}', 'TeacherController@edit');
     Route::post('/teacher/edit/{tcr_id}', 'TeacherController@update');
@@ -332,3 +330,6 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
     Route::get('/download-file-teacher/images/teacher_files/{locationFile}','User\UserController@downloadFileTeacher');
     Route::get('/download-file-staff/images/staff_files/{locationFile}','User\UserController@downloadFileStaff');
+
+        Route::get('/teacher/create', 'TeacherController@create');
+    Route::post('/teacher/create', 'TeacherController@store');
