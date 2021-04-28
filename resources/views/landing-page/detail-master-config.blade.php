@@ -48,36 +48,67 @@
           <p>{{ $master_config->msc_description }}</p>
       </dd>
       @endif
-      @if(isset($master_config->msv_name))
-      <dt class="col-sm-2">Nama Video</dt>
-      <dd class="col-sm-10">
-          <p>{{ $master_config->msv_name }}</p>
-      </dd>
-      @endif
-      @if(isset($master_config->msv_url_video))
+      @if(isset($master_config->msc_url_video))
       <dt class="col-sm-2"></dt>
       <dd class="col-sm-10">
-          <iframe class="rounded" src="{{ $master_config->msv_url_video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 700px; height: 400px;"></iframe>
+          <iframe class="rounded" src="{{ $master_config->msc_url_video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 700px; height: 400px;"></iframe>
       </dd>
         
        
       <dt class="col-sm-2">URL Video</dt>
       <dd class="col-sm-10">
-          <p>{{ $master_config->msv_url_video }}</p>
+          <p>{{ $master_config->msc_url_video }}</p>
       </dd>
       @endif
+     
       @if(isset($master_config->msc_vision))
       <dt class="col-sm-2">Visi Sekolah</dt>
       <dd class="col-sm-10">
-          <p>{{ $master_config->msc_vision }}</p>
+          <p>{{$master_config->msc_vision}}</p>
       </dd>
       @endif
-      @if(isset($master_config->msc_mision))
+      @if(isset($master_config->msc_first_mision))
       <dt class="col-sm-2">Misi Sekolah</dt>
       <dd class="col-sm-10">
-          <p>{{ $master_config->msc_mision }}</p>
+          <p>{{ $master_config->msc_first_mision }}</p>
       </dd>
       @endif
+      @if(isset($master_config->msc_second_mision))
+      <dt class="col-sm-2"></dt>
+      <dd class="col-sm-10">
+          <p>{{ $master_config->msc_second_mision }}</p>
+      </dd>
+      @endif
+      @if(isset($master_config->msc_third_mision))
+      <dt class="col-sm-2"></dt>
+      <dd class="col-sm-10">
+          <p>{{ $master_config->msc_third_mision }}</p>
+      </dd>
+      @endif
+      @if(isset($master_config->msc_fourth_mision))
+      <dt class="col-sm-2"></dt>
+      <dd class="col-sm-10">
+          <p>{{ $master_config->msc_fourth_mision }}</p>
+      </dd>
+      @endif
+      @if(isset($master_config->msc_fifth_mision))
+      <dt class="col-sm-2"></dt>
+      <dd class="col-sm-10">
+          <p>{{ $master_config->msc_fifth_mision }}</p>
+      </dd>
+      @endif
+      <dt class="col-sm-2">Poster MM</dt>
+      <dd class="col-sm-10">
+           <div class="user-fullimage">
+            <img src="{{ asset($master_config->msc_poster_mm)}}" alt="user avatar"  class="card-img-top" style="width: 600px; height: 300px;" >            
+          </div>
+      </dd>
+      <dt class="col-sm-2">Poster RPL</dt>
+      <dd class="col-sm-10">
+           <div class="user-fullimage">
+            <img src="{{ asset($master_config->msc_poster_rpl)}}" alt="user avatar"  class="card-img-top" style="width: 600px; height: 300px;" >            
+          </div>
+      </dd>
       @if(isset($master_config->msc_logo))
       <dt class="col-sm-2">Logo Sekolah</dt>
       <dd class="col-sm-10">

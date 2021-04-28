@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input-2" class="col-sm-3 col-form-label">File<span style="color:red"> *</span></label>
+                        <label for="input-2" class="col-sm-3 col-form-label">Poster<span style="color:red"> *</span></label>
                     
                         <div class="col-sm-8">
                             <img class="img-thumbnail" id="tampil_picture" style="object-fit: cover;"/>

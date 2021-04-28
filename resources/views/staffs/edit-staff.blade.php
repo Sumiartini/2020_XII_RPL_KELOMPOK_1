@@ -96,7 +96,7 @@
                         <div class="col-sm-4">
                             <label>NUPTK</label>
                             <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('tcr_nuptk') is-invalid @enderror" name="stf_nuptk" placeholder="Masukan NUPTK" value="{{ $staff_edit->stf_nuptk }}">                            
-                            <p style="font-size: 12px;">Boleh di isi boleh tidak</p>
+                            <p style="margin-top:5px; font-size: 12px;">( opsional )</p>
                         </div>
                     </div>
 
@@ -283,7 +283,7 @@
 
                     <h4 class="form-header text-uppercase">
                         <i class=""></i>
-                        Riwayat Pendidikan
+                        Riwayat Pendidikan 
                     </h4>
 
                     <div class="form-group row">
@@ -523,7 +523,7 @@
 
             <div class="row" style="margin-top: 30px;">
                 <div class="col-sm-4">
-                    <label class="col-form-label" for="exampleInputFile"> Upload Surat Lamaran<span style="color:red;">*</span> </label>
+                    <label class="col-form-label" for="exampleInputFile"> Upload Curriculum vitae (CV)<span style="color:red;">*</span> </label>
                     @if(isset($staff_edit->other['curriculum_vitae']))
                     <p><a href="{{ url('download-file-staff/'. $staff_edit->other['curriculum_vitae']) }}"><i class="fa fa-file-word"></i>{{$staff_edit->other['curriculum_vitae']}}</a></p>
                     @endif

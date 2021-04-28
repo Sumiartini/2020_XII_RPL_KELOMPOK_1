@@ -142,7 +142,7 @@
                                  </p>
                                  <br> 
                                    
-                                 <iframe class="rounded" src="{{$master_config->msv_url_video}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                 <iframe class="rounded" src="{{$master_config->msc_url_video}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                  <br><br>
                                  
                                  
@@ -157,8 +157,12 @@
 
                                 <ol>
                                     
-                                    <!-- <li></li> -->
-                                    {{$master_config->msc_mision}}
+                                    <li>{{$master_config->msc_first_mision}}</li>
+                                    <li>{{$master_config->msc_second_mision}}</li>
+                                    <li>{{$master_config->msc_third_mision}}</li>
+                                    <li>{{$master_config->msc_fourth_mision}}</li>
+                                    <li>{{$master_config->msc_fifth_mision }}</li>
+                                    
                                       
                                  </ol> 
 
@@ -174,11 +178,11 @@
             <h3 class="text-center font-weight-bold" style="color: #599be2; text-shadow: 0.50px 0.50px 0.50px blue; font-family: viga;">PROGRAM KEAHLIAN <br>SMK MAHAPUTRA CERDAS UTAMA</h3>
             </div>
             <div class="col-lg-6">
-                <img src="assets/images/slide/RPL.jpg" class="img-fluid">
+                <img src="{{ asset($master_config->msc_poster_rpl)}}" class="img-fluid">
                 <a class="jurusan" style="color: #599be2;" ><b>REKAYASA PERANGKAT LUNAK</b></a>
             </div>
             <div class="col-lg-6">
-                <img src="assets/images/slide/MM.jpg"  class="img-fluid">
+                <img src="{{ asset($master_config->msc_poster_mm)}}"  class="img-fluid">
                 <a class="jurusan" style="color: #599be2;" ><b>MULTIMEDIA</b></a>
             </div>
         </div>

@@ -381,6 +381,72 @@
                         @endif
                         </td>
                     </tr>
+                    <tr>
+                        <th scope="row">
+                            Kartu Tanda Penduduk (KTP)</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($teacher_prospective->other['identity_card']))
+                        <a href="{{ url('download-file-teacher/'. $teacher_prospective->other['identity_card']) }}">
+                        {{ $teacher_prospective->other['identity_card'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Kartu Keluarga</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($teacher_prospective->other['family_card']))
+                        <a href="{{ url('download-file-teacher/'. $teacher_prospective->other['family_card']) }}">
+                        {{$teacher_prospective->other['family_card']}}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Surat Tanda Kelulusan Minimal D4/S1 dilegalisir </th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($teacher_prospective->other['scholar_diploma']))
+                        <a href="{{ url('download-file-teacher/'. $teacher_prospective->other['scholar_diploma']) }}">
+                        {{$teacher_prospective->other['scholar_diploma']}}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Curriculum vitae (CV)</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($teacher_prospective->other['curriculum_vitae']))
+                        <a href="{{ url('download-file-teacher/'. $teacher_prospective->other['curriculum_vitae']) }}">
+                          {{$teacher_prospective->other['curriculum_vitae']}}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Surat Lamaran</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($teacher_prospective->other['application_letter']))
+                        <a href="{{ url('download-file-teacher/'. $teacher_prospective->other['application_letter']) }}">
+                        {{$teacher_prospective->other['application_letter'] }}
+                        @endif
+                        </td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">
+                            Resume</th>
+                        <td>:</td>
+                        <td>
+                        @if(isset($teacher_prospective->other['resume']))
+                        <a href="{{ url('download-file-teacher/'. $teacher_prospective->other['resume']) }}">
+                        {{$teacher_prospective->other['resume']}}
+                        @endif
+                        </td>
+                    </tr>
                   </body>
                 </table>
               </div>

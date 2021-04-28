@@ -41,7 +41,7 @@
       <dd class="col-sm-10">
           <p>{{ $master_slide->mss_name }}</p>
       </dd>
-      <dt class="col-sm-2">Foto</dt>
+      <dt class="col-sm-2">Poster</dt>
       <dd class="col-sm-10">
            <div class="user-fullimage">
             <img src="{{ asset($master_slide->mss_file)}}" alt="user avatar"  class="card-img-top" >            

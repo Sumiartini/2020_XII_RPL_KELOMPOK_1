@@ -629,10 +629,10 @@ function schoolPayment() {
         "language": {
             "search": "Cari:",
             "processing": "Mohon tunggu",
-            "zeroRecords": "Daftar pembayaran siswa tidak tersedia",
+            "zeroRecords": "Daftar pembayaran PPDB siswa tidak tersedia",
             "info": "Halaman _PAGE_ dari _PAGES_ Lainya",
-            "infoEmpty": "Tidak ada daftar pembayaran siswa",
-            "infoFiltered": "(pencarian dari _MAX_ daftar Siswa)",
+            "infoEmpty": "Tidak ada daftar pembayaran PPDB siswa",
+            "infoFiltered": "(pencarian dari _MAX_ daftar PPDB Siswa)",
             "buttons": {
                     "copy": "salin",
                     "excel": "excel",
