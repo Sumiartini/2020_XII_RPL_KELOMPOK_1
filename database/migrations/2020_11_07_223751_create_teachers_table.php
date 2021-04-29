@@ -17,7 +17,8 @@ class CreateTeachersTable extends Migration
             $table->bigIncrements('tcr_id');
             $table->foreignId('tcr_user_id');
             $table->foreign('tcr_user_id')->references('usr_id')->on('users');
-            $table->string('tcr_gtk')->nullable();
+            $table->unsignedbigInteger('tcr_gtk_number_id')->nullable();
+            $table->foreign('tcr_gtk_number_id')->references('gtn_id')->on('gtk_numbers')->onDelete('cascade');
             $table->string('tcr_nuptk')->nullable();
             $table->string('tcr_entry_year')->nullable();
             $table->tinyInteger('tcr_registration_status');

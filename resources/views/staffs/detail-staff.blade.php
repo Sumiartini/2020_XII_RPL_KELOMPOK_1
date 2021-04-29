@@ -105,12 +105,19 @@
                             <p>{{ $staff->personal['nik'] }}</p>
                         </dd>
                         @endif
+
+                        <dt class="col-sm-5">GTK</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ getFormatGtk($staff->no_gtk->gtn_number) }}</p>
+                        </dd>
+                        
                         @if(isset($staff->stf_nuptk))
                         <dt class="col-sm-5">NUPTK</dt>
                         <dd class="col-sm-7">
                             <p>{{ $staff->stf_nuptk }}</p>
                         </dd>
                         @endif
+
                         <dt class="col-sm-5">Tempat Lahir</dt>
                         <dd class="col-sm-7">
                             <p>{{ $staff->usr_place_of_birth }}</p>

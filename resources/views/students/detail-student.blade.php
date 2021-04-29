@@ -97,6 +97,12 @@
                 <p>{{ $student->usr_email }}</p>
             </dd>
 
+            @if($student->stu_nis)
+            <dt class="col-sm-5">NIS</dt>
+            <dd class="col-sm-7">
+                <p>{{ getFormatNis($student->stu_nis) }}</p>
+            </dd>
+            @endif
             <dt class="col-sm-5">NISN</dt>
             <dd class="col-sm-7">
                 <p>{{ $student->stu_nisn }}</p>

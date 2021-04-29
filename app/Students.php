@@ -7,6 +7,7 @@ use App\StudentDetails;
 use App\EntryTypes;
 use App\Majors;
 use App\User;
+use App\GtkNumber;
 
 class Students extends Model
 {
@@ -112,7 +113,7 @@ class Students extends Model
 
     public static function getStudentPayment($request)
     {
-        $students_payment = Students::join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
+        $students_payment = Students::join('users','students.stu_user_id','=','users.usr_id')->join('student_payments', 'student_payments.stp_student_id', '=', 'students.stu_id')
             ->whereNotNull('student_payments.stp_picture')
             ->where('student_payments.stp_type_payment', 1);
         return $students_payment;

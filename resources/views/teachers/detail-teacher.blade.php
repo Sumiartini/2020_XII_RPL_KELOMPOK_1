@@ -107,6 +107,14 @@
                             <p>{{ $teacher->personal['nik'] }}</p>
                         </dd>
                         @endif
+
+                        @if(isset($teacher->tcr_gtk_number_id))
+                        <dt class="col-sm-5">GTK</dt>
+                        <dd class="col-sm-7">
+                            <p>{{ getFormatGtk($teacher->no_gtk->gtn_number) }}</p>
+                        </dd>
+                        @endif
+
                         @if(isset($teacher->tcr_nuptk))
                         <dt class="col-sm-5">NUPTK</dt>
                         <dd class="col-sm-7">

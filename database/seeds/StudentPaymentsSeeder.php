@@ -11,6 +11,7 @@ class StudentPaymentsSeeder extends Seeder
      */
     public function run()
     {
+        //formulir
         DB::table('student_payments')->insert([
         	'stp_student_id'  => '5',
         	'stp_payment_method' => 'Offline Ke Sekolah',
@@ -23,6 +24,7 @@ class StudentPaymentsSeeder extends Seeder
 
         ]);
 
+        //ppdb
         DB::table('student_payments')->insert([
          	'stp_student_id'  => '5',
         	'stp_payment_method' => 'Transfer Bank',
@@ -79,7 +81,7 @@ class StudentPaymentsSeeder extends Seeder
         ]);
 
         DB::table('student_payments')->insert([
-            'stp_student_id'  => '1',
+            'stp_student_id'  => '2',
             'stp_payment_status' => '0',
         ]);
 
@@ -100,6 +102,5 @@ class StudentPaymentsSeeder extends Seeder
             'stp_type_payment'   => '1',
             'stp_picture'       => 'assets/images/ppdb.jpeg',
         ]);
-
     }
 }

@@ -45,28 +45,18 @@
         </div>
     </div>
     @endif
+
     @if ($message = Session::get('error'))
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <div class="alert-icon contrast-alert">
-           <i class="icon-check"></i>
-       </div>
-       <div class="alert-message">
-        <span><strong>Gagal!</strong> {{$message}}.</span>
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <div class="alert-icon contrast-alert">
+            <i class="icon-close"></i>
+        </div>
+        <div class="alert-message">
+            <span><strong>Gagal!</strong> {{$message}}.</span>
+        </div>
     </div>
-</div>
-@endif
-@if ($message = Session::get('error'))
-<div class="alert alert-danger alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-  <div class="alert-icon contrast-alert">
-    <i class="icon-close"></i>
-</div>
-<div class="alert-message">
-    <span><strong>Gagal!</strong> {{$message}}.</span>
-</div>
-</div>
-@endif
+    @endif
 <div class="card">
     <div class="card-body">
         <div class="card-title">Tambah Kelas</div>

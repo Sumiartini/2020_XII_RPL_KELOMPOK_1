@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use app\Provinces;
 use App\StaffDetails;
+use App\GtkNumber;
 
 class Staffs extends Model
 {
@@ -16,8 +17,9 @@ class Staffs extends Model
     public static function getStaffs($request)
     {
         $staffs = Staffs::join('users', 'staffs.stf_user_id', '=', 'users.usr_id')
+            ->join('gtk_numbers', 'staffs.stf_gtk_number_id','=','gtk_numbers.gtn_id')
             ->where('staffs.stf_registration_status', 1)
-            ->where('users.usr_is_regist', 1)->select('users.usr_id', 'users.usr_name','users.usr_is_active','staffs.stf_id','staffs.stf_gtk');
+            ->where('users.usr_is_regist', 1)->select('users.usr_id', 'users.usr_name','users.usr_is_active','staffs.stf_id','gtn_number');
         return $staffs;
     }
 
@@ -97,7 +99,14 @@ class Staffs extends Model
         $get_staff_edit = mappingDataStaff($get_staff_edit, $staffs_edit);
 
         return $get_staff_edit;
-
     }
-    
+
+    public function no_gtk()
+    {
+        return $this->belongsTo(GtkNumber::class, 'stf_gtk_number_id','gtn_id');
+    }
+    public function school_year()
+    {
+        return $this->belongsTo(Years::class, 'stf_school_year_id', 'scy_id');
+    }
 }
