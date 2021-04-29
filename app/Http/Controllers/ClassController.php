@@ -139,7 +139,7 @@ class ClassController extends Controller
 
     public function store_add_student(Request $request)
     {
-        $student_check = StudentClass::where('stc_student_id', $request->stu_id)->first();
+        $student_check = StudentClass::where('stc_student_id', $request->stu_id)->orderBy('stc_class_id', 'desc')->first();;
         $class_check = Classes::where('cls_id', $request->cls_id)->first();     
 
         if ($student_check == null) {
@@ -156,13 +156,23 @@ class ClassController extends Controller
         }else{
             $student_class = Classes::where('cls_id', $student_check->stc_class_id)->first();
             if ($class_check->cls_grade_level_id > $student_class->cls_grade_level_id) {
-                if ($class_check->cls_grade_level_id == 2) {
+                if ($class_check->cls_grade_level_id == 3 && $student_class->cls_grade_level_id == 1 ) {
+                    return back()->with('error', 'Masukkan dulu kelas siswa sebelumnya. Siswa tidak dapat loncat kelas');
+                }elseif($class_check->cls_grade_level_id == 2) {
                     $studentClass = new StudentClass;
                     $studentClass->stc_student_id    = $request->stu_id;
                     $studentClass->stc_class_id      = $request->cls_id;
                     $studentClass->stc_created_by    = Auth()->user()->usr_id;
                     $studentClass->save();
-                    return redirect('/class/'.$studentClass->stc_class_id);        
+                    return redirect('/class/'.$studentClass->stc_class_id)->with('success', 'Siswa telah ditambahkan');
+                }elseif($class_check->cls_grade_level_id == 3){
+                    $studentClass = new StudentClass;
+                    $studentClass->stc_student_id    = $request->stu_id;
+                    $studentClass->stc_class_id      = $request->cls_id;
+                    $studentClass->stc_created_by    = Auth()->user()->usr_id;
+                    $studentClass->save();
+                    return redirect('/class/'.$studentClass->stc_class_id)->with('success', 'Siswa telah ditambahkan');
+
                 }else{
                     return back()->with('error', 'Masukkan dulu kelas siswa sebelumnya. Siswa tidak dapat loncat kelas');
                 }
@@ -178,9 +188,11 @@ class ClassController extends Controller
                                 ->join('classes', 'classes.cls_id', 'student_classes.stc_class_id')
                                 ->join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
                                 ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+                                ->join('school_years' , 'classes.cls_school_year_id', '=' , 'school_years.scy_id')
                                 ->where('stc_id', $studentClassID)->get();
         $class = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
         ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+        ->join('school_years','classes.cls_school_year_id','=','school_years.scy_id')
         ->get();
         return view('classes.move-student-class', ['student' => $student, 'class' => $class]);
     }
@@ -207,15 +219,15 @@ class ClassController extends Controller
         $student = Students::where('stu_id', $studentID)->first();
         $class = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
         ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+        ->join('school_years','classes.cls_school_year_id','=','school_years.scy_id')
         ->get();
         return view('classes.add-class-student', ['student' => $student, 'class' => $class]);        
     }
 
     public function store_add_class_student(Request $request)
     {
-        $student_check = StudentClass::where('stc_student_id', $request->stu_id)->first();
+        $student_check = StudentClass::where('stc_student_id', $request->stu_id)->orderBy('stc_class_id', 'desc')->first();
         $class_check = Classes::where('cls_id', $request->cls_id)->first();     
-
         if ($student_check == null) {
             if ($class_check->cls_grade_level_id == 1) {
             $studentClass = new StudentClass;
@@ -230,13 +242,22 @@ class ClassController extends Controller
         }else{
             $student_class = Classes::where('cls_id', $student_check->stc_class_id)->first();
             if ($class_check->cls_grade_level_id > $student_class->cls_grade_level_id) {
-                if ($class_check->cls_grade_level_id == 2) {
+                if ($class_check->cls_grade_level_id == 3 && $student_class->cls_grade_level_id == 1 ) {
+                    return back()->with('error', 'Masukkan dulu kelas siswa sebelumnya. Siswa tidak dapat loncat kelas');
+                }elseif ($class_check->cls_grade_level_id == 2) {
                     $studentClass = new StudentClass;
                     $studentClass->stc_student_id    = $request->stu_id;
                     $studentClass->stc_class_id      = $request->cls_id;
                     $studentClass->stc_created_by    = Auth()->user()->usr_id;
                     $studentClass->save();
-                    return redirect('/class/'.$studentClass->stc_class_id);        
+                    return redirect('/class/'.$studentClass->stc_class_id)->with('success', 'Siswa telah ditambahkan');;        
+                }elseif($class_check->cls_grade_level_id == 3){
+                    $studentClass = new StudentClass;
+                    $studentClass->stc_student_id    = $request->stu_id;
+                    $studentClass->stc_class_id      = $request->cls_id;
+                    $studentClass->stc_created_by    = Auth()->user()->usr_id;
+                    $studentClass->save();
+                    return redirect('/class/'.$studentClass->stc_class_id)->with('success', 'Siswa telah ditambahkan');;
                 }else{
                     return back()->with('error', 'Masukkan dulu kelas siswa sebelumnya. Siswa tidak dapat loncat kelas');
                 }

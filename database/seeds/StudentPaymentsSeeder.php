@@ -73,5 +73,33 @@ class StudentPaymentsSeeder extends Seeder
 
         ]);
 
+        DB::table('student_payments')->insert([
+            'stp_student_id'  => '1',
+            'stp_payment_status' => '0',
+        ]);
+
+        DB::table('student_payments')->insert([
+            'stp_student_id'  => '1',
+            'stp_payment_status' => '0',
+        ]);
+
+        DB::table('student_payments')->insert([
+            'stp_student_id'  => '3',
+            'stp_payment_method' => 'Transfer Bank',
+            'stp_payment_status' => '1',
+            'stp_date'           => '2021-03-03' ,
+            'stp_type_payment'   => '1',
+            'stp_picture'       => 'assets/images/ppdb.jpeg',
+        ]);
+
+        DB::table('student_payments')->insert([
+            'stp_student_id'  => '4',
+            'stp_payment_method' => 'Transfer Bank',
+            'stp_payment_status' => '1',
+            'stp_date'           => '2021-03-03' ,
+            'stp_type_payment'   => '1',
+            'stp_picture'       => 'assets/images/ppdb.jpeg',
+        ]);
+
     }
 }

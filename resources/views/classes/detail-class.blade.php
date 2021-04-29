@@ -56,11 +56,15 @@
                     <div class="col-4">
                         <a href="{{URL::to('class/'.$class->cls_id.'/add-student')}}" data-toggle="tooltip" data-placement="top" title="TAMBAH SISWA" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a>
                     </div>
+                    @endforeach
                     <div class="col-8">
+                        @if(isset($teacher->usr_name))
                         <h5 class="float-right">Wali Kelas : {{ $teacher->usr_name }} </h5>
+                        @else
+                        <h5 class="float-right">Wali Kelas : - </h5>
+                        @endif
                     </div>
                 </div>
-                @endforeach
                 <table id="example" class="table table-bordered" style="width: 100%;">
                     <thead>
                         <tr>
