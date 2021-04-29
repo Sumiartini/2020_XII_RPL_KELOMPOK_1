@@ -68,7 +68,7 @@
                         <div class="col-sm-9">
                                 <select name="cls_id" class="form-control form-control-rounded @error('cls_id') is-invalid @enderror">
                                 @foreach($class as $class)
-                                <option selected value="{{ $class->cls_id }}">{{ $class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }}</option>                                
+                                <option selected value="{{ $class->cls_id }}">{{ $class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number. ' | ' . $class->scy_name }}</option>                                
                             </select>
                             @error('cls_id')
                             <span class="invalid-feedback" role="alert">
