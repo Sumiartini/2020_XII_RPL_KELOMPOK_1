@@ -14,7 +14,8 @@ class HomeroomTeacherController extends Controller
    public function create()
     {	
     	$classes = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
-        ->join('majors','classes.cls_major_id','=','majors.mjr_id')->get();
+        ->join('majors','classes.cls_major_id','=','majors.mjr_id')
+        ->join('school_years','classes.cls_school_year_id','=','school_years.scy_id')->get();
         $teachers = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')->get();
 
         return view('homeroom-teachers.add-homeroom-teacher',['classes' => $classes, 'teachers' => $teachers]);
@@ -30,7 +31,6 @@ class HomeroomTeacherController extends Controller
       		'usr_name'			=> 'required',
       		'cls_name'			=> 'required'
      
-      		
         ], $messages);
 
         $homeroom_teacher_check = HomeroomTeachers::where('hrt_teacher_id', $request->usr_name)->where('hrt_class_id', $request->cls_name)->first();
@@ -51,7 +51,6 @@ class HomeroomTeacherController extends Controller
     		return redirect()->back()->with('error', 'Kelas sudah terdaftar');
     	}
 
-
         $homeroom_teachers	= new HomeroomTeachers;
         $homeroom_teachers->hrt_teacher_id = $request->usr_name;
         $homeroom_teachers->hrt_class_id = $request->cls_name;
@@ -64,13 +63,14 @@ class HomeroomTeacherController extends Controller
 
     public function edit($homeroomTeacherID)
     {	
-    	$classes = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')->join('majors','classes.cls_major_id','=','majors.mjr_id')->get();
+    	$classes = Classes::join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')->join('majors','classes.cls_major_id','=','majors.mjr_id')->join('school_years','classes.cls_school_year_id','=','school_years.scy_id')->get();
         $teachers = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')->get();
     	$homeroom_teachers = HomeroomTeachers::join('teachers','homeroom_teachers.hrt_teacher_id','=','teachers.tcr_id')
         ->join('classes','homeroom_teachers.hrt_class_id','=','classes.cls_id')
         ->join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')
         ->join('majors','classes.cls_major_id','=','majors.mjr_id')
         ->join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
+        ->join('school_years','cls_school_year_id','=','school_years.scy_id')
         ->where('homeroom_teachers.hrt_id', $homeroomTeacherID)->first();
     	// dd($homeroom_teachers);
         return view('homeroom-teachers.edit-homeroom-teacher', ['homeroom_teachers'=>$homeroom_teachers, 
@@ -94,14 +94,14 @@ class HomeroomTeacherController extends Controller
         $homeroom_teacher_check = HomeroomTeachers::where('hrt_teacher_id', $request->usr_name)->where('hrt_class_id', $request->cls_name)->first();
         // dd($homeroom_teacher_check);
         if ($homeroom_teacher_check) {
-            return redirect()->back()->with('error', 'wali Kelas sudah terdaftar');
+            return redirect('homeroom-teachers');
         }
 
-        $teacher_check = HomeroomTeachers::where('hrt_teacher_id', $request->usr_name)->first();
-        // dd($teacher_check);
-        if ($teacher_check) {
-            return redirect()->back()->with('error', 'Guru sudah terdaftar');
-        }
+        // $teacher_check = HomeroomTeachers::where('hrt_teacher_id', $request->usr_name)->first();
+        // // dd($teacher_check);
+        // if ($teacher_check) {
+        //     return redirect()->back()->with('error', 'Guru sudah terdaftar');
+        // }
 
         $class_check = HomeroomTeachers::where('hrt_class_id', $request->cls_name)->first();
         // dd($class_check);

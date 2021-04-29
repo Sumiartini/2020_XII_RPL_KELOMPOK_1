@@ -87,11 +87,11 @@
                         <label for="input-2" class="col-sm-3 col-form-label">Nama Kelas</label>
                         <div class="col-sm-9">
                                 <select name="cls_name" class="form-control form-control-rounded @error('cls_name') is-invalid @enderror">
-                                <option selected value="{{ $homeroom_teachers->cls_id }}">{{$homeroom_teachers->grl_name. ' ' .$homeroom_teachers->mjr_name. ' ' .$homeroom_teachers->cls_number }}</option>
+                                <option selected value="{{ $homeroom_teachers->cls_id }}">{{$homeroom_teachers->grl_name. ' ' .$homeroom_teachers->mjr_name. ' ' .$homeroom_teachers->cls_number }} | {{ $homeroom_teachers->scy_name }}</option>
                                 @foreach($classes as $class)
 
                                 @if($homeroom_teachers->hrt_class_id != $class->cls_id)
-                                <option value="{{$class->cls_id}}">{{$class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }}</option>
+                                <option value="{{$class->cls_id}}">{{$class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }} | {{ $class->scy_name }}</option>
                                 @endif
 
                                 @endforeach

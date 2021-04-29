@@ -9,28 +9,30 @@ use App\GradeLevels;
 use App\StudentClass;
 use App\Students;
 use App\HomeroomTeachers;
-
+use App\Years;
 class ClassController extends Controller
 {
     public function create()
     {
     	$majors = Majors::where('mjr_is_active', 1)->get();
     	$grade_levels = GradeLevels::all();
-    	return view('classes.add-class',['grade_levels' => $grade_levels, 'majors' => $majors]);
+        $school_years = Years::select('scy_id','scy_name')->get();
+    	return view('classes.add-class',['grade_levels' => $grade_levels, 'majors' => $majors, 'school_years' => $school_years]);
     }
     public function store(Request $request)
     {
-    	dd($request);
+    	// dd($request);
         $messages = [
             'required'  => 'Kolom wajib diisi',
         ];
         $request->validate([
       		'cls_grade_level'	=> 'required',
       		'cls_major'			=> 'required',
-      		'cls_number'		=> 'required'
+      		'cls_number'		=> 'required',
+            'cls_school_year_id'    => 'required'
         ], $messages);
     	
-    	$class_check = Classes::where('cls_grade_level_id', $request->cls_grade_level)->where('cls_major_id', $request->cls_major)->where('cls_number', $request->cls_number)->first();
+    	$class_check = Classes::where('cls_grade_level_id', $request->cls_grade_level)->where('cls_major_id', $request->cls_major)->where('cls_number', $request->cls_number)->where('cls_school_year_id', $request->cls_school_year_id)->first();
     	// dd($class_check);
     	if ($class_check) {
     		return redirect()->back()->with('error', 'Kelas sudah tersedia');
@@ -41,6 +43,7 @@ class ClassController extends Controller
     	$class->cls_grade_level_id = $request->cls_grade_level;
     	$class->cls_number = $request->cls_number;
     	$class->cls_is_active = 1;
+        $class->cls_school_year_id = $request->cls_school_year_id;
     	$class->cls_created_by = Auth()->user()->usr_id;
     	$class->save();
 
@@ -51,9 +54,10 @@ class ClassController extends Controller
     {
     	$majors = Majors::where('mjr_is_active', 1)->get();
     	$grade_levels = GradeLevels::all();
-    	$class = Classes::join('majors','classes.cls_major_id','=','majors.mjr_id')->join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')->where('classes.cls_id', $classID)->first();
+        $school_years = Years::select('scy_id','scy_name')->get();
+    	$class = Classes::join('majors','classes.cls_major_id','=','majors.mjr_id')->join('grade_levels','classes.cls_grade_level_id','=','grade_levels.grl_id')->join('school_years','cls_school_year_id','=','school_years.scy_id')->where('classes.cls_id', $classID)->first();
     	// dd($class);
-    	return view('classes.edit-class',['grade_levels' => $grade_levels, 'majors' => $majors, 'class' => $class ]);
+    	return view('classes.edit-class',['grade_levels' => $grade_levels, 'majors' => $majors, 'class' => $class, 'school_years'  => $school_years]);
     }
     public function update(Request $request, $classID)
     {
@@ -64,14 +68,15 @@ class ClassController extends Controller
         $request->validate([
       		'cls_grade_level'	=> 'required',
       		'cls_major'			=> 'required',
-      		'cls_number'		=> 'required'
+      		'cls_number'		=> 'required',
+            'cls_school_year_id'    => 'required'
         ], $messages);
     	
     	$class = Classes::where('cls_id', $classID)->first();
-    	$class_check = Classes::where('cls_grade_level_id', $request->cls_grade_level)->where('cls_major_id', $request->cls_major)->where('cls_number', $request->cls_number)->first();
+    	$class_check = Classes::where('cls_grade_level_id', $request->cls_grade_level)->where('cls_major_id', $request->cls_major)->where('cls_number', $request->cls_number)->where('cls_school_year_id', $request->cls_school_year_id)->first();
     	// dd($class_check);
 
-    	if ($class->cls_grade_level_id == $request->cls_grade_level && $class->cls_major_id == $request->cls_major && $class->cls_number == $request->cls_number) {
+    	if ($class->cls_grade_level_id == $request->cls_grade_level && $class->cls_major_id == $request->cls_major && $class->cls_number == $request->cls_number && $class->cls_school_year_id == $request->cls_school_year_id) {
     		return redirect('/classes');
     	}
 

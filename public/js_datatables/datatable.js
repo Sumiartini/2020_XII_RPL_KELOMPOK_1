@@ -2158,6 +2158,13 @@ $('#example').DataTable({
            
        },
        {
+           data: 'scy_name',
+           name:'school_years.scy_name',
+           orderable: false,
+           searchable: true
+           
+       },
+       {
            data: 'hrt_is_active',
            name:'hrt_is_active',
            orderable: false,

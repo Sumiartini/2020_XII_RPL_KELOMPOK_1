@@ -112,6 +112,23 @@
             </div>
 
             <div class="form-group row">
+                <label for="input-2" class="col-sm-3 col-form-label">Tahun Kelas</label>
+                <div class="col-sm-9">
+                    <select name="cls_school_year_id" class="form-control form-control-rounded">
+                        <option disabled="" selected> Pilih </option>
+                        @foreach($school_years as $school_year)
+                        <option value="{{ $school_year->scy_id }}">{{ $school_year->scy_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('cls_school_year')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror 
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="input-1" class="col-sm-3 col-form-label"></label>
                 <div class="col-sm-9">
                     <a href="{{url('classes')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
@@ -160,18 +177,24 @@
         },
         cls_grade_level:{
             required: true
-        }
+        },
+        cls_school_year_id:{
+            required: true
+        },
     },
     messages: {
         cls_number: {
           required: "Nomor Kelas harus di isi"
-      },     
-      cls_major: {
-        required: "Nama jurusan harus di pilih"
-    },
-    cls_grade_level:{
-        required: "Tingkatan kelas harus di pilih"
-    },
+        },     
+        cls_major: {
+            required: "Nama jurusan harus di pilih"
+        },
+        cls_grade_level:{
+            required: "Tingkatan kelas harus di pilih"
+        },
+        cls_school_year_id:{
+            required: "Tahun ajaran kelas harus di pilih"
+        },
 }
 });
 });
