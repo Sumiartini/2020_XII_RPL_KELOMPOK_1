@@ -80,9 +80,12 @@ function getFormatNis($studentNIS)
     $titik = '.';
     $student_nis_one = substr_replace($studentNIS, $titik, 4, 0);
     $student_nis_two = substr_replace($student_nis_one, $titik, 7, 0);
-    if($studentNIS =! null){
         return $student_nis_two;
-    } else{
-        return $student_NIS;
-    }
+}
+
+function getFormatGtk($gtkNumber)
+{
+    $titik = '.';
+    $format_gtk = substr_replace($gtkNumber, $titik, 4, 0);
+    return $format_gtk;
 }

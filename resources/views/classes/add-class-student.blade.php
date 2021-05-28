@@ -69,7 +69,7 @@
                                 <select name="cls_id" class="form-control form-control-rounded @error('cls_id') is-invalid @enderror">
                                 <option selected="" disabled=""> Pilih </option>
                                 @foreach($class as $class)
-                                <option value="{{ $class->cls_id }}">{{ $class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }}</option>                                
+                                <option value="{{ $class->cls_id }}">{{ $class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number. ' | ' . $class->scy_name }}</option>                                
                                 @endforeach
                             </select>
                             @error('cls_id')
@@ -97,7 +97,7 @@
                     <div class="form-group row">
                         <label for="input-1" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <a href="{{url('class/'.$class->cls_id)}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>                              
+                            <a href="{{url('student/'.$student->stu_id)}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>                              
                             <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                             <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> Simpan</button>
                         </div>
@@ -135,26 +135,20 @@
 
     $("#form-validate").validate({
         rules: {
-            cls_number: {
+            cls_id: {
               required: true,
             },
-            cls_major:{
-                required: true
-            },
-            cls_grade_level:{
+            stu_idstu_id:{
                 required: true
             }
         },
         messages: {
-            cls_number: {
-              required: "Nomor Kelas harus di isi"
+            cls_id: {
+              required: "Kelas harus di pilih"
             },     
-            cls_major: {
-                required: "Nama jurusan harus di pilih"
-            },
-            cls_grade_level:{
-                required: "Tingkatan kelas harus di pilih"
-            },
+            stu_id: {
+                required: "Nama Siswa harus di pilih"
+            }
         }
     });
 });

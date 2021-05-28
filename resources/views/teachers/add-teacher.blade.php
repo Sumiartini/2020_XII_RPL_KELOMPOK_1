@@ -41,7 +41,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">                
-                <form id="form-validate" autocomplete="off" method="POST" action="{{ url('teacher/create') }}" novalidate="novalidate" enctype="multipart/form-data">
+                <form  autocomplete="off" method="POST" action="{{ url('teacher/create') }}" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <h4 class="form-header text-uppercase">
                         <i class="  "></i>
@@ -159,10 +159,26 @@
                             </span>
                             @enderror
                         </div>
+
                         <div class="col-sm-4">
                             <label> No. WhatsApp <span style="color:red"> *</span></label>
                             <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" class="form-control form-control-rounded @error('usr_whatsapp_number') is-invalid @enderror" name="usr_whatsapp_number" placeholder="Masukan No. WhatsApp" value="{{ old('usr_whatsapp_number') }}" value="{{ old('usr_whatsapp_number') }}">
                             @error('usr_whatsapp_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label> Tahun masuk <span style="color:red"> *</span></label>
+                            <select name="tcr_school_year_id" class="form-control form-control-rounded @error('tcr_school_year_id') is-invalid @enderror">
+                                <option disabled="" selected> Pilih </option>
+                                @foreach($school_years as $school_year)
+                                <option value="{{ $school_year->scy_id }}"> {{ $school_year->scy_name }} </option>
+                                @endforeach
+                            </select>
+                            @error('tcr_school_year_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -643,6 +659,9 @@
                 required: true,
                 minlength: 10
             },
+            tcr_school_year_id:{
+                required: true,
+            },
             usr_religion:{
                 required: true
             },
@@ -763,6 +782,9 @@
             usr_whatsapp_number:{
                 required: "No WhatsApp harus di isi",
                 minlength: "Minimal 10 digit"
+            },
+            tcr_school_year_id:{
+                required: "Tahun masuk harus di pilih"
             },
             usr_religion:{
                 required: "Agama harus di pilih"

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\TeacherDetails;
+use App\GtkNumber;
+use App\Years;
 
 class Teachers extends Model
 {
@@ -16,10 +18,11 @@ class Teachers extends Model
     public static function getTeachers($request)
     {
         $teachers = Teachers::join('users', 'teachers.tcr_user_id', '=', 'users.usr_id')
+            ->join('gtk_numbers', 'teachers.tcr_gtk_number_id','=','gtk_numbers.gtn_id')
             ->where('teachers.tcr_registration_status', 1)
             ->where('users.usr_is_regist', 1)
-            ->select('teachers.tcr_id','teachers.tcr_gtk', 'users.usr_id','users.usr_name','users.usr_is_active')
-            ->orderBy('teachers.tcr_gtk');
+            ->select('teachers.tcr_id','gtk_numbers.gtn_number', 'users.usr_id','users.usr_name','users.usr_is_active')
+            ->orderBy('gtk_numbers.gtn_number');
         return $teachers;
     }
 
@@ -100,4 +103,12 @@ class Teachers extends Model
         return $get_teacher_edit;
     }
 
+    public function no_gtk()
+    {
+        return $this->belongsTo(GtkNumber::class, 'tcr_gtk_number_id','gtn_id');
+    }
+    public function school_year()
+    {
+        return $this->belongsTo(Years::class, 'tcr_school_year_id', 'scy_id');
+    }
 }

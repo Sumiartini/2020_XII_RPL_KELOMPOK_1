@@ -45,28 +45,18 @@
         </div>
     </div>
     @endif
+
     @if ($message = Session::get('error'))
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <div class="alert-icon contrast-alert">
-           <i class="icon-check"></i>
-       </div>
-       <div class="alert-message">
-        <span><strong>Gagal!</strong> {{$message}}.</span>
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <div class="alert-icon contrast-alert">
+            <i class="icon-close"></i>
+        </div>
+        <div class="alert-message">
+            <span><strong>Gagal!</strong> {{$message}}.</span>
+        </div>
     </div>
-</div>
-@endif
-@if ($message = Session::get('error'))
-<div class="alert alert-danger alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-  <div class="alert-icon contrast-alert">
-    <i class="icon-close"></i>
-</div>
-<div class="alert-message">
-    <span><strong>Gagal!</strong> {{$message}}.</span>
-</div>
-</div>
-@endif
+    @endif
 <div class="card">
     <div class="card-body">
         <div class="card-title">Tambah Kelas</div>
@@ -114,6 +104,23 @@
                 <div class="col-sm-9">
                     <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="cls_number" class="form-control form-control-rounded @error('cls_number') is-invalid @enderror" value="{{ old('cls_number') }}" placeholder="Masukan Nomor Kelas">
                     @error('cls_number')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror 
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="input-2" class="col-sm-3 col-form-label">Tahun Kelas</label>
+                <div class="col-sm-9">
+                    <select name="cls_school_year_id" class="form-control form-control-rounded">
+                        <option disabled="" selected> Pilih </option>
+                        @foreach($school_years as $school_year)
+                        <option value="{{ $school_year->scy_id }}">{{ $school_year->scy_name }}</option>
+                        @endforeach
+                    </select>
+                    @error('cls_school_year')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -170,18 +177,24 @@
         },
         cls_grade_level:{
             required: true
-        }
+        },
+        cls_school_year_id:{
+            required: true
+        },
     },
     messages: {
         cls_number: {
           required: "Nomor Kelas harus di isi"
-      },     
-      cls_major: {
-        required: "Nama jurusan harus di pilih"
-    },
-    cls_grade_level:{
-        required: "Tingkatan kelas harus di pilih"
-    },
+        },     
+        cls_major: {
+            required: "Nama jurusan harus di pilih"
+        },
+        cls_grade_level:{
+            required: "Tingkatan kelas harus di pilih"
+        },
+        cls_school_year_id:{
+            required: "Tahun ajaran kelas harus di pilih"
+        },
 }
 });
 });

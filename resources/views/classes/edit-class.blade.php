@@ -108,6 +108,25 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="input-2" class="col-sm-3 col-form-label">Tahun Kelas</label>
+                        <div class="col-sm-9">
+                            <select selected name="cls_school_year_id" class="form-control form-control-rounded @error('cls_school_year_id') is-invalid @enderror">
+                                <option value="{{ $class->scy_id }}"> {{ $class->scy_name }} </option>
+                                @foreach($school_years as $school_year)
+                                @if($class->school_year_id != $school_year->scy_id)
+                                <option value="{{ $school_year->scy_id }}">{{ $school_year->scy_name }}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                            @error('cls_school_year')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror 
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="input-1" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
                             <a href="{{url('classes')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>  
@@ -156,6 +175,9 @@
             },
             cls_grade_level:{
                 required: true
+            },
+            cls_school_year_id:{
+                required:true
             }
         },
         messages: {
@@ -168,6 +190,9 @@
             cls_grade_level:{
                 required: "Tingkatan kelas harus di pilih"
             },
+            cls_school_year_id:{
+                required: "Tahun kelas harus di isi"
+            }
         }
     });
 });

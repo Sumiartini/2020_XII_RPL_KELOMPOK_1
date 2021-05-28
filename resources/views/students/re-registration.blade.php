@@ -46,7 +46,7 @@
           <div class="card-header text-uppercase">Profile siswa</div>
           <div class="card-body">
             <div class="media">
-              @isset($user->usr_profile_picture)
+              @isset(Auth()->user()->usr_profile_picture)
               <img class="mr-3 rounded" src="{{ $student->usr_profile_picture }}" width="150px;" height="150px;" alt="user avatar">
               @else
               <img class="mr-3 rounded" src="{{ asset('images/default_profile_picture_20210228.png') }}" width="150px;" height="150px;" alt="user avatar">
@@ -58,7 +58,7 @@
                 </dd>
                 <dt>NIS</dt>
                 <dd>
-                    <p>{{ $student->stu_nis }}</p>
+                    <p>{{ getFormatNis($student->stu_nis) }}</p>
                 </dd>
               </div>
             </div>

@@ -97,6 +97,12 @@
                 <p>{{ $student->usr_email }}</p>
             </dd>
 
+            @if($student->stu_nis)
+            <dt class="col-sm-5">NIS</dt>
+            <dd class="col-sm-7">
+                <p>{{ getFormatNis($student->stu_nis) }}</p>
+            </dd>
+            @endif
             <dt class="col-sm-5">NISN</dt>
             <dd class="col-sm-7">
                 <p>{{ $student->stu_nisn }}</p>
@@ -721,17 +727,23 @@
         </div>
 
         <div class="tab-pane" id="kelas">
+            @if(Auth()->user()->hasRole('admin'))
             <a href="{{ url('class/'. $student->stu_id .'/add-class-student') }}" data-toggle="tooltip" data-placement="top" title="TAMBAH KELAS" type="button" class="btn btn-outline-primary waves-effect waves-light m-1"> <i class="zmdi zmdi-plus fa-lg"></i> </a><hr>
+            @endif
             @if(isset($student_check->stc_id))
             <table class="table table-striped">
                 <tr>
                     <th> Kelas </th>
+                    @if(Auth()->user()->hasRole('student'))
                     <th> Aksi </th>
+                    @endif
                 </tr>
                 @foreach($student_class as $student_class)
                 <tr>
                     <th> {{$student_class->grl_name. ' ' .$student_class->mjr_name. ' ' .$student_class->cls_number}} </th>
+                    @if(Auth()->user()->hasRole('student'))
                     <td> <a href="{{ url('class/'. $student_class->stc_id. '/move-student-class') }}" data-toggle="tooltip" data-placement="top" title="PINDAH KELAS" type="button" class="btn btn-outline-success waves-effect waves-light m-1"> <i class="zmdi zmdi-walk fa-lg"></i></a></td>
+                    @endif
                 </tr>
                 @endforeach
             </table>

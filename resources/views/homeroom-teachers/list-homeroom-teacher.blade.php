@@ -59,6 +59,7 @@
                                 <th>NO</th>
                                 <th>Nama Wali Kelas</th>
                                 <th>Kelas</th>
+                                <th>Tahun Kelas</th>
                                 <th>Status</th>                         
                                 <th>Aksi</th>
                             </tr>

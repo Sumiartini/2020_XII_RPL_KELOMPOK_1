@@ -17,7 +17,8 @@ class CreateStaffsTable extends Migration
             $table->bigIncrements('stf_id');
             $table->foreignId('stf_user_id');
             $table->foreign('stf_user_id')->references('usr_id')->on('users');
-            $table->string('stf_gtk')->nullable();
+            $table->unsignedbigInteger('stf_gtk_number_id')->nullable();
+            $table->foreign('stf_gtk_number_id')->references('gtn_id')->on('gtk_numbers')->onDelete('cascade');
             $table->string('stf_nuptk')->nullable();
             $table->string('stf_entry_year')->nullable();
             $table->tinyInteger('stf_registration_status')->nullable();

@@ -66,11 +66,11 @@
                      <div class="form-group row">
                         <label for="input-3" class="col-sm-3 col-form-label">Kelas</label>
                         <div class="col-sm-9">
-                                <select name="cls_id" class="form-control form-control-rounded @error('grade_level') is-invalid @enderror">
+                                <select name="cls_id" class="form-control form-control-rounded @error('cls_id') is-invalid @enderror">
                                 @foreach($class as $class)
-                                <option selected value="{{ $class->cls_id }}">{{ $class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number }}</option>                                
+                                <option selected value="{{ $class->cls_id }}">{{ $class->grl_name. ' ' .$class->mjr_name. ' ' .$class->cls_number. ' | ' . $class->scy_name }}</option>                                
                             </select>
-                            @error('grade_level')
+                            @error('cls_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -81,13 +81,13 @@
                     <div class="form-group row">
                         <label for="input-3" class="col-sm-3 col-form-label"> Siswa </label>
                         <div class="col-sm-9">
-                                <select name="stu_id" class="form-control form-control-rounded @error('grade_level') is-invalid @enderror">
+                                <select name="stu_id" class="form-control form-control-rounded @error('stu_id') is-invalid @enderror">
                                 <option selected="" disabled=""> Pilih </option>
                                 @foreach($student as $student)
                                 <option value="{{ $student->stu_id }}">{{ $student->stu_candidate_name }}</option>
                                 @endforeach
                             </select>
-                            @error('grade_level')
+                            @error('stu_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -137,26 +137,20 @@
 
     $("#form-validate").validate({
         rules: {
-            cls_number: {
+            cls_id: {
               required: true,
             },
-            cls_major:{
-                required: true
-            },
-            cls_grade_level:{
+            stu_id:{
                 required: true
             }
         },
         messages: {
-            cls_number: {
-              required: "Nomor Kelas harus di isi"
+            cls_id: {
+              required: "Kelas harus di isi"
             },     
-            cls_major: {
-                required: "Nama jurusan harus di pilih"
-            },
-            cls_grade_level:{
-                required: "Tingkatan kelas harus di pilih"
-            },
+            stu_id: {
+                required: "Nama siswa harus di pilih"
+            }
         }
     });
 });

@@ -139,7 +139,13 @@ class DatatableController extends Controller
     {
         $staffs = Staffs::getStaffs($request->query());
         return Datatables::of($staffs)
-    ->editColumn("usr_is_active", function ($row) {
+        ->editColumn('gtn_number', function($row){
+            if ($row->gtn_number == null) {
+                return $row->gtn_number;
+            }
+            return getFormatGtk($row->gtn_number);  
+        })
+        ->editColumn("usr_is_active", function ($row) {
             $usr_is_active = $row->usr_is_active;
             if ($usr_is_active == "0") {
                 return '<span class="badge badge-danger shadow-danger m-1">Tidak Aktif</span>';
@@ -200,6 +206,12 @@ class DatatableController extends Controller
     {
         $teachers = Teachers::getTeachers($request->query());
         return Datatables::of($teachers)
+        ->editColumn('gtn_number', function($row){
+            if ($row->gtn_number == null) {
+                return $row->gtn_number;
+            }
+            return getFormatGtk($row->gtn_number);  
+        })
         ->editColumn("usr_is_active", function ($row) {
             $usr_is_active = $row->usr_is_active;
             if ($usr_is_active == "0") {

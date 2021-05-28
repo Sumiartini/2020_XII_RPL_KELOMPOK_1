@@ -87,7 +87,7 @@
                         <select name="cls_name" class="form-control single-select form-control-rounded @error('cls_name') is-invalid @enderror">
                                 <option disabled="true" selected="true"> Pilih </option>
                                 @foreach($classes as $class)
-                                <option {{ old('cls_name') == "$class->cls_id" ? 'selected' : '' }} value="{{$class->cls_id}}">{{$class->grl_name . ' ' . $class->mjr_name . ' ' . $class->cls_number}}</option>
+                                <option {{ old('cls_name') == "$class->cls_id" ? 'selected' : '' }} value="{{$class->cls_id}}">{{$class->grl_name . ' ' . $class->mjr_name . ' ' . $class->cls_number}} | {{ $class->scy_name }}</option>
                                 @endforeach
                             </select>
                         @error('cls_name')

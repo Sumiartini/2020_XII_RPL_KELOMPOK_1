@@ -502,10 +502,10 @@ function studentPayment() {
                 }
             },
             {
-                data: 'stu_candidate_name', 
-                name:'students.stu_candidate_name', 
+                data: 'usr_name', 
+                name:'users.usr_name', 
                 orderable: true, 
-                searchable: false
+                searchable: true
             },
             {
                 data: 'stp_picture', 
@@ -607,7 +607,7 @@ function schoolPayment() {
                 data: 'stu_candidate_name', 
                 name:'students.stu_candidate_name', 
                 orderable: true, 
-                searchable: false
+                searchable: true
             },
             {
                 data: 'stp_picture', 
@@ -706,8 +706,8 @@ function staff() {
                 searchable: true
             },
             {
-                data: 'stf_gtk', 
-                name:'stf_gtk', 
+                data: 'gtn_number', 
+                name:'gtk_numbers.gtn_number', 
                 orderable: false, 
                 searchable: true
             },
@@ -770,8 +770,8 @@ function staffUsers() {
                 searchable: true
             },
             {
-                data: 'stf_gtk', 
-                name:'stf_gtk', 
+                data: 'gtn_number', 
+                name:'gtk_numbers.gtn_number', 
                 orderable: false, 
                 searchable: true
             },
@@ -1059,8 +1059,8 @@ function teacher() {
                 searchable: true
             },
             {
-                data: 'tcr_gtk', 
-                name:'tcr_gtk', 
+                data: 'gtn_number', 
+                name:'gtk_numbers.gtn_number', 
                 orderable: false, 
                 searchable: true
             },
@@ -1125,8 +1125,8 @@ function teacherUsers() {
                 searchable: true
             },
             {
-                data: 'tcr_gtk', 
-                name:'tcr_gtk', 
+                data: 'gtn_number', 
+                name:'gtk_numbers.gtn_number', 
                 orderable: false, 
                 searchable: true
             },
@@ -2153,6 +2153,13 @@ $('#example').DataTable({
        {
             data: 'cls_name',
            name:'search_cls_name',
+           orderable: false,
+           searchable: true
+           
+       },
+       {
+           data: 'scy_name',
+           name:'school_years.scy_name',
            orderable: false,
            searchable: true
            

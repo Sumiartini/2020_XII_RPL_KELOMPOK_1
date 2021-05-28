@@ -540,7 +540,7 @@
 
                         <input type="checkbox" name="terms_and_conditions">
                         <label>Demikian formulir ini saya buat dengan sebenar-benarnya sesuai dengan petunjuk pengisian dan dapat dipertanggung jawabkan di kemudian hari </label>
-
+                        <input type="hidden" name="tcr_school_year_id" value="{{ $school_year->scy_id }}">
                         <div class="form-footer">
                             <button id="btnSubmit" type="reset" class="btn btn-danger"><i class="fa fa-times"></i> BATAL</button>
                             <button id="btnSubmit" type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> SIMPAN</button>
@@ -700,6 +700,9 @@
             "other[resume]":{
                 required: true
             },
+            "other[scholar_diploma]":{
+                required: true
+            },
             usr_profile_picture:{
                 required:true
             },
@@ -820,6 +823,9 @@
             },
             "other[resume]":{
                 required: "Resume harus di upload"
+            },
+            "other[scholar_diploma]":{
+                required: "Ijazah legalisir SMA atau SMK harus di upload"
             },
             usr_profile_picture:{
                 required: "Foto calon guru tidak boleh kosong"
