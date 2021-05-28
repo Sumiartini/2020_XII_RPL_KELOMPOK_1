@@ -31,9 +31,9 @@ class MasterConfigSeeder extends Seeder
             'msc_fourth_mision'             => 'Membangun perilaku yang peduli terhadap lingkungan.',
             'msc_fifth_mision'              => 'Menjalin kerjasama kerjasama dengan lembaga akademik dan non akademik ditingkat lokal, nasional, dan internasioanal.',
             
-            'msc_poster_mm'                 =>'assets/images/slide/MM.jpg',
+            'msc_poster_mm'                 =>'assets/images/slide/mm2.jpg',
             
-            'msc_poster_rpl'                =>'assets/images/slide/RPL.jpg',
+            'msc_poster_rpl'                =>'assets/images/slide/rpl2.jpg',
             
             'msc_logo' 					    => 'assets/images/logo.png',
             

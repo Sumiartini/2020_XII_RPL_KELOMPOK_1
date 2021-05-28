@@ -14,31 +14,31 @@ class MasterSlideSeeder extends Seeder
         DB::table('master_slides')->insert([
         	'mss_id' 		=> 1,
             'mss_name' 		=> 'Poster',
-            'mss_file' 		=> 'assets/images/slide/1.jpg',
+            'mss_file' 		=> 'assets/images/slide/adiwiyata1.jpg',
             'mss_is_active' => 1,
         ]);
         DB::table('master_slides')->insert([
         	'mss_id' 		=> 2,
             'mss_name' 		=> 'Poster',
-            'mss_file' 		=> 'assets/images/slide/ppdb_baru.jpg',
+            'mss_file' 		=> 'assets/images/slide/brosur1.png',
             'mss_is_active' => 1,
         ]);
         DB::table('master_slides')->insert([
         	'mss_id' 		=> 3,
             'mss_name' 		=> 'Poster',
-            'mss_file' 		=> 'assets/images/slide/MM.jpg',
+            'mss_file' 		=> 'assets/images/slide/mm1.png',
             'mss_is_active' => 1,
         ]);
         DB::table('master_slides')->insert([
         	'mss_id' 		=> 4,
             'mss_name' 		=> 'Poster',
-            'mss_file' 		=> 'assets/images/slide/RPL.jpg',
+            'mss_file' 		=> 'assets/images/slide/rpl1.png',
             'mss_is_active' => 1,
         ]);
         DB::table('master_slides')->insert([
         	'mss_id' 		=> 5,
             'mss_name' 		=> 'Poster',
-            'mss_file' 		=> 'assets/images/slide/kerjasama3.jpeg',
+            'mss_file' 		=> 'assets/images/slide/kerjasama1.jpeg',
             'mss_is_active' => 1,
         ]);
         DB::table('master_slides')->insert([

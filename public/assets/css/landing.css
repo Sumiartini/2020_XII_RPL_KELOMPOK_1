@@ -249,7 +249,7 @@ footer{
     text-shadow: 2px 2px 10px grey;
     margin-bottom: 30px;
     margin-top: 50px;
-    font-size: 40px;
+    font-size: 35px !important;
 }
 
 .jumbotron .display-4 span{

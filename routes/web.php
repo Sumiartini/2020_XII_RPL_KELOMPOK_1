@@ -288,6 +288,16 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::get('/edit-status/major/{mjr_id}','MajorController@edit_status');
 
     Route::post('/update/re-registration', 'StudentController@updateStatusToReRegistration');
+
+    
+    Route::get('/teacher/create', 'TeacherController@create');
+    Route::post('/teacher/create', 'TeacherController@store');
+    Route::get('/teacher/{tcr_id}', 'TeacherController@show_teacher');
+    Route::get('/teacher/edit/{tcr_id}', 'TeacherController@edit');
+    Route::post('/teacher/edit/{tcr_id}', 'TeacherController@update');
+    Route::get('/teachers/delete/1', 'TeacherController@destroy');
+    Route::get('/teacher/restore/{tcr_id}', 'TeacherController@restore');
+
 });
     //wali kelas
     Route::get('/homeroom-teachers', function () {
