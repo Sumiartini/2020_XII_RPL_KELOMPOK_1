@@ -444,7 +444,7 @@ public function getClasses(Request $request)
             }else{
                 $status = '<a href="' . url('master-slide/edit-status', $row->mss_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Non Aktifkan" class="btn btn-danger"> <i class="zmdi zmdi-close zmdi-lg"></i></a>';
             }
-            return $detail. '&nbsp' .$edit. '&nbsp' . $status ;
+            return $detail. '&nbsp' .$edit ;
         })->rawColumns(['action', 'mss_is_active'])
         ->make(true);
     }

@@ -1945,13 +1945,7 @@ function master_slide() {
                 orderable: false, 
                 searchable: true
             },
-            {
-                data: 'mss_is_active', 
-                name:'mss_is_active', 
-                orderable: false, 
-                searchable: false
-            },
-
+            
             {
                 data: 'action', 
                 name:'action', 
