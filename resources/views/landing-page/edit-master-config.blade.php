@@ -87,7 +87,7 @@
                     <div class="form-group row">
                         <label for="input-2" class="col-sm-3 col-form-label">Url Video<span style="color:red"> *</span></label>                    
                         <div class="col-sm-8">
-                            <input type="url" name="msc_url_video" class="form-control form-control-rounded @error('msc_url_video') is-invalid @enderror" value="{{$master_config->msc_url_video}}" placeholder="Masukan Link Vide Sekolah">
+                            <input type="url" name="msc_url_video" class="form-control form-control-rounded @error('msc_url_video') is-invalid @enderror" value="https://www.youtube.com/embed/{{$master_config->msc_url_video}}" placeholder="Masukan Link Vide Sekolah">
                             @error('msc_url_video')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
