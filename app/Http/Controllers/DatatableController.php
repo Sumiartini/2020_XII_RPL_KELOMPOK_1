@@ -470,7 +470,7 @@ public function getClasses(Request $request)
                 $status = '<a href="' . url('master-config/edit-status', $row->msc_id) . '" type="button" data-toggle="tooltip" data-placement="top" title="Aktifkan" class="btn btn-success"> <i class="zmdi zmdi-check zmdi-lg"></i></a>';
             }
             if ($msc_is_active == '0') {
-                return $detail . '&nbsp' .$edit . '&nbsp' . $status;
+                return $detail . '&nbsp' .$edit ;
             }else{
                 return $detail . '&nbsp' . $edit;
             }

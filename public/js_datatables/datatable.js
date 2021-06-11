@@ -2048,13 +2048,6 @@ function master_config() {
             },
 
             {
-                data: 'msc_is_active', 
-                name:'msc_is_active', 
-                orderable: false, 
-                searchable: false
-            },
-
-            {
                 data: 'action', 
                 name:'action', 
                 orderable: false, 

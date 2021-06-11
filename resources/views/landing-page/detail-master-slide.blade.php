@@ -33,7 +33,7 @@
 </div>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title text-primary">Data Berkas Informasi</h5>
+      <h5 class="card-title">Data Berkas Informasi</h5>
       <hr>  
       <div class="row" style="margin-top: 20px;">
       

@@ -34,7 +34,7 @@
 
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title text-primary">Data Konfigurasi</h5>
+      <h5 class="card-title">Data Konfigurasi</h5>
       <hr>  
       <div class="row" style="margin-top: 20px;">
       @foreach($master_config as $master_config)
