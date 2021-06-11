@@ -338,8 +338,7 @@ Route::group(['middleware' => ['auth', 'verified', 'accepted', 'DisablePreventBa
     Route::post('/master-slide/edit/{mss_id}', 'LandingPageController@update');
     Route::get('/master-slide/edit-status/{mss_id}', 'LandingPageController@editStatus');
 
-    
-});
+   
     //download file
 
 Route::get('/download-file-student/images/student_files/{locationFile}','User\UserController@downloadFileStudent');
